@@ -1,0 +1,26 @@
+version: 1
+assets:
+  - id: wav2lip-model-placeholder
+    type: model_weight
+    project: Wav2Lip
+    source_url: ""
+    upstream_version: ""
+    sha256: ""
+    local_path: third_party/LiveTalking/models/wav2lip.pth
+    license_reference: ""
+    commercial_use_review: pending
+    contains_personal_likeness: false
+    status: missing
+    notes: Do not commit the weight file.
+
+  - id: demo-avatar-placeholder
+    type: avatar
+    source_url: ""
+    sha256: ""
+    local_path: third_party/LiveTalking/data/avatars/demo
+    license_reference: ""
+    commercial_use_review: pending
+    contains_personal_likeness: true
+    consent_reference: ""
+    status: missing
+    notes: Use only after likeness and commercial rights are confirmed.

@@ -1,0 +1,78 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+secrets/
+
+# Local data and recordings
+recordings/
+logs/
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.wav
+*.pcm
+*.aac
+*.m4a
+*.mp3
+*.mp4
+*.webm
+!assets/**/*.example.*
+
+# Model / avatar assets
+models/
+weights/
+checkpoints/
+third_party/LiveTalking/
+assets/avatars/private/
+assets/idle-video/private/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.apk
+*.aab
+.cxx/
+.externalNativeBuild/
+captures/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Runtime and temp
+.cache/
+tmp/
+temp/
+*.log
+*.pid
+*.swp
+
+# User source materials are never mirrored here
+knowledge-source-private/

@@ -1,0 +1,33 @@
+project:
+  name: jiyangjia-ai-kiosk
+  store_id: demo-store
+  environment: development
+
+display:
+  mode: idle_video # idle_video | livetalking_webrtc
+  idle_video_asset: assets/idle-video/idle.example.mp4
+  show_subtitles: true
+  reconnect_seconds: 5
+
+livetalking:
+  base_url: http://127.0.0.1:8010
+  transport: whep
+  avatar_id: wav2lip256_avatar1
+  model: wav2lip
+  request_timeout_seconds: 15
+
+gateway:
+  base_url: http://127.0.0.1:8080
+  request_timeout_seconds: 30
+  max_retries: 1
+
+audio:
+  prefer_usb_input: true
+  fallback_to_default_input: true
+  max_recording_seconds: 30
+  playback_volume: 1.0
+
+privacy:
+  save_raw_audio: false
+  save_transcripts: true
+  transcript_retention_days: 30

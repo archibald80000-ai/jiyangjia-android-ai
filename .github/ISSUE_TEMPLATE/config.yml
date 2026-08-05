@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/archibald80000-ai/jiyangjia-ai-kiosk/security
+    about: Do not disclose secrets or private customer data in public issues.

@@ -1,0 +1,1 @@
+Prepare a release only after all milestone tasks are DONE. Verify clean status, tests, secret scan, license notices, APK/server artifacts, checksums, migration/rollback, known limitations and device/GPU evidence. Never package `.env.local`, raw recordings, model weights or private assets.

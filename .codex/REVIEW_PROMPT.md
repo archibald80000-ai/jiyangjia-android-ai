@@ -1,0 +1,1 @@
+Review the current task branch against its task file and AGENTS rules. Focus on correctness, secrets, unsupported completion claims, upstream drift, Android/device assumptions, provider coupling, fallback behavior and missing tests. Do not modify code until findings are listed with severity and evidence.

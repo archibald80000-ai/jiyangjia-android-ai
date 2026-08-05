@@ -1,0 +1,17 @@
+version: 1
+status: mock-only
+items:
+  - id: faq_001
+    questions:
+      - 你们是什么门店
+      - 积养家是做什么的
+    answer: 这是测试回答。正式品牌介绍需要由项目负责人确认后替换。
+    status: mock
+    source: owner-review-required
+
+  - id: faq_002
+    questions:
+      - 你们有哪些服务
+    answer: 这是测试回答。请现场工作人员为您介绍当前已上线的服务项目。
+    status: mock
+    source: owner-review-required

@@ -1,0 +1,12 @@
+{
+  "name": "LiveTalking",
+  "repository": "https://github.com/lipku/LiveTalking.git",
+  "owner": "lipku",
+  "repo": "LiveTalking",
+  "branch": "main",
+  "commit": "c963ad409c556918b7d23999bf87c47a7c05c932",
+  "commit_date_utc": "2026-08-02T11:36:46Z",
+  "commit_message": "feat: add WHEP support and new routes",
+  "local_path": "third_party/LiveTalking",
+  "update_policy": "manual-review-only"
+}

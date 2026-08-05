@@ -1,0 +1,20 @@
+asr:
+  provider: mock
+  supported: [mock, doubao]
+
+tts:
+  provider: edge
+  supported: [edge, doubao]
+  voice_id: default
+
+llm:
+  provider: mock
+  supported: [mock, doubao, qwen, openai_compatible]
+  temperature: 0.2
+  max_output_characters: 180
+
+knowledge:
+  provider: mini_faq
+  faq_path: knowledge-test/faq_test.example.yaml
+  fallback_to_llm: true
+  require_human_when_uncertain: true

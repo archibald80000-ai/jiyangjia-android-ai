@@ -1,0 +1,35 @@
+name: Repository checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Required project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in README.md AGENTS.md MEMORY.md PROJECT_STATE.md tasks/index.yaml config/upstream-lock.json; do
+            test -f "$f" || { echo "Missing $f"; exit 1; }
+          done
+      - name: Refuse tracked local secret files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)(\.env|\.env\.local|.*\.pem|.*\.key|.*\.p12|.*\.pfx)$'; then
+            echo "Sensitive file name is tracked."
+            exit 1
+          fi
+      - name: Validate JSON
+        shell: bash
+        run: |
+          python -m json.tool config/upstream-lock.json >/dev/null
+          python -m json.tool knowledge-test/test_questions.example.json >/dev/null

@@ -1,0 +1,27 @@
+name: Bug report
+about: Report a reproducible defect without sensitive data
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: App/server version, Android/GPU/OS, but no credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual and expected result
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs

@@ -1,0 +1,33 @@
+name: Development task
+about: Track one TASK-xxx execution
+labels: ["type:task"]
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      placeholder: TASK-000
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: Exact commands, outputs and artifacts required.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety gates
+      options:
+        - label: No secrets/private sources/model weights will be committed
+          required: true
+        - label: Task scope and allowed paths are known
+          required: true

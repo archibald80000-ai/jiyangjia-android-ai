@@ -1,0 +1,28 @@
+{
+  "name": "jiyangjia-ai-kiosk",
+  "display_name": "积养家 Android 大屏 AI 数字人客服系统",
+  "version": "0.1.0",
+  "status": "planning",
+  "local_windows_path": "E:\\work\\安卓大屏AI语音客服系统",
+  "public_repository": "archibald80000-ai/jiyangjia-ai-kiosk",
+  "primary_upstream": {
+    "name": "LiveTalking",
+    "repository": "https://github.com/lipku/LiveTalking.git",
+    "owner": "lipku",
+    "repo": "LiveTalking",
+    "branch": "main",
+    "commit": "c963ad409c556918b7d23999bf87c47a7c05c932",
+    "commit_date_utc": "2026-08-02T11:36:46Z",
+    "commit_message": "feat: add WHEP support and new routes",
+    "local_path": "third_party/LiveTalking",
+    "update_policy": "manual-review-only"
+  },
+  "target_android": "12",
+  "cloud": {
+    "provider": "Tencent Cloud",
+    "cpu_cores": 8,
+    "ram_gb": 4,
+    "bandwidth_mbps": 10,
+    "gpu": false
+  }
+}
