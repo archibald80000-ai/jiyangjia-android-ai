@@ -1,0 +1,59 @@
+# TASK-003 third blocked audit
+Date: 2026-08-06
+Branch: task/TASK-003-wav2lip-webrtc-baseline
+Reason: same TASK-003 asset blocker persists across consecutive goal continuations; strict task order forbids advancing to TASK-004 without real Wav2Lip/WebRTC evidence.
+
+## Required asset path check
+```text
+PS> $paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach($path in $paths){ if(Test-Path $path){ Write-Output "FOUND $path" } else { Write-Output "MISSING $path" }}
+MISSING third_party\LiveTalking\models\wav2lip.pth
+MISSING third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+EXIT_CODE=0
+```
+
+## Model directory listing
+```text
+PS> Get-ChildItem third_party\LiveTalking\models -Force -ErrorAction SilentlyContinue | Select-Object Mode,Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String
+
+Mode   Name                Length LastWriteTime
+----   ----                ------ -------------
+-a---- put models here.txt      0 2026/8/5 20:42:12
+
+
+
+EXIT_CODE=0
+```
+
+## Avatar directory listing
+```text
+PS> Get-ChildItem third_party\LiveTalking\data\avatars -Force -ErrorAction SilentlyContinue | Select-Object Mode,Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String
+
+Mode   Name     Length LastWriteTime
+----   ----     ------ -------------
+-a---- .gitkeep      0 2026/8/5 20:42:12
+
+
+
+EXIT_CODE=0
+```
+
+## Git status
+```text
+PS> git status --short --branch --untracked-files=all
+## task/TASK-003-wav2lip-webrtc-baseline
+EXIT_CODE=0
+```
+
+## Repository verification
+```text
+PS> powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```

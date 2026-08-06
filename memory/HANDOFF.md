@@ -57,6 +57,7 @@
 - `docs/evidence/TASK-003/pip-check-after-gdown.txt`
 - `docs/evidence/TASK-003/task003-final-verification.txt`
 - `docs/evidence/TASK-003/task003-followup-final-verification.txt`
+- `docs/evidence/TASK-003/task003-third-blocked-audit.txt`
 
 ## Unblock action
 
