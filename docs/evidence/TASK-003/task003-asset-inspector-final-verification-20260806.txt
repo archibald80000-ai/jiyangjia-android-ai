@@ -1,0 +1,107 @@
+TASK-003 asset inspector final verification
+Timestamp: 2026-08-05 22:15:33 -05:00
+
+## Asset inspector incomplete source fails
+Command: & '.\scripts\inspect_livetalking_assets.ps1' -AssetSourcePath '.cache\TASK-003\asset-inspector-empty'
+ExitCode: 1
+Inspecting LiveTalking Wav2Lip assets under E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-empty
+This script does not download assets, copy model files, or read browser/Quark login storage.
+wav2lip_model status=missing
+s3fd_detector status=missing
+avatar_wav2lip256_avatar1 status=missing
+Asset source is not ready for PrepareAssets. Need wav2lip.pth/wav2lip256.pth, s3fd.pth, and expanded wav2lip256_avatar1
+ with coords.pkl/full_imgs/face_imgs.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\inspect_livetalking_assets.ps1:113 char:3
++   throw "Asset source is not ready for PrepareAssets. Need wav2lip.pt ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Asset source is...imgs/face_imgs.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Asset source is not ready for PrepareAssets. Need wav2lip.pth/wav2lip256.pth, s3fd.pth,
+   and expanded wav2lip256_avatar1 with coords.pkl/full_imgs/face_imgs.
+
+
+## Asset inspector default rejects fixture size mismatch
+Command: & '.\scripts\inspect_livetalking_assets.ps1' -AssetSourcePath '.cache\TASK-003\asset-inspector-fixture'
+ExitCode: 1
+Inspecting LiveTalking Wav2Lip assets under E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture
+This script does not download assets, copy model files, or read browser/Quark login storage.
+wav2lip_model status=found path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\models\wav2lip256.pth size=39 sha256=42496FF74B6084739010EAC8ED7BC06DA3CAF79F752D4B5350290F6454694BDA
+wav2lip_model status=size_mismatch expected=214670409 actual=39
+s3fd_detector status=found path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\detector\s3fd.pth size=45 sha256=A6C402A647EE6E7D1B6016B8972E4C0A8BF6658AF8537E8E59CBC7DE509017D6
+s3fd_detector status=size_mismatch expected=89843225 actual=45
+avatar_wav2lip256_avatar1 status=expanded path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\data\avatars\wav2lip256_avatar1 files=3 bytes=74
+Asset source is not ready for PrepareAssets. Need wav2lip.pth/wav2lip256.pth, s3fd.pth, and expanded wav2lip256_avatar1
+ with coords.pkl/full_imgs/face_imgs.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\inspect_livetalking_assets.ps1:113 char:3
++   throw "Asset source is not ready for PrepareAssets. Need wav2lip.pt ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Asset source is...imgs/face_imgs.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Asset source is not ready for PrepareAssets. Need wav2lip.pth/wav2lip256.pth, s3fd.pth,
+   and expanded wav2lip256_avatar1 with coords.pkl/full_imgs/face_imgs.
+
+
+## Asset inspector explicit fixture override passes
+Command: & '.\scripts\inspect_livetalking_assets.ps1' -AssetSourcePath '.cache\TASK-003\asset-inspector-fixture' -AllowNonOfficialSizes
+ExitCode: 0
+Inspecting LiveTalking Wav2Lip assets under E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture
+This script does not download assets, copy model files, or read browser/Quark login storage.
+Official size checks are disabled by -AllowNonOfficialSizes; use this only for script fixtures or explicit manual review.
+wav2lip_model status=found path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\models\wav2lip256.pth size=39 sha256=42496FF74B6084739010EAC8ED7BC06DA3CAF79F752D4B5350290F6454694BDA
+s3fd_detector status=found path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\detector\s3fd.pth size=45 sha256=A6C402A647EE6E7D1B6016B8972E4C0A8BF6658AF8537E8E59CBC7DE509017D6
+avatar_wav2lip256_avatar1 status=expanded path=E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture\data\avatars\wav2lip256_avatar1 files=3 bytes=74
+Asset source is ready for local preparation.
+Prepare command:
+powershell -ExecutionPolicy Bypass -File "E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1" -PrepareAssets -AssetSourcePath "E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\asset-inspector-fixture"
+
+## LiveTalking startup still stops on missing real assets
+Command: & '.\scripts\start_livetalking.ps1'
+ExitCode: 1
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:198 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+
+
+## Repository verification
+Command: & '.\scripts\verify_repository.ps1'
+ExitCode: 0
+Repository verification: PASS
+
+## Git diff check
+Command: git diff --check
+ExitCode: 0
+
+## Git diff stat
+Command: git diff --stat
+ExitCode: 0
+ PROJECT_STATE.md                          | 5 +++--
+ TASKS.md                                  | 2 +-
+ memory/CURRENT_STATE.md                   | 3 ++-
+ memory/HANDOFF.md                         | 8 ++++++++
+ scripts/README.md                         | 1 +
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md | 4 ++++
+ 6 files changed, 19 insertions(+), 4 deletions(-)

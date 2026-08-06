@@ -19,6 +19,7 @@ Run the first Wav2Lip WebRTC/WHEP baseline.
 
 - `Local ignored model/avatar directories`
 - `scripts/start_livetalking.ps1`
+- `scripts/inspect_livetalking_assets.ps1`
 - `docs/evidence/TASK-003/`
 - `state/memory/task files`
 
@@ -59,6 +60,7 @@ Invoke-WebRequest http://127.0.0.1:8010/index.html -UseBasicParsing
 ## Required deliverables
 
 - [x] scripts/start_livetalking.ps1
+- [x] scripts/inspect_livetalking_assets.ps1
 - [x] docs/evidence/TASK-003/wav2lip-baseline.md
 - [x] Startup/stream logs or exact BLOCKED evidence
 
@@ -129,6 +131,8 @@ TASK-003 evidence:
 - `docs/evidence/TASK-003/task003-prepare-assets-mode-final-verification-20260806.txt`
 - `docs/evidence/TASK-003/asset-unblock-size-and-structure-search-20260806.txt`
 - `docs/evidence/TASK-003/task003-size-structure-search-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/asset-inspector-verification-20260806.txt`
+- `docs/evidence/TASK-003/task003-asset-inspector-final-verification-20260806.txt`
 
 Blocked result:
 
@@ -145,6 +149,7 @@ Blocked result:
 - LiveTalking service startup was intentionally not attempted without the required model/avatar assets.
 - `scripts/start_livetalking.ps1` now performs asset preflight and stops before model loading when required Wav2Lip assets are missing.
 - `scripts/start_livetalking.ps1` also supports explicit local preparation via `-PrepareAssets -AssetSourcePath <downloaded_official_source>` after a user/authorized client has downloaded the official assets.
+- `scripts/inspect_livetalking_assets.ps1` verifies a downloaded source before preparation and rejects same-name model/S3FD dummy files by default when official sizes do not match.
 
 ## Rollback
 
