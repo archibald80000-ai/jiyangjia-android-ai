@@ -10,14 +10,15 @@
 - Repository structure verification passed.
 - Delivery blueprint added at `docs/22_DELIVERY_BLUEPRINT.md`.
 - TASK-000 secret checks and JSON/YAML validation passed.
+- TASK-001 upstream audit completed: locked LiveTalking checkout verified, relevant README/API/config/source/license files reviewed, endpoint surface and integration boundaries recorded.
 
 ## In progress
 
-- TASK-000 is `DONE`.
+- No task is currently in progress.
 
 ## Not started
 
-- LiveTalking dependency setup.
+- LiveTalking dependency/runtime setup.
 - Model weights / avatar preparation.
 - LiveTalking API reproduction.
 - Android project creation.
@@ -27,4 +28,4 @@
 
 ## Next action
 
-Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on a separate task branch/session. Audit the locked checkout only; do not install models or modify upstream source.
+Start `TASK-002_LIVETALKING_ENVIRONMENT.md` on a separate task branch/session. Build an isolated runtime and record Python, FFmpeg, CUDA/GPU and PyTorch facts. Do not claim model inference, WebRTC media success or provider integration until later task evidence exists.

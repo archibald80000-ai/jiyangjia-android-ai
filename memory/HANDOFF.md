@@ -2,10 +2,9 @@
 
 ## Current task
 
-- Completed task: `TASK-000_PROJECT_BOOTSTRAP.md`
+- Completed task: `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md`
 - Status: `DONE`
-- Current branch: `task/TASK-000-project-bootstrap`
-- Last commit before this handoff update: `408bda8`
+- Current branch: `task/TASK-001-livetalking-upstream-audit`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; not scanned or modified)
 
@@ -16,66 +15,41 @@
 3. `MEMORY.md`
 4. `PROJECT_STATE.md`
 5. `docs/22_DELIVERY_BLUEPRINT.md`
-6. `tasks/TASK-001_LIVETALKING_UPSTREAM_AUDIT.md`
-7. `docs/evidence/TASK-000/environment-audit.md`
+6. `docs/03_LIVETALKING_SCOPE.md`
+7. `tasks/TASK-002_LIVETALKING_ENVIRONMENT.md`
+8. `docs/evidence/TASK-001/upstream-audit.md`
 
 ## What is verified
 
-- Repository path is `E:\work\ai-kefu\jiyangjia-ai`.
-- TASK-000 ran on `task/TASK-000-project-bootstrap`.
-- Repository structure check passed with `scripts/verify_repository.ps1`.
-- `.env.local` is ignored and absent; values were not read.
-- Tracked sensitive/model/audio/database filename scans passed.
-- JSON/YAML validation passed for the required examples and task/config files.
-- Delivery blueprint exists at `docs/22_DELIVERY_BLUEPRINT.md`.
-- `third_party/LiveTalking` is a real Git checkout at locked commit `c963ad409c556918b7d23999bf87c47a7c05c932`.
-- `third_party/LiveTalking` is ignored by the main repository via `.gitignore:33`.
-- No model weights or avatar packages were downloaded by TASK-000.
+- `third_party/LiveTalking` is a real ignored Git checkout at locked commit `c963ad409c556918b7d23999bf87c47a7c05c932`.
+- Upstream remote is `https://github.com/lipku/LiveTalking.git`.
+- The ignored upstream checkout remained unmodified during TASK-001.
+- LiveTalking source/docs at the locked commit expose `/offer`, `/whep`, `/human`, `/humanaudio`, `/interrupt_talk`, `/is_speaking`, `/record`, `/record/{sessionid}`, `/set_audiotype`, `/sse`, admin routes, avatar task routes and conditional `/api/asr`.
+- Default upstream listen port is `8010`; default transport is `webrtc`; default STUN is `stun:stun.freeswitch.org:3478`.
+- Wav2Lip requires `models/wav2lip.pth` and prepared avatar assets under `data/avatars/<avatar_id>`.
+- Upstream code has Apache-2.0 license text, but model weights, avatars, voices and likeness/source-video rights remain separate unresolved asset obligations.
 
-## Environment facts
+## What is not verified
 
-- Git: found, `2.52.0.windows.1`.
-- Python: found, `3.14.0`.
-- Conda: found, `26.1.1`.
-- FFmpeg: found, `8.1`.
-- NVIDIA driver/CUDA as reported by `nvidia-smi`: driver `566.07`, CUDA `12.7`.
-- Java: found, `9.0.1`.
-- GitHub CLI: found, `2.87.3`.
-- ADB: missing from PATH.
-- Gradle: missing from PATH.
-- PyTorch: not installed in the active Python environment.
-- No `origin` remote is configured for the main repository.
+- LiveTalking dependency installation and Python runtime compatibility.
+- Model weight/avatar presence, hashes, licenses or runtime usability.
+- Wav2Lip inference, WebRTC media path, `/offer` or `/whep` runtime success.
+- Android APK, USB microphone, speaker routing, Doubao ASR/TTS/LLM and mini FAQ behavior.
 
-## Bootstrap note
+## TASK-001 evidence
 
-Default Git smart-HTTP clone/fetch to GitHub failed in earlier attempts. The successful command used process-scoped Git config:
-
-```powershell
-$env:GIT_CONFIG_COUNT='1'
-$env:GIT_CONFIG_KEY_0='http.version'
-$env:GIT_CONFIG_VALUE_0='HTTP/1.1'
-powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
-Remove-Item Env:\GIT_CONFIG_COUNT, Env:\GIT_CONFIG_KEY_0, Env:\GIT_CONFIG_VALUE_0 -ErrorAction SilentlyContinue
-```
-
-This did not modify global Git configuration.
-
-## Evidence
-
-- `docs/evidence/TASK-000/environment-audit.md`
-- `docs/evidence/TASK-000/bootstrap-livetalking-env-config-http11.txt`
-- `docs/evidence/TASK-000/locked-checkout-final.txt`
-- `docs/evidence/TASK-000/third-party-ignore-check.txt`
-- `docs/evidence/TASK-000/task000-done-final-verification.txt`
-- `docs/evidence/TASK-000/post-retry-verification.txt`
-- Earlier failed retry logs remain under `docs/evidence/TASK-000/` for troubleshooting history.
+- `docs/evidence/TASK-001/checkout-verification.txt`
+- `docs/evidence/TASK-001/static-source-signals.txt`
+- `docs/evidence/TASK-001/special-route-signals.txt`
+- `docs/evidence/TASK-001/upstream-audit.md`
+- `docs/evidence/TASK-001/task001-final-verification.txt`
 
 ## Next action
 
-Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on a new task branch/session:
+Start `TASK-002_LIVETALKING_ENVIRONMENT.md` on a new task branch/session:
 
 ```powershell
-git switch -c task/TASK-001-livetalking-upstream-audit
+git switch -c task/TASK-002-livetalking-environment
 ```
 
-TASK-001 should audit the locked upstream source, remote, branch/detached state, relevant README/API/config/source files, licenses, extension points and risks. Do not install model weights, do not run Wav2Lip, and do not modify upstream source in TASK-001.
+TASK-002 should create an isolated reproducible LiveTalking runtime environment and record Python, FFmpeg, CUDA/GPU and PyTorch facts. Do not claim model/WebRTC success until TASK-003.

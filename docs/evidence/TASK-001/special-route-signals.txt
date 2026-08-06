@@ -1,0 +1,219 @@
+Timestamp: 2026-08-05T20:47:53.2978398-05:00 Command: targeted scan for WHEP/static route setup and ASR conditional registration
+
+  third_party\LiveTalking\app.py:78:    opt_this.sessionid = sessionid
+  third_party\LiveTalking\app.py:79:
+> third_party\LiveTalking\app.py:80:    avatar_id = params.get('avatar',opt.avatar_id)
+  third_party\LiveTalking\app.py:81:    opt_this.avatar_id = avatar_id
+> third_party\LiveTalking\app.py:82:    ref_audio = params.get('refaudio','') #音色
+> third_party\LiveTalking\app.py:83:    ref_text = params.get('reftext','')
+  third_party\LiveTalking\app.py:84:    if (avatar_id and avatar_id != opt.avatar_id):
+  third_party\LiveTalking\app.py:85:        # Avoid reloading if already cached globally
+  third_party\LiveTalking\app.py:86:        if avatar_id not in global_avatars:
+  third_party\LiveTalking\app.py:89:    else:
+  third_party\LiveTalking\app.py:90:        # Default avatar loaded at startup
+> third_party\LiveTalking\app.py:91:        avatar_this = global_avatars.get(opt.avatar_id)
+  third_party\LiveTalking\app.py:92:    if ref_audio: #请求参数配置了参考音频
+  third_party\LiveTalking\app.py:93:        opt_this.REF_FILE = ref_audio
+  third_party\LiveTalking\app.py:94:        opt_this.REF_TEXT = ref_text
+> third_party\LiveTalking\app.py:95:    custom_config=params.get('custom_config','') #动作编排配置
+  third_party\LiveTalking\app.py:96:    if custom_config:
+  third_party\LiveTalking\app.py:97:        opt_this.customopt = json.loads(custom_config)
+  third_party\LiveTalking\app.py:98:
+  third_party\LiveTalking\app.py:103:    return await rtc_manager.handle_offer(request)
+  third_party\LiveTalking\app.py:104:
+> third_party\LiveTalking\app.py:105:async def whep(request):
+> third_party\LiveTalking\app.py:106:    return await rtc_manager.handle_whep(request)
+  third_party\LiveTalking\app.py:107:
+  third_party\LiveTalking\app.py:108:async def on_shutdown(app):
+  third_party\LiveTalking\app.py:109:    await rtc_manager.shutdown()
+  third_party\LiveTalking\app.py:110:
+  third_party\LiveTalking\app.py:111:async def download_record(request):
+> third_party\LiveTalking\app.py:112:    sessionid = request.match_info.get('sessionid')
+  third_party\LiveTalking\app.py:113:    if not sessionid:
+  third_party\LiveTalking\app.py:114:        return web.Response(status=400, text="sessionid is required")
+  third_party\LiveTalking\app.py:115:
+  third_party\LiveTalking\app.py:166:        # session 0 for virtualcam
+  third_party\LiveTalking\app.py:167:        session_manager.add_session('0', build_avatar_session('0', params))
+> third_party\LiveTalking\app.py:168:        rendthrd = Thread(target=session_manager.get_session('0').render, args=(thread_quit,))
+  third_party\LiveTalking\app.py:169:        rendthrd.start()
+  third_party\LiveTalking\app.py:170:        if opt.transport == 'virtualcam':
+  third_party\LiveTalking\app.py:171:            logger.info("[VirtualCam] Virtual camera output enabled - digital human will be rendered to virtual camera")
+  third_party\LiveTalking\app.py:178:
+  third_party\LiveTalking\app.py:179:    appasync.on_shutdown.append(on_shutdown)
+> third_party\LiveTalking\app.py:180:    appasync.router.add_post("/offer", offer)
+> third_party\LiveTalking\app.py:181:    appasync.router.add_get("/record/{sessionid}", download_record)
+  third_party\LiveTalking\app.py:182:
+  third_party\LiveTalking\app.py:183:    # 注册 server/routes.py 中的通用 API 路由
+  third_party\LiveTalking\app.py:184:    setup_routes(appasync)
+  third_party\LiveTalking\app.py:186:    # Configure default CORS settings.
+  third_party\LiveTalking\app.py:187:    cors = aiohttp_cors.setup(appasync, defaults={
+> third_party\LiveTalking\app.py:188:            "*": aiohttp_cors.ResourceOptions(
+  third_party\LiveTalking\app.py:189:                allow_credentials=True,
+  third_party\LiveTalking\app.py:190:                expose_headers="*",
+  third_party\LiveTalking\app.py:191:                allow_headers="*",
+  third_party\LiveTalking\app.py:196:        cors.add(route)
+  third_party\LiveTalking\app.py:197:
+> third_party\LiveTalking\app.py:198:    # /whep 注册在 CORS 之后：自行管理 OPTIONS，避免与 aiohttp_cors 冲突
+> third_party\LiveTalking\app.py:199:    whep_resource = appasync.router.add_resource('/whep')
+> third_party\LiveTalking\app.py:200:    whep_resource.add_route('POST', whep)
+> third_party\LiveTalking\app.py:201:    whep_resource.add_route('OPTIONS', lambda _: web.Response(status=200))
+  third_party\LiveTalking\app.py:202:
+  third_party\LiveTalking\app.py:203:    logger.info('start http server; http://<serverip>:'+str(opt.listenport))
+  third_party\LiveTalking\app.py:204:    # logger.info('如果使用webrtc，推荐访问webrtc集成前端: http://<serverip>:'+str(opt.listenport)+'/dashboard.html')
+  third_party\LiveTalking\app.py:216:                loop.run_until_complete(rtc_manager.handle_rtcpush(push_url, str(k)))
+  third_party\LiveTalking\app.py:217:        loop.run_forever()
+> third_party\LiveTalking\app.py:218:    #Thread(target=run_server, args=(web.AppRunner(appasync),)).start()
+  third_party\LiveTalking\app.py:219:    run_server(web.AppRunner(appasync))
+  third_party\LiveTalking\app.py:220:
+  third_party\LiveTalking\app.py:221:    #app.on_shutdown.append(on_shutdown)
+> third_party\LiveTalking\app.py:222:    #app.router.add_post("/offer", offer)
+  third_party\LiveTalking\app.py:223:
+  third_party\LiveTalking\app.py:224:    # print('start websocket server')
+  third_party\LiveTalking\app.py:225:    # server = pywsgi.WSGIServer(('0.0.0.0', 8000), app, handler_class=WebSocketHandler)
+  third_party\LiveTalking\server\routes.py:32:
+  third_party\LiveTalking\server\routes.py:33:from server.session_manager import session_manager
+> third_party\LiveTalking\server\routes.py:34:from server.avatar_routes import setup_avatar_routes
+  third_party\LiveTalking\server\routes.py:35:
+> third_party\LiveTalking\server\routes.py:36:def get_session(request, sessionid: str):
+  third_party\LiveTalking\server\routes.py:37:    """从 app 中获取 session 实例"""
+> third_party\LiveTalking\server\routes.py:38:    return session_manager.get_session(sessionid)
+  third_party\LiveTalking\server\routes.py:39:
+  third_party\LiveTalking\server\routes.py:40:
+  third_party\LiveTalking\server\routes.py:41:# ─── 路由处理函数 ──────────────────────────────────────────────────────────
+  third_party\LiveTalking\server\routes.py:46:        params: dict = await request.json()
+  third_party\LiveTalking\server\routes.py:47:
+> third_party\LiveTalking\server\routes.py:48:        sessionid: str = params.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:49:        avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:50:        if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:51:            return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:52:
+> third_party\LiveTalking\server\routes.py:53:        if params.get('interrupt'):
+  third_party\LiveTalking\server\routes.py:54:            avatar_session.flush_talk()
+  third_party\LiveTalking\server\routes.py:55:
+  third_party\LiveTalking\server\routes.py:56:        datainfo = {}
+> third_party\LiveTalking\server\routes.py:57:        if params.get('tts'):  # tts 参数透传（voice, emotion 等）
+> third_party\LiveTalking\server\routes.py:58:            datainfo['tts'] = params.get('tts')
+  third_party\LiveTalking\server\routes.py:59:
+  third_party\LiveTalking\server\routes.py:60:        if params['type'] == 'echo':
+  third_party\LiveTalking\server\routes.py:61:            avatar_session.put_msg_txt(params['text'], datainfo)
+  third_party\LiveTalking\server\routes.py:62:        elif params['type'] == 'chat':
+> third_party\LiveTalking\server\routes.py:63:            llm_response = request.app.get("llm_response")
+  third_party\LiveTalking\server\routes.py:64:            if llm_response:
+> third_party\LiveTalking\server\routes.py:65:                asyncio.get_event_loop().run_in_executor(
+  third_party\LiveTalking\server\routes.py:66:                    None, llm_response, params['text'], avatar_session, datainfo
+  third_party\LiveTalking\server\routes.py:67:                )
+  third_party\LiveTalking\server\routes.py:68:
+  third_party\LiveTalking\server\routes.py:77:    try:
+  third_party\LiveTalking\server\routes.py:78:        params = await request.json()
+> third_party\LiveTalking\server\routes.py:79:        sessionid = params.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:80:        avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:81:        if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:82:            return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:83:        avatar_session.flush_talk()
+  third_party\LiveTalking\server\routes.py:91:    """上传音频文件"""
+  third_party\LiveTalking\server\routes.py:92:    try:
+> third_party\LiveTalking\server\routes.py:93:        form = await request.post()
+> third_party\LiveTalking\server\routes.py:94:        sessionid = str(form.get('sessionid', ''))
+  third_party\LiveTalking\server\routes.py:95:        fileobj = form["file"]
+  third_party\LiveTalking\server\routes.py:96:        filebytes = fileobj.file.read()
+  third_party\LiveTalking\server\routes.py:97:
+  third_party\LiveTalking\server\routes.py:98:        datainfo = {}
+  third_party\LiveTalking\server\routes.py:99:
+> third_party\LiveTalking\server\routes.py:100:        avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:101:        if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:102:            return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:103:        avatar_session.put_audio_file(filebytes, datainfo)
+  third_party\LiveTalking\server\routes.py:112:    try:
+  third_party\LiveTalking\server\routes.py:113:        params = await request.json()
+> third_party\LiveTalking\server\routes.py:114:        sessionid = params.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:115:        avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:116:        if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:117:            return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:118:        avatar_session.set_custom_state(params['audiotype'])
+  third_party\LiveTalking\server\routes.py:127:    try:
+  third_party\LiveTalking\server\routes.py:128:        params = await request.json()
+> third_party\LiveTalking\server\routes.py:129:        sessionid = params.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:130:        avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:131:        if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:132:            return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:133:        if params['type'] == 'start_record':
+  third_party\LiveTalking\server\routes.py:144:    """查询是否正在说话"""
+  third_party\LiveTalking\server\routes.py:145:    params = await request.json()
+> third_party\LiveTalking\server\routes.py:146:    sessionid = params.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:147:    avatar_session = get_session(request, sessionid)
+  third_party\LiveTalking\server\routes.py:148:    if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:149:        return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:150:    return json_ok(data=avatar_session.is_speaking())
+  third_party\LiveTalking\server\routes.py:152:async def sse_handler(request):
+  third_party\LiveTalking\server\routes.py:153:    """SSE 事件流，推送服务器状态更新到客户端"""
+> third_party\LiveTalking\server\routes.py:154:    sessionid = request.query.get('sessionid', '')
+> third_party\LiveTalking\server\routes.py:155:    avatar_session = session_manager.get_session(sessionid)
+  third_party\LiveTalking\server\routes.py:156:    if avatar_session is None:
+  third_party\LiveTalking\server\routes.py:157:        return json_error("session not found")
+  third_party\LiveTalking\server\routes.py:158:
+  third_party\LiveTalking\server\routes.py:176:        while True:
+  third_party\LiveTalking\server\routes.py:177:            try:
+> third_party\LiveTalking\server\routes.py:178:                msg = msgqueue.get_nowait()
+  third_party\LiveTalking\server\routes.py:179:                await response.write(f"data: {msg}\n\n".encode('utf-8'))
+  third_party\LiveTalking\server\routes.py:180:            except queue.Empty:
+  third_party\LiveTalking\server\routes.py:181:                await asyncio.sleep(0.01)
+  third_party\LiveTalking\server\routes.py:192:    """Admin: 获取全局配置参数"""
+  third_party\LiveTalking\server\routes.py:193:    try:
+> third_party\LiveTalking\server\routes.py:194:        opt = request.app.get("opt")
+  third_party\LiveTalking\server\routes.py:195:        if opt:
+  third_party\LiveTalking\server\routes.py:196:            return json_ok(data={"config": vars(opt)})
+  third_party\LiveTalking\server\routes.py:197:        return json_error("Config not found")
+  third_party\LiveTalking\server\routes.py:207:        for sid, avatar_session in session_manager.sessions.items():
+  third_party\LiveTalking\server\routes.py:208:            if avatar_session:
+> third_party\LiveTalking\server\routes.py:209:                s_opt = getattr(avatar_session, 'opt', None)
+  third_party\LiveTalking\server\routes.py:210:                s_data = {
+  third_party\LiveTalking\server\routes.py:211:                    "sessionid": sid,
+  third_party\LiveTalking\server\routes.py:212:                    "speaking": avatar_session.is_speaking() if hasattr(avatar_session, 'is_speaking') else False,
+> third_party\LiveTalking\server\routes.py:213:                    "recording": getattr(avatar_session, 'recording', False),
+  third_party\LiveTalking\server\routes.py:214:                }
+  third_party\LiveTalking\server\routes.py:215:                if s_opt:
+  third_party\LiveTalking\server\routes.py:216:                    s_data.update({
+> third_party\LiveTalking\server\routes.py:217:                        "model": getattr(s_opt, "model", ""),
+> third_party\LiveTalking\server\routes.py:218:                        "avatar_id": getattr(s_opt, "avatar_id", ""),
+> third_party\LiveTalking\server\routes.py:219:                        "REF_FILE": getattr(s_opt, "REF_FILE", ""),
+> third_party\LiveTalking\server\routes.py:220:                        "transport": getattr(s_opt, "transport", ""),
+> third_party\LiveTalking\server\routes.py:221:                        "batch_size": getattr(s_opt, "batch_size", 0),
+> third_party\LiveTalking\server\routes.py:222:                        "customopt": getattr(s_opt, "customopt", []),
+  third_party\LiveTalking\server\routes.py:223:                    })
+  third_party\LiveTalking\server\routes.py:224:                sessions_info.append(s_data)
+  third_party\LiveTalking\server\routes.py:225:        return json_ok(data={"sessions": sessions_info})
+  third_party\LiveTalking\server\routes.py:233:async def index(request):
+  third_party\LiveTalking\server\routes.py:234:    """默认首页重定向"""
+> third_party\LiveTalking\server\routes.py:235:    opt = request.app.get("opt")
+  third_party\LiveTalking\server\routes.py:236:    pagename = 'index.html'
+  third_party\LiveTalking\server\routes.py:237:    if opt and opt.transport == 'rtmp':
+  third_party\LiveTalking\server\routes.py:238:        pagename = 'rtmpapi.html'
+  third_party\LiveTalking\server\routes.py:244:def setup_routes(app):
+  third_party\LiveTalking\server\routes.py:245:    """注册所有路由到 aiohttp app"""
+> third_party\LiveTalking\server\routes.py:246:    app.router.add_get("/", index)
+> third_party\LiveTalking\server\routes.py:247:    app.router.add_post("/human", human)
+> third_party\LiveTalking\server\routes.py:248:    app.router.add_post("/humanaudio", humanaudio)
+> third_party\LiveTalking\server\routes.py:249:    app.router.add_post("/set_audiotype", set_audiotype)
+> third_party\LiveTalking\server\routes.py:250:    app.router.add_post("/record", record)
+> third_party\LiveTalking\server\routes.py:251:    app.router.add_post("/interrupt_talk", interrupt_talk)
+> third_party\LiveTalking\server\routes.py:252:    app.router.add_post("/is_speaking", is_speaking)
+> third_party\LiveTalking\server\routes.py:253:    app.router.add_get("/api/admin/config", admin_config)
+> third_party\LiveTalking\server\routes.py:254:    app.router.add_get("/api/admin/sessions", admin_sessions)
+> third_party\LiveTalking\server\routes.py:255:    app.router.add_get('/sse', sse_handler)
+  third_party\LiveTalking\server\routes.py:256:
+  third_party\LiveTalking\server\routes.py:257:    # ── Local ASR endpoint (SenseVoice/FunASR) ── Issue #604 ──
+  third_party\LiveTalking\server\routes.py:258:    try:
+> third_party\LiveTalking\server\routes.py:259:        from server.asr_server import asr_websocket_handler, is_funasr_available
+> third_party\LiveTalking\server\routes.py:260:        if is_funasr_available():
+> third_party\LiveTalking\server\routes.py:261:            app.router.add_get("/api/asr", asr_websocket_handler)
+> third_party\LiveTalking\server\routes.py:262:            logger.info("[ASR] Local SenseVoice ASR endpoint enabled at /api/asr")
+  third_party\LiveTalking\server\routes.py:263:        else:
+  third_party\LiveTalking\server\routes.py:264:            logger.info("[ASR] funasr not installed — local ASR endpoint disabled "
+  third_party\LiveTalking\server\routes.py:265:                        "(pip install funasr modelscope)")
+  third_party\LiveTalking\server\routes.py:268:
+  third_party\LiveTalking\server\routes.py:269:    # 注册 avatar 生成相关的路由
+> third_party\LiveTalking\server\routes.py:270:    setup_avatar_routes(app)
+  third_party\LiveTalking\server\routes.py:271:
+> third_party\LiveTalking\server\routes.py:272:    app.router.add_static('/', path='web')
+
+ExitCode:

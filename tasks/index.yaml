@@ -1,6 +1,6 @@
 version: 1
-updated: 2026-08-05
-current: TASK-000
+updated: 2026-08-06
+current: TASK-002
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -12,7 +12,7 @@ tasks:
     file: TASK-001_LIVETALKING_UPSTREAM_AUDIT.md
     title: "Audit and pin the LiveTalking upstream source"
     priority: p0
-    status: PLANNED
+    status: DONE
     depends_on: [TASK-000]
   - id: TASK-002
     file: TASK-002_LIVETALKING_ENVIRONMENT.md

@@ -1,0 +1,82 @@
+Timestamp: 2026-08-05T20:47:42.8415676-05:00 Command: static regex scan of LiveTalking routes/plugins/config/deps
+## third_party\LiveTalking\app.py
+aiohttp_routes: post//offer
+
+## third_party\LiveTalking\server\routes.py
+aiohttp_routes: get//, post//human, post//humanaudio, post//set_audiotype, post//record, post//interrupt_talk, post//is_speaking, get//api/admin/config, get//api/admin/sessions, get//sse, get//api/asr
+
+## third_party\LiveTalking\server\rtc_manager.py
+
+## third_party\LiveTalking\server\session_manager.py
+
+## third_party\LiveTalking\server\avatar_routes.py
+aiohttp_routes: post//api/avatar/task, get//api/avatar/task/{task_id}, delete//api/avatar/task/{task_id}, get//api/avatar/tasks
+
+## third_party\LiveTalking\server\asr_server.py
+
+## third_party\LiveTalking\registry.py
+plugin_register: tts/edgetts
+
+## third_party\LiveTalking\config.py
+argparse: --config, --fps, --W, --H, --model, --avatar_id, --batch_size, --modelres, --modelfile, --customvideo_config, --tts, --REF_FILE, --REF_TEXT, --TTS_SERVER, --transport, --stun, --push_url, --max_session, --listenport, --audio_output_device
+
+## third_party\LiveTalking\config.yaml
+
+## third_party\LiveTalking\requirements.txt
+requirements: python-dotenv, pyyaml, numpy, tqdm, scipy, resampy, soundfile==0.12.1, einops, transformers #==4.46.2, edge_tts, flask, opencv-python-headless, aiortc, aiohttp_cors, diffusers, accelerate, librosa, openai, websockets==12.0, dashscope
+
+## third_party\LiveTalking\llm.py
+env_vars: DASHSCOPE_API_KEY
+
+## third_party\LiveTalking\tts\__init__.py
+
+## third_party\LiveTalking\tts\azure.py
+plugin_register: tts/azuretts
+env_vars: AZURE_SPEECH_KEY, AZURE_TTS_REGION
+
+## third_party\LiveTalking\tts\base_tts.py
+
+## third_party\LiveTalking\tts\cosyvoice.py
+plugin_register: tts/cosyvoice
+
+## third_party\LiveTalking\tts\doubao.py
+plugin_register: tts/doubao
+env_vars: DOUBAO_APPID, DOUBAO_TOKEN
+
+## third_party\LiveTalking\tts\edge.py
+plugin_register: tts/edgetts
+
+## third_party\LiveTalking\tts\fish.py
+plugin_register: tts/fishtts
+
+## third_party\LiveTalking\tts\indextts2.py
+
+## third_party\LiveTalking\tts\omnitts.py
+plugin_register: tts/omnitts
+
+## third_party\LiveTalking\tts\qwentts.py
+plugin_register: tts/qwentts
+env_vars: DASHSCOPE_API_KEY
+
+## third_party\LiveTalking\tts\sovits.py
+plugin_register: tts/gpt-sovits
+
+## third_party\LiveTalking\tts\tencent.py
+plugin_register: tts/tencent
+env_vars: TENCENT_APPID, TENCENT_SECRET_KEY, TENCENT_SECRET_ID
+
+## third_party\LiveTalking\tts\xtts.py
+plugin_register: tts/xtts
+
+## third_party\LiveTalking\avatars\base_avatar.py
+
+## third_party\LiveTalking\avatars\wav2lip_avatar.py
+plugin_register: avatar/wav2lip
+
+## third_party\LiveTalking\avatars\musetalk_avatar.py
+plugin_register: avatar/musetalk
+
+## third_party\LiveTalking\avatars\ultralight_avatar.py
+plugin_register: avatar/ultralight
+
+ExitCode: 0

@@ -1,0 +1,82 @@
+# TASK-001 final verification
+Date: 2026-08-06
+Branch: task/TASK-001-livetalking-upstream-audit
+
+## LiveTalking locked HEAD
+```text
+PS> git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```
+
+## LiveTalking upstream remote
+```text
+PS> git -C third_party\LiveTalking remote -v
+origin	https://github.com/lipku/LiveTalking.git (fetch)
+origin	https://github.com/lipku/LiveTalking.git (push)
+EXIT_CODE=0
+```
+
+## Main repository structure verification
+```text
+PS> powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+EXIT_CODE=0
+```
+
+## Diff whitespace check
+```text
+PS> git diff --check
+EXIT_CODE=0
+```
+
+## Main repository status including untracked evidence
+```text
+PS> git status --short --untracked-files=all
+ M PROJECT_STATE.md
+ M TASKS.md
+ M docs/03_LIVETALKING_SCOPE.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-001_LIVETALKING_UPSTREAM_AUDIT.md
+ M tasks/index.yaml
+?? docs/evidence/TASK-001/checkout-verification.txt
+?? docs/evidence/TASK-001/special-route-signals.txt
+?? docs/evidence/TASK-001/static-source-signals.txt
+?? docs/evidence/TASK-001/task001-final-verification.txt
+?? docs/evidence/TASK-001/upstream-audit.md
+EXIT_CODE=0
+```
+
+## Task evidence private IP scan
+```text
+PS> rg "192\.168|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\." docs\evidence\TASK-001 -g "*"
+EXIT_CODE=1
+```
+
+## Task evidence sensitive assignment scan
+```text
+PS> rg "API_KEY=|TOKEN=|SECRET=|SECRET_KEY=|PASSWORD=|AKIA|sk-[A-Za-z0-9]" docs\evidence\TASK-001 -g "*"
+EXIT_CODE=1
+```
+
+## Changed tracked files stat
+```text
+PS> git diff --stat
+ PROJECT_STATE.md                             | 25 +++++----
+ TASKS.md                                     |  3 +-
+ docs/03_LIVETALKING_SCOPE.md                 | 22 ++++++++
+ memory/CURRENT_STATE.md                      |  7 +--
+ memory/HANDOFF.md                            | 78 ++++++++++------------------
+ tasks/TASK-001_LIVETALKING_UPSTREAM_AUDIT.md | 46 ++++++++++------
+ tasks/index.yaml                             |  6 +--
+ 7 files changed, 103 insertions(+), 84 deletions(-)
+EXIT_CODE=0
+```

@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** DONE / READY FOR TASK-001
-- **Current authorized task:** TASK-000
+- **Overall status:** DONE / READY FOR TASK-002
+- **Current authorized task:** TASK-002 (next; not started)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -23,6 +23,9 @@
 - JSON/YAML example validation passed.
 - Local tools found: Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
 - LiveTalking locked checkout exists at ignored `third_party/LiveTalking` with HEAD `c963ad409c556918b7d23999bf87c47a7c05c932`.
+- TASK-001 upstream audit completed on branch `task/TASK-001-livetalking-upstream-audit`.
+- Static audit confirms LiveTalking exposes `/offer`, `/whep`, `/human`, `/humanaudio`, `/interrupt_talk`, `/is_speaking`, `/record`, `/record/{sessionid}`, `/set_audiotype`, `/sse`, admin routes, avatar task routes and conditional `/api/asr` at the locked commit.
+- TASK-001 did not modify the ignored upstream checkout.
 
 ## Not yet verified
 
@@ -33,34 +36,36 @@
 - Android SDK/ADB and Gradle availability.
 - LiveTalking model weights and Avatar assets.
 - WebRTC connectivity on the target network.
+- LiveTalking service startup and Wav2Lip runtime behavior.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
 - Whether the expanded local framework should replace the current GitHub `main` content or be published through a review branch.
 
 ## Current milestone
 
-**M0 — Repository and execution discipline**
+**M1 — LiveTalking reproducible baseline**
 
 Exit criteria:
 
-- Repository cloned to the fixed Windows path.
-- Environment and Git status audited.
-- LiveTalking upstream pulled at locked commit.
-- No secrets tracked.
-- TASK-000 report produced.
+- Locked upstream source audited and runtime requirements understood.
+- Isolated LiveTalking environment created.
+- Wav2Lip model/avatar assets prepared with source/license/hash records.
+- WebRTC/WHEP and core LiveTalking API behavior verified with real local evidence.
 
 Current evidence:
 
 - `docs/evidence/2026-08-06-local-sync-audit.md`
 - `docs/evidence/TASK-000/environment-audit.md`
+- `docs/evidence/TASK-001/upstream-audit.md`
 
-TASK-000 result:
+Recent task results:
 
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
+- TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 
 Next action:
 
-- Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on its own task branch/session. Do not install models or modify upstream source in TASK-001.
+- Start `TASK-002_LIVETALKING_ENVIRONMENT.md` on its own task branch/session. Build an isolated runtime environment and record Python/FFmpeg/GPU/CUDA/PyTorch facts. Do not claim model/WebRTC success until TASK-003 evidence exists.
 
 ## Status vocabulary
 

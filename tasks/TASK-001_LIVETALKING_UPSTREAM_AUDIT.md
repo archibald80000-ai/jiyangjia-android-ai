@@ -1,6 +1,6 @@
 # TASK-001: Audit and pin the LiveTalking upstream source
 
-- **Status:** PLANNED
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-000
 - **Branch:** `task/TASK-001-livetalking-upstream-audit`
@@ -57,16 +57,16 @@ git -C third_party/LiveTalking remote -v
 
 ## Required deliverables
 
-- [ ] docs/evidence/TASK-001/upstream-audit.md
-- [ ] Confirmed locked checkout
-- [ ] Upstream compliance/extension summary
+- [x] docs/evidence/TASK-001/upstream-audit.md
+- [x] Confirmed locked checkout
+- [x] Upstream compliance/extension summary
 
 ## Acceptance criteria
 
-- [ ] Locked commit checked out
-- [ ] Relevant README/API/config/source files summarized
-- [ ] License/model/asset obligations recorded
-- [ ] No upstream source changes
+- [x] Locked commit checked out
+- [x] Relevant README/API/config/source files summarized
+- [x] License/model/asset obligations recorded
+- [x] No upstream source changes
 
 ## Stop / blocked conditions
 
@@ -86,16 +86,32 @@ When blocked, complete all safe analysis, save sanitized evidence, set status to
 - Hardware/environment details for device/GPU claims.
 - Failed cases, untested paths and cost-bearing calls.
 
+TASK-001 evidence:
+
+- `docs/evidence/TASK-001/checkout-verification.txt`
+- `docs/evidence/TASK-001/static-source-signals.txt`
+- `docs/evidence/TASK-001/special-route-signals.txt`
+- `docs/evidence/TASK-001/upstream-audit.md`
+- `docs/evidence/TASK-001/task001-final-verification.txt`
+
+Untested in TASK-001 by design:
+
+- LiveTalking service startup.
+- Model weight/avatar asset download, hash, license or runtime usability.
+- Wav2Lip inference, WebRTC media path and FPS.
+- Android WebView/WHEP behavior.
+- Real ASR/TTS/LLM provider calls.
+
 ## Rollback
 
 Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions; no new ADR required because TASK-001 confirmed existing LiveTalking-as-renderer and gateway-as-business-authority decisions.
+- [x] Recommend exactly one next task: `TASK-002_LIVETALKING_ENVIRONMENT.md`.

@@ -5,7 +5,8 @@ The canonical machine-readable index is [`tasks/index.yaml`](tasks/index.yaml). 
 Current status:
 
 - `TASK-000`: `DONE`; environment/repository audit passed and LiveTalking locked checkout exists under ignored `third_party/LiveTalking`.
-- Next action is `TASK-001`; do not start later tasks concurrently.
+- `TASK-001`: `DONE`; locked LiveTalking upstream source audited with endpoint, model/asset, network, extension and compliance notes.
+- Next action is `TASK-002`; do not start later tasks concurrently.
 
 Current order:
 
