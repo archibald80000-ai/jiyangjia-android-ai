@@ -1,0 +1,25 @@
+# TASK-003 Google Drive official source retry with supported args
+Date: 2026-08-06
+Purpose: Retry official LiveTalking Google Drive asset folder using arguments supported by installed gdown 6.1.0.
+
+command=conda run -p .\.venv\livetalking-task002 python -m gdown --folder "https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing" --output "E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\gdrive-official-source-retry-supported-args-20260806" --no-cookies
+
+exit_code=1
+duration_seconds=22.47
+
+## Output
+Retrieving folder contents
+Error:
+
+	HTTPSConnectionPool(host='drive.google.com', port=443): Max retries
+	exceeded with url:
+	/embeddedfolderview?id=1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ (Caused by
+	ConnectTimeoutError(<HTTPSConnection(host='drive.google.com',
+	port=443) at 0x2263a8c09e0>, 'Connection to drive.google.com timed
+	out. (connect timeout=None)'))
+
+To report issues, please visit https://github.com/wkentaro/gdown/issues.
+ERROR conda.cli.main_run:execute(142): `conda run python -m gdown --folder https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing --output E:\work\ai-kefu\jiyangjia-ai\.cache\TASK-003\gdrive-official-source-retry-supported-args-20260806 --no-cookies` failed. (See above for error)
+
+## Download directory listing
+(empty)

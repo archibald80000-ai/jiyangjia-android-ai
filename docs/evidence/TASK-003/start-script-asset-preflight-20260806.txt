@@ -1,0 +1,39 @@
+# TASK-003 start_livetalking asset preflight verification
+Date: 2026-08-06
+Purpose: Verify the launcher stops before LiveTalking startup when Wav2Lip assets are missing.
+
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1
+
+exit_code=1
+
+## Output
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:75 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\ 
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1 
+   
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+ 

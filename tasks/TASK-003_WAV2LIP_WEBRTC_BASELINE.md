@@ -102,16 +102,32 @@ TASK-003 evidence:
 - `docs/evidence/TASK-003/task003-final-verification.txt`
 - `docs/evidence/TASK-003/task003-followup-final-verification.txt`
 - `docs/evidence/TASK-003/task003-third-blocked-audit.txt`
+- `docs/evidence/TASK-003/quark-public-api-probe.txt`
+- `docs/evidence/TASK-003/quark-public-api-folder-list.txt`
+- `docs/evidence/TASK-003/quark-page-script-urls.txt`
+- `docs/evidence/TASK-003/quark-share-download-url-probe.txt`
+- `docs/evidence/TASK-003/quark-download-endpoint-error-details.txt`
+- `docs/evidence/TASK-003/quark-desktop-ua-download-url-probe.txt`
+- `docs/evidence/TASK-003/quark-file-download-desktop-ua-probe.txt`
+- `docs/evidence/TASK-003/quark-batch-download-probe.txt`
+- `docs/evidence/TASK-003/gdrive-official-source-retry-20260806.txt`
+- `docs/evidence/TASK-003/gdrive-official-source-retry-supported-args-20260806.txt`
+- `docs/evidence/TASK-003/asset-unblock-downloads-exact-search-20260806.txt`
+- `docs/evidence/TASK-003/start-script-asset-preflight-20260806.txt`
+- `docs/evidence/TASK-003/start-script-help-skip-asset-check-20260806.txt`
+- `docs/evidence/TASK-003/task003-asset-unblock-attempt-final-verification-20260806.txt`
 
 Blocked result:
 
 - `third_party\LiveTalking\models\wav2lip.pth` is missing.
+- `third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth` is missing.
 - `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\` is missing.
 - Google Drive official source was unreachable from this machine.
-- Quark official source returned the share web shell but no direct downloadable asset files through non-interactive curl.
+- Quark official source can be listed through public share APIs and currently exposes `wav2lip256_avatar1.zip`, `s3fd.pth` and `wav2lip256.pth`, but unauthenticated download URL creation returns code `23018 download file size limit`.
 - Follow-up exact local filename search in safe roots found no existing copies of the required assets.
 - Follow-up public web search found repeated upstream source references but no verified official direct download URL.
 - LiveTalking service startup was intentionally not attempted without the required model/avatar assets.
+- `scripts/start_livetalking.ps1` now performs asset preflight and stops before model loading when required Wav2Lip assets are missing.
 
 ## Rollback
 
@@ -125,4 +141,4 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - [x] Update `memory/CURRENT_STATE.md`.
 - [x] Replace `memory/HANDOFF.md` with current facts.
 - [x] Update assumptions/open questions; no new ADR required.
-- [x] Recommend exactly one next task: unblock and rerun `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` after placing official Wav2Lip model/avatar assets.
+- [x] Recommend exactly one next task: unblock and rerun `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` after placing official Wav2Lip model/S3FD/avatar assets.

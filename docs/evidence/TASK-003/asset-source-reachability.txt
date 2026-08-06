@@ -49,9 +49,9 @@ Vary: Accept-Encoding
 Vary: Accept-Encoding
 Vary: Origin
 x-server-id: a132805fe77874e4b29c9334f3d6bf617efccfb643b4fef0f62a1d1c5235b4da4c427b5349595857cc226ed4c29d16cb
-set-cookie: ctoken=BkDTEa0BKY7ovzH8GYFX3Tsf; path=/
-set-cookie: grey-id=a7369483-6c1e-03a8-0c31-0723d88ea894; path=/; httponly
-set-cookie: grey-id.sig=kTQGmGtYsdJJURpQS8EPNSlNz-fWll7tjJfj8pDw7PE; path=/; httponly
+set-cookie: REDACTED
+set-cookie: REDACTED
+set-cookie: REDACTED
 Cache-Control: no-cache
 Accept-Ch: Sec-CH-UA-Platform
 Accept-Ch: Sec-CH-UA-Platform-Version

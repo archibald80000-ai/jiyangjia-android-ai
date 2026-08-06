@@ -1,0 +1,7 @@
+# TASK-003 Quark page script URLs
+Date: 2026-08-06
+Purpose: Capture public web shell script references for API endpoint inspection; no cookies or tokens.
+
+//g.alicdn.com/??/AWSC/AWSC/awsc.js,/sd/baxia-entry/baxiaCommon.js
+//g.alicdn.com/uc-cloud-drive-web-system/cloud-drive-web/4.6.3/vendor.js
+//g.alicdn.com/uc-cloud-drive-web-system/cloud-drive-web/4.6.3/share.js

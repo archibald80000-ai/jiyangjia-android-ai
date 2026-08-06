@@ -1,0 +1,28 @@
+# TASK-003 Quark public API folder listing
+Date: 2026-08-06
+Purpose: Enumerate official LiveTalking Quark share without recording cookies, stoken or share_fid_token values.
+
+## Fetch share page
+status=200 length=9349
+cookies=REDACTED
+
+## Get stoken
+status=200 code=0 message=ok
+stoken_length=44
+stoken=REDACTED
+
+## Detail pdir=/ fid=0
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/wav2lip dir=True size=0 fid=1ba789b049a4475b943c600602e67372 token_present=True
+
+## Detail pdir=/wav2lip fid=1ba789b049a4475b943c600602e67372
+page=1 status=200 code=0 message=ok count=3 total=3
+item path=/wav2lip/wav2lip256_avatar1.zip dir=False size=353735616 fid=fbb48a4e3cec4f70a8ba55a0b1b15d66 token_present=True
+item path=/wav2lip/s3fd.pth dir=False size=89843225 fid=4836cc04a40747e09593ab1e027a1e73 token_present=True
+item path=/wav2lip/wav2lip256.pth dir=False size=214670409 fid=9f20fb075d56442887773dc2b4ce1a43 token_present=True
+
+## Summary
+total_items=4
+target=s3fd.pth found=True path=/wav2lip/s3fd.pth size=89843225 token_present=True
+target=wav2lip256.pth found=True path=/wav2lip/wav2lip256.pth size=214670409 token_present=True
+target=wav2lip256_avatar1.tar.gz found=False

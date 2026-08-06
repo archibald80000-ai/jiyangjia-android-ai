@@ -1,0 +1,6 @@
+# TASK-003 Quark batch download probe
+Date: 2026-08-06
+Purpose: Test batch download-url creation for all official Wav2Lip assets; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+endpoint=share/download http_status=400 status=400 code=23018 message=download file size limit[fbb48a4e3cec4f70a8ba55a0b1b15d66] data_count=0 download_url_count=0
+endpoint=file/download http_status=400 status=400 code=23018 message=download file size limit[fbb48a4e3cec4f70a8ba55a0b1b15d66] data_count=0 download_url_count=0

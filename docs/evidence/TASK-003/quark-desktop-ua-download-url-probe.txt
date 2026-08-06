@@ -1,0 +1,7 @@
+# TASK-003 Quark desktop-UA download URL probe
+Date: 2026-08-06
+Purpose: Retry Quark download URL creation after 23018 using the desktop UA behavior visible in the public web script; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+file=wav2lip256_avatar1.zip http_status=400 status=400 code=23018 message=download file size limit[fbb48a4e3cec4f70a8ba55a0b1b15d66] data_count=0 returned_name= returned_size= download_url_present=False
+file=s3fd.pth http_status=400 status=400 code=23018 message=download file size limit[4836cc04a40747e09593ab1e027a1e73] data_count=0 returned_name= returned_size= download_url_present=False
+file=wav2lip256.pth http_status=400 status=400 code=23018 message=download file size limit[9f20fb075d56442887773dc2b4ce1a43] data_count=0 returned_name= returned_size= download_url_present=False

@@ -15,7 +15,7 @@
 
 ## In progress
 
-- TASK-003 is `BLOCKED` on missing Wav2Lip model/avatar assets.
+- TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark official share can be listed but unauthenticated download URL creation returns `23018 download file size limit`; Google Drive still times out from this machine.
 
 ## Not started
 
@@ -27,4 +27,4 @@
 
 ## Next action
 
-Unblock `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` by obtaining official `wav2lip256.pth` and `wav2lip256_avatar1.tar.gz`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerunning TASK-003 from asset verification. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.
+Unblock `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` by obtaining official `wav2lip256.pth`, `s3fd.pth` and the `wav2lip256_avatar1` archive, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerunning TASK-003 from asset verification. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.

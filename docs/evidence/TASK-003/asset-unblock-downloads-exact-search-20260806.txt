@@ -1,0 +1,39 @@
+# TASK-003 exact asset search in common download/work roots
+Date: 2026-08-06
+Purpose: Search exact filenames only in common non-source-material locations; no file contents read; E:\work\积养家 intentionally excluded.
+
+## root=C:\Users\Assert\Downloads exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+
+## root=C:\Users\Assert\Desktop exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+
+## root=C:\Users\Assert\Documents exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+
+## root=E:\work\ai-kefu exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+
+## root=E:\work\安卓大屏AI语音客服系统 exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+

@@ -1,0 +1,15 @@
+# TASK-003 Quark public API probe
+Date: 2026-08-06
+Purpose: Try official public share API endpoints without recording cookies or secrets.
+
+## Fetch share page
+status=200 length=9349
+cookies=REDACTED
+
+## Get stoken
+status=200 code=0 message=ok
+stoken_length=44
+
+## Get root detail
+status=200 code=0 message=ok total=1
+item name=wav2lip dir=True size=0 fid=1ba789b049a4475b943c600602e67372 token_present=True

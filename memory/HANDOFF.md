@@ -25,15 +25,22 @@
 - `.venv\livetalking-task002` still runs torch `2.9.1+cu126` with CUDA available.
 - TASK-003 checked the expected asset paths:
   - `third_party\LiveTalking\models\wav2lip.pth`: missing.
+  - `third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth`: missing.
   - `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\`: missing.
 - Upstream README official asset sources were recorded:
   - Quark: `https://pan.quark.cn/s/83a750323ef0`
   - Google Drive: `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`
-- Google Drive was unreachable from this machine.
-- Quark was reachable as a share web page, but non-interactive curl did not expose direct asset files.
+- Google Drive was unreachable from this machine, including a 2026-08-06 `gdown 6.1.0` retry with supported arguments.
+- Quark public API probing on 2026-08-06 can list the official share folder and confirmed:
+  - `wav2lip256_avatar1.zip` size `353735616`.
+  - `s3fd.pth` size `89843225`.
+  - `wav2lip256.pth` size `214670409`.
+- Quark download URL probes against `/1/clouddrive/file/share/download` and `/1/clouddrive/file/download` returned HTTP 400 code `23018 download file size limit` without a logged-in/download-capable Quark session. No cookies, stoken, share_fid_token or download URLs were recorded.
 - `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
 - Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
+- 2026-08-06 exact search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` also found no `s3fd.pth` or `wav2lip256_avatar1.zip`; `E:\work\积养家` was intentionally excluded.
 - Follow-up public web search found repeated upstream Quark/Google Drive references but no verified official direct download URL.
+- `scripts/start_livetalking.ps1` now performs Wav2Lip asset preflight and stops before model loading if required files are missing. Use `-SkipAssetCheck` only for diagnostic commands such as `--help`, not for claiming runtime readiness.
 
 ## What is not verified
 
@@ -58,6 +65,14 @@
 - `docs/evidence/TASK-003/task003-final-verification.txt`
 - `docs/evidence/TASK-003/task003-followup-final-verification.txt`
 - `docs/evidence/TASK-003/task003-third-blocked-audit.txt`
+- `docs/evidence/TASK-003/quark-public-api-probe.txt`
+- `docs/evidence/TASK-003/quark-public-api-folder-list.txt`
+- `docs/evidence/TASK-003/quark-download-endpoint-error-details.txt`
+- `docs/evidence/TASK-003/gdrive-official-source-retry-supported-args-20260806.txt`
+- `docs/evidence/TASK-003/asset-unblock-downloads-exact-search-20260806.txt`
+- `docs/evidence/TASK-003/start-script-asset-preflight-20260806.txt`
+- `docs/evidence/TASK-003/start-script-help-skip-asset-check-20260806.txt`
+- `docs/evidence/TASK-003/task003-asset-unblock-attempt-final-verification-20260806.txt`
 
 ## Unblock action
 
@@ -65,7 +80,8 @@ Obtain the official assets from the upstream README sources and place them as:
 
 ```text
 E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth
 E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1\
 ```
 
-Record SHA-256 hashes before retrying service startup. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.
+Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, while the live Quark listing currently exposes `wav2lip256_avatar1.zip`; either archive form is acceptable only if it extracts to the expected avatar folder. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.

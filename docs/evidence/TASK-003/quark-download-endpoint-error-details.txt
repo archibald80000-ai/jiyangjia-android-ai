@@ -1,0 +1,20 @@
+# TASK-003 Quark download endpoint error details
+Date: 2026-08-06
+Purpose: Capture sanitized HTTP/business errors for Quark download endpoint variants; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+## share_download_js_shape
+http_status=400 content_length=154
+body={"status":400,"code":23018,"message":"download file size limit[4836cc04a40747e09593ab1e027a1e73]","req_id":"977nlk-2a99eea22eeddb","timestamp":1785983959}
+
+## file_download_js_shape
+http_status=400 content_length=154
+body={"status":400,"code":23018,"message":"download file size limit[4836cc04a40747e09593ab1e027a1e73]","req_id":"977ie4-2a99eea24400a6","timestamp":1785983959}
+
+## share_download_alt_fid_token_list
+http_status=400 content_length=154
+body={"status":400,"code":23018,"message":"download file size limit[4836cc04a40747e09593ab1e027a1e73]","req_id":"9f0ij0-2a99eea2510aa3","timestamp":1785983959}
+
+## share_download_alt_share_fid_tokens
+http_status=400 content_length=127
+body={"status":400,"code":14001,"message":"Bad Parameter: [fids is empty!]","req_id":"97xu2v-2a99eea2647596","timestamp":1785983959}
+

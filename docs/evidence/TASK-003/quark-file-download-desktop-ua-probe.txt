@@ -1,0 +1,7 @@
+# TASK-003 Quark file/download desktop-UA probe
+Date: 2026-08-06
+Purpose: Probe ordinary file/download with share params and desktop UA; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+variant=fids_fids_token http_status=400 status=400 code=23018 message=download file size limit[4836cc04a40747e09593ab1e027a1e73] data_count=0 download_url_present=False
+variant=fids_token_list http_status=400 status=400 code=23018 message=download file size limit[4836cc04a40747e09593ab1e027a1e73] data_count=0 download_url_present=False
+variant=fids_only http_status=401 status=401 code=31001 message=require login [share missing] data_count=0 download_url_present=False

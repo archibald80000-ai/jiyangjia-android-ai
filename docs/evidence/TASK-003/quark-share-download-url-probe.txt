@@ -1,0 +1,10 @@
+# TASK-003 Quark share download URL probe
+Date: 2026-08-06
+Purpose: Probe /1/clouddrive/file/share/download using public share metadata; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+share_page_status=200 length=9349 cookies=REDACTED
+token_status=200 code=0 message=ok stoken_length=44 stoken=REDACTED
+target_count=3
+file=wav2lip256_avatar1.zip exception=Microsoft.PowerShell.Commands.HttpResponseException message=Response status code does not indicate success: 400 ().
+file=s3fd.pth exception=Microsoft.PowerShell.Commands.HttpResponseException message=Response status code does not indicate success: 400 ().
+file=wav2lip256.pth exception=Microsoft.PowerShell.Commands.HttpResponseException message=Response status code does not indicate success: 400 ().

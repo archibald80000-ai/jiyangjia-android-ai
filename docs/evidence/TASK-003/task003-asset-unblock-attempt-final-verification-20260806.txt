@@ -1,0 +1,147 @@
+# TASK-003 asset unblock attempt final verification
+Date: 2026-08-06
+Purpose: Final verification for resumed attempt to unblock official Wav2Lip assets.
+
+## git branch
+command=git branch --show-current
+exit_code=0
+task/TASK-003-wav2lip-webrtc-baseline
+
+## git status
+command=git status --short
+exit_code=0
+ M PROJECT_STATE.md
+ M TASKS.md
+ M docs/evidence/TASK-003/asset-source-reachability.txt
+ M docs/evidence/TASK-003/wav2lip-baseline.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M scripts/start_livetalking.ps1
+ M tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+?? docs/evidence/TASK-003/asset-unblock-downloads-exact-search-20260806.txt
+?? docs/evidence/TASK-003/gdrive-official-source-retry-20260806.txt
+?? docs/evidence/TASK-003/gdrive-official-source-retry-supported-args-20260806.txt
+?? docs/evidence/TASK-003/quark-batch-download-probe.txt
+?? docs/evidence/TASK-003/quark-desktop-ua-download-url-probe.txt
+?? docs/evidence/TASK-003/quark-download-endpoint-error-details.txt
+?? docs/evidence/TASK-003/quark-file-download-desktop-ua-probe.txt
+?? docs/evidence/TASK-003/quark-page-script-urls.txt
+?? docs/evidence/TASK-003/quark-public-api-folder-list.txt
+?? docs/evidence/TASK-003/quark-public-api-probe.txt
+?? docs/evidence/TASK-003/quark-share-download-url-probe.txt
+?? docs/evidence/TASK-003/start-script-asset-preflight-20260806.txt
+?? docs/evidence/TASK-003/start-script-help-skip-asset-check-20260806.txt
+
+## git diff stat
+command=git diff --stat
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/asset-source-reachability.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'scripts/start_livetalking.ps1', LF will be replaced by CRLF the next time Git touches it
+ PROJECT_STATE.md                                   | 13 +++--
+ TASKS.md                                           |  2 +-
+ .../TASK-003/asset-source-reachability.txt         |  6 +--
+ docs/evidence/TASK-003/wav2lip-baseline.md         | 60 ++++++++++++++++++----
+ memory/CURRENT_STATE.md                            |  4 +-
+ memory/HANDOFF.md                                  | 21 ++++++--
+ scripts/start_livetalking.ps1                      | 55 ++++++++++++++++++++
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md          | 19 ++++++-
+ 8 files changed, 156 insertions(+), 24 deletions(-)
+
+## git diff check
+command=git diff --check
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/asset-source-reachability.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'scripts/start_livetalking.ps1', LF will be replaced by CRLF the next time Git touches it
+
+## secret scan
+command=rg --pcre2 secret/cookie/download-url pattern over TASK-003 evidence, scripts and state files
+exit_code=1
+
+## launcher preflight
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1
+exit_code=1
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:75 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\ 
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1 
+   
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+ 
+
+## launcher help path
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -SkipAssetCheck -ExtraArgs --help
+exit_code=0
+usage: app.py [-h] [--config CONFIG] [--fps FPS] [-l L] [-m M] [-r R]
+              [--model MODEL] [--avatar_id AVATAR_ID]
+              [--batch_size BATCH_SIZE] [--modelres MODELRES]
+              [--modelfile MODELFILE]
+              [--customvideo_config CUSTOMVIDEO_CONFIG] [--tts TTS]
+              [--REF_FILE REF_FILE] [--REF_TEXT REF_TEXT]
+              [--TTS_SERVER TTS_SERVER] [--transport TRANSPORT] [--stun STUN]
+              [--push_url PUSH_URL] [--max_session MAX_SESSION]
+              [--listenport LISTENPORT]
+              [--audio_output_device AUDIO_OUTPUT_DEVICE]
+
+LiveTalking Digital Human Server
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG, -c CONFIG
+                        YAML 配置文件路径（设为空字符串可跳过）
+  --fps FPS             video fps, must be 25
+  -l L
+  -m M
+  -r R
+  --model MODEL         avatar model: musetalk/wav2lip/ultralight
+  --avatar_id AVATAR_ID
+                        avatar id in data/avatars
+  --batch_size BATCH_SIZE
+                        infer batch
+  --modelres MODELRES
+  --modelfile MODELFILE
+  --customvideo_config CUSTOMVIDEO_CONFIG
+                        custom action json
+  --tts TTS             tts plugin: edgetts/gpt-sovits/cosyvoice/fishtts/tence
+                        nt/doubao/indextts2/azuretts/qwentts
+  --REF_FILE REF_FILE   参考文件名或语音模型ID
+  --REF_TEXT REF_TEXT
+  --TTS_SERVER TTS_SERVER
+  --transport TRANSPORT
+                        output: rtcpush/webrtc/rtmp/virtualcam
+  --stun STUN           stun server url
+  --push_url PUSH_URL
+  --max_session MAX_SESSION
+  --listenport LISTENPORT
+                        web listen port
+  --audio_output_device AUDIO_OUTPUT_DEVICE
+                        音频输出设备索引（None=系统默认，仅用于 --transport=virtualcam）。使用
+                        python list_audio_devices.py 查看所有设备
+
+## Result
+TASK-003 remains BLOCKED: official Quark share is listable but unauthenticated download URL creation returns 23018 download file size limit; Google Drive times out; required local model/S3FD/avatar assets are still absent.
+No LiveTalking service startup, WebRTC/WHEP stream, FPS, Android APK, USB audio or provider API success is claimed.
