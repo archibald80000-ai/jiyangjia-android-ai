@@ -1,0 +1,11 @@
+# TASK-002 global Python post-check
+Date: 2026-08-06
+
+```text
+PS>
+python -c "import sys, importlib.util; print(sys.executable); print(sys.version); print(importlib.util.find_spec('torch'))"
+D:\python311\python.exe
+3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]
+None
+EXIT_CODE=0
+```

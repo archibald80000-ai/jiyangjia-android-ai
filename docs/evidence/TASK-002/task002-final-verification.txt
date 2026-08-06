@@ -1,0 +1,122 @@
+# TASK-002 final verification
+Date: 2026-08-06
+Branch: task/TASK-002-livetalking-environment
+
+## Main repository status including untracked evidence
+```text
+PS> git status --short --untracked-files=all
+ M PROJECT_STATE.md
+ M TASKS.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-002_LIVETALKING_ENVIRONMENT.md
+ M tasks/index.yaml
+?? docs/evidence/TASK-002/conda-create-env.txt
+?? docs/evidence/TASK-002/conda-env-export.yaml
+?? docs/evidence/TASK-002/conda-explicit.txt
+?? docs/evidence/TASK-002/conda-list.txt
+?? docs/evidence/TASK-002/environment-matrix.md
+?? docs/evidence/TASK-002/global-python-post-check.txt
+?? docs/evidence/TASK-002/import-and-device-checks.txt
+?? docs/evidence/TASK-002/initial-environment-inventory.txt
+?? docs/evidence/TASK-002/livetalking-cli-help.txt
+?? docs/evidence/TASK-002/livetalking-requirements-install.txt
+?? docs/evidence/TASK-002/pip-check.txt
+?? docs/evidence/TASK-002/pip-freeze.txt
+?? docs/evidence/TASK-002/pytorch-index-cu126.txt
+?? docs/evidence/TASK-002/pytorch-install-cu126.txt
+?? docs/evidence/TASK-002/start-script-help-check.txt
+?? docs/evidence/TASK-002/task002-final-verification.txt
+?? scripts/start_livetalking.ps1
+EXIT_CODE=0
+```
+
+## Repository structure verification
+```text
+PS> powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+EXIT_CODE=0
+```
+
+## Diff whitespace check
+```text
+PS> git diff --check
+EXIT_CODE=0
+```
+
+## LiveTalking locked HEAD
+```text
+PS> git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```
+
+## Ignored local runtime check
+```text
+PS> git check-ignore -v .venv\livetalking-task002
+.gitignore:40:.venv/	".venv\\livetalking-task002"
+EXIT_CODE=0
+```
+
+## Isolated runtime Python version
+```text
+PS> conda run -p .venv\livetalking-task002 python --version
+Python 3.12.13
+EXIT_CODE=0
+```
+
+## Isolated runtime torch CUDA check
+```text
+PS> conda run -p .venv\livetalking-task002 python -c "import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else None)"
+2.9.1+cu126
+12.6
+True
+NVIDIA GeForce RTX 4070 Laptop GPU
+EXIT_CODE=0
+```
+
+## Isolated runtime pip check
+```text
+PS> conda run -p .venv\livetalking-task002 python -m pip check
+No broken requirements found.
+EXIT_CODE=0
+```
+
+## Global Python torch absence check
+```text
+PS> python -c "import importlib.util; print(importlib.util.find_spec('torch'))"
+None
+EXIT_CODE=0
+```
+
+## Task evidence private IPv4 scan excluding final self-log
+```text
+PS> rg --pcre2 "(?<![0-9.])(?:192\.168|10\.(?:[0-9]{1,3}\.){2}[0-9]{1,3}|172\.(?:1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3})(?![0-9.])" docs\evidence\TASK-002 -g "*" -g "!task002-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Task evidence sensitive assignment scan excluding final self-log
+```text
+PS> rg --pcre2 "(?i)(?:^|[^A-Z0-9_])(?:API[_-]?KEY|TOKEN|SECRET(?:[_-]?KEY)?|PASSWORD)\s*[:=]|(?:^|[^A-Z0-9])AKIA[0-9A-Z]{16}|(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}" docs\evidence\TASK-002 -g "*" -g "!task002-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Changed tracked files stat
+```text
+PS> git diff --stat
+ PROJECT_STATE.md                          | 16 ++++++---
+ TASKS.md                                  |  3 +-
+ memory/CURRENT_STATE.md                   |  4 +--
+ memory/HANDOFF.md                         | 60 +++++++++++++++++++------------
+ tasks/TASK-002_LIVETALKING_ENVIRONMENT.md | 56 +++++++++++++++++++++--------
+ tasks/index.yaml                          |  4 +--
+ 6 files changed, 97 insertions(+), 46 deletions(-)
+EXIT_CODE=0
+```

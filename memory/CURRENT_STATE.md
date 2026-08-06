@@ -11,6 +11,7 @@
 - Delivery blueprint added at `docs/22_DELIVERY_BLUEPRINT.md`.
 - TASK-000 secret checks and JSON/YAML validation passed.
 - TASK-001 upstream audit completed: locked LiveTalking checkout verified, relevant README/API/config/source/license files reviewed, endpoint surface and integration boundaries recorded.
+- TASK-002 LiveTalking runtime environment completed: ignored local Conda env `.venv\livetalking-task002`, Python 3.12.13, torch 2.9.1+cu126, upstream dependencies installed, imports and PyTorch CUDA tensor smoke test passed.
 
 ## In progress
 
@@ -18,7 +19,6 @@
 
 ## Not started
 
-- LiveTalking dependency/runtime setup.
 - Model weights / avatar preparation.
 - LiveTalking API reproduction.
 - Android project creation.
@@ -28,4 +28,4 @@
 
 ## Next action
 
-Start `TASK-002_LIVETALKING_ENVIRONMENT.md` on a separate task branch/session. Build an isolated runtime and record Python, FFmpeg, CUDA/GPU and PyTorch facts. Do not claim model inference, WebRTC media success or provider integration until later task evidence exists.
+Start `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` on a separate task branch/session. Prepare model/avatar assets with source, license and hash evidence, then verify actual LiveTalking service startup and WebRTC/WHEP baseline. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.

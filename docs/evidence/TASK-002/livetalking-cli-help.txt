@@ -1,0 +1,53 @@
+# TASK-002 LiveTalking CLI help check
+Date: 2026-08-06
+
+```text
+PS>
+Push-Location third_party\LiveTalking; conda run -p ..\..\.venv\livetalking-task002 python app.py --help; Pop-Location
+usage: app.py [-h] [--config CONFIG] [--fps FPS] [-l L] [-m M] [-r R]
+              [--model MODEL] [--avatar_id AVATAR_ID]
+              [--batch_size BATCH_SIZE] [--modelres MODELRES]
+              [--modelfile MODELFILE]
+              [--customvideo_config CUSTOMVIDEO_CONFIG] [--tts TTS]
+              [--REF_FILE REF_FILE] [--REF_TEXT REF_TEXT]
+              [--TTS_SERVER TTS_SERVER] [--transport TRANSPORT] [--stun STUN]
+              [--push_url PUSH_URL] [--max_session MAX_SESSION]
+              [--listenport LISTENPORT]
+              [--audio_output_device AUDIO_OUTPUT_DEVICE]
+
+LiveTalking Digital Human Server
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG, -c CONFIG
+                        YAML 配置文件路径（设为空字符串可跳过）
+  --fps FPS             video fps, must be 25
+  -l L
+  -m M
+  -r R
+  --model MODEL         avatar model: musetalk/wav2lip/ultralight
+  --avatar_id AVATAR_ID
+                        avatar id in data/avatars
+  --batch_size BATCH_SIZE
+                        infer batch
+  --modelres MODELRES
+  --modelfile MODELFILE
+  --customvideo_config CUSTOMVIDEO_CONFIG
+                        custom action json
+  --tts TTS             tts plugin: edgetts/gpt-sovits/cosyvoice/fishtts/tence
+                        nt/doubao/indextts2/azuretts/qwentts
+  --REF_FILE REF_FILE   参考文件名或语音模型ID
+  --REF_TEXT REF_TEXT
+  --TTS_SERVER TTS_SERVER
+  --transport TRANSPORT
+                        output: rtcpush/webrtc/rtmp/virtualcam
+  --stun STUN           stun server url
+  --push_url PUSH_URL
+  --max_session MAX_SESSION
+  --listenport LISTENPORT
+                        web listen port
+  --audio_output_device AUDIO_OUTPUT_DEVICE
+                        音频输出设备索引（None=系统默认，仅用于 --transport=virtualcam）。使用
+                        python list_audio_devices.py 查看所有设备
+EXIT_CODE=0
+```

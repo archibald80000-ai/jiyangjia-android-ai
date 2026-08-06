@@ -1,0 +1,102 @@
+# TASK-002 import and device checks
+Date: 2026-08-06
+
+```text
+PS>
+conda run -p .venv\livetalking-task002 python docs\evidence\TASK-002\import_device_check.py
+{
+  "torch": {
+    "ok": true,
+    "version": "2.9.1+cu126"
+  },
+  "torchvision": {
+    "ok": true,
+    "version": "0.24.1+cu126"
+  },
+  "torchaudio": {
+    "ok": true,
+    "version": "2.9.1+cu126"
+  },
+  "cv2": {
+    "ok": true,
+    "version": "5.0.0"
+  },
+  "aiortc": {
+    "ok": true,
+    "version": "1.15.0"
+  },
+  "aiohttp": {
+    "ok": true,
+    "version": "3.14.3"
+  },
+  "aiohttp_cors": {
+    "ok": true,
+    "version": "0.8.1"
+  },
+  "av": {
+    "ok": true,
+    "version": "17.1.0"
+  },
+  "soundfile": {
+    "ok": true,
+    "version": "0.12.1"
+  },
+  "librosa": {
+    "ok": true,
+    "version": "0.11.0"
+  },
+  "transformers": {
+    "ok": true,
+    "version": "5.14.1"
+  },
+  "diffusers": {
+    "ok": true,
+    "version": "0.39.0"
+  },
+  "accelerate": {
+    "ok": true,
+    "version": "1.14.0"
+  },
+  "edge_tts": {
+    "ok": true,
+    "version": "7.2.8"
+  },
+  "dashscope": {
+    "ok": true,
+    "version": null
+  },
+  "openai": {
+    "ok": true,
+    "version": "2.53.0"
+  },
+  "torch_device": {
+    "torch_version": "2.9.1+cu126",
+    "torch_cuda_runtime": "12.6",
+    "cuda_is_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name_0": "NVIDIA GeForce RTX 4070 Laptop GPU"
+  },
+  "torch_cuda_tensor_sum": 4.0,
+  "livetalking:registry": {
+    "ok": true,
+    "file": "E:\\work\\ai-kefu\\jiyangjia-ai\\third_party\\LiveTalking\\registry.py"
+  },
+  "livetalking:config": {
+    "ok": true,
+    "file": "E:\\work\\ai-kefu\\jiyangjia-ai\\third_party\\LiveTalking\\config.py"
+  },
+  "livetalking:server.rtc_manager": {
+    "ok": true,
+    "file": "E:\\work\\ai-kefu\\jiyangjia-ai\\third_party\\LiveTalking\\server\\rtc_manager.py"
+  },
+  "livetalking:server.session_manager": {
+    "ok": true,
+    "file": "E:\\work\\ai-kefu\\jiyangjia-ai\\third_party\\LiveTalking\\server\\session_manager.py"
+  },
+  "livetalking:server.routes": {
+    "ok": true,
+    "file": "E:\\work\\ai-kefu\\jiyangjia-ai\\third_party\\LiveTalking\\server\\routes.py"
+  }
+}
+EXIT_CODE=0
+```

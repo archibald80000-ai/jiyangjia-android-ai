@@ -6,7 +6,8 @@ Current status:
 
 - `TASK-000`: `DONE`; environment/repository audit passed and LiveTalking locked checkout exists under ignored `third_party/LiveTalking`.
 - `TASK-001`: `DONE`; locked LiveTalking upstream source audited with endpoint, model/asset, network, extension and compliance notes.
-- Next action is `TASK-002`; do not start later tasks concurrently.
+- `TASK-002`: `DONE`; isolated LiveTalking runtime exists under ignored `.venv\livetalking-task002`, dependencies/imports/PyTorch CUDA smoke check passed.
+- Next action is `TASK-003`; do not start later tasks concurrently.
 
 Current order:
 

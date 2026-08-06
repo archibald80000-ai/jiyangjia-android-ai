@@ -1,0 +1,10 @@
+# TASK-002 PyTorch cu126 index probe
+Date: 2026-08-06
+
+```text
+PS>
+conda run -p .venv\livetalking-task002 python -m pip index versions torch --index-url https://download.pytorch.org/whl/cu126
+torch (2.13.0+cu126)
+Available versions: 2.13.0+cu126, 2.12.1+cu126, 2.12.0+cu126, 2.11.0+cu126, 2.10.0+cu126, 2.9.1+cu126, 2.9.0+cu126, 2.8.0+cu126, 2.7.1+cu126, 2.7.0+cu126, 2.6.0+cu126
+EXIT_CODE=0
+```

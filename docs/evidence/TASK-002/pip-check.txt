@@ -1,0 +1,9 @@
+# TASK-002 pip check
+Date: 2026-08-06
+
+```text
+PS>
+conda run -p .venv\livetalking-task002 python -m pip check
+No broken requirements found.
+EXIT_CODE=0
+```

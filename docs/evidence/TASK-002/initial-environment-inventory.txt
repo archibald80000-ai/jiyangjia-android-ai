@@ -1,0 +1,134 @@
+# TASK-002 initial environment inventory
+Date: 2026-08-06
+Branch: task/TASK-002-livetalking-environment
+
+## Python version
+```text
+PS> python --version
+Python 3.14.0
+EXIT_CODE=0
+```
+
+## Python executable
+```text
+PS> python -c "import sys; print(sys.executable); print(sys.version)"
+D:\python311\python.exe
+3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]
+EXIT_CODE=0
+```
+
+## Conda version
+```text
+PS> conda --version
+conda 26.1.1
+EXIT_CODE=0
+```
+
+## Conda info envs
+```text
+PS> conda info --envs
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+                         C:\Users\Assert\Documents\Codex\2026-06-08\voxcpm-deploy\VoxCPM\.conda
+                         E:\Anaconda3\FEIL
+base                     E:\Anaconda3\XIN
+zhihu2Mark               E:\Anaconda3\XIN\envs\zhihu2Mark
+
+EXIT_CODE=0
+```
+
+## FFmpeg version head
+```text
+PS> ffmpeg -version | Select-Object -First 6
+ffmpeg version 8.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+built with gcc 15.2.0 (Rev11, Built by MSYS2 project)
+configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+libavutil      60. 26.100 / 60. 26.100
+libavcodec     62. 28.100 / 62. 28.100
+libavformat    62. 12.100 / 62. 12.100
+EXIT_CODE=0
+```
+
+## NVIDIA SMI
+```text
+PS> nvidia-smi
+Wed Aug  5 20:55:43 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 566.07                 Driver Version: 566.07         CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4070 ...  WDDM  |   00000000:01:00.0  On |                  N/A |
+| N/A   56C    P8              8W /   81W |    2262MiB /   8188MiB |     11%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A      3108    C+G   ....5688.0_x64__8j3eq9eme6ctt\IGCC.exe      N/A      |
+|    0   N/A  N/A      4256    C+G   ...pp\boxy\RoxyBrowser\RoxyBrowser.exe      N/A      |
+|    0   N/A  N/A      6820    C+G   ...on\wallpaper_engine\wallpaper64.exe      N/A      |
+|    0   N/A  N/A      7796    C+G   C:\Windows\System32\ShellHost.exe           N/A      |
+|    0   N/A  N/A      7964    C+G   C:\Windows\explorer.exe                     N/A      |
+|    0   N/A  N/A     11300    C+G   ..._x64__2p2nqsd0c76g0\app\ChatGPT.exe      N/A      |
+|    0   N/A  N/A     11848    C+G   ...7\extracted\runtime\WeChatAppEx.exe      N/A      |
+|    0   N/A  N/A     13376    C+G   ...oogle\Chrome\Application\chrome.exe      N/A      |
+|    0   N/A  N/A     17296    C+G   ...64__v826wp6bftszj\TranslucentTB.exe      N/A      |
+|    0   N/A  N/A     18872    C+G   ...nt.CBS_cw5n1h2txyewy\SearchHost.exe      N/A      |
+|    0   N/A  N/A     18896    C+G   ...2txyewy\StartMenuExperienceHost.exe      N/A      |
+|    0   N/A  N/A     19256    C+G   ...tionsPlus\logioptionsplus_agent.exe      N/A      |
+|    0   N/A  N/A     22056    C+G   ...voice\logioptionsplus_logivoice.exe      N/A      |
+|    0   N/A  N/A     22356    C+G   ...on\151.0.4129.59\msedgewebview2.exe      N/A      |
+|    0   N/A  N/A     24468    C+G   ...n\NVIDIA app\CEF\NVIDIA Overlay.exe      N/A      |
+|    0   N/A  N/A     25248    C+G   ...n\NVIDIA app\CEF\NVIDIA Overlay.exe      N/A      |
+|    0   N/A  N/A     25592    C+G   ...CBS_cw5n1h2txyewy\TextInputHost.exe      N/A      |
+|    0   N/A  N/A     26580    C+G   ...oogle\Chrome\Application\chrome.exe      N/A      |
+|    0   N/A  N/A     28980    C+G   ...s\System32\ApplicationFrameHost.exe      N/A      |
+|    0   N/A  N/A     29064    C+G   ...siveControlPanel\SystemSettings.exe      N/A      |
+|    0   N/A  N/A     32276    C+G   D:\应用软件\todesk\ToDesk.exe           N/A      |
+|    0   N/A  N/A     32392    C+G   ...5n1h2txyewy\ShellExperienceHost.exe      N/A      |
+|    0   N/A  N/A     33500    C+G   ...on\151.0.4129.59\msedgewebview2.exe      N/A      |
+|    0   N/A  N/A     34880    C+G   ...�用软件\微信\Weixin\Weixin.exe      N/A      |
+|    0   N/A  N/A     39304    C+G   ...8bbwe\SnippingTool\SnippingTool.exe      N/A      |
+|    0   N/A  N/A     39796    C+G   ..._x64__2p2nqsd0c76g0\app\ChatGPT.exe      N/A      |
+|    0   N/A  N/A     40004    C+G   ...t.LockApp_cw5n1h2txyewy\LockApp.exe      N/A      |
+|    0   N/A  N/A     41400    C+G   ...8043\office6\promecefpluginhost.exe      N/A      |
+|    0   N/A  N/A     45352    C+G   ...__8wekyb3d8bbwe\WindowsTerminal.exe      N/A      |
+|    0   N/A  N/A     46768    C+G   ...ender-5.2.0-windows-x64\blender.exe      N/A      |
++-----------------------------------------------------------------------------------------+
+EXIT_CODE=0
+```
+
+## Current Python PyTorch check
+```text
+PS> python -c "import importlib.util; spec=importlib.util.find_spec('torch'); print('torch_spec', spec); import torch; print(torch.__version__); print(torch.cuda.is_available())"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import importlib.util; spec=importlib.util.find_spec('torch'); print('torch_spec', spec); import torch; print(torch.__version__); print(torch.cuda.is_available())
+                                                                                              ^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'torch'
+torch_spec None
+EXIT_CODE=1
+```
+
+## LiveTalking locked HEAD
+```text
+PS> git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```

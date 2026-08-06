@@ -1,0 +1,134 @@
+# TASK-002 conda list
+Date: 2026-08-06
+
+```text
+PS>
+conda list -p .venv\livetalking-task002
+# packages in environment at E:\work\ai-kefu\jiyangjia-ai\.venv\livetalking-task002:
+#
+# Name                     Version          Build            Channel
+accelerate                 1.14.0           pypi_0           pypi
+aiohappyeyeballs           2.7.1            pypi_0           pypi
+aiohttp                    3.14.3           pypi_0           pypi
+aiohttp-cors               0.8.1            pypi_0           pypi
+aioice                     0.10.2           pypi_0           pypi
+aiortc                     1.15.0           pypi_0           pypi
+aiosignal                  1.4.0            pypi_0           pypi
+annotated-doc              0.0.5            pypi_0           pypi
+annotated-types            0.8.0            pypi_0           pypi
+anyio                      4.14.2           pypi_0           pypi
+attrs                      26.1.0           pypi_0           pypi
+audioread                  3.1.0            pypi_0           pypi
+av                         17.1.0           pypi_0           pypi
+blinker                    1.9.0            pypi_0           pypi
+bzip2                      1.0.8            h2bbff1b_6
+ca-certificates            2026.7.16        haa95532_0
+certifi                    2026.7.22        pypi_0           pypi
+cffi                       2.1.1            pypi_0           pypi
+charset-normalizer         3.4.9            pypi_0           pypi
+click                      8.4.2            pypi_0           pypi
+colorama                   0.4.6            pypi_0           pypi
+cryptography               50.0.0           pypi_0           pypi
+dashscope                  1.26.5           pypi_0           pypi
+decorator                  5.3.1            pypi_0           pypi
+diffusers                  0.39.0           pypi_0           pypi
+distro                     1.9.0            pypi_0           pypi
+dnspython                  2.8.0            pypi_0           pypi
+edge-tts                   7.2.8            pypi_0           pypi
+einops                     0.8.2            pypi_0           pypi
+filelock                   3.29.0           pypi_0           pypi
+flask                      3.1.3            pypi_0           pypi
+frozenlist                 1.8.0            pypi_0           pypi
+fsspec                     2026.4.0         pypi_0           pypi
+google-crc32c              1.8.0            pypi_0           pypi
+h11                        0.16.0           pypi_0           pypi
+hf-xet                     1.6.0            pypi_0           pypi
+httpcore                   1.0.9            pypi_0           pypi
+httpx                      0.28.1           pypi_0           pypi
+httpx-sse                  0.4.3            pypi_0           pypi
+huggingface-hub            1.26.0           pypi_0           pypi
+idna                       3.18             pypi_0           pypi
+ifaddr                     0.2.0            pypi_0           pypi
+importlib-metadata         9.0.0            pypi_0           pypi
+itsdangerous               2.2.0            pypi_0           pypi
+jinja2                     3.1.6            pypi_0           pypi
+jiter                      0.16.0           pypi_0           pypi
+joblib                     1.5.3            pypi_0           pypi
+lazy-loader                0.5              pypi_0           pypi
+libexpat                   2.8.2            hd7fb8db_1
+libffi                     3.4.8            h42d73b9_3
+librosa                    0.11.0           pypi_0           pypi
+libzlib                    1.3.2            h1c6eee0_0
+llvmlite                   0.48.0           pypi_0           pypi
+markdown-it-py             4.2.0            pypi_0           pypi
+markupsafe                 3.0.3            pypi_0           pypi
+mdurl                      0.1.2            pypi_0           pypi
+mpmath                     1.3.0            pypi_0           pypi
+msgpack                    1.2.1            pypi_0           pypi
+multidict                  6.7.1            pypi_0           pypi
+narwhals                   2.24.0           pypi_0           pypi
+networkx                   3.6.1            pypi_0           pypi
+numba                      0.66.0           pypi_0           pypi
+numpy                      2.4.4            pypi_0           pypi
+openai                     2.53.0           pypi_0           pypi
+opencv-python-headless     5.0.0.93         pypi_0           pypi
+openssl                    3.5.7            hbb43b14_0
+packaging                  26.1             py312haa95532_0
+pillow                     12.2.0           pypi_0           pypi
+pip                        26.1.2           pyhc872135_0
+platformdirs               4.11.0           pypi_0           pypi
+pooch                      1.9.0            pypi_0           pypi
+propcache                  0.5.2            pypi_0           pypi
+psutil                     7.2.2            pypi_0           pypi
+pycparser                  3.0              pypi_0           pypi
+pydantic                   2.13.4           pypi_0           pypi
+pydantic-core              2.46.4           pypi_0           pypi
+pyee                       13.0.1           pypi_0           pypi
+pygments                   2.20.0           pypi_0           pypi
+pylibsrtp                  1.0.0            pypi_0           pypi
+pyopenssl                  26.4.0           pypi_0           pypi
+python                     3.12.13          hd7b1df3_3
+python-dotenv              1.2.2            pypi_0           pypi
+pyyaml                     6.0.3            pypi_0           pypi
+regex                      2026.7.19        pypi_0           pypi
+requests                   2.34.2           pypi_0           pypi
+resampy                    0.4.3            pypi_0           pypi
+rich                       15.0.0           pypi_0           pypi
+safetensors                0.8.0            pypi_0           pypi
+scikit-learn               1.9.0            pypi_0           pypi
+scipy                      1.18.0           pypi_0           pypi
+setuptools                 83.0.0           py312haa95532_0
+shellingham                1.5.4            pypi_0           pypi
+sniffio                    1.3.1            pypi_0           pypi
+soundfile                  0.12.1           pypi_0           pypi
+soxr                       1.1.0            pypi_0           pypi
+sqlite                     3.53.2           hee5a0db_0
+sympy                      1.14.0           pypi_0           pypi
+tabulate                   0.10.0           pypi_0           pypi
+threadpoolctl              3.6.0            pypi_0           pypi
+tk                         8.6.15           hf199647_0
+tokenizers                 0.22.2           pypi_0           pypi
+torch                      2.9.1+cu126      pypi_0           pypi
+torchaudio                 2.9.1+cu126      pypi_0           pypi
+torchvision                0.24.1+cu126     pypi_0           pypi
+tqdm                       4.70.0           pypi_0           pypi
+transformers               5.14.1           pypi_0           pypi
+typer                      0.27.1           pypi_0           pypi
+typing-extensions          4.15.0           pypi_0           pypi
+typing-inspection          0.4.2            pypi_0           pypi
+tzdata                     2026c            he532380_0
+ucrt                       10.0.22621.0     haa95532_0
+urllib3                    2.7.0            pypi_0           pypi
+vc                         14.3             h2df5915_12
+vc14_runtime               14.44.35208      h4927774_12
+vs2015_runtime             14.44.35208      ha6b5a95_12
+websocket-client           1.9.0            pypi_0           pypi
+websockets                 12.0             pypi_0           pypi
+werkzeug                   3.1.8            pypi_0           pypi
+wheel                      0.47.0           py312haa95532_0
+xz                         5.8.2            h53af0af_0
+yarl                       1.24.5           pypi_0           pypi
+zipp                       4.1.0            pypi_0           pypi
+zlib                       1.3.2            h1c6eee0_0
+EXIT_CODE=0
+```

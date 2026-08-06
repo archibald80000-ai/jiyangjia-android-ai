@@ -1,6 +1,6 @@
 # TASK-002: Create an isolated, reproducible LiveTalking runtime environment
 
-- **Status:** PLANNED
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-001
 - **Branch:** `task/TASK-002-livetalking-environment`
@@ -61,16 +61,16 @@ python -m pip freeze
 
 ## Required deliverables
 
-- [ ] docs/evidence/TASK-002/environment-matrix.md
-- [ ] Reproducible environment commands/lock
-- [ ] Accurate GPU/CUDA blocker or readiness result
+- [x] docs/evidence/TASK-002/environment-matrix.md
+- [x] Reproducible environment commands/lock
+- [x] Accurate GPU/CUDA blocker or readiness result
 
 ## Acceptance criteria
 
-- [ ] Python/FFmpeg/GPU/CUDA/PyTorch matrix recorded
-- [ ] Isolated environment created
-- [ ] Dependency install command and failures documented
-- [ ] No global Python damage
+- [x] Python/FFmpeg/GPU/CUDA/PyTorch matrix recorded
+- [x] Isolated environment created
+- [x] Dependency install command and failures documented
+- [x] No global Python damage
 
 ## Stop / blocked conditions
 
@@ -90,16 +90,42 @@ When blocked, complete all safe analysis, save sanitized evidence, set status to
 - Hardware/environment details for device/GPU claims.
 - Failed cases, untested paths and cost-bearing calls.
 
+TASK-002 evidence:
+
+- `docs/evidence/TASK-002/environment-matrix.md`
+- `docs/evidence/TASK-002/initial-environment-inventory.txt`
+- `docs/evidence/TASK-002/conda-create-env.txt`
+- `docs/evidence/TASK-002/pytorch-index-cu126.txt`
+- `docs/evidence/TASK-002/pytorch-install-cu126.txt`
+- `docs/evidence/TASK-002/livetalking-requirements-install.txt`
+- `docs/evidence/TASK-002/import-and-device-checks.txt`
+- `docs/evidence/TASK-002/livetalking-cli-help.txt`
+- `docs/evidence/TASK-002/start-script-help-check.txt`
+- `docs/evidence/TASK-002/pip-freeze.txt`
+- `docs/evidence/TASK-002/pip-check.txt`
+- `docs/evidence/TASK-002/conda-list.txt`
+- `docs/evidence/TASK-002/conda-env-export.yaml`
+- `docs/evidence/TASK-002/conda-explicit.txt`
+- `docs/evidence/TASK-002/global-python-post-check.txt`
+- `docs/evidence/TASK-002/task002-final-verification.txt`
+
+Untested in TASK-002 by design:
+
+- Wav2Lip model weight and avatar asset download/hash/license/runtime usability.
+- LiveTalking service startup.
+- WebRTC/WHEP media path and FPS.
+- Android device, APK, USB audio and provider API behavior.
+
 ## Rollback
 
 Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions; no new ADR required because TASK-002 follows the existing pinned-upstream and isolated-runtime decisions.
+- [x] Recommend exactly one next task: `TASK-003_WAV2LIP_WEBRTC_BASELINE.md`.
