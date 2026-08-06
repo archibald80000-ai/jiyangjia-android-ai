@@ -1,0 +1,12 @@
+Timestamp: 2026-08-05T20:44:14.9915443-05:00 Command: powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+verify_repository ExitCode: 0
+Command: git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+Command: git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+Command: git check-ignore -v third_party\LiveTalking
+.gitignore:33:third_party/LiveTalking/	"third_party\\LiveTalking"
+check-ignore ExitCode: 0
+Command: git diff --check
+diff-check ExitCode: 0

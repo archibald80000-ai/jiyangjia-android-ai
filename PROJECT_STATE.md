@@ -3,7 +3,7 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** PARTIAL / BOOTSTRAP BLOCKED
+- **Overall status:** DONE / READY FOR TASK-001
 - **Current authorized task:** TASK-000
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
@@ -22,6 +22,7 @@
 - No tracked `.env`, private key, APK, model, audio or database file matched the TASK-000 scans.
 - JSON/YAML example validation passed.
 - Local tools found: Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
+- LiveTalking locked checkout exists at ignored `third_party/LiveTalking` with HEAD `c963ad409c556918b7d23999bf87c47a7c05c932`.
 
 ## Not yet verified
 
@@ -31,7 +32,6 @@
 - Development machine CUDA/PyTorch compatibility.
 - Android SDK/ADB and Gradle availability.
 - LiveTalking model weights and Avatar assets.
-- LiveTalking locked checkout; GitHub Git clone/fetch access failed during TASK-000.
 - WebRTC connectivity on the target network.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -54,13 +54,13 @@ Current evidence:
 - `docs/evidence/2026-08-06-local-sync-audit.md`
 - `docs/evidence/TASK-000/environment-audit.md`
 
-Current blocker:
+TASK-000 result:
 
-- `powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1` failed because GitHub Git clone/fetch access to `https://github.com/lipku/LiveTalking.git` failed. A later `git -c http.version=HTTP/1.1 ls-remote` succeeded once and returned `c963ad409c556918b7d23999bf87c47a7c05c932`, but clone/fetch still failed. GitHub API and locked-commit archive HEAD checks were reachable; archive was not used as a checkout replacement. `third_party/LiveTalking` does not exist.
+- DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 
 Next action:
 
-- Resolve GitHub Git clone/fetch access and rerun TASK-000 bootstrap. Do not advance to TASK-001 until the locked checkout succeeds or a documented alternate upstream retrieval path is approved.
+- Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on its own task branch/session. Do not install models or modify upstream source in TASK-001.
 
 ## Status vocabulary
 

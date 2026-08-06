@@ -1,0 +1,14 @@
+Timestamp: 2026-08-05T20:42:04.7665275-05:00 Command: process-scoped GIT_CONFIG_COUNT http.version=HTTP/1.1 with scripts/bootstrap_livetalking.ps1
+Cloning into 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking'...
+From https://github.com/lipku/LiveTalking
+ * branch            c963ad409c556918b7d23999bf87c47a7c05c932 -> FETCH_HEAD
+HEAD is now at c963ad4 feat: add WHEP support and new routes
+LiveTalking locked checkout ready
+Path: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking
+Commit: c963ad409c556918b7d23999bf87c47a7c05c932
+No model weights or avatar packages were downloaded.
+ExitCode: 0
+Command: git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+Command: git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)

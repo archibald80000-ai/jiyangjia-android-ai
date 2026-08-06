@@ -2,9 +2,10 @@
 
 ## Current task
 
-- Task: `TASK-000_PROJECT_BOOTSTRAP.md`
-- Status: `PARTIAL`
-- Branch: `task/TASK-000-project-bootstrap`
+- Completed task: `TASK-000_PROJECT_BOOTSTRAP.md`
+- Status: `DONE`
+- Current branch: `task/TASK-000-project-bootstrap`
+- Last commit before this handoff update: `408bda8`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; not scanned or modified)
 
@@ -15,19 +16,21 @@
 3. `MEMORY.md`
 4. `PROJECT_STATE.md`
 5. `docs/22_DELIVERY_BLUEPRINT.md`
-6. `tasks/TASK-000_PROJECT_BOOTSTRAP.md`
+6. `tasks/TASK-001_LIVETALKING_UPSTREAM_AUDIT.md`
 7. `docs/evidence/TASK-000/environment-audit.md`
 
 ## What is verified
 
 - Repository path is `E:\work\ai-kefu\jiyangjia-ai`.
-- Current branch is `task/TASK-000-project-bootstrap`.
+- TASK-000 ran on `task/TASK-000-project-bootstrap`.
 - Repository structure check passed with `scripts/verify_repository.ps1`.
 - `.env.local` is ignored and absent; values were not read.
 - Tracked sensitive/model/audio/database filename scans passed.
-- `config/upstream-lock.json`, `PROJECT_MANIFEST.json` and `knowledge-test/test_questions.example.json` are valid JSON.
-- `tasks/index.yaml`, `config/project.example.yaml`, `config/providers.example.yaml` and `knowledge-test/faq_test.example.yaml` are valid YAML with PyYAML.
+- JSON/YAML validation passed for the required examples and task/config files.
 - Delivery blueprint exists at `docs/22_DELIVERY_BLUEPRINT.md`.
+- `third_party/LiveTalking` is a real Git checkout at locked commit `c963ad409c556918b7d23999bf87c47a7c05c932`.
+- `third_party/LiveTalking` is ignored by the main repository via `.gitignore:33`.
+- No model weights or avatar packages were downloaded by TASK-000.
 
 ## Environment facts
 
@@ -41,67 +44,38 @@
 - ADB: missing from PATH.
 - Gradle: missing from PATH.
 - PyTorch: not installed in the active Python environment.
-- No `origin` remote is configured.
+- No `origin` remote is configured for the main repository.
 
-## Blocker
+## Bootstrap note
 
-LiveTalking bootstrap did not complete:
+Default Git smart-HTTP clone/fetch to GitHub failed in earlier attempts. The successful command used process-scoped Git config:
 
 ```powershell
+$env:GIT_CONFIG_COUNT='1'
+$env:GIT_CONFIG_KEY_0='http.version'
+$env:GIT_CONFIG_VALUE_0='HTTP/1.1'
 powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+Remove-Item Env:\GIT_CONFIG_COUNT, Env:\GIT_CONFIG_KEY_0, Env:\GIT_CONFIG_VALUE_0 -ErrorAction SilentlyContinue
 ```
 
-Result: GitHub Git clone of `https://github.com/lipku/LiveTalking.git` failed.
-
-Follow-up diagnostic:
-
-```powershell
-git ls-remote https://github.com/lipku/LiveTalking.git HEAD
-```
-
-Initial result: failed with connection reset.
-
-Additional retry facts:
-
-- `Test-NetConnection github.com -Port 443` succeeded.
-- `git -c http.version=HTTP/1.1 ls-remote https://github.com/lipku/LiveTalking.git HEAD` succeeded once and returned `c963ad409c556918b7d23999bf87c47a7c05c932`.
-- Later HTTP/1.1 clone/fetch attempts still failed to connect to `github.com:443`.
-- `gh repo view lipku/LiveTalking --json name,defaultBranchRef` succeeded.
-- `Invoke-WebRequest -Method Head` for the locked commit archive returned HTTP 200, but archive was not used as checkout replacement.
-- A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after verifying it was inside the project path.
-- `third_party/LiveTalking` does not exist.
+This did not modify global Git configuration.
 
 ## Evidence
 
 - `docs/evidence/TASK-000/environment-audit.md`
-- `docs/evidence/TASK-000/git-and-location.txt`
-- `docs/evidence/TASK-000/check-prerequisites.txt`
-- `docs/evidence/TASK-000/verify-repository.txt`
-- `docs/evidence/TASK-000/secret-and-config-checks.txt`
-- `docs/evidence/TASK-000/yaml-validation.txt`
-- `docs/evidence/TASK-000/bootstrap-livetalking.txt`
-- `docs/evidence/TASK-000/github-network-diagnostic.txt`
-- `docs/evidence/TASK-000/python-torch-check.txt`
-- `docs/evidence/TASK-000/java-adb-gradle-detail.txt`
-- `docs/evidence/TASK-000/retry-github-network.txt`
-- `docs/evidence/TASK-000/retry-git-http11.txt`
-- `docs/evidence/TASK-000/retry-git-http11-second.txt`
-- `docs/evidence/TASK-000/retry-gh-api.txt`
-- `docs/evidence/TASK-000/bootstrap-livetalking-http11.txt`
-- `docs/evidence/TASK-000/bootstrap-livetalking-wrapper-http11.txt`
-- `docs/evidence/TASK-000/bootstrap-livetalking-wrapper-http11-bypass.txt`
-- `docs/evidence/TASK-000/manual-clone-http11.txt`
-- `docs/evidence/TASK-000/manual-init-fetch-http11.txt`
-- `docs/evidence/TASK-000/github-archive-head-check.txt`
-- `docs/evidence/TASK-000/cleanup-invalid-livetalking-checkout.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-env-config-http11.txt`
+- `docs/evidence/TASK-000/locked-checkout-final.txt`
+- `docs/evidence/TASK-000/third-party-ignore-check.txt`
+- `docs/evidence/TASK-000/task000-done-final-verification.txt`
 - `docs/evidence/TASK-000/post-retry-verification.txt`
+- Earlier failed retry logs remain under `docs/evidence/TASK-000/` for troubleshooting history.
 
 ## Next action
 
-Resolve GitHub Git clone/fetch access, then rerun:
+Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on a new task branch/session:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+git switch -c task/TASK-001-livetalking-upstream-audit
 ```
 
-If the locked checkout succeeds, update TASK-000 to `DONE` and only then proceed to `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md`.
+TASK-001 should audit the locked upstream source, remote, branch/detached state, relevant README/API/config/source files, licenses, extension points and risks. Do not install model weights, do not run Wav2Lip, and do not modify upstream source in TASK-001.

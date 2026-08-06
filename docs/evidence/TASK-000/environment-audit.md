@@ -3,7 +3,7 @@
 - Date: 2026-08-06
 - Branch: `task/TASK-000-project-bootstrap`
 - Workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Status: `PARTIAL`
+- Status: `DONE`
 
 ## Scope executed
 
@@ -38,6 +38,10 @@
 | Manual `git init` plus locked commit `fetch` | Failed; fetch could not connect to `github.com:443` | `manual-init-fetch-http11.txt` |
 | Cleanup invalid checkout directory | Removed task-created invalid `third_party/LiveTalking` directory after path verification | `cleanup-invalid-livetalking-checkout.txt` |
 | Post-retry repository verification | `verify_repository.ps1` passed; `git diff --check` passed; private IP scan had no matches | `post-retry-verification.txt` |
+| Process-scoped Git HTTP/1.1 bootstrap | `scripts/bootstrap_livetalking.ps1` completed; locked checkout created at `c963ad409c556918b7d23999bf87c47a7c05c932`; no weights/avatar packages downloaded | `bootstrap-livetalking-env-config-http11.txt` |
+| Locked checkout final check | `rev-parse HEAD` matched lock; status was detached `HEAD`; remote was `https://github.com/lipku/LiveTalking.git` | `locked-checkout-final.txt` |
+| Main repo ignore check | `third_party/LiveTalking` matched `.gitignore:33` and is not tracked by the main repository | `third-party-ignore-check.txt` |
+| Final TASK-000 verification | `verify_repository.ps1` passed; checkout HEAD matched lock; ignored checkout verified; `git diff --check` passed | `task000-done-final-verification.txt` |
 
 ## Tool availability
 
@@ -59,11 +63,22 @@
 - The current local repository has no `origin` remote.
 - Existing uncommitted changes before this task aligned the project identity and path to `jiyangjia-android-ai` / `E:\work\ai-kefu\jiyangjia-ai`.
 - `.codex/TASK_EXECUTION_PROMPT.md` still contained the previous project name/path and was corrected during this task.
-- LiveTalking checkout was not created. A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after path verification, so `third_party/LiveTalking` does not exist.
+- LiveTalking checkout exists at `third_party/LiveTalking` and is ignored by the main repository.
 
-## Blocker
+## Previous blocker and resolution
 
-The upstream bootstrap gate did not pass because GitHub Git smart-HTTP clone/fetch access for `https://github.com/lipku/LiveTalking.git` failed repeatedly. TCP 443, GitHub API and locked-commit archive HEAD checks were reachable, and one HTTP/1.1 `ls-remote` succeeded, but clone/fetch still failed. This blocks selecting TASK-001 as the next implementation task.
+The upstream bootstrap gate initially failed because GitHub Git smart-HTTP clone/fetch access for `https://github.com/lipku/LiveTalking.git` failed repeatedly under the default Git HTTP behavior. TCP 443, GitHub API and locked-commit archive HEAD checks were reachable, and one HTTP/1.1 `ls-remote` succeeded.
+
+The gate passed after running the existing bootstrap script with process-scoped Git config:
+
+```powershell
+$env:GIT_CONFIG_COUNT='1'
+$env:GIT_CONFIG_KEY_0='http.version'
+$env:GIT_CONFIG_VALUE_0='HTTP/1.1'
+powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+```
+
+This created a real Git checkout and did not change global Git configuration.
 
 ## Untested
 
@@ -81,10 +96,10 @@ The upstream bootstrap gate did not pass because GitHub Git smart-HTTP clone/fet
 
 ## Next unblock action
 
-Resolve GitHub Git clone/fetch access from this machine, then rerun:
+Run TASK-001 next:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+git switch -c task/TASK-001-livetalking-upstream-audit
 ```
 
-If plain script execution still fails but `git -c http.version=HTTP/1.1` remains the working route, use a documented TASK-000 command variant that performs a real Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. Do not use a zip/archive download as a replacement for the Git checkout gate unless an ADR explicitly changes the upstream management decision.
+Then audit the locked upstream source. Do not install model weights, do not run Wav2Lip, and do not edit upstream source in TASK-001.

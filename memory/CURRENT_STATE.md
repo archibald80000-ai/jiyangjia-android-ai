@@ -13,11 +13,11 @@
 
 ## In progress
 
-- TASK-000 is `PARTIAL` because LiveTalking Git clone/fetch still fails.
+- TASK-000 is `DONE`.
 
 ## Not started
 
-- LiveTalking checkout and dependency setup.
+- LiveTalking dependency setup.
 - Model weights / avatar preparation.
 - LiveTalking API reproduction.
 - Android project creation.
@@ -27,4 +27,4 @@
 
 ## Next action
 
-Resolve GitHub Git clone/fetch access for `https://github.com/lipku/LiveTalking.git`, rerun `scripts/bootstrap_livetalking.ps1`, and close TASK-000 before starting TASK-001.
+Start `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md` on a separate task branch/session. Audit the locked checkout only; do not install models or modify upstream source.

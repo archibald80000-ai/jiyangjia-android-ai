@@ -1,0 +1,7 @@
+Timestamp: 2026-08-05T20:42:26.4509037-05:00 Command: git -C third_party/LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+Command: git -C third_party/LiveTalking status --short --branch
+## HEAD (no branch)
+Command: git -C third_party/LiveTalking remote -v
+origin	https://github.com/lipku/LiveTalking.git (fetch)
+origin	https://github.com/lipku/LiveTalking.git (push)

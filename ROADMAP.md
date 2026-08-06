@@ -4,7 +4,7 @@
 
 Repository, environment audit, upstream lock, secret protections and Codex execution discipline.
 
-Current gate: `TASK-000` is partial until the locked LiveTalking bootstrap checkout succeeds. See `docs/evidence/TASK-000/environment-audit.md`.
+Current gate: `TASK-000` is done. The locked LiveTalking checkout exists under ignored `third_party/LiveTalking`; see `docs/evidence/TASK-000/environment-audit.md`.
 
 ## M1 — LiveTalking reproducible baseline
 

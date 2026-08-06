@@ -1,0 +1,8 @@
+Timestamp: 2026-08-05T20:42:26.4630785-05:00 Command: git check-ignore -v third_party/LiveTalking
+.gitignore:33:third_party/LiveTalking/	"third_party\\LiveTalking"
+check-ignore ExitCode: 0
+Command: git status --short --branch --untracked-files=all
+## task/TASK-000-project-bootstrap
+?? docs/evidence/TASK-000/bootstrap-livetalking-env-config-http11.txt
+?? docs/evidence/TASK-000/locked-checkout-final.txt
+?? docs/evidence/TASK-000/third-party-ignore-check.txt

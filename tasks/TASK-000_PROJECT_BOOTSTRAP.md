@@ -1,6 +1,6 @@
 # TASK-000: Bootstrap repository and audit the local environment
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** None
 - **Branch:** `task/TASK-000-project-bootstrap`
@@ -79,11 +79,11 @@ python -m json.tool config/upstream-lock.json
 - [x] Repository cloned into the fixed Windows path
 - [x] Secret protections verified
 - [x] Tool/Git/environment audit documented
-- [ ] Upstream bootstrap command verified without downloading weights
+- [x] Upstream bootstrap command verified without downloading weights
 
 ## TASK-000 result on 2026-08-06
 
-Status is `PARTIAL`.
+Status is `DONE`.
 
 Evidence:
 
@@ -105,6 +105,10 @@ Evidence:
 - `docs/evidence/TASK-000/github-archive-head-check.txt`
 - `docs/evidence/TASK-000/cleanup-invalid-livetalking-checkout.txt`
 - `docs/evidence/TASK-000/post-retry-verification.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-env-config-http11.txt`
+- `docs/evidence/TASK-000/locked-checkout-final.txt`
+- `docs/evidence/TASK-000/third-party-ignore-check.txt`
+- `docs/evidence/TASK-000/task000-done-final-verification.txt`
 
 Summary:
 
@@ -116,18 +120,21 @@ Summary:
 - Prerequisite audit found Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
 - ADB and Gradle are missing from PATH.
 - PyTorch is not installed in the active Python environment.
-- LiveTalking bootstrap failed because GitHub Git clone/fetch access to `https://github.com/lipku/LiveTalking.git` failed.
-- `git -c http.version=HTTP/1.1 ls-remote` succeeded once and returned the locked commit, but later clone/fetch attempts with HTTP/1.1 still failed.
-- GitHub API and locked-commit archive HEAD checks were reachable; archive was not used as a Git checkout replacement.
-- A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after path verification.
+- Initial LiveTalking bootstrap attempts failed because GitHub Git clone/fetch access to `https://github.com/lipku/LiveTalking.git` failed under the default Git HTTP behavior.
+- Process-scoped Git config resolved the checkout:
+  `$env:GIT_CONFIG_COUNT='1'; $env:GIT_CONFIG_KEY_0='http.version'; $env:GIT_CONFIG_VALUE_0='HTTP/1.1'; powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1`
+- `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`.
+- `git -C third_party/LiveTalking status --short --branch` reports detached `HEAD` with no file changes.
+- `.gitignore` ignores `third_party/LiveTalking/`, so upstream source is not committed to the main repository.
+- No model weights or avatar packages were downloaded.
 
-Next unblock action:
+Next action:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+git switch -c task/TASK-001-livetalking-upstream-audit
 ```
 
-Run this only after GitHub Git clone/fetch access is fixed. Do not start TASK-001 until the locked checkout succeeds or an approved alternate retrieval path is documented.
+Then execute `TASK-001_LIVETALKING_UPSTREAM_AUDIT.md`. Do not install models or modify upstream source in TASK-001.
 
 ## Stop / blocked conditions
 

@@ -4,8 +4,8 @@ The canonical machine-readable index is [`tasks/index.yaml`](tasks/index.yaml). 
 
 Current status:
 
-- `TASK-000`: `PARTIAL` due to GitHub Git clone/fetch failure while running and retrying the LiveTalking bootstrap command.
-- Next action is to unblock and finish `TASK-000`; do not advance to `TASK-001` yet.
+- `TASK-000`: `DONE`; environment/repository audit passed and LiveTalking locked checkout exists under ignored `third_party/LiveTalking`.
+- Next action is `TASK-001`; do not start later tasks concurrently.
 
 Current order:
 

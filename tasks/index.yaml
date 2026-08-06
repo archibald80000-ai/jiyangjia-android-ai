@@ -6,7 +6,7 @@ tasks:
     file: TASK-000_PROJECT_BOOTSTRAP.md
     title: "Bootstrap repository and audit the local environment"
     priority: p0
-    status: PARTIAL
+    status: DONE
     depends_on: []
   - id: TASK-001
     file: TASK-001_LIVETALKING_UPSTREAM_AUDIT.md
