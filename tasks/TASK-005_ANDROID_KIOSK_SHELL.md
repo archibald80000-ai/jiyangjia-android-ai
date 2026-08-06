@@ -1,6 +1,6 @@
 # TASK-005: Create the Android 12 landscape kiosk shell and local idle video
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-000
 - **Branch:** `task/TASK-005-android-kiosk-shell`
@@ -60,19 +60,19 @@ Get-FileHash android-app\app\build\outputs\apk\debug\app-debug.apk -Algorithm SH
 
 ## Required deliverables
 
-- [ ] Buildable Android project
-- [ ] Local idle-video/fallback display
+- [x] Buildable Android project source scaffold
+- [x] Local idle-video/fallback implementation
 - [ ] Actual debug APK when environment permits
-- [ ] docs/evidence/TASK-005/android-shell.md
+- [x] docs/evidence/TASK-005/android-shell.md
 
 ## Acceptance criteria
 
 - [ ] Gradle project builds
 - [ ] APK actually generated
-- [ ] Immersive landscape UI
-- [ ] Local idle character video/fallback visible without network
-- [ ] Config screen and health state
-- [ ] No provider secrets in APK
+- [x] Immersive landscape UI implemented in source
+- [x] Local idle character video/fallback implemented without network
+- [x] Config screen and health state implemented in source
+- [x] No provider secrets added to APK source
 
 ## Stop / blocked conditions
 
@@ -98,10 +98,21 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-005 Result
+
+- Source implementation completed for the Android landscape kiosk shell, idle local video resolution and offline fallback visual.
+- Evidence:
+  - `docs/evidence/TASK-005/android-shell.md`
+  - `docs/evidence/TASK-005/task005-verification-20260806.txt`
+  - `docs/evidence/TASK-005/task005-environment-20260806.txt`
+- Real blocker: this machine does not currently have the Android build toolchain required to build an APK. `JAVA_HOME` points to JRE 1.8, `java` is 9.0.1, `ANDROID_HOME`/`ANDROID_SDK_ROOT` are unset, `adb` is unavailable and `gradle` is unavailable.
+- APK was not generated and Android 12 device behavior was not verified.
+- Next unique action: finish TASK-005 build verification by installing/configuring JDK 17, Android SDK/platform-tools/build-tools and Gradle or an official wrapper, then run the Gradle build and APK hash commands.

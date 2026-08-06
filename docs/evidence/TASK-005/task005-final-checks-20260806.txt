@@ -1,0 +1,45 @@
+TASK-005 final checks
+Timestamp: 2026-08-05T23:11:49.5979381-05:00
+
+
+===== powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1 =====
+Repository verification: PASS
+[exit_code] 0
+
+===== git diff --check =====
+[exit_code] 0
+
+===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+memory/HANDOFF.md:7:- Current branch: `task/TASK-005-android-kiosk-shell`
+tasks/TASK-005_ANDROID_KIOSK_SHELL.md:6:- **Branch:** `task/TASK-005-android-kiosk-shell`
+tasks/TASK-005_ANDROID_KIOSK_SHELL.md:97:Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
+docs/evidence/TASK-005\task005-verification-20260806.txt:7:## task/TASK-005-android-kiosk-shell
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:12:===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+docs/evidence/TASK-005\android-shell.md:5:- **Branch:** `task/TASK-005-android-kiosk-shell`
+android-app\app\src\main\java\ai\jiyangjia\kiosk\ClientConfig.kt:15:        const val DEFAULT_DEVICE_ID = "android-kiosk-dev"
+[exit_code] 0
+
+===== Get-ChildItem android-app -Recurse -File | Where-Object { $_.Extension -in ".apk",".aab",".jks",".keystore",".pth",".wav",".mp3",".mp4" } | Select-Object FullName,Length =====
+[exit_code] 0
+
+===== git status --short --branch =====
+## task/TASK-005-android-kiosk-shell
+ M PROJECT_STATE.md
+ M TASKS.md
+ M android-app/README.md
+ M gateway/README.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-005_ANDROID_KIOSK_SHELL.md
+ M tasks/index.yaml
+?? android-app/app/
+?? android-app/build.gradle.kts
+?? android-app/gradlew.bat
+?? android-app/settings.gradle.kts
+?? deploy/docker-compose.yml
+?? deploy/nginx-jiyangjia.conf
+?? docs/evidence/TASK-005/
+?? gateway/Dockerfile
+?? gateway/app/
+?? gateway/requirements.txt
+[exit_code] 0

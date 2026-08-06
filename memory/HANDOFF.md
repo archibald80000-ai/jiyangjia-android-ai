@@ -3,8 +3,8 @@
 ## Current task
 
 - Current task: `TASK-005_ANDROID_KIOSK_SHELL.md`
-- Status: route updated; TASK-005 is next and remains `PLANNED`
-- Current branch: `task/TASK-003-wav2lip-webrtc-baseline`
+- Status: `PARTIAL`; Android source implemented, APK build blocked by missing local Android toolchain
+- Current branch: `task/TASK-005-android-kiosk-shell`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
 
@@ -53,6 +53,9 @@ Do not download LiveTalking/Wav2Lip/MuseTalk models, do not continue changing as
 - Existing Tencent Cloud server is 8C/4G/10M and has no GPU; it is suitable only for the lightweight Gateway in Phase 1.
 - Android client must not store provider secrets.
 - Knowledge MVP remains 10-30 human-approved FAQ entries; no Dify, vector DB or raw-material bulk scan.
+- TASK-005 source implementation exists under `android-app/`: package `ai.jiyangjia.kiosk`, version `0.1.0-task005`, immersive landscape `KioskActivity`, local idle video path, offline animated fallback, long-press config dialog and state/config test sources.
+- TASK-005 verification evidence exists under `docs/evidence/TASK-005/`.
+- Repository verification and `git diff --check` passed during TASK-005.
 
 ## New design documents
 
@@ -84,7 +87,7 @@ TASK-000
 
 ## Not verified
 
-- Android APK build/install.
+- Android APK build/install. Current machine lacks JDK 17, Android SDK/ADB and Gradle.
 - Android 12 real-device display behavior.
 - USB microphone and speaker routing.
 - Gateway runtime implementation.
@@ -96,14 +99,15 @@ TASK-000
 
 ## Next action
 
-Execute exactly one next task: `TASK-005_ANDROID_KIOSK_SHELL.md`.
+Execute exactly one next action: finish TASK-005 build verification after toolchain setup.
 
-Expected TASK-005 focus:
+Required unblock:
 
-- create Android 12 landscape kiosk shell;
-- implement local idle character video or rights-clear fallback visual;
-- add non-secret endpoint/config screen;
-- build/smoke-test if SDK/Gradle are available;
-- save evidence and update task state.
+- configure JDK 17 for Gradle;
+- install/provide Android SDK platform/build tools and platform-tools;
+- install Gradle or generate an official Gradle wrapper;
+- run `.\android-app\gradlew.bat -p android-app tasks`;
+- run `.\android-app\gradlew.bat -p android-app testDebugUnitTest assembleDebug`;
+- record APK path and SHA-256 if generated.
 
 Do not start TASK-007/008 in the same task. Do not resume TASK-003/004/006/016 in Phase 1.

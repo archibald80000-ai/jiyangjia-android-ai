@@ -1,0 +1,44 @@
+TASK-005 environment inventory
+Timestamp: 2026-08-05T23:09:57.6901415-05:00
+
+
+===== where.exe java =====
+C:\ProgramData\Oracle\Java\javapath\java.exe
+C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+D:\java\jre-1.8\bin\java.exe
+[exit_code] 0
+
+===== $env:JAVA_HOME =====
+D:\java\jre-1.8
+[exit_code] 0
+
+===== $env:ANDROID_HOME =====
+[exit_code] 0
+
+===== $env:ANDROID_SDK_ROOT =====
+[exit_code] 0
+
+===== where.exe gradle =====
+INFO: Could not find files for the given pattern(s).
+[exit_code] 1
+
+===== where.exe adb =====
+INFO: Could not find files for the given pattern(s).
+[exit_code] 1
+
+===== Test-Path "$env:LOCALAPPDATA\Android\Sdk" =====
+False
+[exit_code] 0
+
+===== Get-ChildItem "C:\Program Files\Java" -ErrorAction SilentlyContinue | Select-Object FullName =====
+
+FullName
+--------
+C:\Program Files\Java\jdk-9.0.1
+C:\Program Files\Java\jre-9.0.1
+
+
+[exit_code] 0
+
+===== Get-ChildItem "$env:LOCALAPPDATA" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*Android*" } | Select-Object FullName =====
+[exit_code] 0

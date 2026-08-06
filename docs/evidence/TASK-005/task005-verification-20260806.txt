@@ -1,0 +1,65 @@
+TASK-005 verification evidence
+Timestamp: 2026-08-05T23:08:56.3195109-05:00
+Workdir: E:\work\ai-kefu\jiyangjia-ai
+
+
+===== git status --short --branch =====
+## task/TASK-005-android-kiosk-shell
+ M android-app/README.md
+ M gateway/README.md
+?? android-app/app/
+?? android-app/build.gradle.kts
+?? android-app/gradlew.bat
+?? android-app/settings.gradle.kts
+?? deploy/docker-compose.yml
+?? deploy/nginx-jiyangjia.conf
+?? docs/evidence/TASK-005/
+?? gateway/Dockerfile
+?? gateway/app/
+?? gateway/requirements.txt
+[exit_code] 0
+
+===== java -version =====
+java version "9.0.1"
+Java(TM) SE Runtime Environment (build 9.0.1+11)
+Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)
+[exit_code] 0
+
+===== adb version =====
+adb : The term 'adb' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the s
+pelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ adb version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (adb:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+[exit_code] 1
+
+===== .\android-app\gradlew.bat -p android-app tasks =====
+Gradle is not installed or not on PATH. Install Gradle or generate the official Gradle wrapper before building.
+[exit_code] 1
+
+===== .\android-app\gradlew.bat -p android-app assembleDebug =====
+Gradle is not installed or not on PATH. Install Gradle or generate the official Gradle wrapper before building.
+[exit_code] 1
+
+===== Get-FileHash android-app\app\build\outputs\apk\debug\app-debug.apk -Algorithm SHA256 =====
+Resolve-Path : Cannot find path 'E:\work\ai-kefu\jiyangjia-ai\android-app\app\build\outputs\apk\debug\app-debug.apk' be
+cause it does not exist.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psm1:11
+0 char:36
++                 $pathsToProcess += Resolve-Path $Path | Foreach-Objec ...
++                                    ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (E:\work\ai-kefu...g\app-debug.apk:String) [Resolve-Path], ItemNotFoundE
+   xception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.ResolvePathCommand
+
+[exit_code] 0
+
+===== powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1 =====
+Repository verification: PASS
+[exit_code] 0
+
+===== git diff --check =====
+[exit_code] 0
