@@ -3,7 +3,7 @@
 ## Current task
 
 - Current task: `TASK-005_ANDROID_KIOSK_SHELL.md`
-- Status: `PARTIAL`; Android source implemented, APK build blocked by missing local Android toolchain
+- Status: `DONE`; Android source, Gradle Wrapper, unit tests, lint and debug APK build verified
 - Current branch: `task/TASK-005-android-kiosk-shell`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
@@ -55,6 +55,11 @@ Do not download LiveTalking/Wav2Lip/MuseTalk models, do not continue changing as
 - Knowledge MVP remains 10-30 human-approved FAQ entries; no Dify, vector DB or raw-material bulk scan.
 - TASK-005 source implementation exists under `android-app/`: package `ai.jiyangjia.kiosk`, version `0.1.0-task005`, immersive landscape `KioskActivity`, local idle video path, offline animated fallback, long-press config dialog and state/config test sources.
 - TASK-005 verification evidence exists under `docs/evidence/TASK-005/`.
+- TASK-005 official Gradle Wrapper exists under `android-app/gradle/wrapper/`.
+- TASK-005 local ignored toolchain cache exists under `.cache/android-toolchain` with Temurin JDK 17 and Android SDK API 35 components.
+- TASK-005 Gradle `tasks`, `testDebugUnitTest assembleDebug` and `lintDebug` passed.
+- TASK-005 debug APK exists at `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `830932` bytes, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
+- TASK-005 `adb devices` returned no connected device, so Android 12 install/rendering is not verified.
 - Repository verification and `git diff --check` passed during TASK-005.
 
 ## New design documents
@@ -87,7 +92,7 @@ TASK-000
 
 ## Not verified
 
-- Android APK build/install. Current machine lacks JDK 17, Android SDK/ADB and Gradle.
+- Android APK install on a real Android 12 device.
 - Android 12 real-device display behavior.
 - USB microphone and speaker routing.
 - Gateway runtime implementation.
@@ -99,15 +104,14 @@ TASK-000
 
 ## Next action
 
-Execute exactly one next action: finish TASK-005 build verification after toolchain setup.
+Execute exactly one next task: `TASK-007_ANDROID_USB_AUDIO.md`.
 
-Required unblock:
+Expected TASK-007 focus:
 
-- configure JDK 17 for Gradle;
-- install/provide Android SDK platform/build tools and platform-tools;
-- install Gradle or generate an official Gradle wrapper;
-- run `.\android-app\gradlew.bat -p android-app tasks`;
-- run `.\android-app\gradlew.bat -p android-app testDebugUnitTest assembleDebug`;
-- record APK path and SHA-256 if generated.
+- microphone permission flow;
+- USB/default input diagnostics and fallback;
+- short local recording smoke path;
+- speaker playback path;
+- evidence that distinguishes emulator/no-device/local-only from real Android 12 hardware.
 
-Do not start TASK-007/008 in the same task. Do not resume TASK-003/004/006/016 in Phase 1.
+Do not start TASK-008 Gateway in the same task. Do not resume TASK-003/004/006/016 in Phase 1.

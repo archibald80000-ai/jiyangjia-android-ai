@@ -1,0 +1,41 @@
+TASK-005 final APK verification
+Timestamp: 2026-08-05T23:31:30.7183238-05:00
+JAVA_HOME=E:\work\ai-kefu\jiyangjia-ai\.cache\android-toolchain\jdk17\jdk-17.0.20+8
+ANDROID_SDK_ROOT=E:\work\ai-kefu\jiyangjia-ai\.cache\android-toolchain\android-sdk
+APK_PATH=E:\work\ai-kefu\jiyangjia-ai\android-app\app\build\outputs\apk\debug\app-debug.apk
+APK_SIZE_BYTES=830932
+APK_SHA256=AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896
+
+===== aapt dump badging =====
+package: name='ai.jiyangjia.kiosk.debug' versionCode='1' versionName='0.1.0-task005-debug' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+sdkVersion:'23'
+targetSdkVersion:'35'
+uses-permission: name='android.permission.INTERNET'
+uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+application-label:'积养家 AI 客服'
+application: label='积养家 AI 客服' icon=''
+application-debuggable
+launchable-activity: name='ai.jiyangjia.kiosk.KioskActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+  uses-feature: name='android.hardware.screen.landscape'
+  uses-implied-feature: name='android.hardware.screen.landscape' reason='one or more activities have specified a landscape orientation'
+main
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '160'
+[exit_code] 0
+
+===== adb devices =====
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+
+[exit_code] 0
+
+===== test result summaries =====
+<testsuite name="ai.jiyangjia.kiosk.ClientConfigTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:28:50" hostname="ASSERT" time="0.019">
+<testsuite name="ai.jiyangjia.kiosk.ConsultationStateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:28:50" hostname="ASSERT" time="0.0">
+[exit_code] 0

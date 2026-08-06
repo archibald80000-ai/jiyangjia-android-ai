@@ -9,9 +9,9 @@ Current status:
 - `TASK-002`: `DONE`; isolated LiveTalking runtime exists under ignored `.venv\livetalking-task002`, dependencies/imports/PyTorch CUDA smoke check passed.
 - `TASK-003`: `DEFERRED`; Wav2Lip/LiveTalking asset-dependent baseline is moved to a future enhancement phase and no longer blocks Phase 1.
 - `TASK-004`: `DEFERRED`; LiveTalking API automation waits until the future enhancement phase.
-- `TASK-005`: `PARTIAL`; Android Kotlin landscape kiosk shell, local idle-video path handling, offline fallback visual and non-secret config entry are implemented, but APK build is blocked by missing JDK 17 / Android SDK / ADB / Gradle on this machine.
+- `TASK-005`: `DONE`; Android Kotlin landscape kiosk shell, local idle-video path handling, offline fallback visual, non-secret config entry, Gradle Wrapper, unit tests, lint and debug APK build passed. APK SHA-256: `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - `TASK-006`: `DEFERRED`; LiveTalking display mode is deferred; local idle video is folded into TASK-005 for Phase 1.
-- Next action is to finish `TASK-005` build verification after Android toolchain setup; do not advance to TASK-007 until a real Gradle build/APK result is recorded or the user explicitly changes the gate.
+- Next action is `TASK-007`; do not start Gateway/provider work until Android audio behavior is implemented and verified as far as local hardware permits.
 
 Current order:
 

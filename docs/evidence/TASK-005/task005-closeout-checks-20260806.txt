@@ -1,0 +1,51 @@
+TASK-005 closeout checks
+Timestamp: 2026-08-05T23:34:01.8547326-05:00
+
+
+===== powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1 =====
+Repository verification: PASS
+[exit_code] 0
+
+===== git diff --check =====
+[exit_code] 0
+
+===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+memory/HANDOFF.md:7:- Current branch: `task/TASK-005-android-kiosk-shell`
+tasks/TASK-005_ANDROID_KIOSK_SHELL.md:6:- **Branch:** `task/TASK-005-android-kiosk-shell`
+tasks/TASK-005_ANDROID_KIOSK_SHELL.md:97:Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
+docs/evidence/TASK-005\task005-verification-20260806.txt:7:## task/TASK-005-android-kiosk-shell
+docs/evidence/TASK-005\android-shell.md:5:- **Branch:** `task/TASK-005-android-kiosk-shell`
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:12:===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:13:memory/HANDOFF.md:7:- Current branch: `task/TASK-005-android-kiosk-shell`
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:14:tasks/TASK-005_ANDROID_KIOSK_SHELL.md:6:- **Branch:** `task/TASK-005-android-kiosk-shell`
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:15:tasks/TASK-005_ANDROID_KIOSK_SHELL.md:97:Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:16:docs/evidence/TASK-005\task005-verification-20260806.txt:7:## task/TASK-005-android-kiosk-shell
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:17:docs/evidence/TASK-005\task005-final-checks-20260806.txt:12:===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:18:docs/evidence/TASK-005\android-shell.md:5:- **Branch:** `task/TASK-005-android-kiosk-shell`
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:19:android-app\app\src\main\java\ai\jiyangjia\kiosk\ClientConfig.kt:15:        const val DEFAULT_DEVICE_ID = "android-kiosk-dev"
+docs/evidence/TASK-005\task005-final-checks-20260806.txt:26:## task/TASK-005-android-kiosk-shell
+docs/evidence/TASK-005\task005-closeout-checks-20260806.txt:12:===== rg -n "AKIA|AIza|sk-|api[_-]?key\s*=|token\s*=|secret\s*=|Bearer\s+[A-Za-z0-9]" android-app docs/evidence/TASK-005 tasks/TASK-005_ANDROID_KIOSK_SHELL.md PROJECT_STATE.md TASKS.md memory/CURRENT_STATE.md memory/HANDOFF.md =====
+android-app\app\src\main\java\ai\jiyangjia\kiosk\ClientConfig.kt:15:        const val DEFAULT_DEVICE_ID = "android-kiosk-dev"
+[exit_code] 0
+
+===== git status --ignored --short android-app | Select-String "!! android-app/app/build|!! android-app/.gradle|app-debug.apk" =====
+
+!! android-app/.gradle/
+!! android-app/app/build/
+
+
+[exit_code] 0
+
+===== adb kill-server =====
+adb : The term 'adb' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the s
+pelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ adb kill-server
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (adb:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+[exit_code] 1
+
+===== local adb kill-server =====
+[exit_code] 0

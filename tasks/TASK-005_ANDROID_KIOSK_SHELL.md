@@ -1,6 +1,6 @@
 # TASK-005: Create the Android 12 landscape kiosk shell and local idle video
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-000
 - **Branch:** `task/TASK-005-android-kiosk-shell`
@@ -62,13 +62,13 @@ Get-FileHash android-app\app\build\outputs\apk\debug\app-debug.apk -Algorithm SH
 
 - [x] Buildable Android project source scaffold
 - [x] Local idle-video/fallback implementation
-- [ ] Actual debug APK when environment permits
+- [x] Actual debug APK when environment permits
 - [x] docs/evidence/TASK-005/android-shell.md
 
 ## Acceptance criteria
 
-- [ ] Gradle project builds
-- [ ] APK actually generated
+- [x] Gradle project builds
+- [x] APK actually generated
 - [x] Immersive landscape UI implemented in source
 - [x] Local idle character video/fallback implemented without network
 - [x] Config screen and health state implemented in source
@@ -109,10 +109,17 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 ## TASK-005 Result
 
 - Source implementation completed for the Android landscape kiosk shell, idle local video resolution and offline fallback visual.
+- Official Gradle Wrapper generated for Gradle `8.10.2`.
+- Local ignored Android toolchain cache created under `.cache/android-toolchain` with Temurin JDK 17 and Android SDK API 35 components.
+- Gradle `tasks`, `testDebugUnitTest assembleDebug` and `lintDebug` completed successfully.
+- Debug APK generated at `android-app\app\build\outputs\apk\debug\app-debug.apk`; size `830932` bytes; SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - Evidence:
   - `docs/evidence/TASK-005/android-shell.md`
   - `docs/evidence/TASK-005/task005-verification-20260806.txt`
   - `docs/evidence/TASK-005/task005-environment-20260806.txt`
-- Real blocker: this machine does not currently have the Android build toolchain required to build an APK. `JAVA_HOME` points to JRE 1.8, `java` is 9.0.1, `ANDROID_HOME`/`ANDROID_SDK_ROOT` are unset, `adb` is unavailable and `gradle` is unavailable.
-- APK was not generated and Android 12 device behavior was not verified.
-- Next unique action: finish TASK-005 build verification by installing/configuring JDK 17, Android SDK/platform-tools/build-tools and Gradle or an official wrapper, then run the Gradle build and APK hash commands.
+  - `docs/evidence/TASK-005/task005-toolchain-install-20260806.txt`
+  - `docs/evidence/TASK-005/task005-gradle-build-20260806.txt`
+  - `docs/evidence/TASK-005/task005-lint-20260806.txt`
+  - `docs/evidence/TASK-005/task005-final-apk-verification-20260806.txt`
+- Android 12 device install/rendering was not verified because no device was connected; `adb devices` returned an empty device list.
+- Next unique action: execute TASK-007 Android USB/default microphone and speaker behavior.

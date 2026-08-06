@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-005
+current: TASK-007
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -36,7 +36,7 @@ tasks:
     file: TASK-005_ANDROID_KIOSK_SHELL.md
     title: "Create the Android 12 landscape kiosk shell and local idle video"
     priority: p0
-    status: PARTIAL
+    status: DONE
     depends_on: [TASK-000]
   - id: TASK-006
     file: TASK-006_ANDROID_DISPLAY_MODES.md

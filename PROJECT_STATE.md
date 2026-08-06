@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-005 PARTIAL - ANDROID TOOLCHAIN BLOCKED
-- **Current authorized task:** TASK-005 (finish Android kiosk shell build verification)
+- **Overall status:** TASK-005 DONE - ANDROID APK BUILT
+- **Current authorized task:** TASK-007 (next; Android USB/default microphone and speaker)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -55,16 +55,19 @@
 - Product route changed on 2026-08-06: Phase 1 defers LiveTalking/Wav2Lip/MuseTalk/WebRTC digital-human and GPU inference. The current MVP is Android idle character video + tap-to-talk + Gateway + Doubao ASR/TTS + LLM + 10-30 approved FAQ + subtitles.
 - ADR-0008 records the Phase 1 idle-video voice FAQ MVP decision.
 - TASK-005 created an Android Kotlin app scaffold under `android-app/` with package `ai.jiyangjia.kiosk`, version `0.1.0-task005`, landscape immersive `KioskActivity`, local idle-video path handling, offline animated fallback visual, non-secret development config and first-pass client state/unit-test source files.
+- TASK-005 generated and committed the official Gradle Wrapper for Gradle `8.10.2`.
+- TASK-005 installed a local ignored Android toolchain cache under `.cache/android-toolchain`: Temurin JDK `17.0.20+8`, Android command-line tools, platform-tools `37.0.1-15733141`, `platforms;android-35` and build tools.
+- TASK-005 Gradle `tasks`, `testDebugUnitTest assembleDebug` and `lintDebug` completed successfully.
+- TASK-005 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `830932` bytes, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
+- TASK-005 `aapt dump badging` confirmed package `ai.jiyangjia.kiosk.debug`, minSdk `23`, targetSdk `35`, and launch activity `ai.jiyangjia.kiosk.KioskActivity`.
 - TASK-005 repository verification and whitespace checks passed.
-- TASK-005 environment check found no usable Android build toolchain on this machine: `JAVA_HOME` points to `D:\java\jre-1.8`, `java` resolves to Java `9.0.1`, `ANDROID_HOME` and `ANDROID_SDK_ROOT` are unset, `adb` is not on PATH and `gradle` is not on PATH.
 
 ## Not yet verified
 
 - Android CPU architecture and screen resolution.
 - USB Host / USB Audio Class support.
 - Whether APK sideloading and ADB are enabled.
-- Android SDK/ADB and Gradle availability sufficient for APK build.
-- Phase 1 Android APK, idle video display and local fallback behavior on an Android device.
+- Phase 1 Android install and idle video/local fallback behavior on an Android device.
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
 - Gateway implementation, provider adapters and end-to-end voice FAQ loop.
@@ -101,6 +104,10 @@ Current evidence:
 - `docs/evidence/TASK-005/android-shell.md`
 - `docs/evidence/TASK-005/task005-verification-20260806.txt`
 - `docs/evidence/TASK-005/task005-environment-20260806.txt`
+- `docs/evidence/TASK-005/task005-toolchain-install-20260806.txt`
+- `docs/evidence/TASK-005/task005-gradle-build-20260806.txt`
+- `docs/evidence/TASK-005/task005-lint-20260806.txt`
+- `docs/evidence/TASK-005/task005-final-apk-verification-20260806.txt`
 
 Recent task results:
 
@@ -109,11 +116,11 @@ Recent task results:
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
 - TASK-003 DEFERRED. Required Wav2Lip model/S3FD/avatar assets are still absent, but this no longer blocks Phase 1 because LiveTalking/WebRTC/GPU inference moved to the future enhancement phase. No LiveTalking startup/WebRTC/FPS success is claimed.
 - ROUTE UPDATED. Phase 1 design documents now define the Android idle-video voice FAQ MVP and keep future LiveTalking integration behind extension interfaces.
-- TASK-005 PARTIAL. Android kiosk shell source implementation is present, but Gradle build, unit test execution, APK generation, APK hash and Android 12 device rendering are not verified because the Android build toolchain is absent.
+- TASK-005 DONE. Android kiosk shell source implementation is present and local Gradle build/unit tests/lint/APK generation passed. Android 12 real-device install/rendering is not claimed because `adb devices` returned no connected device.
 
 Next action:
 
-- Execute exactly one next action: finish TASK-005 build verification by installing/configuring JDK 17, Android SDK/platform-tools/build-tools and Gradle or an official Gradle wrapper, then run Gradle tasks/unit tests/assembleDebug and record the APK SHA-256. Do not advance to TASK-007 until this gate is resolved or explicitly waived.
+- Execute exactly one next task: TASK-007 Android USB/default microphone and speaker behavior. Do not start TASK-008 Gateway or provider work until TASK-007 is complete or explicitly deferred.
 
 ## Status vocabulary
 
