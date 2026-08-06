@@ -32,6 +32,7 @@ Updated: 2026-08-06
 - `adb devices -l` returned no attached devices.
 - Brand normalization tests passed: `python -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed; full backend regression -> 42 passed.
 - TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` runs an old Docker Compose + Nginx mock Gateway, but it is not aligned with current commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa` and does not satisfy the MVP API contract.
+- TASK-014 redeployment package is prepared locally. `deploy/docker-compose.yml` now loads untracked server `.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`. The server thread should execute `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
 
 ## Evidence
 
@@ -47,6 +48,10 @@ Updated: 2026-08-06
 - `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
 - `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 - `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
+- `docs/evidence/TASK-014/server-redeployment-request-20260806.md`
+- `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
+- `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
+- `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
 
 ## Not verified
 
@@ -57,6 +62,6 @@ Updated: 2026-08-06
 
 ## Next action
 
-Continue exactly one next task: remediate `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` by deploying the current Gateway code to Tencent Cloud and verifying the full MVP API, logs, rollback and resource evidence.
+Continue exactly one next task: send the server-management thread `docs/evidence/TASK-014/server-redeployment-request-20260806.md`, have it deploy the current code and return full sanitized evidence.
 
 Do not enter `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` until TASK-014 is no longer partial.

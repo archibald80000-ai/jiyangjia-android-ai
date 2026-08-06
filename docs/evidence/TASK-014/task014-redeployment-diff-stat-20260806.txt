@@ -1,0 +1,9 @@
+ MEMORY.md                                    |  1 +
+ PROJECT_STATE.md                             |  9 ++++++++-
+ TASKS.md                                     |  3 ++-
+ deploy/README.md                             | 29 +++++++++++++++++++++++++++-
+ deploy/docker-compose.yml                    |  7 ++++++-
+ memory/CURRENT_STATE.md                      |  6 +++++-
+ memory/HANDOFF.md                            |  7 ++++++-
+ tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md | 12 ++++++++++++
+ 8 files changed, 68 insertions(+), 6 deletions(-)

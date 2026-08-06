@@ -96,6 +96,8 @@
 - TASK-013 brand normalization regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed, and full backend regression -> 42 passed.
 - TASK-014 server-thread evidence was imported on 2026-08-06. The Tencent Cloud host runs Docker Compose + Nginx and a mock Gateway reachable at `GET /health`, `GET /api/v1/health` and `POST /api/v1/dialogue/text`.
 - TASK-014 server-thread evidence shows the server deployment is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`; `/opt/jiyangjia-ai` has no Git metadata, real Provider env vars are missing, SQLite/FAISS knowledge data is not configured, and `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}` and TASK-013 brand normalization are absent.
+- TASK-014 redeployment package was prepared locally: Docker Compose now loads server `.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`; server handoff is recorded in `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
+- TASK-014 local redeployment-package checks passed: `pytest tests\gateway tests\e2e -q` -> 9 passed, Docker Compose YAML parse -> PASS, `scripts\verify_repository.ps1` -> PASS.
 
 ## Not yet verified
 
@@ -190,6 +192,10 @@ Current evidence:
 - `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
 - `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 - `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
+- `docs/evidence/TASK-014/server-redeployment-request-20260806.md`
+- `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
+- `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
+- `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
 
 Recent task results:
 
@@ -208,10 +214,11 @@ Recent task results:
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 - TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
 - TASK-014 PARTIAL. Server-thread evidence was imported: Tencent Cloud has an old/mock Docker Compose + Nginx Gateway with health and text dialogue reachable, but it is not aligned to the current code, has no Git metadata, lacks real Provider env vars and is missing required MVP audio/config/knowledge endpoints and brand normalization.
+- TASK-014 REDEPLOYMENT PACKAGE PREPARED. Local deployment config and server runbook now specify current-code redeploy, server `.env.local`, persistent SQLite/FAISS paths, knowledge indexing, full API checks, audio dialogue checks, logs, rollback and resource evidence. No server redeploy success is claimed yet.
 
 Next action:
 
-- Continue exactly one next task: remediate TASK-014 by redeploying or reconciling Tencent Cloud to the current Gateway code, then verify the full MVP API and rollback evidence before TASK-015.
+- Continue exactly one next task: have the server-management thread execute `docs/evidence/TASK-014/server-redeployment-request-20260806.md`, return sanitized evidence, and only then decide whether TASK-014 can move from `PARTIAL` to `DONE`.
 
 ## Status vocabulary
 

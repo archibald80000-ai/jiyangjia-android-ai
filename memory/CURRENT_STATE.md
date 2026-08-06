@@ -60,6 +60,9 @@ Updated: 2026-08-06
   - the host is Ubuntu `24.04.4 LTS`, observed as 2 CPU cores, about `1.9Gi` memory, 50G disk and no GPU;
   - Docker Compose + Nginx runs an old mock Gateway and `/health`, `/api/v1/health`, `/api/v1/dialogue/text` are reachable;
   - the server is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`, has no Git metadata and lacks real Provider env vars, SQLite/FAISS knowledge data, audio dialogue, audio fetch, client config, knowledge status and brand normalization.
+- TASK-014 redeployment package is prepared locally:
+  - `deploy/docker-compose.yml` loads untracked server `.env.local`, persists `var/knowledge` and health-checks `/api/v1/health`;
+  - `docs/evidence/TASK-014/server-redeployment-request-20260806.md` gives the server thread exact redeploy, knowledge index, text dialogue, audio dialogue, brand normalization and evidence commands.
 
 ## Route changed
 
@@ -119,6 +122,7 @@ Android recording
 - TASK-013 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - TASK-013 brand normalization: `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` normalize to `积养家`; `python -m pytest tests\asr tests\gateway tests\e2e -q` passed with 19 tests and full backend regression passed with 42 tests.
 - TASK-014 evidence reconciliation: imported server-thread report and recorded `PARTIAL`. Current server can run a mock Gateway but is not the current MVP deployment.
+- TASK-014 redeployment package checks: `python -m pytest tests\gateway tests\e2e -q` -> 9 passed; Docker Compose YAML parse -> PASS; repository verification -> PASS.
 
 ## Not completed
 
@@ -129,4 +133,4 @@ Android recording
 
 ## Next action
 
-Continue exactly one next task: remediate `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` on Tencent Cloud by deploying the current Gateway code and verifying the full MVP API before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
+Continue exactly one next task: have the server-management thread execute `docs/evidence/TASK-014/server-redeployment-request-20260806.md` and return sanitized evidence before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.

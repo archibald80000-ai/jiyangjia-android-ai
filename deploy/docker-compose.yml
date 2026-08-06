@@ -5,14 +5,18 @@ services:
       dockerfile: Dockerfile
     container_name: jiyangjia-gateway
     restart: unless-stopped
+    env_file:
+      - ../.env.local
     environment:
       - TZ=Asia/Shanghai
       - APP_NAME=jiyangjia-gateway
       - APP_VERSION=0.1.0
+      - JIYANGJIA_KNOWLEDGE_DB_PATH=/app/var/knowledge/jiyangjia.db
+      - JIYANGJIA_KNOWLEDGE_FAISS_PATH=/app/var/knowledge/faiss.index
     ports:
       - "8080:8080"
     healthcheck:
-      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=3).read()\""]
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/v1/health', timeout=3).read()\""]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -20,6 +24,7 @@ services:
     volumes:
       - ../gateway/app:/app/app:ro
       - ../gateway/logs:/app/logs
+      - ../var/knowledge:/app/var/knowledge
     logging:
       driver: json-file
       options:

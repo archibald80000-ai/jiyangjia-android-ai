@@ -108,3 +108,15 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - Missing on server thread: real Provider environment variables, SQLite/FAISS knowledge configuration and TASK-013 brand normalization module.
 
 Next action: continue exactly one task, TASK-014 remediation/redeploy to the current Gateway code and verify the full MVP API before entering TASK-015.
+
+## Redeployment package prepared
+
+- Result: still `PARTIAL`; server execution is not yet re-verified.
+- Deployment config updated: `deploy/docker-compose.yml` now loads untracked `../.env.local`, persists `var/knowledge` for SQLite/FAISS, and health-checks `/api/v1/health`.
+- Server handoff/runbook: `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
+- Local checks:
+  - `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\gateway tests\e2e -q` -> 9 passed.
+  - Docker Compose YAML parse -> PASS.
+  - `scripts\verify_repository.ps1` -> PASS.
+
+Next action remains TASK-014 server-side redeploy and evidence return. Do not enter TASK-015 yet.
