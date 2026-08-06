@@ -3,6 +3,8 @@ package ai.jiyangjia.kiosk
 import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.AudioDeviceCallback
+import android.media.AudioDeviceInfo
 import android.media.AudioFormat
 import android.media.AudioManager
 import android.media.AudioRecord
@@ -23,6 +25,7 @@ class AudioLoopbackController(context: Context) {
     private val playing = AtomicBoolean(false)
     private var recorder: AudioRecord? = null
     private var player: AudioTrack? = null
+    private var deviceCallback: AudioDeviceCallback? = null
 
     fun refreshDiagnostics(): AudioDiagnostics {
         val inputs = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
@@ -35,6 +38,26 @@ class AudioLoopbackController(context: Context) {
             preferredInput = AudioRoutePolicy.choosePreferredInput(inputs),
             preferredOutput = AudioRoutePolicy.choosePreferredOutput(outputs)
         )
+    }
+
+    fun startDeviceMonitoring(onChanged: (String) -> Unit) {
+        stopDeviceMonitoring()
+        val callback = object : AudioDeviceCallback() {
+            override fun onAudioDevicesAdded(addedDevices: Array<out AudioDeviceInfo>) {
+                mainHandler.post { onChanged("added ${addedDevices.size}") }
+            }
+
+            override fun onAudioDevicesRemoved(removedDevices: Array<out AudioDeviceInfo>) {
+                mainHandler.post { onChanged("removed ${removedDevices.size}") }
+            }
+        }
+        deviceCallback = callback
+        audioManager.registerAudioDeviceCallback(callback, mainHandler)
+    }
+
+    fun stopDeviceMonitoring() {
+        deviceCallback?.let { audioManager.unregisterAudioDeviceCallback(it) }
+        deviceCallback = null
     }
 
     @SuppressLint("MissingPermission")
@@ -207,6 +230,7 @@ class AudioLoopbackController(context: Context) {
     }
 
     fun shutdown() {
+        stopDeviceMonitoring()
         recording.set(false)
         playing.set(false)
         try {

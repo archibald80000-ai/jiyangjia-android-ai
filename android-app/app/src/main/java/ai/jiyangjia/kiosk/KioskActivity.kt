@@ -42,6 +42,7 @@ class KioskActivity : Activity() {
         buildLayout()
         idleVideoController = IdleVideoController(this, idleContainer)
         audioController = AudioLoopbackController(this)
+        audioController.startDeviceMonitoring { reason -> handleAudioDeviceChange(reason) }
         transitionTo(ConsultationState.IDLE_VIDEO)
         refreshAudioDiagnostics()
     }
@@ -134,7 +135,7 @@ class KioskActivity : Activity() {
         diagnosticsButton = Button(this).apply {
             text = getString(R.string.refresh_audio)
             textSize = 16f
-            setOnClickListener { refreshAudioDiagnostics() }
+            setOnClickListener { refreshAudioDiagnostics("manual refresh") }
         }
         overlay.addView(diagnosticsButton, LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT))
 
@@ -195,7 +196,7 @@ class KioskActivity : Activity() {
         }
         if (state.canStartConsultation()) {
             transitionTo(ConsultationState.READY_TO_RECORD)
-            refreshAudioDiagnostics()
+            refreshAudioDiagnostics("before recording")
             ensureMicPermissionThenRecord()
         }
     }
@@ -239,7 +240,7 @@ class KioskActivity : Activity() {
             onComplete = {
                 transitionTo(ConsultationState.IDLE_VIDEO)
                 subtitleText.text = "录音播放完成"
-                refreshAudioDiagnostics()
+                refreshAudioDiagnostics("playback complete")
             },
             onError = { message ->
                 showAudioError(message)
@@ -247,18 +248,30 @@ class KioskActivity : Activity() {
         )
     }
 
-    private fun refreshAudioDiagnostics() {
+    private fun refreshAudioDiagnostics(reason: String = "initial") {
         if (!::audioController.isInitialized || !::diagnosticsText.isInitialized) {
             return
         }
         val diagnostics = audioController.refreshDiagnostics()
-        diagnosticsText.text = diagnostics.detailedLines().take(5).joinToString("\n")
+        diagnosticsText.text = listOf("Audio event: $reason")
+            .plus(diagnostics.detailedLines())
+            .take(6)
+            .joinToString("\n")
+    }
+
+    private fun handleAudioDeviceChange(reason: String) {
+        refreshAudioDiagnostics(reason)
+        if (state == ConsultationState.RECORDING) {
+            audioController.stopRecording()
+            transitionTo(ConsultationState.ERROR)
+            subtitleText.text = "检测到音频设备变化，已停止录音，请重新开始"
+        }
     }
 
     private fun showAudioError(message: String) {
         transitionTo(ConsultationState.ERROR)
         subtitleText.text = "音频错误：$message"
-        refreshAudioDiagnostics()
+        refreshAudioDiagnostics("error")
     }
 
     private fun enterImmersiveMode() {

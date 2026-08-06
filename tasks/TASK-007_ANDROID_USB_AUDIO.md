@@ -65,7 +65,7 @@ adb shell dumpsys usb
 - [x] USB preference and fallback implemented in route policy
 - [x] Recording/playback flow implemented
 - [x] Real-device report or explicit device blocker
-- [ ] Unplug/replug recovery
+- [ ] Unplug/replug recovery on real hardware; source-side audio device change callback is implemented
 
 ## Stop / blocked conditions
 
@@ -102,12 +102,15 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 ## TASK-007 Result
 
 - Android client now implements runtime microphone permission, audio device diagnostics, USB-first input preference, default fallback, bounded in-memory PCM recording, playback and lifecycle cleanup.
+- Android client now monitors audio device add/remove events with `AudioDeviceCallback`, refreshes diagnostics, and stops an active recording if the device set changes.
 - Evidence:
   - `docs/evidence/TASK-007/android-audio.md`
   - `docs/evidence/TASK-007/task007-gradle-first-run-20260806.txt`
   - `docs/evidence/TASK-007/task007-final-verification-20260806.txt`
   - `docs/evidence/TASK-007/task007-closeout-checks-20260806.txt`
+  - `docs/evidence/TASK-007/task007-device-callback-verification-20260806.txt`
 - Local verification passed: Gradle `testDebugUnitTest assembleDebug`, `lintDebug`, repository verification and `git diff --check`.
-- Debug APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
+- Debug APK size: `849801` bytes.
+- Debug APK SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`.
 - Real hardware blocker: no Android 12 device was connected. `adb devices -l` returned an empty list; `adb shell dumpsys audio` and `adb shell dumpsys usb` failed with `no devices/emulators found`.
-- TASK-007 remains `PARTIAL` until a connected Android 12 display validates USB/default microphone, speaker playback and unplug/replug recovery.
+- TASK-007 remains `PARTIAL` until a connected Android 12 display validates USB/default microphone, speaker playback and physical unplug/replug recovery.

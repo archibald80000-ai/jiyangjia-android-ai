@@ -8,9 +8,10 @@ Mark unknown items as `PENDING`; do not infer them from marketing material.
 - Local Android audio implementation, unit tests, lint and APK build are complete.
 - Real-device audio validation is `PENDING` because no Android device was connected during verification on 2026-08-06.
 - APK for hardware test: `android-app\app\build\outputs\apk\debug\app-debug.apk`
-- APK size: `848096` bytes
-- APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`
+- APK size: `849801` bytes
+- APK SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`
 - Required next hardware setup: Android 12 display, USB microphone, target speaker path, ADB or install path.
+- Source-side device change handling is implemented with Android `AudioDeviceCallback`; physical unplug/replug recovery remains `PENDING` until tested on the target display.
 
 ## System
 
@@ -32,7 +33,7 @@ Mark unknown items as `PENDING`; do not infer them from marketing material.
 - [ ] App permission granted.
 - [ ] 30-second recording test.
 - [ ] Sample rate/channel recorded.
-- [ ] Unplug/replug recovery.
+- [ ] Unplug/replug recovery on real USB microphone hardware.
 - [ ] Default microphone fallback.
 
 ## Output

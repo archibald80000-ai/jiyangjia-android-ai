@@ -25,6 +25,10 @@
   - recording remains in memory and is not written to disk.
 - Added local playback of the captured PCM through `AudioTrack`.
 - Added lifecycle cleanup for active recorder/player.
+- Added Android `AudioDeviceCallback` monitoring:
+  - refreshes diagnostics when audio devices are added or removed;
+  - stops an active recording if the input/output device set changes;
+  - returns the client to an error state with a retry prompt instead of keeping a stale recorder alive.
 - Added unit tests for USB preference/fallback, diagnostics summary and PCM duration/playability.
 
 ## Verification
@@ -34,6 +38,7 @@ Full logs:
 - `docs/evidence/TASK-007/task007-gradle-first-run-20260806.txt`
 - `docs/evidence/TASK-007/task007-final-verification-20260806.txt`
 - `docs/evidence/TASK-007/task007-closeout-checks-20260806.txt`
+- `docs/evidence/TASK-007/task007-device-callback-verification-20260806.txt`
 
 Final results:
 
@@ -42,8 +47,7 @@ Final results:
 | `adb devices -l` | No connected device. |
 | `adb shell dumpsys audio` | Failed with `no devices/emulators found`. |
 | `adb shell dumpsys usb` | Failed with `no devices/emulators found`. |
-| `.\android-app\gradlew.bat -p android-app testDebugUnitTest assembleDebug` | BUILD SUCCESSFUL. |
-| `.\android-app\gradlew.bat -p android-app lintDebug` | BUILD SUCCESSFUL. |
+| `.\android-app\gradlew.bat -p android-app clean testDebugUnitTest assembleDebug lintDebug --no-daemon --stacktrace` | BUILD SUCCESSFUL. |
 | `.\android-app\gradlew.bat -p android-app connectedDebugAndroidTest` | BUILD SUCCESSFUL as a Gradle task, but no connected Android 12 device was listed by ADB, so this is not real hardware validation. |
 | `aapt dump badging` | APK includes `android.permission.RECORD_AUDIO` and declares microphone feature. |
 | `scripts/verify_repository.ps1` | PASS. |
@@ -59,8 +63,8 @@ Unit test summary:
 APK:
 
 - Path: `android-app\app\build\outputs\apk\debug\app-debug.apk`
-- Size: `848096` bytes
-- SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`
+- Size: `849801` bytes
+- SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`
 
 ## Not Verified
 
@@ -70,7 +74,7 @@ APK:
 - Real recording from USB microphone.
 - Real fallback to built-in/default microphone.
 - Speaker or external speaker playback on target hardware.
-- Unplug/replug recovery.
+- Real unplug/replug recovery on target hardware. Source-side add/remove monitoring and active-recording stop behavior are implemented, but physical USB recovery was not validated.
 - Echo/feedback behavior at store volume.
 
 ## Blocker

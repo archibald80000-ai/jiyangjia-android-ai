@@ -1,0 +1,145 @@
+TASK-007 device callback verification
+Timestamp: 2026-08-05T23:54:02.8680266-05:00
+JAVA_HOME=E:\work\ai-kefu\jiyangjia-ai\.cache\android-toolchain\jdk17\jdk-17.0.20+8
+ANDROID_SDK_ROOT=E:\work\ai-kefu\jiyangjia-ai\.cache\android-toolchain\android-sdk
+
+
+===== adb devices -l =====
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+
+[exit_code] 0
+
+===== adb shell dumpsys audio =====
+adb.exe: no devices/emulators found
+[exit_code] 1
+
+===== adb shell dumpsys usb =====
+adb.exe: no devices/emulators found
+[exit_code] 1
+
+===== gradlew clean testDebugUnitTest assembleDebug lintDebug =====
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :app:clean
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:checkDebugAarMetadata
+> Task :app:generateDebugResValues
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:mergeDebugResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:mergeLibDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:extractProguardFiles
+> Task :app:processDebugResources
+> Task :app:mergeExtDexDebug
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:processDebugJavaRes
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:dexBuilderDebug
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:testDebugUnitTest
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeProjectDexDebug
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///E:/work/ai-kefu/jiyangjia-ai/android-app/app/build/reports/lint-results-debug.html
+
+> Task :app:lintDebug
+
+BUILD SUCCESSFUL in 47s
+50 actionable tasks: 50 executed
+[exit_code] 0
+
+===== aapt dump badging =====
+package: name='ai.jiyangjia.kiosk.debug' versionCode='1' versionName='0.1.0-task007-debug' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+sdkVersion:'23'
+targetSdkVersion:'35'
+uses-permission: name='android.permission.INTERNET'
+uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+uses-permission: name='android.permission.RECORD_AUDIO'
+application-label:'积养家 AI 客服'
+application: label='积养家 AI 客服' icon=''
+application-debuggable
+launchable-activity: name='ai.jiyangjia.kiosk.KioskActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+  uses-feature: name='android.hardware.microphone'
+  uses-implied-feature: name='android.hardware.microphone' reason='requested android.permission.RECORD_AUDIO permission'
+  uses-feature: name='android.hardware.screen.landscape'
+  uses-implied-feature: name='android.hardware.screen.landscape' reason='one or more activities have specified a landscape orientation'
+main
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '160'
+[exit_code] 0
+
+===== Get-Item APK =====
+Path=E:\work\ai-kefu\jiyangjia-ai\android-app\app\build\outputs\apk\debug\app-debug.apk Size=849801 LastWriteTime=08/05/2026 23:54:32
+[exit_code] 0
+
+===== Get-FileHash APK =====
+Hash=B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49 Path=E:\work\ai-kefu\jiyangjia-ai\android-app\app\build\outputs\apk\debug\app-debug.apk
+[exit_code] 0
+
+===== test result summaries =====
+<testsuite name="ai.jiyangjia.kiosk.AudioRoutePolicyTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:54:31" hostname="ASSERT" time="0.039">
+<testsuite name="ai.jiyangjia.kiosk.ClientConfigTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:54:31" hostname="ASSERT" time="0.01">
+<testsuite name="ai.jiyangjia.kiosk.ConsultationStateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:54:31" hostname="ASSERT" time="0.001">
+<testsuite name="ai.jiyangjia.kiosk.PcmAudioTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-08-06T04:54:31" hostname="ASSERT" time="0.0">
+[exit_code] 0
+
+===== git diff --check =====
+[exit_code] 0
+
+===== repository verifier =====
+Repository verification: PASS
+[exit_code] 0
+
+===== local adb kill-server =====
+[exit_code] 0
