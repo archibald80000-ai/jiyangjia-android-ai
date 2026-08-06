@@ -102,6 +102,7 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - Doubao TTS adapter code is implemented behind the common TTS Provider interface.
 - Mock TTS CLI returned deterministic audio bytes, SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
 - Unit tests passed: `python -m pytest tests\tts tests\gateway -q` -> 7 passed.
+- Follow-up Gateway missing-credential regression test passed: 8 tests passed.
 - Real Doubao CLI path correctly returns `BLOCKED_PROVIDER_CREDENTIALS`.
 - Real Doubao TTS audio was not generated because credentials are missing:
   - `DOUBAO_TTS_APP_ID`

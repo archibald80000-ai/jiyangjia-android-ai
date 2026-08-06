@@ -39,6 +39,8 @@ Implementation uses the conservative HTTP non-streaming shape recorded from offi
 - `docs/evidence/TASK-009/task009-diff-check-20260806.txt`: `git diff --check` exit 0, with CRLF warning only.
 - `docs/evidence/TASK-009/task009-repository-verify-20260806.txt`: repository verifier PASS.
 - `docs/evidence/TASK-009/task009-secret-shape-scan-20260806.txt`: no API key/private-key/Bearer-token shape matches.
+- `docs/evidence/TASK-009/task009-gateway-missing-credential-test-20260806.txt`: 8 tests passed, including Gateway `doubao` TTS missing-credential 503 behavior.
+- `docs/evidence/TASK-009/task009-post-hardening-diff-check-20260806.txt`: `git diff --check` exit 0.
 
 ## Real API Status
 

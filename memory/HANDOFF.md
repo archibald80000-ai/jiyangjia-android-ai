@@ -33,10 +33,11 @@ Updated: 2026-08-06
 - `docs/evidence/TASK-009/task009-mock-tts-cli-final-20260806.txt`
 - `docs/evidence/TASK-009/task009-doubao-tts-cli-missing-credentials-final-20260806.txt`
 - `docs/evidence/TASK-009/task009-secret-shape-scan-20260806.txt`
+- `docs/evidence/TASK-009/task009-gateway-missing-credential-test-20260806.txt`
 
 ## Verified
 
-- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\tts tests\gateway -q`: 7 passed.
+- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\tts tests\gateway -q`: 8 passed.
 - Mock TTS CLI returned deterministic bytes with SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
 - Real Doubao TTS CLI path returned `BLOCKED_PROVIDER_CREDENTIALS`.
 
