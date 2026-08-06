@@ -2,6 +2,16 @@
 
 Mark unknown items as `PENDING`; do not infer them from marketing material.
 
+## TASK-007 current status
+
+- Status: `PARTIAL`
+- Local Android audio implementation, unit tests, lint and APK build are complete.
+- Real-device audio validation is `PENDING` because no Android device was connected during verification on 2026-08-06.
+- APK for hardware test: `android-app\app\build\outputs\apk\debug\app-debug.apk`
+- APK size: `848096` bytes
+- APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`
+- Required next hardware setup: Android 12 display, USB microphone, target speaker path, ADB or install path.
+
 ## System
 
 - [ ] Manufacturer/model/firmware recorded.

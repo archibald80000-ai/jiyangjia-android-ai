@@ -14,6 +14,8 @@
 - TASK-002 LiveTalking runtime environment completed: ignored local Conda env `.venv\livetalking-task002`, Python 3.12.13, torch 2.9.1+cu126, upstream dependencies installed, imports and PyTorch CUDA tensor smoke test passed.
 - TASK-005 Android kiosk shell is complete for local build: Kotlin Android app scaffold, package `ai.jiyangjia.kiosk`, immersive landscape activity, local idle-video path handling, offline animated fallback, long-press non-secret config dialog, state/config unit tests, official Gradle Wrapper and debug APK build are verified.
 - TASK-005 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
+- TASK-007 Android audio implementation is partial-complete: runtime microphone permission, device diagnostics, USB-first input preference, fallback, bounded in-memory PCM recording, local playback, lifecycle cleanup and local tests/build/lint are implemented.
+- TASK-007 debug APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
 
 ## Route changed
 
@@ -23,7 +25,7 @@
 
 ## In progress
 
-- No implementation task is currently in progress. Next task is TASK-007.
+- TASK-007 is still in progress/partial because no Android 12 device was connected for real USB/default microphone and speaker validation.
 
 ## Not started
 
@@ -31,7 +33,8 @@
 - Mini FAQ implementation.
 - Cloud deployment.
 - Android 12 real-device install/rendering for the TASK-005 APK.
+- Real USB microphone enumeration, recording, speaker playback and unplug/replug recovery on the target Android 12 display.
 
 ## Next action
 
-Execute exactly one next task: `TASK-007_ANDROID_USB_AUDIO.md`. Implement and verify USB/default microphone and speaker behavior as far as available hardware permits. Do not start Gateway/provider tasks in the same step.
+Continue exactly one task: `TASK-007_ANDROID_USB_AUDIO.md` on a connected Android 12 display with the intended USB microphone and speaker. Do not start Gateway/provider tasks until the hardware gate is verified or explicitly waived.

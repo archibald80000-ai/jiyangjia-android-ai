@@ -48,7 +48,7 @@ tasks:
     file: TASK-007_ANDROID_USB_AUDIO.md
     title: "Implement and validate USB/default microphone and speaker behavior"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-005]
   - id: TASK-008
     file: TASK-008_GATEWAY_SKELETON.md

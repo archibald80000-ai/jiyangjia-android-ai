@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-005 DONE - ANDROID APK BUILT
-- **Current authorized task:** TASK-007 (next; Android USB/default microphone and speaker)
+- **Overall status:** TASK-007 PARTIAL - ANDROID AUDIO IMPLEMENTED, HARDWARE VALIDATION PENDING
+- **Current authorized task:** TASK-007 (continue Android USB/default microphone and speaker validation)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -61,6 +61,12 @@
 - TASK-005 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `830932` bytes, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - TASK-005 `aapt dump badging` confirmed package `ai.jiyangjia.kiosk.debug`, minSdk `23`, targetSdk `35`, and launch activity `ai.jiyangjia.kiosk.KioskActivity`.
 - TASK-005 repository verification and whitespace checks passed.
+- TASK-007 implemented Android runtime microphone permission, audio device diagnostics, USB-first input preference, fallback to system input, bounded in-memory PCM recording, local playback and lifecycle cleanup.
+- TASK-007 local Gradle `testDebugUnitTest assembleDebug` passed with 8 unit tests and no failures.
+- TASK-007 `lintDebug` passed after addressing permission and device-enumeration lint issues.
+- TASK-007 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, SHA-256 `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
+- TASK-007 `aapt dump badging` confirmed `android.permission.RECORD_AUDIO` and the microphone feature are present in the APK.
+- TASK-007 `adb devices -l` returned no connected device; `adb shell dumpsys audio` and `adb shell dumpsys usb` failed with `no devices/emulators found`.
 
 ## Not yet verified
 
@@ -70,6 +76,7 @@
 - Phase 1 Android install and idle video/local fallback behavior on an Android device.
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
+- USB microphone unplug/replug recovery.
 - Gateway implementation, provider adapters and end-to-end voice FAQ loop.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
@@ -108,6 +115,8 @@ Current evidence:
 - `docs/evidence/TASK-005/task005-gradle-build-20260806.txt`
 - `docs/evidence/TASK-005/task005-lint-20260806.txt`
 - `docs/evidence/TASK-005/task005-final-apk-verification-20260806.txt`
+- `docs/evidence/TASK-007/android-audio.md`
+- `docs/evidence/TASK-007/task007-final-verification-20260806.txt`
 
 Recent task results:
 
@@ -117,10 +126,11 @@ Recent task results:
 - TASK-003 DEFERRED. Required Wav2Lip model/S3FD/avatar assets are still absent, but this no longer blocks Phase 1 because LiveTalking/WebRTC/GPU inference moved to the future enhancement phase. No LiveTalking startup/WebRTC/FPS success is claimed.
 - ROUTE UPDATED. Phase 1 design documents now define the Android idle-video voice FAQ MVP and keep future LiveTalking integration behind extension interfaces.
 - TASK-005 DONE. Android kiosk shell source implementation is present and local Gradle build/unit tests/lint/APK generation passed. Android 12 real-device install/rendering is not claimed because `adb devices` returned no connected device.
+- TASK-007 PARTIAL. Android audio diagnostics, USB-first routing policy, runtime permission, bounded in-memory recording and local playback are implemented and locally verified by Gradle/lint/APK build. Real USB microphone, speaker and unplug/replug behavior are not verified because no Android device was connected.
 
 Next action:
 
-- Execute exactly one next task: TASK-007 Android USB/default microphone and speaker behavior. Do not start TASK-008 Gateway or provider work until TASK-007 is complete or explicitly deferred.
+- Continue exactly one task: TASK-007 real Android 12 USB/default microphone and speaker validation. Do not start TASK-008 Gateway or provider work until TASK-007 is complete or explicitly deferred.
 
 ## Status vocabulary
 

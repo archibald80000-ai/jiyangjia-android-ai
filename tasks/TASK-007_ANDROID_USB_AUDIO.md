@@ -1,6 +1,6 @@
 # TASK-007: Implement and validate USB/default microphone and speaker behavior
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-005
 - **Branch:** `task/TASK-007-android-usb-audio`
@@ -55,16 +55,16 @@ adb shell dumpsys usb
 
 ## Required deliverables
 
-- [ ] Audio device diagnostics
-- [ ] Recording/playback flow
-- [ ] Real-device or explicit blocker report
+- [x] Audio device diagnostics
+- [x] Recording/playback flow
+- [x] Real-device or explicit blocker report
 
 ## Acceptance criteria
 
-- [ ] Audio devices enumerated
-- [ ] USB preference and fallback
-- [ ] Recording/playback flow
-- [ ] Real-device report or explicit device blocker
+- [x] Audio devices enumerated in Android client source
+- [x] USB preference and fallback implemented in route policy
+- [x] Recording/playback flow implemented
+- [x] Real-device report or explicit device blocker
 - [ ] Unplug/replug recovery
 
 ## Stop / blocked conditions
@@ -91,10 +91,23 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-007 Result
+
+- Android client now implements runtime microphone permission, audio device diagnostics, USB-first input preference, default fallback, bounded in-memory PCM recording, playback and lifecycle cleanup.
+- Evidence:
+  - `docs/evidence/TASK-007/android-audio.md`
+  - `docs/evidence/TASK-007/task007-gradle-first-run-20260806.txt`
+  - `docs/evidence/TASK-007/task007-final-verification-20260806.txt`
+  - `docs/evidence/TASK-007/task007-closeout-checks-20260806.txt`
+- Local verification passed: Gradle `testDebugUnitTest assembleDebug`, `lintDebug`, repository verification and `git diff --check`.
+- Debug APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
+- Real hardware blocker: no Android 12 device was connected. `adb devices -l` returned an empty list; `adb shell dumpsys audio` and `adb shell dumpsys usb` failed with `no devices/emulators found`.
+- TASK-007 remains `PARTIAL` until a connected Android 12 display validates USB/default microphone, speaker playback and unplug/replug recovery.

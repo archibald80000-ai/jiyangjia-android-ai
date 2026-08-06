@@ -2,9 +2,9 @@
 
 ## Current task
 
-- Current task: `TASK-005_ANDROID_KIOSK_SHELL.md`
-- Status: `DONE`; Android source, Gradle Wrapper, unit tests, lint and debug APK build verified
-- Current branch: `task/TASK-005-android-kiosk-shell`
+- Current task: `TASK-007_ANDROID_USB_AUDIO.md`
+- Status: `PARTIAL`; Android audio source/local build verified, real Android 12 USB/speaker validation pending
+- Current branch: `task/TASK-007-android-usb-audio`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
 
@@ -61,6 +61,11 @@ Do not download LiveTalking/Wav2Lip/MuseTalk models, do not continue changing as
 - TASK-005 debug APK exists at `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `830932` bytes, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - TASK-005 `adb devices` returned no connected device, so Android 12 install/rendering is not verified.
 - Repository verification and `git diff --check` passed during TASK-005.
+- TASK-007 Android client now includes runtime `RECORD_AUDIO` permission, audio diagnostics, USB-first input routing policy, bounded in-memory PCM recording and local playback.
+- TASK-007 local verification passed: `testDebugUnitTest assembleDebug`, `lintDebug`, `aapt dump badging`, repository verifier and whitespace checks.
+- TASK-007 unit tests: 8 total, 0 failures/errors.
+- TASK-007 debug APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
+- TASK-007 blocker: `adb devices -l` returned no connected device; `dumpsys audio` and `dumpsys usb` could not run.
 
 ## New design documents
 
@@ -94,7 +99,7 @@ TASK-000
 
 - Android APK install on a real Android 12 device.
 - Android 12 real-device display behavior.
-- USB microphone and speaker routing.
+- Real USB microphone and speaker routing.
 - Gateway runtime implementation.
 - Doubao ASR/TTS real credentials/API behavior.
 - LLM provider real credentials/API behavior.
@@ -104,14 +109,17 @@ TASK-000
 
 ## Next action
 
-Execute exactly one next task: `TASK-007_ANDROID_USB_AUDIO.md`.
+Continue exactly one next task: `TASK-007_ANDROID_USB_AUDIO.md`.
 
 Expected TASK-007 focus:
 
-- microphone permission flow;
-- USB/default input diagnostics and fallback;
-- short local recording smoke path;
-- speaker playback path;
+- install or open the TASK-007 APK on Android 12 display;
+- grant microphone permission;
+- capture audio diagnostics screen/log;
+- verify USB/default input diagnostics and fallback;
+- run short local recording/playback smoke path;
+- test speaker playback path;
+- unplug/replug USB microphone and record recovery behavior;
 - evidence that distinguishes emulator/no-device/local-only from real Android 12 hardware.
 
 Do not start TASK-008 Gateway in the same task. Do not resume TASK-003/004/006/016 in Phase 1.

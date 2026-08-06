@@ -11,7 +11,8 @@ Current status:
 - `TASK-004`: `DEFERRED`; LiveTalking API automation waits until the future enhancement phase.
 - `TASK-005`: `DONE`; Android Kotlin landscape kiosk shell, local idle-video path handling, offline fallback visual, non-secret config entry, Gradle Wrapper, unit tests, lint and debug APK build passed. APK SHA-256: `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - `TASK-006`: `DEFERRED`; LiveTalking display mode is deferred; local idle video is folded into TASK-005 for Phase 1.
-- Next action is `TASK-007`; do not start Gateway/provider work until Android audio behavior is implemented and verified as far as local hardware permits.
+- `TASK-007`: `PARTIAL`; Android runtime microphone permission, device diagnostics, USB-first input preference, bounded in-memory recording and local playback are implemented and locally built/tested, but real Android 12 USB microphone/speaker/unplug recovery validation is blocked by no connected device.
+- Next action is to continue `TASK-007` on a connected Android 12 display with the intended USB microphone and speaker. Do not start Gateway/provider work until this hardware gate is verified or explicitly waived.
 
 Current order:
 
