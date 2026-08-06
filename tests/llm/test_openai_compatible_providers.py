@@ -12,6 +12,8 @@ from gateway.app.llm import (
     OpenAICompatibleEmbeddingConfig,
     OpenAICompatibleEmbeddingProvider,
     OpenAICompatibleLLMProvider,
+    _embedding_input,
+    _embedding_route,
     _endpoint,
 )
 from gateway.app.tts import ProviderCallError, ProviderConfigurationError
@@ -177,3 +179,47 @@ async def _assert_llm_provider_maps_http_rejection() -> None:
 def test_endpoint_normalizes_full_openai_compatible_routes() -> None:
     assert _endpoint("https://example.invalid/api/v3/chat/completions", "embeddings") == "https://example.invalid/api/v3/embeddings"
     assert _endpoint("https://example.invalid/api/v3/embeddings", "chat/completions") == "https://example.invalid/api/v3/chat/completions"
+
+
+def test_multimodal_embedding_model_uses_multimodal_route_and_text_parts() -> None:
+    assert _embedding_route("doubao-embedding-vision-241215") == "embeddings/multimodal"
+    assert _embedding_input("doubao-embedding-vision-241215", ["积养家"]) == [{"type": "text", "text": "积养家"}]
+
+
+def test_multimodal_embedding_provider_accepts_nested_single_vector() -> None:
+    asyncio.run(_assert_multimodal_embedding_provider_accepts_nested_single_vector())
+
+
+async def _assert_multimodal_embedding_provider_accepts_nested_single_vector() -> None:
+    seen: dict[str, object] = {}
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        seen["url"] = str(request.url)
+        seen["payload"] = json.loads(request.read().decode("utf-8"))
+        return httpx.Response(
+            200,
+            json={
+                "model": "doubao-embedding-vision-test",
+                "data": [{"index": 0, "object": "embedding", "embedding": [[0.4, 0.5]]}],
+            },
+        )
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    provider = OpenAICompatibleEmbeddingProvider(
+        OpenAICompatibleEmbeddingConfig(
+            provider="doubao",
+            api_key="unit-secret",
+            base_url="https://ark.cn-beijing.volces.com/api/v3",
+            model="doubao-embedding-vision-test",
+            timeout_seconds=3,
+        ),
+        client=client,
+    )
+
+    result = await provider.embed(["积养家"], "req-mm")
+    await client.aclose()
+
+    assert seen["url"] == "https://ark.cn-beijing.volces.com/api/v3/embeddings/multimodal"
+    assert dict(seen["payload"])["input"] == [{"type": "text", "text": "积养家"}]
+    assert result["vectors"] == [[0.4, 0.5]]
+    assert result["dimensions"] == 2

@@ -188,9 +188,9 @@ class OpenAICompatibleEmbeddingProvider:
             raise ProviderCallError("EMBEDDING_EMPTY_TEXT", "texts must not be empty", retryable=False)
         payload = {
             "model": self.config.model,
-            "input": clean_texts,
+            "input": _embedding_input(self.config.model, clean_texts),
         }
-        response = await self._post_json(_endpoint(self.config.base_url, "embeddings"), payload, request_id)
+        response = await self._post_json(_endpoint(self.config.base_url, _embedding_route(self.config.model)), payload, request_id)
         vectors = _extract_embedding_vectors(response, expected_count=len(clean_texts))
         dimensions = len(vectors[0]) if vectors else 0
         return {
@@ -261,6 +261,8 @@ def _extract_chat_text(response: dict[str, Any]) -> str:
 
 def _extract_embedding_vectors(response: dict[str, Any], expected_count: int) -> list[list[float]]:
     data = response.get("data")
+    if isinstance(data, dict):
+        data = [data]
     if not isinstance(data, list) or len(data) < expected_count:
         raise ProviderCallError("EMBEDDING_NO_VECTOR", "Embedding response did not include enough vectors", retryable=True)
     vectors: list[list[float]] = []
@@ -268,6 +270,8 @@ def _extract_embedding_vectors(response: dict[str, Any], expected_count: int) ->
         if not isinstance(item, dict):
             raise ProviderCallError("EMBEDDING_BAD_RESPONSE", "Embedding item was not an object", retryable=True)
         vector = item.get("embedding")
+        if _is_nested_single_vector(vector):
+            vector = vector[0]
         if not isinstance(vector, list) or not vector:
             raise ProviderCallError("EMBEDDING_NO_VECTOR", "Embedding item did not include a vector", retryable=True)
         try:
@@ -284,6 +288,29 @@ def _split_subtitles(text: str, max_chars: int = 80) -> list[str]:
     if len(text) <= max_chars:
         return [text]
     return [text[index : index + max_chars] for index in range(0, len(text), max_chars)]
+
+
+def _embedding_route(model: str) -> str:
+    normalized = model.lower()
+    if "vision" in normalized or "multimodal" in normalized:
+        return "embeddings/multimodal"
+    return "embeddings"
+
+
+def _embedding_input(model: str, texts: list[str]) -> list[str] | list[dict[str, str]]:
+    normalized = model.lower()
+    if "vision" in normalized or "multimodal" in normalized:
+        return [{"type": "text", "text": text} for text in texts]
+    return texts
+
+
+def _is_nested_single_vector(vector: Any) -> bool:
+    return (
+        isinstance(vector, list)
+        and len(vector) == 1
+        and isinstance(vector[0], list)
+        and bool(vector[0])
+    )
 
 
 def _endpoint(base_url: str, route: str) -> str:

@@ -13,8 +13,13 @@ Supported provider values:
 - `openai-compatible`: uses `OPENAI_COMPATIBLE_EMBEDDING_API_KEY` or
   `EMBEDDING_API_KEY` and an explicit embedding model.
 
-The adapter returns only vector count and dimensions in CLI evidence by
-default; full vectors are not printed into logs.
+The verified default for the current account is
+`doubao-embedding-vision-251215`. The adapter routes `vision` or `multimodal`
+embedding models to `/embeddings/multimodal` and wraps text as typed text parts.
+Plain text embedding model IDs continue to use `/embeddings`.
+
+The adapter returns only vector count and dimensions in CLI evidence by default;
+full vectors are not printed into logs.
 
 Manual smoke checks:
 

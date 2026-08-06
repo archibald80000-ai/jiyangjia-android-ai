@@ -47,6 +47,7 @@ async def main() -> int:
     parser.add_argument("--provider", choices=["mock", "doubao", "ark", "openai-compatible"], required=True)
     parser.add_argument("--text", default="")
     parser.add_argument("--env-file", default=".env.local")
+    parser.add_argument("--model", default="")
     parser.add_argument("--check-config", action="store_true")
     args = parser.parse_args()
 
@@ -64,7 +65,16 @@ async def main() -> int:
             result = await MockEmbeddingProvider().embed([args.text], request_id=request_id)
         else:
             settings = load_settings(env_file=args.env_file, override_env_file=True)
-            provider = OpenAICompatibleEmbeddingProvider(OpenAICompatibleEmbeddingConfig.from_settings(settings, args.provider))
+            config = OpenAICompatibleEmbeddingConfig.from_settings(settings, args.provider)
+            if args.model:
+                config = OpenAICompatibleEmbeddingConfig(
+                    provider=config.provider,
+                    api_key=config.api_key,
+                    base_url=config.base_url,
+                    model=args.model,
+                    timeout_seconds=config.timeout_seconds,
+                )
+            provider = OpenAICompatibleEmbeddingProvider(config)
             result = await provider.embed([args.text], request_id=request_id)
     except ProviderConfigurationError as exc:
         print(json.dumps({"ok": False, "code": "BLOCKED_PROVIDER_CREDENTIALS", "missing": exc.missing}, ensure_ascii=False))

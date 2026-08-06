@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:35:20.8044974-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "积养家门店服务时间"
+
+{"ok": true, "provider": "doubao", "model_configured": "configured", "latency_ms": 316, "vector_count": 1, "dimensions": 2048, "usage_present": true}
+ExitCode: 0

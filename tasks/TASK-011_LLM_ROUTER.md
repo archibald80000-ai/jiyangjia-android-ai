@@ -1,6 +1,6 @@
 # TASK-011: Implement real LLM and Embedding adapters
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-010
 - **Branch:** `task/TASK-011-llm-router`
@@ -65,7 +65,7 @@ python scripts/test_llm_provider.py --provider mock --prompt "测试"
 - [x] Doubao/Volcengine Ark configuration slots
 - [x] Embedding API path
 - [x] Short-answer and safe-error policy
-- [ ] Real Embedding API call accepted by provider/account
+- [x] Real Embedding API call accepted by provider/account
 
 ## Stop / blocked conditions
 
@@ -103,7 +103,7 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 Updated: 2026-08-06
 
-Status: `PARTIAL`.
+Status: `DONE`.
 
 Completed:
 
@@ -114,11 +114,12 @@ Completed:
 - Verified real DeepSeek LLM call with private external env; usage metadata was present.
 - Verified real Doubao/Volcengine Ark LLM call with private external env; usage metadata was present.
 - Verified Doubao/Ark Embedding configuration preflight; values were not printed.
+- Verified real Doubao/Ark Embedding call with the current authorized account:
+  1 vector, 2048 dimensions, usage metadata present.
 
 Not completed:
 
-- Real Doubao/Ark Embedding call was rejected by the provider with sanitized
-  error `http_status=404`, `provider_code=InvalidEndpointOrModel.NotFound`.
+- None within TASK-011 provider scope.
 
 Evidence:
 
@@ -127,8 +128,11 @@ Evidence:
 - `docs/evidence/TASK-011/task011-deepseek-real-llm-20260806.txt`
 - `docs/evidence/TASK-011/task011-doubao-real-llm-20260806.txt`
 - `docs/evidence/TASK-011/task011-doubao-embedding-real-call-rejected-20260806.txt`
+- `docs/evidence/TASK-011/task011-doubao-embedding-real-call-authorized-20260806.txt`
+- `docs/evidence/TASK-011/task011-pytest-after-embedding-authorized-20260806.txt`
 
-Next required unblock before TASK-012:
+Final note:
 
-- Configure an enabled Ark/Doubao embedding model or endpoint in private env,
-  then rerun `scripts/test_embedding_provider.py --provider doubao`.
+- Earlier `doubao-embedding-text-*` and old candidate calls returned
+  `InvalidEndpointOrModel.NotFound`. The verified current account path uses
+  `doubao-embedding-vision-251215`, routed to `/embeddings/multimodal`.

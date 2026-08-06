@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:35:20.4909056-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config
+
+{"ok": true, "provider": "doubao", "required": {"DOUBAO_EMBEDDING_API_KEY_OR_EMBEDDING_API_KEY_OR_DOUBAO_API_KEY_OR_ARK_API_KEY": "configured", "DOUBAO_EMBEDDING_BASE_URL_OR_EMBEDDING_BASE_URL_OR_DOUBAO_BASE_URL_OR_ARK_BASE_URL": "configured", "DOUBAO_EMBEDDING_MODEL_OR_EMBEDDING_MODEL": "default"}, "model_configured": "configured", "base_url_configured": "configured"}
+ExitCode: 0

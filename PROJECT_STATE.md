@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-011 PARTIAL - REAL LLM VERIFIED, REAL EMBEDDING BLOCKED BY MODEL/ENDPOINT
-- **Current authorized task:** TASK-011 follow-up (unblock real Embedding provider)
+- **Overall status:** TASK-011 DONE - REAL LLM AND REAL EMBEDDING VERIFIED
+- **Current authorized task:** TASK-012 (lightweight RAG with approved FAQ/documents)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -76,7 +76,8 @@
 - TASK-011 local backend regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\llm tests\gateway tests\asr tests\tts -q` -> 25 passed.
 - TASK-011 real DeepSeek LLM smoke call succeeded using private external env file `E:\work\ai-kefu\.env.local`; values were not printed and usage metadata was present.
 - TASK-011 real Doubao/Volcengine Ark LLM smoke call succeeded using private external env file `E:\work\ai-kefu\.env.local`; values were not printed and usage metadata was present.
-- TASK-011 Doubao/Ark Embedding adapter and config preflight are implemented, but the real call was rejected by the provider with sanitized error `http_status=404`, `provider_code=InvalidEndpointOrModel.NotFound`, `provider_type=Not Found`.
+- TASK-011 Doubao/Ark Embedding adapter now supports both plain text `/embeddings` and vision/multimodal `/embeddings/multimodal` routes.
+- TASK-011 real Doubao/Ark Embedding smoke call succeeded using the current authorized account and private external env file `E:\work\ai-kefu\.env.local`; values were not printed. The verified default model path is `doubao-embedding-vision-251215`, returning 1 vector with 2048 dimensions and usage metadata present.
 
 ## Not yet verified
 
@@ -87,7 +88,6 @@
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
 - USB microphone physical unplug/replug recovery on target hardware.
-- Real Embedding API behavior; current Doubao/Ark attempt returns `InvalidEndpointOrModel.NotFound`.
 - FAISS RAG implementation and end-to-end voice RAG loop.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - OpenAI-compatible fallback LLM with a third provider beyond DeepSeek/Doubao.
@@ -150,6 +150,8 @@ Current evidence:
 - `docs/evidence/TASK-011/task011-deepseek-real-llm-20260806.txt`
 - `docs/evidence/TASK-011/task011-doubao-real-llm-20260806.txt`
 - `docs/evidence/TASK-011/task011-doubao-embedding-real-call-rejected-20260806.txt`
+- `docs/evidence/TASK-011/task011-doubao-embedding-real-call-authorized-20260806.txt`
+- `docs/evidence/TASK-011/task011-pytest-after-embedding-authorized-20260806.txt`
 
 Recent task results:
 
@@ -163,11 +165,11 @@ Recent task results:
 - TASK-008 DONE. Local FastAPI Gateway skeleton, ASR/TTS/LLM/Embedding Provider interfaces, Mock orchestration, SQLite knowledge skeleton, request IDs and required API endpoints are implemented and verified by pytest plus local HTTP checks on port 18080. No real provider/API success or production deployment is claimed.
 - TASK-009 DONE. Doubao TTS adapter now uses the official V3 unidirectional HTTP streaming protocol by default, retains V1 compatibility, and is verified by 10 local tests plus one real private-env API call. Generated MP3 evidence: `audio/mpeg`, 24 kHz mono, 2.568 seconds, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`. Android playback of that audio is still deferred to TASK-013/TASK-015.
 - TASK-010 DONE. Doubao ASR adapter uses the official big-model WebSocket protocol through a bounded Gateway file/bytes-to-chunks path. `python -m pytest tests\asr tests\gateway tests\tts -q` passed with 16 tests. Real ASR with private env succeeded for generated TTS smoke audio after MP3-to-WAV normalization; observed transcript was `您好，欢迎来到机养家。`, with one domain-name character error to handle in later vocabulary/RAG policy.
-- TASK-011 PARTIAL. OpenAI-compatible LLM and Embedding adapters are implemented with tests and CLI smoke tools. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded using private env. Real Doubao/Ark Embedding was rejected by the provider with `InvalidEndpointOrModel.NotFound`, so real Embedding acceptance remains blocked until an enabled embedding model or endpoint is configured.
+- TASK-011 DONE. OpenAI-compatible LLM and Embedding adapters are implemented with tests and CLI smoke tools. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded using private env. Real Doubao/Ark Embedding now succeeds with `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
 
 Next action:
 
-- Continue exactly one next action: unblock TASK-011 real Embedding by configuring a verified Ark/Doubao embedding model or endpoint in private env and rerunning `scripts/test_embedding_provider.py --provider doubao`. Do not start TASK-012 RAG until real Embedding is verified or explicitly waived.
+- Continue exactly one next task: TASK-012 lightweight RAG with SQLite/FTS/FAISS, approved FAQ/document ingestion, real EmbeddingProvider vectors and source citations.
 
 ## Status vocabulary
 

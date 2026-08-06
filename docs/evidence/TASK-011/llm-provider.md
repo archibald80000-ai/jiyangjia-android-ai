@@ -41,36 +41,39 @@ integration or deployment.
 | DeepSeek real LLM smoke | PASS, real API response, usage present | `task011-deepseek-real-llm-20260806.txt` |
 | Doubao/Ark real LLM smoke | PASS, real API response, usage present | `task011-doubao-real-llm-20260806.txt` |
 | Doubao Embedding config preflight | PASS with default model | `task011-doubao-embedding-config-preflight-20260806.txt` |
-| Doubao Embedding real smoke | FAIL, provider rejected | `task011-doubao-embedding-real-call-rejected-20260806.txt` |
+| Doubao Embedding real smoke, initial text model route | FAIL, provider rejected | `task011-doubao-embedding-real-call-rejected-20260806.txt` |
+| Doubao Embedding real smoke, authorized multimodal route | PASS, 2048 dimensions | `task011-doubao-embedding-real-call-authorized-20260806.txt` |
+| Backend regression after multimodal Embedding support | PASS, 27 tests | `task011-pytest-after-embedding-authorized-20260806.txt` |
 
 ## Real API result
 
 Real LLM calls succeeded through both configured providers in
 `E:\work\ai-kefu\.env.local`. Secret values were not printed or copied.
 
-Real Doubao/Ark Embedding did not pass. The sanitized provider error was:
+Initial Real Doubao/Ark text Embedding did not pass. The sanitized provider
+error was:
 
 ```text
 EMBEDDING_PROVIDER_REJECTED; http_status=404; provider_code=InvalidEndpointOrModel.NotFound; provider_type=Not Found
 ```
 
-This means TASK-011 is useful but not fully accepted as a real Embedding stage
-until an enabled embedding endpoint/model is configured, for example a verified
-Ark text embedding model or endpoint ID with account access.
+After account authorization, the verified current path is
+`doubao-embedding-vision-251215`, routed to `/embeddings/multimodal` with typed
+text input. The real smoke call returned one vector with 2048 dimensions and
+usage metadata present.
 
 ## Status
 
-`PARTIAL`
+`DONE`
 
-## Next unblock action
-
-Configure a real enabled Embedding model/endpoint in private env, preferably:
-
-- `DOUBAO_EMBEDDING_MODEL` or `EMBEDDING_MODEL`
-- and, if needed, `DOUBAO_EMBEDDING_BASE_URL` or `EMBEDDING_BASE_URL`
-
-Then rerun:
+## Verified final command
 
 ```powershell
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "积养家门店服务时间"
 ```
+
+Result: `ok=true`, `vector_count=1`, `dimensions=2048`, `usage_present=true`.
+
+## Next task
+
+Proceed to TASK-012 lightweight RAG.

@@ -65,7 +65,7 @@ class Settings:
     openai_compatible_model: str = ""
     embedding_timeout_seconds: float = 30.0
     doubao_embedding_base_url: str = "https://ark.cn-beijing.volces.com/api/v3"
-    doubao_embedding_model: str = "doubao-embedding-text-240515"
+    doubao_embedding_model: str = "doubao-embedding-vision-251215"
     openai_compatible_embedding_base_url: str = ""
     openai_compatible_embedding_model: str = ""
 
@@ -164,7 +164,7 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
             "DOUBAO_EMBEDDING_BASE_URL",
             _env("EMBEDDING_BASE_URL", _env("DOUBAO_BASE_URL", _env("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3"))),
         ),
-        doubao_embedding_model=_env("DOUBAO_EMBEDDING_MODEL", _env("EMBEDDING_MODEL", "doubao-embedding-text-240515")),
+        doubao_embedding_model=_env("DOUBAO_EMBEDDING_MODEL", _env("EMBEDDING_MODEL", "doubao-embedding-vision-251215")),
         openai_compatible_embedding_base_url=_env("OPENAI_COMPATIBLE_EMBEDDING_BASE_URL", _env("EMBEDDING_BASE_URL", _env("OPENAI_COMPATIBLE_BASE_URL", ""))),
         openai_compatible_embedding_model=_env("OPENAI_COMPATIBLE_EMBEDDING_MODEL", _env("EMBEDDING_MODEL", "")),
     )
