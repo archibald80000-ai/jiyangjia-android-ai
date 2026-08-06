@@ -21,8 +21,8 @@ Current status:
 - `TASK-014`: `PARTIAL`; server-thread evidence was imported. Tencent Cloud IP host `120.53.86.89` runs a Docker Compose + Nginx mock Gateway, and `/health`, `/api/v1/health`, `/api/v1/dialogue/text` are reachable. It is not aligned to local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`, has no Git metadata, lacks real Provider env vars, SQLite/FAISS knowledge config, `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}` and the TASK-013 brand normalization module.
 - TASK-014 redeployment package is prepared locally: Compose loads server `.env.local`, persists `var/knowledge`, and the server runbook is in `docs/evidence/TASK-014/server-redeployment-request-20260806.md`. Local checks passed, but server redeploy has not yet been re-verified.
 - TASK-014 redeploy evidence now shows current commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed and health/config/knowledge endpoints are reachable, but `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS` because real Provider env vars are missing or not loaded. This is a Provider configuration-chain blocker, not an upload-chain blocker.
-- Gateway hardening adds `/api/v1/readiness` and `failed_stage` details for provider credential errors.
-- Next action is for the server-management thread to execute the TASK-014 redeployment runbook and return sanitized evidence before continuing to TASK-015 Android real-device acceptance.
+- Gateway hardening adds `/api/v1/readiness`, `failed_stage` details and `scripts/check_provider_env.py` for provider credential errors and server-side env preflight.
+- Next action is for the server-management thread to run `scripts/check_provider_env.py --require-real-mvp`, execute the TASK-014 Provider env-chain remediation, and return sanitized evidence before continuing to TASK-015 Android real-device acceptance.
 
 Current order:
 
@@ -39,4 +39,4 @@ Future enhancement:
 `TASK-003/TASK-004/TASK-006/TASK-016` for LiveTalking / Wav2Lip / MuseTalk / WebRTC digital human work.
 
 Do not execute multiple implementation tasks concurrently unless a later task explicitly permits parallel work.
-- 2026-08-06：TASK-014 腾讯云重部署已完成容器与健康接口，`/api/v1/dialogue/*` 仍为 `503 BLOCKED_PROVIDER_CREDENTIALS`，状态保持 `PARTIAL`。待补齐 DOUBAO/Ark 真实凭据后可进入 TASK-015。
+- 2026-08-06：TASK-014 腾讯云重部署已完成容器与健康接口，`/api/v1/dialogue/*` 仍为 `503 BLOCKED_PROVIDER_CREDENTIALS`，状态保持 `PARTIAL`。本地新增并验证 `scripts/check_provider_env.py`，服务器需先用它确认 `secrets/.env.local` 和 Compose env_file，再补齐 DOUBAO/Ark 真实凭据后进入 TASK-015。

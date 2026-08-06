@@ -34,6 +34,7 @@ Updated: 2026-08-06
 - TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` now runs commit `f3b406ca28222937a6f4c93bac524c48f0b95544`; health/config/knowledge endpoints are reachable, but dialogue text/audio return `503 BLOCKED_PROVIDER_CREDENTIALS`.
 - TASK-014 redeployment package is prepared locally. `deploy/docker-compose.yml` now loads untracked server `secrets/.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`. The server thread should fix the Provider env chain before retesting dialogue/upload.
 - Gateway now exposes `/api/v1/readiness` and returns `failed_stage` for Provider credential failures.
+- `scripts/check_provider_env.py` can be run on the server before container restart to verify `secrets/.env.local` and Compose `env_file` without exposing values.
 
 ## Evidence
 
@@ -63,7 +64,7 @@ Updated: 2026-08-06
 
 ## Next action
 
-Continue exactly one next task: send the server-management thread the Provider env-chain fix instructions, have it verify `/api/v1/readiness`, then run one complete text/audio acceptance and return sanitized evidence.
+Continue exactly one next task: send the server-management thread the Provider env-chain fix instructions, have it run `scripts/check_provider_env.py`, verify `/api/v1/readiness`, then run one complete text/audio acceptance and return sanitized evidence.
 
 Do not enter `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` until TASK-014 is no longer partial.
 - 2026-08-06：TASK-014 已完成重部署与 200 路径验证；证据已写入 `docs/server/gateway_deployment_report.md` 与 `/opt/jiyangjia-ai/logs/task014_evidence/*`。剩余阻塞为 Provider 凭据缺失，先补齐再执行 TASK-015。

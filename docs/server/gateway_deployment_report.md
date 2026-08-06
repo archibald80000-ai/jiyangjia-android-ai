@@ -44,5 +44,6 @@
 
 ## 六、建议
 - 补齐 `/opt/jiyangjia-ai/secrets/.env.local` 中的 DOUBAO/Ark/OpenAI-compatible 凭据（按安全位保存，权限 `600`），并确认 Compose `env_file` 指向该路径。
+- 先运行 `scripts/check_provider_env.py --env-file /opt/jiyangjia-ai/secrets/.env.local --compose-file /opt/jiyangjia-ai/docker/docker-compose.yml --require-real-mvp`，通过后再重启容器。
 - 重启容器后复测 8 项 API，记录 `request_id/sources/audio_id`。
 - 完成后将状态更新为 `TASK-014 DONE`，并进入 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`。

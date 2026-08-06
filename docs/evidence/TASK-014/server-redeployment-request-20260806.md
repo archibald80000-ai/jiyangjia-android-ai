@@ -82,7 +82,15 @@ Check the secret file path and permissions without printing values:
 test -f /opt/jiyangjia-ai/secrets/.env.local
 sudo chmod 600 /opt/jiyangjia-ai/secrets/.env.local
 sudo stat -c '%a %U %G %n' /opt/jiyangjia-ai/secrets/.env.local
+python3 scripts/check_provider_env.py \
+  --env-file /opt/jiyangjia-ai/secrets/.env.local \
+  --compose-file deploy/docker-compose.yml \
+  --require-real-mvp \
+  > /tmp/task014_provider_env_preflight.json
+cat /tmp/task014_provider_env_preflight.json
 ```
+
+If this command exits non-zero or `real_mvp_ready` is false, stop and fix `/opt/jiyangjia-ai/secrets/.env.local`. Do not rebuild or retest dialogue until this preflight passes.
 
 ## Start Gateway
 
@@ -271,6 +279,7 @@ Return these items to the main project thread:
 4. Docker Compose file path, `docker compose ps` and `docker stats --no-stream`.
 5. Nginx config path, `nginx -t`, HTTP/TLS status and open ports.
 6. Secret status only as configured/missing.
+   - Include `/tmp/task014_provider_env_preflight.json`.
 7. Endpoint results for all required MVP APIs.
 8. Knowledge status counts and source count from search.
 9. Dialogue/text result with request_id, sources, audio_id and audio fetch status.

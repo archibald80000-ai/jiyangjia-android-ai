@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "env_file": {
+    "path": "E:\\work\\ai-kefu\\jiyangjia-ai\\tmp\\task014-env-check\\.env.ready.local",
+    "exists": true,
+    "readable": true,
+    "mode": "0o666"
+  },
+  "compose": {
+    "path": "deploy\\docker-compose.yml",
+    "exists": true,
+    "expected_env_file": "../secrets/.env.local",
+    "points_to_expected_env_file": true,
+    "contains_old_root_env_file": false
+  },
+  "providers": {
+    "asr": {
+      "provider": "doubao",
+      "ready": true,
+      "missing": []
+    },
+    "tts": {
+      "provider": "doubao",
+      "ready": true,
+      "missing": []
+    },
+    "llm": {
+      "provider": "doubao",
+      "ready": true,
+      "missing": []
+    },
+    "embedding": {
+      "provider": "doubao",
+      "ready": true,
+      "missing": []
+    }
+  },
+  "real_mvp_ready": true,
+  "next_action": "run_dialogue_acceptance"
+}
+exit_code=0

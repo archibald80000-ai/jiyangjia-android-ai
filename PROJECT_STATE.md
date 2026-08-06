@@ -101,6 +101,7 @@
 - TASK-014 server redeploy evidence shows commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed on Tencent Cloud, the container is healthy, Nginx HTTP proxy works, `/health`, `/api/v1/health`, `/api/v1/client/config`, knowledge index/search/status endpoints return 200, and knowledge files exist under `/opt/jiyangjia-ai/var/knowledge`.
 - TASK-014 current blocker is real Provider configuration: `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS`; ASR/TTS/LLM/Embedding credentials are missing or not loaded by the service process. This is not an upload/Nginx transport failure.
 - TASK-014 Gateway now exposes `/api/v1/readiness`, and provider credential failures include `failed_stage` values such as `asr_provider_config`, `embedding_provider_config`, `llm_provider_config` and `tts_provider_config`.
+- TASK-014 Provider env preflight is available at `scripts/check_provider_env.py`; it checks server `secrets/.env.local`, Compose `env_file` and Provider configured/missing status without printing secret values.
 
 ## Not yet verified
 
@@ -199,6 +200,12 @@ Current evidence:
 - `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
 - `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
 - `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-pytest-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-compose-parse-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-missing-sample-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-ready-sample-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-verify-repository-20260806.txt`
+- `docs/evidence/TASK-014/task014-provider-env-preflight-secret-scan-20260806.txt`
 
 Recent task results:
 
@@ -217,11 +224,11 @@ Recent task results:
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 - TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
 - TASK-014 PARTIAL. Tencent Cloud now has the current code deployed and health/config/knowledge endpoints reachable, but dialogue text/audio are blocked by missing or unloaded Provider credentials. This is a Provider configuration-chain blocker, not an upload-chain blocker.
-- TASK-014 HARDENING. Gateway now has `/api/v1/readiness` and `failed_stage` details for provider credential 503 responses so the server thread can stop repeating upload tests and fix the env path first.
+- TASK-014 HARDENING. Gateway now has `/api/v1/readiness`, `failed_stage` details and `scripts/check_provider_env.py` so the server thread can stop repeating upload tests and fix the env path first.
 
 Next action:
 
-- Continue exactly one next task: server-management thread must verify `/opt/jiyangjia-ai/secrets/.env.local` exists, Compose `env_file` points to it, credentials show configured in `/api/v1/readiness`, then run one complete dialogue/text and dialogue/audio acceptance.
+- Continue exactly one next task: server-management thread must run `scripts/check_provider_env.py --require-real-mvp`, verify `/opt/jiyangjia-ai/secrets/.env.local` and Compose `env_file`, confirm credentials show configured in `/api/v1/readiness`, then run one complete dialogue/text and dialogue/audio acceptance.
 
 ## Status vocabulary
 

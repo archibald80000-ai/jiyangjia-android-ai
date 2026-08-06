@@ -65,6 +65,7 @@ Updated: 2026-08-06
   - `deploy/docker-compose.yml` loads untracked server `secrets/.env.local`, persists `var/knowledge` and health-checks `/api/v1/health`;
   - `docs/evidence/TASK-014/server-redeployment-request-20260806.md` gives the server thread exact redeploy, knowledge index, text dialogue, audio dialogue, brand normalization and evidence commands.
 - TASK-014 hardening now adds `/api/v1/readiness` and `failed_stage` values for Provider credential 503 responses.
+- TASK-014 now includes `scripts/check_provider_env.py`, a server preflight script that checks `secrets/.env.local`, Docker Compose `env_file` and Provider configured/missing status without printing secret values.
 
 ## Route changed
 
@@ -125,6 +126,7 @@ Android recording
 - TASK-013 brand normalization: `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` normalize to `积养家`; `python -m pytest tests\asr tests\gateway tests\e2e -q` passed with 19 tests and full backend regression passed with 42 tests.
 - TASK-014 evidence reconciliation: imported server-thread report and recorded `PARTIAL`. Current server can run a mock Gateway but is not the current MVP deployment.
 - TASK-014 redeployment package checks: `python -m pytest tests\gateway tests\e2e -q` -> 9 passed; Docker Compose YAML parse -> PASS; repository verification -> PASS.
+- TASK-014 Provider env preflight checks: `python -m pytest tests\gateway tests\asr tests\tts tests\llm tests\e2e -q` -> 39 passed; Compose parse -> PASS; missing-env sample returned exit code 2; configured-env sample returned exit code 0; repository verification and secret scan passed.
 
 ## Not completed
 
@@ -135,5 +137,5 @@ Android recording
 
 ## Next action
 
-Continue exactly one next task: have the server-management thread fix the Provider env chain, confirm `/api/v1/readiness`, and return one complete dialogue/text plus dialogue/audio acceptance before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
+Continue exactly one next task: have the server-management thread run `scripts/check_provider_env.py --require-real-mvp`, fix the Provider env chain, confirm `/api/v1/readiness`, and return one complete dialogue/text plus dialogue/audio acceptance before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
 - 2026-08-06：TASK-014 对 `120.53.86.89` 复核结果：网关容器健康，`/health`、`/api/v1/health`、`/api/v1/client/config`、知识索引/搜索/状态接口可达；`/api/v1/dialogue/text` 与 `/api/v1/dialogue/audio` 因 `DOUBAO_*` 等变量缺失返回 `503 BLOCKED_PROVIDER_CREDENTIALS`，`embedding_ready=false`。

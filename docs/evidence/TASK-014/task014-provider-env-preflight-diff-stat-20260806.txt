@@ -1,0 +1,20 @@
+ PROJECT_STATE.md                                   |  11 +-
+ TASKS.md                                           |   6 +-
+ .../TASK-014/provider-config-blocker-20260806.md   |   8 +-
+ .../server-redeployment-request-20260806.md        |   9 +
+ ...ovider-env-preflight-compose-parse-20260806.txt |   3 +
+ ...-provider-env-preflight-diff-check-20260806.txt |   8 +
+ ...4-provider-env-preflight-diff-stat-20260806.txt |  10 ++
+ ...vider-env-preflight-missing-sample-20260806.txt |  50 ++++++
+ ...k014-provider-env-preflight-pytest-20260806.txt |   8 +
+ ...rovider-env-preflight-ready-sample-20260806.txt |  41 +++++
+ ...provider-env-preflight-secret-scan-20260806.txt |   1 +
+ ...er-env-preflight-verify-repository-20260806.txt |   1 +
+ docs/server/gateway_deployment_report.md           |   1 +
+ docs/server/operations.md                          |   5 +
+ memory/CURRENT_STATE.md                            |   4 +-
+ memory/HANDOFF.md                                  |   3 +-
+ scripts/check_provider_env.py                      | 193 +++++++++++++++++++++
+ tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md       |   1 +
+ tests/gateway/test_provider_env_check_script.py    |  92 ++++++++++
+ 19 files changed, 445 insertions(+), 10 deletions(-)

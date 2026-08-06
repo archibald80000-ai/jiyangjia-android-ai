@@ -1,0 +1,3 @@
+docker-compose.yml parse: PASS
+env_file: ../secrets/.env.local
+knowledge volume: ../var/knowledge:/app/var/knowledge

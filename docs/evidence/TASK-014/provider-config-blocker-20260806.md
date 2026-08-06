@@ -24,15 +24,17 @@ The next server step is:
 
 1. Verify `/opt/jiyangjia-ai/secrets/.env.local` exists and has mode `600`, without printing values.
 2. Verify Docker Compose `env_file` points to `../secrets/.env.local`.
-3. Rebuild/restart the container.
-4. Call `GET /api/v1/readiness` and record configured/missing status.
-5. Run exactly one full text dialogue and one full audio dialogue acceptance.
+3. Run `scripts/check_provider_env.py --require-real-mvp` and stop if it reports missing fields.
+4. Rebuild/restart the container.
+5. Call `GET /api/v1/readiness` and record configured/missing status.
+6. Run exactly one full text dialogue and one full audio dialogue acceptance.
 
 ## Gateway Hardening
 
 This task adds:
 
 - `GET /api/v1/readiness`, returning Provider readiness and missing variable names without values.
+- `scripts/check_provider_env.py`, checking the env file and Compose path without printing values.
 - `failed_stage` in credential-blocked 503 responses:
   - `asr_provider_config`
   - `embedding_provider_config`

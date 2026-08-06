@@ -126,5 +126,6 @@ Next action: continue exactly one task, TASK-014 remediation/redeploy to the cur
 - `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS`.
 - Root cause: real Provider env vars are missing or not loaded by the container, not an upload/Nginx transport failure.
 - Gateway hardening adds `/api/v1/readiness` and `failed_stage` in Provider credential errors.
+- Server preflight script adds `scripts/check_provider_env.py` for checking `secrets/.env.local` and Compose `env_file` without printing values.
 
 Next action remains TASK-014 Provider env-chain remediation: verify `/opt/jiyangjia-ai/secrets/.env.local`, Compose `env_file`, `/api/v1/readiness`, then one complete text/audio acceptance. Do not enter TASK-015 yet.

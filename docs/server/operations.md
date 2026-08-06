@@ -22,6 +22,11 @@ docker restart jiyangjia-gateway
 
 ## 检查命令（本任务验收）
 ```bash
+python3 /opt/jiyangjia-ai/releases/release-20260806-185559/scripts/check_provider_env.py \
+  --env-file /opt/jiyangjia-ai/secrets/.env.local \
+  --compose-file /opt/jiyangjia-ai/docker/docker-compose.yml \
+  --require-real-mvp
+
 curl -sS -o /tmp/health.json -w "%{http_code}" http://127.0.0.1/health
 curl -sS -o /tmp/v1_health.json -w "%{http_code}" http://127.0.0.1/api/v1/health
 curl -sS -o /tmp/readiness.json -w "%{http_code}" http://127.0.0.1/api/v1/readiness
