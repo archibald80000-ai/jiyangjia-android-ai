@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "status": "task012-approved-demo",
+  "documents": [
+    {
+      "id": "faq_mvp_001",
+      "title": "门店咨询定位",
+      "questions": ["积养家是做什么的", "你们是什么门店"],
+      "answer": "积养家门店可以提供现场咨询和服务引导。具体服务项目、价格和预约情况请以现场工作人员确认为准。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_001",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_002",
+      "title": "服务项目确认",
+      "questions": ["你们有哪些服务", "可以介绍服务项目吗"],
+      "answer": "我可以先做基础介绍和咨询引导。涉及具体项目内容、适用情况和现场安排，请让工作人员继续确认。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_002",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_003",
+      "title": "服务时间",
+      "questions": ["门店几点营业", "服务时间是什么"],
+      "answer": "门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_003",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_004",
+      "title": "预约咨询",
+      "questions": ["可以预约吗", "怎么预约"],
+      "answer": "如需预约，请让现场工作人员根据当天排班和服务资源为您确认。我不能直接承诺具体时段。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_004",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_005",
+      "title": "排队等待",
+      "questions": ["现在要等多久", "需要排队吗"],
+      "answer": "当前等待时间会随现场情况变化，请以工作人员实时确认为准。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_005",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_006",
+      "title": "咨询流程",
+      "questions": ["咨询流程是什么", "第一次来怎么办"],
+      "answer": "您可以先说明想了解的问题，我会做基础引导；需要确认个人情况、项目细节或费用时，请工作人员接待。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_006",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_007",
+      "title": "转人工",
+      "questions": ["我要找工作人员", "可以转人工吗"],
+      "answer": "可以的，我会建议您联系现场工作人员继续处理。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_007",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_008",
+      "title": "价格规则",
+      "questions": ["价格是多少", "多少钱"],
+      "answer": "价格、优惠和会员权益必须由现场工作人员或正式价目表确认，我不能直接给出未确认金额。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_008",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_009",
+      "title": "健康和疗效边界",
+      "questions": ["能治病吗", "有没有治疗效果"],
+      "answer": "我不能提供医疗诊断、处方或疗效保证。如有健康问题，请咨询专业医疗机构或现场工作人员。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_009",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_mvp_010",
+      "title": "设备交互",
+      "questions": ["怎么和你说话", "可以语音咨询吗"],
+      "answer": "您可以点击开始咨询后说出问题，我会把识别到的问题交给系统处理，并用语音和字幕回复。",
+      "status": "approved",
+      "source_uri": "manual://task012/faq_mvp_010",
+      "source_type": "task012_demo",
+      "reviewed_by": "project-owner-demo",
+      "reviewed_at": "2026-08-06"
+    },
+    {
+      "id": "faq_draft_001",
+      "title": "待确认服务包",
+      "questions": ["有没有服务包"],
+      "answer": "这是待确认资料，不能用于正式顾客回答。",
+      "status": "draft",
+      "source_uri": "manual://task012/faq_draft_001",
+      "source_type": "task012_demo"
+    },
+    {
+      "id": "faq_rejected_001",
+      "title": "禁止疗效承诺",
+      "questions": ["保证治好吗"],
+      "answer": "禁止对外承诺疗效。",
+      "status": "rejected",
+      "source_uri": "manual://task012/faq_rejected_001",
+      "source_type": "task012_demo"
+    }
+  ]
+}

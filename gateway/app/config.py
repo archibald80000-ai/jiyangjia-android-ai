@@ -38,6 +38,7 @@ class Settings:
     embedding_provider: str = "mock"
     knowledge_provider: str = "sqlite_lightweight"
     knowledge_db_path: str = ":memory:"
+    knowledge_faiss_path: str = "var/knowledge/faiss.index"
     doubao_tts_endpoint: str = "https://openspeech.bytedance.com/api/v3/tts/unidirectional"
     doubao_tts_cluster: str = "volcano_tts"
     doubao_tts_voice_type: str = ""
@@ -134,6 +135,7 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         llm_provider=_env("JIYANGJIA_LLM_PROVIDER", "mock"),
         embedding_provider=_env("JIYANGJIA_EMBEDDING_PROVIDER", "mock"),
         knowledge_db_path=_env("JIYANGJIA_KNOWLEDGE_DB_PATH", ":memory:"),
+        knowledge_faiss_path=_env("JIYANGJIA_KNOWLEDGE_FAISS_PATH", "var/knowledge/faiss.index"),
         doubao_tts_endpoint=_env("DOUBAO_TTS_ENDPOINT", "https://openspeech.bytedance.com/api/v3/tts/unidirectional"),
         doubao_tts_cluster=_env("DOUBAO_TTS_CLUSTER", "volcano_tts"),
         doubao_tts_voice_type=_env("DOUBAO_TTS_VOICE_TYPE", ""),

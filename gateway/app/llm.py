@@ -186,6 +186,8 @@ class OpenAICompatibleEmbeddingProvider:
         clean_texts = [text.strip() for text in texts if text and text.strip()]
         if not clean_texts:
             raise ProviderCallError("EMBEDDING_EMPTY_TEXT", "texts must not be empty", retryable=False)
+        if _embedding_route(self.config.model) == "embeddings/multimodal" and len(clean_texts) > 1:
+            return await self._embed_multimodal_batch(clean_texts, request_id)
         payload = {
             "model": self.config.model,
             "input": _embedding_input(self.config.model, clean_texts),
@@ -199,6 +201,29 @@ class OpenAICompatibleEmbeddingProvider:
             "vectors": vectors,
             "dimensions": dimensions,
             "usage": response.get("usage") if isinstance(response.get("usage"), dict) else None,
+        }
+
+    async def _embed_multimodal_batch(self, clean_texts: list[str], request_id: str) -> dict[str, object]:
+        vectors: list[list[float]] = []
+        usage_present = False
+        model = self.config.model
+        endpoint = _endpoint(self.config.base_url, "embeddings/multimodal")
+        for index, text in enumerate(clean_texts):
+            payload = {
+                "model": self.config.model,
+                "input": _embedding_input(self.config.model, [text]),
+            }
+            response = await self._post_json(endpoint, payload, f"{request_id}-{index}")
+            vectors.extend(_extract_embedding_vectors(response, expected_count=1))
+            model = str(response.get("model") or model)
+            usage_present = usage_present or isinstance(response.get("usage"), dict)
+        dimensions = len(vectors[0]) if vectors else 0
+        return {
+            "provider": self.name,
+            "model": model,
+            "vectors": vectors,
+            "dimensions": dimensions,
+            "usage": {"batch_calls": len(clean_texts), "provider_usage_present": usage_present},
         }
 
     async def _post_json(self, endpoint: str, payload: dict[str, Any], request_id: str) -> dict[str, Any]:

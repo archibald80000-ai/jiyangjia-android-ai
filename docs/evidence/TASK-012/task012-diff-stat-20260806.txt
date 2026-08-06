@@ -1,0 +1,60 @@
+ .env.example                                       |   2 +
+ .gitignore                                         |   1 +
+ MEMORY.md                                          |   1 +
+ PROJECT_STATE.md                                   |  23 +-
+ TASKS.md                                           |   3 +-
+ docs/evidence/TASK-012/lightweight-rag.md          |  91 ++++
+ .../TASK-012/task012-diff-stat-20260806.txt        |  39 ++
+ .../task012-evaluate-doubao-embedding-20260806.txt |   5 +
+ .../TASK-012/task012-evaluate-mock-20260806.txt    |   5 +
+ ...2-gateway-real-embedding-api-smoke-20260806.txt |  13 +
+ .../TASK-012/task012-pytest-final-20260806.txt     |   8 +
+ .../TASK-012/task012-pytest-full-20260806.txt      |  12 +
+ .../TASK-012/task012-pytest-knowledge-20260806.txt |  12 +
+ .../TASK-012/task012-secret-scan-20260806.txt      |  77 +++
+ .../task012-verify-repository-20260806.txt         |   1 +
+ gateway/app/config.py                              |   2 +
+ gateway/app/knowledge.py                           | 580 +++++++++++++++++++--
+ gateway/app/llm.py                                 |  25 +
+ gateway/app/main.py                                |  75 ++-
+ gateway/requirements.txt                           |   5 +
+ knowledge-test/faq_mvp_approved.example.json       | 134 +++++
+ knowledge-test/test_questions.example.json         |  41 +-
+ memory/CURRENT_STATE.md                            |  18 +-
+ memory/HANDOFF.md                                  |  75 ++-
+ scripts/evaluate_lightweight_rag.py                |  98 ++++
+ tasks/TASK-012_MINI_FAQ.md                         |  81 ++-
+ tasks/index.yaml                                   |   4 +-
+ tests/knowledge/test_lightweight_rag.py            | 129 +++++
+ tests/llm/test_openai_compatible_providers.py      |  42 ++
+ 29 files changed, 1462 insertions(+), 140 deletions(-)
+## task/TASK-012-mini-faq
+M  .env.example
+M  .gitignore
+MM MEMORY.md
+M  PROJECT_STATE.md
+M  TASKS.md
+A  docs/evidence/TASK-012/lightweight-rag.md
+AM docs/evidence/TASK-012/task012-diff-stat-20260806.txt
+A  docs/evidence/TASK-012/task012-evaluate-doubao-embedding-20260806.txt
+A  docs/evidence/TASK-012/task012-evaluate-mock-20260806.txt
+A  docs/evidence/TASK-012/task012-gateway-real-embedding-api-smoke-20260806.txt
+A  docs/evidence/TASK-012/task012-pytest-final-20260806.txt
+A  docs/evidence/TASK-012/task012-pytest-full-20260806.txt
+A  docs/evidence/TASK-012/task012-pytest-knowledge-20260806.txt
+A  docs/evidence/TASK-012/task012-secret-scan-20260806.txt
+A  docs/evidence/TASK-012/task012-verify-repository-20260806.txt
+M  gateway/app/config.py
+M  gateway/app/knowledge.py
+M  gateway/app/llm.py
+M  gateway/app/main.py
+M  gateway/requirements.txt
+A  knowledge-test/faq_mvp_approved.example.json
+M  knowledge-test/test_questions.example.json
+M  memory/CURRENT_STATE.md
+M  memory/HANDOFF.md
+A  scripts/evaluate_lightweight_rag.py
+M  tasks/TASK-012_MINI_FAQ.md
+M  tasks/index.yaml
+A  tests/knowledge/test_lightweight_rag.py
+M  tests/llm/test_openai_compatible_providers.py

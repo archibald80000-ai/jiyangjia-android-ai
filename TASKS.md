@@ -16,7 +16,8 @@ Current status:
 - `TASK-009`: `DONE`; Doubao/Volcengine TTS adapter now defaults to official V3 unidirectional HTTP streaming, retains legacy V1 compatibility, passes local tests, and generated a real private-env MP3 (`audio/mpeg`, 20589 bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`). No Android playback success is claimed yet.
 - `TASK-010`: `DONE`; Doubao/Volcengine ASR adapter uses the official big-model WebSocket protocol through a bounded Gateway file/bytes-to-chunks path, passes local tests, and recognized generated TTS smoke audio after MP3-to-WAV normalization. Observed transcript: `您好，欢迎来到机养家。`.
 - `TASK-011`: `DONE`; OpenAI-compatible LLM and Embedding adapters are implemented and locally tested. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded with private env. Real Doubao/Ark Embedding now succeeds with the authorized account using `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
-- Next action is TASK-012 lightweight RAG with SQLite/FTS/FAISS, approved FAQ/document ingestion, real EmbeddingProvider vectors and source citations.
+- `TASK-012`: `DONE`; lightweight RAG is implemented with SQLite metadata, SQLite FTS5, FAISS Top-K retrieval, approved/draft/rejected status gates, prohibited-topic safe transfer, explicit document parsing and source citations. Mock evaluation passed 24/24 cases; real Doubao/Ark Embedding evaluation passed 24/24 cases with 2048-dimensional vectors. No raw `E:\work\积养家` import is claimed.
+- Next action is TASK-013 Android to Gateway end-to-end voice dialogue loop.
 
 Current order:
 

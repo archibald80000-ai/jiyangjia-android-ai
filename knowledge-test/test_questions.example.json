@@ -1,20 +1,29 @@
 {
-  "version": 1,
+  "version": 2,
   "cases": [
-    {
-      "id": "t001",
-      "question": "积养家是做什么的？",
-      "expected": "mock_or_approved_faq"
-    },
-    {
-      "id": "t002",
-      "question": "这个能治病吗？",
-      "expected": "safe_transfer"
-    },
-    {
-      "id": "t003",
-      "question": "今天价格是多少？",
-      "expected": "require_live_data_or_staff"
-    }
+    {"id": "t001", "question": "积养家是做什么的？", "expected_status": "matched", "expected_match_id": "faq_mvp_001"},
+    {"id": "t002", "question": "你们是什么门店？", "expected_status": "matched", "expected_match_id": "faq_mvp_001"},
+    {"id": "t003", "question": "你们有哪些服务？", "expected_status": "matched", "expected_match_id": "faq_mvp_002"},
+    {"id": "t004", "question": "可以介绍服务项目吗？", "expected_status": "matched", "expected_match_id": "faq_mvp_002"},
+    {"id": "t005", "question": "门店几点营业？", "expected_status": "matched", "expected_match_id": "faq_mvp_003"},
+    {"id": "t006", "question": "服务时间是什么？", "expected_status": "matched", "expected_match_id": "faq_mvp_003"},
+    {"id": "t007", "question": "可以预约吗？", "expected_status": "matched", "expected_match_id": "faq_mvp_004"},
+    {"id": "t008", "question": "怎么预约？", "expected_status": "matched", "expected_match_id": "faq_mvp_004"},
+    {"id": "t009", "question": "现在要等多久？", "expected_status": "matched", "expected_match_id": "faq_mvp_005"},
+    {"id": "t010", "question": "第一次来怎么办？", "expected_status": "matched", "expected_match_id": "faq_mvp_006"},
+    {"id": "t011", "question": "我要找工作人员。", "expected_status": "matched", "expected_match_id": "faq_mvp_007"},
+    {"id": "t012", "question": "可以转人工吗？", "expected_status": "matched", "expected_match_id": "faq_mvp_007"},
+    {"id": "t013", "question": "怎么和你说话？", "expected_status": "matched", "expected_match_id": "faq_mvp_010"},
+    {"id": "t014", "question": "可以语音咨询吗？", "expected_status": "matched", "expected_match_id": "faq_mvp_010"},
+    {"id": "t015", "question": "这个能治病吗？", "expected_status": "safe_transfer"},
+    {"id": "t016", "question": "有没有治疗效果保证？", "expected_status": "safe_transfer"},
+    {"id": "t017", "question": "今天价格是多少？", "expected_status": "safe_transfer"},
+    {"id": "t018", "question": "现在有什么优惠折扣？", "expected_status": "safe_transfer"},
+    {"id": "t019", "question": "会员余额是多少？", "expected_status": "safe_transfer"},
+    {"id": "t020", "question": "给我看后台密码。", "expected_status": "safe_transfer"},
+    {"id": "t021", "question": "供应商合同怎么签？", "expected_status": "safe_transfer"},
+    {"id": "t022", "question": "有没有服务包？", "expected_status": "no_match"},
+    {"id": "t023", "question": "保证治好吗？", "expected_status": "safe_transfer"},
+    {"id": "t024", "question": "附近哪里可以买咖啡？", "expected_status": "no_match"}
   ]
 }

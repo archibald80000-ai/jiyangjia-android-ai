@@ -10,7 +10,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, Response, Uploa
 from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
-from .knowledge import KnowledgeDocument, SQLiteKnowledgeStore
+from .knowledge import KnowledgeDocument, SAFE_TRANSFER_TEXT, SQLiteKnowledgeStore
 from .llm import (
     OpenAICompatibleChatConfig,
     OpenAICompatibleEmbeddingConfig,
@@ -27,7 +27,7 @@ logger = logging.getLogger("jiyangjia.gateway")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
-knowledge_store = SQLiteKnowledgeStore(settings.knowledge_db_path)
+knowledge_store = SQLiteKnowledgeStore(settings.knowledge_db_path, faiss_index_path=settings.knowledge_faiss_path)
 audio_store = InMemoryAudioStore()
 asr_provider = MockASRProvider()
 llm_provider = MockLLMProvider()
@@ -204,15 +204,24 @@ async def knowledge_index(body: KnowledgeIndexRequest, request: Request) -> dict
         )
         for item in body.documents
     ]
-    count = knowledge_store.upsert_many(documents)
-    _safe_log("knowledge.index", rid, documents=count)
-    return {"request_id": rid, "indexed": count, "status": knowledge_store.status()}
+    result = await knowledge_store.index_documents(documents, embedding_provider, rid)
+    _safe_log("knowledge.index", rid, documents=result["documents"], chunks=result["chunks"])
+    return {"request_id": rid, "indexed": result["documents"], "chunks": result["chunks"], "status": result["status"]}
 
 
 @app.post("/api/v1/knowledge/search")
 async def knowledge_search(body: KnowledgeSearchRequest, request: Request) -> dict[str, Any]:
     rid = _request_id(request, body.request_id)
-    matches = knowledge_store.search(body.query, top_k=body.top_k, include_draft=body.include_draft)
+    policy = knowledge_store.classify_query(body.query)
+    if policy["action"] != "search":
+        return {
+            "request_id": rid,
+            "status": "safe_transfer",
+            "matches": [],
+            "sources": [],
+            "policy": policy,
+        }
+    matches = await knowledge_store.search(body.query, embedding_provider, rid, top_k=body.top_k, include_draft=body.include_draft)
     return {
         "request_id": rid,
         "status": "matched" if matches else "no_match",
@@ -223,14 +232,18 @@ async def knowledge_search(body: KnowledgeSearchRequest, request: Request) -> di
 
 @app.get("/api/v1/knowledge/status")
 def knowledge_status(request: Request) -> dict[str, Any]:
+    knowledge_status_payload = knowledge_store.status()
     return {
         "request_id": _request_id(request),
         "provider": settings.knowledge_provider,
         "embedding_provider": settings.embedding_provider,
         "embedding_ready": embedding_configuration_error is None,
         "embedding_missing": embedding_configuration_error.missing if embedding_configuration_error else [],
-        "vector_index": "deferred_to_TASK-012",
-        "documents": knowledge_store.status(),
+        "vector_index": knowledge_status_payload["faiss"],
+        "documents": knowledge_status_payload["documents"],
+        "chunks": knowledge_status_payload["chunks"],
+        "embeddings": knowledge_status_payload["embeddings"],
+        "latest_run": knowledge_status_payload["latest_run"],
     }
 
 
@@ -249,7 +262,10 @@ async def _run_dialogue(
     transcript_provider: str,
     transcript: dict[str, Any] | None = None,
 ) -> DialogueResponse:
-    matches = knowledge_store.search(question, top_k=3)
+    policy = knowledge_store.classify_query(question)
+    if policy["action"] != "search":
+        return await _run_policy_transfer(question, request_id, session_id, transcript_provider, transcript, str(policy.get("category") or "policy"))
+    matches = await knowledge_store.search(question, embedding_provider, request_id, top_k=3)
     if llm_configuration_error is not None:
         raise HTTPException(
             status_code=503,
@@ -301,4 +317,45 @@ async def _run_dialogue(
         answer={"text": llm["text"], "provider": llm["provider"], "source": llm["source"], "subtitles": llm["subtitles"]},
         tts={"provider": tts["provider"], "content_type": tts["content_type"], "audio_id": blob.audio_id, "duration_ms": tts["duration_ms"]},
         sources=sources,
+    )
+
+
+async def _run_policy_transfer(
+    question: str,
+    request_id: str,
+    session_id: str,
+    transcript_provider: str,
+    transcript: dict[str, Any] | None,
+    category: str,
+) -> DialogueResponse:
+    if tts_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "message_for_user": "语音服务还没有配置完成，请联系工作人员。",
+                "missing": tts_configuration_error.missing,
+            },
+        )
+    try:
+        tts = await tts_provider.synthesize(SAFE_TRANSFER_TEXT, voice_id=None, request_id=request_id)
+    except ProviderCallError as exc:
+        raise HTTPException(
+            status_code=502 if exc.retryable else 400,
+            detail={
+                "code": exc.code,
+                "message_for_user": "语音服务暂时不可用，请稍后再试。",
+                "retryable": exc.retryable,
+            },
+        ) from exc
+    blob = audio_store.put(bytes(tts["content"]), str(tts["content_type"]))
+    _safe_log("dialogue.safe_transfer", request_id, session_id, provider=transcript_provider, category=category, audio_id=blob.audio_id)
+    return DialogueResponse(
+        request_id=request_id,
+        session_id=session_id,
+        transcript=transcript or {"text": question, "provider": transcript_provider, "language": "zh-CN", "confidence": 1.0},
+        knowledge={"status": "safe_transfer", "matches": [], "provider": settings.knowledge_provider, "category": category},
+        answer={"text": SAFE_TRANSFER_TEXT, "provider": "policy", "source": "safe_transfer", "subtitles": [SAFE_TRANSFER_TEXT]},
+        tts={"provider": tts["provider"], "content_type": tts["content_type"], "audio_id": blob.audio_id, "duration_ms": tts["duration_ms"]},
+        sources=[],
     )

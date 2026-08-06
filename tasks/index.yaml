@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-012
+current: TASK-013
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -78,7 +78,7 @@ tasks:
     file: TASK-012_MINI_FAQ.md
     title: "Implement lightweight RAG with SQLite, FAISS and source citations"
     priority: p0
-    status: PLANNED
+    status: DONE
     depends_on: [TASK-011]
   - id: TASK-013
     file: TASK-013_END_TO_END_DIALOGUE.md

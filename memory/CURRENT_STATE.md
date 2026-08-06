@@ -37,6 +37,15 @@ Updated: 2026-08-06
   - CLI helpers and `tests/llm` exist;
   - real DeepSeek LLM and real Doubao/Ark LLM calls succeeded using private external env;
   - real Doubao/Ark Embedding call succeeded with `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
+- TASK-012 lightweight RAG is complete for local/backend acceptance:
+  - SQLite stores document/chunk metadata and ingestion runs;
+  - SQLite FTS5 provides keyword retrieval;
+  - FAISS provides Top-K vector retrieval through the EmbeddingProvider;
+  - explicit JSON/YAML/Markdown/TXT/PDF/DOCX parsing is supported;
+  - customer search defaults to `approved` only while `draft` requires an explicit internal flag and `rejected` is excluded;
+  - prohibited medical/price/promotion/inventory/member-balance/internal queries return safe transfer text;
+  - source citations and `request_id` are returned by knowledge search and dialogue flows;
+  - real Doubao/Ark embedding-backed evaluation passed with 2048-dimensional vectors.
 
 ## Route changed
 
@@ -83,15 +92,20 @@ Android recording
 - `scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: configuration preflight passed with the default verified embedding model.
 - `scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "积养家门店服务时间"`: real provider returned 1 vector, 2048 dimensions, usage metadata present.
 - `python -m pytest tests\llm tests\gateway tests\asr tests\tts -q`: 27 passed after multimodal Embedding support.
+- `python -m pytest tests\knowledge -q`: 6 passed after TASK-012 RAG implementation.
+- `python -m pytest tests\knowledge tests\gateway tests\llm tests\asr tests\tts -q`: 34 passed after TASK-012.
+- `scripts\evaluate_lightweight_rag.py --data knowledge-test`: Mock RAG evaluation passed 24/24 cases.
+- `scripts\evaluate_lightweight_rag.py --data knowledge-test --provider doubao --env-file E:\work\ai-kefu\.env.local`: real Doubao/Ark Embedding RAG evaluation passed 24/24 cases with 2048-dimensional vectors; values were not printed.
+- Gateway API smoke passed for real embedding-backed `/api/v1/knowledge/index`, `/api/v1/knowledge/search` and `/api/v1/knowledge/status`.
 
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
-- FAISS production index and document parsing.
+- Formal production knowledge base beyond the scoped demo FAQ set.
 - Android end-to-end integration with Gateway.
 - Tencent Cloud deployment for the new provider/RAG route.
 - Android 12 large-screen real-device acceptance.
 
 ## Next action
 
-Continue exactly one next task: `TASK-012_MINI_FAQ.md` lightweight RAG with SQLite/FTS/FAISS, approved FAQ/document ingestion, real EmbeddingProvider vectors and source citations.
+Continue exactly one next task: `TASK-013_END_TO_END_DIALOGUE.md` Android to Gateway end-to-end voice dialogue loop.

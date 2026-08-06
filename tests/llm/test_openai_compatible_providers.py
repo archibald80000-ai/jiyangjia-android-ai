@@ -223,3 +223,45 @@ async def _assert_multimodal_embedding_provider_accepts_nested_single_vector() -
     assert dict(seen["payload"])["input"] == [{"type": "text", "text": "积养家"}]
     assert result["vectors"] == [[0.4, 0.5]]
     assert result["dimensions"] == 2
+
+
+def test_multimodal_embedding_provider_batches_as_single_text_calls() -> None:
+    asyncio.run(_assert_multimodal_embedding_provider_batches_as_single_text_calls())
+
+
+async def _assert_multimodal_embedding_provider_batches_as_single_text_calls() -> None:
+    payloads: list[dict[str, object]] = []
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        payload = json.loads(request.read().decode("utf-8"))
+        payloads.append(payload)
+        text = payload["input"][0]["text"]
+        vector = [1.0, 0.0] if "服务" in text else [0.0, 1.0]
+        return httpx.Response(
+            200,
+            json={
+                "model": "doubao-embedding-vision-test",
+                "data": {"object": "embedding", "embedding": [vector]},
+                "usage": {"total_tokens": 2},
+            },
+        )
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    provider = OpenAICompatibleEmbeddingProvider(
+        OpenAICompatibleEmbeddingConfig(
+            provider="doubao",
+            api_key="unit-secret",
+            base_url="https://ark.cn-beijing.volces.com/api/v3",
+            model="doubao-embedding-vision-test",
+            timeout_seconds=3,
+        ),
+        client=client,
+    )
+
+    result = await provider.embed(["服务时间", "语音咨询"], "req-mm-batch")
+    await client.aclose()
+
+    assert len(payloads) == 2
+    assert result["vectors"] == [[1.0, 0.0], [0.0, 1.0]]
+    assert result["dimensions"] == 2
+    assert result["usage"] == {"batch_calls": 2, "provider_usage_present": True}

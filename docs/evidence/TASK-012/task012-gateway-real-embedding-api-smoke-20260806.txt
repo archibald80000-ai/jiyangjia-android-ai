@@ -1,0 +1,13 @@
+Timestamp: 2026-08-06T02:52:10.6379773-05:00
+Command: gateway API smoke with external private env loaded in process; values not printed
+
+2026-08-06 02:52:12,121 INFO HTTP Request: POST https://ark.cn-beijing.volces.com/api/v3/embeddings/multimodal "HTTP/1.1 200 OK"
+2026-08-06 02:52:12,126 INFO {'event': 'knowledge.index', 'request_id': 'c6be2059-f9e0-47c4-aeb6-86669f6ed1df', 'session_id': '-', 'documents': 1, 'chunks': 1}
+2026-08-06 02:52:12,128 INFO HTTP Request: POST http://testserver/api/v1/knowledge/index "HTTP/1.1 200 OK"
+2026-08-06 02:52:12,348 INFO HTTP Request: POST https://ark.cn-beijing.volces.com/api/v3/embeddings/multimodal "HTTP/1.1 200 OK"
+2026-08-06 02:52:12,357 INFO HTTP Request: POST http://testserver/api/v1/knowledge/search "HTTP/1.1 200 OK"
+2026-08-06 02:52:12,362 INFO HTTP Request: GET http://testserver/api/v1/knowledge/status "HTTP/1.1 200 OK"
+{'index_status': 200, 'indexed': 1, 'chunks': 1}
+{'search_status': 200, 'result_status': 'matched', 'sources': [{'uri': 'manual://api-smoke/time', 'chunk_id': 'api_faq_time::chunk-0000'}]}
+{'status_code': 200, 'embedding_provider': 'doubao', 'vector_index': {'ready': True, 'vectors': 1, 'dimensions': 2048}}
+ExitCode: 0
