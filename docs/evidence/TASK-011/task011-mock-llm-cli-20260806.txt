@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:49.3157806-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_llm_provider.py --provider mock --prompt "测试"
+
+{"ok": true, "provider": "mock", "model_configured": "configured", "latency_ms": 0, "text": "这项信息我暂时不能确认，请咨询现场工作人员。", "usage_present": false}
+ExitCode: 0

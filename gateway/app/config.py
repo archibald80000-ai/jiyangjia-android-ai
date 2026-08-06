@@ -26,7 +26,7 @@ def _env(name: str, default: str) -> str:
 @dataclass(frozen=True)
 class Settings:
     app_name: str = "jiyangjia-gateway"
-    app_version: str = "0.1.0-task009"
+    app_version: str = "0.1.0-task011"
     display_mode: str = "idle_video_voice"
     max_record_seconds: int = 20
     max_upload_bytes: int = 5 * 1024 * 1024
@@ -54,6 +54,20 @@ class Settings:
     doubao_asr_uid: str = "jiyangjia-gateway"
     doubao_asr_chunk_bytes: int = 32000
     doubao_asr_timeout_seconds: float = 30.0
+    llm_timeout_seconds: float = 30.0
+    llm_max_tokens: int = 320
+    llm_temperature: float = 0.2
+    deepseek_base_url: str = "https://api.deepseek.com"
+    deepseek_model: str = "deepseek-chat"
+    doubao_base_url: str = "https://ark.cn-beijing.volces.com/api/v3"
+    doubao_model: str = ""
+    openai_compatible_base_url: str = ""
+    openai_compatible_model: str = ""
+    embedding_timeout_seconds: float = 30.0
+    doubao_embedding_base_url: str = "https://ark.cn-beijing.volces.com/api/v3"
+    doubao_embedding_model: str = "doubao-embedding-text-240515"
+    openai_compatible_embedding_base_url: str = ""
+    openai_compatible_embedding_model: str = ""
 
     def safe_summary(self) -> dict[str, object]:
         return {
@@ -80,7 +94,10 @@ class Settings:
                 "DOUBAO_TTS_SPEAKER": "configured" if _doubao_tts_speaker() else "missing",
                 "DOUBAO_TTS_RESOURCE_ID": "configured" if os.environ.get("DOUBAO_TTS_RESOURCE_ID") else "missing",
                 "ARK_API_KEY": "configured" if os.environ.get("ARK_API_KEY") else "missing",
+                "DOUBAO_API_KEY": "configured" if os.environ.get("DOUBAO_API_KEY") else "missing",
+                "DEEPSEEK_API_KEY": "configured" if os.environ.get("DEEPSEEK_API_KEY") else "missing",
                 "OPENAI_COMPATIBLE_API_KEY": "configured" if os.environ.get("OPENAI_COMPATIBLE_API_KEY") else "missing",
+                "DOUBAO_EMBEDDING_API_KEY": "configured" if os.environ.get("DOUBAO_EMBEDDING_API_KEY") else "missing",
                 "EMBEDDING_API_KEY": "configured" if os.environ.get("EMBEDDING_API_KEY") else "missing",
             },
         }
@@ -133,4 +150,21 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         doubao_asr_uid=_env("DOUBAO_ASR_UID", "jiyangjia-gateway"),
         doubao_asr_chunk_bytes=int(_env("DOUBAO_ASR_CHUNK_BYTES", "32000")),
         doubao_asr_timeout_seconds=float(_env("DOUBAO_ASR_TIMEOUT_SECONDS", "30")),
+        llm_timeout_seconds=float(_env("JIYANGJIA_LLM_TIMEOUT_SECONDS", "30")),
+        llm_max_tokens=int(_env("JIYANGJIA_LLM_MAX_TOKENS", "320")),
+        llm_temperature=float(_env("JIYANGJIA_LLM_TEMPERATURE", "0.2")),
+        deepseek_base_url=_env("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+        deepseek_model=_env("DEEPSEEK_MODEL", "deepseek-chat"),
+        doubao_base_url=_env("DOUBAO_BASE_URL", _env("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")),
+        doubao_model=_env("DOUBAO_MODEL", _env("ARK_MODEL", "")),
+        openai_compatible_base_url=_env("OPENAI_COMPATIBLE_BASE_URL", ""),
+        openai_compatible_model=_env("OPENAI_COMPATIBLE_MODEL", ""),
+        embedding_timeout_seconds=float(_env("JIYANGJIA_EMBEDDING_TIMEOUT_SECONDS", "30")),
+        doubao_embedding_base_url=_env(
+            "DOUBAO_EMBEDDING_BASE_URL",
+            _env("EMBEDDING_BASE_URL", _env("DOUBAO_BASE_URL", _env("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3"))),
+        ),
+        doubao_embedding_model=_env("DOUBAO_EMBEDDING_MODEL", _env("EMBEDDING_MODEL", "doubao-embedding-text-240515")),
+        openai_compatible_embedding_base_url=_env("OPENAI_COMPATIBLE_EMBEDDING_BASE_URL", _env("EMBEDDING_BASE_URL", _env("OPENAI_COMPATIBLE_BASE_URL", ""))),
+        openai_compatible_embedding_model=_env("OPENAI_COMPATIBLE_EMBEDDING_MODEL", _env("EMBEDDING_MODEL", "")),
     )

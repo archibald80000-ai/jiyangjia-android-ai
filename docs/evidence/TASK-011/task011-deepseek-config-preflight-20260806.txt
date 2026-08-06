@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:49.8599680-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_llm_provider.py --provider deepseek --env-file E:\work\ai-kefu\.env.local --check-config
+
+{"ok": true, "provider": "deepseek", "required": {"DEEPSEEK_API_KEY": "configured", "DEEPSEEK_BASE_URL": "configured", "DEEPSEEK_MODEL": "configured"}, "model_configured": "configured", "base_url_configured": "configured"}
+ExitCode: 0

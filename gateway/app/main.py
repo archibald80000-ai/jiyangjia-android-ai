@@ -11,6 +11,12 @@ from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
 from .knowledge import KnowledgeDocument, SQLiteKnowledgeStore
+from .llm import (
+    OpenAICompatibleChatConfig,
+    OpenAICompatibleEmbeddingConfig,
+    OpenAICompatibleEmbeddingProvider,
+    OpenAICompatibleLLMProvider,
+)
 from .providers import MockASRProvider, MockEmbeddingProvider, MockLLMProvider, MockTTSProvider
 from .schemas import DialogueResponse, DialogueTextRequest, KnowledgeIndexRequest, KnowledgeSearchRequest
 from .tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, ProviderConfigurationError
@@ -29,6 +35,8 @@ tts_provider = MockTTSProvider()
 embedding_provider = MockEmbeddingProvider()
 tts_configuration_error: ProviderConfigurationError | None = None
 asr_configuration_error: ProviderConfigurationError | None = None
+llm_configuration_error: ProviderConfigurationError | None = None
+embedding_configuration_error: ProviderConfigurationError | None = None
 
 if settings.asr_provider == "doubao":
     try:
@@ -41,6 +49,18 @@ if settings.tts_provider == "doubao":
         tts_provider = DoubaoTTSProvider(DoubaoTTSConfig.from_settings(settings))
     except ProviderConfigurationError as exc:
         tts_configuration_error = exc
+
+if settings.llm_provider in {"deepseek", "doubao", "ark", "volcengine", "openai-compatible", "compatible"}:
+    try:
+        llm_provider = OpenAICompatibleLLMProvider(OpenAICompatibleChatConfig.from_settings(settings, settings.llm_provider))
+    except ProviderConfigurationError as exc:
+        llm_configuration_error = exc
+
+if settings.embedding_provider in {"doubao", "ark", "volcengine", "openai-compatible", "compatible"}:
+    try:
+        embedding_provider = OpenAICompatibleEmbeddingProvider(OpenAICompatibleEmbeddingConfig.from_settings(settings, settings.embedding_provider))
+    except ProviderConfigurationError as exc:
+        embedding_configuration_error = exc
 
 
 def _now() -> str:
@@ -207,6 +227,8 @@ def knowledge_status(request: Request) -> dict[str, Any]:
         "request_id": _request_id(request),
         "provider": settings.knowledge_provider,
         "embedding_provider": settings.embedding_provider,
+        "embedding_ready": embedding_configuration_error is None,
+        "embedding_missing": embedding_configuration_error.missing if embedding_configuration_error else [],
         "vector_index": "deferred_to_TASK-012",
         "documents": knowledge_store.status(),
     }
@@ -228,7 +250,26 @@ async def _run_dialogue(
     transcript: dict[str, Any] | None = None,
 ) -> DialogueResponse:
     matches = knowledge_store.search(question, top_k=3)
-    llm = await llm_provider.chat([{"role": "user", "content": question}], matches, request_id)
+    if llm_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "message_for_user": "问答服务还没有配置完成，请联系工作人员。",
+                "missing": llm_configuration_error.missing,
+            },
+        )
+    try:
+        llm = await llm_provider.chat([{"role": "user", "content": question}], matches, request_id)
+    except ProviderCallError as exc:
+        raise HTTPException(
+            status_code=502 if exc.retryable else 400,
+            detail={
+                "code": exc.code,
+                "message_for_user": "问答服务暂时不可用，请联系工作人员。",
+                "retryable": exc.retryable,
+            },
+        ) from exc
     if tts_configuration_error is not None:
         raise HTTPException(
             status_code=503,

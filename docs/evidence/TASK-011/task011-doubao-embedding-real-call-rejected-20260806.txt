@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:21:03.5612648-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "积养家门店服务时间"
+
+{"ok": false, "code": "EMBEDDING_PROVIDER_REJECTED", "retryable": false, "message": "Embedding provider rejected the request; http_status=404; provider_code=InvalidEndpointOrModel.NotFound; provider_type=Not Found"}
+ExitCode: 4

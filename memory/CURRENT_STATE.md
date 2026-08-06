@@ -30,6 +30,12 @@ Updated: 2026-08-06
   - non-WAV/PCM input is normalized to 16 kHz mono PCM WAV before ASR;
   - CLI helper and tests exist;
   - real Doubao ASR call using private external env generated verified transcript evidence.
+- TASK-011 LLM/Embedding adapters are partial-complete:
+  - OpenAI-compatible Chat provider exists for DeepSeek, Doubao/Volcengine Ark and generic compatible endpoints;
+  - OpenAI-compatible Embedding provider exists for Doubao/Ark and generic compatible endpoints;
+  - CLI helpers and `tests/llm` exist;
+  - real DeepSeek LLM and real Doubao/Ark LLM calls succeeded using private external env;
+  - real Doubao/Ark Embedding call is blocked by provider/account model resolution: `InvalidEndpointOrModel.NotFound`.
 
 ## Route changed
 
@@ -70,12 +76,16 @@ Android recording
 - `scripts\test_asr_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: returned `ok=true`; values were not printed.
 - `scripts\test_asr_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --file tmp\doubao-tts-test.mp3 --content-type audio/mpeg`: generated real ASR transcript `您好，欢迎来到机养家。` after MP3-to-WAV normalization.
 - `ffprobe tmp\doubao-tts-test-16k.wav`: WAV, PCM s16le, 16000 Hz, mono, 2.568 seconds.
+- `python -m pytest tests\llm tests\gateway tests\asr tests\tts -q`: 25 passed after TASK-011.
+- `scripts\test_llm_provider.py --provider deepseek --env-file E:\work\ai-kefu\.env.local --prompt ...`: real LLM call succeeded; usage metadata present.
+- `scripts\test_llm_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --prompt ...`: real LLM call succeeded; usage metadata present.
+- `scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: configuration preflight passed with the default text embedding model.
+- `scripts\test_embedding_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "积养家门店服务时间"`: real provider rejected the request with sanitized `http_status=404`, `provider_code=InvalidEndpointOrModel.NotFound`.
 
 ## Not completed
 
-- Real Doubao/Volcengine Ark LLM.
-- OpenAI-compatible fallback LLM.
-- Real Embedding API.
+- Real Embedding API; current Doubao/Ark embedding endpoint/model is not accepted by the configured account.
+- OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - FAISS production index and document parsing.
 - Android end-to-end integration with Gateway.
 - Tencent Cloud deployment for the new provider/RAG route.
@@ -83,4 +93,4 @@ Android recording
 
 ## Next action
 
-Continue exactly one next task: `TASK-011_LLM_ROUTER.md`. Do not start RAG/deployment until TASK-011 is verified or explicitly waived.
+Continue exactly one next action: unblock TASK-011 real Embedding by configuring a verified enabled Ark/Doubao embedding model or endpoint in private env and rerunning the embedding smoke test. Do not start RAG/deployment until TASK-011 Embedding is verified or explicitly waived.

@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:50.1145337-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_llm_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config
+
+{"ok": true, "provider": "doubao", "required": {"DOUBAO_API_KEY_OR_ARK_API_KEY": "configured", "DOUBAO_BASE_URL_OR_ARK_BASE_URL": "configured", "DOUBAO_MODEL_OR_ARK_MODEL": "configured"}, "model_configured": "configured", "base_url_configured": "configured"}
+ExitCode: 0

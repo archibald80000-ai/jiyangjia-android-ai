@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:50.3570348-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_llm_provider.py --provider deepseek --env-file E:\work\ai-kefu\.env.local --prompt "请用一句话回答：积养家门店AI客服当前正在测试什么？"
+
+{"ok": true, "provider": "deepseek", "model_configured": "configured", "latency_ms": 2387, "text": "不好意思，关于当前测试内容暂时没有确认资料，建议转人工问问哈。", "usage_present": true}
+ExitCode: 0

@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:53.0643210-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_llm_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --prompt "请用一句话回答：积养家门店AI客服当前正在测试什么？"
+
+{"ok": true, "provider": "doubao", "model_configured": "configured", "latency_ms": 10012, "text": "抱歉，相关信息我暂未查询到，建议您转人工客服确认哦。", "usage_present": true}
+ExitCode: 0

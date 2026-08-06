@@ -72,7 +72,7 @@ tasks:
     file: TASK-011_LLM_ROUTER.md
     title: "Implement real LLM and Embedding adapters"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-010]
   - id: TASK-012
     file: TASK-012_MINI_FAQ.md

@@ -1,0 +1,5 @@
+Timestamp: 2026-08-06T02:20:49.6156863-05:00
+Command: .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_embedding_provider.py --provider mock --text "测试"
+
+{"ok": true, "provider": "mock", "model_configured": "configured", "latency_ms": 0, "vector_count": 1, "dimensions": 1, "usage_present": false}
+ExitCode: 0

@@ -1,6 +1,6 @@
 # TASK-011: Implement real LLM and Embedding adapters
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-010
 - **Branch:** `task/TASK-011-llm-router`
@@ -53,18 +53,19 @@ python scripts/test_llm_provider.py --provider mock --prompt "测试"
 
 ## Required deliverables
 
-- [ ] LLM router and Mock/real adapters
-- [ ] Embedding adapter
-- [ ] At least one verified compatible LLM provider when credentials permit
-- [ ] Latency/token/cost-safe report
+- [x] LLM router and Mock/real adapters
+- [x] Embedding adapter
+- [x] At least one verified compatible LLM provider when credentials permit
+- [x] Latency/token/cost-safe report
 
 ## Acceptance criteria
 
-- [ ] Mock deterministic tests
-- [ ] One OpenAI-compatible path
-- [ ] Doubao/Volcengine Ark configuration slots
-- [ ] Embedding API path
-- [ ] Short-answer and safe-error policy
+- [x] Mock deterministic tests
+- [x] One OpenAI-compatible path
+- [x] Doubao/Volcengine Ark configuration slots
+- [x] Embedding API path
+- [x] Short-answer and safe-error policy
+- [ ] Real Embedding API call accepted by provider/account
 
 ## Stop / blocked conditions
 
@@ -90,10 +91,44 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-011 close-out result
+
+Updated: 2026-08-06
+
+Status: `PARTIAL`.
+
+Completed:
+
+- Added `OpenAICompatibleLLMProvider` and `OpenAICompatibleEmbeddingProvider`.
+- Added DeepSeek, Doubao/Ark and generic OpenAI-compatible configuration slots.
+- Added CLI smoke tools and 8 TASK-011 tests.
+- Verified full backend regression: 25 tests passed.
+- Verified real DeepSeek LLM call with private external env; usage metadata was present.
+- Verified real Doubao/Volcengine Ark LLM call with private external env; usage metadata was present.
+- Verified Doubao/Ark Embedding configuration preflight; values were not printed.
+
+Not completed:
+
+- Real Doubao/Ark Embedding call was rejected by the provider with sanitized
+  error `http_status=404`, `provider_code=InvalidEndpointOrModel.NotFound`.
+
+Evidence:
+
+- `docs/evidence/TASK-011/llm-provider.md`
+- `docs/evidence/TASK-011/task011-pytest-final-20260806.txt`
+- `docs/evidence/TASK-011/task011-deepseek-real-llm-20260806.txt`
+- `docs/evidence/TASK-011/task011-doubao-real-llm-20260806.txt`
+- `docs/evidence/TASK-011/task011-doubao-embedding-real-call-rejected-20260806.txt`
+
+Next required unblock before TASK-012:
+
+- Configure an enabled Ark/Doubao embedding model or endpoint in private env,
+  then rerun `scripts/test_embedding_provider.py --provider doubao`.
