@@ -2,11 +2,31 @@
 
 ## Current task
 
-- Current task: `TASK-003_WAV2LIP_WEBRTC_BASELINE.md`
-- Status: `BLOCKED_BY_MANUAL_ASSET_DOWNLOAD`
+- Current task: `TASK-005_ANDROID_KIOSK_SHELL.md`
+- Status: route updated; TASK-005 is next and remains `PLANNED`
 - Current branch: `task/TASK-003-wav2lip-webrtc-baseline`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
-- Raw materials path: `E:\work\积养家` (read-only; not scanned or modified)
+- Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
+
+## Phase 1 route
+
+As of 2026-08-06, Phase 1 is the Android idle-video voice FAQ MVP:
+
+```text
+Android start
+-> local idle character video
+-> tap to consult
+-> USB/default microphone recording
+-> Gateway upload
+-> Doubao ASR
+-> small approved FAQ retrieval
+-> LLM grounded answer
+-> Doubao TTS
+-> Android playback and subtitles
+-> idle
+```
+
+Do not download LiveTalking/Wav2Lip/MuseTalk models, do not continue changing asset preparation scripts, and do not treat missing LiveTalking assets as blocking Phase 1.
 
 ## Read first
 
@@ -14,133 +34,76 @@
 2. `AGENTS.md`
 3. `MEMORY.md`
 4. `PROJECT_STATE.md`
-5. `docs/22_DELIVERY_BLUEPRINT.md`
-6. `docs/03_LIVETALKING_SCOPE.md`
-7. `tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md`
-8. `docs/evidence/TASK-003/wav2lip-baseline.md`
+5. `ROADMAP.md`
+6. `TASKS.md`
+7. `docs/architecture/MVP_ARCHITECTURE.md`
+8. `docs/architecture/ANDROID_CLIENT.md`
+9. `docs/api/MVP_API_SPEC.md`
+10. `docs/testing/MVP_ACCEPTANCE.md`
+11. `tasks/TASK-005_ANDROID_KIOSK_SHELL.md`
 
 ## What is verified
 
-- `third_party/LiveTalking` remains locked at commit `c963ad409c556918b7d23999bf87c47a7c05c932`.
-- `.venv\livetalking-task002` still runs torch `2.9.1+cu126` with CUDA available.
-- TASK-003 checked the expected asset paths:
-  - `third_party\LiveTalking\models\wav2lip.pth`: missing.
-  - `third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth`: missing.
-  - `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\`: missing.
-- Manual staging directory `E:\work\ai-kefu\livetalking-assets` was checked on 2026-08-06 and does not exist. Do not continue asset-script changes; wait for manual download.
-- Upstream README official asset sources were recorded:
-  - Quark: `https://pan.quark.cn/s/83a750323ef0`
-  - Google Drive: `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`
-- Google Drive was unreachable from this machine, including a 2026-08-06 `gdown 6.1.0` retry with supported arguments.
-- Quark public API probing on 2026-08-06 can list the official share folder and confirmed:
-  - `wav2lip256_avatar1.zip` size `353735616`.
-  - `s3fd.pth` size `89843225`.
-  - `wav2lip256.pth` size `214670409`.
-- Quark download URL probes against `/1/clouddrive/file/share/download` and `/1/clouddrive/file/download` returned HTTP 400 code `23018 download file size limit` without a logged-in/download-capable Quark session. No cookies, stoken, share_fid_token or download URLs were recorded.
-- Quark Windows integrated package share `https://pan.quark.cn/s/a040bf5cb065` can be listed and contains:
-  - `models/wav2lip.pth` size `214670409`.
-  - `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth` size `89843225`.
-  - expanded `data/avatars/wav2lip256_avatar1`.
-- The package avatar directory has 589 files totaling `106662008` bytes, largest file `319803` bytes.
-- Small file download URL creation succeeds, but CLI GET of the returned signed URL returns HTTP `412 Precondition Failed`; large model/S3FD URL creation returns `23018`.
-- Local clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not opened and clients were not started.
-- Candidate local download directories (`Downloads`, `downloadtemp`, `D:\BaiduNetdiskDownload`, `D:\QLDownload`, Quark install roots and similar) were searched by exact filename on 2026-08-06; no existing asset copy was found.
-- Selected non-sensitive local roots were also searched on 2026-08-06 by exact official file sizes (`214670409`, `89843225`, `353735616`) and valid `wav2lip256_avatar1` directory structure; no candidate assets were found. `E:\work\积养家` was excluded.
-- `scripts/start_livetalking.ps1` now supports explicit local asset preparation after an authorized/manual download:
-  - `powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "<downloaded_official_source>"`
-  - The source can be the official Windows package root containing `models`, `_internal` and `data`, or a folder containing `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and expanded `wav2lip256_avatar1`.
-  - The command outputs SHA-256 hashes and does not download or read login/session storage.
-- `scripts/inspect_livetalking_assets.ps1 -AssetSourcePath "<downloaded_official_source>"` now verifies a downloaded source before preparation; by default it rejects same-name model/S3FD files whose sizes do not match the official listing.
-- The local install path now matches the observed official assets:
-  - Model-share layout: `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`.
-  - Windows integrated package layout: `models/wav2lip.pth`, `_internal/.../s3fd.pth`, expanded `data/avatars/wav2lip256_avatar1`.
-  - `scripts/start_livetalking.ps1 -PrepareAssets` can extract the avatar zip into ignored `.cache\livetalking-assets` before copying the expanded avatar folder.
-- `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
-- Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
-- 2026-08-06 exact search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` also found no `s3fd.pth` or `wav2lip256_avatar1.zip`; `E:\work\积养家` was intentionally excluded.
-- Follow-up public web search found repeated upstream Quark/Google Drive references but no verified official direct download URL.
-- `scripts/start_livetalking.ps1` now performs Wav2Lip asset preflight and stops before model loading if required files are missing. Use `-SkipAssetCheck` only for diagnostic commands such as `--help`, not for claiming runtime readiness.
+- TASK-000 is done: repository/environment audit and secret checks passed.
+- TASK-001/TASK-002 are done historically for LiveTalking upstream/runtime prep, but they are not Phase 1 blockers.
+- TASK-003 was blocked by missing real Wav2Lip assets and is now `DEFERRED`.
+- TASK-004 LiveTalking API automation is `DEFERRED`.
+- TASK-006 LiveTalking display mode is `DEFERRED`; Phase 1 local idle video is folded into TASK-005.
+- TASK-016 MuseTalk evaluation is `DEFERRED`.
+- Existing Tencent Cloud server is 8C/4G/10M and has no GPU; it is suitable only for the lightweight Gateway in Phase 1.
+- Android client must not store provider secrets.
+- Knowledge MVP remains 10-30 human-approved FAQ entries; no Dify, vector DB or raw-material bulk scan.
 
-## What is not verified
+## New design documents
 
-- Wav2Lip model source hash, license or runtime usability.
-- Avatar source hash, license or runtime usability.
-- LiveTalking service startup.
-- WebRTC/WHEP media path, `/offer`, `/whep`, `/human`, `/humanaudio`, FPS or latency.
-- Android APK, USB microphone, speaker routing, Doubao ASR/TTS/LLM and mini FAQ behavior.
+- `docs/architecture/MVP_ARCHITECTURE.md`
+- `docs/architecture/ANDROID_CLIENT.md`
+- `docs/architecture/GATEWAY_AND_PROVIDERS.md`
+- `docs/architecture/KNOWLEDGE_MVP.md`
+- `docs/architecture/FUTURE_LIVETALKING_UPGRADE.md`
+- `docs/api/MVP_API_SPEC.md`
+- `docs/testing/MVP_ACCEPTANCE.md`
+- `docs/operations/MVP_DEPLOYMENT.md`
+- `docs/adr/ADR-0008_PHASE1_IDLE_VIDEO_VOICE_MVP.md`
 
-## TASK-003 evidence
-
-- `docs/evidence/TASK-003/wav2lip-baseline.md`
-- `docs/evidence/TASK-003/initial-asset-and-env-check.txt`
-- `docs/evidence/TASK-003/gdown-install.txt`
-- `docs/evidence/TASK-003/gdrive-download.txt`
-- `docs/evidence/TASK-003/gdrive-download-retry.txt`
-- `docs/evidence/TASK-003/asset-source-reachability.txt`
-- `docs/evidence/TASK-003/quark-page-probe.txt`
-- `docs/evidence/TASK-003/asset-unblock-followup-local-search.txt`
-- `docs/evidence/TASK-003/asset-unblock-followup-web-search.md`
-- `docs/evidence/TASK-003/pip-check-after-gdown.txt`
-- `docs/evidence/TASK-003/task003-final-verification.txt`
-- `docs/evidence/TASK-003/task003-followup-final-verification.txt`
-- `docs/evidence/TASK-003/task003-third-blocked-audit.txt`
-- `docs/evidence/TASK-003/quark-public-api-probe.txt`
-- `docs/evidence/TASK-003/quark-public-api-folder-list.txt`
-- `docs/evidence/TASK-003/quark-download-endpoint-error-details.txt`
-- `docs/evidence/TASK-003/gdrive-official-source-retry-supported-args-20260806.txt`
-- `docs/evidence/TASK-003/asset-unblock-downloads-exact-search-20260806.txt`
-- `docs/evidence/TASK-003/start-script-asset-preflight-20260806.txt`
-- `docs/evidence/TASK-003/start-script-help-skip-asset-check-20260806.txt`
-- `docs/evidence/TASK-003/task003-asset-unblock-attempt-final-verification-20260806.txt`
-- `docs/evidence/TASK-003/quark-windows-package-public-list-20260806.txt`
-- `docs/evidence/TASK-003/quark-windows-package-targeted-asset-list-20260806.txt`
-- `docs/evidence/TASK-003/quark-windows-package-download-probe-20260806.txt`
-- `docs/evidence/TASK-003/quark-windows-package-avatar-tree-20260806.txt`
-- `docs/evidence/TASK-003/quark-avatar-small-download-header-probe-20260806.txt`
-- `docs/evidence/TASK-003/quark-download-url-shape-20260806.txt`
-- `docs/evidence/TASK-003/quark-client-local-capability-20260806.txt`
-- `docs/evidence/TASK-003/task003-official-package-attempt-final-verification-20260806.txt`
-- `docs/evidence/TASK-003/asset-unblock-quark-download-dir-search-20260806.txt`
-- `docs/evidence/TASK-003/start-script-prepare-assets-mode-verification-20260806.txt`
-- `docs/evidence/TASK-003/task003-prepare-assets-mode-final-verification-20260806.txt`
-- `docs/evidence/TASK-003/asset-unblock-size-and-structure-search-20260806.txt`
-- `docs/evidence/TASK-003/task003-size-structure-search-final-verification-20260806.txt`
-- `docs/evidence/TASK-003/asset-inspector-verification-20260806.txt`
-- `docs/evidence/TASK-003/task003-asset-inspector-final-verification-20260806.txt`
-- `docs/evidence/TASK-003/official-asset-layout-adjustment-verification-20260806.txt`
-- `docs/evidence/TASK-003/manual-asset-download-blocker-20260806.txt`
-
-## Unblock action
-
-Obtain the official assets from the upstream README sources or Windows integrated package and place them in manual staging directory:
+## Phase 1 task order
 
 ```text
-E:\work\ai-kefu\livetalking-assets
+TASK-000
+-> TASK-005 Android landscape shell and local idle video
+-> TASK-007 USB/default microphone and speaker
+-> TASK-008 lightweight Gateway
+-> TASK-009 Doubao TTS
+-> TASK-010 Doubao ASR
+-> TASK-011 LLM Provider
+-> TASK-012 small approved FAQ
+-> TASK-013 end-to-end voice FAQ loop
+-> TASK-014 Tencent Cloud deployment
+-> TASK-015 Android 12 device acceptance
 ```
 
-Accepted forms:
+## Not verified
 
-- `wav2lip256.pth`
-- `s3fd.pth`
-- `wav2lip256_avatar1.zip`
-- or complete official Windows integrated package directory.
+- Android APK build/install.
+- Android 12 real-device display behavior.
+- USB microphone and speaker routing.
+- Gateway runtime implementation.
+- Doubao ASR/TTS real credentials/API behavior.
+- LLM provider real credentials/API behavior.
+- Approved FAQ content.
+- End-to-end voice FAQ loop.
+- Tencent Cloud deployment.
 
-Official entries:
+## Next action
 
-- Quark model share: `https://pan.quark.cn/s/83a750323ef0`
-- Google Drive: `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`
-- Windows integrated package: `https://pan.quark.cn/s/a040bf5cb065`
+Execute exactly one next task: `TASK-005_ANDROID_KIOSK_SHELL.md`.
 
-After manual download, first inspect the downloaded source:
+Expected TASK-005 focus:
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\inspect_livetalking_assets.ps1 -AssetSourcePath "E:\work\ai-kefu\livetalking-assets"
-```
+- create Android 12 landscape kiosk shell;
+- implement local idle character video or rights-clear fallback visual;
+- add non-secret endpoint/config screen;
+- build/smoke-test if SDK/Gradle are available;
+- save evidence and update task state.
 
-Then prepare:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "E:\work\ai-kefu\livetalking-assets"
-```
-
-Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. The launcher can now copy and hash from the downloaded source with `-PrepareAssets -AssetSourcePath`. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.
+Do not start TASK-007/008 in the same task. Do not resume TASK-003/004/006/016 in Phase 1.

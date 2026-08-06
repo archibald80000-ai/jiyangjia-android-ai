@@ -26,12 +26,12 @@
 
 ## 3. 当前产品优先级
 
-1. 可复现的 LiveTalking 官方能力；
-2. Android 12 大屏可靠显示与音频输入输出；
-3. 无 GPU 的 `idle_video` 降级闭环；
-4. 模型 Adapter 与真实 API；
-5. 小范围已确认 FAQ；
-6. 正式知识库、后台和高级数字人能力。
+1. Android 12 大屏可靠显示、本地待机人物视频和可安装 APK；
+2. USB/默认麦克风输入、音响播放、字幕和状态机；
+3. 轻量 Gateway、ASR/LLM/TTS Provider Adapter 与真实 API；
+4. 10–30 条人工确认 FAQ 的小范围知识问答；
+5. 端到端语音问答闭环、腾讯云部署和 Android 真机验收；
+6. 后续增强阶段再恢复 LiveTalking、Wav2Lip、MuseTalk、WebRTC 数字人和 GPU 推理。
 
 不得为了“架构完整”提前引入 Dify、向量数据库、Kubernetes、本地大模型或大型管理后台。
 
@@ -73,7 +73,7 @@
 
 - 外部服务必须经由 `ASRProvider`、`TTSProvider`、`LLMProvider`、`KnowledgeProvider` 等 Adapter；业务层不得直接写死供应商 SDK。
 - Android 客户端只负责 UI、设备音频、状态和安全令牌；密钥与模型调用放在服务端。
-- `idle_video` 与 `livetalking_webrtc` 必须可配置切换。
+- Phase 1 使用 `idle_video_voice`；`livetalking_webrtc` 只保留为后续增强接口。
 - 超时、有限重试、request_id、结构化日志和错误映射是正式功能的一部分。
 - 先实现可观测、可回退的简单方案，再优化低延迟和视觉效果。
 

@@ -6,30 +6,30 @@ Development follows dependency order, not feature excitement.
 
 Audit tools, protect secrets, pin upstream and establish reproducible commands.
 
-## Phase 1 — LiveTalking baseline
+## Phase 1 — Android idle-video voice FAQ MVP
 
-Use Wav2Lip first. Verify official web page, WHEP/WebRTC, text/audio drive, interrupt, state, recording, action state and SSE. Record FPS/latency only when real inference runs.
+Build the Android 12 idle-video voice FAQ loop first. No LiveTalking, Wav2Lip, MuseTalk, WebRTC digital-human mode or GPU inference.
 
-## Phase 2 — Android shell
+## Phase 2 — Android shell and audio
 
-Build landscape kiosk shell, local idle video, WebView/WHEP page, endpoint configuration, mode switch and reconnection. Do not yet add every provider.
+Build landscape kiosk shell, local idle character video, endpoint configuration, USB/default microphone recording and speaker playback.
 
-## Phase 3 — Hardware audio
+## Phase 3 — Gateway and providers
 
-Request permission, enumerate input devices, prefer USB audio, record/play test samples, evaluate feedback and long-running behavior.
+Create Gateway, Provider interfaces, Doubao TTS, Doubao ASR, configurable LLM and request/log/error contracts.
 
-## Phase 4 — Gateway and providers
-
-Mock end-to-end first, then EdgeTTS, Doubao TTS, Doubao ASR and one LLM. Provider failures must use unified errors and cost guards.
-
-## Phase 5 — Mini knowledge
+## Phase 4 — Mini knowledge
 
 Only reviewed questions and answers. Simple exact/keyword/normalized matching is sufficient. Add tests, prohibited topics and staff handoff.
 
-## Phase 6 — Deployment and pilot
+## Phase 5 — End-to-end and deployment
 
-Deploy gateway to Tencent Cloud, configure TLS and device token, then test with the actual Android screen and optional GPU node.
+Connect Android → Gateway → ASR → FAQ/LLM → TTS → playback/subtitles. Deploy Gateway to Tencent Cloud with TLS, device token, logs, backup and rollback.
 
-## Phase 7 — Expansion
+## Phase 6 — Android device acceptance
 
-Evaluate formal RAG, admin UI, MuseTalk, richer actions and multi-store support only after pilot evidence.
+Test on actual Android 12 display: APK install, USB mic, speaker, idle video, network recovery, reboot and long-run checks.
+
+## Phase 7 — Future LiveTalking enhancement
+
+Re-open LiveTalking/Wav2Lip/MuseTalk/WebRTC only after Phase 1 acceptance and GPU/runtime/assets are approved.

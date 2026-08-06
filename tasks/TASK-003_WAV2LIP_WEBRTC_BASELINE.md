@@ -1,6 +1,6 @@
 # TASK-003: Run the first Wav2Lip WebRTC/WHEP baseline
 
-- **Status:** BLOCKED_BY_MANUAL_ASSET_DOWNLOAD
+- **Status:** DEFERRED
 - **Priority:** P0
 - **Dependencies:** TASK-002
 - **Branch:** `task/TASK-003-wav2lip-webrtc-baseline`
@@ -9,6 +9,10 @@
 ## Objective
 
 Run the first Wav2Lip WebRTC/WHEP baseline.
+
+## Phase 1 deferral
+
+As of 2026-08-06, this task is deferred by product decision. Phase 1 does not use LiveTalking, Wav2Lip, MuseTalk, realtime lip sync, WebRTC digital-human mode or GPU inference. Do not continue model downloads, asset preparation or script changes for Phase 1. Re-open this task only in the future LiveTalking enhancement phase.
 
 ## Preconditions
 

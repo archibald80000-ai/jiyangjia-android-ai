@@ -1,0 +1,67 @@
+Phase 1 route adjustment final verification
+Timestamp: 2026-08-05 23:00:05 -05:00
+
+## Repository verification
+Command: & '.\scripts\verify_repository.ps1'
+ExitCode: 0
+Repository verification: PASS
+
+## Task route marker check
+Command: @'
+import pathlib, sys
+text = pathlib.Path('tasks/index.yaml').read_text(encoding='utf-8')
+required = ['current: TASK-005', 'status: DEFERRED', 'depends_on: [TASK-000]', 'depends_on: [TASK-007]', 'depends_on: [TASK-012]']
+missing = [s for s in required if s not in text]
+if missing:
+    print('Missing expected markers:', missing)
+    sys.exit(1)
+print('tasks/index.yaml route marker check: PASS')
+'@ | python -
+ExitCode: 0
+tasks/index.yaml route marker check: PASS
+
+## No stale route markers outside TASK-003 evidence
+Command: rg -n 'Next action is to unblock|do not advance to TASK-004|Phase 1 . LiveTalking|M1 . LiveTalking|EdgeTTS|WebView/WHEP page|LiveTalking/fallback|LiveTalking control path' README.md ROADMAP.md TASKS.md PROJECT_STATE.md MEMORY.md docs memory tasks -g '!docs/evidence/TASK-003/**'
+ExitCode: 1
+
+## Git diff check
+Command: git diff --check
+ExitCode: 0
+
+## Tracked sensitive/model scan
+Command: git ls-files | Select-String -Pattern '\.(pth|pt|ckpt|onnx|wav|mp3|mp4|db|sqlite3)$|(^|/)(\.env|\.env\.local|.*\.pem|.*\.key|.*\.p12|.*\.pfx|.*\.jks|.*\.keystore)$'
+ExitCode: 0
+
+## Git diff stat
+Command: git diff --stat
+ExitCode: 0
+ AGENTS.md                                   |  14 +-
+ MEMORY.md                                   |   4 +-
+ PROJECT_STATE.md                            |  35 +++--
+ README.md                                   |  44 +++---
+ ROADMAP.md                                  |  44 +++---
+ TASKS.md                                    |  15 +-
+ docs/00_PRODUCT_REQUIREMENTS.md             |  28 ++--
+ docs/01_SYSTEM_ARCHITECTURE.md              |  18 ++-
+ docs/02_DEVELOPMENT_PLAN.md                 |  28 ++--
+ docs/05_GATEWAY_AND_MODEL_ADAPTERS.md       |   4 +-
+ docs/README.md                              |  15 +-
+ docs/adr/ADR-0006_WAV2LIP_FIRST.md          |   4 +-
+ memory/CORE_FACTS.md                        |   6 +-
+ memory/CURRENT_STATE.md                     |  13 +-
+ memory/DECISIONS.md                         |   3 +-
+ memory/HANDOFF.md                           | 203 ++++++++++++----------------
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md   |   6 +-
+ tasks/TASK-004_LIVETALKING_API_CONTRACTS.md |   6 +-
+ tasks/TASK-005_ANDROID_KIOSK_SHELL.md       |  18 ++-
+ tasks/TASK-006_ANDROID_DISPLAY_MODES.md     |  10 +-
+ tasks/TASK-008_GATEWAY_SKELETON.md          |   6 +-
+ tasks/TASK-009_TTS_PROVIDERS.md             |  11 +-
+ tasks/TASK-010_ASR_PROVIDERS.md             |   5 +-
+ tasks/TASK-011_LLM_ROUTER.md                |   6 +-
+ tasks/TASK-012_MINI_FAQ.md                  |   6 +-
+ tasks/TASK-013_END_TO_END_DIALOGUE.md       |  11 +-
+ tasks/TASK-015_ANDROID_DEVICE_ACCEPTANCE.md |   4 +-
+ tasks/TASK-016_MUSETALK_EVALUATION.md       |   8 +-
+ tasks/index.yaml                            |  42 +++---
+ 29 files changed, 317 insertions(+), 300 deletions(-)

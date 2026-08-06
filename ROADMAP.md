@@ -6,36 +6,46 @@ Repository, environment audit, upstream lock, secret protections and Codex execu
 
 Current gate: `TASK-000` is done. The locked LiveTalking checkout exists under ignored `third_party/LiveTalking`; see `docs/evidence/TASK-000/environment-audit.md`.
 
-## M1 — LiveTalking reproducible baseline
+## M1 — Phase 1 idle-video voice FAQ MVP
 
-Wav2Lip first; WebRTC/WHEP, `/human`, `/humanaudio`, interrupt, speaking state, record, action state and SSE verified with evidence.
+Current first priority is Android + Gateway + ASR/TTS/LLM + small FAQ. Phase 1 does not run LiveTalking, Wav2Lip, MuseTalk, WebRTC digital-human mode or GPU inference.
 
-## M2 — Android kiosk shell
+Target flow:
 
-Landscape immersive APK, WebView/WebRTC page, local idle video, endpoint configuration, automatic reconnect and device diagnostics.
+`Android start → local idle character video → tap to consult → USB/default mic recording → Gateway upload → Doubao ASR → mini FAQ retrieval → LLM grounded answer → Doubao TTS → Android playback and subtitles → idle`
 
-## M3 — Audio hardware loop
+## M2 — Android kiosk and audio
 
-USB microphone preference/fallback, recording, external/internal speaker playback, echo and long-run checks.
+Landscape immersive APK, local idle character video, endpoint configuration, device diagnostics, USB/default microphone recording and speaker playback.
 
-## M4 — Model adapters
+## M3 — Gateway and providers
 
-Mock, EdgeTTS, Doubao TTS, Doubao ASR, Doubao/Qwen/OpenAI-compatible LLM, unified errors and cost protection.
+Lightweight Gateway, request IDs, sanitized logs, ASR/LLM/TTS/Knowledge Provider interfaces, Doubao ASR/TTS, configurable LLM and cost/error guards.
 
-## M5 — Mini knowledge test
+## M4 — Mini knowledge test
 
-10–30 reviewed FAQs, simple retrieval, forbidden topics, transfer-to-human and test set. No vector database.
+10–30 human-reviewed FAQs, simple retrieval, forbidden topics, transfer-to-human and evaluation set. No Dify and no vector database.
 
-## M6 — End-to-end store pilot
+## M5 — End-to-end store pilot
 
-Android → ASR → mini knowledge/LLM → TTS → idle video or LiveTalking → logs, with fallback and privacy notice.
+Android → ASR → mini knowledge/LLM → TTS → playback/subtitles → idle video, with logs, fallback and privacy controls.
 
-## M7 — Production deployment
+## M6 — Production deployment
 
-Tencent Cloud gateway, TLS, authentication, monitoring, backup and optional separate GPU node / TURN.
+Tencent Cloud CPU Gateway, TLS, device auth, monitoring, backup and rollback. No GPU inference on the 8C/4G server.
 
-## M8 — Formal knowledge base and advanced avatar
+## M7 — Android device acceptance
 
-Only after pilot evidence: document workflow, vector retrieval, administration, MuseTalk evaluation and richer action orchestration.
+U-disk/ADB installation as available, Android 12 real-device validation, USB mic, speaker, network recovery, reboot and long-run checks.
 
-See `docs/22_DELIVERY_BLUEPRINT.md` for the task dependency gates, evidence ladder, acceptance spine and rollback strategy used across this roadmap.
+## M8 — Future LiveTalking enhancement
+
+Only after Phase 1 acceptance: re-open deferred LiveTalking/Wav2Lip/MuseTalk/WebRTC work, validate GPU/runtime/FPS, then add `livetalking_webrtc` display mode behind configuration.
+
+See also:
+
+- `docs/architecture/MVP_ARCHITECTURE.md`
+- `docs/architecture/FUTURE_LIVETALKING_UPGRADE.md`
+- `docs/api/MVP_API_SPEC.md`
+- `docs/testing/MVP_ACCEPTANCE.md`
+- `docs/operations/MVP_DEPLOYMENT.md`

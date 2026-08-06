@@ -23,12 +23,12 @@ class LiveTalkingClient:
     async def speak_text(self, session_id: str, text: str, interrupt: bool) -> None: ...
 ```
 
-These are interface contracts, not proof of implementation.
+These are interface contracts, not proof of implementation. `LiveTalkingClient` is a future extension point and is not part of Phase 1 execution.
 
 ## Provider order
 
 - ASR: fixed-text test → Mock → Doubao.
-- TTS: generated test audio → EdgeTTS → Doubao.
+- TTS: generated test audio → Mock → Doubao.
 - LLM: Mock → one OpenAI-compatible route → Doubao/Qwen alternatives.
 - Knowledge: mini FAQ → optional LLM fallback → formal RAG later.
 

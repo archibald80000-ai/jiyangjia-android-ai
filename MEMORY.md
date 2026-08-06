@@ -9,8 +9,8 @@
 - 原始资料在 `E:\work\积养家`，当前不做复杂知识库，仅按需人工挑选少量已确认资料。
 - 当前前端设备是 Android 12，不运行 Windows EXE、Python、CUDA 或本地大模型。
 - 现有腾讯云为 8 核 CPU、4 GB 内存、10 Mbps、无 GPU。
-- 前期以 LiveTalking 能力复现与集成为主。
-- 必须同时保留 `idle_video` 无 GPU降级模式和 `livetalking_webrtc` 实时数字人模式。
+- 当前第一阶段以 Android 待机人物视频 + USB/默认麦克风 + Gateway + ASR/LLM/TTS + 小 FAQ 的语音问答 MVP 为主。
+- LiveTalking、Wav2Lip、MuseTalk、实时口型和 WebRTC 数字人移到后续增强阶段；保留扩展接口但不阻塞第一阶段。
 - 所有真实密钥都在本地或服务器私密配置中，公共仓库不包含真实值。
 
 ## 会话恢复顺序

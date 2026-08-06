@@ -1,8 +1,8 @@
 # TASK-012: Implement the reviewed 10–30 item mini knowledge layer
 
 - **Status:** PLANNED
-- **Priority:** P1
-- **Dependencies:** TASK-008
+- **Priority:** P0
+- **Dependencies:** TASK-011
 - **Branch:** `task/TASK-012-mini-faq`
 - **Owner:** Codex / assigned developer
 
@@ -12,7 +12,7 @@ Implement the reviewed 10–30 item mini knowledge layer.
 
 ## Preconditions
 
-- TASK-008 is DONE
+- TASK-011 is DONE
 - A human-approved mini FAQ set is available or examples remain Mock
 
 ## Scope and allowed changes

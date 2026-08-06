@@ -1,6 +1,6 @@
 # TASK-016: Evaluate MuseTalk after the Wav2Lip pilot baseline
 
-- **Status:** PLANNED
+- **Status:** DEFERRED
 - **Priority:** P2
 - **Dependencies:** TASK-015
 - **Branch:** `task/TASK-016-musetalk-evaluation`
@@ -8,7 +8,11 @@
 
 ## Objective
 
-Evaluate MuseTalk after the Wav2Lip pilot baseline.
+Evaluate MuseTalk after the Phase 1 MVP and any resumed LiveTalking/Wav2Lip baseline.
+
+## Phase 1 deferral
+
+MuseTalk is not part of the Phase 1 Android idle-video voice FAQ MVP. Re-open only after the MVP is accepted and a GPU-backed digital-human enhancement phase is approved.
 
 ## Preconditions
 

@@ -1,8 +1,8 @@
 # TASK-010: Implement Mock then Doubao ASR adapters
 
 - **Status:** PLANNED
-- **Priority:** P1
-- **Dependencies:** TASK-007, TASK-008
+- **Priority:** P0
+- **Dependencies:** TASK-009
 - **Branch:** `task/TASK-010-asr-providers`
 - **Owner:** Codex / assigned developer
 
@@ -12,6 +12,7 @@ Implement Mock then Doubao ASR adapters.
 
 ## Preconditions
 
+- TASK-009 is DONE
 - TASK-007 and TASK-008 are DONE/PARTIAL with usable audio and gateway contracts
 
 ## Scope and allowed changes

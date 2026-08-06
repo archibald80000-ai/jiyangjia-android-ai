@@ -1,8 +1,8 @@
 # TASK-011: Implement Mock and configurable LLM adapters
 
 - **Status:** PLANNED
-- **Priority:** P1
-- **Dependencies:** TASK-008
+- **Priority:** P0
+- **Dependencies:** TASK-010
 - **Branch:** `task/TASK-011-llm-router`
 - **Owner:** Codex / assigned developer
 
@@ -12,7 +12,7 @@ Implement Mock and configurable LLM adapters.
 
 ## Preconditions
 
-- TASK-008 is DONE
+- TASK-010 is DONE
 
 ## Scope and allowed changes
 

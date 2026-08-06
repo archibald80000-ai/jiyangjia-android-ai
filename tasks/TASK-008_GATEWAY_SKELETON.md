@@ -1,8 +1,8 @@
 # TASK-008: Create the lightweight gateway and common contracts
 
 - **Status:** PLANNED
-- **Priority:** P1
-- **Dependencies:** TASK-000
+- **Priority:** P0
+- **Dependencies:** TASK-007
 - **Branch:** `task/TASK-008-gateway-skeleton`
 - **Owner:** Codex / assigned developer
 
@@ -12,7 +12,7 @@ Create the lightweight gateway and common contracts.
 
 ## Preconditions
 
-- TASK-000 is DONE
+- TASK-007 is DONE or explicitly PARTIAL with a stable Android audio contract
 
 ## Scope and allowed changes
 

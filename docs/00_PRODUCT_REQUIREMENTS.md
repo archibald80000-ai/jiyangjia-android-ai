@@ -2,19 +2,19 @@
 
 ## 1. Goal
 
-Provide a store-facing Android 12 AI voice service terminal that can receive customer speech through a USB microphone, generate a controlled answer, play the answer through speakers, display subtitles/status and optionally render a speaking digital person through LiveTalking.
+Provide a store-facing Android 12 AI voice service terminal that can receive customer speech through a USB microphone, generate a controlled answer, play the answer through speakers, display subtitles/status and show a local idle character video. LiveTalking digital-human rendering is a future enhancement, not a Phase 1 dependency.
 
 ## 2. Primary user journey
 
 ```text
-Idle avatar/video
-→ customer starts speaking
-→ Android records or streams audio
-→ gateway performs ASR
-→ mini knowledge / LLM generates controlled answer
-→ TTS creates speech
-→ idle-video playback or LiveTalking rendering
-→ answer ends
+Android starts
+→ local idle character video loops
+→ customer taps start
+→ Android records USB/default microphone audio
+→ gateway performs Doubao ASR
+→ mini FAQ / LLM generates controlled answer
+→ Doubao TTS creates speech
+→ Android plays audio and subtitles
 → return to idle
 ```
 
@@ -24,11 +24,9 @@ Idle avatar/video
 - Local idle video loop with no network dependency.
 - USB microphone preference and default-input fallback.
 - Built-in or external speaker playback.
-- Configurable server address and display mode.
+- Configurable server address and `idle_video_voice` display mode.
 - Network error, timeout, reconnect and recoverable states.
-- LiveTalking WebRTC/WHEP playback when available.
-- Text and audio drive, interrupt and status integration.
-- Provider adapters for Mock, EdgeTTS, Doubao ASR/TTS and LLMs.
+- Provider adapters for Mock, Doubao ASR/TTS and configurable LLMs.
 - 10–30 reviewed mini FAQ entries with prohibited-topic and transfer rules.
 - Request IDs, structured logs, basic health/status reporting.
 
@@ -39,12 +37,12 @@ Idle avatar/video
 - Local LLM on Android or the 4 GB cloud server.
 - Production-grade multi-tenant administration.
 - Real-time 3D skeleton/gesture control.
-- MuseTalk, multi-stream concurrency, RTMP live commerce and advanced voice cloning before Wav2Lip baseline passes.
+- LiveTalking, Wav2Lip, MuseTalk, WebRTC digital human, multi-stream concurrency, RTMP live commerce and advanced voice cloning in Phase 1.
 
 ## 5. Experience targets
 
 - The customer always sees a stable avatar or idle video.
-- A provider or GPU failure produces a friendly message and fallback, not a blank screen.
+- A provider or network failure produces a friendly message and fallback, not a blank screen.
 - Speech answers are short, conversational and normally 50–150 Chinese characters.
 - Medical diagnosis, treatment claims, uncertain prices and unsupported facts transfer to staff.
 

@@ -3,37 +3,39 @@
 > Repository: `jiyangjia-android-ai`
 > Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
 > Target device: Android 12 大屏
-> Primary upstream: [lipku/LiveTalking](https://github.com/lipku/LiveTalking)
+> Future upstream: [lipku/LiveTalking](https://github.com/lipku/LiveTalking)
 
-本仓库用于管理“门店 Android 大屏 AI 语音客服 / 数字人终端”的产品需求、系统架构、开发任务、Codex 执行规则、项目记忆和后续代码。当前优先目标不是一次性建设复杂知识库，而是先复现并集成 LiveTalking 的核心能力，再逐步接入 Android 大屏、USB 麦克风、豆包语音、大模型和小范围测试知识。
+本仓库用于管理“门店 Android 大屏 AI 语音客服 / 数字人终端”的产品需求、系统架构、开发任务、Codex 执行规则、项目记忆和后续代码。当前第一阶段目标不是下载模型或搭建实时数字人，而是在 Android 12 大屏上交付“本地待机人物视频 + USB/默认麦克风 + Gateway + 豆包 ASR/TTS + LLM + 小范围 FAQ + 字幕”的最小可上线版本。
 
 ## 当前产品路线
 
 ```text
-阶段 A：复现 LiveTalking 官方核心功能
-  WebRTC / WHEP、文本驱动、音频驱动、打断、状态、录制、动作状态、SSE
+阶段 A：Android 12 大屏客户端
+  横屏全屏、本地待机人物视频、配置入口、状态机、无网络 fallback
 
-阶段 B：Android 12 大屏客户端
-  横屏全屏、WebView/WebRTC、本地待机视频、USB 麦克风、音响、断线重连
+阶段 B：音频硬件
+  USB/默认麦克风、录音、音响播放、权限、设备诊断
 
-阶段 C：模型与语音适配
-  Mock → EdgeTTS → 豆包 TTS → 豆包 ASR → 豆包/千问/OpenAI 兼容 LLM
+阶段 C：Gateway 与 Provider
+  轻量 Gateway → 豆包 TTS → 豆包 ASR → LLM Provider → 请求日志和错误映射
 
-阶段 D：小范围知识测试
+阶段 D：小范围知识问答
   10～30 条已确认 FAQ，简单检索，禁止回答规则，转人工
 
-阶段 E：部署与门店验收
-  腾讯云 API 网关 + 可选 GPU 节点 + Android 大屏
+阶段 E：闭环、部署与门店验收
+  Android → Gateway → ASR/FAQ/LLM/TTS → 播放与字幕 → 腾讯云 → Android 真机
+
+后续增强：LiveTalking / Wav2Lip / MuseTalk / WebRTC 数字人
 ```
 
 ## 两种运行模式
 
 | 模式 | 说明 | GPU |
 |---|---|---:|
-| `idle_video` | 本地待机人物视频持续播放，知识回答由语音播报 | 不需要 |
-| `livetalking_webrtc` | LiveTalking 实时渲染数字人口型，通过 WebRTC 输出 | 需要兼容 GPU 节点 |
+| `idle_video_voice` | 本地待机人物视频持续播放，知识回答由语音播报并显示字幕 | 不需要 |
+| `livetalking_webrtc` | 后续增强：LiveTalking 实时渲染数字人口型，通过 WebRTC 输出 | 需要兼容 GPU 节点 |
 
-V1 必须先保证 `idle_video` 模式可用；LiveTalking 未启动、网络断开或 GPU 节点异常时，客户端自动降级，不影响门店基础语音客服演示。
+Phase 1 只做 `idle_video_voice`。`livetalking_webrtc` 保留接口和文档，等 Android + Gateway 语音 FAQ MVP 验收后再恢复。
 
 ## 已知基础条件
 
@@ -53,10 +55,11 @@ Codex 或新开发者必须依次阅读：
 3. [`MEMORY.md`](MEMORY.md)
 4. [`PROJECT_STATE.md`](PROJECT_STATE.md)
 5. [`docs/00_PRODUCT_REQUIREMENTS.md`](docs/00_PRODUCT_REQUIREMENTS.md)
-6. [`docs/15_CODEX_EXECUTION_PROTOCOL.md`](docs/15_CODEX_EXECUTION_PROTOCOL.md)
-7. [`docs/22_DELIVERY_BLUEPRINT.md`](docs/22_DELIVERY_BLUEPRINT.md)
-8. [`tasks/README.md`](tasks/README.md)
-9. 当前被授权的 `TASK-xxx` 文件
+6. [`docs/architecture/MVP_ARCHITECTURE.md`](docs/architecture/MVP_ARCHITECTURE.md)
+7. [`docs/api/MVP_API_SPEC.md`](docs/api/MVP_API_SPEC.md)
+8. [`docs/testing/MVP_ACCEPTANCE.md`](docs/testing/MVP_ACCEPTANCE.md)
+9. [`tasks/README.md`](tasks/README.md)
+10. 当前被授权的 `TASK-xxx` 文件
 
 不得跳过环境审查、直接同时开发 Android、后端、模型和知识库。
 
@@ -75,8 +78,7 @@ Copy-Item .env.example .env.local
 # 检查开发环境
 powershell -ExecutionPolicy Bypass -File .\scripts\check_prerequisites.ps1
 
-# 拉取锁定版本的 LiveTalking（不会提交到本仓库）
-powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+# Phase 1 不需要下载 LiveTalking 模型资产；只在未来增强阶段恢复 LiveTalking 任务
 ```
 
 ## 仓库结构
@@ -104,10 +106,10 @@ tests/             跨模块测试与验收入口
 
 仓库目前处于 **规划与工程骨架阶段**。没有宣称以下事项已经完成：
 
-- LiveTalking 已在目标 GPU 上实时运行；
 - Android APK 已构建并完成 USB 麦克风验证；
 - 豆包收费接口已接入；
 - 正式知识库已建立；
 - 腾讯云生产环境已部署。
+- LiveTalking 已在目标 GPU 上实时运行。
 
 真实进度只以 [`PROJECT_STATE.md`](PROJECT_STATE.md)、任务文件和可复现测试证据为准。

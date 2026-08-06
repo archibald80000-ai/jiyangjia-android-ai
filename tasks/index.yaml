@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-003
+current: TASK-005
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -24,25 +24,25 @@ tasks:
     file: TASK-003_WAV2LIP_WEBRTC_BASELINE.md
     title: "Run the first Wav2Lip WebRTC/WHEP baseline"
     priority: p0
-    status: BLOCKED_BY_MANUAL_ASSET_DOWNLOAD
+    status: DEFERRED
     depends_on: [TASK-002]
   - id: TASK-004
     file: TASK-004_LIVETALKING_API_CONTRACTS.md
     title: "Automate and verify LiveTalking core control APIs"
     priority: p0
-    status: PLANNED
-    depends_on: [TASK-003]
+    status: DEFERRED
+    depends_on: [TASK-015]
   - id: TASK-005
     file: TASK-005_ANDROID_KIOSK_SHELL.md
-    title: "Create the Android 12 landscape kiosk shell"
+    title: "Create the Android 12 landscape kiosk shell and local idle video"
     priority: p0
     status: PLANNED
-    depends_on: [TASK-004]
+    depends_on: [TASK-000]
   - id: TASK-006
     file: TASK-006_ANDROID_DISPLAY_MODES.md
     title: "Implement idle-video and LiveTalking WebView/WHEP modes"
     priority: p0
-    status: PLANNED
+    status: DEFERRED
     depends_on: [TASK-005]
   - id: TASK-007
     file: TASK-007_ANDROID_USB_AUDIO.md
@@ -53,39 +53,39 @@ tasks:
   - id: TASK-008
     file: TASK-008_GATEWAY_SKELETON.md
     title: "Create the lightweight gateway and common contracts"
-    priority: p1
+    priority: p0
     status: PLANNED
-    depends_on: [TASK-000]
+    depends_on: [TASK-007]
   - id: TASK-009
     file: TASK-009_TTS_PROVIDERS.md
-    title: "Implement EdgeTTS then Doubao TTS adapters"
-    priority: p1
+    title: "Implement Doubao TTS adapter"
+    priority: p0
     status: PLANNED
     depends_on: [TASK-008]
   - id: TASK-010
     file: TASK-010_ASR_PROVIDERS.md
     title: "Implement Mock then Doubao ASR adapters"
-    priority: p1
+    priority: p0
     status: PLANNED
-    depends_on: [TASK-007, TASK-008]
+    depends_on: [TASK-009]
   - id: TASK-011
     file: TASK-011_LLM_ROUTER.md
     title: "Implement Mock and configurable LLM adapters"
-    priority: p1
+    priority: p0
     status: PLANNED
-    depends_on: [TASK-008]
+    depends_on: [TASK-010]
   - id: TASK-012
     file: TASK-012_MINI_FAQ.md
     title: "Implement the reviewed 10–30 item mini knowledge layer"
-    priority: p1
+    priority: p0
     status: PLANNED
-    depends_on: [TASK-008]
+    depends_on: [TASK-011]
   - id: TASK-013
     file: TASK-013_END_TO_END_DIALOGUE.md
     title: "Connect Android, gateway, providers and both display modes"
     priority: p0
     status: PLANNED
-    depends_on: [TASK-006, TASK-007, TASK-009, TASK-010, TASK-011, TASK-012]
+    depends_on: [TASK-012]
   - id: TASK-014
     file: TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md
     title: "Deploy the lightweight gateway to Tencent Cloud"
@@ -97,12 +97,12 @@ tasks:
     title: "Validate the actual Android 12 display in the store"
     priority: p0
     status: PLANNED
-    depends_on: [TASK-013, TASK-014]
+    depends_on: [TASK-014]
   - id: TASK-016
     file: TASK-016_MUSETALK_EVALUATION.md
-    title: "Evaluate MuseTalk after the Wav2Lip pilot baseline"
+    title: "Evaluate MuseTalk after the Phase 1 MVP"
     priority: p2
-    status: PLANNED
+    status: DEFERRED
     depends_on: [TASK-015]
   - id: TASK-017
     file: TASK-017_FORMAL_KNOWLEDGE_BASE_V1.md

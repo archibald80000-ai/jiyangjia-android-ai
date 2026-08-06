@@ -1,6 +1,6 @@
 # TASK-004: Automate and verify LiveTalking core control APIs
 
-- **Status:** PLANNED
+- **Status:** DEFERRED
 - **Priority:** P0
 - **Dependencies:** TASK-003
 - **Branch:** `task/TASK-004-livetalking-api-contracts`
@@ -9,6 +9,10 @@
 ## Objective
 
 Automate and verify LiveTalking core control APIs.
+
+## Phase 1 deferral
+
+As of 2026-08-06, LiveTalking API automation is deferred. Phase 1 uses `idle_video_voice` with Android playback/subtitles and Gateway ASR/LLM/TTS/FAQ. Re-open only after the Phase 1 MVP is accepted and LiveTalking runtime evidence is available.
 
 ## Preconditions
 

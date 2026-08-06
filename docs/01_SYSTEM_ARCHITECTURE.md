@@ -8,8 +8,8 @@ Android 12 kiosk
   ├─ USB/default microphone
   ├─ speaker output
   ├─ local idle video
-  └─ WebView/WebRTC client
-          │ HTTPS / WHEP / WebRTC
+  └─ subtitles/status
+          │ HTTPS
           ▼
 Gateway on Tencent Cloud (8C/4G/10M)
   ├─ authentication and request IDs
@@ -18,11 +18,7 @@ Gateway on Tencent Cloud (8C/4G/10M)
   ├─ LLM adapter
   ├─ TTS adapter
   ├─ session / logs / config
-  └─ LiveTalking control adapter
-          │ private or protected network
-          ▼
-GPU node or development PC
-  └─ LiveTalking + Wav2Lip/MuseTalk + WebRTC
+  └─ future LiveTalking adapter boundary
 ```
 
 ## Responsibilities
@@ -33,11 +29,11 @@ Device interaction, UI state, video/audio playback, microphone selection, local 
 
 ### Gateway
 
-Business brain and security boundary. It calls ASR/LLM/TTS/knowledge providers, controls answer policy and sends final text/audio/control events to the client or LiveTalking.
+Business brain and security boundary. It calls ASR/LLM/TTS/knowledge providers, controls answer policy and sends final text/audio/subtitle events to the client.
 
 ### LiveTalking node
 
-Rendering engine. It turns text/audio into a synchronized digital-human stream and exposes WebRTC/WHEP and control endpoints. It must not become the only source of business truth.
+Deferred rendering engine. It may later turn text/audio into a synchronized digital-human stream and expose WebRTC/WHEP and control endpoints, but it is not part of Phase 1 and must not become the only source of business truth.
 
 ## State machine
 
@@ -61,5 +57,7 @@ Any active state
 - `idle_video` works without LiveTalking.
 - Provider adapters can be swapped by configuration.
 - Raw recordings are not retained by default.
-- One store interaction has a stable `request_id` across Android, gateway, providers and LiveTalking controls.
+- One store interaction has a stable `request_id` across Android, gateway and providers.
 - Upstream code is pinned and changes are auditable.
+
+Phase 1 detailed architecture is in `architecture/MVP_ARCHITECTURE.md`.

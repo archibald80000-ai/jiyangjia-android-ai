@@ -7,7 +7,8 @@
 | D-003 | Start with 10–30 reviewed FAQ items; no vector DB | Accepted | ADR-0003 |
 | D-004 | Keep LiveTalking as pinned upstream checkout with adapters/patches | Accepted | ADR-0004 |
 | D-005 | Android V1 uses native kiosk shell plus WebView/WebRTC page | Accepted | ADR-0005 |
-| D-006 | Wav2Lip is the first real-time model to reproduce; MuseTalk later | Accepted | ADR-0006 |
+| D-006 | Wav2Lip is the first real-time model to reproduce when LiveTalking resumes; MuseTalk later | Superseded for Phase 1 | ADR-0006 / ADR-0008 |
 | D-007 | Tencent 8C/4G server runs gateway only, not GPU inference | Accepted | ADR-0007 |
+| D-008 | Phase 1 ships idle-video voice FAQ MVP; LiveTalking/WebRTC/GPU inference deferred | Accepted | ADR-0008 |
 
 New architectural decisions require a new ADR and an update to this table.

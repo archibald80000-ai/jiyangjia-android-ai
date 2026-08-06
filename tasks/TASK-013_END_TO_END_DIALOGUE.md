@@ -2,17 +2,17 @@
 
 - **Status:** PLANNED
 - **Priority:** P0
-- **Dependencies:** TASK-006, TASK-007, TASK-009, TASK-010, TASK-011, TASK-012
+- **Dependencies:** TASK-012
 - **Branch:** `task/TASK-013-end-to-end-dialogue`
 - **Owner:** Codex / assigned developer
 
 ## Objective
 
-Connect Android, gateway, providers and both display modes.
+Connect Android, gateway, providers and the idle-video voice FAQ mode.
 
 ## Preconditions
 
-- TASK-006/007/009/010/011/012 satisfy their required interfaces
+- TASK-005/007/008/009/010/011/012 satisfy their required interfaces
 
 ## Scope and allowed changes
 
@@ -33,8 +33,8 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 1. Connect one interaction request across Android/gateway/ASR/knowledge-or-LLM/TTS and playback.
 2. Propagate one request ID through every component and state transition.
-3. Validate idle-video mode first, then LiveTalking mode where a real service is available.
-4. Test interrupt/cancel, provider timeout, LiveTalking loss and network loss.
+3. Validate idle-video voice mode.
+4. Test interrupt/cancel, provider timeout and network loss.
 5. Run 30 controlled cycles and report failures, latency breakdown and fallback count.
 
 ## Verification commands
@@ -57,7 +57,6 @@ python -m pytest tests/e2e -q
 ## Acceptance criteria
 
 - [ ] Audio → ASR → answer → TTS → playback works
-- [ ] LiveTalking control path works when available
 - [ ] Idle-video fallback works
 - [ ] Request ID correlation
 - [ ] 30-cycle stability test

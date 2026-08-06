@@ -1,6 +1,6 @@
 # TASK-006: Implement idle-video and LiveTalking WebView/WHEP modes
 
-- **Status:** PLANNED
+- **Status:** DEFERRED
 - **Priority:** P0
 - **Dependencies:** TASK-005
 - **Branch:** `task/TASK-006-android-display-modes`
@@ -9,6 +9,10 @@
 ## Objective
 
 Implement idle-video and LiveTalking WebView/WHEP modes.
+
+## Phase 1 deferral
+
+As of 2026-08-06, the LiveTalking/WebRTC display mode is deferred. Phase 1 local idle video is handled in TASK-005. Re-open this task later to add `livetalking_webrtc` after the Android + Gateway voice FAQ MVP is accepted.
 
 ## Preconditions
 
@@ -27,10 +31,10 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 - Native WebRTC rewrite
 
-## Detailed execution
+## Deferred execution notes
 
 1. Implement local idle-video loop with packaging/provisioning behavior that does not depend on network.
-2. Implement LiveTalking WebView/WHEP page mode and required WebView media/microphone permission handling.
+2. In a future enhancement phase, implement LiveTalking page mode and required WebView media/microphone permission handling.
 3. Load display mode and endpoint from non-secret configuration.
 4. Implement health check, reconnect and automatic fallback without blank screen.
 5. Test both modes independently and a forced failure transition.

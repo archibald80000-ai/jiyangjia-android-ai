@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** BLOCKED_BY_MANUAL_ASSET_DOWNLOAD ON TASK-003
-- **Current authorized task:** TASK-003 (blocked by missing manual asset download; do not advance to TASK-004)
+- **Overall status:** PHASE 1 MVP DESIGN UPDATED
+- **Current authorized task:** TASK-005 (next; Android kiosk shell and local idle video)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -52,6 +52,8 @@
 - `scripts/inspect_livetalking_assets.ps1` verifies a user-downloaded official Wav2Lip source before preparation. It does not download assets, copy model files or read browser/Quark login storage, and default checks reject same-name dummy files with non-official model/S3FD sizes.
 - TASK-003 installation scripts now match the observed official asset layouts: model-share layout with `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`; and Windows integrated package layout with `models/wav2lip.pth`, `_internal/.../s3fd.pth`, and expanded `data/avatars/wav2lip256_avatar1`. `-PrepareAssets` can extract the official avatar zip before copying to ignored LiveTalking paths.
 - TASK-003 checked `E:\work\ai-kefu\livetalking-assets` on 2026-08-06; the directory does not exist, so no real official Wav2Lip assets are available for installation.
+- Product route changed on 2026-08-06: Phase 1 defers LiveTalking/Wav2Lip/MuseTalk/WebRTC digital-human and GPU inference. The current MVP is Android idle character video + tap-to-talk + Gateway + Doubao ASR/TTS + LLM + 10-30 approved FAQ + subtitles.
+- ADR-0008 records the Phase 1 idle-video voice FAQ MVP decision.
 
 ## Not yet verified
 
@@ -59,23 +61,26 @@
 - USB Host / USB Audio Class support.
 - Whether APK sideloading and ADB are enabled.
 - Android SDK/ADB and Gradle availability.
-- LiveTalking model weights and Avatar assets. Required TASK-003 files are still absent: `third_party\LiveTalking\models\wav2lip.pth`, `third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth` and `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\`.
-- WebRTC connectivity on the target network.
-- LiveTalking service startup and Wav2Lip runtime behavior.
+- Phase 1 Android APK, idle video display and local fallback behavior.
+- USB/default microphone recording on target Android 12 display.
+- Speaker playback and subtitle behavior on target Android 12 display.
+- Gateway implementation, provider adapters and end-to-end voice FAQ loop.
+- LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
 - Whether the expanded local framework should replace the current GitHub `main` content or be published through a review branch.
 
 ## Current milestone
 
-**M1 — LiveTalking reproducible baseline**
+**M1 — Phase 1 idle-video voice FAQ MVP**
 
 Exit criteria:
 
-- Locked upstream source audited and runtime requirements understood.
-- Isolated LiveTalking environment created.
-- Wav2Lip model/avatar assets prepared with source/license/hash records.
-- WebRTC/WHEP and core LiveTalking API behavior verified with real local evidence.
+- Android 12 app launches in landscape immersive mode and loops local idle character video.
+- User can tap to record through USB/default microphone and hear TTS answer through speaker.
+- Gateway performs ASR -> mini FAQ retrieval -> LLM answer -> TTS with request IDs and sanitized logs.
+- 10-30 FAQ entries are human approved; no Dify, vector DB or bulk raw-material scan.
+- End-to-end store-flow evidence exists with subtitles, audio playback, fallback and rollback notes.
 
 Current evidence:
 
@@ -84,17 +89,24 @@ Current evidence:
 - `docs/evidence/TASK-001/upstream-audit.md`
 - `docs/evidence/TASK-002/environment-matrix.md`
 - `docs/evidence/TASK-003/wav2lip-baseline.md`
+- `docs/architecture/MVP_ARCHITECTURE.md`
+- `docs/api/MVP_API_SPEC.md`
+- `docs/testing/MVP_ACCEPTANCE.md`
+- `docs/operations/MVP_DEPLOYMENT.md`
+- `docs/evidence/phase1-route-adjustment-20260806.md`
+- `docs/evidence/phase1-route-adjustment-final-verification-20260806.txt`
 
 Recent task results:
 
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 - TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
-- TASK-003 BLOCKED_BY_MANUAL_ASSET_DOWNLOAD. Required Wav2Lip model/S3FD/avatar assets are missing from `E:\work\ai-kefu\livetalking-assets`. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy. Safe local inspection/preparation supports the official zip and Windows package layouts after authorized download. No LiveTalking startup/WebRTC/FPS success is claimed.
+- TASK-003 DEFERRED. Required Wav2Lip model/S3FD/avatar assets are still absent, but this no longer blocks Phase 1 because LiveTalking/WebRTC/GPU inference moved to the future enhancement phase. No LiveTalking startup/WebRTC/FPS success is claimed.
+- ROUTE UPDATED. Phase 1 design documents now define the Android idle-video voice FAQ MVP and keep future LiveTalking integration behind extension interfaces.
 
 Next action:
 
-- Manually download official assets into `E:\work\ai-kefu\livetalking-assets`: either `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`; or the official Windows integrated package directory containing `models/wav2lip.pth`, `_internal/.../s3fd.pth`, and `data/avatars/wav2lip256_avatar1`. Official entries: Quark `https://pan.quark.cn/s/83a750323ef0`, Google Drive `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`, Windows package `https://pan.quark.cn/s/a040bf5cb065`. After assets exist, run inspect, prepare, startup, WebRTC and FPS verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
+- Execute exactly one next task: TASK-005 Android 12 landscape kiosk shell with local idle character video. Do not download models, modify LiveTalking asset scripts or resume TASK-003/TASK-004/TASK-006/TASK-016 during Phase 1.
 
 ## Status vocabulary
 

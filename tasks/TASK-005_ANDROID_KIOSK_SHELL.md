@@ -1,18 +1,18 @@
-# TASK-005: Create the Android 12 landscape kiosk shell
+# TASK-005: Create the Android 12 landscape kiosk shell and local idle video
 
 - **Status:** PLANNED
 - **Priority:** P0
-- **Dependencies:** TASK-004
+- **Dependencies:** TASK-000
 - **Branch:** `task/TASK-005-android-kiosk-shell`
 - **Owner:** Codex / assigned developer
 
 ## Objective
 
-Create the Android 12 landscape kiosk shell.
+Create the Android 12 landscape kiosk shell with local idle character video for the Phase 1 MVP.
 
 ## Preconditions
 
-- TASK-004 is DONE
+- TASK-000 is DONE
 - JDK/Android SDK/Gradle availability is known
 
 ## Scope and allowed changes
@@ -27,14 +27,16 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 - USB audio selection
 - Real provider integration
+- LiveTalking/WebRTC digital-human mode
 
 ## Detailed execution
 
 1. Create one Android application with package ID and versioning documented.
 2. Use Kotlin and a landscape immersive kiosk shell. Implement UI states and a hidden/protected development configuration entry.
-3. Add network permission, but do not embed provider secrets or production credentials.
-4. Create unit/smoke tests for state and configuration parsing.
-5. Run Gradle build and record the actual APK path and SHA-256. If SDK components are missing, document exact requirements and complete safe project generation.
+3. Implement local idle character video or rights-clear fallback visual that does not depend on network.
+4. Add network permission, but do not embed provider secrets or production credentials.
+5. Create unit/smoke tests for state and configuration parsing.
+6. Run Gradle build and record the actual APK path and SHA-256. If SDK components are missing, document exact requirements and complete safe project generation.
 
 ## Verification commands
 
@@ -59,6 +61,7 @@ Get-FileHash android-app\app\build\outputs\apk\debug\app-debug.apk -Algorithm SH
 ## Required deliverables
 
 - [ ] Buildable Android project
+- [ ] Local idle-video/fallback display
 - [ ] Actual debug APK when environment permits
 - [ ] docs/evidence/TASK-005/android-shell.md
 
@@ -67,6 +70,7 @@ Get-FileHash android-app\app\build\outputs\apk\debug\app-debug.apk -Algorithm SH
 - [ ] Gradle project builds
 - [ ] APK actually generated
 - [ ] Immersive landscape UI
+- [ ] Local idle character video/fallback visible without network
 - [ ] Config screen and health state
 - [ ] No provider secrets in APK
 

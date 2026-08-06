@@ -1,14 +1,14 @@
-# TASK-009: Implement EdgeTTS then Doubao TTS adapters
+# TASK-009: Implement Doubao TTS adapter
 
 - **Status:** PLANNED
-- **Priority:** P1
+- **Priority:** P0
 - **Dependencies:** TASK-008
 - **Branch:** `task/TASK-009-tts-providers`
 - **Owner:** Codex / assigned developer
 
 ## Objective
 
-Implement EdgeTTS then Doubao TTS adapters.
+Implement Mock/test TTS and Doubao TTS adapters for the Phase 1 MVP.
 
 ## Preconditions
 
@@ -31,7 +31,7 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 ## Detailed execution
 
-1. Implement deterministic test audio or Mock first, then EdgeTTS behind the common TTS interface.
+1. Implement deterministic test audio or Mock first behind the common TTS interface.
 2. Research the current official Doubao/Volcengine TTS API and record exact source/date before implementation.
 3. Implement Doubao TTS with server-side credentials, format normalization and voice configuration.
 4. Add timeout, finite retry, provider error mapping and small cost-controlled integration tests.
@@ -53,14 +53,13 @@ python scripts/test_tts_provider.py --provider doubao --text "您好"
 
 ## Required deliverables
 
-- [ ] Mock/Edge/Doubao TTS adapters as actually available
+- [ ] Mock/Doubao TTS adapters as actually available
 - [ ] Audio metadata/checksum evidence
 - [ ] Current API citation in task report
 
 ## Acceptance criteria
 
 - [ ] Mock/test audio passes
-- [ ] EdgeTTS integration
 - [ ] Doubao contract verified from current official docs
 - [ ] Timeout/error/cost guard
 - [ ] Secrets remain server-side
