@@ -66,6 +66,8 @@ Automated attempts:
 - In that Windows package share, small file download URL creation succeeds, but direct CLI GET of the returned URL returns HTTP 412. Large `wav2lip.pth` and `s3fd.pth` download URL creation still returns `23018 download file size limit`.
 - The Windows package avatar directory contains 589 files totaling `106662008` bytes; each avatar file is small enough in principle, but the returned signed URL still failed under CLI header variants tested so the avatar was not downloaded.
 - Local Quark and QuarkCloudDrive clients are installed, but no client was started and no login/session storage was read.
+- Candidate local download directories (`Downloads`, `downloadtemp`, `D:\BaiduNetdiskDownload`, `D:\QLDownload`, Quark install roots and similar) were searched by exact filename on 2026-08-06; no existing local copy of `wav2lip.pth`, `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`, `wav2lip256_avatar1.tar.gz` or `coords.pkl` was found.
+- `scripts/start_livetalking.ps1` now supports an explicit local preparation mode: `-PrepareAssets -AssetSourcePath <downloaded_official_source>`. It does not download assets or read Quark/browser login storage; it only copies from a user-provided local directory and emits SHA-256 evidence.
 
 Evidence:
 
@@ -99,6 +101,9 @@ Evidence:
 - `quark-download-url-shape-20260806.txt`
 - `quark-client-local-capability-20260806.txt`
 - `task003-official-package-attempt-final-verification-20260806.txt`
+- `asset-unblock-quark-download-dir-search-20260806.txt`
+- `start-script-prepare-assets-mode-verification-20260806.txt`
+- `task003-prepare-assets-mode-final-verification-20260806.txt`
 
 ## Manual unblock instructions
 
@@ -191,3 +196,13 @@ However, this still did not unblock runtime:
 - The local Quark clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`, but automated use of account/session state was not attempted.
 
 The practical unblock path is now more precise: use the installed QuarkCloudDrive client or browser UI with an authorized logged-in account to download/transfer the official Windows package or the three listed assets, then place and hash the files under the ignored LiveTalking paths.
+
+After that download is present locally, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 `
+  -PrepareAssets `
+  -AssetSourcePath "<downloaded_official_source>"
+```
+
+The source can be either the official Windows package root containing `models`, `_internal` and `data`, or a local folder containing `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and the expanded `wav2lip256_avatar1` directory. Use `-OverwriteAssets` only after manually confirming the source.

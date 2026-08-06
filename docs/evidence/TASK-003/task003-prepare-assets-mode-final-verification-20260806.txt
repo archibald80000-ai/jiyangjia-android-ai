@@ -1,0 +1,132 @@
+# TASK-003 PrepareAssets mode final verification
+Date: 2026-08-06
+Purpose: Final verification after adding explicit local asset preparation support and local candidate download search evidence.
+
+## git branch
+command=git branch --show-current
+exit_code=0
+task/TASK-003-wav2lip-webrtc-baseline
+
+## git status
+command=git status --short
+exit_code=0
+ M PROJECT_STATE.md
+ M TASKS.md
+ M docs/evidence/TASK-003/wav2lip-baseline.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M scripts/start_livetalking.ps1
+ M tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+?? docs/evidence/TASK-003/asset-unblock-quark-download-dir-search-20260806.txt
+?? docs/evidence/TASK-003/start-script-prepare-assets-mode-verification-20260806.txt
+
+## diff stat
+command=git diff --stat
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'scripts/start_livetalking.ps1', LF will be replaced by CRLF the next time Git touches it
+ PROJECT_STATE.md                           |   4 +-
+ TASKS.md                                   |   2 +-
+ docs/evidence/TASK-003/wav2lip-baseline.md |  14 ++++
+ memory/CURRENT_STATE.md                    |   4 +-
+ memory/HANDOFF.md                          |   9 +-
+ scripts/start_livetalking.ps1              | 129 ++++++++++++++++++++++++++++-
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md  |   4 +
+ 7 files changed, 158 insertions(+), 8 deletions(-)
+
+## diff check
+command=git diff --check
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'scripts/start_livetalking.ps1', LF will be replaced by CRLF the next time Git touches it
+
+## asset paths
+command=powershell -NoProfile -Command "$paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach($p in $paths){ if(Test-Path $p){ 'FOUND '+$p } else { 'MISSING '+$p } }"
+exit_code=0
+MISSING third_party\LiveTalking\models\wav2lip.pth
+MISSING third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth
+MISSING third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+
+## prepare mode without source
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets
+exit_code=1
+AssetSourcePath is required when -PrepareAssets is used. Point it to the downloaded official model folder, avatar packa
+ge extraction, or Windows integrated package root.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:121 char:5
++     throw "AssetSourcePath is required when -PrepareAssets is used. P ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (AssetSourcePath...d package root.:String) [], RuntimeException
+    + FullyQualifiedErrorId : AssetSourcePath is required when -PrepareAssets is used. Point it to the downloaded offi 
+   cial model folder, avatar package extraction, or Windows integrated package root.
+ 
+
+## prepare mode incomplete source
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath .
+exit_code=1
+Preparing Wav2Lip assets from E:\work\ai-kefu\jiyangjia-ai
+This command does not download assets or read Quark/Browser login storage.
+Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256_avatar1 directory with coords.
+pkl/full_imgs/face_imgs
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:138 char:5
++     throw "Asset source is incomplete. Missing: $($missing -join '; ' ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Asset source is..._imgs/face_imgs:String) [], RuntimeException
+    + FullyQualifiedErrorId : Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256 
+   _avatar1 directory with coords.pkl/full_imgs/face_imgs
+ 
+
+## launcher help path
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -SkipAssetCheck -ExtraArgs --help
+exit_code=0
+usage: app.py [-h] [--config CONFIG] [--fps FPS] [-l L] [-m M] [-r R]
+              [--model MODEL] [--avatar_id AVATAR_ID]
+              [--batch_size BATCH_SIZE] [--modelres MODELRES]
+              [--modelfile MODELFILE]
+              [--customvideo_config CUSTOMVIDEO_CONFIG] [--tts TTS]
+              [--REF_FILE REF_FILE] [--REF_TEXT REF_TEXT]
+              [--TTS_SERVER TTS_SERVER] [--transport TRANSPORT] [--stun STUN]
+              [--push_url PUSH_URL] [--max_session MAX_SESSION]
+              [--listenport LISTENPORT]
+              [--audio_output_device AUDIO_OUTPUT_DEVICE]
+
+LiveTalking Digital Human Server
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG, -c CONFIG
+                        YAML 配置文件路径（设为空字符串可跳过）
+  --fps FPS             video fps, must be 25
+  -l L
+  -m M
+  -r R
+  --model MODEL         avatar model: musetalk/wav2lip/ultralight
+  --avatar_id AVATAR_ID
+                        avatar id in data/avatars
+  --batch_size BATCH_SIZE
+                        infer batch
+  --modelres MODELRES
+  --modelfile MODELFILE
+  --customvideo_config CUSTOMVIDEO_CONFIG
+                        custom action json
+  --tts TTS             tts plugin: edgetts/gpt-sovits/cosyvoice/fishtts/tence
+                        nt/doubao/indextts2/azuretts/qwentts
+  --REF_FILE REF_FILE   参考文件名或语音模型ID
+  --REF_TEXT REF_TEXT
+  --TTS_SERVER TTS_SERVER
+  --transport TRANSPORT
+                        output: rtcpush/webrtc/rtmp/virtualcam
+  --stun STUN           stun server url
+  --push_url PUSH_URL
+  --max_session MAX_SESSION
+  --listenport LISTENPORT
+                        web listen port
+  --audio_output_device AUDIO_OUTPUT_DEVICE
+                        音频输出设备索引（None=系统默认，仅用于 --transport=virtualcam）。使用
+                        python list_audio_devices.py 查看所有设备
+
+## secret scan
+command=rg --pcre2 secret/cookie/download-url pattern over TASK-003 evidence, scripts and state files
+exit_code=1
+
+## Result
+TASK-003 remains BLOCKED on missing real assets. PrepareAssets mode is verified to fail safely without a source or with an incomplete source, and the help path still works. No LiveTalking service startup or WebRTC/FPS success is claimed.

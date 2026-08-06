@@ -1,0 +1,115 @@
+# TASK-003 start_livetalking PrepareAssets mode verification
+Date: 2026-08-06
+Purpose: Verify explicit local asset-source preparation mode and preserve existing launcher behavior.
+
+## prepare without source
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets
+exit_code=1
+AssetSourcePath is required when -PrepareAssets is used. Point it to the downloaded official model folder, avatar packa
+ge extraction, or Windows integrated package root.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:121 char:5
++     throw "AssetSourcePath is required when -PrepareAssets is used. P ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (AssetSourcePath...d package root.:String) [], RuntimeException
+    + FullyQualifiedErrorId : AssetSourcePath is required when -PrepareAssets is used. Point it to the downloaded offi 
+   cial model folder, avatar package extraction, or Windows integrated package root.
+ 
+
+## prepare incomplete source
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath .
+exit_code=1
+Preparing Wav2Lip assets from E:\work\ai-kefu\jiyangjia-ai
+This command does not download assets or read Quark/Browser login storage.
+Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256_avatar1 directory with coords.
+pkl/full_imgs/face_imgs
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:138 char:5
++     throw "Asset source is incomplete. Missing: $($missing -join '; ' ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Asset source is..._imgs/face_imgs:String) [], RuntimeException
+    + FullyQualifiedErrorId : Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256 
+   _avatar1 directory with coords.pkl/full_imgs/face_imgs
+ 
+
+## default preflight
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1
+exit_code=1
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:198 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\ 
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1 
+   
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+ 
+
+## help path
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -SkipAssetCheck -ExtraArgs --help
+exit_code=0
+usage: app.py [-h] [--config CONFIG] [--fps FPS] [-l L] [-m M] [-r R]
+              [--model MODEL] [--avatar_id AVATAR_ID]
+              [--batch_size BATCH_SIZE] [--modelres MODELRES]
+              [--modelfile MODELFILE]
+              [--customvideo_config CUSTOMVIDEO_CONFIG] [--tts TTS]
+              [--REF_FILE REF_FILE] [--REF_TEXT REF_TEXT]
+              [--TTS_SERVER TTS_SERVER] [--transport TRANSPORT] [--stun STUN]
+              [--push_url PUSH_URL] [--max_session MAX_SESSION]
+              [--listenport LISTENPORT]
+              [--audio_output_device AUDIO_OUTPUT_DEVICE]
+
+LiveTalking Digital Human Server
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG, -c CONFIG
+                        YAML 配置文件路径（设为空字符串可跳过）
+  --fps FPS             video fps, must be 25
+  -l L
+  -m M
+  -r R
+  --model MODEL         avatar model: musetalk/wav2lip/ultralight
+  --avatar_id AVATAR_ID
+                        avatar id in data/avatars
+  --batch_size BATCH_SIZE
+                        infer batch
+  --modelres MODELRES
+  --modelfile MODELFILE
+  --customvideo_config CUSTOMVIDEO_CONFIG
+                        custom action json
+  --tts TTS             tts plugin: edgetts/gpt-sovits/cosyvoice/fishtts/tence
+                        nt/doubao/indextts2/azuretts/qwentts
+  --REF_FILE REF_FILE   参考文件名或语音模型ID
+  --REF_TEXT REF_TEXT
+  --TTS_SERVER TTS_SERVER
+  --transport TRANSPORT
+                        output: rtcpush/webrtc/rtmp/virtualcam
+  --stun STUN           stun server url
+  --push_url PUSH_URL
+  --max_session MAX_SESSION
+  --listenport LISTENPORT
+                        web listen port
+  --audio_output_device AUDIO_OUTPUT_DEVICE
+                        音频输出设备索引（None=系统默认，仅用于 --transport=virtualcam）。使用
+                        python list_audio_devices.py 查看所有设备
+

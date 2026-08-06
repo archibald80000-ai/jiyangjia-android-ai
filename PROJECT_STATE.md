@@ -46,6 +46,8 @@
 - TASK-003 official Windows integrated package share (`https://pan.quark.cn/s/a040bf5cb065`) can be listed and contains `models/wav2lip.pth`, `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth` and expanded `data/avatars/wav2lip256_avatar1`.
 - The Windows package avatar directory contains 589 files totaling `106662008` bytes, but signed small-file URLs returned HTTP `412` under CLI GET; large model/S3FD URLs still returned `23018`.
 - Local Quark clients are installed at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not read and the clients were not started.
+- TASK-003 searched common local download and Quark candidate directories by exact filename on 2026-08-06 and found no existing local copies of the required Wav2Lip/S3FD/avatar assets.
+- `scripts/start_livetalking.ps1` now has an explicit local asset preparation mode: `-PrepareAssets -AssetSourcePath <downloaded_official_source>`, which copies from a user-provided local official source and outputs SHA-256 evidence without downloading or reading login/session storage.
 
 ## Not yet verified
 
@@ -88,7 +90,7 @@ Recent task results:
 
 Next action:
 
-- Unblock TASK-003 by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerun TASK-003 from asset verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
+- Unblock TASK-003 by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`, then run `scripts/start_livetalking.ps1 -PrepareAssets -AssetSourcePath <downloaded_official_source>` to place and hash them before rerunning TASK-003 startup/WebRTC verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
 
 ## Status vocabulary
 

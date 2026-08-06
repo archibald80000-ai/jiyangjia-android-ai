@@ -1,0 +1,84 @@
+# TASK-003 exact asset search in Quark/download candidate directories
+Date: 2026-08-06
+Purpose: Search exact asset filenames in common download and local Quark install/download candidate directories; no file contents read; E:\work\积养家 excluded.
+
+## root=C:\Users\Assert\Downloads exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=C:\Users\Assert\downloadtemp exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\360Downloads exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\纳米AI下载 exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\BaiduNetdiskDownload exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\QLDownload exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\QLDownloadGame exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\TSDownloader exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\应用软件\夸\QuarkCloudDrive exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+
+## root=D:\应用软件\KUAK\Quark exists=True
+found name=wav2lip256.pth count=0
+found name=wav2lip.pth count=0
+found name=s3fd.pth count=0
+found name=wav2lip256_avatar1.zip count=0
+found name=wav2lip256_avatar1.tar.gz count=0
+found name=coords.pkl count=0
+

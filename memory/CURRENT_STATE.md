@@ -15,7 +15,7 @@
 
 ## In progress
 
-- TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, and Google Drive still times out from this machine.
+- TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local download candidate directories contain no existing copy.
 
 ## Not started
 
@@ -27,4 +27,4 @@
 
 ## Next action
 
-Unblock `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerunning TASK-003 from asset verification. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.
+Unblock `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`, then run `scripts/start_livetalking.ps1 -PrepareAssets -AssetSourcePath <downloaded_official_source>` to place and hash them before rerunning TASK-003 from asset verification. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.

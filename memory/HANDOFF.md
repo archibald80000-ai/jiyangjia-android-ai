@@ -43,6 +43,11 @@
 - The package avatar directory has 589 files totaling `106662008` bytes, largest file `319803` bytes.
 - Small file download URL creation succeeds, but CLI GET of the returned signed URL returns HTTP `412 Precondition Failed`; large model/S3FD URL creation returns `23018`.
 - Local clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not opened and clients were not started.
+- Candidate local download directories (`Downloads`, `downloadtemp`, `D:\BaiduNetdiskDownload`, `D:\QLDownload`, Quark install roots and similar) were searched by exact filename on 2026-08-06; no existing asset copy was found.
+- `scripts/start_livetalking.ps1` now supports explicit local asset preparation after an authorized/manual download:
+  - `powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "<downloaded_official_source>"`
+  - The source can be the official Windows package root containing `models`, `_internal` and `data`, or a folder containing `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and expanded `wav2lip256_avatar1`.
+  - The command outputs SHA-256 hashes and does not download or read login/session storage.
 - `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
 - Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
 - 2026-08-06 exact search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` also found no `s3fd.pth` or `wav2lip256_avatar1.zip`; `E:\work\积养家` was intentionally excluded.
@@ -88,6 +93,9 @@
 - `docs/evidence/TASK-003/quark-download-url-shape-20260806.txt`
 - `docs/evidence/TASK-003/quark-client-local-capability-20260806.txt`
 - `docs/evidence/TASK-003/task003-official-package-attempt-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/asset-unblock-quark-download-dir-search-20260806.txt`
+- `docs/evidence/TASK-003/start-script-prepare-assets-mode-verification-20260806.txt`
+- `docs/evidence/TASK-003/task003-prepare-assets-mode-final-verification-20260806.txt`
 
 ## Unblock action
 
@@ -99,4 +107,4 @@ E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detect
 E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1\
 ```
 
-Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.
+Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. The launcher can now copy and hash from the downloaded source with `-PrepareAssets -AssetSourcePath`. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.
