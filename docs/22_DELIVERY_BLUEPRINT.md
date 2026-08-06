@@ -25,7 +25,7 @@ Deliver a store-facing Android 12 large-screen APK that can:
 ### Gateway
 
 - Owns session creation, device authentication, provider routing, answer policy, mini FAQ, logging, retention and provider error mapping.
-- Runs within the 8 vCPU / 4 GB / 10 Mbps Tencent Cloud budget until measurements justify a change.
+- Runs within the observed small Tencent Cloud CPU-only budget until measurements justify a change.
 - Exposes stable `/api/v1/**` contracts and short-lived authenticated audio resources.
 
 ### LiveTalking node

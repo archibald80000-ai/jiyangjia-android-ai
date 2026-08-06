@@ -66,7 +66,7 @@ Minimum checks:
 - `/api/v1/health`;
 - process up/restart count;
 - disk usage;
-- memory usage on 4 GB server;
+- memory usage on the observed about 1.9Gi RAM server;
 - provider failure rate;
 - dialogue latency p50/p95;
 - audio upload rejection count.

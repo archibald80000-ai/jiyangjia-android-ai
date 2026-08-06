@@ -1,6 +1,6 @@
 # TASK-014: Deploy the lightweight gateway to Tencent Cloud
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P1
 - **Dependencies:** TASK-013
 - **Branch:** `task/TASK-014-tencent-gateway-deployment`
@@ -12,7 +12,7 @@ Deploy the lightweight gateway to Tencent Cloud.
 
 ## Preconditions
 
-- TASK-013 is DONE
+- TASK-013 is PARTIAL with local/backend E2E complete and Android device verification deferred
 - Server access is authorized and backed up
 
 ## Scope and allowed changes
@@ -26,7 +26,7 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 ## Non-goals
 
-- GPU inference on the 4 GB server
+- GPU inference on the CPU-only Tencent Cloud server
 
 ## Detailed execution
 
@@ -88,10 +88,23 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
 - [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Recommend exactly one next task.
+
+## Reconciliation evidence
+
+- Result: `PARTIAL`
+- Evidence: `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
+- Server: Tencent Cloud IP-only test host `120.53.86.89`, Ubuntu `24.04.4 LTS`, observed allocation 2 CPU cores, `1.9Gi` memory, 50G disk, no GPU.
+- Current server deployment: Docker Compose + Nginx mock Gateway under `/opt/jiyangjia-ai`, with backup at `/opt/jiyangjia-ai/backups/task014-20260806-034843`.
+- Server code alignment: not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`; `/opt/jiyangjia-ai` has no Git metadata.
+- Verified reachable on server thread: `GET /health` -> 200, `GET /api/v1/health` -> 200, `POST /api/v1/dialogue/text` -> 200 with request_id.
+- Missing on server thread: `GET /api/v1/client/config`, `GET /api/v1/knowledge/status`, `POST /api/v1/dialogue/audio`, `GET /api/v1/audio/{audio_id}`.
+- Missing on server thread: real Provider environment variables, SQLite/FAISS knowledge configuration and TASK-013 brand normalization module.
+
+Next action: continue exactly one task, TASK-014 remediation/redeploy to the current Gateway code and verify the full MVP API before entering TASK-015.

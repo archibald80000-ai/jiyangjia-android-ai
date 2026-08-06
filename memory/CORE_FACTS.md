@@ -11,7 +11,7 @@
 
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`.
 - Raw business materials: `E:\work\积养家` and remain read-only until a curated task is approved.
-- Existing cloud: Tencent Cloud 8 vCPU / 4 GB RAM / 10 Mbps / no GPU.
+- Existing cloud observed on 2026-08-06: Tencent Cloud 2 CPU cores / about 1.9Gi RAM / 50G disk / 10 Mbps / no GPU.
 - Real-time LiveTalking inference is deferred and would require a separate compatible GPU node or development PC.
 
 ## Architecture

@@ -90,7 +90,7 @@ tasks:
     file: TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md
     title: "Deploy the lightweight gateway to Tencent Cloud"
     priority: p1
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-013]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md

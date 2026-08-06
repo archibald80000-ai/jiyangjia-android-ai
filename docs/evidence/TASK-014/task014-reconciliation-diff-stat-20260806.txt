@@ -1,0 +1,25 @@
+ MEMORY.md                                          |   2 +-
+ PROJECT_STATE.md                                   |  15 ++-
+ README.md                                          |   2 +-
+ TASKS.md                                           |   3 +-
+ docs/01_SYSTEM_ARCHITECTURE.md                     |   2 +-
+ docs/05_GATEWAY_AND_MODEL_ADAPTERS.md              |   2 +-
+ docs/09_DEPLOYMENT_TOPOLOGY.md                     |   4 +-
+ docs/11_RISK_REGISTER.md                           |   2 +-
+ docs/16_SERVER_RESOURCE_BUDGET.md                  |   2 +-
+ docs/22_DELIVERY_BLUEPRINT.md                      |   2 +-
+ docs/adr/ADR-0007_GATEWAY_NOT_GPU.md               |   2 +-
+ .../server-evidence-reconciliation-20260806.md     | 124 +++++++++++++++++++++
+ .../task014-reconciliation-diff-stat-20260806.txt  |  10 ++
+ ...task014-reconciliation-secret-scan-20260806.txt |   1 +
+ ...4-reconciliation-verify-repository-20260806.txt |   1 +
+ docs/operations/MVP_DEPLOYMENT.md                  |   2 +-
+ memory/ASSUMPTIONS.md                              |   2 +-
+ memory/CORE_FACTS.md                               |   2 +-
+ memory/CURRENT_STATE.md                            |  11 +-
+ memory/DECISIONS.md                                |   2 +-
+ memory/HANDOFF.md                                  |  15 ++-
+ tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md       |  31 ++++--
+ tasks/TASK-017_FORMAL_KNOWLEDGE_BASE_V1.md         |   2 +-
+ tasks/index.yaml                                   |   2 +-
+ 24 files changed, 200 insertions(+), 43 deletions(-)

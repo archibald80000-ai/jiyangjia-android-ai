@@ -31,7 +31,7 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 1. Inventory candidate sources without modifying originals and classify sensitivity/authority/version.
 2. Define approval, extraction, chunking, update, expiry and deletion workflow.
-3. Evaluate simple database/search versus vector/RAG based on real corpus and 4 GB server budget.
+3. Evaluate simple database/search versus vector/RAG based on real corpus and the observed small server budget.
 4. Build a reviewed evaluation set and citation/audit requirements before production ingestion.
 5. Implement the chosen small, reversible V1 and document resource/quality results.
 

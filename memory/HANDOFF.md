@@ -4,9 +4,9 @@ Updated: 2026-08-06
 
 ## Current task
 
-- Current task: `TASK-013_END_TO_END_DIALOGUE.md`
+- Current task: `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md`
 - Current status: `PARTIAL`
-- Current branch: `task/TASK-013-end-to-end-dialogue`
+- Current branch: `task/TASK-014-tencent-gateway-deployment`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
 
@@ -31,7 +31,7 @@ Updated: 2026-08-06
 - APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, version `0.1.0-task013-debug`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - `adb devices -l` returned no attached devices.
 - Brand normalization tests passed: `python -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed; full backend regression -> 42 passed.
-- User reported Tencent Cloud server is ready and Gateway deployment was completed in another conversation thread. This thread has not independently verified remote deployment evidence.
+- TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` runs an old Docker Compose + Nginx mock Gateway, but it is not aligned with current commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa` and does not satisfy the MVP API contract.
 
 ## Evidence
 
@@ -46,18 +46,17 @@ Updated: 2026-08-06
 - `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
 - `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
 - `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
+- `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
 
 ## Not verified
 
 - Formal production knowledge base beyond the scoped demo FAQ set.
-- Tencent Cloud deployment evidence reconciliation from the other thread.
+- Tencent Cloud current-code deployment/remediation: missing `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}`, real Provider env vars, SQLite/FAISS knowledge data and TASK-013 brand normalization on the server.
 - Android 12 real-device install/record/upload/playback/subtitle acceptance.
 - USB microphone and speaker physical validation.
 
 ## Next action
 
-Continue exactly one next task: reconcile `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` evidence from the other thread.
+Continue exactly one next task: remediate `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` by deploying the current Gateway code to Tencent Cloud and verifying the full MVP API, logs, rollback and resource evidence.
 
-If TASK-014 evidence is imported and verified, the next implementation task is
-`TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`. Do not claim Android 12 real-device
-success until hardware is connected and tested.
+Do not enter `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` until TASK-014 is no longer partial.

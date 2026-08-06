@@ -41,7 +41,7 @@ Phase 1 只做 `idle_video_voice`。`livetalking_webrtc` 保留接口和文档�
 
 - Android 12 大屏设备，通过 APK 安装运行；不是 Windows 设备。
 - 可外接 USB 麦克风，具体兼容性必须真机验证。
-- 现有腾讯云服务器：8 核 CPU、4 GB 内存、10 Mbps 带宽、无 NVIDIA GPU。
+- 现有腾讯云服务器观测规格：2 核 CPU、约 1.9Gi 内存、50G 磁盘、10 Mbps 带宽、无 NVIDIA GPU。
 - 腾讯云负责 API、模型转发、轻量知识、配置和日志；不承担实时数字人 GPU 推理。
 - 原始积养家资料位于 `E:\work\积养家`，当前只读，不批量导入。
 - 所有真实密钥只保存在本地 `.env.local` 或服务器密钥系统中，禁止提交 Git。

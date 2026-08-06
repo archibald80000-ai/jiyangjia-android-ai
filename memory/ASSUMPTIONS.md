@@ -11,4 +11,4 @@ Assumptions are not facts. Codex must either verify them or keep them explicitly
 | A-005 | Existing provider credentials cover required APIs | Provider console and minimal call | OPEN |
 | A-006 | Current idle/avatar assets have commercial rights | Provenance and written approval | OPEN |
 | A-007 | 10 Mbps is adequate for chosen video profile | Measured stream bandwidth | OPEN |
-| A-008 | 4 GB server is stable for the gateway workload | Load/memory test | OPEN |
+| A-008 | The observed small Tencent Cloud server is stable for the gateway workload | Load/memory test | OPEN |

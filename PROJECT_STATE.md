@@ -3,14 +3,14 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-013 PARTIAL - LOCAL AND REAL-PROVIDER DIALOGUE LOOP VERIFIED, ANDROID DEVICE PENDING
-- **Current authorized task:** TASK-014 (Tencent Cloud Gateway deployment)
+- **Overall status:** TASK-014 PARTIAL - TENCENT CLOUD HAS OLD MOCK GATEWAY, CURRENT MVP DEPLOYMENT PENDING
+- **Current authorized task:** TASK-014 (Tencent Cloud Gateway remediation/deployment)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
 
 - Android target system: Android 12.
-- Existing cloud server: 8 CPU cores, 4 GB RAM, 10 Mbps, no GPU.
+- Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
 - LiveTalking upstream repository identified.
 - Upstream lock target: `c963ad409c556918b7d23999bf87c47a7c05c932`.
 - Local original knowledge materials exist outside this repository and are not yet curated.
@@ -94,7 +94,8 @@
 - TASK-013 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144` bytes, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`, package `ai.jiyangjia.kiosk.debug`, version `0.1.0-task013-debug`.
 - TASK-013 follow-up hardening added Gateway transcript normalization for the brand name `积养家`. Common ASR homophones such as `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` are normalized before RAG/LLM; original provider output is preserved as `transcript.raw_text` when changed.
 - TASK-013 brand normalization regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed, and full backend regression -> 42 passed.
-- User reported on 2026-08-06 that Tencent Cloud server is ready and Gateway deployment was completed in another conversation thread. This local thread has not independently verified remote deployment logs, URL, process status or rollback evidence.
+- TASK-014 server-thread evidence was imported on 2026-08-06. The Tencent Cloud host runs Docker Compose + Nginx and a mock Gateway reachable at `GET /health`, `GET /api/v1/health` and `POST /api/v1/dialogue/text`.
+- TASK-014 server-thread evidence shows the server deployment is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`; `/opt/jiyangjia-ai` has no Git metadata, real Provider env vars are missing, SQLite/FAISS knowledge data is not configured, and `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}` and TASK-013 brand normalization are absent.
 
 ## Not yet verified
 
@@ -107,7 +108,7 @@
 - USB microphone physical unplug/replug recovery on target hardware.
 - Formal production knowledge base beyond the 10 approved demo FAQ entries.
 - Android 12 real-device install, recording, Gateway upload, TTS playback and subtitle visual validation.
-- Tencent Cloud Gateway deployment evidence from the other thread is not yet imported or independently verified here.
+- Tencent Cloud full MVP Gateway deployment is not complete: current server is an old/mock partial deployment and must be redeployed or reconciled before Android device acceptance.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - OpenAI-compatible fallback LLM with a third provider beyond DeepSeek/Doubao.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -188,6 +189,7 @@ Current evidence:
 - `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
 - `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
 - `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
+- `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
 
 Recent task results:
 
@@ -205,10 +207,11 @@ Recent task results:
 - TASK-012 DONE. Lightweight RAG now indexes explicitly selected approved/draft/rejected documents into SQLite metadata, FTS5 and FAISS; returns Top-K sources; blocks prohibited topics; and passed Mock plus real Doubao/Ark Embedding evaluation. No raw `E:\work\积养家` import, Android E2E, Tencent deployment or real-device success is claimed.
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 - TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
+- TASK-014 PARTIAL. Server-thread evidence was imported: Tencent Cloud has an old/mock Docker Compose + Nginx Gateway with health and text dialogue reachable, but it is not aligned to the current code, has no Git metadata, lacks real Provider env vars and is missing required MVP audio/config/knowledge endpoints and brand normalization.
 
 Next action:
 
-- Continue exactly one next task: reconcile TASK-014 Tencent Cloud Gateway deployment evidence from the other thread, or proceed to TASK-015 only after TASK-014 evidence is imported and verified.
+- Continue exactly one next task: remediate TASK-014 by redeploying or reconciling Tencent Cloud to the current Gateway code, then verify the full MVP API and rollback evidence before TASK-015.
 
 ## Status vocabulary
 

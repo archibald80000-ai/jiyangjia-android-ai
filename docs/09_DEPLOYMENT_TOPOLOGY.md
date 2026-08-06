@@ -14,7 +14,7 @@ Windows development PC
 ```text
 Android 12 store screen
   │ HTTPS/WebRTC
-  ├──────────────► Tencent Cloud gateway (8C/4G/10M)
+  ├──────────────► Tencent Cloud gateway (observed 2 CPU cores / about 1.9Gi RAM / 10M)
   │                         │
   │                         └─ cloud ASR/LLM/TTS
   │
@@ -23,7 +23,7 @@ Android 12 store screen
 
 ## Resource policy
 
-The 4 GB server should run a small gateway, reverse proxy, lightweight database and logs. Heavy document parsing, local LLMs, vector stacks and LiveTalking inference are out of scope for that machine.
+The current small CPU-only server should run a small gateway, reverse proxy, lightweight database and logs. Heavy document parsing, local LLMs, vector stacks and LiveTalking inference are out of scope for that machine.
 
 ## Production prerequisites
 

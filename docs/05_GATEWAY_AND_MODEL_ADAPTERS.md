@@ -2,7 +2,7 @@
 
 ## Gateway goals
 
-A lightweight service suitable for 4 GB RAM. Initial implementation can use FastAPI, SQLite and simple structured logs. It must not host a large model or heavy vector database.
+A lightweight service suitable for the current small CPU-only Tencent Cloud host. Initial implementation can use FastAPI, SQLite and simple structured logs. It must not host a large model or heavy vector database.
 
 ## Core interfaces
 

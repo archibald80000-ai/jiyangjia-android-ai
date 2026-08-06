@@ -8,7 +8,7 @@
 - 本地开发目录为 `E:\work\ai-kefu\jiyangjia-ai`。
 - 原始资料在 `E:\work\积养家`，当前不批量扫描；知识库改为轻量 RAG，只导入人工确认的小范围 Markdown/TXT/PDF/DOCX 资料。
 - 当前前端设备是 Android 12，不运行 Windows EXE、Python、CUDA 或本地大模型。
-- 现有腾讯云为 8 核 CPU、4 GB 内存、10 Mbps、无 GPU。
+- 现有腾讯云观测规格为 2 核 CPU、约 1.9Gi 内存、50G 磁盘、10Mbps、无 GPU；2026-08-06 服务器线程只验证到旧 mock Gateway，未部署当前 TASK-013 代码。
 - 当前第一阶段以 Android 待机人物视频 + USB/默认麦克风 + FastAPI Gateway + 豆包 ASR/TTS + 方舟/豆包或 OpenAI-Compatible LLM + Embedding API + SQLite/FAISS 轻量 RAG 的语音问答 MVP 为主。
 - LiveTalking、Wav2Lip、MuseTalk、实时口型和 WebRTC 数字人移到后续增强阶段；保留扩展接口但不阻塞第一阶段。
 - Android 真机验收延后到 TASK-015；不阻塞 TASK-008 到 TASK-014 的本地开发、自动化测试和服务器部署准备。

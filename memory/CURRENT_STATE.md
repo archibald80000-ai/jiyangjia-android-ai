@@ -55,6 +55,11 @@ Updated: 2026-08-06
   - one real private-env Gateway smoke passed through Doubao ASR, Doubao/Ark Embedding RAG, Doubao/Ark LLM and Doubao TTS;
   - Gateway normalizes common ASR homophones of `积养家` before RAG/LLM and preserves provider output as `transcript.raw_text` when changed;
   - Android real-device install/record/playback/subtitle behavior remains unverified.
+- TASK-014 is partial:
+  - server-thread evidence was imported from the Tencent Cloud host `120.53.86.89`;
+  - the host is Ubuntu `24.04.4 LTS`, observed as 2 CPU cores, about `1.9Gi` memory, 50G disk and no GPU;
+  - Docker Compose + Nginx runs an old mock Gateway and `/health`, `/api/v1/health`, `/api/v1/dialogue/text` are reachable;
+  - the server is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`, has no Git metadata and lacks real Provider env vars, SQLite/FAISS knowledge data, audio dialogue, audio fetch, client config, knowledge status and brand normalization.
 
 ## Route changed
 
@@ -113,15 +118,15 @@ Android recording
 - Android `testDebugUnitTest`, `assembleDebug` and `lintDebug` passed with project-local JDK 17.
 - TASK-013 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - TASK-013 brand normalization: `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` normalize to `积养家`; `python -m pytest tests\asr tests\gateway tests\e2e -q` passed with 19 tests and full backend regression passed with 42 tests.
-- User reported Tencent Cloud server is ready and Gateway deployment was completed in another conversation thread; this local thread has not imported or verified deployment evidence.
+- TASK-014 evidence reconciliation: imported server-thread report and recorded `PARTIAL`. Current server can run a mock Gateway but is not the current MVP deployment.
 
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - Formal production knowledge base beyond the scoped demo FAQ set.
 - Android 12 large-screen real-device acceptance.
-- TASK-014 deployment evidence reconciliation from the other thread.
+- TASK-014 current-code redeploy/remediation and full MVP API verification on Tencent Cloud.
 
 ## Next action
 
-Continue exactly one next task: reconcile `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` evidence from the other thread before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
+Continue exactly one next task: remediate `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` on Tencent Cloud by deploying the current Gateway code and verifying the full MVP API before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.

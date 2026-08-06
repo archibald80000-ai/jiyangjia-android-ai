@@ -11,7 +11,7 @@ Android 12 kiosk
   └─ subtitles/status
           │ HTTPS
           ▼
-Gateway on Tencent Cloud (8C/4G/10M)
+Gateway on Tencent Cloud (observed 2 CPU cores / about 1.9Gi RAM / 10M)
   ├─ authentication and request IDs
   ├─ ASR adapter
   ├─ mini knowledge + policy

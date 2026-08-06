@@ -1,6 +1,6 @@
 # Tencent Cloud resource budget
 
-Known server: 8 vCPU, 4 GB RAM, 10 Mbps, no GPU.
+Known server observed on 2026-08-06: 2 CPU cores, about 1.9Gi RAM, 50G disk, 10 Mbps, no GPU.
 
 ## Appropriate early workloads
 
