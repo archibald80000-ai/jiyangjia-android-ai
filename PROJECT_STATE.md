@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-008 DONE - FASTAPI GATEWAY AND PROVIDER SKELETON VERIFIED LOCALLY
-- **Current authorized task:** TASK-009 (real Doubao TTS adapter)
+- **Overall status:** TASK-009 PARTIAL - DOUBAO TTS ADAPTER IMPLEMENTED, REAL CALL BLOCKED BY CREDENTIALS
+- **Current authorized task:** TASK-009 (complete real Doubao TTS verification when credentials are configured)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -68,6 +68,9 @@
 - TASK-007 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `849801` bytes, SHA-256 `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`.
 - TASK-007 `aapt dump badging` confirmed `android.permission.RECORD_AUDIO` and the microphone feature are present in the APK.
 - TASK-007 `adb devices -l` returned no connected device; `adb shell dumpsys audio` and `adb shell dumpsys usb` failed with `no devices/emulators found`.
+- TASK-009 implemented a Doubao/Volcengine HTTP TTS adapter behind the TTS Provider interface, plus CLI and unit tests.
+- TASK-009 Mock TTS CLI generated deterministic bytes with SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
+- TASK-009 real Doubao TTS call is blocked because `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` are missing.
 
 ## Not yet verified
 
@@ -78,7 +81,7 @@
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
 - USB microphone physical unplug/replug recovery on target hardware.
-- Real provider adapters, FAISS RAG implementation and end-to-end voice RAG loop.
+- Real Doubao TTS call, Doubao ASR, LLM/Embedding adapters, FAISS RAG implementation and end-to-end voice RAG loop.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - Real Doubao ASR/TTS, Doubao/Volcengine Ark LLM, OpenAI-compatible fallback LLM and Embedding API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -124,6 +127,9 @@ Current evidence:
 - `docs/evidence/TASK-008/gateway-skeleton.md`
 - `docs/evidence/TASK-008/task008-pytest-20260806.txt`
 - `docs/evidence/TASK-008/task008-local-server-18080-20260806.txt`
+- `docs/evidence/TASK-009/tts-provider.md`
+- `docs/evidence/TASK-009/task009-pytest-20260806.txt`
+- `docs/evidence/TASK-009/task009-doubao-tts-cli-missing-credentials-20260806.txt`
 
 Recent task results:
 
@@ -135,10 +141,11 @@ Recent task results:
 - TASK-005 DONE. Android kiosk shell source implementation is present and local Gradle build/unit tests/lint/APK generation passed. Android 12 real-device install/rendering is not claimed because `adb devices` returned no connected device.
 - TASK-007 PARTIAL. Android audio diagnostics, USB-first routing policy, runtime permission, bounded in-memory recording, local playback and audio device add/remove monitoring are implemented and locally verified by Gradle/lint/APK build. Real USB microphone, speaker and physical unplug/replug behavior are not verified because no Android device was connected.
 - TASK-008 DONE. Local FastAPI Gateway skeleton, ASR/TTS/LLM/Embedding Provider interfaces, Mock orchestration, SQLite knowledge skeleton, request IDs and required API endpoints are implemented and verified by pytest plus local HTTP checks on port 18080. No real provider/API success or production deployment is claimed.
+- TASK-009 PARTIAL. Doubao TTS adapter, error mapping, CLI test helper and tests are implemented. Mock TTS works. Real Doubao TTS audio generation is blocked by missing credentials, so no real TTS success is claimed.
 
 Next action:
 
-- Continue exactly one next task: TASK-009 real Doubao TTS adapter. Before coding, verify current official Doubao/Volcengine TTS API docs and required environment variables; if credentials are missing, mark `BLOCKED_PROVIDER_CREDENTIALS` rather than claiming real success.
+- Continue exactly one next action for TASK-009: configure `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` in `.env.local` or the server environment, then rerun the real Doubao TTS CLI test.
 
 ## Status vocabulary
 

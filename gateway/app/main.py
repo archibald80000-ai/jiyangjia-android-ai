@@ -12,6 +12,7 @@ from .config import load_settings
 from .knowledge import KnowledgeDocument, SQLiteKnowledgeStore
 from .providers import MockASRProvider, MockEmbeddingProvider, MockLLMProvider, MockTTSProvider
 from .schemas import DialogueResponse, DialogueTextRequest, KnowledgeIndexRequest, KnowledgeSearchRequest
+from .tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, ProviderConfigurationError
 
 
 settings = load_settings()
@@ -25,6 +26,13 @@ asr_provider = MockASRProvider()
 llm_provider = MockLLMProvider()
 tts_provider = MockTTSProvider()
 embedding_provider = MockEmbeddingProvider()
+tts_configuration_error: ProviderConfigurationError | None = None
+
+if settings.tts_provider == "doubao":
+    try:
+        tts_provider = DoubaoTTSProvider(DoubaoTTSConfig.from_settings(settings))
+    except ProviderConfigurationError as exc:
+        tts_configuration_error = exc
 
 
 def _now() -> str:
@@ -194,7 +202,26 @@ async def _run_dialogue(
 ) -> DialogueResponse:
     matches = knowledge_store.search(question, top_k=3)
     llm = await llm_provider.chat([{"role": "user", "content": question}], matches, request_id)
-    tts = await tts_provider.synthesize(str(llm["text"]), voice_id=None, request_id=request_id)
+    if tts_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "message_for_user": "语音服务还没有配置完成，请联系工作人员。",
+                "missing": tts_configuration_error.missing,
+            },
+        )
+    try:
+        tts = await tts_provider.synthesize(str(llm["text"]), voice_id=None, request_id=request_id)
+    except ProviderCallError as exc:
+        raise HTTPException(
+            status_code=502 if exc.retryable else 400,
+            detail={
+                "code": exc.code,
+                "message_for_user": "语音服务暂时不可用，请稍后再试。",
+                "retryable": exc.retryable,
+            },
+        ) from exc
     blob = audio_store.put(bytes(tts["content"]), str(tts["content_type"]))
     sources = [match["source"] | {"id": match["id"], "title": match["title"], "status": match["status"]} for match in matches]
     _safe_log("dialogue.completed", request_id, session_id, provider=transcript_provider, matched=len(matches), audio_id=blob.audio_id)

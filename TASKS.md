@@ -13,7 +13,8 @@ Current status:
 - `TASK-006`: `DEFERRED`; LiveTalking display mode is deferred; local idle video is folded into TASK-005 for Phase 1.
 - `TASK-007`: `PARTIAL`; Android runtime microphone permission, device diagnostics, USB-first input preference, bounded in-memory recording, local playback and source-side audio device change monitoring are implemented and locally built/tested, but real Android 12 USB microphone/speaker/physical unplug recovery validation is blocked by no connected device. APK SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`.
 - `TASK-008`: `DONE`; local FastAPI Gateway and unified Provider skeleton are implemented and tested. Required API endpoints, Mock ASR/TTS/LLM/Embedding providers, SQLite knowledge skeleton, request IDs and audio fetch are verified. No real provider/API or production deployment success is claimed.
-- Next action is `TASK-009`: implement and verify the real Doubao TTS adapter, using server-side `.env.local` credentials only.
+- `TASK-009`: `PARTIAL`; Doubao TTS adapter, CLI helper, missing-credential guard and tests are implemented. Mock TTS works, but real Doubao TTS audio generation is blocked by missing `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE`.
+- Next action is to configure the TASK-009 Doubao TTS credentials server-side and rerun the real provider test; do not proceed to TASK-010 as DONE until TASK-009 is verified or explicitly waived.
 
 Current order:
 

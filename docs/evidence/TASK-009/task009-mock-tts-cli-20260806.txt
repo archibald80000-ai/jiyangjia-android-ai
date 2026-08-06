@@ -1,0 +1,1 @@
+{"ok": true, "provider": "mock", "content_type": "audio/wav", "bytes": 14, "sha256": "248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427"}

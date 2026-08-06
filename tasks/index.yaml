@@ -60,7 +60,7 @@ tasks:
     file: TASK-009_TTS_PROVIDERS.md
     title: "Implement Doubao TTS adapter"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-008]
   - id: TASK-010
     file: TASK-010_ASR_PROVIDERS.md

@@ -18,6 +18,11 @@ Updated: 2026-08-06
   - SQLite knowledge skeleton with `approved`, `draft`, `rejected`;
   - request IDs, sources and generated `audio_id`;
   - tests and local HTTP verification passed.
+- TASK-009 Doubao TTS adapter is partial-complete:
+  - real Doubao/Volcengine HTTP TTS adapter code exists;
+  - CLI helper and unit tests exist;
+  - Mock TTS returns deterministic audio bytes;
+  - real Doubao TTS call is blocked by missing credentials.
 
 ## Route changed
 
@@ -44,10 +49,13 @@ Android recording
 - `python -m gateway --help`: exit 0.
 - Local HTTP checks on `127.0.0.1:18080` passed for health, client config, knowledge index/search, text dialogue and audio fetch.
 - Port `8080` was occupied locally; this is logged as a local issue.
+- `python -m pytest tests\tts tests\gateway -q`: 7 passed.
+- `scripts\test_tts_provider.py --provider mock`: returned deterministic audio bytes.
+- `scripts\test_tts_provider.py --provider doubao`: returned `BLOCKED_PROVIDER_CREDENTIALS` because `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` are missing.
 
 ## Not completed
 
-- Real Doubao TTS.
+- Real Doubao TTS API call with credentials.
 - Real Doubao ASR.
 - Real Doubao/Volcengine Ark LLM.
 - OpenAI-compatible fallback LLM.
@@ -59,4 +67,4 @@ Android recording
 
 ## Next action
 
-Continue exactly one next task: `TASK-009_TTS_PROVIDERS.md`.
+Continue exactly one next action for `TASK-009_TTS_PROVIDERS.md`: configure `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` in `.env.local` or server environment, then rerun the real Doubao TTS CLI test.

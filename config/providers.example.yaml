@@ -7,7 +7,10 @@ tts:
   provider: mock
   supported: [mock, doubao]
   voice_id: default
-  credential_env: DOUBAO_TTS_KEY
+  credential_env:
+    app_id: DOUBAO_TTS_APP_ID
+    access_token: DOUBAO_TTS_ACCESS_TOKEN
+    voice_type: DOUBAO_TTS_VOICE_TYPE
 
 llm:
   provider: mock

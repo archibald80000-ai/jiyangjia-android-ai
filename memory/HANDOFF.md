@@ -5,62 +5,63 @@ Updated: 2026-08-06
 ## Current task
 
 - Current task: `TASK-009_TTS_PROVIDERS.md`
-- Previous task: `TASK-008_GATEWAY_SKELETON.md` is DONE locally.
-- Current branch: `task/TASK-008-provider-gateway`
+- Status: `PARTIAL / BLOCKED_PROVIDER_CREDENTIALS`
+- Current branch: `task/TASK-009-tts-providers`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
 
-## What TASK-008 delivered
+## What is done
 
-- FastAPI Gateway package under `gateway/`.
-- Required API routes:
-  - `GET /health`
-  - `GET /api/v1/health`
-  - `GET /api/v1/client/config`
-  - `POST /api/v1/dialogue/text`
-  - `POST /api/v1/dialogue/audio`
-  - `POST /api/v1/knowledge/index`
-  - `POST /api/v1/knowledge/search`
-  - `GET /api/v1/knowledge/status`
-  - `GET /api/v1/audio/{audio_id}`
-- Provider interfaces and Mock implementations for ASR, TTS, LLM and Embedding.
-- SQLite knowledge skeleton with `approved`, `draft`, `rejected`.
-- Mock dialogue orchestration returns `request_id`, `sources`, subtitles and `audio_id`.
+- TASK-007 follow-up audio device change monitoring was committed as `f6e931d`.
+- TASK-008 Gateway/Provider skeleton was committed as `58b6edb`.
+- TASK-009 implemented:
+  - `gateway.app.tts.DoubaoTTSConfig`
+  - `gateway.app.tts.DoubaoTTSProvider`
+  - missing credential error `BLOCKED_PROVIDER_CREDENTIALS`
+  - CLI helper `scripts/test_tts_provider.py`
+  - tests under `tests/tts/`
+  - TTS integration notes under `integration/tts/README.md`
 
-## Evidence
+## TASK-009 evidence
 
-- `docs/evidence/TASK-008/gateway-skeleton.md`
-- `docs/evidence/TASK-008/task008-pip-install-py310-20260806.txt`
-- `docs/evidence/TASK-008/task008-pytest-20260806.txt`
-- `docs/evidence/TASK-008/task008-python-module-help-20260806.txt`
-- `docs/evidence/TASK-008/task008-local-server-18080-20260806.txt`
-- `docs/evidence/TASK-008/task008-diff-check-final-20260806.txt`
-- `docs/evidence/TASK-008/task008-repository-verify-final-20260806.txt`
-- `docs/evidence/TASK-008/task008-secret-shape-scan-20260806.txt`
-- `docs/evidence/TASK-008/task008-safe-config-summary-20260806.txt`
+- `docs/evidence/TASK-009/tts-provider.md`
+- `docs/evidence/TASK-009/task009-pytest-20260806.txt`
+- `docs/evidence/TASK-009/task009-mock-tts-cli-20260806.txt`
+- `docs/evidence/TASK-009/task009-doubao-tts-cli-missing-credentials-20260806.txt`
+- `docs/evidence/TASK-009/task009-safe-config-summary-20260806.txt`
+- `docs/evidence/TASK-009/task009-pytest-final-20260806.txt`
+- `docs/evidence/TASK-009/task009-mock-tts-cli-final-20260806.txt`
+- `docs/evidence/TASK-009/task009-doubao-tts-cli-missing-credentials-final-20260806.txt`
+- `docs/evidence/TASK-009/task009-secret-shape-scan-20260806.txt`
 
-## Verified commands
+## Verified
 
-- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\gateway -q`: 4 passed.
-- `.\.venv\gateway-task008-py310\Scripts\python.exe -m gateway --help`: exit 0.
-- Local HTTP verification used port `18080` because local port `8080` was occupied.
+- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\tts tests\gateway -q`: 7 passed.
+- Mock TTS CLI returned deterministic bytes with SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
+- Real Doubao TTS CLI path returned `BLOCKED_PROVIDER_CREDENTIALS`.
 
-## Important limits
+## Not verified
 
-- TASK-008 is Mock-only for providers.
-- Do not claim Doubao ASR, Doubao TTS, Doubao/Volcengine Ark LLM, OpenAI-compatible fallback or Embedding API are working yet.
-- FAISS and document parsing are planned for TASK-012.
-- Android hardware validation is deferred to TASK-015.
-- No `.env.local` values were read or printed.
-- Safe config summary reports `DOUBAO_TTS_KEY` and the other real-provider credentials as `missing`.
+- Real Doubao TTS audio generation.
+- Android playback of real Doubao audio.
+- Doubao ASR, LLM, Embedding and RAG tasks.
+
+## Blocker
+
+Required credentials are missing:
+
+- `DOUBAO_TTS_APP_ID`
+- `DOUBAO_TTS_ACCESS_TOKEN`
+- `DOUBAO_TTS_VOICE_TYPE`
+
+No `.env.local` values were read or printed.
 
 ## Next action
 
-Execute exactly one next task: `TASK-009_TTS_PROVIDERS.md`.
+Configure the above variables in `.env.local` or the server environment, then rerun:
 
-Before implementing real Doubao TTS:
+```powershell
+.\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --text "您好，欢迎来到积养家。" --output tmp\doubao-tts-test.mp3
+```
 
-- verify current official Doubao/Volcengine TTS API documentation;
-- list required env vars by name only;
-- if credentials are missing, mark `BLOCKED_PROVIDER_CREDENTIALS`;
-- do not place keys in Android, source files, tests or logs.
+Do not claim TASK-009 DONE until a real Doubao TTS audio file is generated and checked.

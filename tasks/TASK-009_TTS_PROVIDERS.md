@@ -1,6 +1,6 @@
 # TASK-009: Implement Doubao TTS adapter
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-008
 - **Branch:** `task/TASK-009-tts-providers`
@@ -53,16 +53,17 @@ python scripts/test_tts_provider.py --provider doubao --text "您好"
 
 ## Required deliverables
 
-- [ ] Mock/Doubao TTS adapters as actually available
-- [ ] Audio metadata/checksum evidence
-- [ ] Current API citation in task report
+- [x] Mock/Doubao TTS adapters as actually available
+- [x] Audio metadata/checksum evidence
+- [x] Current API citation in task report
 
 ## Acceptance criteria
 
-- [ ] Mock/test audio passes
-- [ ] Doubao contract verified from current official docs
-- [ ] Timeout/error/cost guard
-- [ ] Secrets remain server-side
+- [x] Mock/test audio passes
+- [x] Doubao contract verified from current official docs
+- [x] Timeout/error/cost guard
+- [x] Secrets remain server-side
+- [ ] Real Doubao TTS call succeeds with approved credentials
 
 ## Stop / blocked conditions
 
@@ -88,10 +89,22 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-009 Result
+
+- Doubao TTS adapter code is implemented behind the common TTS Provider interface.
+- Mock TTS CLI returned deterministic audio bytes, SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
+- Unit tests passed: `python -m pytest tests\tts tests\gateway -q` -> 7 passed.
+- Real Doubao CLI path correctly returns `BLOCKED_PROVIDER_CREDENTIALS`.
+- Real Doubao TTS audio was not generated because credentials are missing:
+  - `DOUBAO_TTS_APP_ID`
+  - `DOUBAO_TTS_ACCESS_TOKEN`
+  - `DOUBAO_TTS_VOICE_TYPE`
+- Evidence: `docs/evidence/TASK-009/tts-provider.md`.
