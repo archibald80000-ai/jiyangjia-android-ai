@@ -24,6 +24,12 @@ Updated: 2026-08-06
   - CLI helper and unit tests exist;
   - Mock TTS returns deterministic audio bytes;
   - real Doubao TTS call using private external env generated verified MP3 evidence.
+- TASK-010 Doubao ASR adapter is complete for provider acceptance:
+  - real Doubao/Volcengine big-model WebSocket adapter exists;
+  - Gateway uses bounded file/bytes-to-WebSocket chunks, not Android always-on streaming;
+  - non-WAV/PCM input is normalized to 16 kHz mono PCM WAV before ASR;
+  - CLI helper and tests exist;
+  - real Doubao ASR call using private external env generated verified transcript evidence.
 
 ## Route changed
 
@@ -59,10 +65,14 @@ Android recording
 - `scripts\test_tts_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: returned `ok=true` with configured app/access auth, speaker and resource ID; values were not printed.
 - `scripts\test_tts_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "您好，欢迎来到积养家。" --output tmp\doubao-tts-test.mp3`: generated `audio/mpeg`, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`.
 - `ffprobe tmp\doubao-tts-test.mp3`: MP3, 24000 Hz, mono, 2.568 seconds.
+- `python -m pytest tests\asr tests\gateway tests\tts -q`: 16 passed after ASR implementation.
+- `scripts\test_asr_provider.py --provider mock --file tmp\doubao-tts-test.mp3 --content-type audio/mpeg`: returned deterministic mock transcript.
+- `scripts\test_asr_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: returned `ok=true`; values were not printed.
+- `scripts\test_asr_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --file tmp\doubao-tts-test.mp3 --content-type audio/mpeg`: generated real ASR transcript `您好，欢迎来到机养家。` after MP3-to-WAV normalization.
+- `ffprobe tmp\doubao-tts-test-16k.wav`: WAV, PCM s16le, 16000 Hz, mono, 2.568 seconds.
 
 ## Not completed
 
-- Real Doubao ASR.
 - Real Doubao/Volcengine Ark LLM.
 - OpenAI-compatible fallback LLM.
 - Real Embedding API.
@@ -73,4 +83,4 @@ Android recording
 
 ## Next action
 
-Continue exactly one next task: `TASK-010_ASR_PROVIDERS.md`. Do not start LLM/RAG/deployment until TASK-010 is verified or explicitly waived.
+Continue exactly one next task: `TASK-011_LLM_ROUTER.md`. Do not start RAG/deployment until TASK-011 is verified or explicitly waived.

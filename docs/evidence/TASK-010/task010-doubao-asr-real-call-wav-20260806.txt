@@ -1,0 +1,1 @@
+{"ok": true, "provider": "doubao", "content_type": "audio/wav", "bytes": 82254, "sha256": "7605E6D543E89A289A64E1C097DC494CB7879DA6B64E6A3E02A36428C17FE3CC", "text": "您好，欢迎来到机养家。"}

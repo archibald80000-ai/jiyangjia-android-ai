@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-009 DONE - REAL DOUBAO TTS V3 AUDIO VERIFIED
-- **Current authorized task:** TASK-010 (implement Mock then Doubao ASR adapters)
+- **Overall status:** TASK-010 DONE - REAL DOUBAO ASR AUDIO VERIFIED
+- **Current authorized task:** TASK-011 (implement real LLM and Embedding adapters)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -71,6 +71,7 @@
 - TASK-009 implemented a Doubao/Volcengine V3 unidirectional TTS adapter behind the TTS Provider interface, plus legacy V1 compatibility, CLI and unit tests.
 - TASK-009 Mock TTS CLI generated deterministic bytes with SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
 - TASK-009 real Doubao TTS V3 call succeeded using private external env file `E:\work\ai-kefu\.env.local`; values were not printed. Output was `audio/mpeg`, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`.
+- TASK-010 implemented a Doubao/Volcengine WebSocket ASR adapter behind the ASR Provider interface. Real ASR succeeded using private external env file `E:\work\ai-kefu\.env.local`; values were not printed. MP3 input was normalized to 16 kHz mono WAV and recognized as `您好，欢迎来到机养家。`.
 
 ## Not yet verified
 
@@ -81,9 +82,9 @@
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
 - USB microphone physical unplug/replug recovery on target hardware.
-- Doubao ASR, LLM/Embedding adapters, FAISS RAG implementation and end-to-end voice RAG loop.
+- LLM/Embedding adapters, FAISS RAG implementation and end-to-end voice RAG loop.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
-- Real Doubao ASR, Doubao/Volcengine Ark LLM, OpenAI-compatible fallback LLM and Embedding API behavior.
+- Real Doubao/Volcengine Ark LLM, OpenAI-compatible fallback LLM and Embedding API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
 - Whether the expanded local framework should replace the current GitHub `main` content or be published through a review branch.
 
@@ -134,6 +135,10 @@ Current evidence:
 - `docs/evidence/TASK-009/task009-doubao-v3-config-preflight-20260806.txt`
 - `docs/evidence/TASK-009/task009-doubao-v3-real-call-20260806.txt`
 - `docs/evidence/TASK-009/task009-doubao-v3-ffprobe-20260806.txt`
+- `docs/evidence/TASK-010/asr-provider.md`
+- `docs/evidence/TASK-010/task010-doubao-asr-config-preflight-20260806.txt`
+- `docs/evidence/TASK-010/task010-doubao-asr-real-call-mp3-normalized-20260806.txt`
+- `docs/evidence/TASK-010/task010-pytest-final-20260806.txt`
 
 Recent task results:
 
@@ -146,10 +151,11 @@ Recent task results:
 - TASK-007 PARTIAL. Android audio diagnostics, USB-first routing policy, runtime permission, bounded in-memory recording, local playback and audio device add/remove monitoring are implemented and locally verified by Gradle/lint/APK build. Real USB microphone, speaker and physical unplug/replug behavior are not verified because no Android device was connected.
 - TASK-008 DONE. Local FastAPI Gateway skeleton, ASR/TTS/LLM/Embedding Provider interfaces, Mock orchestration, SQLite knowledge skeleton, request IDs and required API endpoints are implemented and verified by pytest plus local HTTP checks on port 18080. No real provider/API success or production deployment is claimed.
 - TASK-009 DONE. Doubao TTS adapter now uses the official V3 unidirectional HTTP streaming protocol by default, retains V1 compatibility, and is verified by 10 local tests plus one real private-env API call. Generated MP3 evidence: `audio/mpeg`, 24 kHz mono, 2.568 seconds, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`. Android playback of that audio is still deferred to TASK-013/TASK-015.
+- TASK-010 DONE. Doubao ASR adapter uses the official big-model WebSocket protocol through a bounded Gateway file/bytes-to-chunks path. `python -m pytest tests\asr tests\gateway tests\tts -q` passed with 16 tests. Real ASR with private env succeeded for generated TTS smoke audio after MP3-to-WAV normalization; observed transcript was `您好，欢迎来到机养家。`, with one domain-name character error to handle in later vocabulary/RAG policy.
 
 Next action:
 
-- Continue exactly one next task: TASK-010 ASR Providers. Do not start LLM/RAG/deployment until TASK-010 is verified or explicitly waived.
+- Continue exactly one next task: TASK-011 LLM Router and Embedding adapters. Do not start RAG/deployment until TASK-011 is verified or explicitly waived.
 
 ## Status vocabulary
 

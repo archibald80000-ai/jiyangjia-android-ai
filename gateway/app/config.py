@@ -48,6 +48,12 @@ class Settings:
     doubao_tts_speech_rate: int = -5
     doubao_tts_uid: str = "jiyangjia-gateway"
     doubao_tts_timeout_seconds: float = 25.0
+    doubao_asr_endpoint: str = "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_nostream"
+    doubao_asr_resource_id: str = "volc.bigasr.sauc.duration"
+    doubao_asr_audio_format: str = "wav"
+    doubao_asr_uid: str = "jiyangjia-gateway"
+    doubao_asr_chunk_bytes: int = 32000
+    doubao_asr_timeout_seconds: float = 30.0
 
     def safe_summary(self) -> dict[str, object]:
         return {
@@ -64,7 +70,10 @@ class Settings:
                 "knowledge": self.knowledge_provider,
             },
             "secrets": {
-                "DOUBAO_ASR_KEY": "configured" if os.environ.get("DOUBAO_ASR_KEY") else "missing",
+                "DOUBAO_ASR_APP_ID": "configured" if _doubao_asr_app_id() else "missing",
+                "DOUBAO_ASR_ACCESS_TOKEN": "configured" if _doubao_asr_access_token() else "missing",
+                "DOUBAO_ASR_API_KEY": "configured" if os.environ.get("DOUBAO_ASR_API_KEY") else "missing",
+                "DOUBAO_ASR_RESOURCE_ID": "configured" if os.environ.get("DOUBAO_ASR_RESOURCE_ID") else "missing",
                 "DOUBAO_TTS_APP_ID": "configured" if os.environ.get("DOUBAO_TTS_APP_ID") else "missing",
                 "DOUBAO_TTS_ACCESS_TOKEN": "configured" if _doubao_tts_token() else "missing",
                 "DOUBAO_TTS_API_KEY": "configured" if os.environ.get("DOUBAO_TTS_API_KEY") else "missing",
@@ -83,6 +92,19 @@ def _doubao_tts_token() -> str | None:
 
 def _doubao_tts_speaker() -> str | None:
     return os.environ.get("DOUBAO_TTS_SPEAKER") or os.environ.get("DOUBAO_TTS_VOICE_TYPE")
+
+
+def _doubao_asr_app_id() -> str | None:
+    return os.environ.get("DOUBAO_ASR_APP_ID") or os.environ.get("DOUBAO_REALTIME_APP_ID")
+
+
+def _doubao_asr_access_token() -> str | None:
+    return (
+        os.environ.get("DOUBAO_ASR_ACCESS_TOKEN")
+        or os.environ.get("DOUBAO_ASR_TOKEN")
+        or os.environ.get("DOUBAO_ASR_KEY")
+        or os.environ.get("DOUBAO_REALTIME_ACCESS_TOKEN")
+    )
 
 
 def load_settings(env_file: str = ".env.local", *, override_env_file: bool = False) -> Settings:
@@ -105,4 +127,10 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         doubao_tts_speech_rate=int(_env("DOUBAO_TTS_SPEECH_RATE", "-5")),
         doubao_tts_uid=_env("DOUBAO_TTS_UID", "jiyangjia-gateway"),
         doubao_tts_timeout_seconds=float(_env("DOUBAO_TTS_TIMEOUT_SECONDS", "25")),
+        doubao_asr_endpoint=_env("DOUBAO_ASR_ENDPOINT", "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_nostream"),
+        doubao_asr_resource_id=_env("DOUBAO_ASR_RESOURCE_ID", "volc.bigasr.sauc.duration"),
+        doubao_asr_audio_format=_env("DOUBAO_ASR_AUDIO_FORMAT", "wav"),
+        doubao_asr_uid=_env("DOUBAO_ASR_UID", "jiyangjia-gateway"),
+        doubao_asr_chunk_bytes=int(_env("DOUBAO_ASR_CHUNK_BYTES", "32000")),
+        doubao_asr_timeout_seconds=float(_env("DOUBAO_ASR_TIMEOUT_SECONDS", "30")),
     )

@@ -1,6 +1,6 @@
 # TASK-010: Implement Mock then Doubao ASR adapters
 
-- **Status:** PLANNED
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-009
 - **Branch:** `task/TASK-010-asr-providers`
@@ -53,17 +53,17 @@ python scripts/test_asr_provider.py --provider doubao --file <sample>
 
 ## Required deliverables
 
-- [ ] Mock and verified real ASR path when credentials permit
-- [ ] Format/error tests
-- [ ] Transcript quality report
+- [x] Mock and verified real ASR path when credentials permit
+- [x] Format/error tests
+- [x] Transcript quality report
 
 ## Acceptance criteria
 
-- [ ] Audio contract defined
-- [ ] Mock pass
-- [ ] Doubao current API verified
-- [ ] Format conversion tested
-- [ ] Timeout/error/cost guard
+- [x] Audio contract defined
+- [x] Mock pass
+- [x] Doubao current API verified
+- [x] Format conversion tested
+- [x] Timeout/error/cost guard
 
 ## Stop / blocked conditions
 
@@ -89,10 +89,26 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-010 Result
+
+- Doubao/Volcengine ASR adapter is implemented behind the common ASR Provider interface.
+- Implementation follows the official big-model WebSocket protocol and uses a bounded Gateway file/bytes-to-chunks path, not Android always-on streaming.
+- Non-WAV/PCM input is normalized through ffmpeg to 16 kHz mono PCM WAV before ASR.
+- CLI helper exists: `scripts/test_asr_provider.py`.
+- Unit and regression tests passed: `python -m pytest tests\asr tests\gateway tests\tts -q` -> 16 passed.
+- Mock ASR CLI returned deterministic mock transcript.
+- External private-env config preflight returned configured app/access auth; values were not printed.
+- Real Doubao ASR call succeeded on generated TTS smoke audio:
+  - MP3 input SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`
+  - normalized WAV SHA-256 `7605E6D543E89A289A64E1C097DC494CB7879DA6B64E6A3E02A36428C17FE3CC`
+  - observed transcript `您好，欢迎来到机养家。`
+- Known quality note: expected `积养家`, observed `机养家`; domain vocabulary/post-ASR correction or RAG grounding should handle this later.
+- Evidence: `docs/evidence/TASK-010/asr-provider.md`.

@@ -7,6 +7,7 @@ from typing import Any
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, Response, UploadFile
 
+from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
 from .knowledge import KnowledgeDocument, SQLiteKnowledgeStore
@@ -27,6 +28,13 @@ llm_provider = MockLLMProvider()
 tts_provider = MockTTSProvider()
 embedding_provider = MockEmbeddingProvider()
 tts_configuration_error: ProviderConfigurationError | None = None
+asr_configuration_error: ProviderConfigurationError | None = None
+
+if settings.asr_provider == "doubao":
+    try:
+        asr_provider = DoubaoASRProvider(DoubaoASRConfig.from_settings(settings))
+    except ProviderConfigurationError as exc:
+        asr_configuration_error = exc
 
 if settings.tts_provider == "doubao":
     try:
@@ -139,7 +147,26 @@ async def dialogue_audio(
     content = await audio.read()
     if len(content) > settings.max_upload_bytes:
         raise HTTPException(status_code=413, detail={"code": "AUDIO_TOO_LARGE", "message_for_user": "录音太长，请缩短后重试。"})
-    transcript = await asr_provider.transcribe(content, content_type, rid)
+    if asr_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "message_for_user": "语音识别还没有配置完成，请联系工作人员。",
+                "missing": asr_configuration_error.missing,
+            },
+        )
+    try:
+        transcript = await asr_provider.transcribe(content, content_type, rid)
+    except ProviderCallError as exc:
+        raise HTTPException(
+            status_code=502 if exc.retryable else 400,
+            detail={
+                "code": exc.code,
+                "message_for_user": "语音识别暂时不可用，请稍后再试。",
+                "retryable": exc.retryable,
+            },
+        ) from exc
     _safe_log("dialogue_audio.received", rid, sid, bytes=len(content), duration_ms=duration_ms, sample_rate=sample_rate, input_device=input_device)
     return await _run_dialogue(str(transcript["text"]), rid, sid, transcript_provider=str(transcript["provider"]), transcript=transcript)
 

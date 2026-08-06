@@ -14,7 +14,8 @@ Current status:
 - `TASK-007`: `PARTIAL`; Android runtime microphone permission, device diagnostics, USB-first input preference, bounded in-memory recording, local playback and source-side audio device change monitoring are implemented and locally built/tested, but real Android 12 USB microphone/speaker/physical unplug recovery validation is blocked by no connected device. APK SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`.
 - `TASK-008`: `DONE`; local FastAPI Gateway and unified Provider skeleton are implemented and tested. Required API endpoints, Mock ASR/TTS/LLM/Embedding providers, SQLite knowledge skeleton, request IDs and audio fetch are verified. No real provider/API or production deployment success is claimed.
 - `TASK-009`: `DONE`; Doubao/Volcengine TTS adapter now defaults to official V3 unidirectional HTTP streaming, retains legacy V1 compatibility, passes local tests, and generated a real private-env MP3 (`audio/mpeg`, 20589 bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`). No Android playback success is claimed yet.
-- Next action is TASK-010 ASR Providers; do not proceed to TASK-011 until TASK-010 is verified or explicitly waived.
+- `TASK-010`: `DONE`; Doubao/Volcengine ASR adapter uses the official big-model WebSocket protocol through a bounded Gateway file/bytes-to-chunks path, passes local tests, and recognized generated TTS smoke audio after MP3-to-WAV normalization. Observed transcript: `您好，欢迎来到机养家。`.
+- Next action is TASK-011 LLM Router and Embedding adapters; do not proceed to TASK-012 until TASK-011 is verified or explicitly waived.
 
 Current order:
 

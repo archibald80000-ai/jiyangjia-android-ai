@@ -1,0 +1,1 @@
+{"ok": true, "provider": "doubao", "required": {"DOUBAO_ASR_APP_ID": "configured", "DOUBAO_ASR_ACCESS_TOKEN": "configured", "DOUBAO_ASR_API_KEY": "missing", "DOUBAO_ASR_RESOURCE_ID": "default"}}
