@@ -28,6 +28,10 @@ Updated: 2026-08-06
 - `docs/evidence/TASK-009/task009-doubao-v3-ffprobe-20260806.txt`
 - `docs/evidence/TASK-009/task009-v3-diff-check-20260806.txt`
 - `docs/evidence/TASK-009/task009-v3-secret-shape-scan-20260806.txt`
+- `docs/evidence/TASK-009/task009-final-pytest-20260806.txt`
+- `docs/evidence/TASK-009/task009-final-diff-check-20260806.txt`
+- `docs/evidence/TASK-009/task009-final-repository-verify-20260806.txt`
+- `docs/evidence/TASK-009/task009-final-secret-shape-scan-20260806.txt`
 
 ## Verified
 
