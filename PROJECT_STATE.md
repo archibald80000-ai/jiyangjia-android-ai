@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** DONE / READY FOR TASK-003
-- **Current authorized task:** TASK-003 (next; not started)
+- **Overall status:** BLOCKED ON TASK-003 ASSETS
+- **Current authorized task:** TASK-003 (blocked; do not advance to TASK-004)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -33,6 +33,9 @@
 - `pip check` passed inside the isolated runtime.
 - Global Python remained unmodified for torch after TASK-002.
 - `scripts/start_livetalking.ps1` exists as a thin launcher for the isolated environment.
+- TASK-003 ran on branch `task/TASK-003-wav2lip-webrtc-baseline` and stopped before service startup because required Wav2Lip assets are missing.
+- Official README asset sources were recorded: Quark `https://pan.quark.cn/s/83a750323ef0` and Google Drive `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`.
+- Google Drive could not be reached from this machine; Quark returned a web shell page but no direct non-interactive asset download.
 
 ## Not yet verified
 
@@ -40,7 +43,7 @@
 - USB Host / USB Audio Class support.
 - Whether APK sideloading and ADB are enabled.
 - Android SDK/ADB and Gradle availability.
-- LiveTalking model weights and Avatar assets.
+- LiveTalking model weights and Avatar assets. Required TASK-003 files are still absent: `third_party\LiveTalking\models\wav2lip.pth` and `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\`.
 - WebRTC connectivity on the target network.
 - LiveTalking service startup and Wav2Lip runtime behavior.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
@@ -64,16 +67,18 @@ Current evidence:
 - `docs/evidence/TASK-000/environment-audit.md`
 - `docs/evidence/TASK-001/upstream-audit.md`
 - `docs/evidence/TASK-002/environment-matrix.md`
+- `docs/evidence/TASK-003/wav2lip-baseline.md`
 
 Recent task results:
 
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 - TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
+- TASK-003 BLOCKED. Required Wav2Lip model/avatar assets are missing and were not automatically downloadable from the official sources in this environment. No LiveTalking startup/WebRTC/FPS success is claimed.
 
 Next action:
 
-- Start `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` on its own task branch/session. Prepare real Wav2Lip model/avatar assets with source/license/hash evidence, then test LiveTalking service startup and WebRTC/WHEP baseline. Do not claim model/WebRTC success without runtime logs.
+- Unblock TASK-003 by obtaining official `wav2lip256.pth` and `wav2lip256_avatar1.tar.gz`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerun TASK-003 from asset verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
 
 ## Status vocabulary
 

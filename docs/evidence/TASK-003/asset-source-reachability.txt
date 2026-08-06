@@ -1,0 +1,77 @@
+# TASK-003 asset source reachability
+Date: 2026-08-06
+
+## Google Drive folder HEAD
+```text
+PS> curl.exe -I --max-time 30 "https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:16 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:17 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:18 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:19 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:20 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:21 --:--:--     0
+curl: (28) Failed to connect to drive.google.com port 443 after 21059 ms: Could not connect to server
+EXIT_CODE=1
+```
+
+## Quark folder HEAD
+```text
+PS> curl.exe -I --max-time 30 "https://pan.quark.cn/s/83a750323ef0"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Date: Thu, 06 Aug 2026 02:16:59 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Vary: Accept-Encoding
+Vary: Origin
+x-server-id: a132805fe77874e4b29c9334f3d6bf617efccfb643b4fef0f62a1d1c5235b4da4c427b5349595857cc226ed4c29d16cb
+set-cookie: ctoken=BkDTEa0BKY7ovzH8GYFX3Tsf; path=/
+set-cookie: grey-id=a7369483-6c1e-03a8-0c31-0723d88ea894; path=/; httponly
+set-cookie: grey-id.sig=kTQGmGtYsdJJURpQS8EPNSlNz-fWll7tjJfj8pDw7PE; path=/; httponly
+Cache-Control: no-cache
+Accept-Ch: Sec-CH-UA-Platform
+Accept-Ch: Sec-CH-UA-Platform-Version
+Accept-Ch: Sec-CH-UA-Full-Version
+Accept-Ch: Sec-CH-UA-Arch
+Accept-Ch: Sec-CH-UA-Model
+Accept-Ch: Sec-CH-UA-Bitness
+Accept-Ch: Sec-CH-UA-Full-Version-List
+Accept-Ch: Sec-CH-UA-WoW64
+Accept-Ch: Sec-CH-UA-Mobile
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+x-download-options: noopen
+strict-transport-security: max-age=31536000
+x-readtime: 1
+Server: Tengine/Aserver
+EagleEye-TraceId: 2150472817859826190351315ecfe3
+Strict-Transport-Security: max-age=31536000
+Timing-Allow-Origin: *
+
+EXIT_CODE=0
+```

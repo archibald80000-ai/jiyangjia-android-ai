@@ -1,0 +1,78 @@
+# TASK-003 initial asset and environment check
+Date: 2026-08-06
+Branch: task/TASK-003-wav2lip-webrtc-baseline
+
+## Git status
+```text
+PS> git status --short --branch --untracked-files=all
+## task/TASK-003-wav2lip-webrtc-baseline
+?? docs/evidence/TASK-003/initial-asset-and-env-check.txt
+EXIT_CODE=0
+```
+
+## LiveTalking locked HEAD
+```text
+PS> git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```
+
+## Model directory listing
+```text
+PS> Get-ChildItem third_party\LiveTalking\models -Force -ErrorAction SilentlyContinue | Select-Object Mode,Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String
+
+Mode   Name                Length LastWriteTime
+----   ----                ------ -------------
+-a---- put models here.txt      0 2026/8/5 20:42:12
+
+
+
+EXIT_CODE=0
+```
+
+## Avatar directory listing
+```text
+PS> Get-ChildItem third_party\LiveTalking\data\avatars -Force -ErrorAction SilentlyContinue | Select-Object Mode,Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String
+
+Mode   Name     Length LastWriteTime
+----   ----     ------ -------------
+-a---- .gitkeep      0 2026/8/5 20:42:12
+
+
+
+EXIT_CODE=0
+```
+
+## Runtime torch CUDA check
+```text
+PS> conda run -p .venv\livetalking-task002 python -c "import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else None)"
+2.9.1+cu126
+12.6
+True
+NVIDIA GeForce RTX 4070 Laptop GPU
+EXIT_CODE=0
+```
+
+## README asset source lines
+```text
+PS> $lines=Get-Content -Encoding UTF8 third_party\LiveTalking\README.md; $lines[80..90]
+### 2.1 下载模型
+
+| 网盘 | 地址 |
+|------|------|
+| 夸克云盘 | <https://pan.quark.cn/s/83a750323ef0> |
+| Google Drive | <https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing> |
+
+1. 将 `wav2lip256.pth` 拷贝到项目的 `models/` 目录下，重命名为 `wav2lip.pth`
+2. 将 `wav2lip256_avatar1.tar.gz` 解压后整个文件夹拷贝到 `data/avatars/` 目录下
+
+### 2.2 启动服务
+EXIT_CODE=0
+```

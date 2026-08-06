@@ -1,0 +1,103 @@
+# TASK-003 final verification
+Date: 2026-08-06
+Branch: task/TASK-003-wav2lip-webrtc-baseline
+
+## Main repository status including untracked evidence
+```text
+PS> git status --short --untracked-files=all
+ M PROJECT_STATE.md
+ M TASKS.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+ M tasks/index.yaml
+?? docs/evidence/TASK-003/asset-source-reachability.txt
+?? docs/evidence/TASK-003/gdown-install.txt
+?? docs/evidence/TASK-003/gdrive-download-retry.txt
+?? docs/evidence/TASK-003/gdrive-download.txt
+?? docs/evidence/TASK-003/initial-asset-and-env-check.txt
+?? docs/evidence/TASK-003/pip-check-after-gdown.txt
+?? docs/evidence/TASK-003/quark-page-probe.txt
+?? docs/evidence/TASK-003/wav2lip-baseline.md
+EXIT_CODE=0
+```
+
+## Repository structure verification
+```text
+PS> powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+EXIT_CODE=0
+```
+
+## Diff whitespace check
+```text
+PS> git diff --check
+EXIT_CODE=0
+```
+
+## LiveTalking locked HEAD
+```text
+PS> git -C third_party\LiveTalking rev-parse HEAD
+c963ad409c556918b7d23999bf87c47a7c05c932
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```
+
+## Expected model file check
+```text
+PS> Get-Item third_party\LiveTalking\models\wav2lip.pth -ErrorAction SilentlyContinue | Select-Object FullName,Length,LastWriteTime | Format-List | Out-String
+
+EXIT_CODE=1
+```
+
+## Expected avatar folder check
+```text
+PS> Get-Item third_party\LiveTalking\data\avatars\wav2lip256_avatar1 -ErrorAction SilentlyContinue | Select-Object FullName,Mode,LastWriteTime | Format-List | Out-String
+
+EXIT_CODE=1
+```
+
+## Ignored task cache check
+```text
+PS> git check-ignore -v .cache\TASK-003\gdrive
+.gitignore:70:.cache/	".cache\\TASK-003\\gdrive"
+EXIT_CODE=0
+```
+
+## Runtime pip check after gdown
+```text
+PS> conda run -p .venv\livetalking-task002 python -m pip check
+No broken requirements found.
+EXIT_CODE=0
+```
+
+## Task evidence private IPv4 scan excluding final self-log
+```text
+PS> rg --pcre2 "(?<![0-9.])(?:192\.168|10\.(?:[0-9]{1,3}\.){2}[0-9]{1,3}|172\.(?:1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3})(?![0-9.])" docs\evidence\TASK-003 -g "*" -g "!task003-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Task evidence sensitive assignment scan excluding final self-log
+```text
+PS> rg --pcre2 "(?i)(?:^|[^A-Z0-9_])(?:API[_-]?KEY|TOKEN|SECRET(?:[_-]?KEY)?|PASSWORD)\s*[:=]|(?:^|[^A-Z0-9])AKIA[0-9A-Z]{16}|(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}" docs\evidence\TASK-003 -g "*" -g "!task003-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Changed tracked files stat
+```text
+PS> git diff --stat
+ PROJECT_STATE.md                          | 13 ++++--
+ TASKS.md                                  |  3 +-
+ memory/CURRENT_STATE.md                   |  5 +--
+ memory/HANDOFF.md                         | 72 ++++++++++++++-----------------
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md | 48 +++++++++++++++------
+ tasks/index.yaml                          |  2 +-
+ 6 files changed, 81 insertions(+), 62 deletions(-)
+EXIT_CODE=0
+```

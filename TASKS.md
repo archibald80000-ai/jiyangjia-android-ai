@@ -7,7 +7,8 @@ Current status:
 - `TASK-000`: `DONE`; environment/repository audit passed and LiveTalking locked checkout exists under ignored `third_party/LiveTalking`.
 - `TASK-001`: `DONE`; locked LiveTalking upstream source audited with endpoint, model/asset, network, extension and compliance notes.
 - `TASK-002`: `DONE`; isolated LiveTalking runtime exists under ignored `.venv\livetalking-task002`, dependencies/imports/PyTorch CUDA smoke check passed.
-- Next action is `TASK-003`; do not start later tasks concurrently.
+- `TASK-003`: `BLOCKED`; required `wav2lip.pth` and `wav2lip256_avatar1` assets are missing and official online sources were not automatically downloadable from this environment.
+- Next action is to unblock and rerun `TASK-003`; do not start later tasks concurrently.
 
 Current order:
 

@@ -15,11 +15,10 @@
 
 ## In progress
 
-- No task is currently in progress.
+- TASK-003 is `BLOCKED` on missing Wav2Lip model/avatar assets.
 
 ## Not started
 
-- Model weights / avatar preparation.
 - LiveTalking API reproduction.
 - Android project creation.
 - Provider adapter code.
@@ -28,4 +27,4 @@
 
 ## Next action
 
-Start `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` on a separate task branch/session. Prepare model/avatar assets with source, license and hash evidence, then verify actual LiveTalking service startup and WebRTC/WHEP baseline. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.
+Unblock `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` by obtaining official `wav2lip256.pth` and `wav2lip256_avatar1.tar.gz`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerunning TASK-003 from asset verification. Do not claim Wav2Lip or WebRTC success until runtime evidence exists.

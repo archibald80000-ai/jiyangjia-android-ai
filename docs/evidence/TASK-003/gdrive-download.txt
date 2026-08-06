@@ -1,0 +1,14 @@
+# TASK-003 Google Drive asset download
+Date: 2026-08-06
+
+```text
+PS>
+conda run -p .venv\livetalking-task002 gdown --folder https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing -O .cache\TASK-003\gdrive --remaining-ok
+usage: gdown [-h] [-V] [-O OUTPUT] [-q] [--proxy PROXY] [--speed SPEED]
+             [--no-cookies] [--no-check-certificate] [--continue] [--folder]
+             [--json] [--format FORMAT] [--user-agent USER_AGENT]
+             url_or_id
+gdown: error: unrecognized arguments: --remaining-ok
+ERROR conda.cli.main_run:execute(142): `conda run gdown --folder https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing -O .cache\TASK-003\gdrive --remaining-ok` failed. (See above for error)
+EXIT_CODE=1
+```

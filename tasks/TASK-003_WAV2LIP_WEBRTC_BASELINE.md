@@ -1,6 +1,6 @@
 # TASK-003: Run the first Wav2Lip WebRTC/WHEP baseline
 
-- **Status:** PLANNED
+- **Status:** BLOCKED
 - **Priority:** P0
 - **Dependencies:** TASK-002
 - **Branch:** `task/TASK-003-wav2lip-webrtc-baseline`
@@ -58,16 +58,16 @@ Invoke-WebRequest http://127.0.0.1:8010/index.html -UseBasicParsing
 
 ## Required deliverables
 
-- [ ] scripts/start_livetalking.ps1
-- [ ] docs/evidence/TASK-003/wav2lip-baseline.md
-- [ ] Startup/stream logs or exact BLOCKED evidence
+- [x] scripts/start_livetalking.ps1
+- [x] docs/evidence/TASK-003/wav2lip-baseline.md
+- [x] Startup/stream logs or exact BLOCKED evidence
 
 ## Acceptance criteria
 
-- [ ] Required weights/avatar locations verified
-- [ ] Service starts or exact blocker is captured
+- [x] Required weights/avatar locations verified
+- [x] Service starts or exact blocker is captured
 - [ ] Web page and WHEP/WebRTC result recorded
-- [ ] Real FPS only reported from logs
+- [x] Real FPS only reported from logs
 
 ## Stop / blocked conditions
 
@@ -87,16 +87,36 @@ When blocked, complete all safe analysis, save sanitized evidence, set status to
 - Hardware/environment details for device/GPU claims.
 - Failed cases, untested paths and cost-bearing calls.
 
+TASK-003 evidence:
+
+- `docs/evidence/TASK-003/wav2lip-baseline.md`
+- `docs/evidence/TASK-003/initial-asset-and-env-check.txt`
+- `docs/evidence/TASK-003/gdown-install.txt`
+- `docs/evidence/TASK-003/gdrive-download.txt`
+- `docs/evidence/TASK-003/gdrive-download-retry.txt`
+- `docs/evidence/TASK-003/asset-source-reachability.txt`
+- `docs/evidence/TASK-003/quark-page-probe.txt`
+- `docs/evidence/TASK-003/pip-check-after-gdown.txt`
+- `docs/evidence/TASK-003/task003-final-verification.txt`
+
+Blocked result:
+
+- `third_party\LiveTalking\models\wav2lip.pth` is missing.
+- `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\` is missing.
+- Google Drive official source was unreachable from this machine.
+- Quark official source returned the share web shell but no direct downloadable asset files through non-interactive curl.
+- LiveTalking service startup was intentionally not attempted without the required model/avatar assets.
+
 ## Rollback
 
 Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions; no new ADR required.
+- [x] Recommend exactly one next task: unblock and rerun `TASK-003_WAV2LIP_WEBRTC_BASELINE.md` after placing official Wav2Lip model/avatar assets.
