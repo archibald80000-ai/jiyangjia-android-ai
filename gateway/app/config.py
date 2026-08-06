@@ -5,7 +5,7 @@ from pathlib import Path
 from dataclasses import dataclass
 
 
-def load_local_env_file(path: str = ".env.local") -> None:
+def load_local_env_file(path: str = ".env.local", *, override: bool = False) -> None:
     env_path = Path(path)
     if not env_path.exists():
         return
@@ -15,7 +15,7 @@ def load_local_env_file(path: str = ".env.local") -> None:
             continue
         key, value = stripped.split("=", 1)
         key = key.strip()
-        if key and key not in os.environ:
+        if key and (override or key not in os.environ):
             os.environ[key] = value.strip().strip('"').strip("'")
 
 
@@ -38,12 +38,16 @@ class Settings:
     embedding_provider: str = "mock"
     knowledge_provider: str = "sqlite_lightweight"
     knowledge_db_path: str = ":memory:"
-    doubao_tts_endpoint: str = "https://openspeech.bytedance.com/api/v1/tts"
+    doubao_tts_endpoint: str = "https://openspeech.bytedance.com/api/v3/tts/unidirectional"
     doubao_tts_cluster: str = "volcano_tts"
     doubao_tts_voice_type: str = ""
+    doubao_tts_speaker: str = ""
+    doubao_tts_resource_id: str = "seed-tts-2.0"
     doubao_tts_encoding: str = "mp3"
+    doubao_tts_sample_rate: int = 24000
+    doubao_tts_speech_rate: int = -5
     doubao_tts_uid: str = "jiyangjia-gateway"
-    doubao_tts_timeout_seconds: float = 20.0
+    doubao_tts_timeout_seconds: float = 25.0
 
     def safe_summary(self) -> dict[str, object]:
         return {
@@ -63,7 +67,9 @@ class Settings:
                 "DOUBAO_ASR_KEY": "configured" if os.environ.get("DOUBAO_ASR_KEY") else "missing",
                 "DOUBAO_TTS_APP_ID": "configured" if os.environ.get("DOUBAO_TTS_APP_ID") else "missing",
                 "DOUBAO_TTS_ACCESS_TOKEN": "configured" if _doubao_tts_token() else "missing",
-                "DOUBAO_TTS_VOICE_TYPE": "configured" if os.environ.get("DOUBAO_TTS_VOICE_TYPE") else "missing",
+                "DOUBAO_TTS_API_KEY": "configured" if os.environ.get("DOUBAO_TTS_API_KEY") else "missing",
+                "DOUBAO_TTS_SPEAKER": "configured" if _doubao_tts_speaker() else "missing",
+                "DOUBAO_TTS_RESOURCE_ID": "configured" if os.environ.get("DOUBAO_TTS_RESOURCE_ID") else "missing",
                 "ARK_API_KEY": "configured" if os.environ.get("ARK_API_KEY") else "missing",
                 "OPENAI_COMPATIBLE_API_KEY": "configured" if os.environ.get("OPENAI_COMPATIBLE_API_KEY") else "missing",
                 "EMBEDDING_API_KEY": "configured" if os.environ.get("EMBEDDING_API_KEY") else "missing",
@@ -75,8 +81,12 @@ def _doubao_tts_token() -> str | None:
     return os.environ.get("DOUBAO_TTS_ACCESS_TOKEN") or os.environ.get("DOUBAO_TTS_TOKEN") or os.environ.get("DOUBAO_TTS_KEY")
 
 
-def load_settings() -> Settings:
-    load_local_env_file()
+def _doubao_tts_speaker() -> str | None:
+    return os.environ.get("DOUBAO_TTS_SPEAKER") or os.environ.get("DOUBAO_TTS_VOICE_TYPE")
+
+
+def load_settings(env_file: str = ".env.local", *, override_env_file: bool = False) -> Settings:
+    load_local_env_file(env_file, override=override_env_file)
     return Settings(
         max_record_seconds=int(_env("JIYANGJIA_MAX_RECORD_SECONDS", "20")),
         max_upload_bytes=int(_env("JIYANGJIA_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024))),
@@ -85,10 +95,14 @@ def load_settings() -> Settings:
         llm_provider=_env("JIYANGJIA_LLM_PROVIDER", "mock"),
         embedding_provider=_env("JIYANGJIA_EMBEDDING_PROVIDER", "mock"),
         knowledge_db_path=_env("JIYANGJIA_KNOWLEDGE_DB_PATH", ":memory:"),
-        doubao_tts_endpoint=_env("DOUBAO_TTS_ENDPOINT", "https://openspeech.bytedance.com/api/v1/tts"),
+        doubao_tts_endpoint=_env("DOUBAO_TTS_ENDPOINT", "https://openspeech.bytedance.com/api/v3/tts/unidirectional"),
         doubao_tts_cluster=_env("DOUBAO_TTS_CLUSTER", "volcano_tts"),
         doubao_tts_voice_type=_env("DOUBAO_TTS_VOICE_TYPE", ""),
+        doubao_tts_speaker=_env("DOUBAO_TTS_SPEAKER", ""),
+        doubao_tts_resource_id=_env("DOUBAO_TTS_RESOURCE_ID", "seed-tts-2.0"),
         doubao_tts_encoding=_env("DOUBAO_TTS_ENCODING", "mp3"),
+        doubao_tts_sample_rate=int(_env("DOUBAO_TTS_SAMPLE_RATE", "24000")),
+        doubao_tts_speech_rate=int(_env("DOUBAO_TTS_SPEECH_RATE", "-5")),
         doubao_tts_uid=_env("DOUBAO_TTS_UID", "jiyangjia-gateway"),
-        doubao_tts_timeout_seconds=float(_env("DOUBAO_TTS_TIMEOUT_SECONDS", "20")),
+        doubao_tts_timeout_seconds=float(_env("DOUBAO_TTS_TIMEOUT_SECONDS", "25")),
     )

@@ -18,11 +18,12 @@ Updated: 2026-08-06
   - SQLite knowledge skeleton with `approved`, `draft`, `rejected`;
   - request IDs, sources and generated `audio_id`;
   - tests and local HTTP verification passed.
-- TASK-009 Doubao TTS adapter is partial-complete:
-  - real Doubao/Volcengine HTTP TTS adapter code exists;
+- TASK-009 Doubao TTS adapter is complete for provider acceptance:
+  - real Doubao/Volcengine V3 unidirectional HTTP streaming adapter exists;
+  - legacy V1 HTTP compatibility remains;
   - CLI helper and unit tests exist;
   - Mock TTS returns deterministic audio bytes;
-  - real Doubao TTS call is blocked by missing credentials.
+  - real Doubao TTS call using private external env generated verified MP3 evidence.
 
 ## Route changed
 
@@ -52,13 +53,15 @@ Android recording
 - `python -m pytest tests\tts tests\gateway -q`: 8 passed after adding Gateway `doubao` missing-credential regression coverage.
 - `python -m pytest tests\tts tests\gateway -q`: 9 passed after adding TTS config preflight redaction coverage.
 - `scripts\test_tts_provider.py --provider mock`: returned deterministic audio bytes.
-- `scripts\test_tts_provider.py --provider doubao`: returned `BLOCKED_PROVIDER_CREDENTIALS` because `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` are missing.
 - `scripts\test_tts_provider.py --provider doubao --check-config`: returns only missing/configured status.
 - `.env.example` is aligned to TASK-009 TTS variable names and contains placeholders only.
+- `python -m pytest tests\tts tests\gateway -q`: 10 passed after V3 update.
+- `scripts\test_tts_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --check-config`: returned `ok=true` with configured app/access auth, speaker and resource ID; values were not printed.
+- `scripts\test_tts_provider.py --provider doubao --env-file E:\work\ai-kefu\.env.local --text "您好，欢迎来到积养家。" --output tmp\doubao-tts-test.mp3`: generated `audio/mpeg`, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`.
+- `ffprobe tmp\doubao-tts-test.mp3`: MP3, 24000 Hz, mono, 2.568 seconds.
 
 ## Not completed
 
-- Real Doubao TTS API call with credentials.
 - Real Doubao ASR.
 - Real Doubao/Volcengine Ark LLM.
 - OpenAI-compatible fallback LLM.
@@ -70,4 +73,4 @@ Android recording
 
 ## Next action
 
-Continue exactly one next action for `TASK-009_TTS_PROVIDERS.md`: configure `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` in `.env.local` or server environment, then rerun the real Doubao TTS CLI test.
+Continue exactly one next task: `TASK-010_ASR_PROVIDERS.md`. Do not start LLM/RAG/deployment until TASK-010 is verified or explicitly waived.

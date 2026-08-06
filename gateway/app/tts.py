@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+import json
 import uuid
 from dataclasses import dataclass
 from typing import Any
@@ -25,12 +26,16 @@ class ProviderCallError(RuntimeError):
 
 @dataclass(frozen=True)
 class DoubaoTTSConfig:
-    app_id: str
-    access_token: str
+    app_id: str | None
+    access_token: str | None
+    api_key: str | None
     cluster: str
-    voice_type: str
+    speaker: str
+    resource_id: str
     endpoint: str
     encoding: str
+    sample_rate: int
+    speech_rate: int
     uid: str
     timeout_seconds: float
 
@@ -39,21 +44,27 @@ class DoubaoTTSConfig:
         import os
 
         token = os.environ.get("DOUBAO_TTS_ACCESS_TOKEN") or os.environ.get("DOUBAO_TTS_TOKEN") or os.environ.get("DOUBAO_TTS_KEY")
+        app_id = os.environ.get("DOUBAO_TTS_APP_ID")
+        api_key = os.environ.get("DOUBAO_TTS_API_KEY")
+        speaker = settings.doubao_tts_speaker or settings.doubao_tts_voice_type
         values = {
-            "DOUBAO_TTS_APP_ID": os.environ.get("DOUBAO_TTS_APP_ID"),
-            "DOUBAO_TTS_ACCESS_TOKEN": token,
-            "DOUBAO_TTS_VOICE_TYPE": settings.doubao_tts_voice_type,
+            "DOUBAO_TTS_AUTH": api_key or (app_id and token),
+            "DOUBAO_TTS_SPEAKER": speaker,
         }
         missing = [key for key, value in values.items() if not value]
         if missing:
             raise ProviderConfigurationError(missing)
         return cls(
-            app_id=str(values["DOUBAO_TTS_APP_ID"]),
-            access_token=str(values["DOUBAO_TTS_ACCESS_TOKEN"]),
+            app_id=app_id,
+            access_token=token,
+            api_key=api_key,
             cluster=settings.doubao_tts_cluster,
-            voice_type=settings.doubao_tts_voice_type,
+            speaker=speaker,
+            resource_id=settings.doubao_tts_resource_id,
             endpoint=settings.doubao_tts_endpoint,
             encoding=settings.doubao_tts_encoding,
+            sample_rate=settings.doubao_tts_sample_rate,
+            speech_rate=settings.doubao_tts_speech_rate,
             uid=settings.doubao_tts_uid,
             timeout_seconds=settings.doubao_tts_timeout_seconds,
         )
@@ -70,6 +81,21 @@ class DoubaoTTSProvider:
         clean_text = text.strip()
         if not clean_text:
             raise ProviderCallError("EMPTY_TEXT", "text must not be blank", retryable=False)
+        if "/api/v3/tts/" in self.config.endpoint:
+            audio_bytes, content_type = await self._synthesize_v3(clean_text, voice_id, request_id)
+            return {
+                "provider": self.name,
+                "content": audio_bytes,
+                "content_type": content_type,
+                "duration_ms": None,
+                "voice_id": voice_id or self.config.speaker,
+                "encoding": self.config.encoding,
+            }
+        return await self._synthesize_v1(clean_text, voice_id, request_id)
+
+    async def _synthesize_v1(self, clean_text: str, voice_id: str | None, request_id: str) -> dict[str, object]:
+        if not self.config.app_id or not self.config.access_token:
+            raise ProviderConfigurationError(["DOUBAO_TTS_APP_ID", "DOUBAO_TTS_ACCESS_TOKEN"])
         payload = {
             "app": {
                 "appid": self.config.app_id,
@@ -78,7 +104,7 @@ class DoubaoTTSProvider:
             },
             "user": {"uid": self.config.uid},
             "audio": {
-                "voice_type": voice_id or self.config.voice_type,
+                "voice_type": voice_id or self.config.speaker,
                 "encoding": self.config.encoding,
                 "speed_ratio": 1.0,
                 "volume_ratio": 1.0,
@@ -103,9 +129,39 @@ class DoubaoTTSProvider:
             "content": audio_bytes,
             "content_type": content_type,
             "duration_ms": None,
-            "voice_id": voice_id or self.config.voice_type,
+            "voice_id": voice_id or self.config.speaker,
             "encoding": self.config.encoding,
         }
+
+    async def _synthesize_v3(self, clean_text: str, voice_id: str | None, request_id: str) -> tuple[bytes, str]:
+        request_id = request_id or str(uuid.uuid4())
+        payload = {
+            "req_params": {
+                "audio_params": {
+                    "format": self.config.encoding,
+                    "sample_rate": self.config.sample_rate,
+                    "speech_rate": self.config.speech_rate,
+                },
+                "speaker": voice_id or self.config.speaker,
+                "text": clean_text,
+            },
+            "user": {"uid": f"{self.config.uid}-{request_id[:12]}"},
+        }
+        headers = {
+            "Content-Type": "application/json",
+            "X-Api-Request-Id": request_id,
+            "X-Api-Resource-Id": self.config.resource_id,
+        }
+        if self.config.api_key:
+            headers["X-Api-Key"] = self.config.api_key
+        elif self.config.app_id and self.config.access_token:
+            headers["X-Api-App-Id"] = self.config.app_id
+            headers["X-Api-Access-Key"] = self.config.access_token
+        else:
+            raise ProviderConfigurationError(["DOUBAO_TTS_AUTH"])
+
+        response = await self._post(payload, headers)
+        return _extract_v3_audio(response, self.config.encoding)
 
     async def _post(self, payload: dict[str, Any], headers: dict[str, str]) -> httpx.Response:
         timeout = httpx.Timeout(self.config.timeout_seconds)
@@ -139,6 +195,51 @@ def _extract_audio(response: httpx.Response, encoding: str) -> tuple[bytes, str]
         return base64.b64decode(audio_base64), _content_type_for_encoding(encoding)
     except ValueError as exc:
         raise ProviderCallError("TTS_BAD_AUDIO", "Doubao TTS returned invalid base64 audio", retryable=True) from exc
+
+
+def _extract_v3_audio(response: httpx.Response, encoding: str) -> tuple[bytes, str]:
+    content_type = response.headers.get("content-type", "")
+    if content_type.startswith("audio/"):
+        return response.content, content_type.split(";")[0]
+    raw = response.text
+    frames = _parse_concatenated_json_objects(raw)
+    chunks: list[bytes] = []
+    completed = False
+    for frame in frames:
+        code = frame.get("code")
+        if code == 20000000:
+            completed = True
+            continue
+        if isinstance(code, int) and code != 0:
+            raise ProviderCallError("TTS_PROVIDER_ERROR", str(frame.get("message") or "Doubao TTS provider error"), retryable=True)
+        data = frame.get("data")
+        if isinstance(data, str) and data:
+            try:
+                chunks.append(base64.b64decode(data))
+            except ValueError as exc:
+                raise ProviderCallError("TTS_BAD_AUDIO", "Doubao TTS returned invalid base64 audio", retryable=True) from exc
+    if not completed or not chunks:
+        raise ProviderCallError("TTS_NO_AUDIO", "Doubao TTS stream did not include a completed audio payload", retryable=True)
+    return b"".join(chunks), _content_type_for_encoding(encoding)
+
+
+def _parse_concatenated_json_objects(raw: str) -> list[dict[str, Any]]:
+    decoder = json.JSONDecoder()
+    cursor = 0
+    frames: list[dict[str, Any]] = []
+    while cursor < len(raw):
+        while cursor < len(raw) and raw[cursor].isspace():
+            cursor += 1
+        if cursor >= len(raw):
+            break
+        try:
+            parsed, cursor = decoder.raw_decode(raw, cursor)
+        except json.JSONDecodeError as exc:
+            raise ProviderCallError("TTS_BAD_RESPONSE", "Doubao TTS returned an invalid JSON stream", retryable=True) from exc
+        if not isinstance(parsed, dict):
+            raise ProviderCallError("TTS_BAD_RESPONSE", "Doubao TTS stream frame was not an object", retryable=True)
+        frames.append(parsed)
+    return frames
 
 
 def _content_type_for_encoding(encoding: str) -> str:

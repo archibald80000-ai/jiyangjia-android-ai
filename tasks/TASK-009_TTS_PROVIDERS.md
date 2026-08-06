@@ -1,6 +1,6 @@
 # TASK-009: Implement Doubao TTS adapter
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-008
 - **Branch:** `task/TASK-009-tts-providers`
@@ -63,7 +63,7 @@ python scripts/test_tts_provider.py --provider doubao --text "您好"
 - [x] Doubao contract verified from current official docs
 - [x] Timeout/error/cost guard
 - [x] Secrets remain server-side
-- [ ] Real Doubao TTS call succeeds with approved credentials
+- [x] Real Doubao TTS call succeeds with approved credentials
 
 ## Stop / blocked conditions
 
@@ -100,16 +100,16 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 ## TASK-009 Result
 
 - Doubao TTS adapter code is implemented behind the common TTS Provider interface.
+- Adapter now defaults to the official V3 unidirectional HTTP streaming protocol and keeps legacy V1 compatibility.
 - Mock TTS CLI returned deterministic audio bytes, SHA-256 `248253DDDE4121C7512AF5E387BAAEC4EE48C7530D0EAB16F03A31D5DBFC9427`.
 - Unit tests passed: `python -m pytest tests\tts tests\gateway -q` -> 7 passed.
 - Follow-up Gateway missing-credential regression test passed: 8 tests passed.
 - Follow-up config preflight and redaction tests passed: 9 tests passed.
-- Real Doubao CLI path correctly returns `BLOCKED_PROVIDER_CREDENTIALS`.
 - Doubao config preflight returns only `configured/missing` status and does not print values.
 - `.env.example` now uses the current TASK-009 variable names and placeholder values only.
-- Latest blocker recheck still returns `BLOCKED_PROVIDER_CREDENTIALS`; no real Doubao TTS success is claimed.
-- Real Doubao TTS audio was not generated because credentials are missing:
-  - `DOUBAO_TTS_APP_ID`
-  - `DOUBAO_TTS_ACCESS_TOKEN`
-  - `DOUBAO_TTS_VOICE_TYPE`
+- V3 update tests passed: `python -m pytest tests\tts tests\gateway -q` -> 10 passed.
+- External private-env config preflight returned configured app/access auth, speaker and resource ID; values were not printed.
+- Real Doubao TTS V3 call generated `audio/mpeg`, `20589` bytes, SHA-256 `981F9001284C1C5057B7737318E444393A527C56070F9F3805551C8392F85BF8`.
+- ffprobe verified MP3, 24000 Hz, mono, 2.568 seconds.
+- Android playback of real Doubao audio is not claimed; it remains for TASK-013/TASK-015.
 - Evidence: `docs/evidence/TASK-009/tts-provider.md`.

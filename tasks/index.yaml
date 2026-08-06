@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-009
+current: TASK-010
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -60,7 +60,7 @@ tasks:
     file: TASK-009_TTS_PROVIDERS.md
     title: "Implement Doubao TTS adapter"
     priority: p0
-    status: PARTIAL
+    status: DONE
     depends_on: [TASK-008]
   - id: TASK-010
     file: TASK-010_ASR_PROVIDERS.md

@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import hashlib
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -16,26 +17,29 @@ from gateway.app.providers import MockTTSProvider
 from gateway.app.tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderConfigurationError
 
 
-def doubao_tts_config_status() -> dict[str, object]:
-    settings = load_settings()
+def doubao_tts_config_status(env_file: str = ".env.local") -> dict[str, object]:
+    settings = load_settings(env_file=env_file, override_env_file=True)
+    required_status = {
+        "DOUBAO_TTS_APP_ID": "configured" if os.environ.get("DOUBAO_TTS_APP_ID") else "missing",
+        "DOUBAO_TTS_ACCESS_TOKEN": "configured" if os.environ.get("DOUBAO_TTS_ACCESS_TOKEN") else "missing",
+        "DOUBAO_TTS_API_KEY": "configured" if os.environ.get("DOUBAO_TTS_API_KEY") else "missing",
+        "DOUBAO_TTS_SPEAKER": "configured" if (os.environ.get("DOUBAO_TTS_SPEAKER") or os.environ.get("DOUBAO_TTS_VOICE_TYPE")) else "missing",
+        "DOUBAO_TTS_RESOURCE_ID": "configured" if os.environ.get("DOUBAO_TTS_RESOURCE_ID") else "missing",
+    }
     try:
         DoubaoTTSConfig.from_settings(settings)
     except ProviderConfigurationError as exc:
-        required = ["DOUBAO_TTS_APP_ID", "DOUBAO_TTS_ACCESS_TOKEN", "DOUBAO_TTS_VOICE_TYPE"]
         return {
             "ok": False,
             "code": "BLOCKED_PROVIDER_CREDENTIALS",
             "provider": "doubao",
-            "required": {name: "missing" if name in exc.missing else "configured" for name in required},
+            "required": required_status,
+            "auth_note": "configure DOUBAO_TTS_API_KEY or DOUBAO_TTS_APP_ID plus DOUBAO_TTS_ACCESS_TOKEN",
         }
     return {
         "ok": True,
         "provider": "doubao",
-        "required": {
-            "DOUBAO_TTS_APP_ID": "configured",
-            "DOUBAO_TTS_ACCESS_TOKEN": "configured",
-            "DOUBAO_TTS_VOICE_TYPE": "configured",
-        },
+        "required": required_status,
     }
 
 
@@ -45,13 +49,14 @@ async def main() -> int:
     parser.add_argument("--text", default="")
     parser.add_argument("--output", default="")
     parser.add_argument("--check-config", action="store_true")
+    parser.add_argument("--env-file", default=".env.local")
     args = parser.parse_args()
 
     if args.check_config:
         if args.provider == "mock":
             print(json.dumps({"ok": True, "provider": "mock", "required": {}}, ensure_ascii=False))
             return 0
-        status = doubao_tts_config_status()
+        status = doubao_tts_config_status(args.env_file)
         print(json.dumps(status, ensure_ascii=False))
         return 0 if status["ok"] else 2
 
@@ -62,7 +67,8 @@ async def main() -> int:
         result = await MockTTSProvider().synthesize(args.text, voice_id=None, request_id="manual-tts-test")
     else:
         try:
-            result = await DoubaoTTSProvider(DoubaoTTSConfig.from_settings(load_settings())).synthesize(
+            settings = load_settings(env_file=args.env_file, override_env_file=True)
+            result = await DoubaoTTSProvider(DoubaoTTSConfig.from_settings(settings)).synthesize(
                 args.text,
                 voice_id=None,
                 request_id="manual-tts-test",

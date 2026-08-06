@@ -1,0 +1,1 @@
+{"ok": true, "provider": "doubao", "required": {"DOUBAO_TTS_APP_ID": "configured", "DOUBAO_TTS_ACCESS_TOKEN": "configured", "DOUBAO_TTS_API_KEY": "missing", "DOUBAO_TTS_SPEAKER": "configured", "DOUBAO_TTS_RESOURCE_ID": "configured"}}
