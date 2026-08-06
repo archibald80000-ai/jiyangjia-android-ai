@@ -1,0 +1,12 @@
+Timestamp: 2026-08-05T20:34:44.7239715-05:00 Command: Test-NetConnection github.com -Port 443
+
+ComputerName     : github.com
+RemoteAddress    : 20.205.243.166
+RemotePort       : 443
+InterfaceAlias   : WLAN
+SourceAddress    : <local-private-ip-redacted>
+TcpTestSucceeded : True
+
+Command: git ls-remote https://github.com/lipku/LiveTalking.git HEAD
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Recv failure: Connection was reset
+ls-remote default ExitCode: 128

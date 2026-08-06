@@ -31,6 +31,13 @@
 | `python -c "import torch; ..."` | `ModuleNotFoundError: No module named 'torch'` | `python-torch-check.txt` |
 | `powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1` | Exit 1, GitHub clone connection reset | `bootstrap-livetalking.txt` |
 | `git ls-remote https://github.com/lipku/LiveTalking.git HEAD` | Exit 128, GitHub HTTPS connection reset | `github-network-diagnostic.txt` |
+| `git -c http.version=HTTP/1.1 ls-remote https://github.com/lipku/LiveTalking.git HEAD` | Succeeded once and returned the locked commit, then failed later during retry | `retry-git-http11.txt`, `retry-git-http11-second.txt` |
+| `gh repo view lipku/LiveTalking --json name,defaultBranchRef` | Exit 0; GitHub API route reachable | `retry-gh-api.txt` |
+| `Invoke-WebRequest -Method Head` for locked commit archive | HTTP 200; archive route reachable but not used as checkout replacement | `github-archive-head-check.txt` |
+| Temporary HTTP/1.1 bootstrap wrapper | Failed; clone could not connect to `github.com:443` | `bootstrap-livetalking-wrapper-http11-bypass.txt` |
+| Manual `git init` plus locked commit `fetch` | Failed; fetch could not connect to `github.com:443` | `manual-init-fetch-http11.txt` |
+| Cleanup invalid checkout directory | Removed task-created invalid `third_party/LiveTalking` directory after path verification | `cleanup-invalid-livetalking-checkout.txt` |
+| Post-retry repository verification | `verify_repository.ps1` passed; `git diff --check` passed; private IP scan had no matches | `post-retry-verification.txt` |
 
 ## Tool availability
 
@@ -52,11 +59,11 @@
 - The current local repository has no `origin` remote.
 - Existing uncommitted changes before this task aligned the project identity and path to `jiyangjia-android-ai` / `E:\work\ai-kefu\jiyangjia-ai`.
 - `.codex/TASK_EXECUTION_PROMPT.md` still contained the previous project name/path and was corrected during this task.
-- LiveTalking checkout was not created. `third_party/LiveTalking` does not exist after the failed bootstrap.
+- LiveTalking checkout was not created. A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after path verification, so `third_party/LiveTalking` does not exist.
 
 ## Blocker
 
-The upstream bootstrap gate did not pass because GitHub HTTPS access for `https://github.com/lipku/LiveTalking.git` failed twice with `Recv failure: Connection was reset`. This blocks selecting TASK-001 as the next implementation task.
+The upstream bootstrap gate did not pass because GitHub Git smart-HTTP clone/fetch access for `https://github.com/lipku/LiveTalking.git` failed repeatedly. TCP 443, GitHub API and locked-commit archive HEAD checks were reachable, and one HTTP/1.1 `ls-remote` succeeded, but clone/fetch still failed. This blocks selecting TASK-001 as the next implementation task.
 
 ## Untested
 
@@ -74,10 +81,10 @@ The upstream bootstrap gate did not pass because GitHub HTTPS access for `https:
 
 ## Next unblock action
 
-Resolve GitHub HTTPS clone access from this machine, then rerun:
+Resolve GitHub Git clone/fetch access from this machine, then rerun:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
 ```
 
-If it succeeds, update this task to `DONE`; only then proceed to `TASK-001`.
+If plain script execution still fails but `git -c http.version=HTTP/1.1` remains the working route, use a documented TASK-000 command variant that performs a real Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. Do not use a zip/archive download as a replacement for the Git checkout gate unless an ADR explicitly changes the upstream management decision.

@@ -1,0 +1,6 @@
+Timestamp: 2026-08-05T20:36:12.1632704-05:00 Command: Set-ExecutionPolicy -Scope Process Bypass; temporary git wrapper with -c http.version=HTTP/1.1; dot-source bootstrap_livetalking.ps1
+Cloning into 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking'...
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Failed to connect to github.com port 443 after 21081 ms: Could not connect to server
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory

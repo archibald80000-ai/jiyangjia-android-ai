@@ -94,6 +94,17 @@ Evidence:
 - `docs/evidence/TASK-000/yaml-validation.txt`
 - `docs/evidence/TASK-000/bootstrap-livetalking.txt`
 - `docs/evidence/TASK-000/github-network-diagnostic.txt`
+- `docs/evidence/TASK-000/retry-github-network.txt`
+- `docs/evidence/TASK-000/retry-git-http11.txt`
+- `docs/evidence/TASK-000/retry-git-http11-second.txt`
+- `docs/evidence/TASK-000/retry-gh-api.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-http11.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-wrapper-http11-bypass.txt`
+- `docs/evidence/TASK-000/manual-clone-http11.txt`
+- `docs/evidence/TASK-000/manual-init-fetch-http11.txt`
+- `docs/evidence/TASK-000/github-archive-head-check.txt`
+- `docs/evidence/TASK-000/cleanup-invalid-livetalking-checkout.txt`
+- `docs/evidence/TASK-000/post-retry-verification.txt`
 
 Summary:
 
@@ -105,7 +116,10 @@ Summary:
 - Prerequisite audit found Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
 - ADB and Gradle are missing from PATH.
 - PyTorch is not installed in the active Python environment.
-- LiveTalking bootstrap failed because GitHub HTTPS clone of `https://github.com/lipku/LiveTalking.git` was reset; `git ls-remote` failed the same way.
+- LiveTalking bootstrap failed because GitHub Git clone/fetch access to `https://github.com/lipku/LiveTalking.git` failed.
+- `git -c http.version=HTTP/1.1 ls-remote` succeeded once and returned the locked commit, but later clone/fetch attempts with HTTP/1.1 still failed.
+- GitHub API and locked-commit archive HEAD checks were reachable; archive was not used as a Git checkout replacement.
+- A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after path verification.
 
 Next unblock action:
 
@@ -113,7 +127,7 @@ Next unblock action:
 powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
 ```
 
-Run this only after GitHub HTTPS clone access is fixed. Do not start TASK-001 until the locked checkout succeeds or an approved alternate retrieval path is documented.
+Run this only after GitHub Git clone/fetch access is fixed. Do not start TASK-001 until the locked checkout succeeds or an approved alternate retrieval path is documented.
 
 ## Stop / blocked conditions
 

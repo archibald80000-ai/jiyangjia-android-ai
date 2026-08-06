@@ -1,0 +1,3 @@
+Timestamp: 2026-08-05T20:36:52.5467322-05:00 Command: git -c http.version=HTTP/1.1 ls-remote https://github.com/lipku/LiveTalking.git HEAD
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Failed to connect to github.com port 443 after 21116 ms: Could not connect to server
+ExitCode: 128

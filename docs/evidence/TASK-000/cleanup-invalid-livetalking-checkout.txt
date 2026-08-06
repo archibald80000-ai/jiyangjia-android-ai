@@ -1,0 +1,5 @@
+Timestamp: 2026-08-05T20:38:11.3717113-05:00 Command: remove task-created invalid third_party/LiveTalking only after path verification
+Root: E:\work\ai-kefu\jiyangjia-ai
+Target: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking
+ItemCountBefore: 28
+Removed: True

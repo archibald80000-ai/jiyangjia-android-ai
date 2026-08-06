@@ -1,0 +1,14 @@
+Timestamp: 2026-08-05T20:35:20.9493027-05:00 Command: $env:GIT_HTTP_VERSION="HTTP/1.1"; powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+Cloning into 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking'...
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Failed to connect to github.com port 443 after 21077 ms: Could not connect to server
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+You cannot call a method on a null-valued expression.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\bootstrap_livetalking.ps1:26 char:1
++ $actual = (git -C $target rev-parse HEAD).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+ 
+ExitCode: 1

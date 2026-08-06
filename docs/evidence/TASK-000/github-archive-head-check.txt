@@ -1,0 +1,4 @@
+Timestamp: 2026-08-05T20:36:52.5887988-05:00 Command: Invoke-WebRequest -Method Head https://github.com/lipku/LiveTalking/archive/c963ad409c556918b7d23999bf87c47a7c05c932.zip
+StatusCode: 200
+ContentLength: 
+Note: archive was not used as checkout replacement.

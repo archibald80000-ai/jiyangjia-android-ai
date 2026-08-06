@@ -1,0 +1,2 @@
+Timestamp: 2026-08-05T20:36:01.3677156-05:00 Command: temporary PowerShell git wrapper with -c http.version=HTTP/1.1, then dot-source .\scripts\bootstrap_livetalking.ps1
+ExitCode: 

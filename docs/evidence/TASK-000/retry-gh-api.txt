@@ -1,0 +1,3 @@
+Timestamp: 2026-08-05T20:34:44.7322483-05:00 Command: gh repo view lipku/LiveTalking --json name,defaultBranchRef
+{"defaultBranchRef":{"name":"main"},"name":"LiveTalking"}
+ExitCode: 0

@@ -51,7 +51,7 @@ LiveTalking bootstrap did not complete:
 powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
 ```
 
-Result: GitHub HTTPS clone of `https://github.com/lipku/LiveTalking.git` failed with `Recv failure: Connection was reset`.
+Result: GitHub Git clone of `https://github.com/lipku/LiveTalking.git` failed.
 
 Follow-up diagnostic:
 
@@ -59,7 +59,17 @@ Follow-up diagnostic:
 git ls-remote https://github.com/lipku/LiveTalking.git HEAD
 ```
 
-Result: failed with the same connection reset. `third_party/LiveTalking` does not exist.
+Initial result: failed with connection reset.
+
+Additional retry facts:
+
+- `Test-NetConnection github.com -Port 443` succeeded.
+- `git -c http.version=HTTP/1.1 ls-remote https://github.com/lipku/LiveTalking.git HEAD` succeeded once and returned `c963ad409c556918b7d23999bf87c47a7c05c932`.
+- Later HTTP/1.1 clone/fetch attempts still failed to connect to `github.com:443`.
+- `gh repo view lipku/LiveTalking --json name,defaultBranchRef` succeeded.
+- `Invoke-WebRequest -Method Head` for the locked commit archive returned HTTP 200, but archive was not used as checkout replacement.
+- A task-created invalid `third_party/LiveTalking` directory from manual `git init` was removed after verifying it was inside the project path.
+- `third_party/LiveTalking` does not exist.
 
 ## Evidence
 
@@ -73,10 +83,22 @@ Result: failed with the same connection reset. `third_party/LiveTalking` does no
 - `docs/evidence/TASK-000/github-network-diagnostic.txt`
 - `docs/evidence/TASK-000/python-torch-check.txt`
 - `docs/evidence/TASK-000/java-adb-gradle-detail.txt`
+- `docs/evidence/TASK-000/retry-github-network.txt`
+- `docs/evidence/TASK-000/retry-git-http11.txt`
+- `docs/evidence/TASK-000/retry-git-http11-second.txt`
+- `docs/evidence/TASK-000/retry-gh-api.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-http11.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-wrapper-http11.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking-wrapper-http11-bypass.txt`
+- `docs/evidence/TASK-000/manual-clone-http11.txt`
+- `docs/evidence/TASK-000/manual-init-fetch-http11.txt`
+- `docs/evidence/TASK-000/github-archive-head-check.txt`
+- `docs/evidence/TASK-000/cleanup-invalid-livetalking-checkout.txt`
+- `docs/evidence/TASK-000/post-retry-verification.txt`
 
 ## Next action
 
-Resolve GitHub HTTPS clone access, then rerun:
+Resolve GitHub Git clone/fetch access, then rerun:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1

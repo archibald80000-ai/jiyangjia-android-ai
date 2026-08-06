@@ -31,7 +31,7 @@
 - Development machine CUDA/PyTorch compatibility.
 - Android SDK/ADB and Gradle availability.
 - LiveTalking model weights and Avatar assets.
-- LiveTalking locked checkout; GitHub HTTPS clone was reset during TASK-000.
+- LiveTalking locked checkout; GitHub Git clone/fetch access failed during TASK-000.
 - WebRTC connectivity on the target network.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -56,11 +56,11 @@ Current evidence:
 
 Current blocker:
 
-- `powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1` failed because GitHub HTTPS clone of `https://github.com/lipku/LiveTalking.git` was reset. `git ls-remote` failed the same way. `third_party/LiveTalking` was not created.
+- `powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1` failed because GitHub Git clone/fetch access to `https://github.com/lipku/LiveTalking.git` failed. A later `git -c http.version=HTTP/1.1 ls-remote` succeeded once and returned `c963ad409c556918b7d23999bf87c47a7c05c932`, but clone/fetch still failed. GitHub API and locked-commit archive HEAD checks were reachable; archive was not used as a checkout replacement. `third_party/LiveTalking` does not exist.
 
 Next action:
 
-- Resolve GitHub HTTPS clone access and rerun TASK-000 bootstrap. Do not advance to TASK-001 until the locked checkout succeeds or a documented alternate upstream retrieval path is approved.
+- Resolve GitHub Git clone/fetch access and rerun TASK-000 bootstrap. Do not advance to TASK-001 until the locked checkout succeeds or a documented alternate upstream retrieval path is approved.
 
 ## Status vocabulary
 

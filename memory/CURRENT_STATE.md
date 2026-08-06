@@ -13,7 +13,7 @@
 
 ## In progress
 
-- TASK-000 is `PARTIAL`.
+- TASK-000 is `PARTIAL` because LiveTalking Git clone/fetch still fails.
 
 ## Not started
 
@@ -27,4 +27,4 @@
 
 ## Next action
 
-Resolve GitHub HTTPS clone access for `https://github.com/lipku/LiveTalking.git`, rerun `scripts/bootstrap_livetalking.ps1`, and close TASK-000 before starting TASK-001.
+Resolve GitHub Git clone/fetch access for `https://github.com/lipku/LiveTalking.git`, rerun `scripts/bootstrap_livetalking.ps1`, and close TASK-000 before starting TASK-001.

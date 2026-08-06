@@ -1,0 +1,5 @@
+Timestamp: 2026-08-05T20:37:37.1966375-05:00 Command group: git init third_party/LiveTalking; git -c http.version=HTTP/1.1 fetch origin locked commit --depth 1; checkout --detach
+Initialized empty Git repository in E:/work/ai-kefu/jiyangjia-ai/third_party/LiveTalking/.git/
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Failed to connect to github.com port 443 after 21117 ms: Could not connect to server
+fetch ExitCode: 128
+Fetch failed; leaving git init target for inspection.
