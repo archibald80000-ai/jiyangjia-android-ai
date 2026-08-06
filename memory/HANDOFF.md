@@ -19,6 +19,7 @@ Updated: 2026-08-06
 - Android state machine now shows uploading, waiting, playing, cancel and service-error states before returning to idle-video/fallback.
 - `tests/e2e/test_dialogue_loop.py` covers Mock Gateway ASR -> RAG -> LLM -> TTS -> audio fetch.
 - 30-cycle Mock Gateway report is generated at `docs/evidence/TASK-013/task013-30cycle-pytest-report.json`.
+- Gateway transcript normalization now maps common ASR brand homophones (`机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家`, `济氧家`) to canonical `积养家` before RAG/LLM while preserving `transcript.raw_text`.
 
 ## Verified
 
@@ -29,6 +30,8 @@ Updated: 2026-08-06
 - Android `testDebugUnitTest`, `assembleDebug` and `lintDebug` passed using project-local Temurin JDK 17.
 - APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, version `0.1.0-task013-debug`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - `adb devices -l` returned no attached devices.
+- Brand normalization tests passed: `python -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed; full backend regression -> 42 passed.
+- User reported Tencent Cloud server is ready and Gateway deployment was completed in another conversation thread. This thread has not independently verified remote deployment evidence.
 
 ## Evidence
 
@@ -40,18 +43,21 @@ Updated: 2026-08-06
 - `docs/evidence/TASK-013/task013-android-assemble-final-20260806.txt`
 - `docs/evidence/TASK-013/task013-android-lint-final-20260806.txt`
 - `docs/evidence/TASK-013/task013-apk-verification-20260806.txt`
+- `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
+- `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
+- `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 
 ## Not verified
 
 - Formal production knowledge base beyond the scoped demo FAQ set.
-- Tencent Cloud deployment.
+- Tencent Cloud deployment evidence reconciliation from the other thread.
 - Android 12 real-device install/record/upload/playback/subtitle acceptance.
 - USB microphone and speaker physical validation.
 
 ## Next action
 
-Continue exactly one next task: `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md`.
+Continue exactly one next task: reconcile `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` evidence from the other thread.
 
-TASK-014 should deploy the lightweight Gateway/provider/RAG route to Tencent
-Cloud. Do not claim Android 12 real-device success until hardware is connected
-and tested in TASK-015.
+If TASK-014 evidence is imported and verified, the next implementation task is
+`TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`. Do not claim Android 12 real-device
+success until hardware is connected and tested.

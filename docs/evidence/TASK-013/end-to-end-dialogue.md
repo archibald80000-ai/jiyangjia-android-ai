@@ -81,9 +81,17 @@ Observed provider calls:
 
 No secret values were printed or committed.
 
-Known ASR vocabulary issue:
+ASR vocabulary mitigation:
 
-- The generated test phrase `您好，欢迎来到积养家。` was recognized as `您好，欢迎来到季养家。` in this TASK-013 run. Earlier TASK-010 observed another homophone variant. This should be handled by vocabulary prompts, FAQ synonyms or business-name normalization in a later task.
+- The generated test phrase `您好，欢迎来到积养家。` was recognized as `您好，欢迎来到季养家。` in this TASK-013 run. Earlier TASK-010 observed another homophone variant.
+- A follow-up TASK-013 hardening patch now normalizes common `ji/yang/jia` homophones such as `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` to canonical `积养家`.
+- Gateway keeps the original provider text as `transcript.raw_text` when normalization changes the transcript, so debugging evidence is preserved.
+
+Follow-up evidence:
+
+- `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
+- `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
+- `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 
 ## Verification Logs
 

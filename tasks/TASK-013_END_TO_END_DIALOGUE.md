@@ -132,9 +132,10 @@ Verified results:
 - APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144` bytes, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - `adb devices -l`: no attached devices. `connectedDebugAndroidTest` built successfully but did not prove real-device execution.
 
-Known issues:
+Known issues and follow-up hardening:
 
 - Android real-device recording/playback/subtitle behavior is unverified because no Android device was attached.
-- Real ASR still has business-name homophone variation; this run recognized `积养家` as `季养家`.
+- Real ASR still may output business-name homophone variants, but Gateway now normalizes common `ji/yang/jia` variants to canonical `积养家` before RAG/LLM. When changed, `transcript.raw_text` preserves the provider's original text.
+- User reported Tencent Cloud server is ready and Gateway deployment was handled in another conversation thread. This local thread has not independently verified TASK-014 deployment evidence.
 
 Next action: execute exactly one next task, `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md`.

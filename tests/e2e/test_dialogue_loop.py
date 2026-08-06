@@ -149,3 +149,36 @@ def test_audio_endpoint_maps_unsupported_upload_as_recoverable_service_error() -
     assert response.status_code == 422
     assert response.headers["X-Request-Id"] == "task013-bad-audio"
     assert response.json()["detail"]["message_for_user"] == "当前录音格式不支持，请重试。"
+
+
+def test_audio_dialogue_uses_normalized_brand_for_retrieval() -> None:
+    from gateway.app import main
+
+    class HomophoneASR:
+        name = "homophone-asr"
+
+        async def transcribe(self, audio: bytes, content_type: str, request_id: str) -> dict[str, object]:
+            return {
+                "text": "请问季养家可以咨询什么？",
+                "provider": self.name,
+                "language": "zh-CN",
+                "confidence": 0.8,
+            }
+
+    original = main.asr_provider
+    main.asr_provider = HomophoneASR()
+    try:
+        response = client.post(
+            "/api/v1/dialogue/audio",
+            headers={"X-Request-Id": "task013-brand-normalization"},
+            files={"audio": ("question.wav", _fake_wav(), "audio/wav")},
+            data={"session_id": "sess-brand-normalization"},
+        )
+    finally:
+        main.asr_provider = original
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["transcript"]["raw_text"] == "请问季养家可以咨询什么？"
+    assert payload["transcript"]["text"] == "请问积养家可以咨询什么？"
+    assert payload["transcript"]["normalization"]["changed"] is True

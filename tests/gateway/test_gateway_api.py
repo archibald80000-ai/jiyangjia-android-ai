@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from gateway.app.main import app
+from gateway.app.main import _normalize_transcript_payload
 
 
 client = TestClient(app)
@@ -112,3 +113,18 @@ def test_dialogue_audio_accepts_supported_upload_and_rejects_bad_type() -> None:
     )
     assert bad.status_code == 422
     assert bad.json()["detail"]["code"] == "UNSUPPORTED_AUDIO"
+
+
+def test_transcript_payload_preserves_raw_text_when_brand_is_normalized() -> None:
+    transcript = {
+        "text": "您好，欢迎来到季养家。",
+        "provider": "doubao",
+        "language": "zh-CN",
+        "confidence": None,
+    }
+
+    normalized = _normalize_transcript_payload(transcript)
+
+    assert normalized["text"] == "您好，欢迎来到积养家。"
+    assert normalized["raw_text"] == "您好，欢迎来到季养家。"
+    assert normalized["normalization"]["changed"] is True

@@ -1,0 +1,34 @@
+warning: in the working copy of 'PROJECT_STATE.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-013/task013-30cycle-pytest-report.json', CRLF will be replaced by LF the next time Git touches it
+ MEMORY.md                                          |  3 +-
+ PROJECT_STATE.md                                   | 10 +++-
+ TASKS.md                                           |  4 +-
+ docs/evidence/TASK-013/end-to-end-dialogue.md      | 12 +++-
+ .../TASK-013/task013-30cycle-pytest-report.json    | 66 +++++++++++-----------
+ gateway/app/main.py                                | 17 ++++++
+ memory/CURRENT_STATE.md                            |  8 ++-
+ memory/HANDOFF.md                                  | 16 ++++--
+ tasks/TASK-013_END_TO_END_DIALOGUE.md              |  5 +-
+ tests/e2e/test_dialogue_loop.py                    | 33 +++++++++++
+ tests/gateway/test_gateway_api.py                  | 16 ++++++
+ 11 files changed, 141 insertions(+), 49 deletions(-)
+## task/TASK-013-end-to-end-dialogue
+ M MEMORY.md
+ M PROJECT_STATE.md
+ M TASKS.md
+ M docs/evidence/TASK-013/end-to-end-dialogue.md
+ M docs/evidence/TASK-013/task013-30cycle-pytest-report.json
+ M gateway/app/main.py
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-013_END_TO_END_DIALOGUE.md
+ M tests/e2e/test_dialogue_loop.py
+ M tests/gateway/test_gateway_api.py
+?? docs/evidence/TASK-013/task013-brand-normalization-diff-stat-20260806.txt
+?? docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt
+?? docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt
+?? docs/evidence/TASK-013/task013-brand-normalization-secret-scan-20260806.txt
+?? docs/evidence/TASK-013/task013-brand-normalization-verify-repository-20260806.txt
+?? docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt
+?? gateway/app/transcript_normalization.py
+?? tests/asr/test_transcript_normalization.py

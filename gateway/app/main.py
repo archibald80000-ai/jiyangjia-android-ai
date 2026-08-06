@@ -19,6 +19,7 @@ from .llm import (
 )
 from .providers import MockASRProvider, MockEmbeddingProvider, MockLLMProvider, MockTTSProvider
 from .schemas import DialogueResponse, DialogueTextRequest, KnowledgeIndexRequest, KnowledgeSearchRequest
+from .transcript_normalization import normalize_transcript_text
 from .tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, ProviderConfigurationError
 
 
@@ -83,6 +84,21 @@ def _safe_log(event: str, request_id: str, session_id: str = "-", **extra: Any) 
         **extra,
     }
     logger.info(payload)
+
+
+def _normalize_transcript_payload(transcript: dict[str, object]) -> dict[str, object]:
+    raw_text = str(transcript.get("text") or "")
+    normalized = normalize_transcript_text(raw_text)
+    if not normalized.changed:
+        return transcript
+    updated = dict(transcript)
+    updated["raw_text"] = raw_text
+    updated["text"] = normalized.text
+    updated["normalization"] = {
+        "changed": True,
+        "replacements": normalized.replacements,
+    }
+    return updated
 
 
 @app.middleware("http")
@@ -187,6 +203,7 @@ async def dialogue_audio(
                 "retryable": exc.retryable,
             },
         ) from exc
+    transcript = _normalize_transcript_payload(transcript)
     _safe_log("dialogue_audio.received", rid, sid, bytes=len(content), duration_ms=duration_ms, sample_rate=sample_rate, input_device=input_device)
     return await _run_dialogue(str(transcript["text"]), rid, sid, transcript_provider=str(transcript["provider"]), transcript=transcript)
 

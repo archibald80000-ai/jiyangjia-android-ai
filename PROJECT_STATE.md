@@ -92,6 +92,9 @@
 - TASK-013 real private-env Gateway smoke passed with Doubao ASR, Doubao/Ark Embedding, Doubao/Ark LLM and Doubao TTS; generated answer audio fetch returned HTTP 200, `audio/mpeg`, `69741` bytes, latency `13623` ms. Secret values were not printed.
 - TASK-013 Android local unit tests, `assembleDebug` and `lintDebug` passed using project-local Temurin JDK 17 and Android SDK.
 - TASK-013 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144` bytes, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`, package `ai.jiyangjia.kiosk.debug`, version `0.1.0-task013-debug`.
+- TASK-013 follow-up hardening added Gateway transcript normalization for the brand name `积养家`. Common ASR homophones such as `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` are normalized before RAG/LLM; original provider output is preserved as `transcript.raw_text` when changed.
+- TASK-013 brand normalization regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed, and full backend regression -> 42 passed.
+- User reported on 2026-08-06 that Tencent Cloud server is ready and Gateway deployment was completed in another conversation thread. This local thread has not independently verified remote deployment logs, URL, process status or rollback evidence.
 
 ## Not yet verified
 
@@ -104,6 +107,7 @@
 - USB microphone physical unplug/replug recovery on target hardware.
 - Formal production knowledge base beyond the 10 approved demo FAQ entries.
 - Android 12 real-device install, recording, Gateway upload, TTS playback and subtitle visual validation.
+- Tencent Cloud Gateway deployment evidence from the other thread is not yet imported or independently verified here.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - OpenAI-compatible fallback LLM with a third provider beyond DeepSeek/Doubao.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -181,6 +185,9 @@ Current evidence:
 - `docs/evidence/TASK-013/task013-android-assemble-final-20260806.txt`
 - `docs/evidence/TASK-013/task013-android-lint-final-20260806.txt`
 - `docs/evidence/TASK-013/task013-apk-verification-20260806.txt`
+- `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
+- `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
+- `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 
 Recent task results:
 
@@ -197,10 +204,11 @@ Recent task results:
 - TASK-011 DONE. OpenAI-compatible LLM and Embedding adapters are implemented with tests and CLI smoke tools. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded using private env. Real Doubao/Ark Embedding now succeeds with `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
 - TASK-012 DONE. Lightweight RAG now indexes explicitly selected approved/draft/rejected documents into SQLite metadata, FTS5 and FAISS; returns Top-K sources; blocks prohibited topics; and passed Mock plus real Doubao/Ark Embedding evaluation. No raw `E:\work\积养家` import, Android E2E, Tencent deployment or real-device success is claimed.
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
+- TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
 
 Next action:
 
-- Continue exactly one next task: TASK-014 Tencent Cloud Gateway deployment.
+- Continue exactly one next task: reconcile TASK-014 Tencent Cloud Gateway deployment evidence from the other thread, or proceed to TASK-015 only after TASK-014 evidence is imported and verified.
 
 ## Status vocabulary
 
