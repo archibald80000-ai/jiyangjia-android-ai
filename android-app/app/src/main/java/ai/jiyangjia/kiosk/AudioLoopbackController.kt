@@ -7,11 +7,13 @@ import android.media.AudioDeviceCallback
 import android.media.AudioDeviceInfo
 import android.media.AudioFormat
 import android.media.AudioManager
+import android.media.MediaPlayer
 import android.media.AudioRecord
 import android.media.AudioTrack
 import android.media.MediaRecorder
 import android.os.Handler
 import android.os.Looper
+import java.io.File
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.abs
@@ -153,6 +155,14 @@ class AudioLoopbackController(context: Context) {
         recording.set(false)
     }
 
+    fun stopPlayback() {
+        playing.set(false)
+        try {
+            player?.stop()
+        } catch (_: IllegalStateException) {
+        }
+    }
+
     fun play(
         pcm: PcmAudio,
         onComplete: () -> Unit,
@@ -225,6 +235,67 @@ class AudioLoopbackController(context: Context) {
             }
         }.apply {
             name = "kiosk-audio-player"
+            start()
+        }
+    }
+
+    fun playEncoded(
+        bytes: ByteArray,
+        contentType: String,
+        onComplete: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        if (bytes.isEmpty()) {
+            onError("no playable answer audio")
+            return
+        }
+        if (!playing.compareAndSet(false, true)) {
+            onError("playback already active")
+            return
+        }
+
+        Thread {
+            var tempFile: File? = null
+            var mediaPlayer: MediaPlayer? = null
+            try {
+                val suffix = when {
+                    contentType.contains("mpeg", ignoreCase = true) || contentType.contains("mp3", ignoreCase = true) -> ".mp3"
+                    contentType.contains("wav", ignoreCase = true) -> ".wav"
+                    contentType.contains("aac", ignoreCase = true) -> ".aac"
+                    else -> ".audio"
+                }
+                tempFile = File.createTempFile("gateway-answer-", suffix, appContext.cacheDir)
+                tempFile.writeBytes(bytes)
+                mediaPlayer = MediaPlayer().apply {
+                    setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                            .build()
+                    )
+                    setDataSource(tempFile.absolutePath)
+                    prepare()
+                    start()
+                }
+                while (playing.get() && mediaPlayer.isPlaying) {
+                    Thread.sleep(50)
+                }
+                if (playing.get()) {
+                    mainHandler.post { onComplete() }
+                }
+            } catch (error: Throwable) {
+                postError(onError, error.message ?: error.javaClass.simpleName)
+            } finally {
+                playing.set(false)
+                try {
+                    mediaPlayer?.stop()
+                } catch (_: IllegalStateException) {
+                }
+                mediaPlayer?.release()
+                tempFile?.delete()
+            }
+        }.apply {
+            name = "kiosk-answer-player"
             start()
         }
     }

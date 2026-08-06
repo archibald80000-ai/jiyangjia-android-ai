@@ -1,0 +1,12 @@
+apk=E:\work\ai-kefu\jiyangjia-ai\android-app\app\build\outputs\apk\debug\app-debug.apk
+size=862144
+sha256=263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E
+
+badging:
+package: name='ai.jiyangjia.kiosk.debug' versionCode='1' versionName='0.1.0-task013-debug' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+sdkVersion:'23'
+targetSdkVersion:'35'
+uses-permission: name='android.permission.INTERNET'
+uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+uses-permission: name='android.permission.RECORD_AUDIO'
+launchable-activity: name='ai.jiyangjia.kiosk.KioskActivity'  label='' icon=''

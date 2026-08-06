@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** TASK-012 DONE - LIGHTWEIGHT RAG VERIFIED WITH REAL EMBEDDINGS
-- **Current authorized task:** TASK-013 (Android to Gateway end-to-end voice dialogue)
+- **Overall status:** TASK-013 PARTIAL - LOCAL AND REAL-PROVIDER DIALOGUE LOOP VERIFIED, ANDROID DEVICE PENDING
+- **Current authorized task:** TASK-014 (Tencent Cloud Gateway deployment)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -85,6 +85,13 @@
 - TASK-012 Mock RAG evaluation passed 24/24 cases.
 - TASK-012 real Doubao/Ark Embedding RAG evaluation passed 24/24 cases with `doubao-embedding-vision-251215`, vector dimensions 2048, using private external env; secret values were not printed.
 - TASK-012 Gateway API smoke passed for real embedding-backed `/api/v1/knowledge/index`, `/api/v1/knowledge/search` and `/api/v1/knowledge/status`.
+- TASK-013 implemented Android-to-Gateway dialogue client code: PCM recording is wrapped as WAV, uploaded to `/api/v1/dialogue/audio`, `request_id` is propagated, transcript/answer/source diagnostics are displayed, generated TTS audio is fetched from `/api/v1/audio/{audio_id}`, encoded audio is played through `MediaPlayer`, cancel returns to idle fallback.
+- TASK-013 backend E2E tests passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\e2e -q` -> 3 passed.
+- TASK-013 backend full regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\e2e tests\knowledge tests\gateway tests\llm tests\asr tests\tts -q` -> 37 passed.
+- TASK-013 30-cycle Mock Gateway dialogue report passed 30/30 cycles, failed 0, fallback count 0; local TestClient average latency 4.33 ms.
+- TASK-013 real private-env Gateway smoke passed with Doubao ASR, Doubao/Ark Embedding, Doubao/Ark LLM and Doubao TTS; generated answer audio fetch returned HTTP 200, `audio/mpeg`, `69741` bytes, latency `13623` ms. Secret values were not printed.
+- TASK-013 Android local unit tests, `assembleDebug` and `lintDebug` passed using project-local Temurin JDK 17 and Android SDK.
+- TASK-013 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144` bytes, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`, package `ai.jiyangjia.kiosk.debug`, version `0.1.0-task013-debug`.
 
 ## Not yet verified
 
@@ -95,8 +102,8 @@
 - USB/default microphone recording on target Android 12 display.
 - Speaker playback and subtitle behavior on target Android 12 display.
 - USB microphone physical unplug/replug recovery on target hardware.
-- Android-to-Gateway end-to-end voice RAG loop.
 - Formal production knowledge base beyond the 10 approved demo FAQ entries.
+- Android 12 real-device install, recording, Gateway upload, TTS playback and subtitle visual validation.
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - OpenAI-compatible fallback LLM with a third provider beyond DeepSeek/Doubao.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -166,6 +173,14 @@ Current evidence:
 - `docs/evidence/TASK-012/task012-evaluate-mock-20260806.txt`
 - `docs/evidence/TASK-012/task012-evaluate-doubao-embedding-20260806.txt`
 - `docs/evidence/TASK-012/task012-gateway-real-embedding-api-smoke-20260806.txt`
+- `docs/evidence/TASK-013/end-to-end-dialogue.md`
+- `docs/evidence/TASK-013/task013-30cycle-pytest-report.json`
+- `docs/evidence/TASK-013/task013-pytest-e2e-20260806.txt`
+- `docs/evidence/TASK-013/task013-pytest-backend-full-20260806.txt`
+- `docs/evidence/TASK-013/task013-android-unit-final-20260806.txt`
+- `docs/evidence/TASK-013/task013-android-assemble-final-20260806.txt`
+- `docs/evidence/TASK-013/task013-android-lint-final-20260806.txt`
+- `docs/evidence/TASK-013/task013-apk-verification-20260806.txt`
 
 Recent task results:
 
@@ -181,10 +196,11 @@ Recent task results:
 - TASK-010 DONE. Doubao ASR adapter uses the official big-model WebSocket protocol through a bounded Gateway file/bytes-to-chunks path. `python -m pytest tests\asr tests\gateway tests\tts -q` passed with 16 tests. Real ASR with private env succeeded for generated TTS smoke audio after MP3-to-WAV normalization; observed transcript was `您好，欢迎来到机养家。`, with one domain-name character error to handle in later vocabulary/RAG policy.
 - TASK-011 DONE. OpenAI-compatible LLM and Embedding adapters are implemented with tests and CLI smoke tools. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded using private env. Real Doubao/Ark Embedding now succeeds with `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
 - TASK-012 DONE. Lightweight RAG now indexes explicitly selected approved/draft/rejected documents into SQLite metadata, FTS5 and FAISS; returns Top-K sources; blocks prohibited topics; and passed Mock plus real Doubao/Ark Embedding evaluation. No raw `E:\work\积养家` import, Android E2E, Tencent deployment or real-device success is claimed.
+- TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 
 Next action:
 
-- Continue exactly one next task: TASK-013 Android to Gateway end-to-end voice dialogue loop.
+- Continue exactly one next task: TASK-014 Tencent Cloud Gateway deployment.
 
 ## Status vocabulary
 

@@ -1,0 +1,256 @@
+{
+  "task": "TASK-013",
+  "mode": "mock_gateway_audio_dialogue",
+  "cycles": 30,
+  "passed": 30,
+  "failed": 0,
+  "fallback_count": 0,
+  "latency_ms": {
+    "min": 3.46,
+    "max": 6.84,
+    "avg": 4.59
+  },
+  "failures": [],
+  "cycles_detail": [
+    {
+      "request_id": "task013-cycle-01",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.88,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-02",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.06,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-03",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.99,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-04",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.95,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-05",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.17,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-06",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.06,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-07",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.12,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-08",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.01,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-09",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.54,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-10",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.46,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-11",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.82,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-12",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 3.61,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-13",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.26,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-14",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 6.84,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-15",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 6.1,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-16",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 5.47,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-17",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 5.77,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-18",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 6.17,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-19",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 6.1,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-20",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 5.26,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-21",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.87,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-22",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 5.0,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-23",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.8,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-24",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.81,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-25",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.03,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-26",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.58,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-27",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.0,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-28",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.46,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-29",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.18,
+      "source_count": 1,
+      "ok": true
+    },
+    {
+      "request_id": "task013-cycle-30",
+      "status_code": 200,
+      "audio_status": 200,
+      "latency_ms": 4.2,
+      "source_count": 1,
+      "ok": true
+    }
+  ]
+}

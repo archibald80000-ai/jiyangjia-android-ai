@@ -46,6 +46,14 @@ Updated: 2026-08-06
   - prohibited medical/price/promotion/inventory/member-balance/internal queries return safe transfer text;
   - source citations and `request_id` are returned by knowledge search and dialogue flows;
   - real Doubao/Ark embedding-backed evaluation passed with 2048-dimensional vectors.
+- TASK-013 is partial-complete:
+  - Android records PCM, wraps it as WAV and uploads it to Gateway `/api/v1/dialogue/audio`;
+  - Android downloads generated `/api/v1/audio/{audio_id}` bytes and plays encoded answer audio through `MediaPlayer`;
+  - Android displays transcript, answer subtitle, request ID and source diagnostics;
+  - Android cancel/service-error paths return to idle-video/fallback state;
+  - backend Mock E2E and 30-cycle stability tests passed;
+  - one real private-env Gateway smoke passed through Doubao ASR, Doubao/Ark Embedding RAG, Doubao/Ark LLM and Doubao TTS;
+  - Android real-device install/record/playback/subtitle behavior remains unverified.
 
 ## Route changed
 
@@ -97,15 +105,21 @@ Android recording
 - `scripts\evaluate_lightweight_rag.py --data knowledge-test`: Mock RAG evaluation passed 24/24 cases.
 - `scripts\evaluate_lightweight_rag.py --data knowledge-test --provider doubao --env-file E:\work\ai-kefu\.env.local`: real Doubao/Ark Embedding RAG evaluation passed 24/24 cases with 2048-dimensional vectors; values were not printed.
 - Gateway API smoke passed for real embedding-backed `/api/v1/knowledge/index`, `/api/v1/knowledge/search` and `/api/v1/knowledge/status`.
+- `python -m pytest tests\e2e -q`: 3 passed after TASK-013.
+- `python -m pytest tests\e2e tests\knowledge tests\gateway tests\llm tests\asr tests\tts -q`: 37 passed after TASK-013.
+- TASK-013 Mock 30-cycle Gateway dialogue report: 30 passed, 0 failed, 0 fallback, average local TestClient latency 4.33 ms.
+- TASK-013 real Provider Gateway smoke: Doubao ASR + Doubao/Ark Embedding + Doubao/Ark LLM + Doubao TTS succeeded; output audio was `audio/mpeg`, `69741` bytes.
+- Android `testDebugUnitTest`, `assembleDebug` and `lintDebug` passed with project-local JDK 17.
+- TASK-013 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - Formal production knowledge base beyond the scoped demo FAQ set.
-- Android end-to-end integration with Gateway.
 - Tencent Cloud deployment for the new provider/RAG route.
 - Android 12 large-screen real-device acceptance.
+- Formal production knowledge base beyond the scoped demo FAQ set.
 
 ## Next action
 
-Continue exactly one next task: `TASK-013_END_TO_END_DIALOGUE.md` Android to Gateway end-to-end voice dialogue loop.
+Continue exactly one next task: `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` Tencent Cloud Gateway deployment.

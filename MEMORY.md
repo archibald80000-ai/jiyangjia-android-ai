@@ -15,6 +15,7 @@
 - 所有真实密钥都在本地或服务器私密配置中，公共仓库不包含真实值。
 - TASK-009 已验证真实豆包/火山引擎 TTS：默认使用 V3 单向 HTTP 流式合成，私有外部 env 真实调用生成 MP3；密钥值未打印、未提交。
 - TASK-012 已验证轻量 RAG：SQLite 元数据、FTS5、FAISS Top-K、真实豆包/方舟 Embedding、人工确认 FAQ、sources 引用和安全转人工策略均已通过本地/真实向量评估。
+- TASK-013 已完成 Android 到 Gateway 语音问答闭环的本地代码与后端验证：Android 录音上传、字幕/source 展示、TTS 音频取回和播放代码已实现，Mock 30-cycle 与真实 Provider Gateway 烟测通过；Android 12 真机验收仍待 TASK-015。
 
 ## 会话恢复顺序
 

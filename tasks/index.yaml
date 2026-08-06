@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-013
+current: TASK-014
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -84,7 +84,7 @@ tasks:
     file: TASK-013_END_TO_END_DIALOGUE.md
     title: "Connect Android, gateway, providers and both display modes"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-012]
   - id: TASK-014
     file: TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md

@@ -17,4 +17,18 @@ class ConsultationStateTest {
         assertFalse(ConsultationState.WAITING_FOR_RESPONSE.canStartConsultation())
         assertFalse(ConsultationState.PLAYING_ANSWER.canStartConsultation())
     }
+
+    @Test
+    fun activeServiceStatesAreCancellableButNotRestartable() {
+        val cancellable = setOf(
+            ConsultationState.RECORDING,
+            ConsultationState.UPLOADING,
+            ConsultationState.WAITING_FOR_RESPONSE,
+            ConsultationState.PLAYING_ANSWER
+        )
+
+        assertTrue(ConsultationState.UPLOADING in cancellable)
+        assertTrue(ConsultationState.WAITING_FOR_RESPONSE in cancellable)
+        assertFalse(ConsultationState.UPLOADING.canStartConsultation())
+    }
 }

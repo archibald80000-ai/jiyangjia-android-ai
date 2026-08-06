@@ -1,0 +1,35 @@
+warning: in the working copy of 'PROJECT_STATE.md', CRLF will be replaced by LF the next time Git touches it
+ MEMORY.md                                          |   3 +-
+ PROJECT_STATE.md                                   |  24 ++++-
+ TASKS.md                                           |   3 +-
+ android-app/app/build.gradle.kts                   |   3 +-
+ .../ai/jiyangjia/kiosk/AudioLoopbackController.kt  |  71 ++++++++++++++
+ .../main/java/ai/jiyangjia/kiosk/KioskActivity.kt  | 108 ++++++++++++++++++---
+ .../src/main/java/ai/jiyangjia/kiosk/PcmAudio.kt   |  32 ++++++
+ android-app/app/src/main/res/values/strings.xml    |   5 +-
+ .../ai/jiyangjia/kiosk/ConsultationStateTest.kt    |  14 +++
+ .../test/java/ai/jiyangjia/kiosk/PcmAudioTest.kt   |  14 +++
+ memory/CURRENT_STATE.md                            |  18 +++-
+ memory/HANDOFF.md                                  |  65 +++++++------
+ tasks/TASK-013_END_TO_END_DIALOGUE.md              |  76 ++++++++++++---
+ tasks/index.yaml                                   |   4 +-
+ 14 files changed, 367 insertions(+), 73 deletions(-)
+## task/TASK-013-end-to-end-dialogue
+ M MEMORY.md
+ M PROJECT_STATE.md
+ M TASKS.md
+ M android-app/app/build.gradle.kts
+ M android-app/app/src/main/java/ai/jiyangjia/kiosk/AudioLoopbackController.kt
+ M android-app/app/src/main/java/ai/jiyangjia/kiosk/KioskActivity.kt
+ M android-app/app/src/main/java/ai/jiyangjia/kiosk/PcmAudio.kt
+ M android-app/app/src/main/res/values/strings.xml
+ M android-app/app/src/test/java/ai/jiyangjia/kiosk/ConsultationStateTest.kt
+ M android-app/app/src/test/java/ai/jiyangjia/kiosk/PcmAudioTest.kt
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-013_END_TO_END_DIALOGUE.md
+ M tasks/index.yaml
+?? android-app/app/src/main/java/ai/jiyangjia/kiosk/GatewayClient.kt
+?? android-app/app/src/test/java/ai/jiyangjia/kiosk/GatewayClientTest.kt
+?? docs/evidence/TASK-013/
+?? tests/e2e/

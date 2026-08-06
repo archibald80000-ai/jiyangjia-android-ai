@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">积养家 AI 客服</string>
     <string name="consult_start">开始咨询</string>
-    <string name="record_start">开始录音测试</string>
-    <string name="record_stop">停止并播放</string>
+    <string name="record_start">开始录音</string>
+    <string name="record_stop_send">停止并发送</string>
+    <string name="cancel_consultation">取消</string>
     <string name="idle_status">待机中</string>
     <string name="fallback_subtitle">欢迎咨询积养家</string>
     <string name="refresh_audio">刷新音频设备</string>

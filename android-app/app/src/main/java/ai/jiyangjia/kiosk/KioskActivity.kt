@@ -32,6 +32,8 @@ class KioskActivity : Activity() {
     private var state: ConsultationState = ConsultationState.BOOT
     private var config: ClientConfig = ClientConfig.fromValues(null, null, null, null, null)
     private var lastRecording: PcmAudio? = null
+    private var lastDialogue: DialogueResult? = null
+    private var gatewayThread: Thread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +57,8 @@ class KioskActivity : Activity() {
     }
 
     override fun onDestroy() {
+        gatewayThread?.interrupt()
+        gatewayThread = null
         audioController.shutdown()
         idleVideoController.stop()
         super.onDestroy()
@@ -149,7 +153,7 @@ class KioskActivity : Activity() {
                 val hasVideo = idleVideoController.show(config)
                 statusText.text = if (hasVideo) "IDLE_VIDEO local_video" else "IDLE_VIDEO fallback"
                 subtitleText.text = getString(R.string.fallback_subtitle)
-                startButton.text = getString(R.string.record_start)
+                startButton.text = getString(R.string.consult_start)
                 startButton.isEnabled = true
                 diagnosticsButton.isEnabled = true
             }
@@ -163,20 +167,34 @@ class KioskActivity : Activity() {
             ConsultationState.RECORDING -> {
                 statusText.text = "RECORDING"
                 subtitleText.text = "正在录音"
-                startButton.text = getString(R.string.record_stop)
+                startButton.text = getString(R.string.record_stop_send)
+                startButton.isEnabled = true
+                diagnosticsButton.isEnabled = false
+            }
+            ConsultationState.UPLOADING -> {
+                statusText.text = "UPLOADING"
+                subtitleText.text = "正在上传咨询录音"
+                startButton.text = getString(R.string.cancel_consultation)
+                startButton.isEnabled = true
+                diagnosticsButton.isEnabled = false
+            }
+            ConsultationState.WAITING_FOR_RESPONSE -> {
+                statusText.text = "WAITING_FOR_RESPONSE"
+                subtitleText.text = "正在生成回答"
+                startButton.text = getString(R.string.cancel_consultation)
                 startButton.isEnabled = true
                 diagnosticsButton.isEnabled = false
             }
             ConsultationState.PLAYING_ANSWER -> {
-                statusText.text = "PLAYING_LOCAL_AUDIO"
-                subtitleText.text = "正在播放录音"
-                startButton.text = getString(R.string.record_start)
-                startButton.isEnabled = false
+                statusText.text = "PLAYING_ANSWER"
+                subtitleText.text = lastDialogue?.preferredSubtitle ?: "正在播放回答"
+                startButton.text = getString(R.string.cancel_consultation)
+                startButton.isEnabled = true
                 diagnosticsButton.isEnabled = false
             }
             ConsultationState.ERROR -> {
                 statusText.text = "ERROR"
-                startButton.text = getString(R.string.record_start)
+                startButton.text = getString(R.string.consult_start)
                 startButton.isEnabled = true
                 diagnosticsButton.isEnabled = true
             }
@@ -192,6 +210,10 @@ class KioskActivity : Activity() {
             audioController.stopRecording()
             startButton.isEnabled = false
             subtitleText.text = "正在停止录音"
+            return
+        }
+        if (state == ConsultationState.UPLOADING || state == ConsultationState.WAITING_FOR_RESPONSE || state == ConsultationState.PLAYING_ANSWER) {
+            cancelCurrentInteraction("已取消本次咨询")
             return
         }
         if (state.canStartConsultation()) {
@@ -221,8 +243,8 @@ class KioskActivity : Activity() {
             onComplete = { pcm ->
                 lastRecording = pcm
                 if (pcm.isPlayable) {
-                    subtitleText.text = "录音 ${pcm.durationMillis}ms，开始播放"
-                    playRecording(pcm)
+                    subtitleText.text = "录音 ${pcm.durationMillis}ms，开始上传"
+                    submitRecording(pcm)
                 } else {
                     showAudioError("未录到可播放音频")
                 }
@@ -233,19 +255,63 @@ class KioskActivity : Activity() {
         )
     }
 
-    private fun playRecording(pcm: PcmAudio) {
+    private fun submitRecording(pcm: PcmAudio) {
+        transitionTo(ConsultationState.UPLOADING)
+        val requestId = GatewayClient.newRequestId()
+        val sessionId = "sess-${config.deviceId}"
+        gatewayThread = Thread {
+            try {
+                val client = GatewayClient(config)
+                runOnUiThread {
+                    transitionTo(ConsultationState.WAITING_FOR_RESPONSE)
+                    statusText.text = "WAITING_FOR_RESPONSE request_id=$requestId"
+                    subtitleText.text = "正在识别并生成回答"
+                }
+                val dialogue = client.submitAudio(pcm, sessionId, requestId)
+                if (Thread.currentThread().isInterrupted) {
+                    return@Thread
+                }
+                val answerAudio = client.fetchAudio(dialogue.audioId, dialogue.requestId)
+                runOnUiThread {
+                    lastDialogue = dialogue
+                    subtitleText.text = dialogue.preferredSubtitle
+                    showDialogueResult(dialogue)
+                    playAnswerAudio(answerAudio)
+                }
+            } catch (error: Throwable) {
+                if (!Thread.currentThread().isInterrupted) {
+                    runOnUiThread { showServiceError(error.message ?: error.javaClass.simpleName) }
+                }
+            }
+        }.apply {
+            name = "kiosk-gateway-dialogue"
+            start()
+        }
+    }
+
+    private fun playAnswerAudio(audio: GatewayAudio) {
         transitionTo(ConsultationState.PLAYING_ANSWER)
-        audioController.play(
-            pcm = pcm,
+        audioController.playEncoded(
+            bytes = audio.bytes,
+            contentType = audio.contentType,
             onComplete = {
                 transitionTo(ConsultationState.IDLE_VIDEO)
-                subtitleText.text = "录音播放完成"
+                subtitleText.text = "回答播放完成"
                 refreshAudioDiagnostics("playback complete")
             },
             onError = { message ->
                 showAudioError(message)
             }
         )
+    }
+
+    private fun showDialogueResult(dialogue: DialogueResult) {
+        val sourceText = if (dialogue.sources.isEmpty()) "无来源命中" else "来源：${dialogue.sources.take(2).joinToString(" / ")}"
+        diagnosticsText.text = listOf(
+            "request_id=${dialogue.requestId}",
+            "ASR=${dialogue.transcriptText.take(32)}",
+            sourceText
+        ).joinToString("\n")
     }
 
     private fun refreshAudioDiagnostics(reason: String = "initial") {
@@ -272,6 +338,22 @@ class KioskActivity : Activity() {
         transitionTo(ConsultationState.ERROR)
         subtitleText.text = "音频错误：$message"
         refreshAudioDiagnostics("error")
+    }
+
+    private fun showServiceError(message: String) {
+        transitionTo(ConsultationState.ERROR)
+        subtitleText.text = "服务错误：$message"
+        refreshAudioDiagnostics("service error")
+    }
+
+    private fun cancelCurrentInteraction(message: String) {
+        gatewayThread?.interrupt()
+        gatewayThread = null
+        audioController.stopRecording()
+        audioController.stopPlayback()
+        transitionTo(ConsultationState.IDLE_VIDEO)
+        subtitleText.text = message
+        refreshAudioDiagnostics("cancelled")
     }
 
     private fun enterImmersiveMode() {
