@@ -8,6 +8,7 @@ import pytest
 
 from gateway.app.config import Settings
 from gateway.app.tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, ProviderConfigurationError
+from scripts.test_tts_provider import doubao_tts_config_status
 
 
 def test_doubao_tts_config_reports_missing_credentials(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -19,6 +20,20 @@ def test_doubao_tts_config_reports_missing_credentials(monkeypatch: pytest.Monke
     assert "DOUBAO_TTS_APP_ID" in exc.value.missing
     assert "DOUBAO_TTS_ACCESS_TOKEN" in exc.value.missing
     assert "DOUBAO_TTS_VOICE_TYPE" in exc.value.missing
+
+
+def test_doubao_tts_config_status_redacts_values(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("DOUBAO_TTS_APP_ID", "appid-secret-like")
+    monkeypatch.setenv("DOUBAO_TTS_ACCESS_TOKEN", "token-secret-like")
+    monkeypatch.setenv("DOUBAO_TTS_VOICE_TYPE", "voice-secret-like")
+
+    status = doubao_tts_config_status()
+
+    assert status["ok"] is True
+    assert status["required"]["DOUBAO_TTS_APP_ID"] == "configured"
+    assert "appid-secret-like" not in str(status)
+    assert "token-secret-like" not in str(status)
+    assert "voice-secret-like" not in str(status)
 
 
 def test_doubao_tts_provider_builds_official_http_payload(monkeypatch: pytest.MonkeyPatch) -> None:

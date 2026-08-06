@@ -50,8 +50,10 @@ Android recording
 - Local HTTP checks on `127.0.0.1:18080` passed for health, client config, knowledge index/search, text dialogue and audio fetch.
 - Port `8080` was occupied locally; this is logged as a local issue.
 - `python -m pytest tests\tts tests\gateway -q`: 8 passed after adding Gateway `doubao` missing-credential regression coverage.
+- `python -m pytest tests\tts tests\gateway -q`: 9 passed after adding TTS config preflight redaction coverage.
 - `scripts\test_tts_provider.py --provider mock`: returned deterministic audio bytes.
 - `scripts\test_tts_provider.py --provider doubao`: returned `BLOCKED_PROVIDER_CREDENTIALS` because `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` are missing.
+- `scripts\test_tts_provider.py --provider doubao --check-config`: returns only missing/configured status.
 
 ## Not completed
 

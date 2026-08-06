@@ -23,6 +23,7 @@ Implementation uses the conservative HTTP non-streaming shape recorded from offi
 - Added missing-credential error: `BLOCKED_PROVIDER_CREDENTIALS`.
 - Added safe provider call error mapping.
 - Added CLI test helper: `scripts/test_tts_provider.py`.
+- Added CLI config preflight: `scripts/test_tts_provider.py --provider doubao --check-config`.
 - Added TTS tests under `tests/tts/`.
 - Gateway no longer silently downgrades a configured Doubao TTS provider to Mock when credentials are missing.
 
@@ -41,6 +42,9 @@ Implementation uses the conservative HTTP non-streaming shape recorded from offi
 - `docs/evidence/TASK-009/task009-secret-shape-scan-20260806.txt`: no API key/private-key/Bearer-token shape matches.
 - `docs/evidence/TASK-009/task009-gateway-missing-credential-test-20260806.txt`: 8 tests passed, including Gateway `doubao` TTS missing-credential 503 behavior.
 - `docs/evidence/TASK-009/task009-post-hardening-diff-check-20260806.txt`: `git diff --check` exit 0.
+- `docs/evidence/TASK-009/task009-config-preflight-pytest-20260806.txt`: 9 tests passed, including redacted config status coverage.
+- `docs/evidence/TASK-009/task009-doubao-tts-config-preflight-20260806.txt`: config preflight returns `BLOCKED_PROVIDER_CREDENTIALS` with missing/configured status only.
+- `docs/evidence/TASK-009/task009-config-preflight-diff-check-20260806.txt`: `git diff --check` exit 0.
 
 ## Real API Status
 

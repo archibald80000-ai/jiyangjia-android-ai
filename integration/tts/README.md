@@ -22,5 +22,6 @@ Do not place these values in Android code, Git, task evidence, or logs.
 
 ```powershell
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider mock --text "您好"
+.\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --check-config
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --text "您好"
 ```
