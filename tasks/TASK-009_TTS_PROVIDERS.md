@@ -106,6 +106,7 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - Follow-up config preflight and redaction tests passed: 9 tests passed.
 - Real Doubao CLI path correctly returns `BLOCKED_PROVIDER_CREDENTIALS`.
 - Doubao config preflight returns only `configured/missing` status and does not print values.
+- `.env.example` now uses the current TASK-009 variable names and placeholder values only.
 - Real Doubao TTS audio was not generated because credentials are missing:
   - `DOUBAO_TTS_APP_ID`
   - `DOUBAO_TTS_ACCESS_TOKEN`

@@ -54,6 +54,7 @@ Android recording
 - `scripts\test_tts_provider.py --provider mock`: returned deterministic audio bytes.
 - `scripts\test_tts_provider.py --provider doubao`: returned `BLOCKED_PROVIDER_CREDENTIALS` because `DOUBAO_TTS_APP_ID`, `DOUBAO_TTS_ACCESS_TOKEN` and `DOUBAO_TTS_VOICE_TYPE` are missing.
 - `scripts\test_tts_provider.py --provider doubao --check-config`: returns only missing/configured status.
+- `.env.example` is aligned to TASK-009 TTS variable names and contains placeholders only.
 
 ## Not completed
 

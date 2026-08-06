@@ -18,10 +18,18 @@ Optional configuration:
 
 Do not place these values in Android code, Git, task evidence, or logs.
 
+`.env.example` contains only placeholders. Use `.env.local` or server environment variables for real values, and set `JIYANGJIA_TTS_PROVIDER=doubao` only when the three required values above are configured.
+
 ## Local Test
 
 ```powershell
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider mock --text "您好"
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --check-config
 .\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --text "您好"
+```
+
+For real verification, write output to an ignored temp path:
+
+```powershell
+.\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --text "您好，欢迎来到积养家。" --output tmp\doubao-tts-test.mp3
 ```

@@ -32,6 +32,29 @@ Each real provider task must include:
 - cost-control notes;
 - evidence log with request IDs and no secret values.
 
+## TASK-009 Doubao TTS Gate
+
+Required variables:
+
+- `JIYANGJIA_TTS_PROVIDER=doubao`
+- `DOUBAO_TTS_APP_ID`
+- `DOUBAO_TTS_ACCESS_TOKEN`
+- `DOUBAO_TTS_VOICE_TYPE`
+
+Preflight command:
+
+```powershell
+.\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --check-config
+```
+
+Real call command:
+
+```powershell
+.\.venv\gateway-task008-py310\Scripts\python.exe scripts\test_tts_provider.py --provider doubao --text "您好，欢迎来到积养家。" --output tmp\doubao-tts-test.mp3
+```
+
+Completion evidence requires a real audio file path, byte size, SHA-256 and content type. Do not commit generated audio.
+
 ## MVP Real API Flow Gate
 
 The real API MVP is accepted only when:
