@@ -1,0 +1,37 @@
+TASK-003 local Wav2Lip asset unblock search by exact official sizes and avatar structure
+Timestamp: 2026-08-05 22:08:50 -05:00
+Scope: metadata-only search; no file contents read; E:\work\积养家 excluded
+Official target sizes: wav2lip model 214670409; s3fd 89843225; wav2lip256_avatar1.zip 353735616
+
+Roots scanned:
+  - C:\Users\Assert\Downloads
+  - C:\Users\Assert\downloadtemp
+  - C:\Users\Assert\Desktop
+  - C:\Users\Assert\Documents
+  - D:\360Downloads
+  - D:\纳米AI下载
+  - D:\BaiduNetdiskDownload
+  - D:\QLDownload
+  - D:\QLDownloadGame
+  - D:\TSDownloader
+  - E:\work\ai-kefu
+  - E:\work\安卓大屏AI语音客服系统
+
+Scanning root: C:\Users\Assert\Downloads
+Scanning root: C:\Users\Assert\downloadtemp
+Scanning root: C:\Users\Assert\Desktop
+Scanning root: C:\Users\Assert\Documents
+Scanning root: D:\360Downloads
+Scanning root: D:\纳米AI下载
+Scanning root: D:\BaiduNetdiskDownload
+Scanning root: D:\QLDownload
+Scanning root: D:\QLDownloadGame
+Scanning root: D:\TSDownloader
+Scanning root: E:\work\ai-kefu
+Scanning root: E:\work\安卓大屏AI语音客服系统
+
+Exact-size file matches: 0
+
+Avatar structure candidates: 0
+
+Conclusion: no local candidate assets found in selected non-sensitive roots.

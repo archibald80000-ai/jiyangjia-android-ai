@@ -44,6 +44,7 @@
 - Small file download URL creation succeeds, but CLI GET of the returned signed URL returns HTTP `412 Precondition Failed`; large model/S3FD URL creation returns `23018`.
 - Local clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not opened and clients were not started.
 - Candidate local download directories (`Downloads`, `downloadtemp`, `D:\BaiduNetdiskDownload`, `D:\QLDownload`, Quark install roots and similar) were searched by exact filename on 2026-08-06; no existing asset copy was found.
+- Selected non-sensitive local roots were also searched on 2026-08-06 by exact official file sizes (`214670409`, `89843225`, `353735616`) and valid `wav2lip256_avatar1` directory structure; no candidate assets were found. `E:\work\积养家` was excluded.
 - `scripts/start_livetalking.ps1` now supports explicit local asset preparation after an authorized/manual download:
   - `powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "<downloaded_official_source>"`
   - The source can be the official Windows package root containing `models`, `_internal` and `data`, or a folder containing `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and expanded `wav2lip256_avatar1`.
@@ -96,6 +97,8 @@
 - `docs/evidence/TASK-003/asset-unblock-quark-download-dir-search-20260806.txt`
 - `docs/evidence/TASK-003/start-script-prepare-assets-mode-verification-20260806.txt`
 - `docs/evidence/TASK-003/task003-prepare-assets-mode-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/asset-unblock-size-and-structure-search-20260806.txt`
+- `docs/evidence/TASK-003/task003-size-structure-search-final-verification-20260806.txt`
 
 ## Unblock action
 

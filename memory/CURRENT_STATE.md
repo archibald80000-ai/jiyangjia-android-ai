@@ -15,7 +15,7 @@
 
 ## In progress
 
-- TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local download candidate directories contain no existing copy.
+- TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy.
 
 ## Not started
 

@@ -127,6 +127,8 @@ TASK-003 evidence:
 - `docs/evidence/TASK-003/asset-unblock-quark-download-dir-search-20260806.txt`
 - `docs/evidence/TASK-003/start-script-prepare-assets-mode-verification-20260806.txt`
 - `docs/evidence/TASK-003/task003-prepare-assets-mode-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/asset-unblock-size-and-structure-search-20260806.txt`
+- `docs/evidence/TASK-003/task003-size-structure-search-final-verification-20260806.txt`
 
 Blocked result:
 
@@ -138,6 +140,7 @@ Blocked result:
 - Quark Windows integrated package share can also be listed and contains `models/wav2lip.pth`, `_internal/.../s3fd.pth` and expanded `data/avatars/wav2lip256_avatar1`; large files still hit `23018`, and small signed download URLs return HTTP `412` through CLI GET.
 - Follow-up exact local filename search in safe roots found no existing copies of the required assets.
 - Candidate local Quark/download directories were searched by exact filename on 2026-08-06; no existing local copies were found.
+- Selected non-sensitive local roots were searched by exact official file sizes and `wav2lip256_avatar1` directory structure on 2026-08-06; no candidate assets were found.
 - Follow-up public web search found repeated upstream source references but no verified official direct download URL.
 - LiveTalking service startup was intentionally not attempted without the required model/avatar assets.
 - `scripts/start_livetalking.ps1` now performs asset preflight and stops before model loading when required Wav2Lip assets are missing.

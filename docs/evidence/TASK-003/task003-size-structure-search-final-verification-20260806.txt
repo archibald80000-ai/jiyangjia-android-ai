@@ -1,0 +1,83 @@
+TASK-003 size/structure search follow-up final verification
+Timestamp: 2026-08-05 22:09:59 -05:00
+
+## Evidence file exists
+Command: Get-Item -LiteralPath 'docs\evidence\TASK-003\asset-unblock-size-and-structure-search-20260806.txt' | Select-Object FullName,Length,LastWriteTime
+ExitCode: 0
+
+FullName                                                                                                 Length LastWri
+                                                                                                                teTime
+--------                                                                                                 ------ -------
+E:\work\ai-kefu\jiyangjia-ai\docs\evidence\TASK-003\asset-unblock-size-and-structure-search-20260806.txt   1258 2026...
+
+
+
+## Required asset paths still absent
+Command: $paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach ($p in $paths) { Write-Output ($p + ': ' + (Test-Path -LiteralPath $p)) }
+ExitCode: 0
+third_party\LiveTalking\models\wav2lip.pth: False
+third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth: False
+third_party\LiveTalking\data\avatars\wav2lip256_avatar1: False
+
+## Default startup asset preflight
+Command: & '.\scripts\start_livetalking.ps1'
+ExitCode: 1
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:198 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+
+
+## PrepareAssets incomplete-source guard
+Command: & '.\scripts\start_livetalking.ps1' -PrepareAssets -AssetSourcePath '.'
+ExitCode: 1
+Preparing Wav2Lip assets from E:\work\ai-kefu\jiyangjia-ai
+This command does not download assets or read Quark/Browser login storage.
+Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256_avatar1 directory with coords.
+pkl/full_imgs/face_imgs
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:138 char:5
++     throw "Asset source is incomplete. Missing: $($missing -join '; ' ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Asset source is..._imgs/face_imgs:String) [], RuntimeException
+    + FullyQualifiedErrorId : Asset source is incomplete. Missing: wav2lip.pth or wav2lip256.pth; s3fd.pth; wav2lip256
+   _avatar1 directory with coords.pkl/full_imgs/face_imgs
+
+
+## Git diff stat
+Command: git diff --stat
+ExitCode: 0
+ PROJECT_STATE.md                          | 3 ++-
+ TASKS.md                                  | 2 +-
+ memory/CURRENT_STATE.md                   | 2 +-
+ memory/HANDOFF.md                         | 2 ++
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md | 2 ++
+ 5 files changed, 8 insertions(+), 3 deletions(-)
+
+## Git diff check
+Command: git diff --check
+ExitCode: 0

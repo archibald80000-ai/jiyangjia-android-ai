@@ -48,6 +48,7 @@
 - Local Quark clients are installed at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not read and the clients were not started.
 - TASK-003 searched common local download and Quark candidate directories by exact filename on 2026-08-06 and found no existing local copies of the required Wav2Lip/S3FD/avatar assets.
 - `scripts/start_livetalking.ps1` now has an explicit local asset preparation mode: `-PrepareAssets -AssetSourcePath <downloaded_official_source>`, which copies from a user-provided local official source and outputs SHA-256 evidence without downloading or reading login/session storage.
+- TASK-003 follow-up metadata-only search on 2026-08-06 scanned selected non-sensitive local roots by exact official file sizes (`214670409`, `89843225`, `353735616`) and `wav2lip256_avatar1` directory structure; no candidate assets were found. `E:\work\积养家` was excluded.
 
 ## Not yet verified
 
@@ -86,7 +87,7 @@ Recent task results:
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 - TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
-- TASK-003 BLOCKED. Required Wav2Lip model/S3FD/avatar assets are missing. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, and Google Drive still times out from this machine. No LiveTalking startup/WebRTC/FPS success is claimed.
+- TASK-003 BLOCKED. Required Wav2Lip model/S3FD/avatar assets are missing. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy. No LiveTalking startup/WebRTC/FPS success is claimed.
 
 Next action:
 
