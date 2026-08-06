@@ -1,6 +1,6 @@
 # TASK-003: Run the first Wav2Lip WebRTC/WHEP baseline
 
-- **Status:** BLOCKED
+- **Status:** BLOCKED_BY_MANUAL_ASSET_DOWNLOAD
 - **Priority:** P0
 - **Dependencies:** TASK-002
 - **Branch:** `task/TASK-003-wav2lip-webrtc-baseline`
@@ -134,6 +134,7 @@ TASK-003 evidence:
 - `docs/evidence/TASK-003/asset-inspector-verification-20260806.txt`
 - `docs/evidence/TASK-003/task003-asset-inspector-final-verification-20260806.txt`
 - `docs/evidence/TASK-003/official-asset-layout-adjustment-verification-20260806.txt`
+- `docs/evidence/TASK-003/manual-asset-download-blocker-20260806.txt`
 
 Blocked result:
 
@@ -152,6 +153,7 @@ Blocked result:
 - `scripts/start_livetalking.ps1` also supports explicit local preparation via `-PrepareAssets -AssetSourcePath <downloaded_official_source>` after a user/authorized client has downloaded the official assets.
 - `scripts/inspect_livetalking_assets.ps1` verifies a downloaded source before preparation and rejects same-name model/S3FD dummy files by default when official sizes do not match.
 - TASK-003 install/preparation scripts now support the observed official model-share archive layout (`wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`) and the Windows integrated package layout (`models`, `_internal`, expanded `data/avatars/wav2lip256_avatar1`).
+- `E:\work\ai-kefu\livetalking-assets` does not exist as of 2026-08-06, so TASK-003 is stopped at `BLOCKED_BY_MANUAL_ASSET_DOWNLOAD` pending manual official asset download. Do not continue script changes or use fixture/dummy files in place of real assets.
 
 ## Rollback
 

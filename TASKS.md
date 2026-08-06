@@ -7,7 +7,7 @@ Current status:
 - `TASK-000`: `DONE`; environment/repository audit passed and LiveTalking locked checkout exists under ignored `third_party/LiveTalking`.
 - `TASK-001`: `DONE`; locked LiveTalking upstream source audited with endpoint, model/asset, network, extension and compliance notes.
 - `TASK-002`: `DONE`; isolated LiveTalking runtime exists under ignored `.venv\livetalking-task002`, dependencies/imports/PyTorch CUDA smoke check passed.
-- `TASK-003`: `BLOCKED`; required `wav2lip.pth`, `s3fd.pth` and `wav2lip256_avatar1` assets are missing. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out, and local filename/size/structure searches found no existing copy. The launcher/inspector now support the official model-share zip layout and Windows integrated package layout after an authorized/manual download.
+- `TASK-003`: `BLOCKED_BY_MANUAL_ASSET_DOWNLOAD`; `E:\work\ai-kefu\livetalking-assets` does not exist, so required real assets are absent. Accept only official `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`, or the complete official Windows integrated package directory. Do not modify scripts or continue TASK-003 until manual download is complete.
 - Next action is to unblock and rerun `TASK-003`; do not start later tasks concurrently.
 
 Current order:

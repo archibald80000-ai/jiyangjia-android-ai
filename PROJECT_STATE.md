@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
 - **Updated:** 2026-08-06
-- **Overall status:** BLOCKED ON TASK-003 ASSET DOWNLOAD
-- **Current authorized task:** TASK-003 (blocked; do not advance to TASK-004)
+- **Overall status:** BLOCKED_BY_MANUAL_ASSET_DOWNLOAD ON TASK-003
+- **Current authorized task:** TASK-003 (blocked by missing manual asset download; do not advance to TASK-004)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -51,6 +51,7 @@
 - TASK-003 follow-up metadata-only search on 2026-08-06 scanned selected non-sensitive local roots by exact official file sizes (`214670409`, `89843225`, `353735616`) and `wav2lip256_avatar1` directory structure; no candidate assets were found. `E:\work\积养家` was excluded.
 - `scripts/inspect_livetalking_assets.ps1` verifies a user-downloaded official Wav2Lip source before preparation. It does not download assets, copy model files or read browser/Quark login storage, and default checks reject same-name dummy files with non-official model/S3FD sizes.
 - TASK-003 installation scripts now match the observed official asset layouts: model-share layout with `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`; and Windows integrated package layout with `models/wav2lip.pth`, `_internal/.../s3fd.pth`, and expanded `data/avatars/wav2lip256_avatar1`. `-PrepareAssets` can extract the official avatar zip before copying to ignored LiveTalking paths.
+- TASK-003 checked `E:\work\ai-kefu\livetalking-assets` on 2026-08-06; the directory does not exist, so no real official Wav2Lip assets are available for installation.
 
 ## Not yet verified
 
@@ -89,11 +90,11 @@ Recent task results:
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 - TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
-- TASK-003 BLOCKED. Required Wav2Lip model/S3FD/avatar assets are missing. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy. Safe local inspection/preparation now supports the official zip and Windows package layouts after authorized download. No LiveTalking startup/WebRTC/FPS success is claimed.
+- TASK-003 BLOCKED_BY_MANUAL_ASSET_DOWNLOAD. Required Wav2Lip model/S3FD/avatar assets are missing from `E:\work\ai-kefu\livetalking-assets`. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy. Safe local inspection/preparation supports the official zip and Windows package layouts after authorized download. No LiveTalking startup/WebRTC/FPS success is claimed.
 
 Next action:
 
-- Unblock TASK-003 by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`; run `scripts/inspect_livetalking_assets.ps1 -AssetSourcePath <downloaded_official_source>` first, then run `scripts/start_livetalking.ps1 -PrepareAssets -AssetSourcePath <downloaded_official_source>` to place and hash them before rerunning TASK-003 startup/WebRTC verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
+- Manually download official assets into `E:\work\ai-kefu\livetalking-assets`: either `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`; or the official Windows integrated package directory containing `models/wav2lip.pth`, `_internal/.../s3fd.pth`, and `data/avatars/wav2lip256_avatar1`. Official entries: Quark `https://pan.quark.cn/s/83a750323ef0`, Google Drive `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`, Windows package `https://pan.quark.cn/s/a040bf5cb065`. After assets exist, run inspect, prepare, startup, WebRTC and FPS verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
 
 ## Status vocabulary
 

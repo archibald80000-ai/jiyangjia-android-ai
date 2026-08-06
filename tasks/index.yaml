@@ -24,7 +24,7 @@ tasks:
     file: TASK-003_WAV2LIP_WEBRTC_BASELINE.md
     title: "Run the first Wav2Lip WebRTC/WHEP baseline"
     priority: p0
-    status: BLOCKED
+    status: BLOCKED_BY_MANUAL_ASSET_DOWNLOAD
     depends_on: [TASK-002]
   - id: TASK-004
     file: TASK-004_LIVETALKING_API_CONTRACTS.md

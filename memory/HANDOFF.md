@@ -3,7 +3,7 @@
 ## Current task
 
 - Current task: `TASK-003_WAV2LIP_WEBRTC_BASELINE.md`
-- Status: `BLOCKED`
+- Status: `BLOCKED_BY_MANUAL_ASSET_DOWNLOAD`
 - Current branch: `task/TASK-003-wav2lip-webrtc-baseline`
 - Project path: `E:\work\ai-kefu\jiyangjia-ai`
 - Raw materials path: `E:\work\积养家` (read-only; not scanned or modified)
@@ -27,6 +27,7 @@
   - `third_party\LiveTalking\models\wav2lip.pth`: missing.
   - `third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth`: missing.
   - `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\`: missing.
+- Manual staging directory `E:\work\ai-kefu\livetalking-assets` was checked on 2026-08-06 and does not exist. Do not continue asset-script changes; wait for manual download.
 - Upstream README official asset sources were recorded:
   - Quark: `https://pan.quark.cn/s/83a750323ef0`
   - Google Drive: `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`
@@ -107,27 +108,39 @@
 - `docs/evidence/TASK-003/asset-inspector-verification-20260806.txt`
 - `docs/evidence/TASK-003/task003-asset-inspector-final-verification-20260806.txt`
 - `docs/evidence/TASK-003/official-asset-layout-adjustment-verification-20260806.txt`
+- `docs/evidence/TASK-003/manual-asset-download-blocker-20260806.txt`
 
 ## Unblock action
 
-Obtain the official assets from the upstream README sources or Windows integrated package and place them as:
+Obtain the official assets from the upstream README sources or Windows integrated package and place them in manual staging directory:
 
 ```text
-E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
-E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth
-E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1\
+E:\work\ai-kefu\livetalking-assets
 ```
 
-First inspect the downloaded source:
+Accepted forms:
+
+- `wav2lip256.pth`
+- `s3fd.pth`
+- `wav2lip256_avatar1.zip`
+- or complete official Windows integrated package directory.
+
+Official entries:
+
+- Quark model share: `https://pan.quark.cn/s/83a750323ef0`
+- Google Drive: `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`
+- Windows integrated package: `https://pan.quark.cn/s/a040bf5cb065`
+
+After manual download, first inspect the downloaded source:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\inspect_livetalking_assets.ps1 -AssetSourcePath "<downloaded_official_source>"
+powershell -ExecutionPolicy Bypass -File .\scripts\inspect_livetalking_assets.ps1 -AssetSourcePath "E:\work\ai-kefu\livetalking-assets"
 ```
 
 Then prepare:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "<downloaded_official_source>"
+powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "E:\work\ai-kefu\livetalking-assets"
 ```
 
 Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. The launcher can now copy and hash from the downloaded source with `-PrepareAssets -AssetSourcePath`. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.

@@ -1,0 +1,23 @@
+TASK-003 manual asset download blocker check
+Timestamp: 2026-08-05 22:45:02 -05:00
+
+Command: check E:\work\ai-kefu\livetalking-assets for real official LiveTalking Wav2Lip assets
+Result: E:\work\ai-kefu\livetalking-assets does not exist.
+
+Accepted real asset forms:
+- Model-share layout: wav2lip256.pth, s3fd.pth, wav2lip256_avatar1.zip
+- Official Windows integrated package complete directory containing models/wav2lip.pth, _internal/.../s3fd.pth, and data/avatars/wav2lip256_avatar1
+
+Official download entries from locked LiveTalking README:
+- Quark: https://pan.quark.cn/s/83a750323ef0
+- Google Drive: https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing
+- Windows integrated package: https://pan.quark.cn/s/a040bf5cb065
+
+Manual target staging directory:
+- E:\work\ai-kefu\livetalking-assets
+
+Decision:
+- TASK-003 is BLOCKED_BY_MANUAL_ASSET_DOWNLOAD.
+- No fixture or dummy file was used.
+- No scripts were modified in this check.
+- LiveTalking startup/WebRTC/FPS verification was not attempted because real assets are absent.
