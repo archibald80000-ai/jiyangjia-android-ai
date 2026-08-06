@@ -96,8 +96,11 @@ TASK-003 evidence:
 - `docs/evidence/TASK-003/gdrive-download-retry.txt`
 - `docs/evidence/TASK-003/asset-source-reachability.txt`
 - `docs/evidence/TASK-003/quark-page-probe.txt`
+- `docs/evidence/TASK-003/asset-unblock-followup-local-search.txt`
+- `docs/evidence/TASK-003/asset-unblock-followup-web-search.md`
 - `docs/evidence/TASK-003/pip-check-after-gdown.txt`
 - `docs/evidence/TASK-003/task003-final-verification.txt`
+- `docs/evidence/TASK-003/task003-followup-final-verification.txt`
 
 Blocked result:
 
@@ -105,6 +108,8 @@ Blocked result:
 - `third_party\LiveTalking\data\avatars\wav2lip256_avatar1\` is missing.
 - Google Drive official source was unreachable from this machine.
 - Quark official source returned the share web shell but no direct downloadable asset files through non-interactive curl.
+- Follow-up exact local filename search in safe roots found no existing copies of the required assets.
+- Follow-up public web search found repeated upstream source references but no verified official direct download URL.
 - LiveTalking service startup was intentionally not attempted without the required model/avatar assets.
 
 ## Rollback

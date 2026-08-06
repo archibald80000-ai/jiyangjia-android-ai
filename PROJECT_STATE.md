@@ -36,6 +36,8 @@
 - TASK-003 ran on branch `task/TASK-003-wav2lip-webrtc-baseline` and stopped before service startup because required Wav2Lip assets are missing.
 - Official README asset sources were recorded: Quark `https://pan.quark.cn/s/83a750323ef0` and Google Drive `https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9NlSAJ?usp=sharing`.
 - Google Drive could not be reached from this machine; Quark returned a web shell page but no direct non-interactive asset download.
+- TASK-003 follow-up exact local filename search found no existing copies of `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots; `E:\work\积养家` was not scanned.
+- TASK-003 follow-up public web search found repeated upstream Quark/Google Drive references but no verified official direct download URL.
 
 ## Not yet verified
 

@@ -1,0 +1,68 @@
+# TASK-003 follow-up final verification
+Date: 2026-08-06
+Branch: task/TASK-003-wav2lip-webrtc-baseline
+
+## Main repository status including follow-up evidence
+```text
+PS> git status --short --untracked-files=all
+ M PROJECT_STATE.md
+ M docs/evidence/TASK-003/wav2lip-baseline.md
+ M memory/HANDOFF.md
+ M tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+?? docs/evidence/TASK-003/asset-unblock-followup-local-search.txt
+?? docs/evidence/TASK-003/asset-unblock-followup-web-search.md
+EXIT_CODE=0
+```
+
+## Expected model/avatar still missing
+```text
+PS> $paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach($path in $paths){ if(Test-Path $path){ Write-Output "FOUND $path" } else { Write-Output "MISSING $path" }}
+MISSING third_party\LiveTalking\models\wav2lip.pth
+MISSING third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+EXIT_CODE=0
+```
+
+## Repository structure verification
+```text
+PS> powershell -ExecutionPolicy Bypass -File .\scripts\verify_repository.ps1
+Repository verification: PASS
+EXIT_CODE=0
+```
+
+## Diff whitespace check
+```text
+PS> git diff --check
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+EXIT_CODE=0
+```
+
+## LiveTalking upstream status
+```text
+PS> git -C third_party\LiveTalking status --short --branch
+## HEAD (no branch)
+EXIT_CODE=0
+```
+
+## Evidence private IPv4 scan excluding final self logs
+```text
+PS> rg --pcre2 "(?<![0-9.])(?:192\.168|10\.(?:[0-9]{1,3}\.){2}[0-9]{1,3}|172\.(?:1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3})(?![0-9.])" docs\evidence\TASK-003 -g "*" -g "!task003-final-verification.txt" -g "!task003-followup-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Evidence sensitive assignment scan excluding final self logs
+```text
+PS> rg --pcre2 "(?i)(?:^|[^A-Z0-9_])(?:API[_-]?KEY|TOKEN|SECRET(?:[_-]?KEY)?|PASSWORD)\s*[:=]|(?:^|[^A-Z0-9])AKIA[0-9A-Z]{16}|(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}" docs\evidence\TASK-003 -g "*" -g "!task003-final-verification.txt" -g "!task003-followup-final-verification.txt"
+EXIT_CODE=1
+```
+
+## Changed tracked files stat
+```text
+PS> git diff --stat
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+ PROJECT_STATE.md                           | 2 ++
+ docs/evidence/TASK-003/wav2lip-baseline.md | 8 ++++++++
+ memory/HANDOFF.md                          | 4 ++++
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md  | 4 ++++
+ 4 files changed, 18 insertions(+)
+EXIT_CODE=0
+```

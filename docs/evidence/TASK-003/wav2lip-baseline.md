@@ -64,6 +64,8 @@ Evidence:
 - `gdrive-download-retry.txt`
 - `asset-source-reachability.txt`
 - `quark-page-probe.txt`
+- `asset-unblock-followup-local-search.txt`
+- `asset-unblock-followup-web-search.md`
 
 ## Manual unblock instructions
 
@@ -111,3 +113,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1
 ## Stop decision
 
 TASK-003 stops here by design. Starting LiveTalking without `models\wav2lip.pth` and `data\avatars\wav2lip256_avatar1` would only create a predictable failure and could be mistaken for real runtime evidence. The next action is to provide/download the two official assets and rerun TASK-003 from the asset verification step.
+
+## Follow-up on 2026-08-06
+
+Additional exact local filename search checked `E:\work\ai-kefu`, `Downloads`, `Documents` and `Desktop` for `wav2lip256.pth`, `wav2lip.pth` and `wav2lip256_avatar1.tar.gz`; no matching assets were found. The raw business source path `E:\work\积养家` was not scanned.
+
+Additional public web search found only repeated references to the same upstream Quark and Google Drive sources, not a verified official direct download URL. TASK-003 therefore remains blocked.

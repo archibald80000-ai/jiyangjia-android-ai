@@ -32,6 +32,8 @@
 - Google Drive was unreachable from this machine.
 - Quark was reachable as a share web page, but non-interactive curl did not expose direct asset files.
 - `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
+- Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
+- Follow-up public web search found repeated upstream Quark/Google Drive references but no verified official direct download URL.
 
 ## What is not verified
 
@@ -50,8 +52,11 @@
 - `docs/evidence/TASK-003/gdrive-download-retry.txt`
 - `docs/evidence/TASK-003/asset-source-reachability.txt`
 - `docs/evidence/TASK-003/quark-page-probe.txt`
+- `docs/evidence/TASK-003/asset-unblock-followup-local-search.txt`
+- `docs/evidence/TASK-003/asset-unblock-followup-web-search.md`
 - `docs/evidence/TASK-003/pip-check-after-gdown.txt`
 - `docs/evidence/TASK-003/task003-final-verification.txt`
+- `docs/evidence/TASK-003/task003-followup-final-verification.txt`
 
 ## Unblock action
 

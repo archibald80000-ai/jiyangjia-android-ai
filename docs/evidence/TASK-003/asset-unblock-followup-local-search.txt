@@ -1,0 +1,90 @@
+# TASK-003 asset unblock follow-up local search
+Date: 2026-08-06
+Branch: task/TASK-003-wav2lip-webrtc-baseline
+Search policy: exact asset filenames only; raw business source path E:\work\积养家 not scanned.
+
+## Exact target path checks
+```text
+PS> $paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach($path in $paths){ if(Test-Path $path){ Get-Item $path | Select-Object FullName,Length,Mode,LastWriteTime | Format-List | Out-String } else { Write-Output "MISSING $path" }}
+MISSING third_party\LiveTalking\models\wav2lip.pth
+MISSING third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+EXIT_CODE=0
+```
+
+## Exact filename search in safe local roots
+```text
+PS> $roots=@('E:\work\ai-kefu','C:\Users\Assert\Downloads','C:\Users\Assert\Documents','C:\Users\Assert\Desktop'); $names=@('wav2lip256.pth','wav2lip.pth','wav2lip256_avatar1.tar.gz'); foreach($root in $roots){ if(Test-Path $root){ Write-Output "## $root"; foreach($name in $names){ Get-ChildItem -LiteralPath $root -Recurse -Force -File -Filter $name -ErrorAction SilentlyContinue | Where-Object { $_.FullName -notmatch '\\\.git\\|\\\.venv\\|\\third_party\\LiveTalking\\\.git\\' } | Select-Object FullName,Length,LastWriteTime | Format-Table -AutoSize | Out-String } }}
+## E:\work\ai-kefu
+
+
+
+## C:\Users\Assert\Downloads
+
+
+
+## C:\Users\Assert\Documents
+
+
+
+## C:\Users\Assert\Desktop
+
+
+
+EXIT_CODE=0
+```
+
+## Task gdrive cache listing
+```text
+PS> if(Test-Path .cache\TASK-003\gdrive){ Get-ChildItem .cache\TASK-003\gdrive -Recurse -Force -File -ErrorAction SilentlyContinue | Select-Object FullName,Length,LastWriteTime | Format-Table -AutoSize | Out-String } else { Write-Output "MISSING .cache\TASK-003\gdrive" }
+
+EXIT_CODE=0
+```
+
+## gdown package state
+```text
+PS> conda run -p .venv\livetalking-task002 python -m pip show gdown beautifulsoup4 PySocks soupsieve
+Name: gdown
+Version: 6.1.0
+Summary: Google Drive Public File/Folder Downloader
+Home-page: https://github.com/wkentaro/gdown
+Author:
+Author-email: Kentaro Wada <www.kentaro.wada@gmail.com>
+License: MIT
+Location: E:\work\ai-kefu\jiyangjia-ai\.venv\livetalking-task002\Lib\site-packages
+Requires: beautifulsoup4, filelock, requests, tqdm
+Required-by:
+---
+Name: beautifulsoup4
+Version: 4.15.0
+Summary: Screen-scraping library
+Home-page: https://www.crummy.com/software/BeautifulSoup/bs4/
+Author:
+Author-email: Leonard Richardson <leonardr@segfault.org>
+License: MIT License
+Location: E:\work\ai-kefu\jiyangjia-ai\.venv\livetalking-task002\Lib\site-packages
+Requires: soupsieve, typing-extensions
+Required-by: gdown
+---
+Name: PySocks
+Version: 1.7.1
+Summary: A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information.
+Home-page: https://github.com/Anorov/PySocks
+Author: Anorov
+Author-email: anorov.vorona@gmail.com
+License: BSD
+Location: E:\work\ai-kefu\jiyangjia-ai\.venv\livetalking-task002\Lib\site-packages
+Requires:
+Required-by:
+---
+Name: soupsieve
+Version: 2.9.1
+Summary: A modern CSS selector implementation for Beautiful Soup.
+Home-page: https://github.com/facelessuser/soupsieve
+Author:
+Author-email: Isaac Muse <Isaac.Muse@gmail.com>
+License-Expression: MIT
+Location: E:\work\ai-kefu\jiyangjia-ai\.venv\livetalking-task002\Lib\site-packages
+Requires:
+Required-by: beautifulsoup4
+EXIT_CODE=0
+```
