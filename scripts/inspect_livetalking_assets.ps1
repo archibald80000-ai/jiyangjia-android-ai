@@ -52,6 +52,15 @@ function Find-FirstExpandedAvatar {
   return $null
 }
 
+function Find-FirstAvatarArchive {
+  param(
+    [string]$Root,
+    [string]$Name
+  )
+
+  return Find-FirstAssetFile -Root $Root -Names @("$Name.zip", "$Name.tar.gz", "$Name.tgz")
+}
+
 function Write-FileFinding {
   param(
     [string]$Label,
@@ -82,7 +91,7 @@ if ($AllowNonOfficialSizes) {
 $modelSource = Find-FirstAssetFile -Root $sourcePath -Names @("wav2lip.pth", "wav2lip256.pth")
 $s3fdSource = Find-FirstAssetFile -Root $sourcePath -Names @("s3fd.pth")
 $avatarSource = Find-FirstExpandedAvatar -Root $sourcePath -Name $AvatarId
-$avatarZipSource = Find-FirstAssetFile -Root $sourcePath -Names @("$AvatarId.zip")
+$avatarArchiveSource = Find-FirstAvatarArchive -Root $sourcePath -Name $AvatarId
 
 $script:ok = $true
 
@@ -94,15 +103,14 @@ if ($null -ne $avatarSource) {
   $totalBytes = ($files | Measure-Object -Property Length -Sum).Sum
   Write-Output "avatar_$AvatarId status=expanded path=$($avatarSource.FullName) files=$($files.Count) bytes=$totalBytes"
 }
-elseif ($null -ne $avatarZipSource) {
-  $hash = Get-FileHash -LiteralPath $avatarZipSource.FullName -Algorithm SHA256
-  Write-Output "avatar_$AvatarId status=zip_only path=$($avatarZipSource.FullName) size=$($avatarZipSource.Length) sha256=$($hash.Hash)"
-  if (-not $AllowNonOfficialSizes -and [long]$avatarZipSource.Length -ne $officialSizes.avatar_zip) {
-    Write-Output "avatar_$AvatarId status=size_mismatch expected=$($officialSizes.avatar_zip) actual=$($avatarZipSource.Length)"
+elseif ($null -ne $avatarArchiveSource) {
+  $hash = Get-FileHash -LiteralPath $avatarArchiveSource.FullName -Algorithm SHA256
+  Write-Output "avatar_$AvatarId status=archive path=$($avatarArchiveSource.FullName) size=$($avatarArchiveSource.Length) sha256=$($hash.Hash)"
+  if ($avatarArchiveSource.Name.ToLowerInvariant().EndsWith(".zip") -and -not $AllowNonOfficialSizes -and [long]$avatarArchiveSource.Length -ne $officialSizes.avatar_zip) {
+    Write-Output "avatar_$AvatarId status=size_mismatch expected=$($officialSizes.avatar_zip) actual=$($avatarArchiveSource.Length)"
     $script:ok = $false
   }
-  Write-Output "avatar_$AvatarId action=expand_zip_before_prepare"
-  $script:ok = $false
+  Write-Output "avatar_$AvatarId action=start_livetalking_prepare_will_extract_archive"
 }
 else {
   Write-Output "avatar_$AvatarId status=missing"
@@ -110,7 +118,7 @@ else {
 }
 
 if (-not $script:ok) {
-  throw "Asset source is not ready for PrepareAssets. Need wav2lip.pth/wav2lip256.pth, s3fd.pth, and expanded $AvatarId with coords.pkl/full_imgs/face_imgs."
+  throw "Asset source is not ready for PrepareAssets. Need official-size wav2lip.pth/wav2lip256.pth, official-size s3fd.pth, and expanded $AvatarId with coords.pkl/full_imgs/face_imgs or supported $AvatarId archive."
 }
 
 $relativeLauncher = Join-Path $repoRoot "scripts\start_livetalking.ps1"

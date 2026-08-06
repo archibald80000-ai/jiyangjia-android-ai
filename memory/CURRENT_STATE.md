@@ -17,6 +17,7 @@
 
 - TASK-003 is `BLOCKED` on missing Wav2Lip model/S3FD/avatar assets. Quark model and Windows package shares can be listed, but unauthenticated large-file URL creation returns `23018`, small signed URLs return HTTP `412` through CLI GET, Google Drive still times out from this machine, and local filename/size/structure searches found no existing copy.
 - A safe TASK-003 post-download path exists: `scripts/inspect_livetalking_assets.ps1` verifies official model/S3FD sizes and expanded avatar structure before `scripts/start_livetalking.ps1 -PrepareAssets` copies ignored assets into LiveTalking.
+- The TASK-003 post-download path now supports the actual official layouts: `wav2lip256.pth` + `s3fd.pth` + `wav2lip256_avatar1.zip`, or the Windows integrated package with `models`, `_internal`, and expanded `data/avatars/wav2lip256_avatar1`.
 
 ## Not started
 

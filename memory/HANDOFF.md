@@ -50,6 +50,10 @@
   - The source can be the official Windows package root containing `models`, `_internal` and `data`, or a folder containing `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and expanded `wav2lip256_avatar1`.
   - The command outputs SHA-256 hashes and does not download or read login/session storage.
 - `scripts/inspect_livetalking_assets.ps1 -AssetSourcePath "<downloaded_official_source>"` now verifies a downloaded source before preparation; by default it rejects same-name model/S3FD files whose sizes do not match the official listing.
+- The local install path now matches the observed official assets:
+  - Model-share layout: `wav2lip256.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip`.
+  - Windows integrated package layout: `models/wav2lip.pth`, `_internal/.../s3fd.pth`, expanded `data/avatars/wav2lip256_avatar1`.
+  - `scripts/start_livetalking.ps1 -PrepareAssets` can extract the avatar zip into ignored `.cache\livetalking-assets` before copying the expanded avatar folder.
 - `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
 - Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
 - 2026-08-06 exact search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` also found no `s3fd.pth` or `wav2lip256_avatar1.zip`; `E:\work\积养家` was intentionally excluded.
@@ -102,6 +106,7 @@
 - `docs/evidence/TASK-003/task003-size-structure-search-final-verification-20260806.txt`
 - `docs/evidence/TASK-003/asset-inspector-verification-20260806.txt`
 - `docs/evidence/TASK-003/task003-asset-inspector-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/official-asset-layout-adjustment-verification-20260806.txt`
 
 ## Unblock action
 
@@ -117,6 +122,12 @@ First inspect the downloaded source:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\inspect_livetalking_assets.ps1 -AssetSourcePath "<downloaded_official_source>"
+```
+
+Then prepare:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1 -PrepareAssets -AssetSourcePath "<downloaded_official_source>"
 ```
 
 Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. The launcher can now copy and hash from the downloaded source with `-PrepareAssets -AssetSourcePath`. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.

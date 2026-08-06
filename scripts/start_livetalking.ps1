@@ -7,6 +7,7 @@ param(
   [switch]$PrepareAssets,
   [string]$AssetSourcePath = "",
   [switch]$OverwriteAssets,
+  [switch]$AllowNonOfficialSizes,
   [switch]$SkipAssetCheck,
   [string[]]$ExtraArgs = @()
 )
@@ -28,6 +29,13 @@ if (-not (Test-Path $resolvedEnvPath)) {
 $modelTarget = Join-Path $liveTalkingPath "models\wav2lip.pth"
 $s3fdTarget = Join-Path $liveTalkingPath "avatars\wav2lip\face_detection\detection\sfd\s3fd.pth"
 $avatarTarget = Join-Path $liveTalkingPath "data\avatars\$AvatarId"
+$assetStagingRoot = Join-Path $repoRoot ".cache\livetalking-assets"
+
+$officialSizes = @{
+  wav2lip_model = 214670409
+  s3fd_detector = 89843225
+  avatar_zip = 353735616
+}
 
 function Find-FirstAssetFile {
   param(
@@ -62,6 +70,56 @@ function Find-FirstAssetDirectory {
     return $hits[0]
   }
   return $null
+}
+
+function Assert-OfficialSize {
+  param(
+    [object]$File,
+    [long]$ExpectedSize,
+    [string]$Label
+  )
+
+  if ($AllowNonOfficialSizes) {
+    Write-Output "$Label official_size_check=disabled actual_size=$($File.Length)"
+    return
+  }
+
+  if ([long]$File.Length -ne $ExpectedSize) {
+    throw "$Label size mismatch. Expected official size $ExpectedSize bytes, got $($File.Length) bytes at $($File.FullName). Use -AllowNonOfficialSizes only after explicit manual review."
+  }
+}
+
+function Expand-AvatarArchive {
+  param(
+    [object]$Archive,
+    [string]$AvatarName
+  )
+
+  if ($null -eq $Archive) {
+    return $null
+  }
+
+  $extractRoot = Join-Path $assetStagingRoot "$AvatarName-extracted"
+  if (Test-Path -LiteralPath $extractRoot) {
+    Remove-Item -LiteralPath $extractRoot -Recurse -Force
+  }
+  New-Item -ItemType Directory -Force -Path $extractRoot | Out-Null
+
+  $archiveName = $Archive.Name.ToLowerInvariant()
+  if ($archiveName.EndsWith(".zip")) {
+    Expand-Archive -LiteralPath $Archive.FullName -DestinationPath $extractRoot -Force
+  }
+  elseif ($archiveName.EndsWith(".tar.gz") -or $archiveName.EndsWith(".tgz")) {
+    tar -xzf $Archive.FullName -C $extractRoot
+    if ($LASTEXITCODE -ne 0) {
+      throw "Failed to extract avatar archive with tar: $($Archive.FullName)"
+    }
+  }
+  else {
+    throw "Unsupported avatar archive type: $($Archive.FullName)"
+  }
+
+  return Find-FirstAssetDirectory -Root $extractRoot -Name $AvatarName
 }
 
 function Copy-RequiredFile {
@@ -129,13 +187,27 @@ if ($PrepareAssets) {
   $modelSource = Find-FirstAssetFile -Root $sourcePath -Names @("wav2lip.pth", "wav2lip256.pth")
   $s3fdSource = Find-FirstAssetFile -Root $sourcePath -Names @("s3fd.pth")
   $avatarSource = Find-FirstAssetDirectory -Root $sourcePath -Name $AvatarId
+  $avatarArchiveSource = Find-FirstAssetFile -Root $sourcePath -Names @("$AvatarId.zip", "$AvatarId.tar.gz", "$AvatarId.tgz")
 
   $missing = @()
   if ($null -eq $modelSource) { $missing += "wav2lip.pth or wav2lip256.pth" }
   if ($null -eq $s3fdSource) { $missing += "s3fd.pth" }
-  if ($null -eq $avatarSource) { $missing += "$AvatarId directory with coords.pkl/full_imgs/face_imgs" }
+  if ($null -eq $avatarSource -and $null -eq $avatarArchiveSource) { $missing += "$AvatarId directory with coords.pkl/full_imgs/face_imgs or $AvatarId.zip" }
   if ($missing.Count -gt 0) {
     throw "Asset source is incomplete. Missing: $($missing -join '; ')"
+  }
+
+  Assert-OfficialSize -File $modelSource -ExpectedSize $officialSizes.wav2lip_model -Label "wav2lip_model"
+  Assert-OfficialSize -File $s3fdSource -ExpectedSize $officialSizes.s3fd_detector -Label "s3fd_detector"
+  if ($null -eq $avatarSource) {
+    if ($avatarArchiveSource.Name.ToLowerInvariant().EndsWith(".zip")) {
+      Assert-OfficialSize -File $avatarArchiveSource -ExpectedSize $officialSizes.avatar_zip -Label "avatar_$AvatarId"
+    }
+    Write-Output "Expanding avatar archive from $($avatarArchiveSource.FullName)"
+    $avatarSource = Expand-AvatarArchive -Archive $avatarArchiveSource -AvatarName $AvatarId
+    if ($null -eq $avatarSource) {
+      throw "Avatar archive did not contain expanded $AvatarId with coords.pkl/full_imgs/face_imgs."
+    }
   }
 
   Copy-RequiredFile -Source $modelSource.FullName -Destination $modelTarget -Label "wav2lip_model"
@@ -160,7 +232,7 @@ if ($Model -eq "wav2lip" -and -not $SkipAssetCheck) {
     [pscustomobject]@{
       Kind = "directory"
       Path = $avatarTarget
-      Help = "Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty."
+      Help = "Run -PrepareAssets with the official wav2lip256_avatar1 archive or Windows package so coords.pkl/full_imgs/face_imgs are present."
     }
   )
 
@@ -175,12 +247,15 @@ if ($Model -eq "wav2lip" -and -not $SkipAssetCheck) {
     }
 
     $dir = Get-Item -LiteralPath $check.Path -ErrorAction SilentlyContinue
-    $hasContent = $false
+    $hasRequiredAvatarFiles = $false
     if ($null -ne $dir -and $dir.PSIsContainer) {
-      $hasContent = $null -ne (Get-ChildItem -LiteralPath $check.Path -Force -ErrorAction SilentlyContinue | Select-Object -First 1)
+      $hasRequiredAvatarFiles =
+        (Test-Path -LiteralPath (Join-Path $check.Path "coords.pkl")) -and
+        (Test-Path -LiteralPath (Join-Path $check.Path "full_imgs")) -and
+        (Test-Path -LiteralPath (Join-Path $check.Path "face_imgs"))
     }
-    if (-not $hasContent) {
-      $missing.Add("- Missing or empty directory: $($check.Path)`n  $($check.Help)") | Out-Null
+    if (-not $hasRequiredAvatarFiles) {
+      $missing.Add("- Missing or incomplete directory: $($check.Path)`n  $($check.Help)") | Out-Null
     }
   }
 
