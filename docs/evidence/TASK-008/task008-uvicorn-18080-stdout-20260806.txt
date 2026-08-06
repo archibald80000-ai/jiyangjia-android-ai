@@ -1,0 +1,6 @@
+INFO:     127.0.0.1:49710 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "GET /api/v1/client/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49713 - "POST /api/v1/knowledge/index HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49715 - "POST /api/v1/knowledge/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49716 - "POST /api/v1/dialogue/text HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49718 - "GET /api/v1/audio/aud_5385338f0e194289b6614761b5234740 HTTP/1.1" 200 OK

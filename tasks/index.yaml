@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-06
-current: TASK-007
+current: TASK-009
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -52,10 +52,10 @@ tasks:
     depends_on: [TASK-005]
   - id: TASK-008
     file: TASK-008_GATEWAY_SKELETON.md
-    title: "Create the lightweight gateway and common contracts"
+    title: "Create FastAPI Gateway and unified Provider skeleton"
     priority: p0
-    status: PLANNED
-    depends_on: [TASK-007]
+    status: DONE
+    depends_on: [TASK-005]
   - id: TASK-009
     file: TASK-009_TTS_PROVIDERS.md
     title: "Implement Doubao TTS adapter"
@@ -70,13 +70,13 @@ tasks:
     depends_on: [TASK-009]
   - id: TASK-011
     file: TASK-011_LLM_ROUTER.md
-    title: "Implement Mock and configurable LLM adapters"
+    title: "Implement real LLM and Embedding adapters"
     priority: p0
     status: PLANNED
     depends_on: [TASK-010]
   - id: TASK-012
     file: TASK-012_MINI_FAQ.md
-    title: "Implement the reviewed 10–30 item mini knowledge layer"
+    title: "Implement lightweight RAG with SQLite, FAISS and source citations"
     priority: p0
     status: PLANNED
     depends_on: [TASK-011]

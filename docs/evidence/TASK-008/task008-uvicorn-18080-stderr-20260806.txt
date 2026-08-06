@@ -1,0 +1,6 @@
+INFO:     Started server process [16776]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+2026-08-06 00:18:56,100 INFO {'event': 'knowledge.index', 'request_id': '082808ab-5d59-41ab-8f8b-6e8152a8b759', 'session_id': '-', 'documents': 1}
+2026-08-06 00:18:56,118 INFO {'event': 'dialogue.completed', 'request_id': 'req-local-text', 'session_id': 'sess-local', 'provider': 'text', 'matched': 1, 'audio_id': 'aud_5385338f0e194289b6614761b5234740'}

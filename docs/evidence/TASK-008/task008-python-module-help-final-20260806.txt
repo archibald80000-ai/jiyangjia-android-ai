@@ -1,0 +1,9 @@
+usage: __main__.py [-h] [--host HOST] [--port PORT] [--print-config]
+
+Jiyangjia FastAPI Gateway
+
+options:
+  -h, --help      show this help message and exit
+  --host HOST
+  --port PORT
+  --print-config

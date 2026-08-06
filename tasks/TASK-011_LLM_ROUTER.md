@@ -1,4 +1,4 @@
-# TASK-011: Implement Mock and configurable LLM adapters
+# TASK-011: Implement real LLM and Embedding adapters
 
 - **Status:** PLANNED
 - **Priority:** P0
@@ -8,16 +8,18 @@
 
 ## Objective
 
-Implement Mock and configurable LLM adapters.
+Implement real LLM and Embedding adapters behind the Provider interfaces.
 
 ## Preconditions
 
 - TASK-010 is DONE
+- TASK-008 Provider interfaces exist
 
 ## Scope and allowed changes
 
 - `gateway/provider adapters`
 - `integration/llm/`
+- `integration/embedding/`
 - `tests/llm/`
 - `docs/evidence/TASK-011/`
 - `state/memory/task files`
@@ -27,14 +29,16 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 ## Non-goals
 
 - Agent tools or autonomous actions
+- RAG document parsing/indexing; that belongs to TASK-012
 
 ## Detailed execution
 
-1. Implement deterministic Mock LLM for repeatable end-to-end tests.
-2. Implement one OpenAI-compatible client abstraction with configurable base URL/model.
-3. Add Doubao/Qwen provider configuration without coupling core business logic.
-4. Enforce concise answer length, low creativity defaults and safe provider error handling.
-5. Test streaming/non-streaming decision explicitly; do not add autonomous tools/actions.
+1. Verify current official Doubao/Volcengine Ark LLM and embedding API documentation before implementation.
+2. Implement OpenAI-compatible chat client abstraction with configurable base URL/model.
+3. Implement Doubao/Volcengine Ark LLM configuration and one real bounded test when credentials permit.
+4. Implement EmbeddingProvider abstraction and one real embedding path when credentials permit.
+5. Enforce concise answer length, low creativity defaults and safe provider error handling.
+6. Test streaming/non-streaming decision explicitly; do not add autonomous tools/actions.
 
 ## Verification commands
 
@@ -49,15 +53,17 @@ python scripts/test_llm_provider.py --provider mock --prompt "测试"
 
 ## Required deliverables
 
-- [ ] LLM router and Mock
-- [ ] At least one verified compatible provider when credentials permit
+- [ ] LLM router and Mock/real adapters
+- [ ] Embedding adapter
+- [ ] At least one verified compatible LLM provider when credentials permit
 - [ ] Latency/token/cost-safe report
 
 ## Acceptance criteria
 
 - [ ] Mock deterministic tests
 - [ ] One OpenAI-compatible path
-- [ ] Doubao/Qwen configuration slots
+- [ ] Doubao/Volcengine Ark configuration slots
+- [ ] Embedding API path
 - [ ] Short-answer and safe-error policy
 
 ## Stop / blocked conditions

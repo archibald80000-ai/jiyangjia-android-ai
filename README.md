@@ -5,7 +5,7 @@
 > Target device: Android 12 大屏
 > Future upstream: [lipku/LiveTalking](https://github.com/lipku/LiveTalking)
 
-本仓库用于管理“门店 Android 大屏 AI 语音客服 / 数字人终端”的产品需求、系统架构、开发任务、Codex 执行规则、项目记忆和后续代码。当前第一阶段目标不是下载模型或搭建实时数字人，而是在 Android 12 大屏上交付“本地待机人物视频 + USB/默认麦克风 + Gateway + 豆包 ASR/TTS + LLM + 小范围 FAQ + 字幕”的最小可上线版本。
+本仓库用于管理“门店 Android 大屏 AI 语音客服 / 数字人终端”的产品需求、系统架构、开发任务、Codex 执行规则、项目记忆和后续代码。当前第一阶段目标不是下载模型或搭建实时数字人，而是在 Android 12 大屏上交付“本地待机人物视频 + USB/默认麦克风 + FastAPI Gateway + 豆包 ASR/TTS + 方舟/豆包或 OpenAI-Compatible LLM + Embedding API + SQLite/FAISS 轻量 RAG + 字幕”的最小可上线版本。
 
 ## 当前产品路线
 
@@ -17,13 +17,13 @@
   USB/默认麦克风、录音、音响播放、权限、设备诊断
 
 阶段 C：Gateway 与 Provider
-  轻量 Gateway → 豆包 TTS → 豆包 ASR → LLM Provider → 请求日志和错误映射
+  FastAPI Gateway → 豆包 TTS → 豆包 ASR → LLM Provider → Embedding Provider → 请求日志和错误映射
 
-阶段 D：小范围知识问答
-  10～30 条已确认 FAQ，简单检索，禁止回答规则，转人工
+阶段 D：轻量 RAG
+  Markdown/TXT/PDF/DOCX → SQLite → Embedding API → FAISS Top-K → sources → 禁止回答规则 → 转人工
 
 阶段 E：闭环、部署与门店验收
-  Android → Gateway → ASR/FAQ/LLM/TTS → 播放与字幕 → 腾讯云 → Android 真机
+  Android → Gateway → ASR/RAG/LLM/TTS → 播放与字幕 → 腾讯云 → Android 真机
 
 后续增强：LiveTalking / Wav2Lip / MuseTalk / WebRTC 数字人
 ```
@@ -35,7 +35,7 @@
 | `idle_video_voice` | 本地待机人物视频持续播放，知识回答由语音播报并显示字幕 | 不需要 |
 | `livetalking_webrtc` | 后续增强：LiveTalking 实时渲染数字人口型，通过 WebRTC 输出 | 需要兼容 GPU 节点 |
 
-Phase 1 只做 `idle_video_voice`。`livetalking_webrtc` 保留接口和文档，等 Android + Gateway 语音 FAQ MVP 验收后再恢复。
+Phase 1 只做 `idle_video_voice`。`livetalking_webrtc` 保留接口和文档，等 Android + Gateway 语音 RAG MVP 验收后再恢复。
 
 ## 已知基础条件
 

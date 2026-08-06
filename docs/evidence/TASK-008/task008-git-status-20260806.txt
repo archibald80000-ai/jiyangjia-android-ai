@@ -1,0 +1,41 @@
+## task/TASK-008-provider-gateway
+ M MEMORY.md
+ M PROJECT_STATE.md
+ M README.md
+ M ROADMAP.md
+ M TASKS.md
+ M android-app/app/src/main/java/ai/jiyangjia/kiosk/AudioLoopbackController.kt
+ M android-app/app/src/main/java/ai/jiyangjia/kiosk/KioskActivity.kt
+ M config/providers.example.yaml
+ M docs/12_DEVICE_TEST_CHECKLIST.md
+ M docs/api/MVP_API_SPEC.md
+ M docs/architecture/GATEWAY_AND_PROVIDERS.md
+ M docs/architecture/KNOWLEDGE_MVP.md
+ M docs/architecture/MVP_ARCHITECTURE.md
+ M docs/evidence/TASK-007/android-audio.md
+ M docs/operations/MVP_DEPLOYMENT.md
+ M docs/testing/MVP_ACCEPTANCE.md
+ M gateway/README.md
+ M memory/CORE_FACTS.md
+ M memory/CURRENT_STATE.md
+ M memory/DECISIONS.md
+ M memory/HANDOFF.md
+ M tasks/TASK-007_ANDROID_USB_AUDIO.md
+ M tasks/TASK-008_GATEWAY_SKELETON.md
+ M tasks/TASK-011_LLM_ROUTER.md
+ M tasks/TASK-012_MINI_FAQ.md
+ M tasks/index.yaml
+?? deploy/docker-compose.yml
+?? deploy/nginx-jiyangjia.conf
+?? docs/adr/ADR-0009_LIGHTWEIGHT_RAG_AND_REAL_PROVIDERS.md
+?? docs/architecture/LIGHTWEIGHT_RAG.md
+?? docs/evidence/TASK-007/task007-device-callback-verification-20260806.txt
+?? docs/evidence/TASK-008/
+?? docs/server/
+?? docs/testing/REAL_API_ACCEPTANCE.md
+?? gateway/Dockerfile
+?? gateway/__init__.py
+?? gateway/__main__.py
+?? gateway/app/
+?? gateway/requirements.txt
+?? tests/gateway/

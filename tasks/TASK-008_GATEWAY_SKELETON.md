@@ -1,6 +1,6 @@
-# TASK-008: Create the lightweight gateway and common contracts
+# TASK-008: Create FastAPI Gateway and unified Provider skeleton
 
-- **Status:** PLANNED
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-007
 - **Branch:** `task/TASK-008-gateway-skeleton`
@@ -8,11 +8,12 @@
 
 ## Objective
 
-Create the lightweight gateway and common contracts.
+Create the FastAPI Gateway, required API surface and unified Provider skeleton for ASR, TTS, LLM, Embedding and lightweight RAG orchestration.
 
 ## Preconditions
 
-- TASK-007 is DONE or explicitly PARTIAL with a stable Android audio contract
+- Android real-device validation is deferred to TASK-015 and does not block TASK-008.
+- TASK-005 Android shell exists.
 
 ## Scope and allowed changes
 
@@ -26,16 +27,19 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 ## Non-goals
 
-- Vector DB
-- Heavy admin UI
+- Real Doubao/Ark/OpenAI-compatible paid calls
+- FAISS production index build
+- Dify, LangFlow, Flowise or heavy admin UI
+- Tencent Cloud deployment
 
 ## Detailed execution
 
-1. Create a lightweight FastAPI service in an isolated Python project with configuration validation.
-2. Implement health, sessions, client config/status and provider interface skeletons.
-3. Add request IDs, structured sanitized logging and stable error models.
-4. Use SQLite for development unless a task-specific ADR approves another database.
-5. Add tests and measure idle process memory. Do not add document parsing/vector DB/admin UI.
+1. Create a lightweight FastAPI service with configuration validation.
+2. Implement required routes: `/health`, `/api/v1/health`, `/api/v1/dialogue/text`, `/api/v1/dialogue/audio`, `/api/v1/knowledge/index`, `/api/v1/knowledge/search`, `/api/v1/knowledge/status`, `/api/v1/audio/{audio_id}`, `/api/v1/client/config`.
+3. Add ASR/TTS/LLM/Embedding Provider interfaces and deterministic Mock implementations.
+4. Add SQLite-backed knowledge metadata/search skeleton with `approved`, `draft`, `rejected` status handling.
+5. Add request IDs, sanitized logs and stable error models.
+6. Add automated tests. Do not claim real provider, FAISS or deployment completion.
 
 ## Verification commands
 
@@ -53,17 +57,19 @@ curl http://127.0.0.1:8080/api/v1/health
 
 ## Required deliverables
 
-- [ ] Gateway skeleton
-- [ ] Provider contracts
-- [ ] Tests and resource report
+- [x] Gateway skeleton
+- [x] Provider contracts
+- [x] Required API endpoints
+- [x] Tests and evidence report
 
 ## Acceptance criteria
 
-- [ ] Health/session/config/status endpoints
-- [ ] Provider interfaces
-- [ ] Request IDs
-- [ ] Structured sanitized logs
-- [ ] Tests and resource baseline
+- [x] Required health/dialogue/knowledge/audio/config endpoints
+- [x] ASR/TTS/LLM/Embedding provider interfaces
+- [x] Request IDs
+- [x] Structured sanitized logs
+- [x] SQLite knowledge skeleton with source/status fields
+- [x] Tests and evidence baseline
 
 ## Stop / blocked conditions
 
@@ -89,10 +95,36 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+## TASK-008 Result
+
+- FastAPI Gateway skeleton is implemented under `gateway/`.
+- Required routes are implemented:
+  - `GET /health`
+  - `GET /api/v1/health`
+  - `GET /api/v1/client/config`
+  - `POST /api/v1/dialogue/text`
+  - `POST /api/v1/dialogue/audio`
+  - `POST /api/v1/knowledge/index`
+  - `POST /api/v1/knowledge/search`
+  - `GET /api/v1/knowledge/status`
+  - `GET /api/v1/audio/{audio_id}`
+- ASR/TTS/LLM/Embedding Provider interfaces and deterministic Mock providers are present.
+- SQLite knowledge skeleton supports `approved`, `draft`, `rejected` and returns sources/request IDs.
+- Verification passed:
+  - `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\gateway -q`: 4 passed.
+  - `.\.venv\gateway-task008-py310\Scripts\python.exe -m gateway --help`: exit 0.
+  - local HTTP checks on `127.0.0.1:18080`: health, client config, knowledge index/search, text dialogue and audio fetch passed.
+  - `git diff --check`: exit 0.
+  - `scripts/verify_repository.ps1`: PASS.
+  - secret-shape scan: no API key/private-key/Bearer-token shape matches.
+  - safe config summary: required real-provider credentials are `missing`; no values printed.
+- Port `8080` was occupied locally; 18080 was used for verification.
+- TASK-008 does not claim real Doubao ASR/TTS, real LLM, real Embedding API, FAISS production index or Android hardware success.

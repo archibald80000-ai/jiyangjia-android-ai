@@ -1,0 +1,32 @@
+warning: in the working copy of 'PROJECT_STATE.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/12_DEVICE_TEST_CHECKLIST.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-007/android-audio.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/operations/MVP_DEPLOYMENT.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tasks/TASK-007_ANDROID_USB_AUDIO.md', CRLF will be replaced by LF the next time Git touches it
+ MEMORY.md                                          |   5 +-
+ PROJECT_STATE.md                                   |  34 +++--
+ README.md                                          |  12 +-
+ ROADMAP.md                                         |  19 +--
+ TASKS.md                                           |  13 +-
+ .../ai/jiyangjia/kiosk/AudioLoopbackController.kt  |  24 +++
+ .../main/java/ai/jiyangjia/kiosk/KioskActivity.kt  |  25 ++-
+ config/providers.example.yaml                      |  24 ++-
+ docs/12_DEVICE_TEST_CHECKLIST.md                   |   7 +-
+ docs/api/MVP_API_SPEC.md                           | 169 ++++++++++++---------
+ docs/architecture/GATEWAY_AND_PROVIDERS.md         |  89 +++--------
+ docs/architecture/KNOWLEDGE_MVP.md                 |  76 +++------
+ docs/architecture/MVP_ARCHITECTURE.md              | 118 ++++++--------
+ docs/evidence/TASK-007/android-audio.md            |  14 +-
+ docs/operations/MVP_DEPLOYMENT.md                  |   4 +-
+ docs/testing/MVP_ACCEPTANCE.md                     |  34 +++--
+ gateway/README.md                                  |  38 ++++-
+ memory/CORE_FACTS.md                               |   3 +-
+ memory/CURRENT_STATE.md                            |  80 ++++++----
+ memory/DECISIONS.md                                |   1 +
+ memory/HANDOFF.md                                  | 167 +++++++-------------
+ tasks/TASK-007_ANDROID_USB_AUDIO.md                |   9 +-
+ tasks/TASK-008_GATEWAY_SKELETON.md                 |  84 ++++++----
+ tasks/TASK-011_LLM_ROUTER.md                       |  26 ++--
+ tasks/TASK-012_MINI_FAQ.md                         |  30 ++--
+ tasks/index.yaml                                   |  12 +-
+ 26 files changed, 591 insertions(+), 526 deletions(-)

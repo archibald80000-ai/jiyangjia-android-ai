@@ -1,40 +1,62 @@
 # Current state
 
+Updated: 2026-08-06
+
 ## Completed
 
 - Product scope and development order documented.
-- LiveTalking upstream identified and commit lock recorded.
-- Agent rules, task system, safety boundaries and fallback architecture defined.
-- Local synchronized workspace reviewed at `E:\work\ai-kefu\jiyangjia-ai`.
-- Project identity aligned to `archibald80000-ai/jiyangjia-android-ai`.
-- Repository structure verification passed.
-- Delivery blueprint added at `docs/22_DELIVERY_BLUEPRINT.md`.
-- TASK-000 secret checks and JSON/YAML validation passed.
-- TASK-001 upstream audit completed: locked LiveTalking checkout verified, relevant README/API/config/source/license files reviewed, endpoint surface and integration boundaries recorded.
-- TASK-002 LiveTalking runtime environment completed: ignored local Conda env `.venv\livetalking-task002`, Python 3.12.13, torch 2.9.1+cu126, upstream dependencies installed, imports and PyTorch CUDA tensor smoke test passed.
-- TASK-005 Android kiosk shell is complete for local build: Kotlin Android app scaffold, package `ai.jiyangjia.kiosk`, immersive landscape activity, local idle-video path handling, offline animated fallback, long-press non-secret config dialog, state/config unit tests, official Gradle Wrapper and debug APK build are verified.
-- TASK-005 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, SHA-256 `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
-- TASK-007 Android audio implementation is partial-complete: runtime microphone permission, device diagnostics, USB-first input preference, fallback, bounded in-memory PCM recording, local playback, lifecycle cleanup and local tests/build/lint are implemented.
-- TASK-007 debug APK SHA-256: `2770C3CC306AB3BF0CEE0F342A3B426436ACF88F602990806F9E24D5162D195F`.
+- LiveTalking upstream identified and commit lock recorded, but LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference are deferred.
+- TASK-000 environment/repository audit completed.
+- TASK-001 upstream audit completed.
+- TASK-002 isolated LiveTalking runtime completed historically; not a Phase 1 blocker.
+- TASK-003/TASK-004/TASK-006/TASK-016 are deferred for the future LiveTalking enhancement phase.
+- TASK-005 Android kiosk shell is locally built/tested; real Android 12 install/rendering remains unverified.
+- TASK-007 Android audio source is partial-complete: runtime mic permission, diagnostics, USB-first route policy, recording/playback and source-side device change monitoring are implemented. Real USB mic/speaker validation is deferred to TASK-015.
+- TASK-008 FastAPI Gateway and unified Provider skeleton are complete locally:
+  - required health/dialogue/knowledge/audio/config endpoints;
+  - Mock ASR/TTS/LLM/Embedding providers;
+  - SQLite knowledge skeleton with `approved`, `draft`, `rejected`;
+  - request IDs, sources and generated `audio_id`;
+  - tests and local HTTP verification passed.
 
 ## Route changed
 
-- 2026-08-06 decision: Phase 1 no longer depends on LiveTalking/Wav2Lip/MuseTalk/WebRTC digital-human/GPU inference.
-- Current MVP route is Android idle character video + tap-to-talk recording + Gateway + Doubao ASR/TTS + LLM + 10-30 approved FAQ + subtitles.
-- TASK-003/TASK-004/TASK-006/TASK-016 are deferred to a future LiveTalking enhancement phase.
+- Phase 1 goal is now Android large-screen voice RAG MVP:
 
-## In progress
+```text
+Android recording
+-> Doubao ASR
+-> lightweight RAG
+-> Doubao/Volcengine Ark or OpenAI-compatible LLM
+-> Doubao TTS
+-> Android playback/subtitles
+-> idle video
+```
 
-- TASK-007 is still in progress/partial because no Android 12 device was connected for real USB/default microphone and speaker validation.
+- No Dify, LangFlow or Flowise.
+- Knowledge route: selected reviewed Markdown/TXT/PDF/DOCX -> SQLite -> EmbeddingProvider -> local FAISS -> Top-K with sources.
+- Android real-device acceptance is delayed to TASK-015 and does not block local provider/RAG development.
 
-## Not started
+## Verified this task
 
-- Provider adapter code.
-- Mini FAQ implementation.
-- Cloud deployment.
-- Android 12 real-device install/rendering for the TASK-005 APK.
-- Real USB microphone enumeration, recording, speaker playback and unplug/replug recovery on the target Android 12 display.
+- Python 3.10 local venv: `.venv\gateway-task008-py310`.
+- `python -m pytest tests\gateway -q`: 4 passed.
+- `python -m gateway --help`: exit 0.
+- Local HTTP checks on `127.0.0.1:18080` passed for health, client config, knowledge index/search, text dialogue and audio fetch.
+- Port `8080` was occupied locally; this is logged as a local issue.
+
+## Not completed
+
+- Real Doubao TTS.
+- Real Doubao ASR.
+- Real Doubao/Volcengine Ark LLM.
+- OpenAI-compatible fallback LLM.
+- Real Embedding API.
+- FAISS production index and document parsing.
+- Android end-to-end integration with Gateway.
+- Tencent Cloud deployment for the new provider/RAG route.
+- Android 12 large-screen real-device acceptance.
 
 ## Next action
 
-Continue exactly one task: `TASK-007_ANDROID_USB_AUDIO.md` on a connected Android 12 display with the intended USB microphone and speaker. Do not start Gateway/provider tasks until the hardware gate is verified or explicitly waived.
+Continue exactly one next task: `TASK-009_TTS_PROVIDERS.md`.

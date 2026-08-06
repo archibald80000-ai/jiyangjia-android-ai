@@ -11,14 +11,19 @@ Current status:
 - `TASK-004`: `DEFERRED`; LiveTalking API automation waits until the future enhancement phase.
 - `TASK-005`: `DONE`; Android Kotlin landscape kiosk shell, local idle-video path handling, offline fallback visual, non-secret config entry, Gradle Wrapper, unit tests, lint and debug APK build passed. APK SHA-256: `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`.
 - `TASK-006`: `DEFERRED`; LiveTalking display mode is deferred; local idle video is folded into TASK-005 for Phase 1.
-- `TASK-007`: `PARTIAL`; Android runtime microphone permission, device diagnostics, USB-first input preference, bounded in-memory recording and local playback are implemented and locally built/tested, but real Android 12 USB microphone/speaker/unplug recovery validation is blocked by no connected device.
-- Next action is to continue `TASK-007` on a connected Android 12 display with the intended USB microphone and speaker. Do not start Gateway/provider work until this hardware gate is verified or explicitly waived.
+- `TASK-007`: `PARTIAL`; Android runtime microphone permission, device diagnostics, USB-first input preference, bounded in-memory recording, local playback and source-side audio device change monitoring are implemented and locally built/tested, but real Android 12 USB microphone/speaker/physical unplug recovery validation is blocked by no connected device. APK SHA-256: `B2FEBA1C2E2A69D0AE2ED43DB000D75F0EA1BC67D396E9ECE22F8512A4D22D49`.
+- `TASK-008`: `DONE`; local FastAPI Gateway and unified Provider skeleton are implemented and tested. Required API endpoints, Mock ASR/TTS/LLM/Embedding providers, SQLite knowledge skeleton, request IDs and audio fetch are verified. No real provider/API or production deployment success is claimed.
+- Next action is `TASK-009`: implement and verify the real Doubao TTS adapter, using server-side `.env.local` credentials only.
 
 Current order:
 
-Phase 1 order:
+Phase 1 execution order from the current route:
 
-`TASK-000 → TASK-005 → TASK-007 → TASK-008 → TASK-009 → TASK-010 → TASK-011 → TASK-012 → TASK-013 → TASK-014 → TASK-015`
+`TASK-008 → TASK-009 → TASK-010 → TASK-011 → TASK-012 → TASK-013 → TASK-014 → TASK-015`
+
+Completed foundation retained from earlier tasks:
+
+`TASK-000 → TASK-005 → TASK-007(PARTIAL source/local only)`
 
 Future enhancement:
 

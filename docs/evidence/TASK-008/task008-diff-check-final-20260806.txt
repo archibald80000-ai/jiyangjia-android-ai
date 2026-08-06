@@ -1,0 +1,5 @@
+warning: in the working copy of 'PROJECT_STATE.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/12_DEVICE_TEST_CHECKLIST.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-007/android-audio.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/operations/MVP_DEPLOYMENT.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tasks/TASK-007_ANDROID_USB_AUDIO.md', CRLF will be replaced by LF the next time Git touches it

@@ -1,4 +1,4 @@
-# TASK-012: Implement the reviewed 10–30 item mini knowledge layer
+# TASK-012: Implement lightweight RAG with SQLite, FAISS and source citations
 
 - **Status:** PLANNED
 - **Priority:** P0
@@ -8,12 +8,13 @@
 
 ## Objective
 
-Implement the reviewed 10–30 item mini knowledge layer.
+Implement the reviewed lightweight RAG layer using SQLite metadata, FAISS Top-K retrieval, document parsing and source citations.
 
 ## Preconditions
 
 - TASK-011 is DONE
-- A human-approved mini FAQ set is available or examples remain Mock
+- A human-approved document/FAQ set is available or examples remain clearly labelled Mock/Draft
+- TASK-011 EmbeddingProvider exists
 
 ## Scope and allowed changes
 
@@ -28,15 +29,18 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 ## Non-goals
 
 - Bulk scan of raw materials
-- Vector DB
+- Dify, LangFlow, Flowise or external vector database service
 
 ## Detailed execution
 
-1. Define and validate the FAQ schema, including status/source/review metadata.
-2. Implement simple normalized exact/keyword matching with deterministic ranking.
-3. Implement prohibited-topic and uncertain-answer transfer behavior before LLM fallback.
-4. Create 20+ test cases covering approved, unknown, medical, price and internal questions.
-5. Do not scan or import the raw business directory.
+1. Define and validate document/chunk schema, including status/source/review metadata.
+2. Implement Markdown/TXT/PDF/DOCX parsing for explicitly selected files only.
+3. Store document/chunk metadata in SQLite.
+4. Build local FAISS index through the EmbeddingProvider.
+5. Implement Top-K retrieval with source citations and approved-only customer answers.
+6. Implement prohibited-topic and uncertain-answer transfer behavior before LLM fallback.
+7. Create 20+ test cases covering approved, draft, rejected, unknown, medical, price and internal questions.
+8. Do not scan or import the raw business directory.
 
 ## Verification commands
 
@@ -46,19 +50,21 @@ Commands are starting points; record exact environment-specific variants and res
 python -m pytest tests/knowledge -q
 ```
 ```powershell
-python scripts/evaluate_mini_faq.py --data knowledge-test/faq_test.example.yaml
+python scripts/evaluate_lightweight_rag.py --data knowledge-test
 ```
 
 ## Required deliverables
 
-- [ ] Validated mini FAQ engine
+- [ ] Validated lightweight RAG engine
 - [ ] Safety and evaluation report
 - [ ] Clear Mock/approved content status
 
 ## Acceptance criteria
 
 - [ ] Schema validation
-- [ ] Simple retrieval
+- [ ] SQLite metadata
+- [ ] FAISS Top-K retrieval
+- [ ] Source citations
 - [ ] Prohibited topics
 - [ ] Safe transfer
 - [ ] Evaluation report

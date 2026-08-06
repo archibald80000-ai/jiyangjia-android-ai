@@ -6,29 +6,29 @@ Repository, environment audit, upstream lock, secret protections and Codex execu
 
 Current gate: `TASK-000` is done. The locked LiveTalking checkout exists under ignored `third_party/LiveTalking`; see `docs/evidence/TASK-000/environment-audit.md`.
 
-## M1 — Phase 1 idle-video voice FAQ MVP
+## M1 — Phase 1 Android large-screen voice RAG MVP
 
-Current first priority is Android + Gateway + ASR/TTS/LLM + small FAQ. Phase 1 does not run LiveTalking, Wav2Lip, MuseTalk, WebRTC digital-human mode or GPU inference.
+Current first priority is Android + Gateway + real ASR/TTS/LLM providers + lightweight RAG. Phase 1 does not run LiveTalking, Wav2Lip, MuseTalk, WebRTC digital-human mode or GPU inference.
 
 Target flow:
 
-`Android start → local idle character video → tap to consult → USB/default mic recording → Gateway upload → Doubao ASR → mini FAQ retrieval → LLM grounded answer → Doubao TTS → Android playback and subtitles → idle`
+`Android recording → Doubao ASR → lightweight RAG retrieval → LLM grounded answer → Doubao TTS → Android playback and subtitles → idle video`
 
-## M2 — Android kiosk and audio
+## M2 — Android kiosk and audio foundation
 
-Landscape immersive APK, local idle character video, endpoint configuration, device diagnostics, USB/default microphone recording and speaker playback.
+Landscape immersive APK, local idle character video, endpoint configuration, device diagnostics, USB/default microphone recording and speaker playback. Local source/build work is available; final Android hardware acceptance is deferred to M7/TASK-015.
 
 ## M3 — Gateway and providers
 
-Lightweight Gateway, request IDs, sanitized logs, ASR/LLM/TTS/Knowledge Provider interfaces, Doubao ASR/TTS, configurable LLM and cost/error guards.
+FastAPI Gateway, request IDs, sanitized logs, ASR/LLM/TTS/Embedding/Knowledge Provider interfaces, Doubao ASR/TTS, Doubao/Volcengine Ark LLM, OpenAI-compatible fallback and cost/error guards.
 
-## M4 — Mini knowledge test
+## M4 — Lightweight RAG
 
-10–30 human-reviewed FAQs, simple retrieval, forbidden topics, transfer-to-human and evaluation set. No Dify and no vector database.
+SQLite metadata store, Markdown/TXT/PDF/DOCX parsing, Embedding API, local FAISS Top-K retrieval, approved/draft/rejected content status, source citations, forbidden topics and transfer-to-human behavior. No Dify, LangFlow or Flowise.
 
 ## M5 — End-to-end store pilot
 
-Android → ASR → mini knowledge/LLM → TTS → playback/subtitles → idle video, with logs, fallback and privacy controls.
+Android → ASR → RAG/LLM → TTS → playback/subtitles → idle video, with logs, fallback and privacy controls.
 
 ## M6 — Production deployment
 
@@ -48,4 +48,5 @@ See also:
 - `docs/architecture/FUTURE_LIVETALKING_UPGRADE.md`
 - `docs/api/MVP_API_SPEC.md`
 - `docs/testing/MVP_ACCEPTANCE.md`
+- `docs/testing/REAL_API_ACCEPTANCE.md`
 - `docs/operations/MVP_DEPLOYMENT.md`

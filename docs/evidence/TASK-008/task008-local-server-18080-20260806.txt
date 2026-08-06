@@ -1,0 +1,14 @@
+PID=44704
+===== GET /health =====
+{"ok":true,"service":"jiyangjia-gateway","version":"0.1.0-task008","checked_at":"2026-08-06T05:18:56.029672+00:00","providers":{"asr":"mock","tts":"mock","llm":"mock","embedding":"mock","knowledge":"sqlite_lightweight"},"checks":{"gateway":"healthy","knowledge_store":"ready"}}
+===== GET /api/v1/client/config =====
+{"display_mode":"idle_video_voice","max_record_seconds":20,"max_upload_bytes":5242880,"accepted_audio_types":["audio/wav","audio/mpeg","audio/mp4","audio/aac","audio/webm"],"subtitle_max_chars":80,"idle_video_version":"local","api":{"dialogue_text":"/api/v1/dialogue/text","dialogue_audio":"/api/v1/dialogue/audio","audio_base":"/api/v1/audio/"}}
+===== POST /api/v1/knowledge/index =====
+{"request_id":"082808ab-5d59-41ab-8f8b-6e8152a8b759","indexed":1,"status":{"approved":1,"draft":0,"rejected":0}}
+===== POST /api/v1/knowledge/search =====
+{"request_id":"4b20eab5-4d87-46b3-b72e-7f4e9407e655","status":"matched","matches":[{"id":"faq-local-001","title":"服务时间","status":"approved","score":4,"confidence":0.99,"source":{"uri":"manual://faq-local-001"},"excerpt":"门店服务时间请以当天现场公告为准。"}],"sources":[{"uri":"manual://faq-local-001"}]}
+===== POST /api/v1/dialogue/text =====
+{"request_id":"req-local-text","session_id":"sess-local","transcript":{"text":"服务时间是什么？","provider":"text","language":"zh-CN","confidence":1.0},"knowledge":{"status":"matched","matches":[{"id":"faq-local-001","title":"服务时间","status":"approved","score":3,"confidence":0.8999999999999999,"source":{"uri":"manual://faq-local-001"},"excerpt":"门店服务时间请以当天现场公告为准。"}],"provider":"sqlite_lightweight"},"answer":{"text":"根据已确认资料：门店服务时间请以当天现场公告为准。","provider":"mock","source":"knowledge_grounded_mock","subtitles":["根据已确认资料：门店服务时间请以当天现场公告为准。"]},"tts":{"provider":"mock","content_type":"audio/wav","audio_id":"aud_5385338f0e194289b6614761b5234740","duration_ms":2250},"sources":[{"uri":"manual://faq-local-001","id":"faq-local-001","title":"服务时间","status":"approved"}]}
+===== GET /api/v1/audio/aud_5385338f0e194289b6614761b5234740 =====
+status=200 bytes=14 content_type=audio/wav
+[exit_code] 0

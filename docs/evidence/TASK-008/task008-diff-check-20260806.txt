@@ -1,0 +1,13 @@
+warning: in the working copy of 'PROJECT_STATE.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/12_DEVICE_TEST_CHECKLIST.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/evidence/TASK-007/android-audio.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/operations/MVP_DEPLOYMENT.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tasks/TASK-007_ANDROID_USB_AUDIO.md', CRLF will be replaced by LF the next time Git touches it
+docs/api/MVP_API_SPEC.md:169: new blank line at EOF.
+docs/architecture/GATEWAY_AND_PROVIDERS.md:50: new blank line at EOF.
+docs/architecture/KNOWLEDGE_MVP.md:41: new blank line at EOF.
+docs/architecture/MVP_ARCHITECTURE.md:75: new blank line at EOF.
+docs/testing/MVP_ACCEPTANCE.md:75: new blank line at EOF.
+gateway/README.md:40: new blank line at EOF.
+memory/CURRENT_STATE.md:63: new blank line at EOF.
+memory/HANDOFF.md:62: new blank line at EOF.

@@ -10,5 +10,6 @@
 | D-006 | Wav2Lip is the first real-time model to reproduce when LiveTalking resumes; MuseTalk later | Superseded for Phase 1 | ADR-0006 / ADR-0008 |
 | D-007 | Tencent 8C/4G server runs gateway only, not GPU inference | Accepted | ADR-0007 |
 | D-008 | Phase 1 ships idle-video voice FAQ MVP; LiveTalking/WebRTC/GPU inference deferred | Accepted | ADR-0008 |
+| D-009 | Phase 1 knowledge layer is lightweight RAG with SQLite, FAISS, document parsers and embedding provider; Android hardware acceptance is deferred to TASK-015 | Accepted | ADR-0009 |
 
 New architectural decisions require a new ADR and an update to this table.

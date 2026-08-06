@@ -4,67 +4,37 @@ Updated: 2026-08-06
 
 ## Scope
 
-Phase 1 uses only 10-30 human-confirmed FAQ entries. It does not scan all of `E:\work\积养家`, install Dify, build a vector database or ingest raw private documents.
+Phase 1 knowledge is lightweight RAG, not a heavy knowledge platform. It uses FastAPI, SQLite, local FAISS, document parsers and an EmbeddingProvider. It does not use Dify, LangFlow or Flowise.
 
-## Data Source Rules
+## Source Rules
 
-- FAQ entries must be manually reviewed.
-- Each entry has explicit status: `approved`, `draft` or `mock`.
-- Only `approved` entries can be used in store-facing answers.
-- `draft` and `mock` entries are allowed only in tests or demos clearly labelled as such.
-- No unverified price, medical, diagnostic, inventory or promotion claims.
+- Only explicitly selected, human-reviewed Markdown/TXT/PDF/DOCX files may be indexed.
+- Do not bulk scan `E:\work\积养家`.
+- Every document and chunk has status: `approved`, `draft` or `rejected`.
+- Customer-facing answers may use `approved` chunks only.
+- Return `sources` and `request_id` for retrieval and dialogue responses.
 
-## Schema
+## Retrieval Rules
 
-```yaml
-version: 1
-items:
-  - id: faq-001
-    status: approved
-    question: "营业时间是什么？"
-    aliases:
-      - "几点开门"
-      - "几点下班"
-    answer: "请以门店当天公告为准。"
-    tags: ["store"]
-    source:
-      type: manual
-      owner: "human-review"
-      reviewed_at: "2026-08-06"
-    safety:
-      allow_llm_rewrite: true
-      prohibited_claims: []
-```
+- TASK-008 provides SQLite metadata and deterministic mock/keyword search.
+- TASK-011 provides real EmbeddingProvider.
+- TASK-012 adds FAISS Top-K vector retrieval and hybrid keyword fallback.
 
-## Retrieval
+## Safety Rules
 
-- Normalize Chinese punctuation, whitespace and common synonyms.
-- Use exact and keyword matching first.
-- Rank by alias hit count, tag relevance and question similarity.
-- Return top 1-3 entries with IDs and confidence.
-- Below threshold: return `no_match` and use transfer/fallback wording.
+Do not invent:
 
-## LLM Grounding
+- prices;
+- inventory or appointment availability;
+- activities, promotions or discounts;
+- medical diagnosis, treatment effect or guarantee claims.
 
-Gateway passes only matched approved FAQ context to the LLM. The prompt must require:
-
-- concise store-friendly answer;
-- no unsupported claims;
-- say "我暂时不能确认" when context is insufficient;
-- suggest staff assistance for sensitive or unknown questions.
-
-## Prohibited Topics
-
-The knowledge layer must detect and avoid unsupported answers for:
-
-- diagnosis, treatment guarantees or medical advice;
-- exact pricing not in approved FAQ;
-- stock/appointment availability not connected to live systems;
-- internal finance, contracts, employee data or private customer data.
+Unknown, low-confidence or sensitive questions must clearly transfer to staff.
 
 ## Acceptance
 
-- Schema validation passes.
-- At least 10 approved entries before store pilot.
-- Test set includes approved match, alias match, unknown, sensitive medical, price and internal-data questions.
-- Evaluation report records correct/incorrect/fallback examples.
+- SQLite schema and FAISS index are reproducible.
+- Approved/draft/rejected status is enforced.
+- Retrieval returns Top-K matches and sources.
+- LLM prompt uses approved context only.
+- Evaluation includes approved hit, draft exclusion, rejected exclusion, unknown fallback, price, medical and internal-data cases.

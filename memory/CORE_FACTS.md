@@ -20,10 +20,11 @@
 - Gateway owns ASR/LLM/TTS/knowledge calls, sessions, policy and logs.
 - LiveTalking is an upstream rendering engine integrated by API, not the business brain.
 - Phase 1 display mode is `idle_video_voice`; future `livetalking_webrtc` remains an extension point.
-- Initial knowledge is a small reviewed FAQ, not a full vector knowledge base.
+- Initial knowledge is lightweight RAG: reviewed Markdown/TXT/PDF/DOCX documents, SQLite metadata, local FAISS index, embedding provider adapter, Top-K retrieval and source citations.
 
 ## Quality
 
 - A feature is not complete without reproducible tests and evidence.
 - Mock results must be labelled Mock.
+- Real API completion requires real Doubao ASR/TTS, Volcengine Ark or OpenAI-compatible LLM and embedding evidence; missing credentials are blockers, not success.
 - Public repository contains no private source documents, model weights, avatar rights-sensitive assets or secrets.

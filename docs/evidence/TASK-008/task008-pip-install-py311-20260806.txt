@@ -1,0 +1,27 @@
+Collecting fastapi==0.116.1 (from -r gateway\requirements.txt (line 1))
+  Using cached fastapi-0.116.1-py3-none-any.whl.metadata (28 kB)
+Collecting uvicorn==0.35.0 (from -r gateway\requirements.txt (line 2))
+  Using cached uvicorn-0.35.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting pydantic==2.11.10 (from -r gateway\requirements.txt (line 3))
+  Using cached pydantic-2.11.10-py3-none-any.whl.metadata (68 kB)
+Collecting python-multipart==0.0.20 (from -r gateway\requirements.txt (line 4))
+  Using cached python_multipart-0.0.20-py3-none-any.whl.metadata (1.8 kB)
+Collecting pytest==8.3.5 (from -r gateway\requirements.txt (line 5))
+  Using cached pytest-8.3.5-py3-none-any.whl.metadata (7.6 kB)
+Collecting httpx==0.28.1 (from -r gateway\requirements.txt (line 6))
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting starlette<0.48.0,>=0.40.0 (from fastapi==0.116.1->-r gateway\requirements.txt (line 1))
+  Using cached starlette-0.47.3-py3-none-any.whl.metadata (6.2 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.116.1->-r gateway\requirements.txt (line 1))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting annotated-types>=0.6.0 (from pydantic==2.11.10->-r gateway\requirements.txt (line 3))
+  Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.33.2 (from pydantic==2.11.10->-r gateway\requirements.txt (line 3))
+  Using cached pydantic_core-2.33.2.tar.gz (435 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started

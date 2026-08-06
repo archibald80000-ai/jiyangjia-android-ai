@@ -1,20 +1,34 @@
 asr:
   provider: mock
   supported: [mock, doubao]
+  credential_env: DOUBAO_ASR_KEY
 
 tts:
-  provider: edge
-  supported: [edge, doubao]
+  provider: mock
+  supported: [mock, doubao]
   voice_id: default
+  credential_env: DOUBAO_TTS_KEY
 
 llm:
   provider: mock
-  supported: [mock, doubao, qwen, openai_compatible]
+  supported: [mock, doubao_ark, openai_compatible]
   temperature: 0.2
   max_output_characters: 180
+  credential_env:
+    doubao_ark: ARK_API_KEY
+    openai_compatible: OPENAI_COMPATIBLE_API_KEY
+
+embedding:
+  provider: mock
+  supported: [mock, doubao_ark, openai_compatible]
+  dimensions: null
+  credential_env: EMBEDDING_API_KEY
 
 knowledge:
-  provider: mini_faq
-  faq_path: knowledge-test/faq_test.example.yaml
+  provider: sqlite_faiss_lightweight_rag
+  db_path: var/knowledge/knowledge.sqlite3
+  faiss_index_path: var/knowledge/faiss.index
+  source_formats: [md, txt, pdf, docx]
   fallback_to_llm: true
   require_human_when_uncertain: true
+  allowed_status_for_customer_answer: approved

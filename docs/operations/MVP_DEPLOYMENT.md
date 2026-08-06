@@ -13,7 +13,7 @@ Phase 1 deploys only the lightweight Gateway to the existing Tencent Cloud CPU s
 - SQLite or simple file-backed config/data for Phase 1.
 - Log rotation.
 - Health check and process restart.
-- Backup job for FAQ/config/log index, not raw recordings by default.
+- Backup job for SQLite knowledge metadata, FAISS index, provider config templates and log index, not raw recordings by default.
 
 ## Secrets
 
@@ -44,7 +44,7 @@ Logs must not contain provider tokens, cookies, raw audio, full private document
 
 Backup these:
 
-- approved FAQ file;
+- approved lightweight RAG documents and SQLite/FAISS runtime data;
 - server config template without secrets;
 - deployment compose/service files;
 - sanitized log index;
