@@ -112,11 +112,19 @@ Next action: continue exactly one task, TASK-014 remediation/redeploy to the cur
 ## Redeployment package prepared
 
 - Result: still `PARTIAL`; server execution is not yet re-verified.
-- Deployment config updated: `deploy/docker-compose.yml` now loads untracked `../.env.local`, persists `var/knowledge` for SQLite/FAISS, and health-checks `/api/v1/health`.
+- Deployment config updated: `deploy/docker-compose.yml` now loads untracked `../secrets/.env.local`, persists `var/knowledge` for SQLite/FAISS, and health-checks `/api/v1/health`.
 - Server handoff/runbook: `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
 - Local checks:
   - `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\gateway tests\e2e -q` -> 9 passed.
   - Docker Compose YAML parse -> PASS.
   - `scripts\verify_repository.ps1` -> PASS.
 
-Next action remains TASK-014 server-side redeploy and evidence return. Do not enter TASK-015 yet.
+## Current Provider configuration blocker
+
+- Result: still `PARTIAL`.
+- Server evidence now shows current code commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed and health/config/knowledge endpoints are reachable.
+- `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS`.
+- Root cause: real Provider env vars are missing or not loaded by the container, not an upload/Nginx transport failure.
+- Gateway hardening adds `/api/v1/readiness` and `failed_stage` in Provider credential errors.
+
+Next action remains TASK-014 Provider env-chain remediation: verify `/opt/jiyangjia-ai/secrets/.env.local`, Compose `env_file`, `/api/v1/readiness`, then one complete text/audio acceptance. Do not enter TASK-015 yet.

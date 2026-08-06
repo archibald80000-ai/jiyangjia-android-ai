@@ -58,11 +58,13 @@ Updated: 2026-08-06
 - TASK-014 is partial:
   - server-thread evidence was imported from the Tencent Cloud host `120.53.86.89`;
   - the host is Ubuntu `24.04.4 LTS`, observed as 2 CPU cores, about `1.9Gi` memory, 50G disk and no GPU;
-  - Docker Compose + Nginx runs an old mock Gateway and `/health`, `/api/v1/health`, `/api/v1/dialogue/text` are reachable;
-  - the server is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`, has no Git metadata and lacks real Provider env vars, SQLite/FAISS knowledge data, audio dialogue, audio fetch, client config, knowledge status and brand normalization.
+  - current commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed on Tencent Cloud;
+  - Docker Compose + Nginx runs a healthy Gateway and `/health`, `/api/v1/health`, `/api/v1/client/config`, knowledge index/search/status endpoints are reachable;
+  - `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS` because real Provider env vars are missing or not loaded by the container.
 - TASK-014 redeployment package is prepared locally:
-  - `deploy/docker-compose.yml` loads untracked server `.env.local`, persists `var/knowledge` and health-checks `/api/v1/health`;
+  - `deploy/docker-compose.yml` loads untracked server `secrets/.env.local`, persists `var/knowledge` and health-checks `/api/v1/health`;
   - `docs/evidence/TASK-014/server-redeployment-request-20260806.md` gives the server thread exact redeploy, knowledge index, text dialogue, audio dialogue, brand normalization and evidence commands.
+- TASK-014 hardening now adds `/api/v1/readiness` and `failed_stage` values for Provider credential 503 responses.
 
 ## Route changed
 
@@ -129,8 +131,9 @@ Android recording
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - Formal production knowledge base beyond the scoped demo FAQ set.
 - Android 12 large-screen real-device acceptance.
-- TASK-014 current-code redeploy/remediation and full MVP API verification on Tencent Cloud.
+- TASK-014 Provider env-chain remediation on Tencent Cloud: verify `/opt/jiyangjia-ai/secrets/.env.local`, Compose `env_file`, container env configured/missing status, then run one complete text/audio acceptance.
 
 ## Next action
 
-Continue exactly one next task: have the server-management thread execute `docs/evidence/TASK-014/server-redeployment-request-20260806.md` and return sanitized evidence before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
+Continue exactly one next task: have the server-management thread fix the Provider env chain, confirm `/api/v1/readiness`, and return one complete dialogue/text plus dialogue/audio acceptance before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
+- 2026-08-06：TASK-014 对 `120.53.86.89` 复核结果：网关容器健康，`/health`、`/api/v1/health`、`/api/v1/client/config`、知识索引/搜索/状态接口可达；`/api/v1/dialogue/text` 与 `/api/v1/dialogue/audio` 因 `DOUBAO_*` 等变量缺失返回 `503 BLOCKED_PROVIDER_CREDENTIALS`，`embedding_ready=false`。

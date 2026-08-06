@@ -138,6 +138,19 @@ def api_health() -> dict[str, Any]:
     return _health_payload()
 
 
+@app.get("/api/v1/readiness")
+def readiness() -> dict[str, Any]:
+    provider_checks = _provider_readiness()
+    ready_for_dialogue = all(check["ready"] for check in provider_checks.values())
+    return {
+        "request_id": str(uuid.uuid4()),
+        "ready": ready_for_dialogue,
+        "status": "ready" if ready_for_dialogue else "blocked_provider_credentials",
+        "providers": provider_checks,
+        "knowledge": knowledge_store.status(),
+    }
+
+
 @app.get("/api/v1/client/config")
 def client_config() -> dict[str, Any]:
     return {
@@ -188,6 +201,7 @@ async def dialogue_audio(
             status_code=503,
             detail={
                 "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "asr_provider_config",
                 "message_for_user": "语音识别还没有配置完成，请联系工作人员。",
                 "missing": asr_configuration_error.missing,
             },
@@ -211,6 +225,16 @@ async def dialogue_audio(
 @app.post("/api/v1/knowledge/index")
 async def knowledge_index(body: KnowledgeIndexRequest, request: Request) -> dict[str, Any]:
     rid = _request_id(request)
+    if embedding_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "embedding_provider_config",
+                "message_for_user": "知识检索还没有配置完成，请联系工作人员。",
+                "missing": embedding_configuration_error.missing,
+            },
+        )
     documents = [
         KnowledgeDocument(
             doc_id=item.id,
@@ -229,6 +253,16 @@ async def knowledge_index(body: KnowledgeIndexRequest, request: Request) -> dict
 @app.post("/api/v1/knowledge/search")
 async def knowledge_search(body: KnowledgeSearchRequest, request: Request) -> dict[str, Any]:
     rid = _request_id(request, body.request_id)
+    if embedding_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "embedding_provider_config",
+                "message_for_user": "知识检索还没有配置完成，请联系工作人员。",
+                "missing": embedding_configuration_error.missing,
+            },
+        )
     policy = knowledge_store.classify_query(body.query)
     if policy["action"] != "search":
         return {
@@ -282,12 +316,23 @@ async def _run_dialogue(
     policy = knowledge_store.classify_query(question)
     if policy["action"] != "search":
         return await _run_policy_transfer(question, request_id, session_id, transcript_provider, transcript, str(policy.get("category") or "policy"))
+    if embedding_configuration_error is not None:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "embedding_provider_config",
+                "message_for_user": "知识检索还没有配置完成，请联系工作人员。",
+                "missing": embedding_configuration_error.missing,
+            },
+        )
     matches = await knowledge_store.search(question, embedding_provider, request_id, top_k=3)
     if llm_configuration_error is not None:
         raise HTTPException(
             status_code=503,
             detail={
                 "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "llm_provider_config",
                 "message_for_user": "问答服务还没有配置完成，请联系工作人员。",
                 "missing": llm_configuration_error.missing,
             },
@@ -308,6 +353,7 @@ async def _run_dialogue(
             status_code=503,
             detail={
                 "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "tts_provider_config",
                 "message_for_user": "语音服务还没有配置完成，请联系工作人员。",
                 "missing": tts_configuration_error.missing,
             },
@@ -350,6 +396,7 @@ async def _run_policy_transfer(
             status_code=503,
             detail={
                 "code": "BLOCKED_PROVIDER_CREDENTIALS",
+                "failed_stage": "tts_provider_config",
                 "message_for_user": "语音服务还没有配置完成，请联系工作人员。",
                 "missing": tts_configuration_error.missing,
             },
@@ -376,3 +423,21 @@ async def _run_policy_transfer(
         tts={"provider": tts["provider"], "content_type": tts["content_type"], "audio_id": blob.audio_id, "duration_ms": tts["duration_ms"]},
         sources=[],
     )
+
+
+def _provider_readiness() -> dict[str, dict[str, Any]]:
+    return {
+        "asr": _provider_check(settings.asr_provider, asr_configuration_error),
+        "tts": _provider_check(settings.tts_provider, tts_configuration_error),
+        "llm": _provider_check(settings.llm_provider, llm_configuration_error),
+        "embedding": _provider_check(settings.embedding_provider, embedding_configuration_error),
+    }
+
+
+def _provider_check(provider: str, error: ProviderConfigurationError | None) -> dict[str, Any]:
+    missing = error.missing if error else []
+    return {
+        "provider": provider,
+        "ready": not missing,
+        "missing": missing,
+    }

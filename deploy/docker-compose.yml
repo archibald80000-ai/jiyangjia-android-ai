@@ -6,7 +6,7 @@ services:
     container_name: jiyangjia-gateway
     restart: unless-stopped
     env_file:
-      - ../.env.local
+      - ../secrets/.env.local
     environment:
       - TZ=Asia/Shanghai
       - APP_NAME=jiyangjia-gateway
@@ -29,7 +29,7 @@ services:
       driver: json-file
       options:
         max-size: "10m"
-        max-file: "3"
+        max-file: "5"
     networks:
       - gateway-network
 

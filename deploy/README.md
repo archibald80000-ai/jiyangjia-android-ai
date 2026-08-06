@@ -2,13 +2,16 @@
 
 TASK-014 deploys only the lightweight FastAPI Gateway on the CPU-only Tencent Cloud host. It does not run LiveTalking, Wav2Lip, MuseTalk, local LLMs or GPU inference.
 
-Server secrets must be supplied through an untracked `.env.local` placed beside this repository root. Do not commit it and do not print values in logs.
+Server secrets must be supplied through an untracked `secrets/.env.local` beside the deployment root. Do not commit it and do not print values in logs.
 
 Minimal runtime directories:
 
 ```bash
 mkdir -p gateway/logs var/knowledge
+mkdir -p secrets
 chmod 700 var/knowledge
+chmod 700 secrets
+[ -f secrets/.env.local ] && chmod 600 secrets/.env.local
 ```
 
 Start from the repository root:
@@ -25,6 +28,6 @@ The Compose file mounts:
 - `gateway/app` read-only into the container;
 - `gateway/logs` for runtime logs;
 - `var/knowledge` for SQLite and FAISS persistence;
-- `.env.local` as service environment.
+- `secrets/.env.local` as service environment.
 
 Production completion still requires domain/TLS, device auth, firewall/security group verification, resource measurements, backup and rollback evidence.

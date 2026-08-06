@@ -31,8 +31,9 @@ Updated: 2026-08-06
 - APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, version `0.1.0-task013-debug`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - `adb devices -l` returned no attached devices.
 - Brand normalization tests passed: `python -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed; full backend regression -> 42 passed.
-- TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` runs an old Docker Compose + Nginx mock Gateway, but it is not aligned with current commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa` and does not satisfy the MVP API contract.
-- TASK-014 redeployment package is prepared locally. `deploy/docker-compose.yml` now loads untracked server `.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`. The server thread should execute `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
+- TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` now runs commit `f3b406ca28222937a6f4c93bac524c48f0b95544`; health/config/knowledge endpoints are reachable, but dialogue text/audio return `503 BLOCKED_PROVIDER_CREDENTIALS`.
+- TASK-014 redeployment package is prepared locally. `deploy/docker-compose.yml` now loads untracked server `secrets/.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`. The server thread should fix the Provider env chain before retesting dialogue/upload.
+- Gateway now exposes `/api/v1/readiness` and returns `failed_stage` for Provider credential failures.
 
 ## Evidence
 
@@ -56,12 +57,13 @@ Updated: 2026-08-06
 ## Not verified
 
 - Formal production knowledge base beyond the scoped demo FAQ set.
-- Tencent Cloud current-code deployment/remediation: missing `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}`, real Provider env vars, SQLite/FAISS knowledge data and TASK-013 brand normalization on the server.
+- Tencent Cloud Provider env-chain remediation: `/opt/jiyangjia-ai/secrets/.env.local` must exist with mode `600`, Compose `env_file` must point to it, `/api/v1/readiness` must show configured Providers, then dialogue/text and dialogue/audio must each return `request_id`, `sources`, `audio_id` and audio fetch 200.
 - Android 12 real-device install/record/upload/playback/subtitle acceptance.
 - USB microphone and speaker physical validation.
 
 ## Next action
 
-Continue exactly one next task: send the server-management thread `docs/evidence/TASK-014/server-redeployment-request-20260806.md`, have it deploy the current code and return full sanitized evidence.
+Continue exactly one next task: send the server-management thread the Provider env-chain fix instructions, have it verify `/api/v1/readiness`, then run one complete text/audio acceptance and return sanitized evidence.
 
 Do not enter `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` until TASK-014 is no longer partial.
+- 2026-08-06：TASK-014 已完成重部署与 200 路径验证；证据已写入 `docs/server/gateway_deployment_report.md` 与 `/opt/jiyangjia-ai/logs/task014_evidence/*`。剩余阻塞为 Provider 凭据缺失，先补齐再执行 TASK-015。

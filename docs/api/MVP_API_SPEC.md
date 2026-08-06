@@ -16,6 +16,7 @@ Base path: `/api/v1`
 
 - `GET /health`
 - `GET /api/v1/health`
+- `GET /api/v1/readiness`
 - `POST /api/v1/dialogue/text`
 - `POST /api/v1/dialogue/audio`
 - `POST /api/v1/knowledge/index`
@@ -56,6 +57,28 @@ Base path: `/api/v1`
   "idle_video_version": "local"
 }
 ```
+
+## Readiness
+
+`GET /api/v1/readiness`
+
+Reports whether Provider configuration is ready for real dialogue without exposing secret values.
+
+```json
+{
+  "request_id": "uuid",
+  "ready": false,
+  "status": "blocked_provider_credentials",
+  "providers": {
+    "asr": {"provider": "doubao", "ready": false, "missing": ["DOUBAO_ASR_AUTH"]},
+    "tts": {"provider": "doubao", "ready": false, "missing": ["DOUBAO_TTS_AUTH"]},
+    "llm": {"provider": "doubao", "ready": false, "missing": ["DOUBAO_API_KEY"]},
+    "embedding": {"provider": "doubao", "ready": false, "missing": ["DOUBAO_EMBEDDING_API_KEY"]}
+  }
+}
+```
+
+Only configured/missing names may be exposed. Secret values must never appear.
 
 ## Text Dialogue
 
@@ -159,6 +182,7 @@ Returns generated TTS audio bytes, or a safe `AUDIO_NOT_FOUND` error when expire
   "request_id": "uuid",
   "error": {
     "code": "PROVIDER_TIMEOUT",
+    "failed_stage": "asr_provider_call",
     "message_for_user": "现在网络有点忙，请稍后再试。",
     "retryable": true,
     "details": {}

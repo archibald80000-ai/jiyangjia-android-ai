@@ -1,0 +1,19 @@
+ MEMORY.md                                          |   2 +-
+ PROJECT_STATE.md                                   |  13 +-
+ TASKS.md                                           |   3 +
+ deploy/README.md                                   |   7 +-
+ deploy/docker-compose.yml                          |   4 +-
+ docs/api/MVP_API_SPEC.md                           |  24 ++++
+ .../server-redeployment-request-20260806.md        |  37 +++++-
+ docs/server/gateway_deployment_report.md           | 147 +++++++--------------
+ docs/server/operations.md                          |  86 +++++-------
+ docs/server/security_baseline.md                   |  81 +++++-------
+ gateway/app/main.py                                |  65 +++++++++
+ memory/CURRENT_STATE.md                            |  13 +-
+ memory/HANDOFF.md                                  |  10 +-
+ tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md       |  12 +-
+ tests/asr/test_gateway_asr_configuration.py        |   8 ++
+ tests/gateway/test_gateway_api.py                  |  40 ++++++
+ tests/llm/test_gateway_llm_configuration.py        |   8 ++
+ tests/tts/test_gateway_tts_configuration.py        |   8 ++
+ 18 files changed, 337 insertions(+), 231 deletions(-)

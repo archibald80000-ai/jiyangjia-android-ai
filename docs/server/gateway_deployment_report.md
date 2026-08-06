@@ -1,105 +1,48 @@
-# Gateway 部署报告（阶段二最小网关）
+# TASK-014 Gateway 部署报告（重部署对齐）
 
 日期：2026-08-06
 
-## 目标
+## 一、已完成内容
+- 已按 `docs/evidence/TASK-014/server-redeployment-request-20260806.md` 完成重部署：`/opt/jiyangjia-ai/backups/pre-task014-20260806-185559.tgz` 已备份旧部署。
+- 已运行 `/opt/jiyangjia-ai/docker/docker-compose.yml` 并拉起 `jiyangjia-gateway`（`Up ... (healthy)`）。
+- Nginx 反代可用，HTTP 外部访问通过 `120.53.86.89/health`。
+- 关键目录已就位：`/opt/jiyangjia-ai/gateway`, `/opt/jiyangjia-ai/docker`, `/opt/jiyangjia-ai/logs`, `/opt/jiyangjia-ai/var/knowledge`。
+- 知识库文件存在：`/opt/jiyangjia-ai/var/knowledge/jiyangjia.db`、`/opt/jiyangjia-ai/var/knowledge/faiss.index`。
+- 容器日志轮转与系统日志策略已配置：Docker daemon `log-driver=json-file`、`max-size=10m`、`max-file=5`。
+- 容器重启自恢复验证通过：`docker restart jiyangjia-gateway` 后可恢复 `healthy`，`/health` 200。
 
-- 在 `/opt/jiyangjia-ai` 上部署最小可运行 Gateway（Mock）
-- 提供 `GET /health`
-- 提供 `GET /api/v1/health`
-- 提供 `POST /api/v1/dialogue/text`
-- 通过 Nginx 反向代理到 `http://120.53.86.89/`
-- 检查服务重启后自恢复与资源占用
+## 二、安装与版本
+- 目标提交：`f3b406ca28222937a6f4c93bac524c48f0b95544`（显示短 SHA `f3b406c`）。
+- `.env.local` 目标服务器位置：`/opt/jiyangjia-ai/secrets/.env.local`；旧的 `/opt/jiyangjia-ai/.env.local` 不应作为容器 env_file 使用。
+- 运行目录 `/opt/jiyangjia-ai/gateway` 为部署副本（无 `.git`），代码元数据在 `/opt/jiyangjia-ai/releases/release-20260806-185559`：
+  - remote: `https://github.com/archibald80000-ai/jiyangjia-android-ai.git`
+  - branch: detached at `f3b406c`
 
-## 已完成项
+## 三、真实接口验证（截至本轮）
+- GET `/health`：200
+- GET `/api/v1/health`：200
+- GET `/api/v1/client/config`：200
+- POST `/api/v1/knowledge/index`：200（`request_id` 存在）
+- POST `/api/v1/knowledge/search`：200（`request_id`、`sources` 存在）
+- GET `/api/v1/knowledge/status`：200（`embedding_ready: false`）
+- POST `/api/v1/dialogue/text`：503（`BLOCKED_PROVIDER_CREDENTIALS`）
+- POST `/api/v1/dialogue/audio`：503（参数修正后）
+- GET `/api/v1/audio/{audio_id}`：未取到 `audio_id`（因 `dialogue` 阶段未放行）
+- 外部访问 `/api/v1/health`：200
 
-- 已同步网关源代码到 `/opt/jiyangjia-ai/gateway`
-- 已同步 `deploy/docker-compose.yml` 到 `/opt/jiyangjia-ai/docker/docker-compose.yml`
-- 已同步 Nginx 配置到 `/etc/nginx/sites-available/jiyangjia-gateway`
-- 已启用默认站点反代（`/health` 与 `/api/`）
-- 已通过 `docker compose up -d` 拉起服务并设置 `restart: unless-stopped`
-- `POST /api/v1/dialogue/text` 仅返回 mock 回答（未接真实 Provider）
+## 四、环境变量状态（仅状态）
+- ASR/Doubao：`DOUBAO_ASR_APP_ID` / `DOUBAO_ASR_ACCESS_TOKEN` / `DOUBAO_ASR_API_KEY` / `DOUBAO_ASR_RESOURCE_ID`：`missing`
+- TTS/Doubao：`DOUBAO_TTS_APP_ID` / `DOUBAO_TTS_ACCESS_TOKEN` / `DOUBAO_TTS_API_KEY` / `DOUBAO_TTS_SPEAKER` / `DOUBAO_TTS_RESOURCE_ID`：`missing`
+- LLM：`DOUBAO_MODEL` / `DOUBAO_API_KEY`：`missing`
+- Embedding：`DOUBAO_EMBEDDING_API_KEY` / `DOUBAO_EMBEDDING_MODEL`：`missing`
+- 通用兼容：`OPENAI_COMPATIBLE_*` 系列：`missing`
+- Knowledge 路径：`JIYANGJIA_KNOWLEDGE_DB_PATH` / `JIYANGJIA_KNOWLEDGE_FAISS_PATH`：`missing`（回退默认）
 
-## 已安装/更新的软件与系统配置
+## 五、未完成项
+- 未提供真实 Provider 凭据，不具备 `/api/v1/dialogue/text` 与 `/api/v1/dialogue/audio` 的真实端到端成功路径。
+- 未完成 HTTPS/TLS 与 API 鉴权加固（当前仍为 IP + HTTP）。
 
-- `swap`: 已设置 2.0 GiB `/swap.img`，并写入 `/etc/fstab`
-- `fail2ban`: 安装并启用，`sshd` jail 已配置
-- `UFW`: 已启用，入站允许 `22/tcp`, `80/tcp`, `443/tcp`
-- Docker 日志策略:
-  - `/etc/docker/daemon.json` 中加入 `log-driver=json-file` 与 `max-size=10m max-file=5`
-- 时区: `Asia/Shanghai`
-
-## 真实验证（命令及结果）
-
-### 1) 容器状态
-
-```bash
-cd /opt/jiyangjia-ai/docker
-docker compose ps
-```
-
-结果：
-
-- `jiyangjia-gateway`：`Up ... (healthy)`
-- 端口映射：`0.0.0.0:8080->8080/tcp`
-
-### 2) 健康检查
-
-```bash
-curl http://127.0.0.1/health
-curl http://120.53.86.89/health
-curl http://127.0.0.1/api/v1/health
-```
-
-结果：三者均返回 `{"ok":true,...}`。
-
-### 3) 对话接口（Mock）
-
-```bash
-cat >/tmp/dialogue.json <<'EOF'
-{"text":"hello","session_id":"sess-test"}
-EOF
-curl -X POST http://127.0.0.1/api/v1/dialogue/text \
-  -H "Content-Type: application/json" \
-  --data-binary @/tmp/dialogue.json
-```
-
-结果：
-
-返回包含 `request_id/session_id/answer.text/knowledge.status=mock` 的 JSON。
-
-### 4) 重启恢复验证
-
-1. `sudo reboot`
-2. 重启后执行同样 `docker compose ps`、`curl 127.0.0.1/health`、`curl /api/v1/dialogue/text`。
-
-结果：
-
-- 重启后服务仍为 `Up ... (healthy)`，可正常返回健康接口与 mock 对话响应。
-
-### 5) 资源与安全命令
-
-```bash
-free -h
-docker stats --no-stream
-ufw status
-fail2ban-client status
-```
-
-结果：
-
-- `free -h`: 内存 1.9Gi，Swap 2.0Gi 可用
-- `docker stats --no-stream`: Gateway 内存约 30-60MiB（运行时变化）
-- `ufw status`: active，22/80/443 入站允许
-- `fail2ban-client status`: jail `sshd` 已启用
-
-## 未安装项（本阶段真实原因）
-
-- HTTPS/TLS（未配域名）
-- 豆包真实调用（按要求 Mock 阶段）
-- Android APK 构建与部署（服务器阶段未执行）
-
-## 下一步建议
-
-- 按 `docs/server/security_baseline.md` 完成下一阶段的最小加固（如 Nginx 证书/鉴权）
-- 在 Android 端接入后再切到真实 Provider 并保留 mock 兼容字段
+## 六、建议
+- 补齐 `/opt/jiyangjia-ai/secrets/.env.local` 中的 DOUBAO/Ark/OpenAI-compatible 凭据（按安全位保存，权限 `600`），并确认 Compose `env_file` 指向该路径。
+- 重启容器后复测 8 项 API，记录 `request_id/sources/audio_id`。
+- 完成后将状态更新为 `TASK-014 DONE`，并进入 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`。

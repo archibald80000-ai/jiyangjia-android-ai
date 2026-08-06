@@ -31,7 +31,15 @@ def test_gateway_reports_missing_doubao_asr_credentials(monkeypatch) -> None:
     assert response.status_code == 503
     detail = response.json()["detail"]
     assert detail["code"] == "BLOCKED_PROVIDER_CREDENTIALS"
+    assert detail["failed_stage"] == "asr_provider_config"
     assert "DOUBAO_ASR_AUTH" in detail["missing"]
+
+    readiness = client.get("/api/v1/readiness")
+    assert readiness.status_code == 200
+    readiness_payload = readiness.json()
+    assert readiness_payload["ready"] is False
+    assert readiness_payload["providers"]["asr"]["ready"] is False
+    assert "DOUBAO_ASR_AUTH" in readiness_payload["providers"]["asr"]["missing"]
 
     monkeypatch.setenv("JIYANGJIA_ASR_PROVIDER", "mock")
     importlib.reload(main_module)

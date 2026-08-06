@@ -9,7 +9,8 @@ Do not print passwords, API keys, tokens, cookies, `.env.local` values, raw reco
 ## Target
 
 - Repository: `https://github.com/archibald80000-ai/jiyangjia-android-ai.git`
-- Required local/source commit: `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa` or a later reviewed TASK-014 commit that includes this redeployment runbook.
+- Required source branch: `task/TASK-014-tencent-gateway-deployment`.
+- Required source commit: use the latest reviewed commit on that branch, not the old mock deployment.
 - Server: Tencent Cloud `120.53.86.89`
 - Server target directory: `/opt/jiyangjia-ai`
 - Runtime: Docker Compose + Nginx
@@ -35,6 +36,7 @@ Run on the server. Adjust only paths if your existing deployment uses a differen
 set -euo pipefail
 TASK_TS="$(date +%Y%m%d-%H%M%S)"
 sudo mkdir -p /opt/jiyangjia-ai/backups /opt/jiyangjia-ai/releases /opt/jiyangjia-ai/secrets
+sudo chmod 700 /opt/jiyangjia-ai/secrets
 
 # Backup the current deployment without recursing into previous backups.
 sudo tar --exclude='/opt/jiyangjia-ai/backups' \
@@ -45,9 +47,9 @@ sudo tar --exclude='/opt/jiyangjia-ai/backups' \
 sudo git clone https://github.com/archibald80000-ai/jiyangjia-android-ai.git \
   "/opt/jiyangjia-ai/releases/release-${TASK_TS}"
 cd "/opt/jiyangjia-ai/releases/release-${TASK_TS}"
-sudo git checkout b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa
+sudo git fetch origin task/TASK-014-tencent-gateway-deployment
+sudo git checkout origin/task/TASK-014-tencent-gateway-deployment
 
-# If a later TASK-014 commit is intentionally used, record git rev-parse HEAD.
 git rev-parse HEAD
 git status --short
 
@@ -58,7 +60,7 @@ sudo chmod 700 var/knowledge
 
 ## Secret Placement
 
-Create or copy `/opt/jiyangjia-ai/secrets/.env.local` using the authorized secret source. Do not print it.
+Create or copy `/opt/jiyangjia-ai/secrets/.env.local` using the authorized secret source. Do not print it. This is the only env file path the Compose service should read.
 
 Minimum provider selection expected for real MVP:
 
@@ -74,10 +76,12 @@ JIYANGJIA_KNOWLEDGE_FAISS_PATH=/app/var/knowledge/faiss.index
 
 The actual `.env.local` must also include the authorized Doubao ASR/TTS, Ark/Doubao LLM and Embedding credentials and model names. Output only configured/missing status.
 
-Install the env file into the release:
+Check the secret file path and permissions without printing values:
 
 ```bash
-sudo install -m 600 /opt/jiyangjia-ai/secrets/.env.local ./.env.local
+test -f /opt/jiyangjia-ai/secrets/.env.local
+sudo chmod 600 /opt/jiyangjia-ai/secrets/.env.local
+sudo stat -c '%a %U %G %n' /opt/jiyangjia-ai/secrets/.env.local
 ```
 
 ## Start Gateway
@@ -100,6 +104,7 @@ Confirm Nginx forwards both `/health` and `/api/` to `127.0.0.1:8080`.
 sudo nginx -t
 sudo systemctl reload nginx
 curl -fsS http://127.0.0.1/api/v1/health
+curl -sS http://127.0.0.1/api/v1/readiness -o /tmp/task014_readiness.json -w '%{http_code}\n'
 curl -fsS http://120.53.86.89/api/v1/health
 ```
 
@@ -157,6 +162,26 @@ curl -sS -X POST \
 ```
 
 ## Dialogue/Text Smoke
+
+Before calling dialogue endpoints, inspect readiness once. If it reports missing credentials, stop and fix `/opt/jiyangjia-ai/secrets/.env.local`; do not keep retesting upload/dialogue.
+
+```bash
+curl -sS http://127.0.0.1/api/v1/readiness \
+  -o /tmp/task014_readiness.json \
+  -w '%{http_code}\n'
+python3 - <<'PY'
+import json
+p=json.load(open('/tmp/task014_readiness.json', encoding='utf-8'))
+print(json.dumps({
+  "ready": p.get("ready"),
+  "status": p.get("status"),
+  "providers": {
+    name: {"provider": info.get("provider"), "ready": info.get("ready"), "missing": info.get("missing")}
+    for name, info in p.get("providers", {}).items()
+  },
+}, ensure_ascii=False))
+PY
+```
 
 ```bash
 curl -sS -X POST \

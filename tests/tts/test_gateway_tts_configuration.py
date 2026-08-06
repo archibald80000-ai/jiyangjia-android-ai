@@ -27,8 +27,16 @@ def test_gateway_reports_missing_doubao_tts_credentials(monkeypatch) -> None:
     assert response.status_code == 503
     detail = response.json()["detail"]
     assert detail["code"] == "BLOCKED_PROVIDER_CREDENTIALS"
+    assert detail["failed_stage"] == "tts_provider_config"
     assert "DOUBAO_TTS_AUTH" in detail["missing"]
     assert "DOUBAO_TTS_SPEAKER" in detail["missing"]
+
+    readiness = client.get("/api/v1/readiness")
+    assert readiness.status_code == 200
+    readiness_payload = readiness.json()
+    assert readiness_payload["ready"] is False
+    assert readiness_payload["providers"]["tts"]["ready"] is False
+    assert "DOUBAO_TTS_AUTH" in readiness_payload["providers"]["tts"]["missing"]
 
     monkeypatch.setenv("JIYANGJIA_TTS_PROVIDER", "mock")
     importlib.reload(main_module)

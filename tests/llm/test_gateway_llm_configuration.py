@@ -22,7 +22,15 @@ def test_gateway_reports_missing_deepseek_llm_credentials(monkeypatch) -> None:
     assert response.status_code == 503
     detail = response.json()["detail"]
     assert detail["code"] == "BLOCKED_PROVIDER_CREDENTIALS"
+    assert detail["failed_stage"] == "llm_provider_config"
     assert "DEEPSEEK_API_KEY" in detail["missing"]
+
+    readiness = client.get("/api/v1/readiness")
+    assert readiness.status_code == 200
+    readiness_payload = readiness.json()
+    assert readiness_payload["ready"] is False
+    assert readiness_payload["providers"]["llm"]["ready"] is False
+    assert "DEEPSEEK_API_KEY" in readiness_payload["providers"]["llm"]["missing"]
 
     monkeypatch.setenv("JIYANGJIA_LLM_PROVIDER", "mock")
     importlib.reload(main_module)

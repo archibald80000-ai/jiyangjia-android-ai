@@ -33,6 +33,12 @@ def test_health_and_client_config_include_required_fields() -> None:
     assert health.json()["ok"] is True
     assert health.headers["X-Request-Id"]
 
+    readiness = client.get("/api/v1/readiness")
+    assert readiness.status_code == 200
+    readiness_payload = readiness.json()
+    assert readiness_payload["ready"] is True
+    assert readiness_payload["providers"]["asr"]["provider"] == "mock"
+
     config = client.get("/api/v1/client/config")
     assert config.status_code == 200
     payload = config.json()
@@ -128,3 +134,37 @@ def test_transcript_payload_preserves_raw_text_when_brand_is_normalized() -> Non
     assert normalized["text"] == "您好，欢迎来到积养家。"
     assert normalized["raw_text"] == "您好，欢迎来到季养家。"
     assert normalized["normalization"]["changed"] is True
+
+
+def test_gateway_reports_embedding_configuration_stage(monkeypatch) -> None:
+    import importlib
+
+    monkeypatch.setenv("JIYANGJIA_EMBEDDING_PROVIDER", "doubao")
+    for key in (
+        "DOUBAO_EMBEDDING_API_KEY",
+        "EMBEDDING_API_KEY",
+        "DOUBAO_API_KEY",
+        "ARK_API_KEY",
+    ):
+        monkeypatch.delenv(key, raising=False)
+
+    import gateway.app.main as main_module
+
+    reloaded = importlib.reload(main_module)
+    configured_client = TestClient(reloaded.app)
+
+    readiness = configured_client.get("/api/v1/readiness")
+    assert readiness.status_code == 200
+    readiness_payload = readiness.json()
+    assert readiness_payload["ready"] is False
+    assert readiness_payload["providers"]["embedding"]["ready"] is False
+    assert any("DOUBAO_EMBEDDING_API_KEY" in item for item in readiness_payload["providers"]["embedding"]["missing"])
+
+    response = configured_client.post("/api/v1/knowledge/search", json={"query": "积养家"})
+    assert response.status_code == 503
+    detail = response.json()["detail"]
+    assert detail["code"] == "BLOCKED_PROVIDER_CREDENTIALS"
+    assert detail["failed_stage"] == "embedding_provider_config"
+
+    monkeypatch.setenv("JIYANGJIA_EMBEDDING_PROVIDER", "mock")
+    importlib.reload(main_module)
