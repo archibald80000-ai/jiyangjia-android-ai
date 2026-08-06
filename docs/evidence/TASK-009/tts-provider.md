@@ -49,6 +49,7 @@ Implementation uses the conservative HTTP non-streaming shape recorded from offi
 - `docs/evidence/TASK-009/task009-env-template-pytest-20260806.txt`: 9 tests passed after `.env.example` alignment.
 - `docs/evidence/TASK-009/task009-env-template-preflight-20260806.txt`: Doubao preflight still returns `BLOCKED_PROVIDER_CREDENTIALS`.
 - `docs/evidence/TASK-009/task009-env-template-secret-shape-scan-20260806.txt`: no API key/private-key/Bearer-token shape matches.
+- `docs/evidence/TASK-009/task009-blocker-recheck-20260806.txt`: blocker recheck still returns `BLOCKED_PROVIDER_CREDENTIALS` for the three required TTS variables.
 
 ## Real API Status
 
