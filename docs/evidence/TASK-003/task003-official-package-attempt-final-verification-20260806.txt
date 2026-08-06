@@ -1,0 +1,91 @@
+# TASK-003 official package attempt final verification
+Date: 2026-08-06
+Purpose: Final verification for the official Windows package and local Quark client asset-unblock attempt.
+
+## git branch
+command=git branch --show-current
+exit_code=0
+task/TASK-003-wav2lip-webrtc-baseline
+
+## git status
+command=git status --short
+exit_code=0
+ M PROJECT_STATE.md
+ M TASKS.md
+ M docs/evidence/TASK-003/wav2lip-baseline.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+?? docs/evidence/TASK-003/quark-avatar-small-download-header-probe-20260806.txt
+?? docs/evidence/TASK-003/quark-client-local-capability-20260806.txt
+?? docs/evidence/TASK-003/quark-download-url-shape-20260806.txt
+?? docs/evidence/TASK-003/quark-windows-package-avatar-tree-20260806.txt
+?? docs/evidence/TASK-003/quark-windows-package-download-probe-20260806.txt
+?? docs/evidence/TASK-003/quark-windows-package-public-list-20260806.txt
+?? docs/evidence/TASK-003/quark-windows-package-targeted-asset-list-20260806.txt
+
+## diff stat
+command=git diff --stat
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+ PROJECT_STATE.md                           |  7 +++++--
+ TASKS.md                                   |  2 +-
+ docs/evidence/TASK-003/wav2lip-baseline.md | 28 ++++++++++++++++++++++++++++
+ memory/CURRENT_STATE.md                    |  4 ++--
+ memory/HANDOFF.md                          | 18 ++++++++++++++++--
+ tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md  |  8 ++++++++
+ 6 files changed, 60 insertions(+), 7 deletions(-)
+
+## diff check
+command=git diff --check
+exit_code=0
+warning: in the working copy of 'docs/evidence/TASK-003/wav2lip-baseline.md', CRLF will be replaced by LF the next time Git touches it
+
+## asset paths
+command=powershell -NoProfile -Command "$paths=@('third_party\LiveTalking\models\wav2lip.pth','third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth','third_party\LiveTalking\data\avatars\wav2lip256_avatar1'); foreach($p in $paths){ if(Test-Path $p){ 'FOUND '+$p } else { 'MISSING '+$p } }"
+exit_code=0
+MISSING third_party\LiveTalking\models\wav2lip.pth
+MISSING third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.pth
+MISSING third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+
+## launcher preflight
+command=powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_livetalking.ps1
+exit_code=1
+Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\s3fd.
+pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+- Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\start_livetalking.ps1:75 char:5
++     throw $message
++     ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Wav2Lip assets ...onally ignored.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Wav2Lip assets are not ready; LiveTalking startup was stopped before model loading.
+Required assets:
+- Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
+  Copy official wav2lip256.pth here and rename it to wav2lip.pth.
+    - Missing file: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detection\detection\sfd\ 
+   s3fd.pth
+  Copy official s3fd.pth to the Wav2Lip SFD detector directory.
+    - Missing or empty directory: E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1 
+   
+  Extract the official wav2lip256_avatar1 package so this avatar directory exists and is non-empty.
+Official source recorded by LiveTalking docs: https://pan.quark.cn/s/83a750323ef0
+Observed public Quark listing on 2026-08-06: s3fd.pth, wav2lip256.pth, wav2lip256_avatar1.zip.
+Do not commit these model/avatar files; third_party/LiveTalking is intentionally ignored.
+ 
+
+## secret scan
+command=rg --pcre2 secret/cookie/download-url pattern over TASK-003 evidence, scripts and state files
+exit_code=1
+
+## Result
+TASK-003 remains BLOCKED. Official Windows package share is listable and contains wav2lip.pth, s3fd.pth and an expanded avatar directory, but large Quark download URL creation returns 23018 and small signed URLs return 412 through CLI GET. No assets were placed in LiveTalking paths.
+No LiveTalking service startup, WebRTC/WHEP stream, FPS, Android APK, USB audio or provider API success is claimed.

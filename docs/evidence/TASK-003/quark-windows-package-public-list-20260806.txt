@@ -1,0 +1,301 @@
+# TASK-003 Quark Windows integrated package public listing
+Date: 2026-08-06
+Purpose: Probe official LiveTalking Windows integrated package share from README without recording cookies, stoken or share_fid_token values.
+Source: third_party/LiveTalking/README.md lines 119-124
+
+## Fetch share page
+status=200 length=9349
+cookies=REDACTED
+
+## Get stoken
+status=200 code=0 message=ok
+stoken_length=44
+stoken=REDACTED
+
+## Detail pdir=/ fid=0
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/整合包 dir=True size=0 fid=2a36e715b376470bb323e9d6497d34d4 token_present=True
+
+## Detail pdir=/整合包 fid=2a36e715b376470bb323e9d6497d34d4
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/整合包/v2.0.1 dir=True size=0 fid=d41c58a604e5473fa588a59adeea5cae token_present=True
+
+## Detail pdir=/整合包/v2.0.1 fid=d41c58a604e5473fa588a59adeea5cae
+page=1 status=200 code=0 message=ok count=8 total=8
+item path=/整合包/v2.0.1/_internal dir=True size=0 fid=2e2933bd22984603b846b4d558db1cff token_present=True
+item path=/整合包/v2.0.1/data dir=True size=0 fid=2630f81ffe404db99b2df42384f52b30 token_present=True
+item path=/整合包/v2.0.1/web dir=True size=0 fid=2e827a52c8624d9b970e646fb19e0f5d token_present=True
+item path=/整合包/v2.0.1/models dir=True size=0 fid=726e4c61852e42a3ad09ef92bf7bd5e9 token_present=True
+item path=/整合包/v2.0.1/app.exe dir=False size=83140469 fid=09da89d6ec1e4ea6b344b0d242b3f613 token_present=True
+item path=/整合包/v2.0.1/readme.txt dir=False size=152 fid=e342e063881d4a1fbe69e659827b1ce7 token_present=True
+item path=/整合包/v2.0.1/config.yaml dir=False size=1453 fid=d9d5308889864616849309728372e4b7 token_present=True
+item path=/整合包/v2.0.1/.env dir=False size=153 fid=ee4ed645c8784014a3133668b4709c89 token_present=True
+
+## Detail pdir=/整合包/v2.0.1/_internal fid=2e2933bd22984603b846b4d558db1cff
+page=1 status=200 code=0 message=ok count=50 total=164
+item path=/整合包/v2.0.1/_internal/avatars dir=True size=0 fid=dd093ca5ef88433db7b47877204f2e08 token_present=True
+item path=/整合包/v2.0.1/_internal/torch dir=True size=0 fid=5824c12d36de49e48fe80ce51b1f91d1 token_present=True
+item path=/整合包/v2.0.1/_internal/scipy dir=True size=0 fid=885410168b544827a4c5425449791997 token_present=True
+item path=/整合包/v2.0.1/_internal/transformers dir=True size=0 fid=f1fcc717b19f477db3b27dbffd250412 token_present=True
+item path=/整合包/v2.0.1/_internal/torchaudio dir=True size=0 fid=11215008e2d243888ff806cd67f1d9c3 token_present=True
+item path=/整合包/v2.0.1/_internal/sklearn dir=True size=0 fid=d37b71f7fb034f5c91c7e6c14d605b17 token_present=True
+item path=/整合包/v2.0.1/_internal/setuptools dir=True size=0 fid=356031a0d3854052afe0403a2e4db6f6 token_present=True
+item path=/整合包/v2.0.1/_internal/numpy-2.4.6.dist-info dir=True size=0 fid=ccee76e7390b4a3ea0d9a1dec7d54975 token_present=True
+item path=/整合包/v2.0.1/_internal/torchvision dir=True size=0 fid=c18b871c5f404bf291513c8bf1993982 token_present=True
+item path=/整合包/v2.0.1/_internal/cryptography dir=True size=0 fid=12c355a1b45449129dca6de4d6438065 token_present=True
+item path=/整合包/v2.0.1/_internal/av-16.1.0.dist-info dir=True size=0 fid=8a27a4bd6f6346619033e596f6904448 token_present=True
+item path=/整合包/v2.0.1/_internal/numba dir=True size=0 fid=c773fc14c0854ea28bf7148333688998 token_present=True
+item path=/整合包/v2.0.1/_internal/librosa dir=True size=0 fid=be12afa7dbb14897a314aa5f12baec7d token_present=True
+item path=/整合包/v2.0.1/_internal/werkzeug-3.1.8.dist-info dir=True size=0 fid=557cb6a2920045e3833b54dac2e68373 token_present=True
+item path=/整合包/v2.0.1/_internal/typing_extensions-4.16.0.dist-info dir=True size=0 fid=8466e504f4934726a6f85971fac663dc token_present=True
+item path=/整合包/v2.0.1/_internal/typer-0.25.1.dist-info dir=True size=0 fid=7b48e35f363a467ba5d38f75e4c93da0 token_present=True
+item path=/整合包/v2.0.1/_internal/tqdm-4.68.3.dist-info dir=True size=0 fid=3eb642b56a4d434384c987547e35d181 token_present=True
+item path=/整合包/v2.0.1/_internal/torchaudio-2.9.1+cu128.dist-info dir=True size=0 fid=19cba34a6a29446485e9d580b7404e3e token_present=True
+item path=/整合包/v2.0.1/_internal/tiktoken-0.13.0.dist-info dir=True size=0 fid=7a1a0173cf3e4d5ab33e7c5a7a81d791 token_present=True
+item path=/整合包/v2.0.1/_internal/llvmlite dir=True size=0 fid=dba6eb6f2b4f4b04bcc52b1028e58dbc token_present=True
+item path=/整合包/v2.0.1/_internal/scikit_learn-1.9.0.dist-info dir=True size=0 fid=c5d3fa614af3440a91f2a4b3217d3b27 token_present=True
+item path=/整合包/v2.0.1/_internal/resampy dir=True size=0 fid=b0e415132c684361ba6943ae5779b240 token_present=True
+item path=/整合包/v2.0.1/_internal/pydantic-2.13.4.dist-info dir=True size=0 fid=c549c7968cb64857a43e63fbaf2922b6 token_present=True
+item path=/整合包/v2.0.1/_internal/packaging-26.0.dist-info dir=True size=0 fid=7a2a346179054845b9efdf2ca65f5131 token_present=True
+item path=/整合包/v2.0.1/_internal/pillow-12.3.0.dist-info dir=True size=0 fid=9e9d346d674044268a264a257e967394 token_present=True
+item path=/整合包/v2.0.1/_internal/regex-2026.6.28.dist-info dir=True size=0 fid=28b84e348cdf4d8c8a22b3ee302ea9f6 token_present=True
+item path=/整合包/v2.0.1/_internal/safetensors-0.8.0.dist-info dir=True size=0 fid=e8dde11df3d747da9bcfd88fd3e2e7a5 token_present=True
+item path=/整合包/v2.0.1/_internal/pyyaml-6.0.3.dist-info dir=True size=0 fid=31b7ff8705a549769070a66b6ec1d5f9 token_present=True
+item path=/整合包/v2.0.1/_internal/rich-15.0.0.dist-info dir=True size=0 fid=c13f097bd83a464e80cdd38f5f35b640 token_present=True
+item path=/整合包/v2.0.1/_internal/openai-2.44.0.dist-info dir=True size=0 fid=a69c469754f9418aaa681df93160a08e token_present=True
+item path=/整合包/v2.0.1/_internal/huggingface_hub-1.21.0.dist-info dir=True size=0 fid=00080abb446f4ef5a27d5267f6f53ef1 token_present=True
+item path=/整合包/v2.0.1/_internal/markupsafe-3.0.3.dist-info dir=True size=0 fid=db92da70300745a69b11a966c4c690e2 token_present=True
+item path=/整合包/v2.0.1/_internal/numpy dir=True size=0 fid=34fd8a9f6c1c4e58a49bac1f323f01d9 token_present=True
+item path=/整合包/v2.0.1/_internal/jinja2-3.1.6.dist-info dir=True size=0 fid=c28a9259818f40bcb1239255c247aecc token_present=True
+item path=/整合包/v2.0.1/_internal/google dir=True size=0 fid=a0e7648e4a0f4fd1be2115caf40c16be token_present=True
+item path=/整合包/v2.0.1/_internal/flask-3.1.3.dist-info dir=True size=0 fid=bae5eea20b3044f7a28a42a644b8c33a token_present=True
+item path=/整合包/v2.0.1/_internal/google_crc32c dir=True size=0 fid=17cf1b5e401e41b793c41b783d0e38bb token_present=True
+item path=/整合包/v2.0.1/_internal/importlib_metadata-9.0.0.dist-info dir=True size=0 fid=06bf2080fd5d40c08201cc06c13d9083 token_present=True
+item path=/整合包/v2.0.1/_internal/filelock-3.29.4.dist-info dir=True size=0 fid=571a435095744dc3ac3854a183773d57 token_present=True
+item path=/整合包/v2.0.1/_internal/accelerate-1.14.0.dist-info dir=True size=0 fid=257af0a297a149f2955407541c8b9df9 token_present=True
+item path=/整合包/v2.0.1/_internal/cryptography-49.0.0.dist-info dir=True size=0 fid=6df4828ff6c0400d8f288c8c08872387 token_present=True
+item path=/整合包/v2.0.1/_internal/cv2 dir=True size=0 fid=501b5bd540d643e48b2517ec35801d28 token_present=True
+item path=/整合包/v2.0.1/_internal/click-8.4.2.dist-info dir=True size=0 fid=977c47ce36d84acf96e186acb07ebe55 token_present=True
+item path=/整合包/v2.0.1/_internal/aiohttp dir=True size=0 fid=5cab6c8df92f414299ddb187990359a7 token_present=True
+item path=/整合包/v2.0.1/_internal/attrs-26.1.0.dist-info dir=True size=0 fid=28fb042ad26849978e2ea3ae11219cc4 token_present=True
+item path=/整合包/v2.0.1/_internal/av dir=True size=0 fid=2c9768d810044eb88cc96889fe632ec9 token_present=True
+item path=/整合包/v2.0.1/_internal/yarl dir=True size=0 fid=13baa269472b4a42ae7ef2af89c44b13 token_present=True
+item path=/整合包/v2.0.1/_internal/_soundfile_data dir=True size=0 fid=49ff84fce5974090b6105cc60cceca4e token_present=True
+item path=/整合包/v2.0.1/_internal/websockets dir=True size=0 fid=e6fe48bc39464b30ab7cab4ab1c5e1fa token_present=True
+item path=/整合包/v2.0.1/_internal/yaml dir=True size=0 fid=b60c994c718844858536c6a7758c64b3 token_present=True
+page=2 status=200 code=0 message=ok count=50 total=164
+item path=/整合包/v2.0.1/_internal/websockets-12.0.dist-info dir=True size=0 fid=bdac224644e24731b77d5483d0c8bb79 token_present=True
+item path=/整合包/v2.0.1/_internal/torchvision-0.24.1+cu128.dist-info dir=True size=0 fid=87e84c377aff4286b773b7a60344917c token_present=True
+item path=/整合包/v2.0.1/_internal/torch-2.9.1+cu128.dist-info dir=True size=0 fid=261c84a1180c471ebed99a1199a56473 token_present=True
+item path=/整合包/v2.0.1/_internal/torch-2.9.1+cu128.dist-info dir=True size=0 fid=dbed37641dbb4f8c96b1340412681902 token_present=True
+item path=/整合包/v2.0.1/_internal/scipy.libs dir=True size=0 fid=26a1e14f6b364ee2a0a7a1db61297159 token_present=True
+item path=/整合包/v2.0.1/_internal/tokenizers dir=True size=0 fid=c5461aeece594976a92df5526d3aebb5 token_present=True
+item path=/整合包/v2.0.1/_internal/tokenizers-0.22.2.dist-info dir=True size=0 fid=108c19da51b94c2ebd497fdd69a484bf token_present=True
+item path=/整合包/v2.0.1/_internal/tiktoken dir=True size=0 fid=bb339f9ad6ca487c9fc7461baef44164 token_present=True
+item path=/整合包/v2.0.1/_internal/soxr dir=True size=0 fid=a3aedb4e3fa24922b5c5d0770d8ca114 token_present=True
+item path=/整合包/v2.0.1/_internal/sentencepiece-0.2.1.dist-info dir=True size=0 fid=01aab3f7c56b4e87a9187a1643042637 token_present=True
+item path=/整合包/v2.0.1/_internal/sentencepiece dir=True size=0 fid=2892a160c75947468d3298d1f65c9026 token_present=True
+item path=/整合包/v2.0.1/_internal/sentencepiece-0.2.1.dist-info dir=True size=0 fid=1567bd9abefa431fb6d79176bb1356b1 token_present=True
+item path=/整合包/v2.0.1/_internal/safetensors dir=True size=0 fid=2435f929ba87432fbf3e810eca21db9d token_present=True
+item path=/整合包/v2.0.1/_internal/scipy-1.18.0.dist-info dir=True size=0 fid=3332ff018e994efa9c2d1cff29ebbc4e token_present=True
+item path=/整合包/v2.0.1/_internal/regex dir=True size=0 fid=ca07057db71a43389932fac57e464d0c token_present=True
+item path=/整合包/v2.0.1/_internal/pydantic_core dir=True size=0 fid=b3de4e84daf04b7bace641e69d817635 token_present=True
+item path=/整合包/v2.0.1/_internal/pylibsrtp dir=True size=0 fid=0afa1f08b50544db957ab7af4626a175 token_present=True
+item path=/整合包/v2.0.1/_internal/pyvirtualcam dir=True size=0 fid=a0b60e95010042288ff1173cce990dff token_present=True
+item path=/整合包/v2.0.1/_internal/pyaudio dir=True size=0 fid=74b76346fea5451ea8fdc21e4520246b token_present=True
+item path=/整合包/v2.0.1/_internal/psutil dir=True size=0 fid=42343185818d46439ab2ccd292c9ed50 token_present=True
+item path=/整合包/v2.0.1/_internal/psutil-7.2.2.dist-info dir=True size=0 fid=c3c01b9850e048c0be9df92aa9f4c29a token_present=True
+item path=/整合包/v2.0.1/_internal/propcache dir=True size=0 fid=e091be62156042138d522836cd83b7bb token_present=True
+item path=/整合包/v2.0.1/_internal/protobuf-7.35.1.dist-info dir=True size=0 fid=179f5251f56543cab22ecde209c24096 token_present=True
+item path=/整合包/v2.0.1/_internal/PIL dir=True size=0 fid=c560f9f56a3b46f5affaa36c43cd7073 token_present=True
+item path=/整合包/v2.0.1/_internal/hf_xet dir=True size=0 fid=86910cd2d8384097883701b61ce4a2d0 token_present=True
+item path=/整合包/v2.0.1/_internal/numpy.libs dir=True size=0 fid=5cacaf94059041c19bb3a35689ccfec5 token_present=True
+item path=/整合包/v2.0.1/_internal/llvmlite.libs dir=True size=0 fid=fa0a56d245154dc0bd5540f7867f3d80 token_present=True
+item path=/整合包/v2.0.1/_internal/multidict dir=True size=0 fid=c7beb9fb8e774c9ab1dd8eba8e1304f1 token_present=True
+item path=/整合包/v2.0.1/_internal/msgpack dir=True size=0 fid=fb08217582234524a9c090e2b25fb4c9 token_present=True
+item path=/整合包/v2.0.1/_internal/markupsafe dir=True size=0 fid=a14d7135e50e41b4ab812e8616c7ecc5 token_present=True
+item path=/整合包/v2.0.1/_internal/jiter dir=True size=0 fid=cfae7145bfa945b5bf6d4fc4b899c031 token_present=True
+item path=/整合包/v2.0.1/_internal/librosa-0.11.0.dist-info dir=True size=0 fid=ca1ca31ba2d0453794a70638135be16e token_present=True
+item path=/整合包/v2.0.1/_internal/itsdangerous-2.2.0.dist-info dir=True size=0 fid=8bc2fffff60f4dae8b3c52c2a7dea89d token_present=True
+item path=/整合包/v2.0.1/_internal/frozenlist dir=True size=0 fid=22e11c2d02894f5b966285e0ea900f7b token_present=True
+item path=/整合包/v2.0.1/_internal/charset_normalizer dir=True size=0 fid=a03456ba1dfc4c8cb06ddced162a78f4 token_present=True
+item path=/整合包/v2.0.1/_internal/certifi dir=True size=0 fid=6bc225ca6e5f4662a22a9b9d678c9c3d token_present=True
+item path=/整合包/v2.0.1/_internal/av.libs dir=True size=0 fid=e574ac7f00e04c76a3580080de457526 token_present=True
+item path=/整合包/v2.0.1/_internal/vcruntime140_1.dll dir=False size=49744 fid=3dcf599ac67441348d670db6f9dea18a token_present=True
+item path=/整合包/v2.0.1/_internal/vcruntime140.dll dir=False size=124496 fid=e64a921be222473e9d5dc978c002119a token_present=True
+item path=/整合包/v2.0.1/_internal/msvcp140.dll dir=False size=557648 fid=9028ecd5630f494eb0e1c0be350c8265 token_present=True
+item path=/整合包/v2.0.1/_internal/base_library.zip dir=False size=1333490 fid=69aaca3317da4996a53a6dd8701a7b8a token_present=True
+item path=/整合包/v2.0.1/_internal/liblzma.dll dir=False size=200520 fid=13cb585c8a6f4e08855925dc7c22ce18 token_present=True
+item path=/整合包/v2.0.1/_internal/_zoneinfo.pyd dir=False size=48456 fid=a0dfa527f1534a1d8eea6faf8974eab5 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-string-l1-1-0.dll dir=False size=26072 fid=81471bb1d6f94fa78f64ba74aaf8eb79 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-utility-l1-1-0.dll dir=False size=22000 fid=a6f963f8b3394b74ba3387a20d785bed token_present=True
+item path=/整合包/v2.0.1/_internal/_ssl.pyd dir=False size=182088 fid=f4723b129aca4b66b44b101501435775 token_present=True
+item path=/整合包/v2.0.1/_internal/_sqlite3.pyd dir=False size=117064 fid=3905e3ad5bc644d28d5df3ba611aaa67 token_present=True
+item path=/整合包/v2.0.1/_internal/_socket.pyd dir=False size=85320 fid=a74d7114be3746a995e062a14da6dd22 token_present=True
+item path=/整合包/v2.0.1/_internal/_queue.pyd dir=False size=32072 fid=ed5f80030e864af285e69f2de8f3acfb token_present=True
+item path=/整合包/v2.0.1/_internal/_wmi.pyd dir=False size=38216 fid=33f0d9ce7a594de2bbadabd49bb4d787 token_present=True
+page=3 status=200 code=0 message=ok count=50 total=164
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-runtime-l1-1-0.dll dir=False size=26104 fid=60800d77d9f94947ac670126532a6fc3 token_present=True
+item path=/整合包/v2.0.1/_internal/_uuid.pyd dir=False size=25928 fid=72d6452b28444b1f8f450dbdd78c24ca token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-process-l1-1-0.dll dir=False size=21984 fid=75e5f79d7da74d5293a00574e03bd664 token_present=True
+item path=/整合包/v2.0.1/_internal/_overlapped.pyd dir=False size=56136 fid=c3488f0276b648edbe0930c9a034a011 token_present=True
+item path=/整合包/v2.0.1/_internal/_hashlib.pyd dir=False size=61768 fid=f07c7be2584e4960a126e2d44bbda25a token_present=True
+item path=/整合包/v2.0.1/_internal/_lzma.pyd dir=False size=49480 fid=edd32ba7731b4370a27fe33b13359ae0 token_present=True
+item path=/整合包/v2.0.1/_internal/_multiprocessing.pyd dir=False size=35144 fid=7429945ebedf4413a79d10e540029088 token_present=True
+item path=/整合包/v2.0.1/_internal/_elementtree.pyd dir=False size=78152 fid=aaaf71e5b7fb48718d07d0592bfb91ac token_present=True
+item path=/整合包/v2.0.1/_internal/_ctypes.pyd dir=False size=134472 fid=548348ffdf3c4844b92ef5b7dd10869a token_present=True
+item path=/整合包/v2.0.1/_internal/_cffi_backend.cp312-win_amd64.pyd dir=False size=181248 fid=217b7d3a62894a63bb3b19b492a1a4fc token_present=True
+item path=/整合包/v2.0.1/_internal/_bz2.pyd dir=False size=36168 fid=f7837638e3fd48d79bd216f7f0d5a49e token_present=True
+item path=/整合包/v2.0.1/_internal/_decimal.pyd dir=False size=310600 fid=0851a2934c92496c98c8f7c9a3a1119c token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-filesystem-l1-1-0.dll dir=False size=21984 fid=4d2a7c333c134ac39aec393ac0b4f4ef token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-private-l1-1-0.dll dir=False size=75232 fid=5b28f32088664c86857f39e2aa276ba7 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-locale-l1-1-0.dll dir=False size=21984 fid=4a38774da19149919b94ff2aa5674263 token_present=True
+item path=/整合包/v2.0.1/_internal/unicodedata.pyd dir=False size=1136968 fid=64672d3a17774d96af96748f4bb9b151 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-convert-l1-1-0.dll dir=False size=26080 fid=8a168ec7b3ca464da72bafd850f234d7 token_present=True
+item path=/整合包/v2.0.1/_internal/zlib.dll dir=False size=102728 fid=52bac5f7631140aa8a3f4ee9ee3d7f26 token_present=True
+item path=/整合包/v2.0.1/_internal/VCOMP140.DLL dir=False size=160224 fid=f638502fc51f44799fecaf1cf01bbe96 token_present=True
+item path=/整合包/v2.0.1/_internal/_asyncio.pyd dir=False size=73032 fid=01533ac4d8504209883eabefcf14d194 token_present=True
+item path=/整合包/v2.0.1/_internal/sqlite3.dll dir=False size=1675080 fid=69f7b27f954e4297af28820d812d0e6a token_present=True
+item path=/整合包/v2.0.1/_internal/ucrtbase.dll dir=False size=1123808 fid=0eb3ececa119476998471e4d13c4f4c8 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-timezone-l1-1-0.dll dir=False size=21976 fid=b90e8b63a9994a7183737482268953af token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-util-l1-1-0.dll dir=False size=21992 fid=dc9cefced74349249f079d63547fc483 token_present=True
+item path=/整合包/v2.0.1/_internal/python312.dll dir=False size=7409480 fid=336374621765437baade19947c70133c token_present=True
+item path=/整合包/v2.0.1/_internal/select.pyd dir=False size=31560 fid=8ab78c61c4164a4fb5e2872af6e188c7 token_present=True
+item path=/整合包/v2.0.1/_internal/pyexpat.pyd dir=False size=70472 fid=0125c1d98f4a471db663f6c54014ea0d token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-sysinfo-l1-1-0.dll dir=False size=21984 fid=8d50189f03164310b4568f4eb8ca981b token_present=True
+item path=/整合包/v2.0.1/_internal/libssl-3-x64.dll dir=False size=1327944 fid=89bb9e9051e5493280f2fe9da3fc7794 token_present=True
+item path=/整合包/v2.0.1/_internal/python3.dll dir=False size=68424 fid=8f7be1ec4da74e17a2bbd4deb0970b1c token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-synch-l1-2-0.dll dir=False size=21976 fid=386c50f1e2bf43e5b967e4088aa9bb48 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-synch-l1-1-0.dll dir=False size=21976 fid=41ccf71352514c2b8aaba2c2802765d0 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-string-l1-1-0.dll dir=False size=21976 fid=93158af7e7044324b301befbb217ec1e token_present=True
+item path=/整合包/v2.0.1/_internal/libcrypto-3-x64.dll dir=False size=7343944 fid=bb2c0310e794446189c530922597444a token_present=True
+item path=/整合包/v2.0.1/_internal/LIBBZ2.dll dir=False size=83216 fid=e770ffe24c4643c4af3e5321649a4152 token_present=True
+item path=/整合包/v2.0.1/_internal/libexpat.dll dir=False size=281416 fid=a6a89ee6bff14051ad07909cd6ace802 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-rtlsupport-l1-1-0.dll dir=False size=21984 fid=0468c483cb26469c9280516685b6fa4d token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-profile-l1-1-0.dll dir=False size=21992 fid=a04f7cfbdfd04d5c8a77ea11649b0b16 token_present=True
+item path=/整合包/v2.0.1/_internal/ffi.dll dir=False size=41288 fid=7a56d42f8ed944848af6f42a758ab19e token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-processthreads-l1-1-0.dll dir=False size=21976 fid=71d986ce45254ea0872a0863390d44a1 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-processenvironment-l1-1-0.dll dir=False size=22008 fid=b7fb53919b92433db8b54016e414beed token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-memory-l1-1-0.dll dir=False size=21976 fid=fc35139e092e474187011b07c46da583 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-time-l1-1-0.dll dir=False size=21984 fid=78f2ebce59b144e49ace1c09d051f9a9 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-libraryloader-l1-1-0.dll dir=False size=22008 fid=d480500d88ee40b08fd79af3fdfe9212 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-stdio-l1-1-0.dll dir=False size=26080 fid=b23cc7ef599b45cc9d3acd8ef58baf2f token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-fibers-l1-1-0.dll dir=False size=21992 fid=53517f41318d49259d14170aef1f3ed7 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-interlocked-l1-1-0.dll dir=False size=21984 fid=e53735c78bc04617a4f123f5e699c5f9 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-math-l1-1-0.dll dir=False size=30184 fid=75e3698b244644d895d6ad2e1c1cc4c6 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-file-l1-2-0.dll dir=False size=21976 fid=302103cdc7904f8fa413af5b4c3e2d82 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-heap-l1-1-0.dll dir=False size=21984 fid=385a6d7b6f004dd3aa35209f6c00607a token_present=True
+page=4 status=200 code=0 message=ok count=14 total=164
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-file-l1-1-0.dll dir=False size=26088 fid=59ce13d230ce41659bb1727d8ac59037 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-errorhandling-l1-1-0.dll dir=False size=21976 fid=205765b6642542758bd6461b64b74c6a token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-environment-l1-1-0.dll dir=False size=21984 fid=b6acd461de5545539c4297ef2cb54ddc token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-debug-l1-1-0.dll dir=False size=21984 fid=c02568a1b7884a25ad2eb057aaad53d3 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-console-l1-1-0.dll dir=False size=21984 fid=7392ee64695e4b7e9d5d6542c2d2cdeb token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-crt-conio-l1-1-0.dll dir=False size=21984 fid=808bc6899c7e441eb982044fb0ea9730 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-processthreads-l1-1-1.dll dir=False size=21976 fid=3557cc93b3d1401fae6307b03fe044d4 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-localization-l1-2-0.dll dir=False size=21984 fid=db02023667a749da8d17df0b04eaaa37 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-namedpipe-l1-1-0.dll dir=False size=21984 fid=1775056b4cab44758823f7e4e36543de token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-heap-l1-1-0.dll dir=False size=21984 fid=6418c853f9d8458db4c4b254ec228dfd token_present=True
+item path=/整合包/v2.0.1/_internal/81d243bd2c585b0f4821__mypyc.cp312-win_amd64.pyd dir=False size=219136 fid=3274b614fb914f0b828b4af1615ccb69 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-datetime-l1-1-0.dll dir=False size=21984 fid=3f27a58298294cd997231bbca5f10f08 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-handle-l1-1-0.dll dir=False size=21984 fid=98627719759e48d7a2c4174f41512751 token_present=True
+item path=/整合包/v2.0.1/_internal/api-ms-win-core-file-l2-1-0.dll dir=False size=21976 fid=411abe5e750a45d1b5ec2b6cf017e9a2 token_present=True
+
+## Detail pdir=/整合包/v2.0.1/data fid=2630f81ffe404db99b2df42384f52b30
+page=1 status=200 code=0 message=ok count=2 total=2
+item path=/整合包/v2.0.1/data/avatars dir=True size=0 fid=fc9e89492ba34d21b9d4016db331c828 token_present=True
+item path=/整合包/v2.0.1/data/custom_config.json dir=False size=492 fid=098c952d912044f4adfb74ef298f1748 token_present=True
+
+## Detail pdir=/整合包/v2.0.1/web fid=2e827a52c8624d9b970e646fb19e0f5d
+page=1 status=200 code=0 message=ok count=20 total=20
+item path=/整合包/v2.0.1/web/tts dir=True size=0 fid=ba81f9bc3d2b46aa9b2bf39ca239f10a token_present=True
+item path=/整合包/v2.0.1/web/asr dir=True size=0 fid=2f6fd487b12048d19092533961943b13 token_present=True
+item path=/整合包/v2.0.1/web/virtualcam.html dir=False size=21069 fid=3ea64f9b77cb4bf5a2403dbbe05f32da token_present=True
+item path=/整合包/v2.0.1/web/index.html dir=False size=20733 fid=0b742e6f2d984aa981b3d97894573d13 token_present=True
+item path=/整合包/v2.0.1/web/index-en.html dir=False size=19569 fid=51010365baea43caaa577c63940282bb token_present=True
+item path=/整合包/v2.0.1/web/webrtcapi.html dir=False size=6275 fid=1a0f441be879499dbd443999e8b21256 token_present=True
+item path=/整合包/v2.0.1/web/whep.js dir=False size=2354 fid=c64ed397b52b486cafa4f80229597d12 token_present=True
+item path=/整合包/v2.0.1/web/webrtcapi-asr.html dir=False size=6174 fid=94cee0b5fd264c6d810de9b3a2b98763 token_present=True
+item path=/整合包/v2.0.1/web/srs.sdk.js dir=False size=28263 fid=ecccab4df17343d1880c8d5a2a108b1f token_present=True
+item path=/整合包/v2.0.1/web/rtmpchat.html dir=False size=2214 fid=94b47ba409094ebf8a64952d03a3acd5 token_present=True
+item path=/整合包/v2.0.1/web/avatar-en.html dir=False size=13412 fid=80d7ed9d549a4cacbe109243055dcebb token_present=True
+item path=/整合包/v2.0.1/web/client.js dir=False size=2885 fid=f2cc9c05ca284c12b14ba1799ba2d213 token_present=True
+item path=/整合包/v2.0.1/web/mpegts-1.7.3.min.js dir=False size=217837 fid=cc9951943d5d4ce891ea75fc6406c255 token_present=True
+item path=/整合包/v2.0.1/web/rtcpushapi.html dir=False size=4458 fid=0d8aeb0e83df49aca7f8c394a051fe15 token_present=True
+item path=/整合包/v2.0.1/web/rtmpapi.html dir=False size=2214 fid=f0aebe22e09f4317a8acd150b2b2b43e token_present=True
+item path=/整合包/v2.0.1/web/avatar.html dir=False size=13602 fid=bcd45cc1bd464211a8d2e2a2d833cc11 token_present=True
+item path=/整合包/v2.0.1/web/admin.html dir=False size=14460 fid=3b210be0e3aa4535889da4d6733263b2 token_present=True
+item path=/整合包/v2.0.1/web/admin-en.html dir=False size=14067 fid=0055ec104abd409db49f13fa30f022e9 token_present=True
+item path=/整合包/v2.0.1/web/rtcpushchat.html dir=False size=4449 fid=0f61017403dc40c398f4d07619feea13 token_present=True
+item path=/整合包/v2.0.1/web/dashboard.html dir=False size=30755 fid=1a0a9f52939e448cab710b46a5265782 token_present=True
+
+## Detail pdir=/整合包/v2.0.1/models fid=726e4c61852e42a3ad09ef92bf7bd5e9
+page=1 status=200 code=0 message=ok count=2 total=2
+item path=/整合包/v2.0.1/models/wav2lip.pth dir=False size=214670409 fid=7fc4b699db824350b8bc61cb5cd9609e token_present=True
+item path=/整合包/v2.0.1/models/put models here.txt dir=False size=0 fid=71b495c661604a6d8b9fc2447b3a2139 token_present=True
+
+## Detail pdir=/整合包/v2.0.1/_internal/avatars fid=dd093ca5ef88433db7b47877204f2e08
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/整合包/v2.0.1/_internal/avatars/wav2lip dir=True size=0 fid=338d66d3a9714f75952a4c98b884e54d token_present=True
+
+## Detail pdir=/整合包/v2.0.1/_internal/torch fid=5824c12d36de49e48fe80ce51b1f91d1
+page=1 status=200 code=0 message=ok count=50 total=103
+item path=/整合包/v2.0.1/_internal/torch/_inductor dir=True size=0 fid=94be7991be184baeaf2ab41c5eba631d token_present=True
+item path=/整合包/v2.0.1/_internal/torch/testing dir=True size=0 fid=d0a4447c03354bbda8ee30e0f4365271 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/nn dir=True size=0 fid=60c5b39ec2dd454f84826bca9d6e069a token_present=True
+item path=/整合包/v2.0.1/_internal/torch/distributed dir=True size=0 fid=e6ee31e5da3d44d986023a7e7e3cbc3a token_present=True
+item path=/整合包/v2.0.1/_internal/torch/ao dir=True size=0 fid=c437003f22a24a808bdc783a3e5d2c35 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_refs dir=True size=0 fid=5a0983545e6a49e5a92f847a678f433b token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_export dir=True size=0 fid=4dc0f66852bb438ba3c6a739f1ac4bf4 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/utils dir=True size=0 fid=cd8a16b53bba4f5092ce345e72c338a7 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/onnx dir=True size=0 fid=3b9fe2a9252d4a159c47714c8b69b471 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/fx dir=True size=0 fid=e9ffc54850fb470a9a7e07432426e41a token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_vendor dir=True size=0 fid=3f90530233b34e9ea3355e208ed5859c token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_numpy dir=True size=0 fid=df5f31942e984eb3b6e834ee1ca83edc token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_functorch dir=True size=0 fid=3b74b7de9cd44cdb9a20daa1fa4bf6d7 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_dynamo dir=True size=0 fid=66af5c25956d4c5d9f9f946e311bd7a5 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/signal dir=True size=0 fid=9873ee834243416bb3e9578f90891dd4 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/optim dir=True size=0 fid=ebb3a90f9b2b4c529a7bedce5b1ec633 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/package dir=True size=0 fid=f227e27269cb4711be7a8dc268f2bf43 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/quantization dir=True size=0 fid=d7dc1609ee4648318d12fa83b446b758 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/nested dir=True size=0 fid=47e92709b77f4d9ead17c841cf7890a7 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/masked dir=True size=0 fid=1f104695eb8f4d909280d2c49c5b865f token_present=True
+item path=/整合包/v2.0.1/_internal/torch/jit dir=True size=0 fid=c6e03deb69554d6cb2e8eef9be0acef5 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/export dir=True size=0 fid=a0560e4f15fe4b418f4056749f244a71 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/cuda dir=True size=0 fid=6c429c3e34e44aacad67939da6bd0d69 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/cpu dir=True size=0 fid=82d80775ebf0429c894d5c9688f2f11e token_present=True
+item path=/整合包/v2.0.1/_internal/torch/backends dir=True size=0 fid=85f8bd53519545e489927f01d4c707fe token_present=True
+item path=/整合包/v2.0.1/_internal/torch/autograd dir=True size=0 fid=6f1584123a1546b2a47b09078f97c404 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/lib dir=True size=0 fid=52df866df4fb40429739876e5d41ede8 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_subclasses dir=True size=0 fid=c77175d6d51f4b8485ef96d0da49a26d token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_strobelight dir=True size=0 fid=0329356ed97f4e3887e724bf86ae9431 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_prims_common dir=True size=0 fid=08e12fd59d5049a1991c022f016e32c0 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_prims dir=True size=0 fid=4e742db5df0e4425aefe770f710fdc26 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_logging dir=True size=0 fid=740a47f689ec45e6a440cc04a2533fc7 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_library dir=True size=0 fid=e83dd3fa7c5a40cbb47257d1de8126c2 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_lazy dir=True size=0 fid=4d8dfbbc98524cbeb5ab42edcba94367 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_higher_order_ops dir=True size=0 fid=fb47b908873c4468abe4adb8e16997de token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_decomp dir=True size=0 fid=52e419e120b34ddabbb124b5125281f3 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_dispatch dir=True size=0 fid=812a5485df0f4b29b24c55d2a11667b1 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_custom_op dir=True size=0 fid=5d3907f081564ea0b099863e9757dd08 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/_awaits dir=True size=0 fid=ee4e6df3b3dd4d7f8bfdf0aff3f05614 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/xpu dir=True size=0 fid=5d76a6025d4e4a9ca3f924048fb99347 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/special dir=True size=0 fid=d08bff8f3051438b826ae0012a85bd94 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/sparse dir=True size=0 fid=d8de3e0dc84143a08537647f064c3bbf token_present=True
+item path=/整合包/v2.0.1/_internal/torch/profiler dir=True size=0 fid=abd78c6c49724ac4bc400af974d65db3 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/numa dir=True size=0 fid=86366bbda5e143a98949cde1f608399d token_present=True
+item path=/整合包/v2.0.1/_internal/torch/multiprocessing dir=True size=0 fid=120048baed4a41ae8645e545531b4352 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/mtia dir=True size=0 fid=23edcf045c2a42e1a1232ca6c6f5bbe3 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/mps dir=True size=0 fid=2c864f5ca87145478e48ec03c40afb20 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/monitor dir=True size=0 fid=7ff2ff4da870444bb704d40545809924 token_present=True
+item path=/整合包/v2.0.1/_internal/torch/linalg dir=True size=0 fid=c402f37327ed485bb4750e283631cd6c token_present=True
+item path=/整合包/v2.0.1/_internal/torch/func dir=True size=0 fid=c2fa305c9bfb4ab39513b860c515b7c5 token_present=True
+
+listing_truncated=True
+## Summary
+total_items_recorded=249
+target=s3fd.pth found=False
+target=wav2lip256.pth found=False
+target=wav2lip.pth found=True path=/整合包/v2.0.1/models/wav2lip.pth size=214670409 token_present=True
+target=wav2lip256_avatar1.zip found=False
+target=wav2lip256_avatar1.tar.gz found=False

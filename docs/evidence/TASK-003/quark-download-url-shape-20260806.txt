@@ -1,0 +1,62 @@
+# TASK-003 Quark download URL shape
+Date: 2026-08-06
+Purpose: Inspect response field names and download URL query key names for one small official file; values are not recorded.
+
+api_status=200 code=0 data_count=1
+data_property_names=_extra,album_dir,backup_sign,backup_source,ban,category,created_at,cur_version_or_default,dir,download_url,duration,ensure_valid_save_as_layer,event_extra,fid,file,file_local_path,file_name,file_name_hl_end,file_name_hl_start,file_source,file_struct,file_type,format_type,fps,l_created_at,l_shot_at,l_updated_at,last_play_info,like,md5,more_than_one_layer,name_space,obj_category,obj_key,offline_source,operated_at,owner_drive_type_or_default,pdir_fid,range_size,raw_name_space,risk_type,save_as_source,scrape_status,series_dir,size,source,source_display,status,tag_list,tags,update_view_at,updated_at,upload_camera_root_dir
+download_url_host=dl-guest-zb-u.drive.quark.cn
+download_url_scheme=https
+download_url_query_keys=abt,auth_key,dfi,filename,ork,sp,token,ud
+property=_extra shape=System.Management.Automation.PSCustomObject
+property=album_dir shape=System.Boolean
+property=backup_sign shape=System.Int64
+property=backup_source shape=System.Boolean
+property=ban shape=System.Boolean
+property=category shape=System.Int64
+property=created_at shape=System.Int64
+property=cur_version_or_default shape=System.Int64
+property=dir shape=System.Boolean
+property=download_url shape=REDACTED_URL
+property=duration shape=System.Int64
+property=ensure_valid_save_as_layer shape=System.Int64
+property=event_extra shape=System.Management.Automation.PSCustomObject
+property=fid shape=string_length_32
+property=file shape=System.Boolean
+property=file_local_path shape=string_length_86
+property=file_name shape=string_length_10
+property=file_name_hl_end shape=System.Int64
+property=file_name_hl_start shape=System.Int64
+property=file_source shape=string_length_16
+property=file_struct shape=System.Management.Automation.PSCustomObject
+property=file_type shape=System.Int64
+property=format_type shape=string_length_24
+property=fps shape=System.Double
+property=l_created_at shape=System.Int64
+property=l_shot_at shape=System.Int64
+property=l_updated_at shape=System.Int64
+property=last_play_info shape=System.Management.Automation.PSCustomObject
+property=like shape=System.Int64
+property=md5 shape=string_length_32
+property=more_than_one_layer shape=System.Boolean
+property=name_space shape=System.Int64
+property=obj_category shape=string_length_7
+property=obj_key shape=string_length_32
+property=offline_source shape=System.Boolean
+property=operated_at shape=System.Int64
+property=owner_drive_type_or_default shape=System.Int64
+property=pdir_fid shape=string_length_32
+property=range_size shape=System.Int64
+property=raw_name_space shape=System.Int64
+property=risk_type shape=System.Int64
+property=save_as_source shape=System.Boolean
+property=scrape_status shape=System.Int64
+property=series_dir shape=System.Boolean
+property=size shape=System.Int64
+property=source shape=string_length_9
+property=source_display shape=string_length_9
+property=status shape=System.Int64
+property=tag_list shape=array_count_0
+property=tags shape=string_length_1
+property=update_view_at shape=System.Int64
+property=updated_at shape=System.Int64
+property=upload_camera_root_dir shape=System.Boolean

@@ -43,6 +43,9 @@
 - TASK-003 Google Drive retry with `gdown 6.1.0` and supported arguments still timed out connecting to `drive.google.com:443`.
 - TASK-003 exact filename search in common download/work roots found no local copies of `wav2lip256.pth`, `wav2lip.pth`, `s3fd.pth`, `wav2lip256_avatar1.zip` or `wav2lip256_avatar1.tar.gz`; `E:\work\积养家` was not scanned.
 - `scripts/start_livetalking.ps1` now performs a Wav2Lip asset preflight and stops before model loading when required assets are missing.
+- TASK-003 official Windows integrated package share (`https://pan.quark.cn/s/a040bf5cb065`) can be listed and contains `models/wav2lip.pth`, `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth` and expanded `data/avatars/wav2lip256_avatar1`.
+- The Windows package avatar directory contains 589 files totaling `106662008` bytes, but signed small-file URLs returned HTTP `412` under CLI GET; large model/S3FD URLs still returned `23018`.
+- Local Quark clients are installed at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not read and the clients were not started.
 
 ## Not yet verified
 
@@ -81,11 +84,11 @@ Recent task results:
 - DONE. `scripts/bootstrap_livetalking.ps1` completed with process-scoped Git config `http.version=HTTP/1.1`; `third_party/LiveTalking` is a real ignored Git checkout at `c963ad409c556918b7d23999bf87c47a7c05c932`. No model weights or avatar packages were downloaded.
 - TASK-001 DONE. Upstream README/API/config/source/license were audited and summarized. Static endpoint and integration boundaries are recorded in `docs/evidence/TASK-001/upstream-audit.md` and `docs/03_LIVETALKING_SCOPE.md`. No service, model, WebRTC or provider runtime success is claimed.
 - TASK-002 DONE. A local ignored Conda runtime was created at `.venv\livetalking-task002`; PyTorch CUDA and LiveTalking dependency import checks passed. No model, avatar, service startup, WebRTC or provider success is claimed.
-- TASK-003 BLOCKED. Required Wav2Lip model/S3FD/avatar assets are missing. Quark official share can be listed but unauthenticated download URL creation is blocked by `23018 download file size limit`; Google Drive still times out from this machine. No LiveTalking startup/WebRTC/FPS success is claimed.
+- TASK-003 BLOCKED. Required Wav2Lip model/S3FD/avatar assets are missing. Quark model and Windows package shares can be listed, but unauthenticated large-file download URL creation is blocked by `23018 download file size limit`, small signed URLs return HTTP `412` through CLI GET, and Google Drive still times out from this machine. No LiveTalking startup/WebRTC/FPS success is claimed.
 
 Next action:
 
-- Unblock TASK-003 by obtaining official `wav2lip256.pth`, `s3fd.pth` and the `wav2lip256_avatar1` archive, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerun TASK-003 from asset verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
+- Unblock TASK-003 by using an authorized QuarkCloudDrive/browser download or reachable Google Drive path to obtain official `wav2lip.pth`/`wav2lip256.pth`, `s3fd.pth` and `wav2lip256_avatar1`, placing them under the expected ignored LiveTalking paths, recording SHA-256 hashes, then rerun TASK-003 from asset verification. Do not advance to TASK-004 until TASK-003 has real startup/WebRTC evidence.
 
 ## Status vocabulary
 

@@ -36,6 +36,13 @@
   - `s3fd.pth` size `89843225`.
   - `wav2lip256.pth` size `214670409`.
 - Quark download URL probes against `/1/clouddrive/file/share/download` and `/1/clouddrive/file/download` returned HTTP 400 code `23018 download file size limit` without a logged-in/download-capable Quark session. No cookies, stoken, share_fid_token or download URLs were recorded.
+- Quark Windows integrated package share `https://pan.quark.cn/s/a040bf5cb065` can be listed and contains:
+  - `models/wav2lip.pth` size `214670409`.
+  - `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth` size `89843225`.
+  - expanded `data/avatars/wav2lip256_avatar1`.
+- The package avatar directory has 589 files totaling `106662008` bytes, largest file `319803` bytes.
+- Small file download URL creation succeeds, but CLI GET of the returned signed URL returns HTTP `412 Precondition Failed`; large model/S3FD URL creation returns `23018`.
+- Local clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`; account/session storage was not opened and clients were not started.
 - `gdown` was installed inside the ignored local Conda environment for the Google Drive attempt; `pip check` still passes.
 - Follow-up exact local filename search found no `wav2lip256.pth`, `wav2lip.pth` or `wav2lip256_avatar1.tar.gz` in safe local roots.
 - 2026-08-06 exact search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` also found no `s3fd.pth` or `wav2lip256_avatar1.zip`; `E:\work\积养家` was intentionally excluded.
@@ -73,10 +80,18 @@
 - `docs/evidence/TASK-003/start-script-asset-preflight-20260806.txt`
 - `docs/evidence/TASK-003/start-script-help-skip-asset-check-20260806.txt`
 - `docs/evidence/TASK-003/task003-asset-unblock-attempt-final-verification-20260806.txt`
+- `docs/evidence/TASK-003/quark-windows-package-public-list-20260806.txt`
+- `docs/evidence/TASK-003/quark-windows-package-targeted-asset-list-20260806.txt`
+- `docs/evidence/TASK-003/quark-windows-package-download-probe-20260806.txt`
+- `docs/evidence/TASK-003/quark-windows-package-avatar-tree-20260806.txt`
+- `docs/evidence/TASK-003/quark-avatar-small-download-header-probe-20260806.txt`
+- `docs/evidence/TASK-003/quark-download-url-shape-20260806.txt`
+- `docs/evidence/TASK-003/quark-client-local-capability-20260806.txt`
+- `docs/evidence/TASK-003/task003-official-package-attempt-final-verification-20260806.txt`
 
 ## Unblock action
 
-Obtain the official assets from the upstream README sources and place them as:
+Obtain the official assets from the upstream README sources or Windows integrated package and place them as:
 
 ```text
 E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\models\wav2lip.pth
@@ -84,4 +99,4 @@ E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\avatars\wav2lip\face_detect
 E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking\data\avatars\wav2lip256_avatar1\
 ```
 
-Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, while the live Quark listing currently exposes `wav2lip256_avatar1.zip`; either archive form is acceptable only if it extracts to the expected avatar folder. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.
+Record SHA-256 hashes before retrying service startup. The docs mention `wav2lip256_avatar1.tar.gz`, the live model share currently exposes `wav2lip256_avatar1.zip`, and the Windows integrated package exposes `data/avatars/wav2lip256_avatar1` already expanded. Any form is acceptable only if it produces the expected avatar folder. Do not advance to TASK-004 until TASK-003 has real LiveTalking startup and WebRTC/WHEP evidence.

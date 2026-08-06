@@ -62,6 +62,10 @@ Automated attempts:
 - A Google Drive retry with installed `gdown 6.1.0` and supported arguments still timed out connecting to `drive.google.com:443`.
 - Docker image export was considered but `docker` is not installed on this machine.
 - `scripts/start_livetalking.ps1` now performs a Wav2Lip asset preflight and stops before model loading when the required files are absent.
+- The official README Windows integrated package share (`https://pan.quark.cn/s/a040bf5cb065`) was probed on 2026-08-06. It is listable through Quark public share APIs and contains `models/wav2lip.pth`, `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth` and `data/avatars/wav2lip256_avatar1`.
+- In that Windows package share, small file download URL creation succeeds, but direct CLI GET of the returned URL returns HTTP 412. Large `wav2lip.pth` and `s3fd.pth` download URL creation still returns `23018 download file size limit`.
+- The Windows package avatar directory contains 589 files totaling `106662008` bytes; each avatar file is small enough in principle, but the returned signed URL still failed under CLI header variants tested so the avatar was not downloaded.
+- Local Quark and QuarkCloudDrive clients are installed, but no client was started and no login/session storage was read.
 
 Evidence:
 
@@ -87,6 +91,14 @@ Evidence:
 - `start-script-asset-preflight-20260806.txt`
 - `start-script-help-skip-asset-check-20260806.txt`
 - `task003-asset-unblock-attempt-final-verification-20260806.txt`
+- `quark-windows-package-public-list-20260806.txt`
+- `quark-windows-package-targeted-asset-list-20260806.txt`
+- `quark-windows-package-download-probe-20260806.txt`
+- `quark-windows-package-avatar-tree-20260806.txt`
+- `quark-avatar-small-download-header-probe-20260806.txt`
+- `quark-download-url-shape-20260806.txt`
+- `quark-client-local-capability-20260806.txt`
+- `task003-official-package-attempt-final-verification-20260806.txt`
 
 ## Manual unblock instructions
 
@@ -162,3 +174,20 @@ Quark public API probing improved the blocker but did not fully unblock it:
 - Exact filename search in `Downloads`, `Desktop`, `Documents`, `E:\work\ai-kefu` and `E:\work\安卓大屏AI语音客服系统` found no local copy of the assets; `E:\work\积养家` was intentionally excluded.
 
 The launcher was hardened so future retries fail early with exact missing asset paths instead of reaching a misleading runtime failure.
+
+## Additional official package attempt on 2026-08-06
+
+The README Windows integrated package is a better official fallback source than the raw model share because it exposes the already-renamed model and the expanded avatar directory:
+
+- `models/wav2lip.pth`: found, `214670409` bytes.
+- `_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth`: found, `89843225` bytes.
+- `data/avatars/wav2lip256_avatar1`: found as an expanded directory.
+- `data/avatars/wav2lip256_avatar1` contains 589 files, total `106662008` bytes, largest file `319803` bytes.
+
+However, this still did not unblock runtime:
+
+- Large model/S3FD download URL creation returns Quark code `23018`.
+- Small file download URL creation succeeds, but direct CLI download of the signed URL returns HTTP `412 Precondition Failed` even with browser user-agent, referer and range header variants.
+- The local Quark clients exist at `D:\应用软件\KUAK\Quark\quark.exe` and `D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe`, but automated use of account/session state was not attempted.
+
+The practical unblock path is now more precise: use the installed QuarkCloudDrive client or browser UI with an authorized logged-in account to download/transfer the official Windows package or the three listed assets, then place and hash the files under the ignored LiveTalking paths.

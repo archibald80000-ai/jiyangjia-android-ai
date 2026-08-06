@@ -1,0 +1,12 @@
+# TASK-003 Quark Windows package download probe
+Date: 2026-08-06
+Purpose: Probe download URL creation for official Windows package files/directories; no cookies, stoken, share_fid_token or download URLs are recorded.
+
+target=small_readme endpoint=file/share/download dir=False size=152 http_status=200 status=200 code=0 message= data_count=1 download_url_count=1 returned_size=152
+target=small_readme endpoint=file/download dir=False size=152 http_status=200 status=200 code=0 message= data_count=1 download_url_count=1 returned_size=152
+target=model_wav2lip_pth endpoint=file/share/download dir=False size=214670409 http_status=400 status=400 code=23018 message=download file size limit[7fc4b699db824350b8bc61cb5cd9609e] data_count=0 download_url_count=0 returned_size=
+target=model_wav2lip_pth endpoint=file/download dir=False size=214670409 http_status=400 status=400 code=23018 message=download file size limit[7fc4b699db824350b8bc61cb5cd9609e] data_count=0 download_url_count=0 returned_size=
+target=detector_s3fd_pth endpoint=file/share/download dir=False size=89843225 http_status=400 status=400 code=23018 message=download file size limit[2a09186ec8df4e8f82c391a64bb6bdb8] data_count=0 download_url_count=0 returned_size=
+target=detector_s3fd_pth endpoint=file/download dir=False size=89843225 http_status=400 status=400 code=23018 message=download file size limit[2a09186ec8df4e8f82c391a64bb6bdb8] data_count=0 download_url_count=0 returned_size=
+target=avatar_dir endpoint=file/share/download dir=True size=0 http_status=200 status=200 code=0 message= data_count=0 download_url_count=0 returned_size=
+target=avatar_dir endpoint=file/download dir=True size=0 http_status=200 status=200 code=0 message= data_count=0 download_url_count=0 returned_size=

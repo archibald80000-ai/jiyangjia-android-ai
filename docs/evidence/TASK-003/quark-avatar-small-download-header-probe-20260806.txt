@@ -1,0 +1,11 @@
+# TASK-003 Quark avatar small download header probe
+Date: 2026-08-06
+Purpose: Probe request headers needed by Quark returned download URLs for one small official avatar file; no cookies, stoken, share_fid_token or download URL is recorded.
+
+api_status=200 code=0 url_present=True url_host=dl-guest-zb-u.drive.quark.cn expected_size=4132
+variant=powershell_default http_status=412 actual_size=262 sha256_if_complete=
+variant=powershell_browser_ua http_status=412 actual_size=262 sha256_if_complete=
+variant=powershell_range http_status=412 actual_size=262 sha256_if_complete=
+variant=curl_default exit_code=22 actual_size=0 sha256_if_complete= output=curl: (22) The requested URL returned error: 412
+variant=curl_browser_ref exit_code=22 actual_size=0 sha256_if_complete= output=curl: (22) The requested URL returned error: 412
+variant=curl_range exit_code=22 actual_size=0 sha256_if_complete= output=curl: (22) The requested URL returned error: 412

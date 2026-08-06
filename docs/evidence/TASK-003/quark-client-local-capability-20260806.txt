@@ -1,0 +1,102 @@
+# TASK-003 Quark local client capability check
+Date: 2026-08-06
+Purpose: Check whether official local Quark clients exist as a possible manual/download-capable path; no account databases, browser cookies or login state were read.
+
+## Installed programs
+
+DisplayName DisplayVersion InstallLocation                DisplayIcon
+----------- -------------- ---------------                -----------
+夸克        7.0.5.931      D:\应用软件\KUAK\Quark         D:\应用软件\KUAK\Quark\quark.exe,0
+夸克网盘    6.5.1.711      D:\应用软件\夸\QuarkCloudDrive D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe,8
+
+## Start menu shortcuts
+shortcut=C:\Users\Assert\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\夸克.lnk target=D:\应用软件\KUAK\Quark\quark.exe arguments=--launch-from=startmenu --brand-quark working_dir=D:\应用软件\KUAK\Quark
+shortcut=C:\ProgramData\Microsoft\Windows\Start Menu\Programs\夸克网盘.lnk target=D:\应用软件\夸\QuarkCloudDrive\quark_cloud_drive.exe arguments=--launch-from=startmenu --brand-clouddrive working_dir=D:\应用软件\夸\QuarkCloudDrive
+
+## URL protocol search
+registry_key=Quark
+registry_key=Quark.3g2
+registry_key=Quark.3gp
+registry_key=Quark.3gp2
+registry_key=Quark.3gpp
+registry_key=Quark.asf
+registry_key=Quark.avi
+registry_key=Quark.csf
+registry_key=Quark.divx
+registry_key=Quark.DVD
+registry_key=Quark.dvr-ms
+registry_key=Quark.evo
+registry_key=Quark.f4v
+registry_key=Quark.flv
+registry_key=Quark.gvi
+registry_key=Quark.gxf
+registry_key=Quark.k3g
+registry_key=Quark.m1v
+registry_key=Quark.m2t
+registry_key=Quark.m2ts
+registry_key=Quark.m2v
+registry_key=Quark.m3u8
+registry_key=Quark.m4v
+registry_key=Quark.mkv
+registry_key=Quark.mov
+registry_key=Quark.mp2v
+registry_key=Quark.mp4
+registry_key=Quark.mpe
+registry_key=Quark.mpeg
+registry_key=Quark.mpg
+registry_key=Quark.mpv2
+registry_key=Quark.mts
+registry_key=Quark.mxf
+registry_key=Quark.nuv
+registry_key=Quark.ogm
+registry_key=Quark.ogv
+registry_key=Quark.qt
+registry_key=Quark.rec
+registry_key=Quark.rm
+registry_key=Quark.rmvb
+registry_key=Quark.rpl
+registry_key=Quark.rpm
+registry_key=Quark.scm
+registry_key=Quark.swf
+registry_key=Quark.torrent
+registry_key=Quark.tp
+registry_key=Quark.tpr
+registry_key=Quark.trp
+registry_key=Quark.ts
+registry_key=Quark.vob
+registry_key=Quark.vro
+registry_key=Quark.webm
+registry_key=Quark.wmp
+registry_key=Quark.wmv
+registry_key=Quark.wtv
+registry_key=QuarkAI.ContextMenu
+registry_key=QuarkAI.ContextMenu.1
+registry_key=QuarkCloudDrive.torrent
+registry_key=QuarkCloudDriveAI.ContextMenu
+registry_key=QuarkCloudDriveAI.ContextMenu.1
+registry_key=QuarkCloudDriveHTM.3g2
+registry_key=QuarkCloudDriveHTM.3gp
+registry_key=QuarkCloudDriveHTM.3gpp
+registry_key=QuarkCloudDriveHTM.asf
+registry_key=QuarkCloudDriveHTM.avi
+registry_key=QuarkCloudDriveHTM.avs
+registry_key=QuarkCloudDriveHTM.dat
+registry_key=QuarkCloudDriveHTM.f4v
+registry_key=QuarkCloudDriveHTM.flv
+registry_key=QuarkCloudDriveHTM.g32
+registry_key=QuarkCloudDriveHTM.g3p
+registry_key=QuarkCloudDriveHTM.h264
+registry_key=QuarkCloudDriveHTM.ifo
+registry_key=QuarkCloudDriveHTM.m2t
+registry_key=QuarkCloudDriveHTM.m2ts
+registry_key=QuarkCloudDriveHTM.m2v
+registry_key=QuarkCloudDriveHTM.m3u
+registry_key=QuarkCloudDriveHTM.m3u8
+registry_key=QuarkCloudDriveHTM.m4v
+registry_key=QuarkCloudDriveHTM.mj2
+asar_protocol_match=D:\应用软件\夸\QuarkCloudDrive\6.5.1.711\Resources\app.asar:quark://
+asar_protocol_match=D:\应用软件\KUAK\Quark\7.0.5.931\Resources\app.asar:quark://
+
+## Boundary
+Quark account cookies, Local Storage, IndexedDB and login/session databases were not opened or copied.
+No Quark client was started during this check.

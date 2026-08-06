@@ -1,0 +1,26 @@
+# TASK-003 Quark Windows package targeted asset listing
+Date: 2026-08-06
+Purpose: Target official Windows package paths likely to contain Wav2Lip model, S3FD and avatar assets; no cookies, stoken or share_fid_token values are recorded.
+
+token_status=200 code=0 message=ok stoken_length=44 stoken=REDACTED
+## Listing /整合包/v2.0.1/models fid=726e4c61852e42a3ad09ef92bf7bd5e9
+page=1 status=200 code=0 message=ok count=2 total=2
+item path=/整合包/v2.0.1/models/wav2lip.pth dir=False size=214670409 fid=7fc4b699db824350b8bc61cb5cd9609e token_present=True
+item path=/整合包/v2.0.1/models/put models here.txt dir=False size=0 fid=71b495c661604a6d8b9fc2447b3a2139 token_present=True
+## Listing /整合包/v2.0.1/data/avatars fid=fc9e89492ba34d21b9d4016db331c828
+page=1 status=200 code=0 message=ok count=2 total=2
+item path=/整合包/v2.0.1/data/avatars/wav2lip256_avatar1 dir=True size=0 fid=49258f270e4d46b78f5ea513f2a83e52 token_present=True
+item path=/整合包/v2.0.1/data/avatars/.gitkeep dir=False size=0 fid=ff2852c21cf9455b834db3996a000d7a token_present=True
+## Listing /整合包/v2.0.1/_internal/avatars/wav2lip fid=338d66d3a9714f75952a4c98b884e54d
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/整合包/v2.0.1/_internal/avatars/wav2lip/face_detection dir=True size=0 fid=5e5acbfbe0c2436f8c3abb1f19226323 token_present=True
+## Listing /整合包/v2.0.1/_internal/avatars/wav2lip/face_detection/detection/sfd fid=5d1e1488dce4407182916cfd6fe49acb
+page=1 status=200 code=0 message=ok count=1 total=1
+item path=/整合包/v2.0.1/_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth dir=False size=89843225 fid=2a09186ec8df4e8f82c391a64bb6bdb8 token_present=True
+## Summary
+target=wav2lip.pth found=True path=/整合包/v2.0.1/models/wav2lip.pth dir=False size=214670409 token_present=True
+target=wav2lip256.pth found=False
+target=s3fd.pth found=True path=/整合包/v2.0.1/_internal/avatars/wav2lip/face_detection/detection/sfd/s3fd.pth dir=False size=89843225 token_present=True
+target=wav2lip256_avatar1 found=True path=/整合包/v2.0.1/data/avatars/wav2lip256_avatar1 dir=True size=0 token_present=True
+target=wav2lip256_avatar1.zip found=False
+target=wav2lip256_avatar1.tar.gz found=False
