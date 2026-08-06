@@ -4,6 +4,8 @@
 
 Repository, environment audit, upstream lock, secret protections and Codex execution discipline.
 
+Current gate: `TASK-000` is partial until the locked LiveTalking bootstrap checkout succeeds. See `docs/evidence/TASK-000/environment-audit.md`.
+
 ## M1 — LiveTalking reproducible baseline
 
 Wav2Lip first; WebRTC/WHEP, `/human`, `/humanaudio`, interrupt, speaking state, record, action state and SSE verified with evidence.
@@ -35,3 +37,5 @@ Tencent Cloud gateway, TLS, authentication, monitoring, backup and optional sepa
 ## M8 — Formal knowledge base and advanced avatar
 
 Only after pilot evidence: document workflow, vector retrieval, administration, MuseTalk evaluation and richer action orchestration.
+
+See `docs/22_DELIVERY_BLUEPRINT.md` for the task dependency gates, evidence ladder, acceptance spine and rollback strategy used across this roadmap.

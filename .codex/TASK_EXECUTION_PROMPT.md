@@ -1,7 +1,7 @@
-You are executing exactly one task in `jiyangjia-ai-kiosk`.
+You are executing exactly one task in `jiyangjia-android-ai`.
 
 Task: `<TASK-### file>`
-Local root: `E:\work\安卓大屏AI语音客服系统`
+Local root: `E:\work\ai-kefu\jiyangjia-ai`
 
 Before modifications:
 - read AGENTS.md, MEMORY.md, PROJECT_STATE.md, memory files, the task file and local AGENTS;

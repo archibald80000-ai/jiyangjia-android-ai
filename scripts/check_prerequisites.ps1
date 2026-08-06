@@ -3,18 +3,18 @@ $ErrorActionPreference = "Continue"
 Write-Host "== Jiyangjia AI Kiosk prerequisite audit =="
 Write-Host "Path: $(Get-Location)"
 
-function Show-Tool($Name, $Command, $Args) {
+function Show-Tool($Name, $Command, $CommandArgs) {
     $cmd = Get-Command $Command -ErrorAction SilentlyContinue
     if (-not $cmd) {
-        Write-Host "$Name: MISSING"
+        Write-Host "${Name}: MISSING"
         return
     }
     try {
-        $output = & $Command @Args 2>&1 | Select-Object -First 8
-        Write-Host "$Name: FOUND ($($cmd.Source))"
+        $output = & $Command @CommandArgs 2>&1 | Select-Object -First 8
+        Write-Host "${Name}: FOUND ($($cmd.Source))"
         $output | ForEach-Object { Write-Host "  $_" }
     } catch {
-        Write-Host "$Name: ERROR ($($_.Exception.Message))"
+        Write-Host "${Name}: ERROR ($($_.Exception.Message))"
     }
 }
 

@@ -1,0 +1,14 @@
+Timestamp: 2026-08-05T20:26:40.1453321-05:00 Command: powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+Cloning into 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking'...
+fatal: unable to access 'https://github.com/lipku/LiveTalking.git/': Recv failure: Connection was reset
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+fatal: cannot change to 'E:\work\ai-kefu\jiyangjia-ai\third_party\LiveTalking': No such file or directory
+You cannot call a method on a null-valued expression.
+At E:\work\ai-kefu\jiyangjia-ai\scripts\bootstrap_livetalking.ps1:26 char:1
++ $actual = (git -C $target rev-parse HEAD).Trim()
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+ 
+ExitCode: 1

@@ -1,10 +1,10 @@
 {
-  "name": "jiyangjia-ai-kiosk",
+  "name": "jiyangjia-android-ai",
   "display_name": "积养家 Android 大屏 AI 数字人客服系统",
   "version": "0.1.0",
   "status": "planning",
-  "local_windows_path": "E:\\work\\安卓大屏AI语音客服系统",
-  "public_repository": "archibald80000-ai/jiyangjia-ai-kiosk",
+  "local_windows_path": "E:\\work\\ai-kefu\\jiyangjia-ai",
+  "public_repository": "archibald80000-ai/jiyangjia-android-ai",
   "primary_upstream": {
     "name": "LiveTalking",
     "repository": "https://github.com/lipku/LiveTalking.git",

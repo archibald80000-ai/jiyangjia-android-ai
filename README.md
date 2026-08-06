@@ -1,7 +1,7 @@
 # 积养家 Android 大屏 AI 数字人客服系统
 
-> Repository: `jiyangjia-ai-kiosk`
-> Local workspace: `E:\work\安卓大屏AI语音客服系统`
+> Repository: `jiyangjia-android-ai`
+> Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
 > Target device: Android 12 大屏
 > Primary upstream: [lipku/LiveTalking](https://github.com/lipku/LiveTalking)
 
@@ -54,8 +54,9 @@ Codex 或新开发者必须依次阅读：
 4. [`PROJECT_STATE.md`](PROJECT_STATE.md)
 5. [`docs/00_PRODUCT_REQUIREMENTS.md`](docs/00_PRODUCT_REQUIREMENTS.md)
 6. [`docs/15_CODEX_EXECUTION_PROTOCOL.md`](docs/15_CODEX_EXECUTION_PROTOCOL.md)
-7. [`tasks/README.md`](tasks/README.md)
-8. 当前被授权的 `TASK-xxx` 文件
+7. [`docs/22_DELIVERY_BLUEPRINT.md`](docs/22_DELIVERY_BLUEPRINT.md)
+8. [`tasks/README.md`](tasks/README.md)
+9. 当前被授权的 `TASK-xxx` 文件
 
 不得跳过环境审查、直接同时开发 Android、后端、模型和知识库。
 
@@ -66,9 +67,9 @@ Codex 或新开发者必须依次阅读：
 ## 推荐本地初始化
 
 ```powershell
-Set-Location "E:\work\安卓大屏AI语音客服系统"
+Set-Location "E:\work\ai-kefu\jiyangjia-ai"
 
-git clone https://github.com/archibald80000-ai/jiyangjia-ai-kiosk.git .
+git clone https://github.com/archibald80000-ai/jiyangjia-android-ai.git .
 Copy-Item .env.example .env.local
 
 # 检查开发环境

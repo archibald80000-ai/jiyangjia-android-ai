@@ -1,0 +1,6 @@
+Timestamp: 2026-08-05T20:26:33.7097620-05:00 Command: python - <<yaml parser check equivalent
+tasks\index.yaml: OK (dict)
+config\project.example.yaml: OK (dict)
+config\providers.example.yaml: OK (dict)
+knowledge-test\faq_test.example.yaml: OK (dict)
+ExitCode: 0

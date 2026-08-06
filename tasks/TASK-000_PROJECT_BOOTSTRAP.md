@@ -1,6 +1,6 @@
 # TASK-000: Bootstrap repository and audit the local environment
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** None
 - **Branch:** `task/TASK-000-project-bootstrap`
@@ -70,16 +70,50 @@ python -m json.tool config/upstream-lock.json
 
 ## Required deliverables
 
-- [ ] docs/evidence/TASK-000/environment-audit.md
-- [ ] Clean/understood Git state
-- [ ] Updated project state and handoff
+- [x] docs/evidence/TASK-000/environment-audit.md
+- [x] Clean/understood Git state
+- [x] Updated project state and handoff
 
 ## Acceptance criteria
 
-- [ ] Repository cloned into the fixed Windows path
-- [ ] Secret protections verified
-- [ ] Tool/Git/environment audit documented
+- [x] Repository cloned into the fixed Windows path
+- [x] Secret protections verified
+- [x] Tool/Git/environment audit documented
 - [ ] Upstream bootstrap command verified without downloading weights
+
+## TASK-000 result on 2026-08-06
+
+Status is `PARTIAL`.
+
+Evidence:
+
+- `docs/evidence/TASK-000/environment-audit.md`
+- `docs/evidence/TASK-000/check-prerequisites.txt`
+- `docs/evidence/TASK-000/verify-repository.txt`
+- `docs/evidence/TASK-000/secret-and-config-checks.txt`
+- `docs/evidence/TASK-000/yaml-validation.txt`
+- `docs/evidence/TASK-000/bootstrap-livetalking.txt`
+- `docs/evidence/TASK-000/github-network-diagnostic.txt`
+
+Summary:
+
+- Fixed path and branch were verified.
+- Repository structure verification passed.
+- `.env.local` is ignored and absent; values were not read.
+- Sensitive/model/audio/database tracked filename scans passed.
+- JSON/YAML example validation passed.
+- Prerequisite audit found Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
+- ADB and Gradle are missing from PATH.
+- PyTorch is not installed in the active Python environment.
+- LiveTalking bootstrap failed because GitHub HTTPS clone of `https://github.com/lipku/LiveTalking.git` was reset; `git ls-remote` failed the same way.
+
+Next unblock action:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1
+```
+
+Run this only after GitHub HTTPS clone access is fixed. Do not start TASK-001 until the locked checkout succeeds or an approved alternate retrieval path is documented.
 
 ## Stop / blocked conditions
 
@@ -105,10 +139,10 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
-- [ ] Update `PROJECT_STATE.md`.
-- [ ] Update `memory/CURRENT_STATE.md`.
-- [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
+- [x] Update `PROJECT_STATE.md`.
+- [x] Update `memory/CURRENT_STATE.md`.
+- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.

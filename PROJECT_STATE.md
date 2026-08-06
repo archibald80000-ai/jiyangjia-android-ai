@@ -1,11 +1,11 @@
 # PROJECT_STATE
 
-- **Project:** jiyangjia-ai-kiosk
+- **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
-- **Updated:** 2026-08-05
-- **Overall status:** PLANNED / BOOTSTRAP REQUIRED
+- **Updated:** 2026-08-06
+- **Overall status:** PARTIAL / BOOTSTRAP BLOCKED
 - **Current authorized task:** TASK-000
-- **Public repository target:** `archibald80000-ai/jiyangjia-ai-kiosk`
+- **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
 
@@ -14,6 +14,14 @@
 - LiveTalking upstream repository identified.
 - Upstream lock target: `c963ad409c556918b7d23999bf87c47a7c05c932`.
 - Local original knowledge materials exist outside this repository and are not yet curated.
+- Local synchronized workspace is present at `E:\work\ai-kefu\jiyangjia-ai`.
+- Repository structure verification passed with `scripts/verify_repository.ps1`.
+- Project identity has been aligned to `archibald80000-ai/jiyangjia-android-ai`.
+- TASK-000 ran on branch `task/TASK-000-project-bootstrap`.
+- `.env.local` is ignored and was absent during the audit; values were not read.
+- No tracked `.env`, private key, APK, model, audio or database file matched the TASK-000 scans.
+- JSON/YAML example validation passed.
+- Local tools found: Git, Python, Conda, FFmpeg, NVIDIA driver/CUDA via `nvidia-smi`, Java and GitHub CLI.
 
 ## Not yet verified
 
@@ -21,10 +29,13 @@
 - USB Host / USB Audio Class support.
 - Whether APK sideloading and ADB are enabled.
 - Development machine CUDA/PyTorch compatibility.
+- Android SDK/ADB and Gradle availability.
 - LiveTalking model weights and Avatar assets.
+- LiveTalking locked checkout; GitHub HTTPS clone was reset during TASK-000.
 - WebRTC connectivity on the target network.
 - Real Doubao ASR/TTS/LLM credentials and API behavior.
 - Production domain, TLS certificate, firewall and TURN strategy.
+- Whether the expanded local framework should replace the current GitHub `main` content or be published through a review branch.
 
 ## Current milestone
 
@@ -37,6 +48,19 @@ Exit criteria:
 - LiveTalking upstream pulled at locked commit.
 - No secrets tracked.
 - TASK-000 report produced.
+
+Current evidence:
+
+- `docs/evidence/2026-08-06-local-sync-audit.md`
+- `docs/evidence/TASK-000/environment-audit.md`
+
+Current blocker:
+
+- `powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap_livetalking.ps1` failed because GitHub HTTPS clone of `https://github.com/lipku/LiveTalking.git` was reset. `git ls-remote` failed the same way. `third_party/LiveTalking` was not created.
+
+Next action:
+
+- Resolve GitHub HTTPS clone access and rerun TASK-000 bootstrap. Do not advance to TASK-001 until the locked checkout succeeds or a documented alternate upstream retrieval path is approved.
 
 ## Status vocabulary
 

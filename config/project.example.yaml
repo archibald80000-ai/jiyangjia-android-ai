@@ -1,5 +1,5 @@
 project:
-  name: jiyangjia-ai-kiosk
+  name: jiyangjia-android-ai
   store_id: demo-store
   environment: development
 

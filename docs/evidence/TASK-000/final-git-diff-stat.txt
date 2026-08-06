@@ -1,0 +1,69 @@
+Timestamp: 2026-08-05T20:32:21.6833223-05:00 Command: git status --short --branch --untracked-files=all
+## task/TASK-000-project-bootstrap
+ M .codex/TASK_EXECUTION_PROMPT.md
+ M AGENTS.md
+ M CODEX_START_HERE.md
+ M MEMORY.md
+ M PROJECT_MANIFEST.json
+ M PROJECT_STATE.md
+ M README.md
+ M ROADMAP.md
+ M TASKS.md
+ M config/project.example.yaml
+ M docs/14_GITHUB_WORKFLOW.md
+ M docs/19_PUBLICATION_INSTRUCTIONS.md
+ M docs/README.md
+ M memory/CORE_FACTS.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M scripts/check_prerequisites.ps1
+ M scripts/create_github_issues.ps1
+ M scripts/publish_public_repo.ps1
+ M scripts/verify_repository.ps1
+ M tasks/TASK-000_PROJECT_BOOTSTRAP.md
+ M tasks/index.yaml
+?? docs/22_DELIVERY_BLUEPRINT.md
+?? docs/evidence/2026-08-06-local-sync-audit.md
+?? docs/evidence/TASK-000/bootstrap-livetalking.txt
+?? docs/evidence/TASK-000/check-prerequisites.txt
+?? docs/evidence/TASK-000/environment-audit.md
+?? docs/evidence/TASK-000/final-git-diff-stat.txt
+?? docs/evidence/TASK-000/git-and-location.txt
+?? docs/evidence/TASK-000/github-network-diagnostic.txt
+?? docs/evidence/TASK-000/java-adb-gradle-detail.txt
+?? docs/evidence/TASK-000/post-update-verify-repository.txt
+?? docs/evidence/TASK-000/post-update-yaml-json.txt
+?? docs/evidence/TASK-000/python-torch-check.txt
+?? docs/evidence/TASK-000/repository-inventory.txt
+?? docs/evidence/TASK-000/secret-and-config-checks.txt
+?? docs/evidence/TASK-000/verify-repository.txt
+?? docs/evidence/TASK-000/yaml-validation.txt
+Command: git diff --stat
+warning: in the working copy of 'scripts/check_prerequisites.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/create_github_issues.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/publish_public_repo.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/verify_repository.ps1', LF will be replaced by CRLF the next time Git touches it
+ .codex/TASK_EXECUTION_PROMPT.md     |  4 +-
+ AGENTS.md                           |  2 +-
+ CODEX_START_HERE.md                 |  6 +--
+ MEMORY.md                           |  2 +-
+ PROJECT_MANIFEST.json               |  6 +--
+ PROJECT_STATE.md                    | 32 ++++++++++++--
+ README.md                           | 13 +++---
+ ROADMAP.md                          |  4 ++
+ TASKS.md                            |  5 +++
+ config/project.example.yaml         |  2 +-
+ docs/14_GITHUB_WORKFLOW.md          |  2 +-
+ docs/19_PUBLICATION_INSTRUCTIONS.md |  4 +-
+ docs/README.md                      |  5 ++-
+ memory/CORE_FACTS.md                |  2 +-
+ memory/CURRENT_STATE.md             | 10 +++--
+ memory/HANDOFF.md                   | 85 +++++++++++++++++++++++++++++--------
+ scripts/check_prerequisites.ps1     | 10 ++---
+ scripts/create_github_issues.ps1    |  2 +-
+ scripts/publish_public_repo.ps1     | 28 +++++++++---
+ scripts/verify_repository.ps1       | 22 +++++++++-
+ tasks/TASK-000_PROJECT_BOOTSTRAP.md | 62 +++++++++++++++++++++------
+ tasks/index.yaml                    |  2 +-
+ 22 files changed, 235 insertions(+), 75 deletions(-)
+ExitCode: 0

@@ -1,5 +1,5 @@
 param(
-    [string]$Repository = "archibald80000-ai/jiyangjia-ai-kiosk"
+    [string]$Repository = "archibald80000-ai/jiyangjia-android-ai"
 )
 
 $ErrorActionPreference = "Stop"

@@ -1,6 +1,6 @@
 param(
-    [string]$Repository = "archibald80000-ai/jiyangjia-ai-kiosk",
-    [string]$Description = "Android 12 store AI voice kiosk and LiveTalking digital-human integration"
+    [string]$Repository = "archibald80000-ai/jiyangjia-android-ai",
+    [string]$Description = "积养家 Android 12 大屏 AI 语音与数字人客服系统"
 )
 
 $ErrorActionPreference = "Stop"
@@ -20,7 +20,6 @@ if ($forbidden) { throw "Refusing publication: a sensitive file name is tracked.
 
 if (-not (Test-Path ".git")) {
     git init -b main
-    git config user.name | Out-Null
 }
 
 $status = git status --porcelain
@@ -38,8 +37,27 @@ if ($existing) {
     Write-Host "Repository already exists: $($existing.nameWithOwner)"
 } else {
     gh repo create $Repository --public --description $Description --source . --remote origin
-    gh repo edit $Repository --enable-issues --enable-wiki=false --enable-projects=true
-    gh repo edit $Repository --add-topic android --add-topic ai --add-topic digital-human --add-topic livetalking --add-topic kiosk --add-topic voice-assistant
+}
+
+gh api -X PATCH "repos/$Repository" `
+    -f description="$Description" `
+    -F has_issues=true `
+    -F has_wiki=false `
+    -F has_projects=true | Out-Null
+
+gh api -X PUT "repos/$Repository/topics" `
+    -H "Accept: application/vnd.github+json" `
+    -f names[]=android `
+    -f names[]=ai `
+    -f names[]=digital-human `
+    -f names[]=livetalking `
+    -f names[]=speech-recognition `
+    -f names[]=text-to-speech `
+    -f names[]=kiosk `
+    -f names[]=webrtc | Out-Null
+
+if (-not (git remote | Select-String -Pattern '^origin$')) {
+    git remote add origin "https://github.com/$Repository.git"
 }
 
 $remote = git remote get-url origin

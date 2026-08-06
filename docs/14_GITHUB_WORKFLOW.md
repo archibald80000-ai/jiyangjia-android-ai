@@ -2,7 +2,7 @@
 
 ## Repository
 
-Target public repository: `archibald80000-ai/jiyangjia-ai-kiosk`.
+Target public repository: `archibald80000-ai/jiyangjia-android-ai`.
 
 ## Branching
 

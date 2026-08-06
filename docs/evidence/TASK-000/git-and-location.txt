@@ -1,0 +1,29 @@
+Timestamp: 2026-08-05T20:25:50.1311810-05:00 Command: Get-Location
+
+Path
+----
+E:\work\ai-kefu\jiyangjia-ai
+
+Command: git status --short --branch --untracked-files=all
+## task/TASK-000-project-bootstrap
+ M AGENTS.md
+ M CODEX_START_HERE.md
+ M MEMORY.md
+ M PROJECT_MANIFEST.json
+ M PROJECT_STATE.md
+ M README.md
+ M config/project.example.yaml
+ M docs/14_GITHUB_WORKFLOW.md
+ M docs/19_PUBLICATION_INSTRUCTIONS.md
+ M memory/CORE_FACTS.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M scripts/check_prerequisites.ps1
+ M scripts/create_github_issues.ps1
+ M scripts/publish_public_repo.ps1
+ M scripts/verify_repository.ps1
+?? docs/evidence/2026-08-06-local-sync-audit.md
+Command: git remote -v
+Command: git branch --show-current
+task/TASK-000-project-bootstrap
+ExitCode: 0

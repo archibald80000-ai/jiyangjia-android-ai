@@ -1,0 +1,9 @@
+Timestamp: 2026-08-05T20:30:43.6399534-05:00 Command: post-update JSON/YAML validation
+upstream-lock json ExitCode: 0
+manifest json ExitCode: 0
+test questions json ExitCode: 0
+tasks\index.yaml: OK
+config\project.example.yaml: OK
+config\providers.example.yaml: OK
+knowledge-test\faq_test.example.yaml: OK
+yaml ExitCode: 0

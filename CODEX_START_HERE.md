@@ -2,12 +2,12 @@
 
 请在 Windows 上打开：
 
-`E:\work\安卓大屏AI语音客服系统`
+`E:\work\ai-kefu\jiyangjia-ai`
 
 然后把以下内容作为新 Codex 会话的第一条指令：
 
 ```text
-你现在负责 jiyangjia-ai-kiosk 项目，只执行 TASK-000。
+你现在负责 jiyangjia-android-ai 项目，只执行 TASK-000。
 
 先读取：
 1. AGENTS.md
@@ -19,7 +19,7 @@
 7. tasks/TASK-000_PROJECT_BOOTSTRAP.md
 8. .codex/TASK_EXECUTION_PROMPT.md
 
-固定项目目录：E:\work\安卓大屏AI语音客服系统
+固定项目目录：E:\work\ai-kefu\jiyangjia-ai
 原始资料目录：E:\work\积养家（默认只读，不扫描、不上传、不修改）
 
 严格遵守单任务原则。开始前报告当前目录、分支、已有改动、工具环境、准备修改文件、测试命令和风险。随后直接完成 TASK-000，不要提前执行 TASK-001 或编写 Android/后端业务代码。

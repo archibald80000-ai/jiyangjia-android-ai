@@ -5,7 +5,7 @@
 ## 永久核心事实
 
 - 项目是积养家门店 Android 12 大屏 AI 语音客服与数字人终端。
-- 本地开发目录为 `E:\work\安卓大屏AI语音客服系统`。
+- 本地开发目录为 `E:\work\ai-kefu\jiyangjia-ai`。
 - 原始资料在 `E:\work\积养家`，当前不做复杂知识库，仅按需人工挑选少量已确认资料。
 - 当前前端设备是 Android 12，不运行 Windows EXE、Python、CUDA 或本地大模型。
 - 现有腾讯云为 8 核 CPU、4 GB 内存、10 Mbps、无 GPU。

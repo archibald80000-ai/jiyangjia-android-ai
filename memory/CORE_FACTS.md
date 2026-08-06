@@ -9,7 +9,7 @@
 
 ## Infrastructure
 
-- Local workspace: `E:\work\安卓大屏AI语音客服系统`.
+- Local workspace: `E:\work\ai-kefu\jiyangjia-ai`.
 - Raw business materials: `E:\work\积养家` and remain read-only until a curated task is approved.
 - Existing cloud: Tencent Cloud 8 vCPU / 4 GB RAM / 10 Mbps / no GPU.
 - Real-time LiveTalking inference requires a separate compatible GPU node or development PC.

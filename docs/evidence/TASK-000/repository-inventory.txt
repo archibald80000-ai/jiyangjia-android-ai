@@ -1,0 +1,167 @@
+Timestamp: 2026-08-05T20:27:49.4649466-05:00 Command: Get-ChildItem -Force root
+
+Mode  Length LastWriteTime     Name
+----  ------ -------------     ----
+d----        2026/8/5 20:09:16 .codex
+d----        2026/8/5 20:27:20 .git
+d----        2026/8/5 20:09:16 .github
+d----        2026/8/5 20:09:16 android-app
+d----        2026/8/5 20:09:16 assets
+d----        2026/8/5 20:09:16 config
+d----        2026/8/5 20:09:16 deploy
+d----        2026/8/5 20:09:16 docs
+d----        2026/8/5 20:09:16 gateway
+d----        2026/8/5 20:09:15 integration
+d----        2026/8/5 20:09:16 knowledge-test
+d----        2026/8/5 20:09:16 memory
+d----        2026/8/5 20:09:16 scripts
+d----        2026/8/5 20:09:16 tasks
+d----        2026/8/5 20:09:16 tests
+d----        2026/8/5 20:27:01 third_party
+-a--- 245    2026/8/5 20:09:15 .editorconfig
+-a--- 1121   2026/8/5 20:09:15 .env.example
+-a--- 171    2026/8/5 20:09:15 .gitattributes
+-a--- 798    2026/8/5 20:09:15 .gitignore
+-a--- 4757   2026/8/5 20:14:18 AGENTS.md
+-a--- 460    2026/8/5 20:09:15 CHANGELOG.md
+-a--- 1288   2026/8/5 20:14:18 CODEX_START_HERE.md
+-a--- 591    2026/8/5 20:09:15 CONTRIBUTING.md
+-a--- 10372  2026/8/5 20:09:15 LICENSE
+-a--- 1388   2026/8/5 20:14:18 MEMORY.md
+-a--- 291    2026/8/5 20:09:15 NOTICE
+-a--- 879    2026/8/5 20:14:18 PROJECT_MANIFEST.json
+-a--- 2091   2026/8/5 20:15:30 PROJECT_STATE.md
+-a--- 5070   2026/8/5 20:14:18 README.md
+-a--- 1380   2026/8/5 20:09:15 ROADMAP.md
+-a--- 745    2026/8/5 20:09:15 SECURITY.md
+-a--- 444    2026/8/5 20:09:15 TASKS.md
+-a--- 902    2026/8/5 20:09:15 THIRD_PARTY_NOTICES.md
+-a--- 6      2026/8/5 20:09:15 VERSION
+
+Command: git ls-files
+.codex/RELEASE_PROMPT.md
+.codex/REVIEW_PROMPT.md
+.codex/SESSION_START.md
+.codex/TASK_EXECUTION_PROMPT.md
+.editorconfig
+.env.example
+.gitattributes
+.github/CODEOWNERS
+.github/ISSUE_TEMPLATE/bug.yml
+.github/ISSUE_TEMPLATE/config.yml
+.github/ISSUE_TEMPLATE/feature.yml
+.github/ISSUE_TEMPLATE/task.yml
+.github/PULL_REQUEST_TEMPLATE.md
+.github/workflows/repository-checks.yml
+.gitignore
+AGENTS.md
+CHANGELOG.md
+CODEX_START_HERE.md
+CONTRIBUTING.md
+LICENSE
+MEMORY.md
+NOTICE
+PROJECT_MANIFEST.json
+PROJECT_STATE.md
+README.md
+ROADMAP.md
+SECURITY.md
+TASKS.md
+THIRD_PARTY_NOTICES.md
+VERSION
+android-app/AGENTS.md
+android-app/README.md
+assets/ASSET_REGISTRY.example.yaml
+assets/README.md
+assets/audio/README.md
+assets/avatars/README.md
+assets/idle-video/README.md
+config/README.md
+config/project.example.yaml
+config/providers.example.yaml
+config/upstream-lock.json
+deploy/README.md
+docs/00_PRODUCT_REQUIREMENTS.md
+docs/01_SYSTEM_ARCHITECTURE.md
+docs/02_DEVELOPMENT_PLAN.md
+docs/03_LIVETALKING_SCOPE.md
+docs/04_ANDROID_KIOSK_SPEC.md
+docs/05_GATEWAY_AND_MODEL_ADAPTERS.md
+docs/06_TEST_KNOWLEDGE_BASE.md
+docs/07_API_CONTRACTS.md
+docs/08_SECURITY_AND_PRIVACY.md
+docs/09_DEPLOYMENT_TOPOLOGY.md
+docs/10_ACCEPTANCE_CRITERIA.md
+docs/11_RISK_REGISTER.md
+docs/12_DEVICE_TEST_CHECKLIST.md
+docs/13_UPSTREAM_SYNC.md
+docs/14_GITHUB_WORKFLOW.md
+docs/15_CODEX_EXECUTION_PROTOCOL.md
+docs/16_SERVER_RESOURCE_BUDGET.md
+docs/17_OBSERVABILITY.md
+docs/18_OPEN_SOURCE_COMPLIANCE.md
+docs/19_PUBLICATION_INSTRUCTIONS.md
+docs/20_MODEL_AND_ASSET_GOVERNANCE.md
+docs/21_TEST_MATRIX.md
+docs/README.md
+docs/adr/ADR-0001_ANDROID_REMOTE_ARCHITECTURE.md
+docs/adr/ADR-0002_DUAL_DISPLAY_MODE.md
+docs/adr/ADR-0003_MINI_FAQ_FIRST.md
+docs/adr/ADR-0004_PINNED_UPSTREAM_ADAPTER_FIRST.md
+docs/adr/ADR-0005_ANDROID_WEBVIEW_FIRST.md
+docs/adr/ADR-0006_WAV2LIP_FIRST.md
+docs/adr/ADR-0007_GATEWAY_NOT_GPU.md
+docs/evidence/README.md
+docs/requirements/README.md
+gateway/AGENTS.md
+gateway/README.md
+integration/AGENTS.md
+integration/README.md
+integration/asr/README.md
+integration/livetalking_client/README.md
+integration/livetalking_patches/README.md
+integration/llm/README.md
+integration/tts/README.md
+knowledge-test/AGENTS.md
+knowledge-test/README.md
+knowledge-test/faq_test.example.yaml
+knowledge-test/prohibited_topics.md
+knowledge-test/system_prompt.example.md
+knowledge-test/test_questions.example.json
+memory/ASSUMPTIONS.md
+memory/CHANGELOG.md
+memory/CORE_FACTS.md
+memory/CURRENT_STATE.md
+memory/DECISIONS.md
+memory/HANDOFF.md
+memory/OPEN_QUESTIONS.md
+memory/REASONING_GATES.md
+scripts/README.md
+scripts/bootstrap_livetalking.ps1
+scripts/check_prerequisites.ps1
+scripts/create_github_issues.ps1
+scripts/publish_public_repo.ps1
+scripts/verify_repository.ps1
+tasks/README.md
+tasks/TASK-000_PROJECT_BOOTSTRAP.md
+tasks/TASK-001_LIVETALKING_UPSTREAM_AUDIT.md
+tasks/TASK-002_LIVETALKING_ENVIRONMENT.md
+tasks/TASK-003_WAV2LIP_WEBRTC_BASELINE.md
+tasks/TASK-004_LIVETALKING_API_CONTRACTS.md
+tasks/TASK-005_ANDROID_KIOSK_SHELL.md
+tasks/TASK-006_ANDROID_DISPLAY_MODES.md
+tasks/TASK-007_ANDROID_USB_AUDIO.md
+tasks/TASK-008_GATEWAY_SKELETON.md
+tasks/TASK-009_TTS_PROVIDERS.md
+tasks/TASK-010_ASR_PROVIDERS.md
+tasks/TASK-011_LLM_ROUTER.md
+tasks/TASK-012_MINI_FAQ.md
+tasks/TASK-013_END_TO_END_DIALOGUE.md
+tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md
+tasks/TASK-015_ANDROID_DEVICE_ACCEPTANCE.md
+tasks/TASK-016_MUSETALK_EVALUATION.md
+tasks/TASK-017_FORMAL_KNOWLEDGE_BASE_V1.md
+tasks/index.yaml
+tests/README.md
+third_party/README.md
+ExitCode: 0

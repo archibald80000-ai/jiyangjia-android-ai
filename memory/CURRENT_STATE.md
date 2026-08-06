@@ -5,14 +5,18 @@
 - Product scope and development order documented.
 - LiveTalking upstream identified and commit lock recorded.
 - Agent rules, task system, safety boundaries and fallback architecture defined.
+- Local synchronized workspace reviewed at `E:\work\ai-kefu\jiyangjia-ai`.
+- Project identity aligned to `archibald80000-ai/jiyangjia-android-ai`.
+- Repository structure verification passed.
+- Delivery blueprint added at `docs/22_DELIVERY_BLUEPRINT.md`.
+- TASK-000 secret checks and JSON/YAML validation passed.
 
 ## In progress
 
-- Initial public repository publication and local clone.
+- TASK-000 is `PARTIAL`.
 
 ## Not started
 
-- Local development environment audit.
 - LiveTalking checkout and dependency setup.
 - Model weights / avatar preparation.
 - LiveTalking API reproduction.
@@ -23,4 +27,4 @@
 
 ## Next action
 
-Execute `TASK-000_PROJECT_BOOTSTRAP.md` in the fixed Windows directory.
+Resolve GitHub HTTPS clone access for `https://github.com/lipku/LiveTalking.git`, rerun `scripts/bootstrap_livetalking.ps1`, and close TASK-000 before starting TASK-001.

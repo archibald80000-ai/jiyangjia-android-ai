@@ -1,0 +1,57 @@
+Timestamp: 2026-08-05T20:25:56.0546767-05:00 Command: powershell -ExecutionPolicy Bypass -File .\scripts\check_prerequisites.ps1
+== Jiyangjia AI Kiosk prerequisite audit ==
+Path: E:\work\ai-kefu\jiyangjia-ai
+Git: FOUND (E:\AIS\App\GIT\Git\cmd\git.exe)
+  git version 2.52.0.windows.1
+Python: FOUND (D:\python311\python.exe)
+  Python 3.14.0
+Conda: FOUND (Conda)
+  conda 26.1.1
+FFmpeg: FOUND (E:\AIS\App\ffmpeg\bin\ffmpeg.exe)
+  ffmpeg version 8.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 15.2.0 (Rev11, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      60. 26.100 / 60. 26.100
+  libavcodec     62. 28.100 / 62. 28.100
+  libavformat    62. 12.100 / 62. 12.100
+  libavdevice    62.  3.100 / 62.  3.100
+  libavfilter    11. 14.100 / 11. 14.100
+NVIDIA: FOUND (C:\WINDOWS\system32\nvidia-smi.exe)
+  Wed Aug  5 20:25:58 2026       
+  +-----------------------------------------------------------------------------------------+
+  | NVIDIA-SMI 566.07                 Driver Version: 566.07         CUDA Version: 12.7     |
+  |-----------------------------------------+------------------------+----------------------+
+  | GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+  | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+  |                                         |                        |               MIG M. |
+  |=========================================+========================+======================|
+Java: FOUND (C:\ProgramData\Oracle\Java\javapath\java.exe)
+  java version "9.0.1"
+  Java(TM) SE Runtime Environment (build 9.0.1+11)
+  Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)
+ADB: MISSING
+Gradle: MISSING
+GitHub CLI: FOUND (C:\Program Files\GitHub CLI\gh.exe)
+  gh version 2.87.3 (2026-02-23)
+  https://github.com/cli/cli/releases/tag/v2.87.3
+.env.local: MISSING
+== Git status ==
+## task/TASK-000-project-bootstrap
+ M AGENTS.md
+ M CODEX_START_HERE.md
+ M MEMORY.md
+ M PROJECT_MANIFEST.json
+ M PROJECT_STATE.md
+ M README.md
+ M config/project.example.yaml
+ M docs/14_GITHUB_WORKFLOW.md
+ M docs/19_PUBLICATION_INSTRUCTIONS.md
+ M memory/CORE_FACTS.md
+ M memory/CURRENT_STATE.md
+ M memory/HANDOFF.md
+ M scripts/check_prerequisites.ps1
+ M scripts/create_github_issues.ps1
+ M scripts/publish_public_repo.ps1
+ M scripts/verify_repository.ps1
+?? docs/evidence/2026-08-06-local-sync-audit.md
+ExitCode: 0

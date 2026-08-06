@@ -1,0 +1,7 @@
+Timestamp: 2026-08-05T20:28:34.4428457-05:00 Command: python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import torch; print(torch.__version__); print(torch.cuda.is_available())
+    ^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'torch'
+ExitCode: 1
