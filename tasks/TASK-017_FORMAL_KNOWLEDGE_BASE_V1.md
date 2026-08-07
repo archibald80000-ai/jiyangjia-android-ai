@@ -1,6 +1,6 @@
 # TASK-017: Design and build formal curated knowledge ingestion after pilot
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P2
 - **Dependencies:** TASK-015
 - **Branch:** `task/TASK-017-formal-knowledge-base-v1`
@@ -14,6 +14,8 @@ Design and build formal curated knowledge ingestion after pilot.
 
 - Store pilot passes
 - Owner approves source governance and scope
+
+The user explicitly authorized the audited v2.1 import package and 80-case evaluation on 2026-08-07. This authorizes the isolated import/evaluation below but does not waive the 90% activation gate or authorize production deployment.
 
 ## Scope and allowed changes
 
@@ -88,3 +90,13 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - [ ] Replace `memory/HANDOFF.md` with current facts.
 - [ ] Update assumptions/open questions and add ADR if needed.
 - [ ] Recommend exactly one next task.
+
+## v2.1 import attempt (2026-08-07)
+
+- Verified `import_batch_01.json` (50), `import_batch_02.json` (15), `import_all.json` (65) and 80 test cases without modifying the source directory.
+- Used the external ignored provider configuration only by configured/missing status; no value was printed or committed. Real Doubao/Ark Embedding was ready.
+- Created a consistent SQLite online backup plus FAISS backup before import.
+- Imported an isolated, empty v2.1 candidate on port 8090: 65 documents, 65 chunks, 65 real 2048-dimensional embeddings; 41 approved and 24 draft.
+- Customer-visible search kept draft documents excluded, but the 80-case suite passed only 51/80 (63.75%), below the required 90%.
+- Activation was refused. The task-created 8090 process was stopped, the candidate was marked `FAILED-63.75pct`, and the existing 18081 database remained unchanged.
+- Detailed evidence: `docs/evidence/TASK-017/knowledge-v2.1-import-evaluation-20260807.md`.
