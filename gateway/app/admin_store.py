@@ -255,6 +255,12 @@ class AdminContentStore:
         row = self._conn.execute("SELECT * FROM display_profiles WHERE profile_id = ?", (profile_id,)).fetchone()
         return _display_row(row) if row else None
 
+    def default_display_profile(self) -> dict[str, Any] | None:
+        row = self._conn.execute(
+            "SELECT * FROM display_profiles WHERE is_default = 1 AND status = 'active' LIMIT 1"
+        ).fetchone()
+        return _display_row(row) if row else None
+
     def save_display_profile(self, payload: dict[str, Any], *, profile_id: str | None = None) -> dict[str, Any]:
         profile_id = profile_id or f"display_{uuid.uuid4().hex[:16]}"
         values = (

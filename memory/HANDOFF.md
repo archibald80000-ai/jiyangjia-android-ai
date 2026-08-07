@@ -6,7 +6,7 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current task status: `TASK-014A DONE` locally
+- Current task status: `TASK-014A DONE` locally after real-browser interaction repair
 - Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` (not started; requires device and approved inputs)
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
@@ -19,7 +19,7 @@ Updated: 2026-08-07
 - TASK-011 real LLM and Embedding adapters: DONE.
 - TASK-012 lightweight RAG: DONE. SQLite, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing and source citations are implemented.
 - TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/sources, fetches TTS audio and plays it before returning to idle.
-- TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, Display Profile matching and persistence are implemented and covered by 53 passing tests.
+- TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, editable Display Profiles and persistence are covered by 55 tests and real-browser button verification.
 
 ## TASK-014A local state
 
@@ -28,6 +28,7 @@ Updated: 2026-08-07
 - Runtime state is under ignored `var/task014a-dev/`.
 - Production admin API requires `ADMIN_TOKEN`; no value is stored in Git or page source.
 - Evidence: `docs/evidence/TASK-014A/`.
+- Browser acceptance: `task014a-real-browser-actions-20260807.json`; do not regress to HTTP-200-only UI acceptance.
 - Not completed: Tencent deployment, formal content/media import, Android manifest/profile consumption and physical-device validation.
 
 ## TASK-014 final production state

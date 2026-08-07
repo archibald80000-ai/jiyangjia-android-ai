@@ -74,6 +74,7 @@ This contract lets Android select and cache a profile without rebuilding the APK
 - The token is accepted only through `X-Admin-Token`; it is never returned by an API or bundled into page source.
 - Upload sizes and file extensions are bounded.
 - Draft asset bytes are not public.
+- MP4/JPG/PNG uploads must match their file signatures; Display Profiles may bind only published assets of the correct type.
 - SQLite, FAISS, uploads, media and secrets are ignored by Git.
 - Recovery consists of restoring `var/admin`, `var/knowledge` and `var/assets` from the same backup point, then recreating the Gateway container.
 

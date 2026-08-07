@@ -23,12 +23,13 @@ Current status:
   - `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
   - `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
   - `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`.
-- `TASK-014A`: `DONE` locally; lightweight admin content/display control implementation passed 53 tests and local HTTP checks:
+- `TASK-014A`: `DONE` locally after browser interaction repair; 55 tests plus real-browser action verification passed:
   - 系统状态页
   - 知识库审批与索引页
   - 数字人素材管理页
   - 多分辨率 Display Profile 配置页
   - evidence: `docs/evidence/TASK-014A/`
+  - real-browser evidence: `task014a-real-browser-actions-20260807.json`
   - not yet deployed to Tencent Cloud; no formal media/business content or Android device result is claimed.
 
 Current order:

@@ -79,7 +79,7 @@ def create_admin_router(
             "knowledge": knowledge_store.status(),
             "content": admin_store.counts(),
             "manifest": admin_store.manifest(),
-            "display_profile": admin_store.match_display_profile(1920, 1080, "landscape"),
+            "display_profile": admin_store.default_display_profile(),
             "last_failure": None,
             "admin_auth": {"required": bool(settings.admin_token) or settings.app_env.lower() in {"prod", "production"}, "configured": bool(settings.admin_token)},
         }
@@ -191,6 +191,10 @@ def create_admin_router(
         content = await _read_limited(file, settings.max_asset_upload_bytes)
         if not content:
             raise _bad_request("EMPTY_ASSET_FILE", "上传素材为空。")
+        if not _valid_asset_signature(suffix, content):
+            raise _bad_request("INVALID_ASSET_CONTENT", "文件内容与 MP4/JPG/PNG 类型不匹配。")
+        if not name.strip() or not version.strip():
+            raise _bad_request("INVALID_ASSET_METADATA", "素材名称和版本不能为空。")
         asset = admin_store.add_asset(
             filename=file.filename or f"asset{suffix}", content=content, name=name.strip(),
             version=version.strip(), asset_type=asset_type, content_type=expected[1],
@@ -227,12 +231,14 @@ def create_admin_router(
 
     @router.post("/api/v1/admin/display", dependencies=[admin_guard])
     def create_display(body: DisplayProfilePayload, request: Request) -> dict[str, Any]:
+        _validate_display_assets(admin_store, body)
         return {"request_id": _request_id(request), "profile": admin_store.save_display_profile(body.model_dump())}
 
     @router.put("/api/v1/admin/display/{profile_id}", dependencies=[admin_guard])
     def update_display(profile_id: str, body: DisplayProfilePayload, request: Request) -> dict[str, Any]:
         if not admin_store.get_display_profile(profile_id):
             raise _not_found("DISPLAY_PROFILE_NOT_FOUND", "显示配置不存在。")
+        _validate_display_assets(admin_store, body)
         return {"request_id": _request_id(request), "profile": admin_store.save_display_profile(body.model_dump(), profile_id=profile_id)}
 
     @router.post("/api/v1/admin/display/{profile_id}/set-default", dependencies=[admin_guard])
@@ -311,3 +317,27 @@ def _asset_response(store: AdminContentStore, avatar_id: str) -> FileResponse:
     if not path.is_file():
         raise _not_found("ASSET_FILE_MISSING", "素材文件不存在。")
     return FileResponse(path, media_type=str(asset["content_type"]), filename=path.name)
+
+
+def _valid_asset_signature(suffix: str, content: bytes) -> bool:
+    if suffix == ".mp4":
+        return len(content) >= 12 and b"ftyp" in content[:32]
+    if suffix == ".png":
+        return content.startswith(b"\x89PNG\r\n\x1a\n")
+    if suffix in {".jpg", ".jpeg"}:
+        return content.startswith(b"\xff\xd8\xff")
+    return False
+
+
+def _validate_display_assets(store: AdminContentStore, body: DisplayProfilePayload) -> None:
+    for asset_id, expected_type, field_name in (
+        (body.avatar_id, "video", "待机视频"),
+        (body.background_id, "image", "背景图片"),
+    ):
+        if not asset_id:
+            continue
+        asset = store.get_asset(asset_id)
+        if not asset or asset["asset_type"] != expected_type:
+            raise _bad_request("DISPLAY_ASSET_INVALID", f"{field_name}不存在或类型不正确。")
+        if asset["status"] != "published":
+            raise _bad_request("DISPLAY_ASSET_NOT_PUBLISHED", f"{field_name}必须先发布才能绑定。")

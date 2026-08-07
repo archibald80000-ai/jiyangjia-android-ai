@@ -60,6 +60,8 @@ Public client API:
 - `GET /api/v1/assets/{avatar_id}` (published assets only)
 - `GET /api/v1/display/profile?width=1920&height=1080&orientation=landscape`
 
+Asset uploads validate MP4/JPG/PNG file signatures. Display Profile `avatar_id` and `background_id` must reference published video and image assets respectively.
+
 Knowledge is not customer-visible after upload or approval alone. Only `publish` changes the parsed documents from `draft` to `approved` and invokes the configured Embedding Provider.
 
 ## Health

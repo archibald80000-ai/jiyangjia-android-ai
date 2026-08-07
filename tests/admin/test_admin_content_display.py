@@ -9,6 +9,7 @@ from fastapi.testclient import TestClient
 
 from gateway.app.admin_routes import create_admin_router
 from gateway.app.admin_store import AdminContentStore
+from gateway.app.admin_ui import admin_page
 from gateway.app.config import Settings
 from gateway.app.knowledge import SQLiteKnowledgeStore
 from gateway.app.providers import MockEmbeddingProvider
@@ -69,6 +70,28 @@ def test_four_admin_pages_and_system_status_load(tmp_path: Path) -> None:
     assert payload["gateway"]["status"] == "healthy"
     assert payload["content"]["display_profiles"] == 4
     assert payload["admin_auth"]["configured"] is False
+
+
+def test_admin_ui_action_dispatch_contract_and_complete_display_fields() -> None:
+    knowledge_html = admin_page("knowledge")
+    display_html = admin_page("display")
+    assert "const [verb,id]=command.split(':'); const [kind,op]=verb.split('-');" in knowledge_html
+    for command in ("knowledge-preview:", "knowledge-approve:", "knowledge-publish:", "knowledge-reject:"):
+        assert command in knowledge_html
+    for field in (
+        "character_anchor_x",
+        "character_anchor_y",
+        "character_scale",
+        "safe_left",
+        "safe_right",
+        "safe_bottom",
+        "subtitle_font_px",
+        "button_x",
+        "button_y",
+        "avatar_id",
+        "background_id",
+    ):
+        assert f'name="{field}"' in display_html
 
 
 def test_knowledge_requires_publish_before_customer_search(tmp_path: Path) -> None:
@@ -158,27 +181,27 @@ def test_asset_publish_manifest_rollback_delete_and_persistence(tmp_path: Path) 
     first = client.post(
         "/api/v1/admin/avatar",
         data={"name": "门店待机 A", "version": "v1", "asset_type": "video"},
-        files={"file": ("idle-v1.mp4", b"fake-mp4-v1", "video/mp4")},
+        files={"file": ("idle-v1.mp4", _mp4_bytes(b"v1"), "video/mp4")},
     ).json()["asset"]
     second = client.post(
         "/api/v1/admin/avatar",
         data={"name": "门店待机 B", "version": "v2", "asset_type": "video"},
-        files={"file": ("idle-v2.mp4", b"fake-mp4-v2", "video/mp4")},
+        files={"file": ("idle-v2.mp4", _mp4_bytes(b"v2"), "video/mp4")},
     ).json()["asset"]
     image = client.post(
         "/api/v1/admin/avatar",
         data={"name": "门店背景", "version": "v1", "asset_type": "image"},
-        files={"file": ("background.png", b"fake-png", "image/png")},
+        files={"file": ("background.png", _png_bytes(), "image/png")},
     ).json()["asset"]
 
     assert client.get(f"/api/v1/assets/{first['avatar_id']}").status_code == 404
-    assert client.get(f"/api/v1/admin/avatar/{first['avatar_id']}/file").content == b"fake-mp4-v1"
+    assert client.get(f"/api/v1/admin/avatar/{first['avatar_id']}/file").content == _mp4_bytes(b"v1")
 
     assert client.post(f"/api/v1/admin/avatar/{first['avatar_id']}/publish").status_code == 200
     assert client.post(f"/api/v1/admin/avatar/{second['avatar_id']}/publish").json()["manifest"]["video"]["version"] == "v2"
     assert client.post(f"/api/v1/admin/avatar/{first['avatar_id']}/rollback").json()["manifest"]["video"]["version"] == "v1"
     assert client.post(f"/api/v1/admin/avatar/{image['avatar_id']}/publish").status_code == 200
-    assert client.get(f"/api/v1/assets/{first['avatar_id']}").content == b"fake-mp4-v1"
+    assert client.get(f"/api/v1/assets/{first['avatar_id']}").content == _mp4_bytes(b"v1")
     assert client.delete(f"/api/v1/admin/avatar/{second['avatar_id']}/delete").status_code == 200
     manifest = client.get("/api/v1/assets/manifest").json()
     assert manifest["video"]["sha256"] == first["sha256"]
@@ -219,6 +242,31 @@ def test_display_presets_custom_match_and_persistence(tmp_path: Path) -> None:
 
     reopened = AdminContentStore(str(tmp_path / "admin" / "admin.db"), upload_dir=str(tmp_path / "knowledge" / "uploads"), asset_dir=str(tmp_path / "assets"))
     assert reopened.get_display_profile(profile_id)["is_default"] is True
+    assert reopened.default_display_profile()["profile_id"] == profile_id
+
+
+def test_asset_content_signature_and_display_binding_are_enforced(tmp_path: Path) -> None:
+    client, _admin, _knowledge = _client(tmp_path)
+    invalid = client.post(
+        "/api/v1/admin/avatar",
+        data={"name": "Invalid", "version": "v1", "asset_type": "video"},
+        files={"file": ("invalid.mp4", b"not-a-video", "video/mp4")},
+    )
+    assert invalid.status_code == 422
+    assert invalid.json()["detail"]["code"] == "INVALID_ASSET_CONTENT"
+
+    draft = client.post(
+        "/api/v1/admin/avatar",
+        data={"name": "Draft", "version": "v1", "asset_type": "video"},
+        files={"file": ("draft.mp4", _mp4_bytes(b"draft"), "video/mp4")},
+    ).json()["asset"]
+    payload = _display_payload("Bound display") | {"avatar_id": draft["avatar_id"]}
+    blocked = client.post("/api/v1/admin/display", json=payload)
+    assert blocked.status_code == 422
+    assert blocked.json()["detail"]["code"] == "DISPLAY_ASSET_NOT_PUBLISHED"
+
+    assert client.post(f"/api/v1/admin/avatar/{draft['avatar_id']}/publish").status_code == 200
+    assert client.post("/api/v1/admin/display", json=payload).status_code == 200
 
 
 def test_production_admin_api_requires_configured_token(tmp_path: Path) -> None:
@@ -257,3 +305,28 @@ def _simple_pdf(text: str) -> bytes:
         output.extend(f"{offset:010d} 00000 n \n".encode("ascii"))
     output.extend(f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode("ascii"))
     return bytes(output)
+
+
+def _mp4_bytes(marker: bytes) -> bytes:
+    return b"\x00\x00\x00\x18ftypisom\x00\x00\x02\x00isomiso2" + marker
+
+
+def _png_bytes() -> bytes:
+    return b"\x89PNG\r\n\x1a\n" + b"test-png-content"
+
+
+def _display_payload(name: str) -> dict[str, object]:
+    return {
+        "profile_name": name,
+        "width_px": 1920,
+        "height_px": 1080,
+        "orientation": "landscape",
+        "scale_mode": "fit",
+        "character_anchor_x": 0.5,
+        "character_anchor_y": 0.5,
+        "character_scale": 1,
+        "subtitle_safe_area": {"left": 0.08, "right": 0.08, "bottom": 0.08},
+        "subtitle_font_px": 52,
+        "button_positions": {"consult": {"x": 0.5, "y": 0.88}},
+        "status": "active",
+    }

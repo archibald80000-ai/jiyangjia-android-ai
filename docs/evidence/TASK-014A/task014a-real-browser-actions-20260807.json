@@ -1,0 +1,51 @@
+{
+  "task": "TASK-014A",
+  "checked_at": "2026-08-07T06:12:07.0627750Z",
+  "mode": "real_in_app_browser_local_mock_gateway",
+  "root_cause": "UI emitted scope-action:id while dispatcher incorrectly expected scope:action:id; clicks only reloaded lists",
+  "knowledge": {
+    "upload": "PASS",
+    "preview": "PASS",
+    "approve": "PASS",
+    "publish": "PASS",
+    "reject": "PASS",
+    "search": "PASS",
+    "dialogue": "PASS",
+    "published_fixture": "browser-button-test.md",
+    "rejected_fixture": "browser-reject-test.txt",
+    "preview_request_id": "fb5eb319-4f75-4b5c-91c6-ebb22ac369d5",
+    "search_request_id": "a53142df-2491-4acb-a321-9e9e33277ca8",
+    "dialogue_request_id": "e929ab96-1188-4a17-a20e-3e4fe123cecb"
+  },
+  "assets": {
+    "upload": "PASS",
+    "video_preview": "PASS",
+    "publish": "PASS",
+    "rollback": "PASS",
+    "delete_unpublished": "PASS",
+    "published_video": "http-v1",
+    "published_background": "http-v1"
+  },
+  "display": {
+    "create": "PASS",
+    "edit": "PASS",
+    "set_default": "PASS",
+    "default_profile": "Browser 1600x900",
+    "width": 1600,
+    "height": 900,
+    "scale_mode": "crop",
+    "character_anchor_x": 0.62,
+    "character_anchor_y": 0.48,
+    "character_scale": 1.2,
+    "subtitle_font_px": 46,
+    "avatar_id": "asset_27850b0c237c4ef2",
+    "background_id": "asset_95f29a1ca22c4ad3",
+    "client_default_profile": "Browser 1600x900"
+  },
+  "system": {
+    "refresh": "PASS",
+    "default_profile_display": "PASS"
+  },
+  "browser_console_errors": 0,
+  "production_deployment": "NOT_RUN"
+}

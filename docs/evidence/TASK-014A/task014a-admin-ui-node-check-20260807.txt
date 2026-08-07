@@ -1,1 +1,1 @@
-node --check generated-admin-ui.js: PASS (exit 0)
+node --check generated-admin-ui-v3.js: PASS (exit 0)

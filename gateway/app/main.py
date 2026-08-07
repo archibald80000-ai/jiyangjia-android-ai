@@ -156,7 +156,7 @@ def readiness() -> dict[str, Any]:
 
 @app.get("/api/v1/client/config")
 def client_config() -> dict[str, Any]:
-    default_profile = admin_store.match_display_profile(1920, 1080, "landscape")
+    default_profile = admin_store.default_display_profile()
     return {
         "display_mode": settings.display_mode,
         "max_record_seconds": settings.max_record_seconds,

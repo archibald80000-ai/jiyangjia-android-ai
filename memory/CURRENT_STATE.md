@@ -126,10 +126,12 @@ Android recording
 - TASK-014 evidence reconciliation: imported and re-verified on 2026-08-07 with real provider/env readiness.
 - TASK-014 final acceptance: `docs/evidence/TASK-014/task014-final-acceptance-20260807.json` -> text/WAV/MP3 and all summary gates passed.
 - TASK-014 operational evidence: `task014-gateway-build-final-20260807.txt`, `task014-provider-env-final-20260807.json`, `task014-knowledge-cleanup-final-20260807.json`.
-- TASK-014A full regression: `python -m pytest tests -q` -> 53 passed; failed embedding publication is returned to draft and remains customer-invisible.
+- TASK-014A full regression after browser repair: `python -m pytest tests -q` -> 55 passed; failed embedding publication returns to draft, uploaded assets require real file signatures, and Display Profiles only bind published assets.
 - TASK-014A management JavaScript: generated page script passed `node --check`.
 - TASK-014A local HTTP: four admin pages, system status, manifest and 1920x1080 profile matching returned HTTP 200 with request IDs.
 - TASK-014A valid-file HTTP: generated H.264 MP4 was uploaded, downloaded through authenticated preview and verified by ffprobe at 640x360; PNG and Markdown publish flows returned manifest/source/request IDs.
+- TASK-014A browser audit found the first UI acceptance gap: action commands used two-part strings while the dispatcher expected three parts, so preview/approve/publish buttons reloaded data without issuing POST requests. Status returned to IN_PROGRESS pending browser-level repair and re-verification.
+- TASK-014A browser repair completed: command dispatch now uses `scope-action:id`; knowledge, asset, display and system buttons were clicked in the real in-app browser and backend state changes were observed with no application console errors. Evidence: `task014a-real-browser-actions-20260807.json`.
 - TASK-014A workflow tests cover PDF/DOCX/MD/TXT parsing, draft exclusion, explicit publish, sources, MP4/JPG/PNG metadata, protected draft preview, publish/rollback, SHA-256, four presets, custom profile matching and SQLite persistence after store recreation.
 
 ## Not completed

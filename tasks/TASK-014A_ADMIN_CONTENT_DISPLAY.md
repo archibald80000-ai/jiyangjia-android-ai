@@ -148,7 +148,20 @@ Android 根据真实屏幕尺寸匹配并缓存 Profile，不因屏幕尺寸重�
 - 上传知识保持 draft，只有 publish 执行 embedding 并转 approved；
 - MP4/JPG/PNG 素材具备 SHA-256、发布、回滚、受保护预览和公开 manifest；
 - 四个预设与自定义 Display Profile 可持久化、匹配和设为默认；
-- 全量 pytest `53 passed`（含 embedding 失败回退 draft），管理 JavaScript 语法检查通过，本地 HTTP 门禁全部 200；
+- 全量 pytest `55 passed`（含 embedding 失败回退 draft、素材签名/绑定校验和 UI 命令契约），管理 JavaScript 语法检查通过；
 - 有效 H.264 MP4、PNG 和 Markdown 经本地 HTTP 上传/预览/发布，manifest、source 与 request_id 均通过；
 - 证据：`docs/evidence/TASK-014A/`；
 - 未部署腾讯云，未导入正式业务资料/素材，未执行 Android 真机验收。
+
+## 交互验收回退（2026-08-07）
+
+- 真实浏览器检查发现操作命令分段错误，预览/通过/发布等按钮只刷新列表，未发出对应 POST；
+- TASK-014A 已退回 `IN_PROGRESS`，必须完成浏览器逐按钮验收后才能重新标记 DONE。
+
+## 交互修复完成（2026-08-07）
+
+- 操作命令解析已统一为 `scope-action:id`，不再静默刷新；
+- 真实浏览器已逐项通过知识上传/预览/通过/发布/驳回/检索/问答；
+- 素材上传/视频预览/发布/回滚/删除未发布版本已通过；
+- Display Profile 新增/编辑/素材绑定/设默认和系统状态刷新已通过；
+- 浏览器无应用控制台错误，证据见 `docs/evidence/TASK-014A/task014a-real-browser-actions-20260807.json`。
