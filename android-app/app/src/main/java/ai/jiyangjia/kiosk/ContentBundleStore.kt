@@ -42,7 +42,7 @@ class ContentBundleStore(context: Context) {
     fun active(): CachedContentBundle? = preferences.getString(KEY_ACTIVE, null)?.let(::read)
 
     fun rollback(failedVersion: String, reason: String): CachedContentBundle? {
-        val previous = preferences.getString(KEY_PREVIOUS, null) ?: return active()
+        val previous = preferences.getString(KEY_PREVIOUS, null) ?: return null
         val current = preferences.getString(KEY_ACTIVE, null)
         File(root, "rollback-${System.currentTimeMillis()}.txt").writeText(
             "failed_version=${safeVersion(failedVersion)}\nreason=${reason.take(200)}\n",

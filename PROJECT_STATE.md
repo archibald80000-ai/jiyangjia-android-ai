@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014C implemented and locally verified; production HTTPS/device acceptance pending
-- **Current authorized task:** TASK-014D Android Display Profile renderer
+- **Overall status:** TASK-014D renderer implemented and locally verified; physical-screen visual acceptance pending
+- **Current authorized task:** TASK-014E streaming ASR, VAD and playback interruption
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -243,10 +243,12 @@ Recent task results:
 - TASK-014 final acceptance passed once for text, Android-format 16 kHz mono PCM WAV, MP3 compatibility, ASR, approved-only RAG, LLM, TTS, sources, request IDs, audio IDs and downloadable `audio/mpeg`.
 - TASK-014 knowledge cleanup downgraded eight conflicting deployment test records to `draft`. Customer-facing `approved` knowledge now contains only the 10 controlled TASK-012 FAQ entries. Rollback backup: `/opt/jiyangjia-ai/backups/task014-knowledge-cleanup-20260807-125648`.
 - TASK-014A is DONE locally after correcting a browser action-dispatch defect. Knowledge upload/preview/approve/publish/reject/search/dialogue, asset upload/preview/publish/rollback/delete, Display Profile create/edit/bind/default and system refresh were clicked in a real browser and changed backend state. Full pytest passed 55 tests; no application console errors were observed. TASK-014A is not deployed to Tencent Cloud and has no formal business media or Android device evidence.
+- TASK-014C is PARTIAL. Gateway bootstrap/config/manifest/profile responses now use versioned strong ETags, and Android performs validated staging, SHA-256 verification, active/previous pointer switching, offline startup, foreground polling and bounded background recovery. Local Gateway and Android tests pass; trusted production HTTPS, approved media and device acceptance are unavailable.
+- TASK-014D is PARTIAL. Media3 now applies background/character/subtitle/control layers and Display Profile geometry, switches video on first frame, and invokes TASK-014C rollback on decoder failure. Four viewport geometry tests and Android test/lint/debug assembly pass; screenshot baselines and a physical display remain unavailable.
 
 Next action:
 
-- Next eligible task is `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`, but it must not start without the physical Android 12 display and approved media/profile inputs. Production rollout of TASK-014A remains a deployment follow-up, not a claimed result.
+- Continue with `TASK-014E_STREAMING_ASR_VAD_INTERRUPT.md`. Real provider and acoustic acceptance remain external gates; production rollout of TASK-014A is still not authorized.
 
 ## Status vocabulary
 

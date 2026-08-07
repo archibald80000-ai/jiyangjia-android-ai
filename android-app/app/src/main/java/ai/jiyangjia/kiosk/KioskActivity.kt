@@ -19,7 +19,9 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.media3.common.util.UnstableApi
 
+@UnstableApi
 class KioskActivity : Activity() {
     private lateinit var idleContainer: FrameLayout
     private lateinit var statusText: TextView
@@ -43,7 +45,13 @@ class KioskActivity : Activity() {
         enterImmersiveMode()
         config = loadConfig()
         buildLayout()
-        idleVideoController = IdleVideoController(this, idleContainer)
+        idleVideoController = IdleVideoController(
+            context = this,
+            container = idleContainer,
+            subtitle = subtitleText,
+            consultButton = startButton,
+            onPlaybackFailure = ::handleDisplayPlaybackFailure
+        )
         contentSyncManager = ContentSyncManager(
             context = this,
             baseUrl = { config.gatewayBaseUrl },
@@ -110,9 +118,19 @@ class KioskActivity : Activity() {
         val videoPath = cached.videoFile?.absolutePath.orEmpty()
         if (videoPath.isNotBlank() && config.idleVideoPath != videoPath) {
             config = config.copy(idleVideoPath = videoPath)
-            if (::idleVideoController.isInitialized && state == ConsultationState.IDLE_VIDEO) {
-                idleVideoController.show(config)
-            }
+        }
+        if (::idleVideoController.isInitialized && state == ConsultationState.IDLE_VIDEO) {
+            idleVideoController.show(cached)
+        }
+    }
+
+    private fun handleDisplayPlaybackFailure(bundleVersion: String, reason: String) {
+        val restored = contentSyncManager.rollback(bundleVersion, reason)
+        diagnosticsText.text = "Display rollback: ${bundleVersion.take(12)} / ${reason.take(80)}"
+        if (restored != null) {
+            applyCachedBundle(restored)
+        } else {
+            idleVideoController.show(config)
         }
     }
 
@@ -143,7 +161,9 @@ class KioskActivity : Activity() {
             gravity = Gravity.CENTER_HORIZONTAL
             setPadding(32, 28, 32, 32)
         }
-        root.addView(overlay, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        root.addView(overlay, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.TOP
+        })
 
         statusText = TextView(this).apply {
             setTextColor(Color.WHITE)
@@ -165,9 +185,6 @@ class KioskActivity : Activity() {
         }
         overlay.addView(diagnosticsText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        val spacer = View(this)
-        overlay.addView(spacer, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
-
         subtitleText = TextView(this).apply {
             setTextColor(Color.WHITE)
             textSize = 32f
@@ -175,18 +192,22 @@ class KioskActivity : Activity() {
             setShadowLayer(4f, 0f, 2f, Color.BLACK)
             text = getString(R.string.fallback_subtitle)
         }
-        overlay.addView(subtitleText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        root.addView(subtitleText, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.BOTTOM
+            leftMargin = 48
+            rightMargin = 48
+            bottomMargin = 180
+        })
 
         startButton = Button(this).apply {
             text = getString(R.string.record_start)
             textSize = 20f
             setOnClickListener { handleAudioButton() }
         }
-        val buttonParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-            topMargin = 28
-            bottomMargin = 10
-        }
-        overlay.addView(startButton, buttonParams)
+        root.addView(startButton, FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+            bottomMargin = 48
+        })
 
         diagnosticsButton = Button(this).apply {
             text = getString(R.string.refresh_audio)
@@ -202,7 +223,7 @@ class KioskActivity : Activity() {
         state = next
         when (next) {
             ConsultationState.IDLE_VIDEO -> {
-                val hasVideo = idleVideoController.show(config)
+                val hasVideo = contentSyncManager.cachedBundle()?.let(idleVideoController::show) ?: idleVideoController.show(config)
                 statusText.text = if (hasVideo) "IDLE_VIDEO local_video" else "IDLE_VIDEO fallback"
                 subtitleText.text = getString(R.string.fallback_subtitle)
                 startButton.text = getString(R.string.consult_start)

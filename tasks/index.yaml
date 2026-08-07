@@ -114,7 +114,7 @@ tasks:
     file: TASK-014D_ANDROID_DISPLAY_PROFILE_RENDERER.md
     title: "Render published Display Profiles and media on Android"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-014C]
   - id: TASK-014E
     file: TASK-014E_STREAMING_ASR_VAD_INTERRUPT.md
