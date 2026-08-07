@@ -119,7 +119,7 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 - The owner explicitly authorized switching the reviewed candidate to the formal Gateway after the brand-prefix retrieval fix.
 - Brand-prefixed membership/privacy and generic-price expressions now retrieve `faq_boundary_006` and `faq_boundary_002`; exact draft pricing, unknown products and internal-secret requests remain unverified and fail closed.
-- Formal active release: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T094900Z` on Tencent Cloud `120.53.86.89`.
+- Formal activation first landed on TASK-015B release `...T094900Z`; a subsequent concurrent TASK-015B rollout preserved the verified code/data and became the final observed active release `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z` on Tencent Cloud `120.53.86.89`.
 - Formal knowledge state: 65 documents, 41 approved, 24 draft, 65 real 2048-dimensional vectors; public `include_draft=true` is rejected with HTTP 422.
 - Gateway health/readiness and real Doubao LLM/TTS checks passed through system-validated HTTPS. Android 12 trust remains a device acceptance concern outside TASK-017.
 - The releases share `/opt/jiyangjia-ai/var/knowledge`; rollback therefore uses the independent backup directory, not a release-local knowledge symlink.

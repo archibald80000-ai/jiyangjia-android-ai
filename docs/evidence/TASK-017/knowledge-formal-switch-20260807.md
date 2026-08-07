@@ -21,7 +21,7 @@ The owner explicitly authorized the formal switch after the brand-prefix retriev
 - Host: `120.53.86.89`, SSH user `ubuntu` with public-key authentication.
 - Active container: `jiyangjia-gateway`.
 - The initial active release was TASK-015A, then a concurrent TASK-015B realtime deployment replaced the container during the switch window.
-- Final active release: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T094900Z`.
+- TASK-017 routing first landed on `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T094900Z`. A later concurrent TASK-015B rollout preserved the same verified routing hashes and shared knowledge data; the final observed active release is `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z`.
 - The TASK-015B `main.py`, Kiosk, assets and admin database were preserved. Only `answer_policy.py`, `knowledge.py`, `llm.py`, `providers.py` and `schemas.py` were installed.
 - Previous formal knowledge: 11 approved, 9 draft, 1 rejected; SQLite integrity `ok`.
 - Previous SQLite SHA-256: `8A59DE54DDB604871DB973655436405D2F147C53FBD3B8086146D5FBB95B3B73`.
@@ -71,4 +71,4 @@ The server sends a currently valid Let's Encrypt `YE2/Root YE` chain. The local 
 2. TASK-015B concurrently replaced the container after the first database switch, creating a temporary mixed state of new data with old routing code. The actual mount was rediscovered and only the five routing files were installed into TASK-015B.
 3. Release knowledge paths were discovered to be shared symlinks. An attempted inactive-release restoration affected the shared active data. This was detected while the Gateway was stopped; the candidate was restored from the independent backup with temporary files plus atomic `mv`, hashes and inodes were rechecked, and the service was recreated healthy.
 
-Final external verification after recovery confirmed 41 approved, 24 draft, 65 vectors, membership grounding, general answering and HTTP 422 draft protection.
+Final external verification after recovery confirmed 41 approved, 24 draft, 65 vectors, membership grounding, general answering and HTTP 422 draft protection. Two consecutive post-rollout snapshots of the final `...T095914Z` release showed the same routing hashes, data counts and healthy container state.
