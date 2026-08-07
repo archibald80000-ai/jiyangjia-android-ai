@@ -58,7 +58,8 @@ Public client API:
 
 - `GET /api/v1/assets/manifest`
 - `GET /api/v1/assets/{avatar_id}` (published assets only)
-- `GET /api/v1/display/profile?width=1920&height=1080&orientation=landscape`
+- `GET /api/v1/display/profile` (defaults to `1080x1920`, `portrait`)
+- `GET /api/v1/display/profile?width=1920&height=1080&orientation=landscape` (explicit landscape matching remains supported)
 
 Asset uploads validate MP4/JPG/PNG file signatures. Display Profile `avatar_id` and `background_id` must reference published video and image assets respectively.
 

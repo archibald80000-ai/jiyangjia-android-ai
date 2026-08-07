@@ -74,11 +74,75 @@ async def _assert_search_excludes_draft_and_rejected_by_default() -> None:
     assert rejected_matches == []
 
 
-def test_prohibited_query_returns_policy_before_search() -> None:
+def test_jiyangjia_query_is_searched_instead_of_rejected_before_retrieval() -> None:
     store = SQLiteKnowledgeStore(":memory:")
     policy = store.classify_query("这个项目能治病吗")
-    assert policy["action"] == "safe_transfer"
-    assert policy["category"] == "medical"
+    assert policy == {"action": "search", "scope": "jiyangjia", "category": None, "message": None}
+
+
+def test_general_query_bypasses_business_knowledge_search() -> None:
+    asyncio.run(_assert_general_query_bypasses_business_knowledge_search())
+
+
+async def _assert_general_query_bypasses_business_knowledge_search() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    await store.index_documents(_documents(), SemanticEmbeddingProvider(), "req-index")
+
+    policy = store.classify_query("今天天气怎么样？")
+    matches = await store.search("今天天气怎么样？", SemanticEmbeddingProvider(), "req-weather")
+
+    assert policy["scope"] == "general"
+    assert matches == []
+
+
+def test_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match() -> None:
+    asyncio.run(_assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match())
+
+
+async def _assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    await store.index_documents(_documents(), SemanticEmbeddingProvider(), "req-index")
+
+    matches = await store.search("积养家有榴莲吗？", SemanticEmbeddingProvider(), "req-unknown")
+
+    assert matches == []
+
+
+@pytest.mark.parametrize(
+    ("query", "expected_id"),
+    [
+        ("积养家会员余额怎么查询？", "approved_member_boundary"),
+        ("帮我查一下积养家会员余额。", "approved_member_boundary"),
+        ("积养家今天价格是多少？", "approved_price_boundary"),
+    ],
+)
+def test_brand_prefix_does_not_dilute_approved_boundary_matches(query: str, expected_id: str) -> None:
+    asyncio.run(_assert_brand_prefix_does_not_dilute_approved_boundary_matches(query, expected_id))
+
+
+async def _assert_brand_prefix_does_not_dilute_approved_boundary_matches(query: str, expected_id: str) -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    store.upsert_many(
+        [
+            KnowledgeDocument(
+                "approved_member_boundary",
+                "会员余额查询",
+                "会员余额和账户信息属于个人隐私，我不能查询。请到前台或登录小程序查看。",
+                "approved",
+            ),
+            KnowledgeDocument(
+                "approved_price_boundary",
+                "问价格转人工",
+                "价格是多少，多少钱，怎么收费，请咨询现场工作人员或查看价目表。",
+                "approved",
+            ),
+        ]
+    )
+
+    matches = await store.search(query, top_k=3)
+
+    assert matches
+    assert matches[0]["id"] == expected_id
 
 
 def test_parse_selected_json_and_markdown(tmp_path: Path) -> None:

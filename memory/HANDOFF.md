@@ -6,8 +6,9 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current task status: `TASK-014A DONE` locally after real-browser interaction repair
-- Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` (not started; requires device and approved inputs)
+- Current stacked branch: `task/TASK-015-android12-device-acceptance`; TASK-014C through TASK-014G have separate predecessor commits and remain PARTIAL at external gates.
+- Current task status: `TASK-015A PARTIAL`; `TASK-015 BLOCKED / NO-GO`.
+- Next action: manually grant browser microphone permission at the local demo, then resume TASK-015 only when the device, trusted HTTPS and formal signed N/N+1/N+2 candidates exist.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -20,10 +21,25 @@ Updated: 2026-08-07
 - TASK-012 lightweight RAG: DONE. SQLite, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing and source citations are implemented.
 - TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/sources, fetches TTS audio and plays it before returning to idle.
 - TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, editable Display Profiles and persistence are covered by 55 tests and real-browser button verification.
+- TASK-014C: PARTIAL; secure versioned content sync and rollback pass local tests.
+- TASK-014D: PARTIAL; Media3 Display Profile renderer passes local geometry/build/lint tests.
+- TASK-014E: PARTIAL; WebRTC VAD and real Doubao bidirectional partial/final streaming pass, while physical AEC/barge-in remains pending.
+- TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
+- TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
+- TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
+
+## TASK-015A local demo
+
+- URL: `http://127.0.0.1:18084/demo/kiosk` while the isolated development process remains running.
+- Runtime state: ignored `var/local-avatar-demo/`; provider values are loaded from the external private env and are never printed or committed.
+- Media: 1080x1920 H.264 silent MP4 plus same-source JPG, published and bound to `display-1080x1920`.
+- Real browser result: video decoded at 1080x1920, remained playing during dialogue, and displayed request ID, approved source, subtitle and TTS playback with no subtitle/button or source/button overlap.
+- Recording behavior: the button remains `结束并发送`; after confirmed speech, three continuous silent seconds automatically stop and upload the same recording. Without detected speech it waits for manual stop or the 20-second maximum-duration fallback.
+- Remaining local check: click `开始咨询`, grant microphone permission and speak one question.
 
 ## TASK-014A local state
 
-- Branch: `task/TASK-014A-admin-content-display`.
+- Branch: `main`（`task/TASK-014A-admin-content-display` 已完成并入 `main`）。
 - Local admin: `http://127.0.0.1:18081/admin/system` while the development process remains running.
 - Runtime state is under ignored `var/task014a-dev/`.
 - Production admin API requires `ADMIN_TOKEN`; no value is stored in Git or page source.
@@ -54,13 +70,12 @@ Updated: 2026-08-07
 ## Human inputs still required
 
 - Reviewed formal business knowledge beyond the controlled demo FAQ set.
-- First approved idle-character MP4/background and rights confirmation.
 - Target Android screen resolution, density, orientation, safe area and audio hardware details.
 - Android 12 physical device for TASK-015 USB microphone, speaker, network, reboot and long-run acceptance.
 
 ## Next action
 
-Do not begin TASK-015 without the Android 12 device. When inputs are available, execute only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy TASK-014A separately only with explicit production authorization.
+Do not claim or repeat TASK-015 acceptance without the recorded external inputs. First finish the manual local microphone check; when the remaining device/release inputs are available, resume only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy production separately only with explicit authorization.
 
 ## Safety boundaries
 

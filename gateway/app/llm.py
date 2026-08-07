@@ -6,14 +6,27 @@ from typing import Any
 
 import httpx
 
+from .answer_policy import classify_answer_scope, latest_user_text
 from .config import Settings
 from .tts import ProviderCallError, ProviderConfigurationError
 
 
 GROUNDING_SYSTEM_PROMPT = (
     "你是积养家门店大屏 AI 客服。回答必须简短、准确、口语化。"
-    "只能依据已确认资料回答业务事实；不要编造价格、库存、活动、医疗疗效或诊断建议。"
-    "资料不足时明确建议转人工。"
+    "凡是积养家及其产品、服务、门店或顾客账户相关事实，只能依据已确认资料回答；"
+    "不得编造价格、库存、活动、医疗疗效、诊断、账户结果或内部信息。"
+    "非积养家的一般问题应根据常识和问题情境正常回答，不要无故拒绝。"
+)
+
+JIYANGJIA_NO_EVIDENCE_PROMPT = (
+    "用户正在询问积养家或相关产品、服务，但当前没有命中的 approved 已确认资料。"
+    "必须明确说明无法确认，并建议咨询现场工作人员；不得用通用知识补全或猜测业务事实。"
+)
+
+GENERAL_ANSWER_PROMPT = (
+    "这是非积养家的一般问题，当前不使用品牌知识库。请结合常识和问题情境直接、简短地回答，"
+    "不要无故拒绝。涉及医疗、法律或财务时只提供一般信息并提示必要的专业求助；"
+    "涉及个人账户、隐私或实时数据时不得声称已经查询到系统记录。"
 )
 
 
@@ -90,7 +103,7 @@ class OpenAICompatibleLLMProvider:
             "text": answer,
             "provider": self.name,
             "model": response.get("model") or self.config.model,
-            "source": "knowledge_grounded" if context else "human_handoff",
+            "source": _answer_source(messages, context),
             "subtitles": _split_subtitles(answer),
             "usage": response.get("usage") if isinstance(response.get("usage"), dict) else None,
         }
@@ -265,9 +278,19 @@ def _build_grounded_messages(messages: list[dict[str, str]], context: list[dict[
                 excerpts.append(f"- {title}: {excerpt}")
         grounded.append({"role": "system", "content": "已确认资料：\n" + "\n".join(excerpts)})
     else:
-        grounded.append({"role": "system", "content": "当前没有命中的已确认资料；除非是寒暄，否则请建议转人工确认。"})
+        scope = classify_answer_scope(latest_user_text(messages))
+        instruction = JIYANGJIA_NO_EVIDENCE_PROMPT if scope == "jiyangjia" else GENERAL_ANSWER_PROMPT
+        grounded.append({"role": "system", "content": instruction})
     grounded.extend(messages)
     return grounded
+
+
+def _answer_source(messages: list[dict[str, str]], context: list[dict[str, object]]) -> str:
+    if context:
+        return "knowledge_grounded"
+    if classify_answer_scope(latest_user_text(messages)) == "jiyangjia":
+        return "in_domain_unverified"
+    return "general_answer"
 
 
 def _extract_chat_text(response: dict[str, Any]) -> str:

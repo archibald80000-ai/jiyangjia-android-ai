@@ -9,11 +9,14 @@ from pathlib import Path
 from typing import Any
 
 
+DEFAULT_DISPLAY_PROFILE_ID = "display-1080x1920"
+DISPLAY_DEFAULT_MIGRATION_ID = "20260807_default_display_9_16"
+
 DISPLAY_PRESETS = (
+    (DEFAULT_DISPLAY_PROFILE_ID, "竖屏 1080x1920", 1080, 1920, "portrait"),
     ("display-1920x1080", "横屏 1920x1080", 1920, 1080, "landscape"),
     ("display-3840x2160", "横屏 3840x2160", 3840, 2160, "landscape"),
     ("display-1280x720", "横屏 1280x720", 1280, 720, "landscape"),
-    ("display-1080x1920", "竖屏 1080x1920", 1080, 1920, "portrait"),
 )
 
 
@@ -30,6 +33,7 @@ class AdminContentStore:
         self.asset_dir.mkdir(parents=True, exist_ok=True)
         self._init_schema()
         self._seed_display_profiles()
+        self._migrate_default_display_profile()
 
     def _init_schema(self) -> None:
         self._conn.executescript(
@@ -56,6 +60,7 @@ class AdminContentStore:
                 file_path TEXT NOT NULL,
                 content_type TEXT NOT NULL,
                 sha256 TEXT NOT NULL,
+                size_bytes INTEGER NOT NULL DEFAULT 0,
                 version TEXT NOT NULL,
                 status TEXT NOT NULL CHECK(status IN ('draft','preview','approved','published','rejected')),
                 source TEXT NOT NULL DEFAULT 'manual_upload',
@@ -83,12 +88,34 @@ class AdminContentStore:
                 created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             );
+
+            CREATE TABLE IF NOT EXISTS admin_migrations (
+                migration_id TEXT PRIMARY KEY,
+                applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
             """
         )
+        columns = {row[1] for row in self._conn.execute("PRAGMA table_info(avatar_assets)").fetchall()}
+        if "size_bytes" not in columns:
+            self._conn.execute("ALTER TABLE avatar_assets ADD COLUMN size_bytes INTEGER NOT NULL DEFAULT 0")
+        self._conn.commit()
+        self._backfill_asset_sizes()
+
+    def _backfill_asset_sizes(self) -> None:
+        rows = self._conn.execute("SELECT avatar_id, file_path, size_bytes FROM avatar_assets").fetchall()
+        for row in rows:
+            if int(row["size_bytes"] or 0) > 0:
+                continue
+            path = Path(str(row["file_path"]))
+            if path.is_file():
+                self._conn.execute(
+                    "UPDATE avatar_assets SET size_bytes = ? WHERE avatar_id = ?",
+                    (path.stat().st_size, row["avatar_id"]),
+                )
         self._conn.commit()
 
     def _seed_display_profiles(self) -> None:
-        for index, (profile_id, name, width, height, orientation) in enumerate(DISPLAY_PRESETS):
+        for profile_id, name, width, height, orientation in DISPLAY_PRESETS:
             self._conn.execute(
                 """
                 INSERT OR IGNORE INTO display_profiles(
@@ -107,10 +134,23 @@ class AdminContentStore:
                     json.dumps({"left": 0.08, "right": 0.08, "bottom": 0.08}, separators=(",", ":")),
                     52 if width >= 1920 else 36,
                     json.dumps({"consult": {"x": 0.5, "y": 0.88}}, separators=(",", ":")),
-                    1 if index == 0 else 0,
+                    1 if profile_id == DEFAULT_DISPLAY_PROFILE_ID else 0,
                 ),
             )
         self._conn.commit()
+
+    def _migrate_default_display_profile(self) -> None:
+        with self._conn:
+            inserted = self._conn.execute(
+                "INSERT OR IGNORE INTO admin_migrations(migration_id) VALUES (?)",
+                (DISPLAY_DEFAULT_MIGRATION_ID,),
+            )
+            if inserted.rowcount == 0:
+                return
+            self._conn.execute(
+                "UPDATE display_profiles SET is_default = CASE WHEN profile_id = ? THEN 1 ELSE 0 END",
+                (DEFAULT_DISPLAY_PROFILE_ID,),
+            )
 
     def create_knowledge_run(self, filename: str, content: bytes, documents: list[dict[str, Any]], chunk_count: int) -> dict[str, Any]:
         run_id = f"ku_{uuid.uuid4().hex[:16]}"
@@ -184,17 +224,27 @@ class AdminContentStore:
             """
             INSERT INTO avatar_assets(
                 avatar_id, name, asset_type, uri, file_path, content_type,
-                sha256, version, status
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'draft')
+                sha256, size_bytes, version, status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft')
             """,
-            (avatar_id, name, asset_type, uri, str(target), content_type, hashlib.sha256(content).hexdigest().upper(), version),
+            (
+                avatar_id,
+                name,
+                asset_type,
+                uri,
+                str(target),
+                content_type,
+                hashlib.sha256(content).hexdigest().upper(),
+                len(content),
+                version,
+            ),
         )
         self._conn.commit()
         return self.get_asset(avatar_id) or {}
 
     def list_assets(self) -> list[dict[str, Any]]:
         rows = self._conn.execute(
-            """SELECT avatar_id, name, asset_type, uri, content_type, sha256,
+            """SELECT avatar_id, name, asset_type, uri, content_type, sha256, size_bytes,
                       version, status, source, created_at, updated_at
                FROM avatar_assets ORDER BY created_at DESC"""
         ).fetchall()
@@ -236,11 +286,15 @@ class AdminContentStore:
 
     def manifest(self) -> dict[str, Any]:
         rows = self._conn.execute(
-            """SELECT avatar_id, name, asset_type, uri, content_type, sha256,
+            """SELECT avatar_id, name, asset_type, uri, content_type, sha256, size_bytes,
                       version, updated_at
                FROM avatar_assets WHERE status = 'published' ORDER BY asset_type"""
         ).fetchall()
-        assets = {row["asset_type"]: dict(row) for row in rows}
+        assets = {}
+        for row in rows:
+            item = dict(row)
+            item["url"] = item.pop("uri")
+            assets[row["asset_type"]] = item
         return {"mode": "composite_video", "video": assets.get("video"), "background": assets.get("image")}
 
     def write_manifest(self) -> None:

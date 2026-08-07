@@ -14,9 +14,20 @@ secrets/
 recordings/
 logs/
 data/
+provider-responses/
+provider_response/
+provider-response/
+uploads/
 *.db
 *.sqlite
 *.sqlite3
+*.index
+*.faiss
+*.fvecs
+*.ivecs
+*.bin
+*.pdf
+*.docx
 *.wav
 *.pcm
 *.aac
@@ -77,3 +88,4 @@ temp/
 
 # User source materials are never mirrored here
 knowledge-source-private/
+*.vecs

@@ -1,11 +1,11 @@
 # Android app
 
-Phase 1 Android 12 landscape kiosk client.
+Phase 1 Android 12 portrait kiosk client, defaulting to a 9:16 display profile.
 
 TASK-005 scope:
 
 - native Kotlin app;
-- immersive landscape shell;
+- immersive 9:16 portrait shell with server-side profiles retained for other screen layouts;
 - local idle character video when a rights-clear file is configured;
 - offline animated fallback visual when no local video is available;
 - non-secret development config via long-pressing the status text;

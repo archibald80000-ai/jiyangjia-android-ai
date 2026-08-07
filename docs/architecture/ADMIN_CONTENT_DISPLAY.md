@@ -58,7 +58,7 @@ Runtime files remain outside Git:
 
 ## Display Profiles
 
-Four profiles are seeded: 1920x1080, 3840x2160, 1280x720 and 1080x1920. Custom profiles use normalized anchors (0 to 1), bounded character scale, subtitle safe-area JSON, button positions, and optional asset bindings.
+Four profiles are seeded: 1080x1920, 1920x1080, 3840x2160 and 1280x720. The 1080x1920 portrait profile is the product default; an idempotent one-time migration applies it to existing admin databases without overriding later administrator choices on every restart. Custom profiles use normalized anchors (0 to 1), bounded character scale, subtitle safe-area JSON, button positions, and optional asset bindings.
 
 Matching order:
 

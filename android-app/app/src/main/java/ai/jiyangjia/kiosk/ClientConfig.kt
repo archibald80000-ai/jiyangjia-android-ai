@@ -11,7 +11,7 @@ data class ClientConfig(
         "gateway=$gatewayBaseUrl device=$deviceId mode=$displayMode maxRecordSeconds=$maxRecordSeconds"
 
     companion object {
-        const val DEFAULT_GATEWAY = "http://127.0.0.1:8080"
+        val DEFAULT_GATEWAY: String = BuildConfig.GATEWAY_BOOTSTRAP_URL
         const val DEFAULT_DEVICE_ID = "android-kiosk-dev"
         const val DISPLAY_MODE_IDLE_VIDEO_VOICE = "idle_video_voice"
 
@@ -24,6 +24,11 @@ data class ClientConfig(
         ): ClientConfig {
             val normalizedGateway = gatewayBaseUrl?.trim()?.trimEnd('/').orEmpty()
                 .ifBlank { DEFAULT_GATEWAY }
+            require(
+                normalizedGateway.isBlank() ||
+                    BuildConfig.ALLOW_CLEARTEXT_GATEWAY ||
+                    normalizedGateway.startsWith("https://")
+            ) { "Release gateway URL must use HTTPS" }
             val normalizedDeviceId = deviceId?.trim().orEmpty()
                 .ifBlank { DEFAULT_DEVICE_ID }
             val normalizedMode = displayMode?.trim().orEmpty()

@@ -1,0 +1,2 @@
+# Replace through the controlled release process. Never put a keystore or password here.
+EXPECTED_RELEASE_CERTIFICATE_SHA256=

@@ -1,12 +1,28 @@
 from __future__ import annotations
 
-from typing import Protocol
+from typing import Awaitable, Callable, Protocol
+
+from .answer_policy import classify_answer_scope, latest_user_text
 
 
 class ASRProvider(Protocol):
     name: str
 
     async def transcribe(self, audio: bytes, content_type: str, request_id: str) -> dict[str, object]: ...
+
+
+class StreamingASRSession(Protocol):
+    async def push(self, pcm_frame: bytes) -> list[str]: ...
+
+    async def finish(self) -> dict[str, object]: ...
+
+    async def close(self) -> None: ...
+
+
+class StreamingASRProvider(Protocol):
+    name: str
+
+    async def open_stream(self, request_id: str) -> StreamingASRSession: ...
 
 
 class LLMProvider(Protocol):
@@ -32,7 +48,7 @@ class MockASRProvider:
 
     async def transcribe(self, audio: bytes, content_type: str, request_id: str) -> dict[str, object]:
         return {
-            "text": "模拟语音问题",
+            "text": "积养家模拟语音问题",
             "provider": self.name,
             "language": "zh-CN",
             "confidence": 1.0 if audio else 0.0,
@@ -48,9 +64,12 @@ class MockLLMProvider:
         if context:
             answer = f"根据已确认资料：{context[0].get('excerpt', '')}"
             source = "knowledge_grounded_mock"
+        elif classify_answer_scope(latest_user_text(messages)) == "jiyangjia":
+            answer = "这项积养家相关信息没有已确认资料，我暂时不能确认，请咨询现场工作人员。"
+            source = "in_domain_unverified"
         else:
-            answer = "这项信息我暂时不能确认，请咨询现场工作人员。"
-            source = "human_handoff"
+            answer = f"这是一个通用问题：{user_text}。请结合实际情况判断。"
+            source = "general_answer_mock"
         return {
             "text": answer[:240],
             "provider": self.name,

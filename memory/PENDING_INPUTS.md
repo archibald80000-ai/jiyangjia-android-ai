@@ -9,6 +9,8 @@ Updated: 2026-08-07
 - TASK-014 腾讯云 Provider 配置链已完成并通过最终验收。
 - 线上 Gateway 已包含 FFmpeg，Android WAV 和 MP3 上传均通过真实 ASR/RAG/LLM/TTS 链路。
 - Provider 凭据不再是当前阻塞。
+- `TASK-014A` 已入主线 `main`，本轮不再重复实现，仅记录与生产验收、真机资料和部署交接清单。
+- 用户已确认 `E:\work\ai-kefu\资料库\人像背景.MOV` 的本项目使用权；本地已生成并发布 1080x1920 MP4/JPG，绑定最终 9:16 测试 Profile。原始 MOV 未修改，派生媒体不进入 Git。
 
 ## P0 - Android 12 真机
 
@@ -20,6 +22,16 @@ TASK-015 尚需真实设备完成：
 - 真实分辨率、方向、DPI 和安全显示区；
 - 网络断开/恢复；
 - 重启恢复和长时间运行。
+
+TASK-015 还必须同时具备：
+
+- 可恢复出厂并配置 Fully Managed Device Owner 的确认窗口；
+- 已批准 MP4/背景及 Profile 的可信 HTTPS 生产发布；
+- 可信 HTTPS bootstrap 与 APK 地址；
+- 正式签名身份、双人保管/备份记录；
+- 同一正式证书签名且 versionCode 单调递增的 N、N+1，以及上一稳定源码构建的 N+2 回滚包。
+
+当前 `adb devices -l` 无设备，本地 SDK 也没有 emulator/system image；TASK-015 已签发 `NO-GO / BLOCKED`，不能用本地测试替代真机结论。
 
 ## P1 - TASK-014A 正式内容与生产部署
 
@@ -39,16 +51,15 @@ TASK-015 尚需真实设备完成：
 
 ### 待机人物素材
 
-- 第一版人物形象和待机 MP4；
-- JPG/PNG 背景；
-- 人物、背景、Logo 和声音的使用权确认；
-- 素材名称、版本、SHA-256 和发布日期。
+- 第一版人物形象待机 MP4、JPG 背景和权属确认已由用户提供并完成本地发布验证；
+- 仍需在生产服务器发布素材、manifest 和 Profile，并完成备份/回滚验证；
+- Logo 和正式声音如后续使用，仍需单独确认权属。
 
 Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
 
 ### Display Profile
 
-后台预设 1920x1080、3840x2160、1280x720、1080x1920，并允许自定义。仍需目标设备提供：
+后台预设 1920x1080、3840x2160、1280x720、1080x1920，并允许自定义。本地最终测试 Profile 已设为 1080x1920 portrait；仍需目标设备提供：
 
 - 实际像素宽高、方向和 DPI；
 - 字幕安全区、字号和按钮位置；
@@ -62,6 +73,7 @@ Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
 - 知识库、素材和 Display Profile 的备份恢复；
 - 监控、告警、请求限流和成本保护；
 - 正式 release APK 签名；
+- 正式签名证书 SHA-256 与双份离线备份恢复演练；
 - 门店连续问答和长稳测试。
 
 ## 明确延期
