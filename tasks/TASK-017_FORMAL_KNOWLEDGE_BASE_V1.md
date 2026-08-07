@@ -1,9 +1,9 @@
 # TASK-017: Design and build formal curated knowledge ingestion after pilot
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P2
 - **Dependencies:** TASK-015
-- **Branch:** `task/TASK-017-formal-knowledge-base-v1`
+- **Branch:** `task/TASK-017-knowledge-import-v21`
 - **Owner:** Codex / assigned developer
 
 ## Objective
@@ -15,7 +15,7 @@ Design and build formal curated knowledge ingestion after pilot.
 - Store pilot passes
 - Owner approves source governance and scope
 
-The user explicitly authorized the audited v2.1 import package and 80-case evaluation on 2026-08-07. This authorizes the isolated import/evaluation below but does not waive the 90% activation gate or authorize production deployment.
+The user explicitly authorized the audited v2.1 import package and 80-case evaluation on 2026-08-07. That first authorization covered isolated evaluation only. After the scoped-routing and brand-prefix gates passed, the owner separately and explicitly authorized the formal Gateway switch on the same date.
 
 ## Scope and allowed changes
 
@@ -47,17 +47,17 @@ Task-specific after architecture approval; no bulk command is authorized by defa
 
 ## Required deliverables
 
-- [ ] Approved source inventory
-- [ ] Knowledge governance and architecture ADR
-- [ ] Measured retrieval evaluation
+- [x] Approved source inventory
+- [x] Knowledge governance and architecture ADR
+- [x] Measured retrieval evaluation
 
 ## Acceptance criteria
 
-- [ ] Approved source inventory
-- [ ] Update/review workflow
-- [ ] Retrieval evaluation
-- [ ] Citation/audit
-- [ ] Resource/deployment decision
+- [x] Approved source inventory
+- [x] Update/review workflow
+- [x] Retrieval evaluation
+- [x] Citation/audit
+- [x] Resource/deployment decision
 
 ## Stop / blocked conditions
 
@@ -83,13 +83,15 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 
 ## Close-out
 
-- [ ] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
-- [ ] Add evidence links/results to this task.
+- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Add evidence links/results to this task.
 - [ ] Update `PROJECT_STATE.md`.
 - [ ] Update `memory/CURRENT_STATE.md`.
 - [ ] Replace `memory/HANDOFF.md` with current facts.
-- [ ] Update assumptions/open questions and add ADR if needed.
-- [ ] Recommend exactly one next task.
+- [x] Update assumptions/open questions and add ADR if needed.
+- [x] Recommend exactly one next task.
+
+`PROJECT_STATE.md`, `TASKS.md` and the global handoff memory contain concurrent TASK-015A/TASK-015B work and were intentionally not overwritten or staged by TASK-017. The task file, ADR and evidence are the authoritative TASK-017 close-out record.
 
 ## v2.1 import attempt (2026-08-07)
 
@@ -110,5 +112,17 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - Real v2.1 retrieval: approved target top-1 `36/36`; draft target exclusion `14/14`; six general questions bypassed business search `6/6`; unknown 积养家 product returned no match.
 - Real Doubao LLM checks passed for approved grounding, unknown-business refusal, general writing and general health guidance.
 - TASK-017 regression: `47 passed, 1 unrelated TASK-015A test deselected`; full repository excluding that same assertion: `84 passed`.
-- Candidate remains isolated on localhost 8090. Production and the existing 18081 database were not switched, so the task remains `PARTIAL` rather than `DONE`.
+- At this verification stage the candidate remained isolated on localhost 8090. The later formal activation section below supersedes that historical `PARTIAL` state.
 - Detailed evidence: `docs/evidence/TASK-017/knowledge-routing-v2.1-20260807.md`.
+
+## Formal Gateway activation (2026-08-07)
+
+- The owner explicitly authorized switching the reviewed candidate to the formal Gateway after the brand-prefix retrieval fix.
+- Brand-prefixed membership/privacy and generic-price expressions now retrieve `faq_boundary_006` and `faq_boundary_002`; exact draft pricing, unknown products and internal-secret requests remain unverified and fail closed.
+- Formal active release: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T094900Z` on Tencent Cloud `120.53.86.89`.
+- Formal knowledge state: 65 documents, 41 approved, 24 draft, 65 real 2048-dimensional vectors; public `include_draft=true` is rejected with HTTP 422.
+- Gateway health/readiness and real Doubao LLM/TTS checks passed through system-validated HTTPS. Android 12 trust remains a device acceptance concern outside TASK-017.
+- The releases share `/opt/jiyangjia-ai/var/knowledge`; rollback therefore uses the independent backup directory, not a release-local knowledge symlink.
+- Previous formal database rollback: `/opt/jiyangjia-ai/backups/task017-before-task017-20260807T094735Z` (11 approved, 9 draft, 1 rejected).
+- Current-release code rollback: `/opt/jiyangjia-ai/backups/task017-before-code-task015b-task017-20260807T094735Z`.
+- Detailed evidence: `docs/evidence/TASK-017/knowledge-formal-switch-20260807.md`.

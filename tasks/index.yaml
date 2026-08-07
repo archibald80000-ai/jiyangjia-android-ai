@@ -150,5 +150,5 @@ tasks:
     file: TASK-017_FORMAL_KNOWLEDGE_BASE_V1.md
     title: "Design and build formal curated knowledge ingestion after pilot"
     priority: p2
-    status: PARTIAL
+    status: DONE
     depends_on: [TASK-015]
