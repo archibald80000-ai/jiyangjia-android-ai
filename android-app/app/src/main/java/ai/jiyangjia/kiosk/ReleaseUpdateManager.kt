@@ -43,6 +43,15 @@ data class ReleaseDescriptor(
 data class ApkIdentity(val packageName: String, val versionCode: Long, val certificateSha256: String)
 
 object ReleasePolicy {
+    fun validateDescriptor(release: ReleaseDescriptor) {
+        require(release.apkUrl.startsWith("https://")) { "release APK must use HTTPS" }
+        require(release.packageName == "ai.jiyangjia.kiosk") { "release package mismatch" }
+        require(release.versionCode > 0) { "invalid release versionCode" }
+        require(release.sizeBytes in 1..MAX_APK_BYTES) { "invalid release APK size" }
+        require(release.sha256.matches(Regex("[A-F0-9]{64}"))) { "invalid APK SHA-256" }
+        require(release.certificateSha256.matches(Regex("[A-F0-9]{64}"))) { "invalid certificate SHA-256" }
+    }
+
     fun validate(
         release: ReleaseDescriptor,
         downloadedSize: Long,
@@ -51,7 +60,7 @@ object ReleasePolicy {
         installedVersionCode: Long,
         installedCertificateSha256: String
     ) {
-        require(release.apkUrl.startsWith("https://")) { "release APK must use HTTPS" }
+        validateDescriptor(release)
         require(downloadedSize == release.sizeBytes) { "APK size mismatch" }
         require(normalizeDigest(downloadedSha256) == release.sha256) { "APK SHA-256 mismatch" }
         require(apk.packageName == "ai.jiyangjia.kiosk" && apk.packageName == release.packageName) { "APK package mismatch" }
@@ -59,6 +68,8 @@ object ReleasePolicy {
         require(normalizeDigest(apk.certificateSha256) == release.certificateSha256) { "release certificate mismatch" }
         require(normalizeDigest(apk.certificateSha256) == normalizeDigest(installedCertificateSha256)) { "installed certificate mismatch" }
     }
+
+    private const val MAX_APK_BYTES = 250L * 1024L * 1024L
 }
 
 class ReleaseUpdateManager(
@@ -75,6 +86,7 @@ class ReleaseUpdateManager(
         executor.execute {
             try {
                 val release = fetchManifest()
+                ReleasePolicy.validateDescriptor(release)
                 val installed = installedIdentity()
                 if (release.versionCode <= installed.versionCode) {
                     onStatus("Release current: ${installed.versionCode}")
@@ -110,26 +122,31 @@ class ReleaseUpdateManager(
 
     private fun download(release: ReleaseDescriptor): File {
         val target = File(context.cacheDir, "release-${release.versionCode}.apk.tmp")
-        val response = client.newCall(Request.Builder().url(release.apkUrl).build()).execute()
-        response.use {
-            check(it.isSuccessful) { "APK download HTTP ${it.code}" }
-            val body = checkNotNull(it.body) { "empty APK response" }
-            if (body.contentLength() >= 0) check(body.contentLength() == release.sizeBytes) { "APK content length mismatch" }
-            body.byteStream().use { input ->
-                target.outputStream().use { output ->
-                    val buffer = ByteArray(8192)
-                    var total = 0L
-                    while (true) {
-                        val read = input.read(buffer)
-                        if (read < 0) break
-                        total += read
-                        check(total <= release.sizeBytes) { "APK exceeds declared size" }
-                        output.write(buffer, 0, read)
+        try {
+            val response = client.newCall(Request.Builder().url(release.apkUrl).build()).execute()
+            response.use {
+                check(it.isSuccessful) { "APK download HTTP ${it.code}" }
+                val body = checkNotNull(it.body) { "empty APK response" }
+                if (body.contentLength() >= 0) check(body.contentLength() == release.sizeBytes) { "APK content length mismatch" }
+                body.byteStream().use { input ->
+                    target.outputStream().use { output ->
+                        val buffer = ByteArray(8192)
+                        var total = 0L
+                        while (true) {
+                            val read = input.read(buffer)
+                            if (read < 0) break
+                            total += read
+                            check(total <= release.sizeBytes) { "APK exceeds declared size" }
+                            output.write(buffer, 0, read)
+                        }
                     }
                 }
             }
+            return target
+        } catch (error: Throwable) {
+            target.delete()
+            throw error
         }
-        return target
     }
 
     @Suppress("DEPRECATION")
