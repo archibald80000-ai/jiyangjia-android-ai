@@ -1,15 +1,17 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.4
+- **State version:** 0.1.5
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-015A local avatar dialogue is PARTIAL; TASK-015 remains NO-GO/BLOCKED pending a device and formal release inputs
-- **Current authorized task:** finish the manual browser microphone check for TASK-015A; TASK-015 resumes only when its remaining external gates are available
+- **Overall status:** TASK-014H production domain is BLOCKED by Tencent DNSPod webblock/ICP access control; TASK-015 remains NO-GO/BLOCKED
+- **Current authorized task:** complete domain ICP/access onboarding, then rerun TASK-014H public HTTPS and renewal acceptance
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
 
-- Main branch (`origin/main`) commit: `a68f234` (TASK-014A administration and display controls included).
+- Main branch baseline at TASK-014H start: `49dc45f`.
+- Canonical production domain: `ai-jiyangjia.cloud`; canonical API base: `https://ai-jiyangjia.cloud/api/v1`; production server: `120.53.86.89`.
+- DNS resolves correctly and the server-side Nginx/TLS/Gateway configuration passes internally, but public domain traffic is intercepted by Tencent DNSPod webblock and public TLS SNI is reset. The domain is not yet production-usable.
 - User-approved portrait source media is available at `E:\work\ai-kefu\资料库\人像背景.MOV`; the source was not modified or committed.
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 
@@ -252,10 +254,11 @@ Recent task results:
 - TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
 - TASK-015 is BLOCKED with a NO-GO decision. Gateway regression passed 63 tests, Android unit/lint/debug assembly and repository verification pass, but `adb devices -l` is empty and the local SDK has no emulator/system image. USB/AEC, visual, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
 - TASK-015A is PARTIAL. The rights-confirmed portrait source was converted to an ignored H.264 1080x1920 silent MP4 plus JPG background, published and bound to the 9:16 Profile. A real local browser dialogue passed RAG, Doubao LLM/TTS, sources, request ID, audio fetch and visible subtitle playback. Browser recording now supports manual end/send plus speech-first 3-second silence auto-send; browser microphone permission and Android device behavior remain manual/unverified.
+- TASK-014H is BLOCKED. DNS resolves to `120.53.86.89`; a valid Let's Encrypt certificate is installed; Nginx internal domain checks and Gateway readiness pass; Docker port 8080 is bound only to `127.0.0.1`; Android production Base URL is the canonical HTTPS domain. Public HTTP is redirected by Tencent to `dnspod.qcloud.com/static/webblock.html`, public HTTPS is reset before Nginx, and Certbot renewal dry-run fails at the same webblock layer.
 
 Next action:
 
-- At `http://127.0.0.1:18084/demo/kiosk`, manually grant microphone permission and run one spoken question. Then resume TASK-015 only after Android device/audio hardware, trusted HTTPS hosting and formal signing identity with N/N+1/N+2 candidates are available. Production rollout is still not authorized.
+- Complete Tencent Cloud ICP/domain access onboarding for `ai-jiyangjia.cloud`, then rerun public HTTP/HTTPS and Certbot renewal dry-run. Do not enter TASK-015 while the canonical HTTPS endpoint remains externally blocked.
 
 ## Status vocabulary
 

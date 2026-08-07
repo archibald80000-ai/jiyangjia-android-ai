@@ -10,6 +10,7 @@ class ClientConfigTest {
         val config = ClientConfig.fromValues(null, null, null, null, null)
 
         assertEquals(ClientConfig.DEFAULT_GATEWAY, config.gatewayBaseUrl)
+        assertEquals("https://ai-jiyangjia.cloud", config.gatewayBaseUrl)
         assertEquals(ClientConfig.DEFAULT_DEVICE_ID, config.deviceId)
         assertEquals(ClientConfig.DISPLAY_MODE_IDLE_VIDEO_VOICE, config.displayMode)
         assertEquals(20, config.maxRecordSeconds)

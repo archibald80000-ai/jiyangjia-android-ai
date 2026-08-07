@@ -134,6 +134,12 @@ tasks:
     priority: p0
     status: PARTIAL
     depends_on: [TASK-014F]
+  - id: TASK-014H
+    file: TASK-014H_PRODUCTION_DOMAIN_HTTPS.md
+    title: "Switch production Gateway and Android to the canonical HTTPS domain"
+    priority: p0
+    status: BLOCKED
+    depends_on: [TASK-014]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md
     title: "Validate the actual Android 12 display in the store"

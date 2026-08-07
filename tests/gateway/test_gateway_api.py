@@ -57,11 +57,11 @@ def test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts() -> No
     assert "SILENCE_AUTO_SEND_MS = 3000" in response.text
     assert "SPEECH_CONFIRMATION_FRAMES = 2" in response.text
     assert "shouldAutoSendAfterSilence" in response.text
-    assert "startSilenceMonitoring(microphone)" in response.text
-    assert "stopRecording('silence')" in response.text
-    assert "stopRecording('manual')" in response.text
-    assert "form.append('audio'" in response.text
-    assert "/api/v1/dialogue/audio" in response.text
+    assert "startPcmStreaming()" in response.text
+    assert "stopStreaming('silence')" in response.text
+    assert "stopStreaming('manual')" in response.text
+    assert "/api/v1/dialogue/stream" in response.text
+    assert "streamSocket.send(pcmRemainder.slice" in response.text
     assert "/api/v1/dialogue/text" in response.text
     assert "/api/v1/audio/" in response.text
 

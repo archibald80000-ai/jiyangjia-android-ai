@@ -30,3 +30,21 @@ TASK-005 verified output:
 - SHA-256: `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`
 
 Android 12 device installation and rendering remain separate acceptance work.
+
+## Gateway Base URL
+
+- Production release origin: `https://ai-jiyangjia.cloud`.
+- Release builds always disable cleartext Gateway traffic.
+- Debug builds use the same HTTPS origin by default.
+- A developer may override debug only with Gradle property or environment variable `JIYANGJIA_GATEWAY_BASE_URL`.
+- Local HTTP debug additionally requires `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`; never use this for a release build.
+
+Example local debug override:
+
+```powershell
+$env:JIYANGJIA_GATEWAY_BASE_URL = "http://192.168.1.10:18084"
+$env:JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY = "true"
+.\gradlew.bat assembleDebug
+```
+
+Provider credentials are server-only and must never be added to Gradle properties, BuildConfig or APK resources.

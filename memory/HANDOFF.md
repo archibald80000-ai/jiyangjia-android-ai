@@ -6,9 +6,9 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current stacked branch: `task/TASK-015-android12-device-acceptance`; TASK-014C through TASK-014G have separate predecessor commits and remain PARTIAL at external gates.
-- Current task status: `TASK-015A PARTIAL`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: manually grant browser microphone permission at the local demo, then resume TASK-015 only when the device, trusted HTTPS and formal signed N/N+1/N+2 candidates exist.
+- Current branch: `task/TASK-014H-production-domain-https`; baseline `main` was `49dc45f` at task start.
+- Current task status: `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Next action: complete Tencent Cloud ICP/domain access onboarding, then rerun TASK-014H public HTTPS and Certbot renewal acceptance before TASK-015.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -27,6 +27,16 @@ Updated: 2026-08-07
 - TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
 - TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
+- TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
+
+## TASK-014H server state
+
+- Canonical URL: `https://ai-jiyangjia.cloud`; API: `https://ai-jiyangjia.cloud/api/v1`; admin target: `https://ai-jiyangjia.cloud/admin`.
+- Active release Compose: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/deploy/docker-compose.yml`.
+- Rollback backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
+- Gateway container is healthy and bound to `127.0.0.1:8080`; Nginx listens on 80/443; UFW allows only 22/80/443.
+- Certificate exists and is valid until 2026-11-05; snap Certbot timer is active, but dry-run currently fails at the Tencent webblock interception.
+- Do not retry Nginx/Certbot changes until the ICP/access block is released; then run the commands in `docs/server/operations.md` once.
 
 ## TASK-015A local demo
 
@@ -75,7 +85,7 @@ Updated: 2026-08-07
 
 ## Next action
 
-Do not claim or repeat TASK-015 acceptance without the recorded external inputs. First finish the manual local microphone check; when the remaining device/release inputs are available, resume only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy production separately only with explicit authorization.
+Do not claim or repeat TASK-015 acceptance while TASK-014H public HTTPS is blocked. Complete ICP/domain access onboarding, rerun public HTTPS and Certbot dry-run, then reassess TASK-015 inputs.
 
 ## Safety boundaries
 

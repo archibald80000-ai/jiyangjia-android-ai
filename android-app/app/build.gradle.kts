@@ -6,6 +6,9 @@ plugins {
 fun secretValue(property: String, environment: String = property): String? =
     providers.gradleProperty(property).orNull ?: System.getenv(environment)
 
+fun quotedBuildConfig(value: String): String =
+    "\"${value.replace("\\", "\\\\").replace("\"", "\\\"")}\""
+
 val releaseRequested = gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = true) }
 val controlledVersionCode = secretValue("JIYANGJIA_VERSION_CODE")?.toIntOrNull()
 val controlledVersionName = secretValue("JIYANGJIA_VERSION_NAME")
@@ -14,6 +17,15 @@ val signingStorePassword = secretValue("JIYANGJIA_SIGNING_STORE_PASSWORD")
 val signingKeyAlias = secretValue("JIYANGJIA_SIGNING_KEY_ALIAS")
 val signingKeyPassword = secretValue("JIYANGJIA_SIGNING_KEY_PASSWORD")
 val signingReady = listOf(signingStoreFile, signingStorePassword, signingKeyAlias, signingKeyPassword).all { !it.isNullOrBlank() }
+val productionGatewayBaseUrl = "https://ai-jiyangjia.cloud"
+val developmentGatewayBaseUrl = secretValue("JIYANGJIA_GATEWAY_BASE_URL")
+    ?.trim()
+    ?.trimEnd('/')
+    ?.takeIf { it.isNotEmpty() }
+    ?: productionGatewayBaseUrl
+val developmentAllowsCleartext = secretValue("JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY")
+    ?.equals("true", ignoreCase = true)
+    ?: false
 
 if (releaseRequested) {
     require(controlledVersionCode != null && controlledVersionCode > 0) { "Release requires positive JIYANGJIA_VERSION_CODE" }
@@ -33,7 +45,7 @@ android {
         versionName = controlledVersionName ?: "0.1.0-development"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", "\"\"")
+        buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(productionGatewayBaseUrl))
         buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
         manifestPlaceholders["usesCleartextTraffic"] = "false"
     }
@@ -56,12 +68,15 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
-            buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", "\"https://ai-jiyangjia.cloud\"")
-            buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
-            manifestPlaceholders["usesCleartextTraffic"] = "false"
+            buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(developmentGatewayBaseUrl))
+            buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", developmentAllowsCleartext.toString())
+            manifestPlaceholders["usesCleartextTraffic"] = developmentAllowsCleartext.toString()
         }
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(productionGatewayBaseUrl))
+            buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
+            manifestPlaceholders["usesCleartextTraffic"] = "false"
             signingConfig = signingConfigs.findByName("controlledRelease")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

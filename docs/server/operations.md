@@ -1,52 +1,68 @@
-# Gateway 运维操作
+# Gateway Operations
 
-## 目录与服务
-- 部署：`/opt/jiyangjia-ai`
-- Compose 文件：`/opt/jiyangjia-ai/docker/docker-compose.yml`
-- Gateway 源码：`/opt/jiyangjia-ai/gateway`
-- 日志：`/opt/jiyangjia-ai/logs`, `/opt/jiyangjia-ai/logs/task014_evidence`, `docker logs jiyangjia-gateway`
-- 备份：`/opt/jiyangjia-ai/backups`（如 `pre-task014-20260806-185559.tgz`）
-- Provider 环境文件：`/opt/jiyangjia-ai/secrets/.env.local`（权限 `600`，只查 configured/missing，不输出值）
+Updated: 2026-08-07
 
-## 日常命令
+## Daily checks
+
 ```bash
-cd /opt/jiyangjia-ai/docker
-
-docker compose ps
-docker compose up -d --build
-docker compose down
+docker ps --filter name=jiyangjia-gateway
 docker logs --tail 120 jiyangjia-gateway
-
-docker restart jiyangjia-gateway
+sudo nginx -t
+systemctl is-active nginx
+sudo ss -lntp | grep -E ':(80|443|8080)[[:space:]]'
+sudo ufw status
+sudo certbot certificates
+systemctl status snap.certbot.renew.timer --no-pager
 ```
 
-## 检查命令（本任务验收）
+Expected port ownership: Nginx on 80/443 and Docker only on `127.0.0.1:8080`.
+
+## Internal origin checks
+
+These prove server configuration, not public reachability:
+
 ```bash
-python3 /opt/jiyangjia-ai/releases/release-20260806-185559/scripts/check_provider_env.py \
-  --env-file /opt/jiyangjia-ai/secrets/.env.local \
-  --compose-file /opt/jiyangjia-ai/docker/docker-compose.yml \
-  --require-real-mvp
-
-curl -sS -o /tmp/health.json -w "%{http_code}" http://127.0.0.1/health
-curl -sS -o /tmp/v1_health.json -w "%{http_code}" http://127.0.0.1/api/v1/health
-curl -sS -o /tmp/readiness.json -w "%{http_code}" http://127.0.0.1/api/v1/readiness
-curl -sS -o /tmp/client_config.json -w "%{http_code}" http://127.0.0.1/api/v1/client/config
-curl -sS -o /tmp/knowledge_status.json -w "%{http_code}" http://127.0.0.1/api/v1/knowledge/status
-curl -sS -o /tmp/knowledge_index.json -w "%{http_code}" -H "Content-Type: application/json" -d '{"source":"knowledge-test/faq_mvp_approved.example.json","source_type":"json","only_approved":true,"force_reindex":true}' http://127.0.0.1/api/v1/knowledge/index
-curl -sS -o /tmp/knowledge_search.json -w "%{http_code}" -H "Content-Type: application/json" -d '{"query":"积养家", "top_k": 3}' http://127.0.0.1/api/v1/knowledge/search
-curl -sS -o /tmp/dialogue_text.json -w "%{http_code}" -H "Content-Type: application/json" -d '{"text":"确认服务时间","session_id":"ops"}' http://127.0.0.1/api/v1/dialogue/text
+curl --resolve ai-jiyangjia.cloud:443:127.0.0.1 https://ai-jiyangjia.cloud/health
+curl --resolve ai-jiyangjia.cloud:443:127.0.0.1 https://ai-jiyangjia.cloud/api/v1/health
+curl --resolve ai-jiyangjia.cloud:443:127.0.0.1 https://ai-jiyangjia.cloud/api/v1/readiness
+curl -I --resolve ai-jiyangjia.cloud:80:127.0.0.1 http://ai-jiyangjia.cloud/
 ```
 
-## 重启恢复
+## Public acceptance
+
+Run from a network outside the server after ICP/access release:
+
 ```bash
-docker restart jiyangjia-gateway
-sleep 20
-docker compose ps
-curl -sS -o /tmp/health_after.json -w "%{http_code}" http://127.0.0.1/health
+curl -I http://ai-jiyangjia.cloud
+curl https://ai-jiyangjia.cloud/health
+curl https://ai-jiyangjia.cloud/api/v1/health
+curl https://ai-jiyangjia.cloud/api/v1/readiness
+curl -I https://ai-jiyangjia.cloud/admin
 ```
 
-## 回滚
-1. `cd /opt/jiyangjia-ai/docker`
-2. `docker compose down`
-3. 备份目录恢复（或切换 `releases/` 下已知版本）
-4. `docker compose up -d`
+Expected: HTTP `308` to the canonical HTTPS host; health/readiness `200`; admin `302` to `/admin/system`. A redirect to `dnspod.qcloud.com/static/webblock.html` is a failed public gate.
+
+## Certificate renewal
+
+```bash
+sudo certbot renew --cert-name ai-jiyangjia.cloud --dry-run \
+  --non-interactive --no-random-sleep-on-renew
+```
+
+The timer being active is insufficient if dry-run fails.
+
+## Current rollback
+
+Backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
+
+```bash
+BACKUP=/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z
+RELEASE=/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z
+
+sudo cp -a "$BACKUP/nginx-conf.d.conf" /etc/nginx/conf.d/jiyangjia-ai.conf
+sudo cp -a "$BACKUP/nginx-locations.conf" /etc/nginx/snippets/jiyangjia-gateway-locations.conf
+sudo cp -a "$BACKUP/docker-compose.yml" "$RELEASE/deploy/docker-compose.yml"
+sudo ln -sfn /etc/nginx/sites-available/jiyangjia-gateway /etc/nginx/sites-enabled/jiyangjia-gateway
+sudo nginx -t && sudo systemctl reload nginx
+cd "$RELEASE/deploy" && sudo docker compose up -d --no-deps --force-recreate gateway
+```

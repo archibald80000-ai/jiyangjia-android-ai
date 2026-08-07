@@ -2,6 +2,16 @@
 
 Updated: 2026-08-07
 
+## TASK-014H production domain
+
+- Canonical production domain is `ai-jiyangjia.cloud`; API base is `https://ai-jiyangjia.cloud/api/v1`; server is `120.53.86.89`.
+- DNS resolves correctly through local, Cloudflare and Google resolvers.
+- Server-side Nginx/TLS checks pass, Gateway is healthy/ready, `ADMIN_TOKEN` is configured, and Docker port 8080 is now loopback-only.
+- The Let's Encrypt certificate is valid until 2026-11-05 and the snap renewal timer is enabled/active.
+- BLOCKED: public HTTP is intercepted to the Tencent DNSPod webblock page, public HTTPS SNI is reset, and Certbot dry-run fails because its challenge is intercepted. ICP/domain access onboarding must be completed before public acceptance.
+- Android production Base URL is fixed to the canonical HTTPS domain; debug builds can override with `JIYANGJIA_GATEWAY_BASE_URL` and opt into cleartext only with `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`.
+- Evidence: `docs/evidence/TASK-014H/production-domain-https-20260807.md`.
+
 ## TASK-015A local avatar dialogue
 
 - PARTIAL: user-approved `E:\work\ai-kefu\资料库\人像背景.MOV` remains unchanged; ignored 1080x1920 H.264 MP4/JPG derivatives are published on the isolated local Gateway.

@@ -14,13 +14,15 @@ chmod 700 secrets
 [ -f secrets/.env.local ] && chmod 600 secrets/.env.local
 ```
 
+Production origin: `https://ai-jiyangjia.cloud`. Install the Nginx virtual-host and shared location files as documented in `docs/server/DEPLOY.md`.
+
 Start from the repository root:
 
 ```bash
 cd deploy
 docker compose up -d --build
 docker compose ps
-curl -fsS http://127.0.0.1/api/v1/health
+curl -fsS http://127.0.0.1:8080/api/v1/health
 ```
 
 The Compose file mounts:
@@ -30,4 +32,4 @@ The Compose file mounts:
 - `var/knowledge` for SQLite and FAISS persistence;
 - `secrets/.env.local` as service environment.
 
-Production completion still requires domain/TLS, device auth, firewall/security group verification, resource measurements, backup and rollback evidence.
+Port 8080 is loopback-only. Public access must use Nginx on 443. Production completion remains blocked until Tencent ICP/domain access onboarding releases the current DNSPod webblock and external TLS plus Certbot dry-run pass.
