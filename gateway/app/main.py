@@ -5,7 +5,7 @@ import logging
 import uuid
 from typing import Any
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, Response, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, Response, UploadFile
 
 from .admin_routes import create_admin_router
 from .admin_store import AdminContentStore
@@ -13,6 +13,7 @@ from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
 from .knowledge import KnowledgeDocument, SAFE_TRANSFER_TEXT, SQLiteKnowledgeStore
+from .http_cache import conditional_json, payload_digest
 from .llm import (
     OpenAICompatibleChatConfig,
     OpenAICompatibleEmbeddingConfig,
@@ -110,7 +111,8 @@ async def request_context(request: Request, call_next):
     request.state.request_id = request_id
     response = await call_next(request)
     response.headers["X-Request-Id"] = request_id
-    response.headers["Cache-Control"] = "no-store"
+    if "Cache-Control" not in response.headers:
+        response.headers["Cache-Control"] = "no-store"
     return response
 
 
@@ -154,10 +156,13 @@ def readiness() -> dict[str, Any]:
     }
 
 
-@app.get("/api/v1/client/config")
-def client_config() -> dict[str, Any]:
+def _client_config_payload() -> dict[str, Any]:
     default_profile = admin_store.default_display_profile()
     return {
+        "schema_version": 1,
+        "config_version": settings.app_version,
+        "refresh_interval_seconds": 60,
+        "minimum_version_code": 1,
         "display_mode": settings.display_mode,
         "max_record_seconds": settings.max_record_seconds,
         "max_upload_bytes": settings.max_upload_bytes,
@@ -165,15 +170,49 @@ def client_config() -> dict[str, Any]:
         "subtitle_max_chars": settings.subtitle_max_chars,
         "idle_video_version": "local",
         "assets_manifest": "/api/v1/assets/manifest",
+        "release_manifest": "/api/v1/client/release",
         "display_profile": default_profile,
         "api": {
             "dialogue_text": "/api/v1/dialogue/text",
             "dialogue_audio": "/api/v1/dialogue/audio",
+            "dialogue_stream": "/api/v1/dialogue/stream",
             "audio_base": "/api/v1/audio/",
             "display_profile": "/api/v1/display/profile",
             "assets_manifest": "/api/v1/assets/manifest",
         },
     }
+
+
+@app.get("/api/v1/client/config")
+def client_config(request: Request) -> Response:
+    return conditional_json(request, _client_config_payload())
+
+
+@app.get("/api/v1/client/bootstrap")
+def client_bootstrap(
+    request: Request,
+    width: int = Query(default=1080, ge=320, le=7680),
+    height: int = Query(default=1920, ge=320, le=7680),
+    orientation: str | None = Query(default=None),
+    version_code: int = Query(default=1, ge=1),
+) -> Response:
+    resolved_orientation = orientation if orientation in {"portrait", "landscape"} else ("landscape" if width >= height else "portrait")
+    base_payload = {
+        "schema_version": 1,
+        "config": _client_config_payload(),
+        "display_profile": admin_store.match_display_profile(width, height, resolved_orientation),
+        "assets_manifest": admin_store.manifest(),
+        "client": {
+            "width_px": width,
+            "height_px": height,
+            "orientation": resolved_orientation,
+            "version_code": version_code,
+            "update_required": version_code < 1,
+        },
+    }
+    digest = payload_digest(base_payload)
+    payload = {"bundle_version": digest, **base_payload}
+    return conditional_json(request, payload, etag=f'"{digest}"')
 
 
 @app.post("/api/v1/dialogue/text", response_model=DialogueResponse)

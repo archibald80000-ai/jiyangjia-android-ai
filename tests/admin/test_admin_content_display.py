@@ -297,6 +297,34 @@ def test_asset_content_signature_and_display_binding_are_enforced(tmp_path: Path
     assert client.post("/api/v1/admin/display", json=payload).status_code == 200
 
 
+def test_asset_manifest_etag_and_metadata_are_stable(tmp_path: Path) -> None:
+    client, _admin, _knowledge = _client(tmp_path)
+    asset = client.post(
+        "/api/v1/admin/avatar",
+        data={"name": "Sync video", "version": "v1", "asset_type": "video"},
+        files={"file": ("sync.mp4", _mp4_bytes(b"sync"), "video/mp4")},
+    ).json()["asset"]
+    client.post(f"/api/v1/admin/avatar/{asset['avatar_id']}/publish")
+
+    response = client.get("/api/v1/assets/manifest")
+    assert response.status_code == 200
+    assert response.headers["etag"].startswith('"')
+    payload = response.json()
+    assert payload["video"]["size_bytes"] == len(_mp4_bytes(b"sync"))
+    assert payload["video"]["url"].endswith(asset["avatar_id"])
+
+    unchanged = client.get(
+        "/api/v1/assets/manifest",
+        headers={"If-None-Match": response.headers["etag"]},
+    )
+    assert unchanged.status_code == 304
+    assert unchanged.content == b""
+
+    downloaded = client.get(payload["video"]["url"])
+    assert downloaded.headers["etag"] == f'"{asset["sha256"]}"'
+    assert downloaded.headers["cache-control"].endswith("immutable")
+
+
 def test_production_admin_api_requires_configured_token(tmp_path: Path) -> None:
     blocked, _admin, _knowledge = _client(tmp_path / "missing", app_env="production")
     assert blocked.get("/api/v1/admin/system/status").status_code == 503

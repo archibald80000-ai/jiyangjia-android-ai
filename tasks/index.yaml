@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-07
-current: TASK-014C
+current: TASK-014D
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -108,7 +108,7 @@ tasks:
     file: TASK-014C_ANDROID_SECURE_CONTENT_SYNC.md
     title: "Synchronize secure versioned configuration and media to Android"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-014B]
   - id: TASK-014D
     file: TASK-014D_ANDROID_DISPLAY_PROFILE_RENDERER.md

@@ -46,6 +46,23 @@ def test_health_and_client_config_include_required_fields() -> None:
     assert "/api/v1/dialogue/audio" == payload["api"]["dialogue_audio"]
 
 
+def test_client_bootstrap_is_versioned_and_etag_aware() -> None:
+    response = client.get("/api/v1/client/bootstrap?width=1080&height=1920&orientation=portrait&version_code=1")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["schema_version"] == 1
+    assert payload["bundle_version"] == response.headers["etag"].strip('"')
+    assert payload["config"]["refresh_interval_seconds"] == 60
+    assert payload["display_profile"]["orientation"] == "portrait"
+
+    unchanged = client.get(
+        "/api/v1/client/bootstrap?width=1080&height=1920&orientation=portrait&version_code=1",
+        headers={"If-None-Match": response.headers["etag"]},
+    )
+    assert unchanged.status_code == 304
+    assert unchanged.content == b""
+
+
 def test_knowledge_index_search_status_uses_approved_sources() -> None:
     index_service_time_doc("faq-001")
     indexed = client.post(

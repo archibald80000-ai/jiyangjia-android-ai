@@ -29,6 +29,7 @@ class KioskActivity : Activity() {
     private lateinit var diagnosticsButton: Button
     private lateinit var idleVideoController: IdleVideoController
     private lateinit var audioController: AudioLoopbackController
+    private lateinit var contentSyncManager: ContentSyncManager
     private var state: ConsultationState = ConsultationState.BOOT
     private var config: ClientConfig = ClientConfig.fromValues(null, null, null, null, null)
     private var lastRecording: PcmAudio? = null
@@ -43,10 +44,34 @@ class KioskActivity : Activity() {
         config = loadConfig()
         buildLayout()
         idleVideoController = IdleVideoController(this, idleContainer)
+        contentSyncManager = ContentSyncManager(
+            context = this,
+            baseUrl = { config.gatewayBaseUrl },
+            metrics = {
+                val display = resources.displayMetrics
+                Triple(
+                    display.widthPixels,
+                    display.heightPixels,
+                    if (display.widthPixels >= display.heightPixels) "landscape" else "portrait"
+                )
+            },
+            onResult = ::handleContentSyncResult
+        )
+        contentSyncManager.cachedBundle()?.let(::applyCachedBundle)
         audioController = AudioLoopbackController(this)
         audioController.startDeviceMonitoring { reason -> handleAudioDeviceChange(reason) }
         transitionTo(ConsultationState.IDLE_VIDEO)
         refreshAudioDiagnostics()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        contentSyncManager.startForeground()
+    }
+
+    override fun onStop() {
+        contentSyncManager.stopForeground()
+        super.onStop()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -59,9 +84,36 @@ class KioskActivity : Activity() {
     override fun onDestroy() {
         gatewayThread?.interrupt()
         gatewayThread = null
+        contentSyncManager.stopForeground()
         audioController.shutdown()
         idleVideoController.stop()
         super.onDestroy()
+    }
+
+    private fun handleContentSyncResult(result: ContentSyncResult) {
+        when (result) {
+            is ContentSyncResult.Activated -> {
+                applyCachedBundle(result.bundle)
+                diagnosticsText.text = "Content bundle activated: ${result.bundle.bundle.bundleVersion.take(12)}"
+            }
+            is ContentSyncResult.Unchanged -> {
+                result.bundle?.let(::applyCachedBundle)
+            }
+            is ContentSyncResult.Failed -> {
+                result.cached?.let(::applyCachedBundle)
+                diagnosticsText.text = "Content sync retained cache: ${result.reason.take(120)}"
+            }
+        }
+    }
+
+    private fun applyCachedBundle(cached: CachedContentBundle) {
+        val videoPath = cached.videoFile?.absolutePath.orEmpty()
+        if (videoPath.isNotBlank() && config.idleVideoPath != videoPath) {
+            config = config.copy(idleVideoPath = videoPath)
+            if (::idleVideoController.isInitialized && state == ConsultationState.IDLE_VIDEO) {
+                idleVideoController.show(config)
+            }
+        }
     }
 
     override fun onRequestPermissionsResult(

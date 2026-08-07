@@ -15,6 +15,7 @@ from .admin_store import AdminContentStore
 from .admin_ui import admin_page
 from .config import Settings
 from .knowledge import KnowledgeDocument, SQLiteKnowledgeStore, chunk_text, parse_selected_knowledge_path
+from .http_cache import conditional_json, strong_etag
 
 
 KNOWLEDGE_EXTENSIONS = {".pdf", ".docx", ".md", ".txt"}
@@ -249,15 +250,24 @@ def create_admin_router(
         return {"request_id": _request_id(request), "profile": profile}
 
     @router.get("/api/v1/assets/manifest")
-    def assets_manifest(request: Request) -> dict[str, Any]:
-        return {"request_id": _request_id(request), **admin_store.manifest()}
+    def assets_manifest(request: Request):
+        manifest = admin_store.manifest()
+        return conditional_json(request, {"request_id": _request_id(request), **manifest}, etag=strong_etag(manifest))
 
     @router.get("/api/v1/assets/{avatar_id}")
-    def asset_file(avatar_id: str) -> FileResponse:
+    def asset_file(avatar_id: str, request: Request):
         asset = admin_store.get_asset(avatar_id, include_path=True)
         if not asset or asset["status"] != "published":
             raise _not_found("ASSET_NOT_FOUND", "素材不存在。")
-        return _asset_response(admin_store, avatar_id)
+        etag = f'"{asset["sha256"]}"'
+        if request.headers.get("If-None-Match", "").strip() == etag:
+            from fastapi import Response
+
+            return Response(status_code=304, headers={"ETag": etag, "Cache-Control": "public, max-age=31536000, immutable"})
+        response = _asset_response(admin_store, avatar_id)
+        response.headers["ETag"] = etag
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        return response
 
     @router.get("/api/v1/display/profile")
     def display_profile(
@@ -265,8 +275,10 @@ def create_admin_router(
         width: int = Query(default=1080, ge=320, le=7680),
         height: int = Query(default=1920, ge=320, le=7680),
         orientation: Literal["landscape", "portrait"] | None = "portrait",
-    ) -> dict[str, Any]:
-        return {"request_id": _request_id(request), "profile": admin_store.match_display_profile(width, height, orientation)}
+    ):
+        profile = admin_store.match_display_profile(width, height, orientation)
+        payload = {"request_id": _request_id(request), "profile": profile}
+        return conditional_json(request, payload, etag=strong_etag({"profile": profile}))
 
     return router
 

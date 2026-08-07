@@ -1,6 +1,6 @@
 # TASK-014C - Android Secure Config and Content Sync
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-014A DONE, TASK-014B DONE, production HTTPS gate supplied by deployment owner
 - **Allowed scope:** Android config/cache/network modules, client config/manifest/profile read APIs, tests and evidence
@@ -31,3 +31,11 @@ Automatically synchronize published server configuration, Display Profile, idle 
 - The deployment owner has not supplied a trusted HTTPS endpoint for production acceptance.
 - Another thread is modifying the same Android config/cache files.
 - Formal media exceeds an agreed size or has unknown rights.
+
+## Implementation result (2026-08-07)
+
+- Gateway bootstrap, stable ETag/304, asset size/SHA metadata and immutable asset responses are implemented.
+- Android app-private staging, size/type/SHA-256 validation, active/previous pointers, offline cache, foreground polling, connectivity refresh and WorkManager recovery are implemented.
+- Debug cleartext is isolated to the debug build; release runtime rejects non-HTTPS Gateway and asset URLs.
+- Local Gateway tests and Android unit/lint/debug APK build pass.
+- Trusted production HTTPS, approved media and Android 12 runtime synchronization remain unverified, so this task is not marked DONE.

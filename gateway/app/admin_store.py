@@ -60,6 +60,7 @@ class AdminContentStore:
                 file_path TEXT NOT NULL,
                 content_type TEXT NOT NULL,
                 sha256 TEXT NOT NULL,
+                size_bytes INTEGER NOT NULL DEFAULT 0,
                 version TEXT NOT NULL,
                 status TEXT NOT NULL CHECK(status IN ('draft','preview','approved','published','rejected')),
                 source TEXT NOT NULL DEFAULT 'manual_upload',
@@ -94,6 +95,23 @@ class AdminContentStore:
             );
             """
         )
+        columns = {row[1] for row in self._conn.execute("PRAGMA table_info(avatar_assets)").fetchall()}
+        if "size_bytes" not in columns:
+            self._conn.execute("ALTER TABLE avatar_assets ADD COLUMN size_bytes INTEGER NOT NULL DEFAULT 0")
+        self._conn.commit()
+        self._backfill_asset_sizes()
+
+    def _backfill_asset_sizes(self) -> None:
+        rows = self._conn.execute("SELECT avatar_id, file_path, size_bytes FROM avatar_assets").fetchall()
+        for row in rows:
+            if int(row["size_bytes"] or 0) > 0:
+                continue
+            path = Path(str(row["file_path"]))
+            if path.is_file():
+                self._conn.execute(
+                    "UPDATE avatar_assets SET size_bytes = ? WHERE avatar_id = ?",
+                    (path.stat().st_size, row["avatar_id"]),
+                )
         self._conn.commit()
 
     def _seed_display_profiles(self) -> None:
@@ -206,17 +224,27 @@ class AdminContentStore:
             """
             INSERT INTO avatar_assets(
                 avatar_id, name, asset_type, uri, file_path, content_type,
-                sha256, version, status
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'draft')
+                sha256, size_bytes, version, status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft')
             """,
-            (avatar_id, name, asset_type, uri, str(target), content_type, hashlib.sha256(content).hexdigest().upper(), version),
+            (
+                avatar_id,
+                name,
+                asset_type,
+                uri,
+                str(target),
+                content_type,
+                hashlib.sha256(content).hexdigest().upper(),
+                len(content),
+                version,
+            ),
         )
         self._conn.commit()
         return self.get_asset(avatar_id) or {}
 
     def list_assets(self) -> list[dict[str, Any]]:
         rows = self._conn.execute(
-            """SELECT avatar_id, name, asset_type, uri, content_type, sha256,
+            """SELECT avatar_id, name, asset_type, uri, content_type, sha256, size_bytes,
                       version, status, source, created_at, updated_at
                FROM avatar_assets ORDER BY created_at DESC"""
         ).fetchall()
@@ -258,11 +286,15 @@ class AdminContentStore:
 
     def manifest(self) -> dict[str, Any]:
         rows = self._conn.execute(
-            """SELECT avatar_id, name, asset_type, uri, content_type, sha256,
+            """SELECT avatar_id, name, asset_type, uri, content_type, sha256, size_bytes,
                       version, updated_at
                FROM avatar_assets WHERE status = 'published' ORDER BY asset_type"""
         ).fetchall()
-        assets = {row["asset_type"]: dict(row) for row in rows}
+        assets = {}
+        for row in rows:
+            item = dict(row)
+            item["url"] = item.pop("uri")
+            assets[row["asset_type"]] = item
         return {"mode": "composite_video", "video": assets.get("video"), "background": assets.get("image")}
 
     def write_manifest(self) -> None:

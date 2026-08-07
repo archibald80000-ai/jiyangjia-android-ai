@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014B DONE locally; TASK-014C implementation authorized
-- **Current authorized task:** TASK-014C Android secure content sync
+- **Overall status:** TASK-014C implemented and locally verified; production HTTPS/device acceptance pending
+- **Current authorized task:** TASK-014D Android Display Profile renderer
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
