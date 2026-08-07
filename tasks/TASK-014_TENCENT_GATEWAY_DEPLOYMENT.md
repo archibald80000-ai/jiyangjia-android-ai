@@ -70,14 +70,16 @@ Do not modify unrelated modules, user source documents, or secrets. Changes outs
 
 - Result: `DONE`
 - Evidence:
-  - `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
-  - `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
-  - `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`
-  - `docs/evidence/TASK-014/task014-remote-acceptance-final-after-recreate.json`
-  - `docs/evidence/TASK-014/task014-remote-acceptance-final-20260807.json`
+  - `docs/evidence/TASK-014/task014-final-acceptance-20260807.json`
+  - `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
+  - `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
+  - `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`
+  - `docs/evidence/TASK-014/TASK-014_FINAL_ACCEPTANCE.md`
 - Server: Tencent Cloud IP-only test host `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2-core/1.9Gi/50G, CPU-only.
 - Provider file chain: `/opt/jiyangjia-ai/secrets/.env.local` exists, readable, expected mode `0o600`.
 - `docker-compose.yml` points to `../secrets/.env.local`.
 - `/api/v1/readiness` shows ASR/TTS/LLM/Embedding both configured and ready.
-- `dialogue/audio` 在有效语音输入下可完成 real chain；空白/无效音频样本会返回 `ASR_NO_TEXT`。`audio fetch` 可返回 `audio/mpeg`，在成功场景中返回 `request_id` 与 `sources`。
+- Online Gateway image contains FFmpeg `7.1.5-0+deb13u1`.
+- Android-format 16 kHz mono PCM WAV and MP3 both complete the real ASR/RAG/LLM/TTS chain and audio fetch.
+- Eight conflicting deployment test records are `draft`; approved knowledge is limited to the 10 controlled TASK-012 FAQ entries.
 - `TASK-014A_ADMIN_CONTENT_DISPLAY.md` is the next single next task.

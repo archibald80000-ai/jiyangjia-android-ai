@@ -1,206 +1,143 @@
-# TASK-014A: Admin content and display profile skeleton
+# TASK-014A - 轻量管理后台、知识库上传与显示配置
 
 - **Status:** PLANNED
 - **Priority:** P1
-- **Dependencies:** TASK-014
-- **Branch:** `task/TASK-014-tencent-gateway-deployment` (scope prep; implementation on `task/TASK-014A_*` in next task branch)
+- **Dependencies:** TASK-012 DONE, TASK-014 DONE
+- **Target branch:** `task/TASK-014A-admin-content-display`
 - **Owner:** Codex / assigned developer
 
-## Objective
+## 目标
 
-在不引入完整 CMS 的前提下，先交付**轻量后台骨架**，支持任务 014A 的配置、审核和发布链路。
+在不引入 Dify、CMS 或大型前端框架的前提下，为现有 Android 大屏 AI 语音客服增加非开发人员可使用的轻量管理层。必须复用 TASK-012 的 SQLite/FTS5/FAISS/Embedding RAG 和现有 Gateway。
 
-目标页（MVP）：
+本任务首先交付四页可运行骨架、数据模型、API 契约、状态机和持久化验证，不扩张为复杂 CMS。
 
-- 系统状态
-- 知识库
-- 数字人素材
-- Display Profile（大屏显示配置）
+## 页面范围
 
-## Scope (skeleton-only)
+### 1. 系统状态 `/admin/system`
 
-- 定义接口协议、数据模型和状态机，不接入复杂 RBAC 或第三方可视化平台。
-- 后端主路径保留现有：
-  - `GET /api/v1/readiness`
-  - `/api/v1/knowledge/*`
-  - `POST /api/v1/dialogue/*`
-- 同步时机：在完成本任务文档/合同后由 `TASK-015` 前继续推进真实实现，不提前扩展为全量后台。
+- Gateway readiness；
+- ASR、TTS、LLM、Embedding 配置状态；
+- approved/draft/rejected、chunk 和 FAISS vector 数量；
+- 当前发布素材和 Display Profile；
+- 最近失败的 `code`、`failed_stage` 和 `request_id`。
 
-## Delivery target
+### 2. 知识库 `/admin/knowledge`
 
-1. 增加后台骨架文档与最小契约：
-   - 页面路由与字段定义（4 页）
-   - `avatar`、`knowledge_upload_run`、`display_profile` 数据模型
-   - 审核与发布流（`draft -> preview -> approve -> publish`）
-2. 先提交配置/审批骨架，不实现大规模 CRUD 逻辑。
-3. 给出可落地到 `main` 的状态文档与 evidence 清单。
+- 上传 PDF、DOCX、Markdown、TXT；
+- 新文件默认 `draft`；
+- parse、chunk、preview、approve/reject、embedding、publish；
+- 搜索测试和问答测试展示 chunk、source、request_id；
+- 只有 `approved` 内容进入顾客检索。
 
-## 非目标
+流程：
 
-- 不引入 Dify、LangFlow、Flowise。
-- 不实现完整 CMS（权限系统、审核计费、发布工作流引擎、在线视频编辑）。
-- 不接入实时口型（LiveTalking/Wav2Lip/MuseTalk）主链路。
+`upload -> draft -> parse -> chunk -> preview -> approve -> embedding -> FAISS -> publish`
 
-## 页面路由与职责（骨架）
+### 3. 数字人形象 `/admin/avatar`
 
-### `/admin/system`
+Phase 1 仍使用静态图片或本地待机视频，不做实时口型。
 
-- 展示：
-  - Gateway readiness
-  - Provider 配置状态
-  - `knowledge_store` 状态（approved/draft/rejected、chunk、faiss vector 数）
-  - 最近一次失败 `code` 与 `failed_stage`（如有）
-- 依赖读取：
-  - `GET /api/v1/readiness`
-  - `GET /api/v1/knowledge/status`
+- MP4 待机视频；
+- JPG/PNG 背景；
+- 浏览器预览；
+- 名称、版本、SHA-256、创建时间和发布状态；
+- 发布、回滚和删除未发布素材；
+- 生成公开客户端 manifest。
 
-### `/admin/knowledge`
+推荐模式：`composite_video`。预留 `video_with_background`，但不作为本任务门禁。
 
-- 展示：
-  - 知识文件上传草稿列表（`draft`）
-  - 解析预览结果（`preview`）
-  - 审核/发布动作（`approve`、`publish`）
-- 接口草案：
-  - `GET /api/v1/admin/knowledge`
-  - `POST /api/v1/admin/knowledge/upload`
-  - `POST /api/v1/admin/knowledge/{run_id}/preview`
-  - `POST /api/v1/admin/knowledge/{run_id}/approve`
-  - `POST /api/v1/admin/knowledge/{run_id}/publish`
+### 4. 大屏配置 `/admin/display`
 
-### `/admin/avatar`
+- 1920x1080、3840x2160、1280x720、1080x1920；
+- 自定义宽高；
+- `orientation`: landscape / portrait；
+- `scale_mode`: fit / fill / crop；
+- 人物位置与缩放；
+- 字幕安全区与字号；
+- 按钮位置；
+- 绑定待机视频/背景版本。
 
-- 展示与维护：
-  - 预定义静态人物视频 / 图片素材
-  - 版本号、文件来源、`sha256`、有效期
-  - 草稿与已审核状态
-- 接口草案：
-  - `GET /api/v1/admin/avatar`
-  - `POST /api/v1/admin/avatar`
-  - `PUT /api/v1/admin/avatar/{avatar_id}`
-  - `POST /api/v1/admin/avatar/{avatar_id}/approve`
+Android 根据真实屏幕尺寸匹配并缓存 Profile，不因屏幕尺寸重新打 APK。
 
-### `/admin/display`
+## 最小管理 API
 
-- 展示与维护：
-  - Display Profile（多分辨率）
-  - 角色定位/比例
-  - 字幕安全区、字体、按钮坐标
-  - 默认页配置
-- 接口草案：
-  - `GET /api/v1/admin/display`
-  - `POST /api/v1/admin/display`
-  - `PUT /api/v1/admin/display/{profile_id}`
-  - `POST /api/v1/admin/display/{profile_id}/set-default`
+- `GET /api/v1/admin/system/status`
+- `GET /api/v1/admin/knowledge`
+- `POST /api/v1/admin/knowledge/upload`
+- `POST /api/v1/admin/knowledge/{run_id}/preview`
+- `POST /api/v1/admin/knowledge/{run_id}/approve`
+- `POST /api/v1/admin/knowledge/{run_id}/reject`
+- `POST /api/v1/admin/knowledge/{run_id}/publish`
+- `GET /api/v1/admin/avatar`
+- `POST /api/v1/admin/avatar`
+- `POST /api/v1/admin/avatar/{avatar_id}/publish`
+- `POST /api/v1/admin/avatar/{avatar_id}/rollback`
+- `GET /api/v1/admin/display`
+- `POST /api/v1/admin/display`
+- `PUT /api/v1/admin/display/{profile_id}`
+- `POST /api/v1/admin/display/{profile_id}/set-default`
+- `GET /api/v1/assets/manifest`
 
-## 数据模型（最小）
-
-### `avatar`
-
-- `avatar_id TEXT PK`
-- `name TEXT`
-- `type TEXT CHECK(type IN ('video','image'))`
-- `uri TEXT`
-- `sha256 TEXT`
-- `version INTEGER`
-- `status TEXT CHECK(status IN ('draft','preview','approved','rejected'))`
-- `source TEXT`（manual/ops/reviewed）
-- `effective_from DATETIME`
-- `effective_to DATETIME NULL`
-- `created_at DATETIME`
-- `updated_at DATETIME`
+## 最小数据模型
 
 ### `knowledge_upload_run`
 
-- `run_id TEXT PK`
-- `document_uri TEXT`
-- `document_title TEXT`
-- `status TEXT CHECK(status IN ('draft','preview','approve','publish','failed'))`
-- `source_type TEXT CHECK(source_type IN ('upload','api','manual'))`
-- `chunk_count INTEGER`
-- `vector_count INTEGER`
-- `error_message TEXT NULL`
-- `created_at DATETIME`
-- `updated_at DATETIME`
+- `run_id`, `document_uri`, `document_title`, `source_type`；
+- `status`: draft / parsed / preview / approved / rejected / published / failed；
+- `chunk_count`, `vector_count`, `error_message`；
+- `created_at`, `updated_at`。
+
+### `avatar_asset`
+
+- `avatar_id`, `name`, `type`: video / image；
+- `uri`, `sha256`, `version`；
+- `status`: draft / preview / approved / published / rejected；
+- `source`, `created_at`, `updated_at`。
 
 ### `display_profile`
 
-- `profile_id TEXT PK`
-- `resolution_width INTEGER`
-- `resolution_height INTEGER`
-- `orientation TEXT CHECK(orientation IN ('landscape','portrait'))`
-- `fit_mode TEXT CHECK(fit_mode IN ('fit','fill','crop'))`
-- `character_anchor_x REAL`
-- `character_anchor_y REAL`
-- `character_scale REAL`
-- `subtitle_safe_area JSON`
-- `subtitle_font_px INTEGER`
-- `button_positions JSON`
-- `is_default BOOLEAN`
-- `status TEXT CHECK(status IN ('draft','approved','rejected'))`
-- `created_at DATETIME`
-- `updated_at DATETIME`
+- `profile_id`, `profile_name`, `width_px`, `height_px`；
+- `orientation`, `scale_mode`；
+- `character_anchor_x`, `character_anchor_y`, `character_scale`；
+- `subtitle_safe_area`, `subtitle_font_px`, `button_positions`；
+- `avatar_id`, `background_id`, `is_default`, `status`；
+- `created_at`, `updated_at`。
 
-## 流程定义
+## 持久化边界
 
-- 知识流：`draft -> preview -> approve -> publish`
-- 素材流：`draft -> approved/rejected`
-- 显示流：`draft -> approved`，后由 `set-default` 生效
-- 任何流的失败记录写入 `error_message`（用于后台状态页展示）
+- `/opt/jiyangjia-ai/var/knowledge/`: SQLite / FAISS；
+- `/opt/jiyangjia-ai/var/assets/`: 视频、图片与 manifest；
+- `/opt/jiyangjia-ai/secrets/.env.local`: Provider 与 Admin 密钥；
+- Git 仅保存代码、schema、示例和文档。
 
-## Display Profile 示例枚举（MVP）
+管理 API 统一放在 `/api/v1/admin/*`。Phase 1 可使用服务端 `ADMIN_TOKEN`，不得进入 APK、前端 bundle 或 Git。
 
-- `1920x1080`
-- `3840x2160`
-- `1280x720`
-- `1080x1920`
-- 自定义（`width`/`height` 任意正整数）
+## 验收门禁
 
-每个 Profile 包含：
+- 四页可访问并具有 loading、empty、error 状态；
+- PDF/DOCX/MD/TXT 上传、解析、chunk 预览通过；
+- draft 不进入顾客检索，approved 后 sources 正确；
+- MP4/JPG/PNG 上传、预览、发布和回滚通过；
+- manifest 返回当前版本与 SHA-256；
+- 四个预设分辨率和自定义 Profile 可保存、匹配和读取；
+- 服务重启后知识、素材和 Profile 不丢失；
+- 未泄露 API Key、ADMIN_TOKEN、原始资料、SQLite 或 FAISS。
 
-- `orientation`
-- `fit/fill/crop`
-- 人物锚点（`x`,`y`,`scale`）
-- 字幕安全区（`left/right/top/bottom`）
-- 字幕字号
-- 按钮坐标
+## 非目标
 
-示例（`docs/evidence/TASK-014/task014a-skeleton-contract-20260807.json`）：
+- Dify、LangFlow、Flowise；
+- 复杂 RBAC、企业 IAM、多租户；
+- 大型 CMS 或在线视频编辑；
+- LiveTalking、Wav2Lip、MuseTalk；
+- 自动扫描 `E:\work\积养家`；
+- 未审核资料自动发布。
 
-```json
-{
-  "profiles": [
-    {
-      "profile_id": "kiosk-1080p-landscape",
-      "resolution": {"w": 1920, "h": 1080},
-      "orientation": "landscape",
-      "fit_mode": "fit",
-      "character_anchor": {"x": 0.42, "y": 0.62, "scale": 0.62},
-      "subtitle_safe_area": {"left": 0.06, "right": 0.06, "top": 0.88, "bottom": 0.03},
-      "subtitle_font_px": 36,
-      "button_positions": {
-        "start": [0.80, 0.85],
-        "cancel": [0.05, 0.85],
-        "help": [0.05, 0.05]
-      },
-      "status": "approved",
-      "is_default": true
-    }
-  ]
-}
-```
+## 完成后更新
 
-## 验收指标（本任务骨架级）
-
-- 任务文档与 `tasks/index.yaml` 更新完成。
-- `tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md` 包含 4 页定义、数据模型、状态流与 API 草案。
-- `memory/PENDING_INPUTS.md` 保留未闭环项（机型分辨率、权限边界、素材归档）。
-- 仅保留轻量后台骨架，不进行生产级 UI/CMS 落地。
-- 真实生产代码需在后续 `TASK-014A` 实施分支继续，不提前在本任务混入复杂 CRUD。
-
-## References
-
+- `PROJECT_STATE.md`
+- `TASKS.md`
+- `tasks/index.yaml`
 - `memory/CURRENT_STATE.md`
 - `memory/HANDOFF.md`
-- `tasks/index.yaml`
-- `PROJECT_STATE.md`
-- `docs/evidence/TASK-014/`（收口后接口链路凭据）
+- `memory/PENDING_INPUTS.md`

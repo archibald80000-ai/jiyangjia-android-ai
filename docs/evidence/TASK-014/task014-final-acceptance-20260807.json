@@ -1,0 +1,546 @@
+{
+  "task": "TASK-014",
+  "base_url": "http://120.53.86.89",
+  "run_epoch": 1786078712,
+  "checks": {
+    "health": {
+      "method": "GET",
+      "path": "/health",
+      "status": 200,
+      "elapsed_ms": 31.67,
+      "x_request_id": "2361300b-86a6-4535-82b4-1703873b9908",
+      "content_type": "application/json",
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T04:58:19.552593+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    "api_health": {
+      "method": "GET",
+      "path": "/api/v1/health",
+      "status": 200,
+      "elapsed_ms": 9.94,
+      "x_request_id": "91c74e8f-e01b-4f39-86c7-9c6794f29bda",
+      "content_type": "application/json",
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T04:58:19.563526+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    "readiness": {
+      "method": "GET",
+      "path": "/api/v1/readiness",
+      "status": 200,
+      "elapsed_ms": 10.9,
+      "x_request_id": "24c861e1-031d-4775-a052-b4c141baa326",
+      "content_type": "application/json",
+      "body": {
+        "request_id": "901e6eb9-0d2a-4e83-8130-6d0b763c5f5a",
+        "ready": true,
+        "status": "ready",
+        "providers": {
+          "asr": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "tts": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "llm": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "embedding": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          }
+        },
+        "knowledge": {
+          "documents": {
+            "approved": 10,
+            "draft": 9,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_e79898d7da95418a",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 04:09:45"
+          }
+        }
+      }
+    },
+    "client_config": {
+      "method": "GET",
+      "path": "/api/v1/client/config",
+      "status": 200,
+      "elapsed_ms": 11.13,
+      "x_request_id": "192cc782-2a2e-4024-b702-fcce68722043",
+      "content_type": "application/json",
+      "body": {
+        "display_mode": "idle_video_voice",
+        "max_record_seconds": 20,
+        "max_upload_bytes": 5242880,
+        "accepted_audio_types": [
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp4",
+          "audio/aac",
+          "audio/webm"
+        ],
+        "subtitle_max_chars": 80,
+        "idle_video_version": "local",
+        "api": {
+          "dialogue_text": "/api/v1/dialogue/text",
+          "dialogue_audio": "/api/v1/dialogue/audio",
+          "audio_base": "/api/v1/audio/"
+        }
+      }
+    },
+    "knowledge_status": {
+      "method": "GET",
+      "path": "/api/v1/knowledge/status",
+      "status": 200,
+      "elapsed_ms": 10.54,
+      "x_request_id": "f322a7d7-522f-4583-bb92-2e45e4aec5c9",
+      "content_type": "application/json",
+      "body": {
+        "request_id": "a269cc66-ed7a-468c-b1cf-e94f093dff0f",
+        "provider": "sqlite_lightweight",
+        "embedding_provider": "doubao",
+        "embedding_ready": true,
+        "embedding_missing": [],
+        "vector_index": {
+          "ready": true,
+          "vectors": 8,
+          "dimensions": 2048
+        },
+        "documents": {
+          "approved": 10,
+          "draft": 9,
+          "rejected": 1
+        },
+        "chunks": 20,
+        "embeddings": 19,
+        "latest_run": {
+          "run_id": "ing_e79898d7da95418a",
+          "status": "done",
+          "document_count": 0,
+          "chunk_count": 0,
+          "error": null,
+          "created_at": "2026-08-07 04:09:45"
+        }
+      }
+    },
+    "knowledge_index": {
+      "method": "POST",
+      "path": "/api/v1/knowledge/index",
+      "status": 200,
+      "elapsed_ms": 19.65,
+      "x_request_id": "c6c0a729-f102-4d2e-826a-902922dcde0f",
+      "content_type": "application/json",
+      "body": {
+        "request_id": "490ee1cb-11f9-4333-9e6c-7b58d0805130",
+        "indexed": 0,
+        "chunks": 0,
+        "status": {
+          "documents": {
+            "approved": 10,
+            "draft": 9,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_e519de5bbc7140b6",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 04:58:19"
+          }
+        }
+      }
+    },
+    "knowledge_search": {
+      "method": "POST",
+      "path": "/api/v1/knowledge/search",
+      "status": 200,
+      "elapsed_ms": 126.81,
+      "x_request_id": "b1c2e205-9c4b-4f38-afdb-fe4ce5340b92",
+      "content_type": "application/json",
+      "body": {
+        "request_id": "task014-final-search",
+        "status": "matched",
+        "matches": [
+          {
+            "id": "faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000",
+            "title": "门店咨询定位",
+            "status": "approved",
+            "score": 0.6413,
+            "confidence": 0.6413,
+            "vector_score": 0.0,
+            "keyword_score": 0.6413,
+            "source": {
+              "uri": "manual://task012/faq_mvp_001",
+              "chunk_id": "faq_mvp_001::chunk-0000"
+            },
+            "excerpt": "标题：门店咨询定位\n问题：积养家是做什么的；你们是什么门店\n回答：积养家门店可以提供现场咨询和服务引导。具体服务项目、价格和预约情况请以现场工作人员确认为准。"
+          },
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.5978,
+            "confidence": 0.5978,
+            "vector_score": 0.0,
+            "keyword_score": 0.5978,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          }
+        ],
+        "sources": [
+          {
+            "uri": "manual://task012/faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000"
+          },
+          {
+            "uri": "manual://task012/faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000"
+          }
+        ]
+      }
+    }
+  },
+  "dialogue_text": {
+    "method": "POST",
+    "path": "/api/v1/dialogue/text",
+    "status": 200,
+    "elapsed_ms": 4165.91,
+    "x_request_id": "0d97e318-102c-4d71-84a2-9a6165ee138c",
+    "content_type": "application/json",
+    "body": {
+      "request_id": "task014-final-text",
+      "session_id": "task014-final",
+      "transcript": {
+        "text": "积养家门店的营业时间是什么？",
+        "provider": "text",
+        "language": "zh-CN",
+        "confidence": 1.0
+      },
+      "knowledge": {
+        "status": "matched",
+        "matches": [
+          {
+            "id": "faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000",
+            "title": "门店咨询定位",
+            "status": "approved",
+            "score": 0.6413,
+            "confidence": 0.6413,
+            "vector_score": 0.0,
+            "keyword_score": 0.6413,
+            "source": {
+              "uri": "manual://task012/faq_mvp_001",
+              "chunk_id": "faq_mvp_001::chunk-0000"
+            },
+            "excerpt": "标题：门店咨询定位\n问题：积养家是做什么的；你们是什么门店\n回答：积养家门店可以提供现场咨询和服务引导。具体服务项目、价格和预约情况请以现场工作人员确认为准。"
+          },
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.5978,
+            "confidence": 0.5978,
+            "vector_score": 0.0,
+            "keyword_score": 0.5978,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          }
+        ],
+        "provider": "sqlite_lightweight"
+      },
+      "answer": {
+        "text": "门店服务时间请以当天现场公告或工作人员说明为准哦，我可以帮您联系现场人员确认。",
+        "provider": "doubao",
+        "source": "knowledge_grounded",
+        "subtitles": [
+          "门店服务时间请以当天现场公告或工作人员说明为准哦，我可以帮您联系现场人员确认。"
+        ]
+      },
+      "tts": {
+        "provider": "doubao",
+        "content_type": "audio/mpeg",
+        "audio_id": "aud_8518f21c429f4a0291e30d57ad50fc11",
+        "duration_ms": null
+      },
+      "sources": [
+        {
+          "uri": "manual://task012/faq_mvp_001",
+          "chunk_id": "faq_mvp_001::chunk-0000",
+          "id": "faq_mvp_001",
+          "title": "门店咨询定位",
+          "status": "approved"
+        },
+        {
+          "uri": "manual://task012/faq_mvp_003",
+          "chunk_id": "faq_mvp_003::chunk-0000",
+          "id": "faq_mvp_003",
+          "title": "服务时间",
+          "status": "approved"
+        }
+      ]
+    },
+    "audio_fetch": {
+      "status": 200,
+      "elapsed_ms": 34.42,
+      "x_request_id": "8d14b70b-8527-4c51-9b84-14da611dd835",
+      "content_type": "audio/mpeg",
+      "bytes": 59373,
+      "sha256": "3FC09AD9260340E34A4B7E354A5FFF687E45A2AF0C130693A6D87A8666655B8B"
+    }
+  },
+  "dialogue_wav": {
+    "method": "POST",
+    "path": "/api/v1/dialogue/audio",
+    "status": 200,
+    "elapsed_ms": 5370.95,
+    "x_request_id": "250a276c-4a39-432c-89b7-98374e680939",
+    "content_type": "application/json",
+    "body": {
+      "request_id": "task014-final-wav",
+      "session_id": "task014-final",
+      "transcript": {
+        "text": "请问积养家今天几点到几点营业？",
+        "provider": "doubao",
+        "language": "zh-CN",
+        "confidence": null,
+        "content_type": "audio/wav",
+        "normalized_content_type": "audio/wav",
+        "raw_status": "ok",
+        "raw_text": "请问机养家今天几点到几点营业？",
+        "normalization": {
+          "changed": true,
+          "replacements": [
+            {
+              "from": "机养家",
+              "to": "积养家",
+              "type": "brand"
+            }
+          ]
+        }
+      },
+      "knowledge": {
+        "status": "matched",
+        "matches": [
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.4583,
+            "confidence": 0.4583,
+            "vector_score": 0.0,
+            "keyword_score": 0.4583,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          }
+        ],
+        "provider": "sqlite_lightweight"
+      },
+      "answer": {
+        "text": "门店服务时间请以当天现场公告或工作人员说明为准，我可以帮您联系现场人员确认。",
+        "provider": "doubao",
+        "source": "knowledge_grounded",
+        "subtitles": [
+          "门店服务时间请以当天现场公告或工作人员说明为准，我可以帮您联系现场人员确认。"
+        ]
+      },
+      "tts": {
+        "provider": "doubao",
+        "content_type": "audio/mpeg",
+        "audio_id": "aud_f13e5e30370646f68bfbf214fdd008f5",
+        "duration_ms": null
+      },
+      "sources": [
+        {
+          "uri": "manual://task012/faq_mvp_003",
+          "chunk_id": "faq_mvp_003::chunk-0000",
+          "id": "faq_mvp_003",
+          "title": "服务时间",
+          "status": "approved"
+        }
+      ]
+    },
+    "input": {
+      "name": "task014-final-android.wav",
+      "content_type": "audio/wav",
+      "bytes": 116046,
+      "sha256": "7563CA6CFE7080398F945F3010E73E269CADA8F502CE1A2CA1CEEDC401F0DBE7"
+    },
+    "audio_fetch": {
+      "status": 200,
+      "elapsed_ms": 20.89,
+      "x_request_id": "d50ea649-66b5-4e52-a863-c26c24b6064b",
+      "content_type": "audio/mpeg",
+      "bytes": 57837,
+      "sha256": "618866897598708D7AE092C3CE522CD5689280910CBE04A1700B4F5CD9247AE8"
+    }
+  },
+  "dialogue_mp3": {
+    "method": "POST",
+    "path": "/api/v1/dialogue/audio",
+    "status": 200,
+    "elapsed_ms": 4793.95,
+    "x_request_id": "32d60249-7490-4763-8cf4-de434506a988",
+    "content_type": "application/json",
+    "body": {
+      "request_id": "task014-final-mp3",
+      "session_id": "task014-final",
+      "transcript": {
+        "text": "请问积养家今天几点到几点营业？",
+        "provider": "doubao",
+        "language": "zh-CN",
+        "confidence": null,
+        "content_type": "audio/mpeg",
+        "normalized_content_type": "audio/wav",
+        "raw_status": "ok",
+        "raw_text": "请问机养家今天几点到几点营业？",
+        "normalization": {
+          "changed": true,
+          "replacements": [
+            {
+              "from": "机养家",
+              "to": "积养家",
+              "type": "brand"
+            }
+          ]
+        }
+      },
+      "knowledge": {
+        "status": "matched",
+        "matches": [
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.4583,
+            "confidence": 0.4583,
+            "vector_score": 0.0,
+            "keyword_score": 0.4583,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          }
+        ],
+        "provider": "sqlite_lightweight"
+      },
+      "answer": {
+        "text": "门店服务时间请以当天现场公告或工作人员说明为准哦，我可以帮您联系现场人员确认。",
+        "provider": "doubao",
+        "source": "knowledge_grounded",
+        "subtitles": [
+          "门店服务时间请以当天现场公告或工作人员说明为准哦，我可以帮您联系现场人员确认。"
+        ]
+      },
+      "tts": {
+        "provider": "doubao",
+        "content_type": "audio/mpeg",
+        "audio_id": "aud_41fc8f3bc6de439fb575d7630c60c904",
+        "duration_ms": null
+      },
+      "sources": [
+        {
+          "uri": "manual://task012/faq_mvp_003",
+          "chunk_id": "faq_mvp_003::chunk-0000",
+          "id": "faq_mvp_003",
+          "title": "服务时间",
+          "status": "approved"
+        }
+      ]
+    },
+    "input": {
+      "name": "task014-smoke-tts-20260807.mp3",
+      "content_type": "audio/mpeg",
+      "bytes": 29037,
+      "sha256": "E9756E7D38B32010E948C114052CB8B2C26D5055EAE8BAB5721E4F4294F0BAF1"
+    },
+    "audio_fetch": {
+      "status": 200,
+      "elapsed_ms": 12.54,
+      "x_request_id": "63b5d937-8b3b-486a-bd99-92e2bb1c27b8",
+      "content_type": "audio/mpeg",
+      "bytes": 59757,
+      "sha256": "7BA04F6C8BF284AA4014D0D72665F8D5391C30392AD2F69A130FBDA184183A75"
+    }
+  },
+  "summary": {
+    "base_api_ok": true,
+    "providers_ready": true,
+    "approved_knowledge_count_is_10": true,
+    "text_chain_ok": true,
+    "wav_chain_ok": true,
+    "mp3_chain_ok": true,
+    "overall_ok": true
+  }
+}

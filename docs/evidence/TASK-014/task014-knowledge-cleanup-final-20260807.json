@@ -1,0 +1,110 @@
+{
+  "counts": {
+    "approved": 10,
+    "draft": 9,
+    "rejected": 1
+  },
+  "approved": [
+    {
+      "doc_id": "faq_mvp_001",
+      "title": "门店咨询定位",
+      "source_uri": "manual://task012/faq_mvp_001"
+    },
+    {
+      "doc_id": "faq_mvp_002",
+      "title": "服务项目确认",
+      "source_uri": "manual://task012/faq_mvp_002"
+    },
+    {
+      "doc_id": "faq_mvp_003",
+      "title": "服务时间",
+      "source_uri": "manual://task012/faq_mvp_003"
+    },
+    {
+      "doc_id": "faq_mvp_004",
+      "title": "预约咨询",
+      "source_uri": "manual://task012/faq_mvp_004"
+    },
+    {
+      "doc_id": "faq_mvp_005",
+      "title": "排队等待",
+      "source_uri": "manual://task012/faq_mvp_005"
+    },
+    {
+      "doc_id": "faq_mvp_006",
+      "title": "咨询流程",
+      "source_uri": "manual://task012/faq_mvp_006"
+    },
+    {
+      "doc_id": "faq_mvp_007",
+      "title": "转人工",
+      "source_uri": "manual://task012/faq_mvp_007"
+    },
+    {
+      "doc_id": "faq_mvp_008",
+      "title": "价格规则",
+      "source_uri": "manual://task012/faq_mvp_008"
+    },
+    {
+      "doc_id": "faq_mvp_009",
+      "title": "健康和疗效边界",
+      "source_uri": "manual://task012/faq_mvp_009"
+    },
+    {
+      "doc_id": "faq_mvp_010",
+      "title": "设备交互",
+      "source_uri": "manual://task012/faq_mvp_010"
+    }
+  ],
+  "downgraded_task014_tests": [
+    {
+      "doc_id": "demo-knowledge-001",
+      "title": "Demo FAQ",
+      "status": "draft",
+      "source_uri": "local://task014-acc"
+    },
+    {
+      "doc_id": "doc-task014",
+      "title": "积养家FAQ",
+      "status": "draft",
+      "source_uri": "admin://seed/doc-task014"
+    },
+    {
+      "doc_id": "remote-014-001",
+      "title": "服务时间",
+      "status": "draft",
+      "source_uri": "local://remote-014-001"
+    },
+    {
+      "doc_id": "task014-remote-002",
+      "title": "远程验证条目",
+      "status": "draft",
+      "source_uri": "manual://task014-remote-verify"
+    },
+    {
+      "doc_id": "task014-remote-004",
+      "title": "远程验证条目",
+      "status": "draft",
+      "source_uri": "manual://task014-remote-verify"
+    },
+    {
+      "doc_id": "task014-smoke-001",
+      "title": "门店工作时间",
+      "status": "draft",
+      "source_uri": "manual://smoke"
+    },
+    {
+      "doc_id": "task014_remote_demo_1",
+      "title": "Demo FAQ",
+      "status": "draft",
+      "source_uri": "task014:remote-e2e"
+    },
+    {
+      "doc_id": "task014_remote_demo_2",
+      "title": "远程最终验证",
+      "status": "draft",
+      "source_uri": "task014:remote-final"
+    }
+  ],
+  "backup": "/opt/jiyangjia-ai/backups/task014-knowledge-cleanup-20260807-125648"
+}

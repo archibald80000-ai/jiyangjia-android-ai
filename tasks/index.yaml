@@ -94,7 +94,7 @@ tasks:
     depends_on: [TASK-013]
   - id: TASK-014A
     file: TASK-014A_ADMIN_CONTENT_DISPLAY.md
-    title: "Prepare lightweight admin content and display profile skeleton"
+    title: "Implement lightweight admin content and display profile skeleton"
     priority: p1
     status: PLANNED
     depends_on: [TASK-014]
@@ -103,7 +103,7 @@ tasks:
     title: "Validate the actual Android 12 display in the store"
     priority: p0
     status: PLANNED
-    depends_on: [TASK-014]
+    depends_on: [TASK-014A]
   - id: TASK-016
     file: TASK-016_MUSETALK_EVALUATION.md
     title: "Evaluate MuseTalk after the Phase 1 MVP"

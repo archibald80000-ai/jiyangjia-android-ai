@@ -17,7 +17,7 @@
 - TASK-012 已验证轻量 RAG：SQLite 元数据、FTS5、FAISS Top-K、真实豆包/方舟 Embedding、人工确认 FAQ、sources 引用和安全转人工策略均已通过本地/真实向量评估。
 - TASK-013 已完成 Android 到 Gateway 语音问答闭环的本地代码与后端验证：Android 录音上传、字幕/source 展示、TTS 音频取回和播放代码已实现，Mock 30-cycle 与真实 Provider Gateway 烟测通过；Android 12 真机验收仍待 TASK-015。
 - TASK-013 后续加固了品牌名 ASR 归一化：常见 `ji/yang/jia` 同音漂移会在 Gateway 侧统一为“积养家”，并保留原始 `raw_text`。
-- TASK-014 当前为 PARTIAL；腾讯云已部署当前代码并通过 health/config/knowledge 路径，但 dialogue text/audio 因真实 Provider env 未进入容器返回 `503 BLOCKED_PROVIDER_CREDENTIALS`。下一步先修 `/opt/jiyangjia-ai/secrets/.env.local` 与 Compose `env_file`，再验收。
+- TASK-014 已完成腾讯云 Gateway 收口：生产 Compose 从 `/opt/jiyangjia-ai/secrets/.env.local` 加载真实 Provider，线上容器包含 FFmpeg；文本、Android WAV、MP3 均通过真实 ASR/RAG/LLM/TTS 与音频下载验收。部署测试知识已降为 draft，approved 仅保留 10 条受控 FAQ。
 
 ## 会话恢复顺序
 

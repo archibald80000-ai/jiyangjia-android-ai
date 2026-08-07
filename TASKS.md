@@ -18,10 +18,11 @@ Current status:
 - `TASK-011`: `DONE`; OpenAI-compatible LLM and Embedding adapters are implemented and locally tested. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded with private env. Real Doubao/Ark Embedding now succeeds with the authorized account using `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
 - `TASK-012`: `DONE`; lightweight RAG is implemented with SQLite metadata, SQLite FTS5, FAISS Top-K retrieval, approved/draft/rejected status gates, prohibited-topic safe transfer, explicit document parsing and source citations. Mock evaluation passed 24/24 cases; real Doubao/Ark Embedding evaluation passed 24/24 cases with 2048-dimensional vectors. No raw `E:\work\积养家` import is claimed.
 - `TASK-013`: `PARTIAL`; Android now records PCM, uploads WAV to Gateway, carries request IDs, displays transcript/answer/source diagnostics, downloads generated TTS audio and plays encoded answer audio before returning to idle fallback. Backend E2E passed 30/30 Mock cycles and one real private-env Doubao ASR -> RAG -> Doubao/Ark LLM -> Doubao TTS smoke. Gateway now normalizes common ASR homophones of `积养家` while preserving `raw_text`. Android 12 real-device install/record/playback/subtitle validation is not claimed because `adb devices -l` returned no attached devices.
-- `TASK-014`: `DONE`; Tencent Cloud deployment on `120.53.86.89` now passes real MVP chain checks with `env_file` pointing to `/opt/jiyangjia-ai/secrets/.env.local` (mode `600`) and all providers ready. Evidence includes:
-  - `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
-  - `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
-  - `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`.
+- `TASK-014`: `DONE`; Tencent Cloud Gateway-only image was rebuilt and force-recreated with online FFmpeg `7.1.5-0+deb13u1`. Real Provider readiness passed. One final acceptance passed for text, Android-format WAV, MP3, ASR, approved-only RAG, LLM, TTS, sources, request IDs, audio IDs and audio downloads. Eight conflicting deployment test records were downgraded to `draft`; approved knowledge is the 10 controlled TASK-012 FAQ entries. Evidence:
+  - `docs/evidence/TASK-014/task014-final-acceptance-20260807.json`
+  - `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
+  - `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
+  - `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`.
 - `TASK-014A` (new): `PLANNED`; lightweight admin content/display control plan to define:
   - 系统状态页
   - 知识库审批与索引页
@@ -45,5 +46,5 @@ Future enhancement:
 
 Do not execute multiple implementation tasks concurrently unless a later task explicitly permits parallel work.
 
- - 2026-08-07：TASK-014 已收口通过。`120.53.86.89` 10+项接口验证通过，Provider 均就绪；`/api/v1/dialogue/audio` 与 `/api/v1/audio/{audio_id}` 路径可回传字幕/音频链路。
- - 下一步：完成 `TASK-014A_ADMIN_CONTENT_DISPLAY.md` 骨架和状态同步后，进入 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`。
+ - 2026-08-07：TASK-014 最终收口通过。线上容器包含 FFmpeg；Android WAV 与 MP3 都通过真实 ASR/RAG/LLM/TTS 和音频下载链路。
+ - 下一步：只执行 `TASK-014A_ADMIN_CONTENT_DISPLAY.md`，完成本地轻量后台骨架和持久化/API 验证后再评估 TASK-015。

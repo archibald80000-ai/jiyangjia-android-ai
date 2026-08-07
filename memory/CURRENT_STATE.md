@@ -56,10 +56,11 @@ Updated: 2026-08-07
   - Gateway normalizes common ASR homophones of `积养家` before RAG/LLM and preserves provider output as `transcript.raw_text` when changed;
   - Android real-device install/record/playback/subtitle behavior remains unverified.
 - TASK-014 is DONE:
-  - Tencent Cloud host `120.53.86.89` now passes real MVP chain with `env_file` from `/opt/jiyangjia-ai/secrets/.env.local` (mode `600`) and all providers `ready`.
-  - `/api/v1/readiness`, `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/knowledge/index`, `/api/v1/knowledge/search`, `/api/v1/dialogue/text`, `/api/v1/dialogue/audio` 验证通过。
-  - `/api/v1/audio/{audio_id}` 返回 `audio/mpeg`，并包含 request_id/sources/audio_id。
-  - `scripts/check_provider_env.py --require-real-mvp` 验证通过；部署证据写入 `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`。
+  - Tencent Cloud host `120.53.86.89` runs the force-recreated Gateway image with FFmpeg `7.1.5-0+deb13u1`.
+  - `/opt/jiyangjia-ai/secrets/.env.local` has mode `600`; ASR/TTS/LLM/Embedding all report ready.
+  - One final acceptance passed for text, Android-format WAV and MP3 through ASR -> RAG -> LLM -> TTS -> audio fetch.
+  - WAV and MP3 both returned `request_id`, non-empty `sources`, `audio_id` and downloadable `audio/mpeg`.
+  - Eight conflicting TASK-014 test documents were downgraded to draft; approved knowledge now contains the 10 controlled TASK-012 FAQ entries.
 - TASK-014 now includes hardened diagnostics:
   - `/api/v1/readiness`；
   - 统一 provider 配置检查；
@@ -123,8 +124,8 @@ Android recording
 - TASK-013 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - TASK-013 brand normalization: `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` normalize to `积养家`; `python -m pytest tests\asr tests\gateway tests\e2e -q` passed with 19 tests and full backend regression passed with 42 tests.
 - TASK-014 evidence reconciliation: imported and re-verified on 2026-08-07 with real provider/env readiness.
-- TASK-014 acceptance evidence: `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`, `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`, `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`.
-- TASK-014 本地复核：`python -m pytest tests\gateway tests\e2e -q` -> 9 passed；Docker Compose YAML parse -> PASS；repository verification -> PASS。
+- TASK-014 final acceptance: `docs/evidence/TASK-014/task014-final-acceptance-20260807.json` -> text/WAV/MP3 and all summary gates passed.
+- TASK-014 operational evidence: `task014-gateway-build-final-20260807.txt`, `task014-provider-env-final-20260807.json`, `task014-knowledge-cleanup-final-20260807.json`.
 
 ## Not completed
 
@@ -138,5 +139,4 @@ Android recording
 
 ## Next action
 
-Complete next: `TASK-014A_ADMIN_CONTENT_DISPLAY.md` 草案先行，完成页面与状态模型定义后再推进 TASK-015。
-- 2026-08-07：TASK-014 已收口；`120.53.86.89` `/api/v1/dialogue/audio` 可回传 `audio/mpeg`，`request_id` 与 `sources` 均返回。
+Complete next: implement and verify `TASK-014A_ADMIN_CONTENT_DISPLAY.md` locally before TASK-015.

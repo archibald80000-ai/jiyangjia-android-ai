@@ -1,7 +1,7 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.0
+- **State version:** 0.1.1
 - **Updated:** 2026-08-07
 - **Overall status:** TASK-014 DONE - TENCENT CLOUD FULL MVP API PASSING
 - **Current authorized task:** TASK-014A (admin content-display skeleton prep)
@@ -207,6 +207,10 @@ Current evidence:
 - `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
 - `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
 - `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`
+- `docs/evidence/TASK-014/task014-final-acceptance-20260807.json`
+- `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
+- `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
+- `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`
 - `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
 - `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
 - `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
@@ -233,12 +237,13 @@ Recent task results:
 - TASK-012 DONE. Lightweight RAG now indexes explicitly selected approved/draft/rejected documents into SQLite metadata, FTS5 and FAISS; returns Top-K sources; blocks prohibited topics; and passed Mock plus real Doubao/Ark Embedding evaluation. No raw `E:\work\积养家` import, Android E2E, Tencent deployment or real-device success is claimed.
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 - TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
-- TASK-014 DONE. Tencent Cloud now has production-aligned code and real provider credentials loaded from `/opt/jiyangjia-ai/secrets/.env.local`; `/api/v1/readiness` reports all core providers ready and dialogue text/audio complete through ASR → RAG → LLM → TTS.
-- TASK-014 HARDENING remains active for resilient evidence capture: `/api/v1/readiness` exposes provider readiness and 503 responses include `failed_stage` diagnostics (used during pre-deploy checks).
+- TASK-014 DONE. The Gateway-only image was rebuilt and force-recreated on Tencent Cloud. The online container is healthy and includes FFmpeg `7.1.5-0+deb13u1`; `/api/v1/readiness` reports all real providers ready.
+- TASK-014 final acceptance passed once for text, Android-format 16 kHz mono PCM WAV, MP3 compatibility, ASR, approved-only RAG, LLM, TTS, sources, request IDs, audio IDs and downloadable `audio/mpeg`.
+- TASK-014 knowledge cleanup downgraded eight conflicting deployment test records to `draft`. Customer-facing `approved` knowledge now contains only the 10 controlled TASK-012 FAQ entries. Rollback backup: `/opt/jiyangjia-ai/backups/task014-knowledge-cleanup-20260807-125648`.
 
 Next action:
 
-- Continue exactly one next task: prepare `TASK-014A_ADMIN_CONTENT_DISPLAY.md` with admin skeleton, display profile and content-ops architecture.
+- Continue exactly one next task: implement and verify `TASK-014A_ADMIN_CONTENT_DISPLAY.md` locally. Do not start TASK-015 until its contracts and persistence checks pass.
 
 ## Status vocabulary
 
