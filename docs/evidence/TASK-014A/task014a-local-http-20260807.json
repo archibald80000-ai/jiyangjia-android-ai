@@ -1,0 +1,73 @@
+{
+  "task": "TASK-014A",
+  "checked_at": "2026-08-07T05:51:55.6310313Z",
+  "mode": "local_mock",
+  "url": "http://127.0.0.1:18081",
+  "checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "bytes": 277,
+      "request_id": [
+        "7ccce00b-021c-4458-8ebd-69d587cc8ee1"
+      ]
+    },
+    {
+      "path": "/admin/system",
+      "status": 200,
+      "bytes": 12805,
+      "request_id": [
+        "5b88a0e9-5c5d-43d5-ba95-e5b89c088efc"
+      ]
+    },
+    {
+      "path": "/admin/knowledge",
+      "status": 200,
+      "bytes": 12802,
+      "request_id": [
+        "9858fde1-7c3d-4190-a0c5-b42fb03baf1a"
+      ]
+    },
+    {
+      "path": "/admin/avatar",
+      "status": 200,
+      "bytes": 12811,
+      "request_id": [
+        "550d8e73-160d-412f-ae7c-633362d139c9"
+      ]
+    },
+    {
+      "path": "/admin/display",
+      "status": 200,
+      "bytes": 12806,
+      "request_id": [
+        "0ce03715-3299-4d87-a3d3-1dfa3b2ea724"
+      ]
+    },
+    {
+      "path": "/api/v1/admin/system/status",
+      "status": 200,
+      "bytes": 1243,
+      "request_id": [
+        "d119da96-762f-48ba-8f74-c370e68c5c70"
+      ]
+    },
+    {
+      "path": "/api/v1/assets/manifest",
+      "status": 200,
+      "bytes": 109,
+      "request_id": [
+        "cff46cc2-46eb-414e-b256-2ee596907e04"
+      ]
+    },
+    {
+      "path": "/api/v1/display/profile?width=1920&height=1080&orientation=landscape",
+      "status": 200,
+      "bytes": 560,
+      "request_id": [
+        "a6441266-80a4-436a-8a11-9bb68478f9e9"
+      ]
+    }
+  ],
+  "docker_compose_check": "NOT_RUN_DOCKER_CLI_UNAVAILABLE"
+}

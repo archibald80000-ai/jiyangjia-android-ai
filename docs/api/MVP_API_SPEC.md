@@ -1,6 +1,6 @@
 # MVP API Spec
 
-Updated: 2026-08-06
+Updated: 2026-08-07
 
 Base path: `/api/v1`
 
@@ -24,6 +24,43 @@ Base path: `/api/v1`
 - `GET /api/v1/knowledge/status`
 - `GET /api/v1/audio/{audio_id}`
 - `GET /api/v1/client/config`
+
+## TASK-014A Admin and Display Endpoints
+
+Production `/api/v1/admin/*` requests require `X-Admin-Token`. If production has no `ADMIN_TOKEN`, the API fails closed with `503 ADMIN_TOKEN_NOT_CONFIGURED`. The token is never returned to a browser or Android client.
+
+Management pages:
+
+- `GET /admin/system`
+- `GET /admin/knowledge`
+- `GET /admin/avatar`
+- `GET /admin/display`
+
+Admin API:
+
+- `GET /api/v1/admin/system/status`
+- `GET /api/v1/admin/knowledge`
+- `POST /api/v1/admin/knowledge/upload` (`file`: PDF/DOCX/MD/TXT)
+- `POST /api/v1/admin/knowledge/{run_id}/preview`
+- `POST /api/v1/admin/knowledge/{run_id}/approve`
+- `POST /api/v1/admin/knowledge/{run_id}/reject`
+- `POST /api/v1/admin/knowledge/{run_id}/publish`
+- `GET|POST /api/v1/admin/avatar`
+- `GET /api/v1/admin/avatar/{avatar_id}/file`
+- `POST /api/v1/admin/avatar/{avatar_id}/publish`
+- `POST /api/v1/admin/avatar/{avatar_id}/rollback`
+- `DELETE /api/v1/admin/avatar/{avatar_id}/delete`
+- `GET|POST /api/v1/admin/display`
+- `PUT /api/v1/admin/display/{profile_id}`
+- `POST /api/v1/admin/display/{profile_id}/set-default`
+
+Public client API:
+
+- `GET /api/v1/assets/manifest`
+- `GET /api/v1/assets/{avatar_id}` (published assets only)
+- `GET /api/v1/display/profile?width=1920&height=1080&orientation=landscape`
+
+Knowledge is not customer-visible after upload or approval alone. Only `publish` changes the parsed documents from `draft` to `approved` and invokes the configured Embedding Provider.
 
 ## Health
 

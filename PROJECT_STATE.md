@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.1
+- **State version:** 0.1.2
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014 DONE - TENCENT CLOUD FULL MVP API PASSING
-- **Current authorized task:** TASK-014A (admin content-display skeleton prep)
+- **Overall status:** TASK-014A DONE LOCALLY - ADMIN CONTENT/DISPLAY SKELETON VERIFIED
+- **Current authorized task:** TASK-014A DONE; TASK-015 not started
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -240,10 +240,11 @@ Recent task results:
 - TASK-014 DONE. The Gateway-only image was rebuilt and force-recreated on Tencent Cloud. The online container is healthy and includes FFmpeg `7.1.5-0+deb13u1`; `/api/v1/readiness` reports all real providers ready.
 - TASK-014 final acceptance passed once for text, Android-format 16 kHz mono PCM WAV, MP3 compatibility, ASR, approved-only RAG, LLM, TTS, sources, request IDs, audio IDs and downloadable `audio/mpeg`.
 - TASK-014 knowledge cleanup downgraded eight conflicting deployment test records to `draft`. Customer-facing `approved` knowledge now contains only the 10 controlled TASK-012 FAQ entries. Rollback backup: `/opt/jiyangjia-ai/backups/task014-knowledge-cleanup-20260807-125648`.
+- TASK-014A local skeleton is DONE. Four admin pages, knowledge upload/preview/approve/reject/publish, asset version/publish/rollback/manifest, and display-profile persistence/matching are implemented. Full pytest passed 53 tests, including failed-publish rollback to draft; local HTTP checks passed. TASK-014A is not deployed to Tencent Cloud and has no formal business media or Android device evidence.
 
 Next action:
 
-- Continue exactly one next task: implement and verify `TASK-014A_ADMIN_CONTENT_DISPLAY.md` locally. Do not start TASK-015 until its contracts and persistence checks pass.
+- Next eligible task is `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`, but it must not start without the physical Android 12 display and approved media/profile inputs. Production rollout of TASK-014A remains a deployment follow-up, not a claimed result.
 
 ## Status vocabulary
 

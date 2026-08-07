@@ -6,8 +6,8 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current task status: `TASK-014 DONE`
-- Next task: `TASK-014A_ADMIN_CONTENT_DISPLAY.md` (`PLANNED`)
+- Current task status: `TASK-014A DONE` locally
+- Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` (not started; requires device and approved inputs)
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -19,6 +19,16 @@ Updated: 2026-08-07
 - TASK-011 real LLM and Embedding adapters: DONE.
 - TASK-012 lightweight RAG: DONE. SQLite, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing and source citations are implemented.
 - TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/sources, fetches TTS audio and plays it before returning to idle.
+- TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, Display Profile matching and persistence are implemented and covered by 53 passing tests.
+
+## TASK-014A local state
+
+- Branch: `task/TASK-014A-admin-content-display`.
+- Local admin: `http://127.0.0.1:18081/admin/system` while the development process remains running.
+- Runtime state is under ignored `var/task014a-dev/`.
+- Production admin API requires `ADMIN_TOKEN`; no value is stored in Git or page source.
+- Evidence: `docs/evidence/TASK-014A/`.
+- Not completed: Tencent deployment, formal content/media import, Android manifest/profile consumption and physical-device validation.
 
 ## TASK-014 final production state
 
@@ -49,7 +59,7 @@ Updated: 2026-08-07
 
 ## Next action
 
-Execute exactly one next task: `TASK-014A_ADMIN_CONTENT_DISPLAY.md`. Implement the lightweight admin/content/display skeleton locally and verify persistence/API contracts before TASK-015.
+Do not begin TASK-015 without the Android 12 device. When inputs are available, execute only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy TASK-014A separately only with explicit production authorization.
 
 ## Safety boundaries
 

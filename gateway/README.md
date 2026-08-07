@@ -27,6 +27,15 @@ py -3.10 -m venv .venv\gateway-task008-py310
 .\.venv\gateway-task008-py310\Scripts\python.exe -m gateway --host 127.0.0.1 --port 18080
 ```
 
+TASK-014A local admin pages are available at:
+
+- `http://127.0.0.1:18080/admin/system`
+- `http://127.0.0.1:18080/admin/knowledge`
+- `http://127.0.0.1:18080/admin/avatar`
+- `http://127.0.0.1:18080/admin/display`
+
+Set `ADMIN_TOKEN` before any production deployment. Runtime SQLite, uploaded knowledge and media stay under `var/` and must not be committed.
+
 Port `8080` may be occupied locally; use another port for development when needed.
 
 ## Provider Route

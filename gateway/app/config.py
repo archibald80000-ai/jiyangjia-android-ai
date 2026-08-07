@@ -25,6 +25,7 @@ def _env(name: str, default: str) -> str:
 
 @dataclass(frozen=True)
 class Settings:
+    app_env: str = "development"
     app_name: str = "jiyangjia-gateway"
     app_version: str = "0.1.0-task011"
     display_mode: str = "idle_video_voice"
@@ -39,6 +40,12 @@ class Settings:
     knowledge_provider: str = "sqlite_lightweight"
     knowledge_db_path: str = ":memory:"
     knowledge_faiss_path: str = "var/knowledge/faiss.index"
+    admin_db_path: str = "var/admin/admin.db"
+    admin_upload_dir: str = "var/knowledge/uploads"
+    asset_dir: str = "var/assets"
+    admin_token: str = ""
+    max_knowledge_upload_bytes: int = 20 * 1024 * 1024
+    max_asset_upload_bytes: int = 250 * 1024 * 1024
     doubao_tts_endpoint: str = "https://openspeech.bytedance.com/api/v3/tts/unidirectional"
     doubao_tts_cluster: str = "volcano_tts"
     doubao_tts_voice_type: str = ""
@@ -85,6 +92,7 @@ class Settings:
                 "knowledge": self.knowledge_provider,
             },
             "secrets": {
+                "ADMIN_TOKEN": "configured" if self.admin_token else "missing",
                 "DOUBAO_ASR_APP_ID": "configured" if _doubao_asr_app_id() else "missing",
                 "DOUBAO_ASR_ACCESS_TOKEN": "configured" if _doubao_asr_access_token() else "missing",
                 "DOUBAO_ASR_API_KEY": "configured" if os.environ.get("DOUBAO_ASR_API_KEY") else "missing",
@@ -128,6 +136,7 @@ def _doubao_asr_access_token() -> str | None:
 def load_settings(env_file: str = ".env.local", *, override_env_file: bool = False) -> Settings:
     load_local_env_file(env_file, override=override_env_file)
     return Settings(
+        app_env=_env("APP_ENV", "development"),
         max_record_seconds=int(_env("JIYANGJIA_MAX_RECORD_SECONDS", "20")),
         max_upload_bytes=int(_env("JIYANGJIA_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024))),
         asr_provider=_env("JIYANGJIA_ASR_PROVIDER", "mock"),
@@ -136,6 +145,12 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         embedding_provider=_env("JIYANGJIA_EMBEDDING_PROVIDER", "mock"),
         knowledge_db_path=_env("JIYANGJIA_KNOWLEDGE_DB_PATH", ":memory:"),
         knowledge_faiss_path=_env("JIYANGJIA_KNOWLEDGE_FAISS_PATH", "var/knowledge/faiss.index"),
+        admin_db_path=_env("JIYANGJIA_ADMIN_DB_PATH", "var/admin/admin.db"),
+        admin_upload_dir=_env("JIYANGJIA_ADMIN_UPLOAD_DIR", "var/knowledge/uploads"),
+        asset_dir=_env("JIYANGJIA_ASSET_DIR", "var/assets"),
+        admin_token=_env("ADMIN_TOKEN", _env("JIYANGJIA_ADMIN_TOKEN", "")),
+        max_knowledge_upload_bytes=int(_env("JIYANGJIA_MAX_KNOWLEDGE_UPLOAD_BYTES", str(20 * 1024 * 1024))),
+        max_asset_upload_bytes=int(_env("JIYANGJIA_MAX_ASSET_UPLOAD_BYTES", str(250 * 1024 * 1024))),
         doubao_tts_endpoint=_env("DOUBAO_TTS_ENDPOINT", "https://openspeech.bytedance.com/api/v3/tts/unidirectional"),
         doubao_tts_cluster=_env("DOUBAO_TTS_CLUSTER", "volcano_tts"),
         doubao_tts_voice_type=_env("DOUBAO_TTS_VOICE_TYPE", ""),

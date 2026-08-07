@@ -148,6 +148,46 @@ class SQLiteKnowledgeStore:
         document_count, _chunks = self._upsert_documents_and_chunks(list(documents))
         return document_count
 
+    def list_documents(self, *, limit: int = 200) -> list[dict[str, object]]:
+        rows = self._conn.execute(
+            """
+            SELECT doc_id, title, status, source_uri, source_type, reviewed_by,
+                   reviewed_at, created_at, updated_at
+            FROM knowledge_documents
+            ORDER BY updated_at DESC, doc_id ASC
+            LIMIT ?
+            """,
+            (limit,),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+    def set_documents_status(
+        self,
+        doc_ids: Iterable[str],
+        status: str,
+        *,
+        reviewed_by: str | None = None,
+        reviewed_at: str | None = None,
+    ) -> int:
+        if status not in VALID_STATUSES:
+            raise ValueError(f"invalid knowledge status: {status}")
+        ids = [item for item in dict.fromkeys(doc_ids) if item]
+        for doc_id in ids:
+            self._conn.execute(
+                """
+                UPDATE knowledge_documents
+                SET status = ?, reviewed_by = COALESCE(?, reviewed_by),
+                    reviewed_at = COALESCE(?, reviewed_at), updated_at = CURRENT_TIMESTAMP
+                WHERE doc_id = ?
+                """,
+                (status, reviewed_by, reviewed_at, doc_id),
+            )
+            self._conn.execute("UPDATE knowledge_chunks SET status = ? WHERE doc_id = ?", (status, doc_id))
+        self._conn.commit()
+        self._rebuild_vector_index()
+        self._save_faiss_index()
+        return len(ids)
+
     def _upsert_documents_and_chunks(self, documents: list[KnowledgeDocument]) -> tuple[int, list[dict[str, object]]]:
         chunks_for_embedding: list[dict[str, object]] = []
         for doc in documents:
@@ -372,7 +412,10 @@ class SQLiteKnowledgeStore:
         self._vector_dimensions = matrix.shape[1]
 
     def _save_faiss_index(self) -> None:
-        if self._faiss_index_path is None or self._vector_index is None:
+        if self._faiss_index_path is None:
+            return
+        if self._vector_index is None:
+            self._faiss_index_path.unlink(missing_ok=True)
             return
         self._faiss_index_path.parent.mkdir(parents=True, exist_ok=True)
         faiss.write_index(self._vector_index, str(self._faiss_index_path))

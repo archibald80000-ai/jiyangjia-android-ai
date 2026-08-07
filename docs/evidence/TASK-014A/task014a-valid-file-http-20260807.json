@@ -1,0 +1,48 @@
+{
+  "task": "TASK-014A",
+  "checked_at": "2026-08-07T05:54:17.2667301Z",
+  "mode": "local_mock_valid_files",
+  "video": {
+    "upload_status": "draft",
+    "sha256": "880B57B44988D8DFF9996D4C003F0C7D11AF69448347F183D66D7A67D9A413D0",
+    "preview_codec": "h264",
+    "width": 640,
+    "height": 360,
+    "published": "published"
+  },
+  "background": {
+    "upload_status": "draft",
+    "sha256": "92A1DCE632F413814A240456EE85957282AB4A8877E5EE2012F15366EE09D69E",
+    "published": "published"
+  },
+  "manifest": {
+    "mode": "composite_video",
+    "video": {
+      "avatar_id": "asset_27850b0c237c4ef2",
+      "name": "Valid idle video",
+      "asset_type": "video",
+      "uri": "/api/v1/assets/asset_27850b0c237c4ef2",
+      "content_type": "video/mp4",
+      "sha256": "880B57B44988D8DFF9996D4C003F0C7D11AF69448347F183D66D7A67D9A413D0",
+      "version": "http-v1",
+      "updated_at": "2026-08-07 05:54:16"
+    },
+    "background": {
+      "avatar_id": "asset_95f29a1ca22c4ad3",
+      "name": "Valid background",
+      "asset_type": "image",
+      "uri": "/api/v1/assets/asset_95f29a1ca22c4ad3",
+      "content_type": "image/png",
+      "sha256": "92A1DCE632F413814A240456EE85957282AB4A8877E5EE2012F15366EE09D69E",
+      "version": "http-v1",
+      "updated_at": "2026-08-07 05:54:16"
+    }
+  },
+  "knowledge": {
+    "upload_status": "parsed",
+    "approve_status": "approved",
+    "publish_status": "published",
+    "source": "admin://knowledge/ku_ad435e0d68074e9f/valid-knowledge.md",
+    "request_id": "604f2a3b-a302-4914-bb0f-5572c5767996"
+  }
+}

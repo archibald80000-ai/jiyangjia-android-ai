@@ -1,6 +1,6 @@
 # TASK-014A - 轻量管理后台、知识库上传与显示配置
 
-- **Status:** PLANNED
+- **Status:** DONE
 - **Priority:** P1
 - **Dependencies:** TASK-012 DONE, TASK-014 DONE
 - **Target branch:** `task/TASK-014A-admin-content-display`
@@ -141,3 +141,14 @@ Android 根据真实屏幕尺寸匹配并缓存 Profile，不因屏幕尺寸重�
 - `memory/CURRENT_STATE.md`
 - `memory/HANDOFF.md`
 - `memory/PENDING_INPUTS.md`
+
+## 完成结果（2026-08-07）
+
+- 四个管理页面和全部最小管理 API 已实现；
+- 上传知识保持 draft，只有 publish 执行 embedding 并转 approved；
+- MP4/JPG/PNG 素材具备 SHA-256、发布、回滚、受保护预览和公开 manifest；
+- 四个预设与自定义 Display Profile 可持久化、匹配和设为默认；
+- 全量 pytest `53 passed`（含 embedding 失败回退 draft），管理 JavaScript 语法检查通过，本地 HTTP 门禁全部 200；
+- 有效 H.264 MP4、PNG 和 Markdown 经本地 HTTP 上传/预览/发布，manifest、source 与 request_id 均通过；
+- 证据：`docs/evidence/TASK-014A/`；
+- 未部署腾讯云，未导入正式业务资料/素材，未执行 Android 真机验收。

@@ -96,7 +96,7 @@ tasks:
     file: TASK-014A_ADMIN_CONTENT_DISPLAY.md
     title: "Implement lightweight admin content and display profile skeleton"
     priority: p1
-    status: PLANNED
+    status: DONE
     depends_on: [TASK-014]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md

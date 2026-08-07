@@ -7,6 +7,8 @@ from typing import Any
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, Response, UploadFile
 
+from .admin_routes import create_admin_router
+from .admin_store import AdminContentStore
 from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
@@ -29,6 +31,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
 knowledge_store = SQLiteKnowledgeStore(settings.knowledge_db_path, faiss_index_path=settings.knowledge_faiss_path)
+admin_store = AdminContentStore(settings.admin_db_path, upload_dir=settings.admin_upload_dir, asset_dir=settings.asset_dir)
 audio_store = InMemoryAudioStore()
 asr_provider = MockASRProvider()
 llm_provider = MockLLMProvider()
@@ -153,6 +156,7 @@ def readiness() -> dict[str, Any]:
 
 @app.get("/api/v1/client/config")
 def client_config() -> dict[str, Any]:
+    default_profile = admin_store.match_display_profile(1920, 1080, "landscape")
     return {
         "display_mode": settings.display_mode,
         "max_record_seconds": settings.max_record_seconds,
@@ -160,10 +164,14 @@ def client_config() -> dict[str, Any]:
         "accepted_audio_types": list(settings.accepted_audio_types),
         "subtitle_max_chars": settings.subtitle_max_chars,
         "idle_video_version": "local",
+        "assets_manifest": "/api/v1/assets/manifest",
+        "display_profile": default_profile,
         "api": {
             "dialogue_text": "/api/v1/dialogue/text",
             "dialogue_audio": "/api/v1/dialogue/audio",
             "audio_base": "/api/v1/audio/",
+            "display_profile": "/api/v1/display/profile",
+            "assets_manifest": "/api/v1/assets/manifest",
         },
     }
 
@@ -441,3 +449,15 @@ def _provider_check(provider: str, error: ProviderConfigurationError | None) -> 
         "ready": not missing,
         "missing": missing,
     }
+
+
+app.include_router(
+    create_admin_router(
+        settings=settings,
+        knowledge_store=knowledge_store,
+        admin_store=admin_store,
+        embedding_provider=embedding_provider,
+        provider_status=_provider_readiness,
+        embedding_error=lambda: embedding_configuration_error,
+    )
+)

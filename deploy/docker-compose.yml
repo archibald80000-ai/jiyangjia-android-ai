@@ -13,6 +13,9 @@ services:
       - APP_VERSION=0.1.0
       - JIYANGJIA_KNOWLEDGE_DB_PATH=/app/var/knowledge/jiyangjia.db
       - JIYANGJIA_KNOWLEDGE_FAISS_PATH=/app/var/knowledge/faiss.index
+      - JIYANGJIA_ADMIN_DB_PATH=/app/var/admin/admin.db
+      - JIYANGJIA_ADMIN_UPLOAD_DIR=/app/var/knowledge/uploads
+      - JIYANGJIA_ASSET_DIR=/app/var/assets
     ports:
       - "8080:8080"
     healthcheck:
@@ -25,6 +28,8 @@ services:
       - ../gateway/app:/app/app:ro
       - ../gateway/logs:/app/logs
       - ../var/knowledge:/app/var/knowledge
+      - ../var/admin:/app/var/admin
+      - ../var/assets:/app/var/assets
     logging:
       driver: json-file
       options:

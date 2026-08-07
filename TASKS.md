@@ -23,12 +23,13 @@ Current status:
   - `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
   - `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
   - `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`.
-- `TASK-014A` (new): `PLANNED`; lightweight admin content/display control plan to define:
+- `TASK-014A`: `DONE` locally; lightweight admin content/display control implementation passed 53 tests and local HTTP checks:
   - 系统状态页
   - 知识库审批与索引页
   - 数字人素材管理页
   - 多分辨率 Display Profile 配置页
-- `tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md` exists and is the entry for the next plan-only task.
+  - evidence: `docs/evidence/TASK-014A/`
+  - not yet deployed to Tencent Cloud; no formal media/business content or Android device result is claimed.
 
 Current order:
 
@@ -47,4 +48,4 @@ Future enhancement:
 Do not execute multiple implementation tasks concurrently unless a later task explicitly permits parallel work.
 
  - 2026-08-07：TASK-014 最终收口通过。线上容器包含 FFmpeg；Android WAV 与 MP3 都通过真实 ASR/RAG/LLM/TTS 和音频下载链路。
- - 下一步：只执行 `TASK-014A_ADMIN_CONTENT_DISPLAY.md`，完成本地轻量后台骨架和持久化/API 验证后再评估 TASK-015。
+ - 下一步：取得 Android 12 真机和已批准素材/Profile 后，仅执行 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`；TASK-014A 生产部署另行授权。

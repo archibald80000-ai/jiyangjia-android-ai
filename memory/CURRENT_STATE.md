@@ -126,17 +126,21 @@ Android recording
 - TASK-014 evidence reconciliation: imported and re-verified on 2026-08-07 with real provider/env readiness.
 - TASK-014 final acceptance: `docs/evidence/TASK-014/task014-final-acceptance-20260807.json` -> text/WAV/MP3 and all summary gates passed.
 - TASK-014 operational evidence: `task014-gateway-build-final-20260807.txt`, `task014-provider-env-final-20260807.json`, `task014-knowledge-cleanup-final-20260807.json`.
+- TASK-014A full regression: `python -m pytest tests -q` -> 53 passed; failed embedding publication is returned to draft and remains customer-invisible.
+- TASK-014A management JavaScript: generated page script passed `node --check`.
+- TASK-014A local HTTP: four admin pages, system status, manifest and 1920x1080 profile matching returned HTTP 200 with request IDs.
+- TASK-014A valid-file HTTP: generated H.264 MP4 was uploaded, downloaded through authenticated preview and verified by ffprobe at 640x360; PNG and Markdown publish flows returned manifest/source/request IDs.
+- TASK-014A workflow tests cover PDF/DOCX/MD/TXT parsing, draft exclusion, explicit publish, sources, MP4/JPG/PNG metadata, protected draft preview, publish/rollback, SHA-256, four presets, custom profile matching and SQLite persistence after store recreation.
 
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - Formal production knowledge base beyond the scoped demo FAQ set.
 - Android 12 large-screen real-device acceptance.
-- TASK-014A 轻量后台骨架尚待补齐：
-  - 页面架构（系统状态、知识库、数字人素材、显示配置）；
-  - Display Profile 字段枚举与默认策略；
-  - 初始素材/FAQ 审批清单及责任链。
+- TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
+- Formal approved media, business knowledge and device-specific Display Profile values.
+- Android consumption/cache of remote asset manifest and Display Profile.
 
 ## Next action
 
-Complete next: implement and verify `TASK-014A_ADMIN_CONTENT_DISPLAY.md` locally before TASK-015.
+Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` after the physical Android 12 display and approved asset/profile inputs are available. Do not claim TASK-014A production deployment.
