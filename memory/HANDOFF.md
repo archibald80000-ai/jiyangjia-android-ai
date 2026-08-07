@@ -2,69 +2,86 @@
 
 Updated: 2026-08-06
 
-## Current task
+## Current project position
 
-- Current task: `TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md`
-- Current status: `PARTIAL`
-- Current branch: `task/TASK-014-tencent-gateway-deployment`
-- Project path: `E:\work\ai-kefu\jiyangjia-ai`
-- Raw materials path: `E:\work\积养家` (read-only; do not scan or bulk import)
+- Project: `jiyangjia-android-ai`
+- Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
+- Raw business materials: `E:\work\积养家` — read-only by default; do not scan or bulk import.
+- Phase 1 product route: Android 12 idle-character-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
-## TASK-013 implemented
+## Verified implementation
 
-- Android `GatewayClient` submits recorded PCM as WAV multipart to Gateway `/api/v1/dialogue/audio`.
-- Android carries one `request_id` through dialogue upload and generated audio fetch.
-- Android parses transcript, answer subtitles, `sources`, `audio_id` and TTS content type.
-- Android downloads `/api/v1/audio/{audio_id}` and plays encoded response audio through `MediaPlayer`.
-- Android state machine now shows uploading, waiting, playing, cancel and service-error states before returning to idle-video/fallback.
-- `tests/e2e/test_dialogue_loop.py` covers Mock Gateway ASR -> RAG -> LLM -> TTS -> audio fetch.
-- 30-cycle Mock Gateway report is generated at `docs/evidence/TASK-013/task013-30cycle-pytest-report.json`.
-- Gateway transcript normalization now maps common ASR brand homophones (`机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家`, `济氧家`) to canonical `积养家` before RAG/LLM while preserving `transcript.raw_text`.
+- TASK-008 Gateway skeleton: DONE.
+- TASK-009 real Doubao TTS: DONE.
+- TASK-010 real Doubao ASR: DONE.
+- TASK-011 real LLM + Embedding adapters: DONE.
+- TASK-012 lightweight RAG: DONE — SQLite metadata, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing, source citations.
+- TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code already records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/source diagnostics, fetches TTS audio and plays it before returning to idle.
+- Backend real-provider smoke has succeeded locally through ASR -> RAG/Embedding -> LLM -> TTS -> audio fetch.
 
-## Verified
+## Current blocker — TASK-014
 
-- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\e2e -q`: 3 passed.
-- `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\e2e tests\knowledge tests\gateway tests\llm tests\asr tests\tts -q`: 37 passed.
-- Mock 30-cycle Gateway dialogue report: 30 passed, 0 failed, 0 fallback.
-- Real private-env Gateway smoke passed with Doubao ASR, Doubao/Ark Embedding RAG, Doubao/Ark LLM and Doubao TTS; generated TTS audio fetch returned `audio/mpeg`, `69741` bytes.
-- Android `testDebugUnitTest`, `assembleDebug` and `lintDebug` passed using project-local Temurin JDK 17.
-- APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, version `0.1.0-task013-debug`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
-- `adb devices -l` returned no attached devices.
-- Brand normalization tests passed: `python -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed; full backend regression -> 42 passed.
-- TASK-014 server-thread evidence was imported. The Tencent Cloud host `120.53.86.89` now runs commit `f3b406ca28222937a6f4c93bac524c48f0b95544`; health/config/knowledge endpoints are reachable, but dialogue text/audio return `503 BLOCKED_PROVIDER_CREDENTIALS`.
-- TASK-014 redeployment package is prepared locally. `deploy/docker-compose.yml` now loads untracked server `secrets/.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`. The server thread should fix the Provider env chain before retesting dialogue/upload.
-- Gateway now exposes `/api/v1/readiness` and returns `failed_stage` for Provider credential failures.
-- `scripts/check_provider_env.py` can be run on the server before container restart to verify `secrets/.env.local` and Compose `env_file` without exposing values.
+Tencent Cloud current Gateway code is deployed and health/config/knowledge endpoints are reachable. Real dialogue is still blocked by the server Provider environment chain:
 
-## Evidence
+- `/api/v1/dialogue/text` -> `503 BLOCKED_PROVIDER_CREDENTIALS`
+- `/api/v1/dialogue/audio` -> `503 BLOCKED_PROVIDER_CREDENTIALS`
 
-- `docs/evidence/TASK-013/end-to-end-dialogue.md`
-- `docs/evidence/TASK-013/task013-30cycle-pytest-report.json`
-- `docs/evidence/TASK-013/task013-pytest-e2e-20260806.txt`
-- `docs/evidence/TASK-013/task013-pytest-backend-full-20260806.txt`
-- `docs/evidence/TASK-013/task013-android-unit-final-20260806.txt`
-- `docs/evidence/TASK-013/task013-android-assemble-final-20260806.txt`
-- `docs/evidence/TASK-013/task013-android-lint-final-20260806.txt`
-- `docs/evidence/TASK-013/task013-apk-verification-20260806.txt`
-- `docs/evidence/TASK-013/task013-brand-normalization-samples-20260806.txt`
-- `docs/evidence/TASK-013/task013-brand-normalization-pytest-20260806.txt`
-- `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
-- `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
-- `docs/evidence/TASK-014/server-redeployment-request-20260806.md`
-- `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
-- `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
-- `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
+This is not an upload transport failure. Required remediation:
 
-## Not verified
+1. verify `/opt/jiyangjia-ai/secrets/.env.local` exists with mode 600;
+2. verify production Compose actually loads that fixed secret file;
+3. run `scripts/check_provider_env.py --require-real-mvp` and report only configured/missing;
+4. recreate the Gateway container so new env is loaded;
+5. verify `/api/v1/readiness`;
+6. run one dialogue/text + audio fetch and one dialogue/audio + audio fetch acceptance.
 
-- Formal production knowledge base beyond the scoped demo FAQ set.
-- Tencent Cloud Provider env-chain remediation: `/opt/jiyangjia-ai/secrets/.env.local` must exist with mode `600`, Compose `env_file` must point to it, `/api/v1/readiness` must show configured Providers, then dialogue/text and dialogue/audio must each return `request_id`, `sources`, `audio_id` and audio fetch 200.
-- Android 12 real-device install/record/upload/playback/subtitle acceptance.
-- USB microphone and speaker physical validation.
+Do not print or commit secret values.
 
-## Next action
+## New planned task — TASK-014A
 
-Continue exactly one next task: send the server-management thread the Provider env-chain fix instructions, have it run `scripts/check_provider_env.py`, verify `/api/v1/readiness`, then run one complete text/audio acceptance and return sanitized evidence.
+A new task specification is added at:
 
-Do not enter `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` until TASK-014 is no longer partial.
-- 2026-08-06：TASK-014 已完成重部署与 200 路径验证；证据已写入 `docs/server/gateway_deployment_report.md` 与 `/opt/jiyangjia-ai/logs/task014_evidence/*`。剩余阻塞为 Provider 凭据缺失，先补齐再执行 TASK-015。
+`tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md`
+
+Purpose: add a very lightweight browser admin layer for non-developers.
+
+Scope:
+
+- knowledge upload/review/chunk preview/reindex/search test;
+- reuse TASK-012 SQLite/FTS5/FAISS/Embedding rather than rebuilding RAG;
+- MP4 idle-character video and JPG/PNG background asset management;
+- publish/rollback + asset manifest;
+- Display Profiles for 1920x1080, 3840x2160, 1280x720, 1080x1920 and custom sizes;
+- Android should select/cache the matching display profile and asset version without requiring a new APK for each screen size;
+- `/api/v1/admin/*` protected by a server-side `ADMIN_TOKEN` for Phase 1.
+
+TASK-014A should be developed locally first. It must not claim server or Android physical-device acceptance until those are actually tested.
+
+## Human inputs still required
+
+Canonical checklist:
+
+`memory/PENDING_INPUTS.md`
+
+Key missing inputs:
+
+- production Provider secret configuration on Tencent Cloud;
+- reviewed formal business knowledge beyond demo FAQ;
+- first approved digital-human idle MP4/background and rights confirmation;
+- target Android screen's actual resolution/density/orientation/audio hardware information;
+- Android 12 physical device for TASK-015.
+
+## Recommended execution order
+
+1. Finish TASK-014 Provider env-chain remediation and server real-provider acceptance.
+2. Implement TASK-014A lightweight admin/content/display management locally and test persistence/API contracts.
+3. Prepare one approved idle-video asset and one small reviewed knowledge set through the admin flow.
+4. Execute TASK-015 on the real Android 12 large screen: install, resolution/profile, USB mic, speaker, network recovery, reboot and long-run tests.
+5. Only after Phase 1 acceptance revisit LiveTalking real-time lip-sync work.
+
+## Safety boundaries
+
+- No Dify/LangFlow/Flowise.
+- No bulk scan/upload of `E:\work\积养家`.
+- No secrets, APKs, raw recordings, model weights, production DB/FAISS or business source files in Git.
+- New knowledge defaults to `draft`; only reviewed `approved` content may serve customers.
