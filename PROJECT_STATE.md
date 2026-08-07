@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014G signing/update pipeline implemented and locally verified with disposable test identity; formal release gates blocked
-- **Current authorized task:** TASK-015 Android 12 device acceptance evidence
+- **Overall status:** TASK-015 NO-GO/BLOCKED; local implementation passes but device/formal release inputs are absent
+- **Current authorized task:** TASK-015 resumes only when all recorded external gates are available
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -248,10 +248,11 @@ Recent task results:
 - TASK-014E is PARTIAL. Gateway and Android implement 16 kHz mono PCM16 streaming, exact 20 ms frames, WebRTC VAD, partial/final events, single WAV fallback, generation cancellation and AEC-aware automatic barge-in. Full Gateway regression passed 61 tests and Android test/lint/debug assembly passed. A controlled real Doubao `bigmodel_async` call produced three partials and one final; Android 12 USB/AEC latency and false-trigger acceptance remain unavailable.
 - TASK-014F is PARTIAL. The APK contains a minimal DPC, DeviceAdminReceiver, persistent Home configuration, BootReceiver and guarded Lock Task entry. Runtime diagnostics distinguish `managed_locked` from `limited_unmanaged`. Android unit/build/lint pass, but this workstation has no emulator package/system image and `adb devices -l` is empty, so Device Owner/reboot behavior is not claimed.
 - TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
+- TASK-015 is BLOCKED with a NO-GO decision. Gateway regression passed 63 tests, Android unit/lint/debug assembly and repository verification pass, but `adb devices -l` is empty and the local SDK has no emulator/system image. USB/AEC, visual, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
 
 Next action:
 
-- TASK-015 is blocked pending an Android 12 device, approved media, trusted HTTPS release hosting and formal signing identity/custody. Production rollout is still not authorized.
+- Resume TASK-015 only after the Android 12 device/audio hardware, approved media/Profile, trusted HTTPS hosting and formal signing identity with N/N+1/N+2 candidates are available. Production rollout is still not authorized.
 
 ## Status vocabulary
 

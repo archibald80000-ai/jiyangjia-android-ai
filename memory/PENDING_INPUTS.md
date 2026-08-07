@@ -22,6 +22,16 @@ TASK-015 尚需真实设备完成：
 - 网络断开/恢复；
 - 重启恢复和长时间运行。
 
+TASK-015 还必须同时具备：
+
+- 可恢复出厂并配置 Fully Managed Device Owner 的确认窗口；
+- 受权 MP4/背景素材及最终 Display Profile；
+- 可信 HTTPS bootstrap 与 APK 地址；
+- 正式签名身份、双人保管/备份记录；
+- 同一正式证书签名且 versionCode 单调递增的 N、N+1，以及上一稳定源码构建的 N+2 回滚包。
+
+当前 `adb devices -l` 无设备，本地 SDK 也没有 emulator/system image；TASK-015 已签发 `NO-GO / BLOCKED`，不能用本地测试替代真机结论。
+
 ## P1 - TASK-014A 正式内容与生产部署
 
 本地管理后台骨架、API、状态机和持久化已完成。以下业务输入与生产部署仍待人工确认。
@@ -63,6 +73,7 @@ Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
 - 知识库、素材和 Display Profile 的备份恢复；
 - 监控、告警、请求限流和成本保护；
 - 正式 release APK 签名；
+- 正式签名证书 SHA-256 与双份离线备份恢复演练；
 - 门店连续问答和长稳测试。
 
 ## 明确延期

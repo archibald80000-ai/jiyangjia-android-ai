@@ -2,6 +2,15 @@
 
 Updated: 2026-08-07
 
+## TASK-014C through TASK-015 update
+
+- TASK-014C PARTIAL: secure ETag/bootstrap content synchronization, SHA-256/size/type validation, private staging, active/previous switching, offline cache and rollback are locally implemented and tested.
+- TASK-014D PARTIAL: Media3 layered Display Profile renderer, fit/fill/crop geometry, normalized layout and first-frame switching are locally implemented and tested.
+- TASK-014E PARTIAL: 640-byte PCM WebSocket streaming, WebRTC VAD, real Doubao partial/final stream, final-only normalization/RAG/LLM/TTS, single WAV fallback, AEC diagnostics and generation cancellation are locally implemented. Device acoustic acceptance remains open.
+- TASK-014F PARTIAL: minimal DPC, BootReceiver, Home intent and guarded Lock Task are implemented; no AVD/device runtime evidence exists.
+- TASK-014G PARTIAL: fail-closed controlled signing, release manifest and verified PackageInstaller path are implemented. Disposable test signing passed and artifacts were deleted; formal identity/hosting/device upgrade are absent.
+- TASK-015 BLOCKED / NO-GO: no Android device or AVD, approved media, trusted HTTPS release host or formal signing custody/N-series APKs. Gateway tests: 63 passed. Android unit/lint/debug assembly and repository verification pass.
+
 ## Completed
 
 - `main` 分支已对齐到远端提交 `a68f234`，`TASK-014A` 已入库为正式主线内容，不再作为本地待完成开发项。
@@ -142,8 +151,8 @@ Android recording
 - Android 12 large-screen real-device acceptance.
 - TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
 - Formal approved media, business knowledge and device-specific Display Profile values.
-- Android consumption/cache of remote asset manifest and Display Profile.
+- Android 12 physical validation of secure sync, Display Profile, USB/AEC, managed kiosk, signed update/rollback and long-run operation.
 
 ## Next action
 
-Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` after the physical Android 12 display and approved asset/profile inputs are available. Do not claim TASK-014A production deployment.
+Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after all external gates in `memory/PENDING_INPUTS.md` are available. Do not claim production deployment or device acceptance.

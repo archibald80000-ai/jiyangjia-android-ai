@@ -14,5 +14,6 @@
 | D-010 | Phase 1 management uses the existing FastAPI/SQLite stack, explicit knowledge/media publish states and public asset/display contracts | Accepted | ADR-0010 |
 | D-011 | Phase 1 display defaults to 1080x1920 portrait (9:16), while alternate Display Profiles remain selectable | Accepted | ADR-0011 |
 | D-012 | Complete secure Android content sync, deterministic rendering, Gateway-proxied streaming ASR, managed kiosk and signed updates before physical acceptance | Accepted | ADR-0012 |
+| D-013 | Provision the target as fully managed Device Owner and require automatic acoustic barge-in; click interrupt is fallback only | Accepted | ADR-0013 |
 
 New architectural decisions require a new ADR and an update to this table.

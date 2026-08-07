@@ -1,8 +1,8 @@
 # TASK-015: Validate the actual Android 12 display in the store
 
-- **Status:** PLANNED
+- **Status:** BLOCKED
 - **Priority:** P0
-- **Dependencies:** TASK-014G DONE
+- **Dependencies:** TASK-014C through TASK-014G implemented locally; their physical/formal gates remain open
 - **Branch:** `task/TASK-015-android-device-acceptance`
 - **Owner:** Codex / assigned developer
 
@@ -12,8 +12,8 @@ Validate the actual Android 12 display in the store.
 
 ## Preconditions
 
-- TASK-013 and TASK-014 are DONE
-- Physical device and store network are available
+- TASK-014C through TASK-014G local verification is complete
+- Physical Android 12 device, approved media, trusted HTTPS release hosting and formal signing identity are available
 
 ## Scope and allowed changes
 
@@ -103,3 +103,9 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - [ ] Replace `memory/HANDOFF.md` with current facts.
 - [ ] Update assumptions/open questions and add ADR if needed.
 - [ ] Recommend exactly one next task.
+
+## Current acceptance decision (2026-08-07)
+
+**NO-GO / BLOCKED.** `adb devices -l` returned no device, and the project-local SDK has no emulator executable or Android 12 system image. Approved media, trusted HTTPS release hosting and a formal signing identity/custody record are also absent. No hardware, Lock Task, USB audio, AEC, reboot, silent-upgrade, long-run or 30-consultation result is claimed.
+
+Local preflight is complete: Gateway regression passed 63 tests, Android unit/lint/debug assembly passed, repository verification passed, and the current debug APK is recorded in `docs/evidence/TASK-015/task015-no-go-20260807.md`. Resume this same task when all external gates are present.

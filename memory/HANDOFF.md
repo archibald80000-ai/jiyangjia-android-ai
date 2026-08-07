@@ -6,8 +6,9 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current task status: `TASK-014A DONE` (in `main`), next is `TASK-015_ANDROID_DEVICE_ACCEPTANCE`
-- Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` (not started; requires device and approved inputs)
+- Current stacked branch: `task/TASK-015-android12-device-acceptance`; TASK-014C through TASK-014G have separate predecessor commits and remain PARTIAL at external gates.
+- Current task status: `TASK-015 BLOCKED / NO-GO`.
+- Next action: resume the same TASK-015 only when device, approved content, trusted HTTPS and formal signed N/N+1/N+2 candidates exist.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -20,6 +21,11 @@ Updated: 2026-08-07
 - TASK-012 lightweight RAG: DONE. SQLite, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing and source citations are implemented.
 - TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/sources, fetches TTS audio and plays it before returning to idle.
 - TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, editable Display Profiles and persistence are covered by 55 tests and real-browser button verification.
+- TASK-014C: PARTIAL; secure versioned content sync and rollback pass local tests.
+- TASK-014D: PARTIAL; Media3 Display Profile renderer passes local geometry/build/lint tests.
+- TASK-014E: PARTIAL; WebRTC VAD and real Doubao bidirectional partial/final streaming pass, while physical AEC/barge-in remains pending.
+- TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
+- TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 
 ## TASK-014A local state
 
@@ -60,7 +66,7 @@ Updated: 2026-08-07
 
 ## Next action
 
-Do not begin TASK-015 without the Android 12 device. When inputs are available, execute only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy TASK-014A separately only with explicit production authorization.
+Do not claim or repeat TASK-015 acceptance without the recorded external inputs. When they are available, resume only `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`; deploy production separately only with explicit authorization.
 
 ## Safety boundaries
 
