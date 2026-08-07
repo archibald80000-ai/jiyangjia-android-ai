@@ -126,7 +126,7 @@ tasks:
     file: TASK-014F_ANDROID_MANAGED_KIOSK.md
     title: "Implement managed kiosk mode and boot recovery"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-014E]
   - id: TASK-014G
     file: TASK-014G_ANDROID_RELEASE_SIGNING_UPDATE.md

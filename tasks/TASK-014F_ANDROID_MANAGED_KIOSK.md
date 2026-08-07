@@ -1,6 +1,6 @@
 # TASK-014F - Android Managed Kiosk and Boot Recovery
 
-- **Status:** PLANNED
+- **Status:** PARTIAL
 - **Priority:** P0
 - **Dependencies:** TASK-014C DONE, TASK-014D DONE, TASK-014E DONE
 - **Allowed scope:** Android device-admin/home/boot modules, provisioning docs, tests and evidence
@@ -26,4 +26,13 @@ Make the store display recover after reboot and, where hardware provisioning all
 
 ## Manual Gate
 
-The device owner must confirm whether factory reset/provisioning as a fully managed device is permitted. Without this approval, true Lock Task cannot be accepted.
+The device owner confirmed that factory reset/provisioning as a fully managed device is permitted. True Lock Task still requires successful device or AVD provisioning evidence.
+
+## Implementation result (2026-08-07)
+
+- The APK now contains a minimal `DeviceAdminReceiver`, `BOOT_COMPLETED` receiver and Home activity declaration.
+- Device Owner configuration allowlists only this package, disables Lock Task features/status bar and assigns persistent Home. Lock Task starts only when `isLockTaskPermitted()` is true and reports success only from `LOCK_TASK_MODE_LOCKED`.
+- Unmanaged and partially configured devices explicitly report `limited_unmanaged` rather than true kiosk success.
+- Boot starts a fresh Activity, restores TASK-014C cached content and never restores a prior dialogue generation.
+- Unit tests, debug assembly and lint pass. Factory/ADB, QR, deprovisioning and recovery procedures are documented.
+- No emulator/system image or Android device is installed on this workstation; `adb devices -l` returned no target. Device Owner, reboot and 10-cycle acceptance remain unverified, so status is `PARTIAL`.

@@ -8,4 +8,5 @@
     <string name="idle_status">待机中</string>
     <string name="fallback_subtitle">欢迎咨询积养家</string>
     <string name="refresh_audio">刷新音频设备</string>
+    <string name="device_admin_description">积养家专用终端设备策略控制器</string>
 </resources>

@@ -21,7 +21,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.media3.common.util.UnstableApi
 
-@UnstableApi
+@androidx.annotation.OptIn(markerClass = [UnstableApi::class])
 class KioskActivity : Activity() {
     private lateinit var idleContainer: FrameLayout
     private lateinit var statusText: TextView
@@ -32,6 +32,7 @@ class KioskActivity : Activity() {
     private lateinit var idleVideoController: IdleVideoController
     private lateinit var audioController: AudioLoopbackController
     private lateinit var contentSyncManager: ContentSyncManager
+    private lateinit var managedKioskController: ManagedKioskController
     private var state: ConsultationState = ConsultationState.BOOT
     private var config: ClientConfig = ClientConfig.fromValues(null, null, null, null, null)
     private var lastRecording: PcmAudio? = null
@@ -70,15 +71,26 @@ class KioskActivity : Activity() {
             onResult = ::handleContentSyncResult
         )
         contentSyncManager.cachedBundle()?.let(::applyCachedBundle)
+        managedKioskController = ManagedKioskController(this)
         audioController = AudioLoopbackController(this)
         audioController.startDeviceMonitoring { reason -> handleAudioDeviceChange(reason) }
         transitionTo(ConsultationState.IDLE_VIDEO)
         refreshAudioDiagnostics()
+        if (intent.getBooleanExtra(BootReceiver.EXTRA_BOOT_RECOVERY, false)) {
+            diagnosticsText.text = "Boot recovery: cached bundle restored; dialogue state cleared"
+        }
     }
 
     override fun onStart() {
         super.onStart()
         contentSyncManager.startForeground()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val kiosk = managedKioskController.configureAndEnter()
+        diagnosticsText.text = "Kiosk=${kiosk.mode} owner=${kiosk.deviceOwner} permitted=${kiosk.lockTaskPermitted} locked=${kiosk.lockTaskLocked}" +
+            (kiosk.error?.let { " error=$it" } ?: "")
     }
 
     override fun onStop() {
