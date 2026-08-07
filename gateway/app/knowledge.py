@@ -13,16 +13,15 @@ from typing import Iterable, Protocol
 import faiss
 import numpy as np
 
+from .answer_policy import classify_answer_scope
+
 
 VALID_STATUSES = {"approved", "draft", "rejected"}
 CUSTOMER_ALLOWED_STATUSES = {"approved"}
-PROHIBITED_PATTERNS = {
-    "medical": ("治病", "疗效", "诊断", "处方", "用药", "康复保证", "保证治好", "病"),
-    "price": ("多少钱", "价格", "优惠", "折扣", "活动价", "会员余额", "库存"),
-    "internal": ("合同", "供应商", "财务", "员工", "工资", "密码", "密钥", "后台"),
-}
 SAFE_TRANSFER_TEXT = "这项信息我暂时不能确认，请咨询现场工作人员。"
 STOP_TOKENS = {"有没有", "有没", "没有", "可以", "怎么", "什么", "现在", "今天", "你们", "我们", "一下", "多少", "是不是", "能不能"}
+MIN_KNOWLEDGE_SCORE = 0.6
+MIN_VECTOR_ONLY_SCORE = 0.82
 
 
 class EmbeddingLike(Protocol):
@@ -296,11 +295,8 @@ class SQLiteKnowledgeStore:
         }
 
     def classify_query(self, query: str) -> dict[str, object]:
-        normalized = query.strip()
-        for category, patterns in PROHIBITED_PATTERNS.items():
-            if any(pattern in normalized for pattern in patterns):
-                return {"action": "safe_transfer", "category": category, "message": SAFE_TRANSFER_TEXT}
-        return {"action": "search", "category": None, "message": None}
+        scope = classify_answer_scope(query)
+        return {"action": "search", "scope": scope, "category": None, "message": None}
 
     async def search(
         self,
@@ -313,13 +309,22 @@ class SQLiteKnowledgeStore:
         policy = self.classify_query(query)
         if policy["action"] != "search":
             return []
-        allowed = ("approved", "draft") if include_draft else ("approved",)
+        if policy["scope"] == "general":
+            return []
+        # Search drafts as a shadow corpus even for customer requests. If the
+        # strongest relevant document is still draft, the information is not
+        # approved for use and tangential approved documents must not mask it.
+        candidate_statuses = ("approved", "draft")
         vector_scores: dict[str, float] = {}
         if embedding_provider is not None and self._vector_index is not None and self._vector_index.ntotal > 0 and self._vector_dimensions > 1:
-            vector_scores = await self._vector_search(query, embedding_provider, request_id, top_k=max(top_k * 4, 8), allowed=allowed)
-        keyword_scores = self._keyword_search(query, top_k=max(top_k * 4, 8), allowed=allowed)
-        merged = self._merge_scores(vector_scores, keyword_scores, allowed=allowed)
-        return merged[:top_k]
+            vector_scores = await self._vector_search(query, embedding_provider, request_id, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
+        keyword_scores = self._keyword_search(query, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
+        merged = self._merge_scores(vector_scores, keyword_scores, allowed=candidate_statuses)
+        if include_draft:
+            return merged[:top_k]
+        if merged and merged[0]["status"] == "draft":
+            return []
+        return [match for match in merged if match["status"] == "approved"][:top_k]
 
     async def _vector_search(self, query: str, embedding_provider: EmbeddingLike, request_id: str, top_k: int, allowed: tuple[str, ...]) -> dict[str, float]:
         embedding = await embedding_provider.embed([query], request_id=request_id)
@@ -361,8 +366,16 @@ class SQLiteKnowledgeStore:
                 continue
             vector_score = vector_scores.get(chunk_id, 0.0)
             keyword_score = keyword_scores.get(chunk_id, 0.0)
-            combined = max(keyword_score, max(vector_score, 0.0) * 0.75 + keyword_score * 0.25)
-            if combined < 0.4:
+            if keyword_score > 0.0:
+                # Keep ranking stable when a chunk falls just outside the
+                # bounded FAISS candidate window: lexical evidence contributes
+                # the same base weight whether or not a vector score is present.
+                combined = keyword_score * 0.8 + max(vector_score, 0.0) * 0.2
+            else:
+                combined = max(vector_score, 0.0) * 0.75
+            if combined < MIN_KNOWLEDGE_SCORE:
+                continue
+            if keyword_score == 0.0 and vector_score < MIN_VECTOR_ONLY_SCORE:
                 continue
             confidence = min(0.99, max(0.05, combined))
             results.append(_match_from_row(row, confidence=confidence, vector_score=vector_score, keyword_score=keyword_score))

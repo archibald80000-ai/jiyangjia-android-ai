@@ -74,11 +74,38 @@ async def _assert_search_excludes_draft_and_rejected_by_default() -> None:
     assert rejected_matches == []
 
 
-def test_prohibited_query_returns_policy_before_search() -> None:
+def test_jiyangjia_query_is_searched_instead_of_rejected_before_retrieval() -> None:
     store = SQLiteKnowledgeStore(":memory:")
     policy = store.classify_query("这个项目能治病吗")
-    assert policy["action"] == "safe_transfer"
-    assert policy["category"] == "medical"
+    assert policy == {"action": "search", "scope": "jiyangjia", "category": None, "message": None}
+
+
+def test_general_query_bypasses_business_knowledge_search() -> None:
+    asyncio.run(_assert_general_query_bypasses_business_knowledge_search())
+
+
+async def _assert_general_query_bypasses_business_knowledge_search() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    await store.index_documents(_documents(), SemanticEmbeddingProvider(), "req-index")
+
+    policy = store.classify_query("今天天气怎么样？")
+    matches = await store.search("今天天气怎么样？", SemanticEmbeddingProvider(), "req-weather")
+
+    assert policy["scope"] == "general"
+    assert matches == []
+
+
+def test_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match() -> None:
+    asyncio.run(_assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match())
+
+
+async def _assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    await store.index_documents(_documents(), SemanticEmbeddingProvider(), "req-index")
+
+    matches = await store.search("积养家有榴莲吗？", SemanticEmbeddingProvider(), "req-unknown")
+
+    assert matches == []
 
 
 def test_parse_selected_json_and_markdown(tmp_path: Path) -> None:

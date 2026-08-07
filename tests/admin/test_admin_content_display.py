@@ -110,13 +110,13 @@ def test_knowledge_requires_publish_before_customer_search(tmp_path: Path) -> No
 
     assert client.post(f"/api/v1/admin/knowledge/{run_id}/preview").json()["preview"][0]["source"].startswith("admin://knowledge/")
     assert client.post(f"/api/v1/admin/knowledge/{run_id}/approve").json()["run"]["status"] == "approved"
-    assert _run(knowledge.search("到店指引", MockEmbeddingProvider(), "req-before-publish")) == []
+    assert _run(knowledge.search("积养家到店指引", MockEmbeddingProvider(), "req-before-publish")) == []
     assert knowledge.status()["documents"]["approved"] == 0
 
     published = client.post(f"/api/v1/admin/knowledge/{run_id}/publish")
     assert published.status_code == 200
     assert published.json()["run"]["status"] == "published"
-    matches = _run(knowledge.search("到店指引", MockEmbeddingProvider(), "req-admin-search"))
+    matches = _run(knowledge.search("积养家到店指引", MockEmbeddingProvider(), "req-admin-search"))
     assert matches
     assert matches[0]["status"] == "approved"
     assert matches[0]["source"]["uri"].startswith("admin://knowledge/")

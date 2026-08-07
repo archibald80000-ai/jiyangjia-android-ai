@@ -100,3 +100,14 @@ Restore the previous task commit/config, stop task processes, and remove only ta
 - Customer-visible search kept draft documents excluded, but the 80-case suite passed only 51/80 (63.75%), below the required 90%.
 - Activation was refused. The task-created 8090 process was stopped, the candidate was marked `FAILED-63.75pct`, and the existing 18081 database remained unchanged.
 - Detailed evidence: `docs/evidence/TASK-017/knowledge-v2.1-import-evaluation-20260807.md`.
+
+## Owner decision and scoped-routing verification (2026-08-07)
+
+- Owner replaced the old blanket-transfer policy: explicit 积养家/product/service questions require approved evidence and fail closed when none exists; other questions receive a contextual general answer.
+- Decision recorded in `docs/adr/ADR-0014_KNOWLEDGE_SCOPED_ANSWER_ROUTING.md`.
+- Removed pre-retrieval medical/price/internal keyword rejection, added business/general scope routing, draft-shadow protection and stricter evidence scoring.
+- Real v2.1 retrieval: approved target top-1 `36/36`; draft target exclusion `14/14`; six general questions bypassed business search `6/6`; unknown 积养家 product returned no match.
+- Real Doubao LLM checks passed for approved grounding, unknown-business refusal, general writing and general health guidance.
+- TASK-017 regression: `47 passed`; full repository: `83 passed, 1 unrelated TASK-015A failure`.
+- Candidate remains isolated on localhost 8090. Production and the existing 18081 database were not switched, so the task remains `PARTIAL` rather than `DONE`.
+- Detailed evidence: `docs/evidence/TASK-017/knowledge-routing-v2.1-20260807.md`.

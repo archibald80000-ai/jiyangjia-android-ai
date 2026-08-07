@@ -73,7 +73,7 @@ class MockStreamingASRSession:
         return ["模拟语音"] if self.frames == 5 else []
 
     async def finish(self) -> dict[str, object]:
-        return {"text": "模拟语音问题", "provider": "mock", "language": "zh-CN", "confidence": 1.0}
+        return {"text": "积养家模拟语音问题", "provider": "mock", "language": "zh-CN", "confidence": 1.0}
 
     async def close(self) -> None:
         return None

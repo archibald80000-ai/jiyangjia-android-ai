@@ -15,7 +15,9 @@ from gateway.app.llm import (
     _embedding_input,
     _embedding_route,
     _endpoint,
+    _build_grounded_messages,
 )
+from gateway.app.providers import MockLLMProvider
 from gateway.app.tts import ProviderCallError, ProviderConfigurationError
 from scripts.test_embedding_provider import embedding_config_status
 from scripts.test_llm_provider import llm_config_status
@@ -174,6 +176,30 @@ async def _assert_llm_provider_maps_http_rejection() -> None:
 
     assert exc.value.code == "LLM_PROVIDER_REJECTED"
     assert exc.value.retryable is False
+
+
+def test_no_context_prompt_refuses_only_unverified_jiyangjia_facts() -> None:
+    business = _build_grounded_messages([{"role": "user", "content": "积养家有榴莲吗？"}], [])
+    general = _build_grounded_messages([{"role": "user", "content": "帮我写个请假条。"}], [])
+
+    assert "必须明确说明无法确认" in business[1]["content"]
+    assert "不要无故拒绝" in general[1]["content"]
+    assert "当前不使用品牌知识库" in general[1]["content"]
+
+
+def test_mock_llm_routes_general_and_unverified_business_questions() -> None:
+    asyncio.run(_assert_mock_llm_routes_general_and_unverified_business_questions())
+
+
+async def _assert_mock_llm_routes_general_and_unverified_business_questions() -> None:
+    provider = MockLLMProvider()
+    business = await provider.chat([{"role": "user", "content": "积养家有榴莲吗？"}], [], "req-business")
+    general = await provider.chat([{"role": "user", "content": "今天天气怎么样？"}], [], "req-general")
+
+    assert business["source"] == "in_domain_unverified"
+    assert "不能确认" in business["text"]
+    assert general["source"] == "general_answer_mock"
+    assert "通用问题" in general["text"]
 
 
 def test_endpoint_normalizes_full_openai_compatible_routes() -> None:

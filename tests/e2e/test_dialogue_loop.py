@@ -20,7 +20,7 @@ def _index_e2e_doc() -> None:
                 {
                     "id": "task013-e2e-mock-question",
                     "title": "TASK-013 Mock 语音咨询",
-                    "text": "模拟语音问题的已确认回答：欢迎咨询积养家，工作人员可以继续协助。",
+                    "text": "积养家模拟语音问题的已确认回答：欢迎咨询积养家，工作人员可以继续协助。",
                     "status": "approved",
                     "source_uri": "manual://task013/e2e-mock-question",
                 }
@@ -55,7 +55,7 @@ def test_mock_audio_dialogue_loop_returns_request_id_sources_audio_and_subtitles
     payload = response.json()
     assert payload["request_id"] == request_id
     assert payload["session_id"] == "sess-task013"
-    assert payload["transcript"]["text"] == "模拟语音问题"
+    assert payload["transcript"]["text"] == "积养家模拟语音问题"
     assert payload["knowledge"]["status"] == "matched"
     assert payload["sources"][0]["uri"] == "manual://task013/e2e-mock-question"
     assert payload["answer"]["subtitles"]
