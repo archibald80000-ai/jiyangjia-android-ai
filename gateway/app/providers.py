@@ -1,12 +1,26 @@
 from __future__ import annotations
 
-from typing import Protocol
+from typing import Awaitable, Callable, Protocol
 
 
 class ASRProvider(Protocol):
     name: str
 
     async def transcribe(self, audio: bytes, content_type: str, request_id: str) -> dict[str, object]: ...
+
+
+class StreamingASRSession(Protocol):
+    async def push(self, pcm_frame: bytes) -> list[str]: ...
+
+    async def finish(self) -> dict[str, object]: ...
+
+    async def close(self) -> None: ...
+
+
+class StreamingASRProvider(Protocol):
+    name: str
+
+    async def open_stream(self, request_id: str) -> StreamingASRSession: ...
 
 
 class LLMProvider(Protocol):

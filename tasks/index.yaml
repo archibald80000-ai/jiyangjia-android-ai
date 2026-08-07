@@ -120,7 +120,7 @@ tasks:
     file: TASK-014E_STREAMING_ASR_VAD_INTERRUPT.md
     title: "Implement streaming ASR, VAD and playback interruption"
     priority: p0
-    status: PLANNED
+    status: PARTIAL
     depends_on: [TASK-014D]
   - id: TASK-014F
     file: TASK-014F_ANDROID_MANAGED_KIOSK.md

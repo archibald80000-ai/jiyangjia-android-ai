@@ -57,6 +57,7 @@ class Settings:
     doubao_tts_uid: str = "jiyangjia-gateway"
     doubao_tts_timeout_seconds: float = 25.0
     doubao_asr_endpoint: str = "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_nostream"
+    doubao_streaming_asr_endpoint: str = "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_async"
     doubao_asr_resource_id: str = "volc.bigasr.sauc.duration"
     doubao_asr_audio_format: str = "wav"
     doubao_asr_uid: str = "jiyangjia-gateway"
@@ -162,6 +163,10 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         doubao_tts_uid=_env("DOUBAO_TTS_UID", "jiyangjia-gateway"),
         doubao_tts_timeout_seconds=float(_env("DOUBAO_TTS_TIMEOUT_SECONDS", "25")),
         doubao_asr_endpoint=_env("DOUBAO_ASR_ENDPOINT", "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_nostream"),
+        doubao_streaming_asr_endpoint=_env(
+            "DOUBAO_STREAMING_ASR_ENDPOINT",
+            "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_async",
+        ),
         doubao_asr_resource_id=_env("DOUBAO_ASR_RESOURCE_ID", "volc.bigasr.sauc.duration"),
         doubao_asr_audio_format=_env("DOUBAO_ASR_AUDIO_FORMAT", "wav"),
         doubao_asr_uid=_env("DOUBAO_ASR_UID", "jiyangjia-gateway"),

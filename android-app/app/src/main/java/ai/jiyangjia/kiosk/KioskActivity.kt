@@ -37,6 +37,10 @@ class KioskActivity : Activity() {
     private var lastRecording: PcmAudio? = null
     private var lastDialogue: DialogueResult? = null
     private var gatewayThread: Thread? = null
+    private var streamClient: StreamingDialogueClient? = null
+    private var streamGeneration: Int = 0
+    private var streamError: String? = null
+    private var bargeInMonitor = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +96,7 @@ class KioskActivity : Activity() {
     override fun onDestroy() {
         gatewayThread?.interrupt()
         gatewayThread = null
+        streamClient?.cancel()
         contentSyncManager.stopForeground()
         audioController.shutdown()
         idleVideoController.stop()
@@ -280,13 +285,16 @@ class KioskActivity : Activity() {
 
     private fun handleAudioButton() {
         if (state == ConsultationState.RECORDING) {
+            streamClient?.stop()
             audioController.stopRecording()
             startButton.isEnabled = false
             subtitleText.text = "正在停止录音"
             return
         }
         if (state == ConsultationState.UPLOADING || state == ConsultationState.WAITING_FOR_RESPONSE || state == ConsultationState.PLAYING_ANSWER) {
-            cancelCurrentInteraction("已取消本次咨询")
+            val wasPlaying = state == ConsultationState.PLAYING_ANSWER
+            cancelCurrentInteraction(if (wasPlaying) "已打断播报，请开始说话" else "已取消本次咨询")
+            if (wasPlaying) ensureMicPermissionThenRecord()
             return
         }
         if (state.canStartConsultation()) {
@@ -307,25 +315,120 @@ class KioskActivity : Activity() {
     }
 
     private fun beginRecording() {
-        transitionTo(ConsultationState.RECORDING)
+        beginStreamingCapture(isBargeIn = false)
+    }
+
+    private fun beginStreamingCapture(isBargeIn: Boolean) {
+        if (!isBargeIn) transitionTo(ConsultationState.RECORDING)
+        bargeInMonitor = isBargeIn
+        streamError = null
+        val generation = ++streamGeneration
+        val requestId = GatewayClient.newRequestId()
+        val sessionId = "sess-${config.deviceId}"
+        lateinit var client: StreamingDialogueClient
+        client = StreamingDialogueClient(config, requestId, sessionId, generation, object : StreamingDialogueListener {
+            override fun onReady(requestId: String) {
+                if (generation != streamGeneration) return
+                runOnUiThread { startPcmCapture(client, generation, isBargeIn) }
+            }
+
+            override fun onSpeechStarted(requestId: String) {
+                if (generation != streamGeneration) return
+                runOnUiThread {
+                    if (bargeInMonitor && state == ConsultationState.PLAYING_ANSWER) {
+                        audioController.stopPlayback()
+                        bargeInMonitor = false
+                        transitionTo(ConsultationState.RECORDING)
+                        diagnosticsText.text = "Automatic barge-in request_id=$requestId"
+                    }
+                    subtitleText.text = "检测到语音，正在识别"
+                }
+            }
+
+            override fun onPartial(requestId: String, text: String) {
+                if (generation == streamGeneration) runOnUiThread { subtitleText.text = text }
+            }
+
+            override fun onSpeechEnded(requestId: String) {
+                if (generation != streamGeneration) return
+                audioController.stopRecording()
+                runOnUiThread {
+                    transitionTo(ConsultationState.WAITING_FOR_RESPONSE)
+                    subtitleText.text = "语音结束，正在生成回答"
+                }
+            }
+
+            override fun onResult(result: DialogueResult) {
+                if (generation != streamGeneration) return
+                fetchAndPlayStreamResult(result, generation)
+            }
+
+            override fun onError(requestId: String, code: String, message: String) {
+                if (generation != streamGeneration) return
+                if (bargeInMonitor && code in setOf("NO_SPEECH_TIMEOUT", "NO_SPEECH")) {
+                    audioController.stopRecording()
+                    bargeInMonitor = false
+                    runOnUiThread { diagnosticsText.text = "AEC monitor idle timeout; click interrupt remains available" }
+                    return
+                }
+                streamError = "$code: $message"
+                audioController.stopRecording()
+            }
+        })
+        streamClient?.cancel()
+        streamClient = client
+        client.connect()
+    }
+
+    private fun startPcmCapture(client: StreamingDialogueClient, generation: Int, isBargeIn: Boolean) {
         audioController.startRecording(
-            maxSeconds = config.maxRecordSeconds,
+            maxSeconds = 30,
             onLevel = { level, elapsedMillis ->
-                subtitleText.text = "录音中 ${elapsedMillis / 1000}s  音量 $level%"
+                if (!isBargeIn || !bargeInMonitor) subtitleText.text = "录音中 ${elapsedMillis / 1000}s  音量 $level%"
             },
             onComplete = { pcm ->
                 lastRecording = pcm
-                if (pcm.isPlayable) {
-                    subtitleText.text = "录音 ${pcm.durationMillis}ms，开始上传"
+                val failure = streamError
+                if (failure != null && pcm.isPlayable && !isBargeIn && generation == streamGeneration) {
+                    diagnosticsText.text = "Streaming failed once; WAV fallback: ${failure.take(80)}"
                     submitRecording(pcm)
-                } else {
+                } else if (!pcm.isPlayable && !isBargeIn) {
                     showAudioError("未录到可播放音频")
                 }
             },
             onError = { message ->
                 showAudioError(message)
+            },
+            onFrame = { frame ->
+                if (generation == streamGeneration && !client.sendPcm(frame)) {
+                    streamError = "PCM_SEND_FAILED"
+                    audioController.stopRecording()
+                }
+            },
+            onEffects = { effects ->
+                diagnosticsText.text = if (effects.automaticBargeInReady) {
+                    "VOICE_COMMUNICATION AEC=${effects.aecEnabled} NS=${effects.noiseSuppressorEnabled}"
+                } else {
+                    "DEGRADED: AEC unavailable; automatic barge-in release gate blocked"
+                }
             }
         )
+    }
+
+    private fun fetchAndPlayStreamResult(dialogue: DialogueResult, generation: Int) {
+        gatewayThread = Thread {
+            try {
+                val audio = GatewayClient(config).fetchAudio(dialogue.audioId, dialogue.requestId)
+                if (generation != streamGeneration) return@Thread
+                runOnUiThread {
+                    lastDialogue = dialogue
+                    showDialogueResult(dialogue)
+                    playAnswerAudio(audio)
+                }
+            } catch (error: Throwable) {
+                if (generation == streamGeneration) runOnUiThread { showServiceError(error.message ?: "audio fetch failed") }
+            }
+        }.apply { name = "kiosk-stream-result"; start() }
     }
 
     private fun submitRecording(pcm: PcmAudio) {
@@ -368,6 +471,9 @@ class KioskActivity : Activity() {
             bytes = audio.bytes,
             contentType = audio.contentType,
             onComplete = {
+                streamClient?.cancel()
+                audioController.stopRecording()
+                bargeInMonitor = false
                 transitionTo(ConsultationState.IDLE_VIDEO)
                 subtitleText.text = "回答播放完成"
                 refreshAudioDiagnostics("playback complete")
@@ -376,6 +482,11 @@ class KioskActivity : Activity() {
                 showAudioError(message)
             }
         )
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            beginStreamingCapture(isBargeIn = true)
+        } else {
+            diagnosticsText.text = "DEGRADED: microphone permission missing; click interrupt only"
+        }
     }
 
     private fun showDialogueResult(dialogue: DialogueResult) {
@@ -422,6 +533,11 @@ class KioskActivity : Activity() {
     private fun cancelCurrentInteraction(message: String) {
         gatewayThread?.interrupt()
         gatewayThread = null
+        streamGeneration += 1
+        streamClient?.cancel()
+        streamClient = null
+        streamError = null
+        bargeInMonitor = false
         audioController.stopRecording()
         audioController.stopPlayback()
         transitionTo(ConsultationState.IDLE_VIDEO)

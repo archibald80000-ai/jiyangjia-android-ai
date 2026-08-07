@@ -11,6 +11,8 @@ import android.media.MediaPlayer
 import android.media.AudioRecord
 import android.media.AudioTrack
 import android.media.MediaRecorder
+import android.media.audiofx.AcousticEchoCanceler
+import android.media.audiofx.NoiseSuppressor
 import android.os.Handler
 import android.os.Looper
 import java.io.File
@@ -67,7 +69,9 @@ class AudioLoopbackController(context: Context) {
         maxSeconds: Int,
         onLevel: (Int, Long) -> Unit,
         onComplete: (PcmAudio) -> Unit,
-        onError: (String) -> Unit
+        onError: (String) -> Unit,
+        onFrame: (ByteArray) -> Unit = {},
+        onEffects: (AudioEffectsStatus) -> Unit = {}
     ) {
         if (!recording.compareAndSet(false, true)) {
             onError("recording already active")
@@ -90,11 +94,15 @@ class AudioLoopbackController(context: Context) {
             val buffer = ByteArray(bufferSize)
             val output = ByteArrayOutputStream(maxBytes)
             var record: AudioRecord? = null
+            var echoCanceler: AcousticEchoCanceler? = null
+            var noiseSuppressor: NoiseSuppressor? = null
+            val frame = ByteArray(StreamingDialogueClient.PCM_FRAME_BYTES)
+            var frameBytes = 0
 
             try {
                 val input = refreshDiagnostics().preferredInput
                 record = AudioRecord.Builder()
-                    .setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION)
+                    .setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION)
                     .setAudioFormat(
                         AudioFormat.Builder()
                             .setEncoding(audioFormat)
@@ -117,6 +125,20 @@ class AudioLoopbackController(context: Context) {
                     throw IllegalStateException("AudioRecord is not initialized")
                 }
                 recorder = record
+                echoCanceler = if (AcousticEchoCanceler.isAvailable()) AcousticEchoCanceler.create(record.audioSessionId) else null
+                noiseSuppressor = if (NoiseSuppressor.isAvailable()) NoiseSuppressor.create(record.audioSessionId) else null
+                echoCanceler?.enabled = true
+                noiseSuppressor?.enabled = true
+                mainHandler.post {
+                    onEffects(
+                        AudioEffectsStatus(
+                            aecAvailable = AcousticEchoCanceler.isAvailable(),
+                            aecEnabled = echoCanceler?.enabled == true,
+                            noiseSuppressorAvailable = NoiseSuppressor.isAvailable(),
+                            noiseSuppressorEnabled = noiseSuppressor?.enabled == true
+                        )
+                    )
+                }
                 record.startRecording()
 
                 while (recording.get() && output.size() < maxBytes) {
@@ -124,6 +146,17 @@ class AudioLoopbackController(context: Context) {
                     val read = record.read(buffer, 0, min(buffer.size, remaining))
                     if (read > 0) {
                         output.write(buffer, 0, read)
+                        var offset = 0
+                        while (offset < read) {
+                            val copied = min(frame.size - frameBytes, read - offset)
+                            buffer.copyInto(frame, frameBytes, offset, offset + copied)
+                            frameBytes += copied
+                            offset += copied
+                            if (frameBytes == frame.size) {
+                                onFrame(frame.copyOf())
+                                frameBytes = 0
+                            }
+                        }
                         postLevel(onLevel, peakLevel(buffer, read), output.size().toLong() * 1000L / (sampleRate * BYTES_PER_SAMPLE))
                     } else if (read < 0) {
                         throw IllegalStateException("AudioRecord read failed: $read")
@@ -136,6 +169,8 @@ class AudioLoopbackController(context: Context) {
                 postError(onError, error.message ?: error.javaClass.simpleName)
             } finally {
                 recording.set(false)
+                echoCanceler?.release()
+                noiseSuppressor?.release()
                 try {
                     record?.stop()
                 } catch (_: IllegalStateException) {
@@ -342,4 +377,13 @@ class AudioLoopbackController(context: Context) {
         const val BYTES_PER_SAMPLE = 2
         const val MAX_RECORD_SECONDS = 10
     }
+}
+
+data class AudioEffectsStatus(
+    val aecAvailable: Boolean,
+    val aecEnabled: Boolean,
+    val noiseSuppressorAvailable: Boolean,
+    val noiseSuppressorEnabled: Boolean
+) {
+    val automaticBargeInReady: Boolean = aecAvailable && aecEnabled
 }

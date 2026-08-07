@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime, timezone
+import json
 import logging
 import uuid
 from typing import Any
 
-from fastapi import FastAPI, File, Form, HTTPException, Query, Request, Response, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, Response, UploadFile, WebSocket, WebSocketDisconnect
 
 from .admin_routes import create_admin_router
 from .admin_store import AdminContentStore
@@ -23,6 +25,14 @@ from .llm import (
 from .providers import MockASRProvider, MockEmbeddingProvider, MockLLMProvider, MockTTSProvider
 from .schemas import DialogueResponse, DialogueTextRequest, KnowledgeIndexRequest, KnowledgeSearchRequest
 from .transcript_normalization import normalize_transcript_text
+from .streaming_asr import (
+    FRAME_BYTES,
+    MAX_PCM_BYTES,
+    DoubaoStreamingASRProvider,
+    MockStreamingASRProvider,
+    WebRtcVadState,
+    pcm_to_wav,
+)
 from .tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, ProviderConfigurationError
 
 
@@ -38,6 +48,7 @@ asr_provider = MockASRProvider()
 llm_provider = MockLLMProvider()
 tts_provider = MockTTSProvider()
 embedding_provider = MockEmbeddingProvider()
+streaming_asr_provider = MockStreamingASRProvider()
 tts_configuration_error: ProviderConfigurationError | None = None
 asr_configuration_error: ProviderConfigurationError | None = None
 llm_configuration_error: ProviderConfigurationError | None = None
@@ -46,6 +57,7 @@ embedding_configuration_error: ProviderConfigurationError | None = None
 if settings.asr_provider == "doubao":
     try:
         asr_provider = DoubaoASRProvider(DoubaoASRConfig.from_settings(settings))
+        streaming_asr_provider = DoubaoStreamingASRProvider(asr_provider, settings.doubao_streaming_asr_endpoint)
     except ProviderConfigurationError as exc:
         asr_configuration_error = exc
 
@@ -267,6 +279,116 @@ async def dialogue_audio(
     transcript = _normalize_transcript_payload(transcript)
     _safe_log("dialogue_audio.received", rid, sid, bytes=len(content), duration_ms=duration_ms, sample_rate=sample_rate, input_device=input_device)
     return await _run_dialogue(str(transcript["text"]), rid, sid, transcript_provider=str(transcript["provider"]), transcript=transcript)
+
+
+@app.websocket("/api/v1/dialogue/stream")
+async def dialogue_stream(websocket: WebSocket) -> None:
+    await websocket.accept()
+    rid = str(uuid.uuid4())
+    sid = _session_id(None)
+    stream = None
+    pcm = bytearray()
+    vad = WebRtcVadState()
+    fallback_used = False
+    try:
+        first = await websocket.receive_json()
+        if first.get("type") != "start":
+            await _ws_event(websocket, "error", rid, code="START_REQUIRED", message="start event required")
+            return
+        rid = str(first.get("request_id") or rid)
+        sid = _session_id(first.get("session_id"))
+        generation = int(first.get("generation") or 0)
+        try:
+            stream = await asyncio.wait_for(
+                streaming_asr_provider.open_stream(rid),
+                timeout=settings.doubao_asr_timeout_seconds,
+            )
+        except Exception as exc:
+            _safe_log("dialogue_stream.provider_open_failed", rid, sid, error=exc.__class__.__name__)
+            await _ws_event(websocket, "stage", rid, stage="buffered_fallback", generation=generation)
+        await _ws_event(websocket, "ready", rid, sample_rate=16_000, frame_bytes=FRAME_BYTES, generation=generation)
+
+        should_finish = False
+        while not should_finish:
+            message = await websocket.receive()
+            if message.get("type") == "websocket.disconnect":
+                return
+            if message.get("text") is not None:
+                control = json.loads(message["text"])
+                if control.get("request_id") not in {None, rid}:
+                    continue
+                if control.get("type") == "cancel":
+                    await _ws_event(websocket, "stage", rid, stage="cancelled", generation=generation)
+                    return
+                if control.get("type") == "stop":
+                    should_finish = True
+                    continue
+                continue
+            frame = message.get("bytes") or b""
+            if len(frame) != FRAME_BYTES:
+                await _ws_event(websocket, "error", rid, code="BAD_PCM_FRAME", message=f"expected {FRAME_BYTES} bytes")
+                return
+            if len(pcm) + len(frame) > MAX_PCM_BYTES:
+                await _ws_event(websocket, "error", rid, code="AUDIO_TOO_LARGE", message="PCM buffer exceeds 1 MiB")
+                return
+            pcm.extend(frame)
+            event = vad.accept(frame)
+            if stream is not None:
+                try:
+                    for partial in await stream.push(frame):
+                        await _ws_event(websocket, "partial_transcript", rid, text=partial, generation=generation)
+                except Exception as exc:
+                    _safe_log("dialogue_stream.provider_failed", rid, sid, error=exc.__class__.__name__)
+                    await stream.close()
+                    stream = None
+                    await _ws_event(websocket, "stage", rid, stage="buffered_fallback", generation=generation)
+            if event.speech_started:
+                await _ws_event(websocket, "speech_started", rid, generation=generation)
+            if event.no_speech_timeout:
+                await _ws_event(websocket, "error", rid, code="NO_SPEECH_TIMEOUT", message="no speech detected")
+                return
+            if event.speech_ended or event.max_duration:
+                await _ws_event(websocket, "speech_ended", rid, reason="silence" if event.speech_ended else "max_duration", generation=generation)
+                should_finish = True
+
+        if not vad.started:
+            await _ws_event(websocket, "error", rid, code="NO_SPEECH", message="no speech detected")
+            return
+        await _ws_event(websocket, "stage", rid, stage="asr_finalizing", generation=generation)
+        try:
+            if stream is None:
+                raise ProviderCallError("STREAM_INTERRUPTED", "streaming provider unavailable", retryable=True)
+            transcript = await asyncio.wait_for(stream.finish(), timeout=settings.doubao_asr_timeout_seconds)
+        except Exception as exc:
+            if fallback_used or not pcm:
+                raise
+            fallback_used = True
+            _safe_log("dialogue_stream.wav_fallback", rid, sid, bytes=len(pcm), cause=exc.__class__.__name__)
+            transcript = await asr_provider.transcribe(pcm_to_wav(bytes(pcm)), "audio/wav", rid)
+        transcript = _normalize_transcript_payload(transcript)
+        await _ws_event(websocket, "final_transcript", rid, transcript=transcript, fallback_used=fallback_used, generation=generation)
+        await _ws_event(websocket, "stage", rid, stage="answering", generation=generation)
+        result = await _run_dialogue(str(transcript["text"]), rid, sid, str(transcript["provider"]), transcript)
+        payload = result.model_dump(mode="json")
+        await _ws_event(websocket, "answer", rid, answer=payload["answer"], knowledge=payload["knowledge"], sources=payload["sources"], generation=generation)
+        await _ws_event(websocket, "tts_ready", rid, tts=payload["tts"], generation=generation)
+    except WebSocketDisconnect:
+        _safe_log("dialogue_stream.disconnected", rid, sid, bytes=len(pcm))
+    except Exception as exc:
+        _safe_log("dialogue_stream.failed", rid, sid, error=exc.__class__.__name__, bytes=len(pcm))
+        try:
+            detail = exc.detail if isinstance(exc, HTTPException) else {}
+            code = detail.get("code", "STREAM_FAILED") if isinstance(detail, dict) else "STREAM_FAILED"
+            await _ws_event(websocket, "error", rid, code=code, message="stream dialogue failed")
+        except Exception:
+            pass
+    finally:
+        if stream is not None:
+            await stream.close()
+
+
+async def _ws_event(websocket: WebSocket, event_type: str, request_id: str, **payload: Any) -> None:
+    await websocket.send_json({"type": event_type, "request_id": request_id, **payload})
 
 
 @app.post("/api/v1/knowledge/index")

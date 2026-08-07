@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014D renderer implemented and locally verified; physical-screen visual acceptance pending
-- **Current authorized task:** TASK-014E streaming ASR, VAD and playback interruption
+- **Overall status:** TASK-014E streaming ASR/VAD/barge-in implemented and locally verified; device acoustic acceptance pending
+- **Current authorized task:** TASK-014F boot recovery and managed kiosk
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -245,10 +245,11 @@ Recent task results:
 - TASK-014A is DONE locally after correcting a browser action-dispatch defect. Knowledge upload/preview/approve/publish/reject/search/dialogue, asset upload/preview/publish/rollback/delete, Display Profile create/edit/bind/default and system refresh were clicked in a real browser and changed backend state. Full pytest passed 55 tests; no application console errors were observed. TASK-014A is not deployed to Tencent Cloud and has no formal business media or Android device evidence.
 - TASK-014C is PARTIAL. Gateway bootstrap/config/manifest/profile responses now use versioned strong ETags, and Android performs validated staging, SHA-256 verification, active/previous pointer switching, offline startup, foreground polling and bounded background recovery. Local Gateway and Android tests pass; trusted production HTTPS, approved media and device acceptance are unavailable.
 - TASK-014D is PARTIAL. Media3 now applies background/character/subtitle/control layers and Display Profile geometry, switches video on first frame, and invokes TASK-014C rollback on decoder failure. Four viewport geometry tests and Android test/lint/debug assembly pass; screenshot baselines and a physical display remain unavailable.
+- TASK-014E is PARTIAL. Gateway and Android implement 16 kHz mono PCM16 streaming, exact 20 ms frames, WebRTC VAD, partial/final events, single WAV fallback, generation cancellation and AEC-aware automatic barge-in. Full Gateway regression passed 61 tests and Android test/lint/debug assembly passed. A controlled real Doubao `bigmodel_async` call produced three partials and one final; Android 12 USB/AEC latency and false-trigger acceptance remain unavailable.
 
 Next action:
 
-- Continue with `TASK-014E_STREAMING_ASR_VAD_INTERRUPT.md`. Real provider and acoustic acceptance remain external gates; production rollout of TASK-014A is still not authorized.
+- Continue with `TASK-014F_ANDROID_MANAGED_KIOSK.md`. Physical-device acoustic acceptance remains an external gate; production rollout is still not authorized.
 
 ## Status vocabulary
 
