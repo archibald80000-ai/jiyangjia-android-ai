@@ -1,34 +1,17 @@
-# 安全基线（TASK-014 当前状态）
+# Production Security Baseline
 
-## 基础安全
-- `ufw`：active，入站默认拒绝
-- 放行端口：`22/tcp`, `80/tcp`, `443/tcp`
+Updated: 2026-08-07
 
-## 登录防护
-- `fail2ban` active
-- Jail：`sshd`
+- UFW is active; allowed inbound ports are 22, 80 and 443.
+- Nginx terminates TLS and proxies to `127.0.0.1:8080`.
+- Docker does not publish Gateway port 8080 on public interfaces.
+- Production Gateway runs with `APP_ENV=production` and a configured `ADMIN_TOKEN`.
+- Provider secrets remain in `/opt/jiyangjia-ai/secrets/.env.local`, mode `600`, outside Git.
+- Docker JSON log rotation remains `10m` x 5 files.
+- Host time synchronization, fail2ban SSH jail and 2 GiB swap were verified in TASK-014.
 
-## 时区与时间
-- Timezone：`Asia/Shanghai`
-- `timedatectl`：`System clock synchronized: yes`
-- `ntp` 同步正常
+## Open gates
 
-## 运行时资源
-- Swap：2.0Gi（`/swap.img`，`/etc/fstab` 持久化）
-- 可见内存：1.9Gi（任务采样：`free -h`）
-
-## 容器与日志
-- Docker daemon：`/etc/docker/daemon.json`
-  - `log-driver: json-file`
-  - `log-opts.max-size: 10m`
-  - `log-opts.max-file: 5`
-- `deploy/docker-compose.yml` 容器日志：`max-size: 10m`，`max-file: 5`
-
-## 端口/服务暴露
-- Nginx：`/etc/nginx/nginx.conf` 有效，`systemctl is-active nginx`=active
-- 外部只开 80/443，网关对外通过 Nginx 反代 80
-
-## 风险提醒
-- `/api/v1/*` 当前未加鉴权
-- 真实 Provider 凭据缺失导致对话接口 503
-- 未启用 HTTPS（任务当前仅 IP + HTTP 验证）
+- Tencent DNSPod webblock/ICP access control prevents public domain TLS acceptance.
+- Certbot timer is active, but renewal dry-run fails until the webblock is released.
+- Device authentication, rate limiting, monitoring/alerting and Android signed-release acceptance remain open.
