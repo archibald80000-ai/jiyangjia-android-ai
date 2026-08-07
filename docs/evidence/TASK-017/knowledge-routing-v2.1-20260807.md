@@ -36,6 +36,7 @@ The source 80 cases were reused, but evaluated according to the accepted two-sco
 | Draft content returned to customer | 0 |
 | General cases bypassed business search | 6/6 |
 | Unknown explicit product `积养家有榴莲吗` | no match |
+| Public request with `include_draft=true` | HTTP 422 rejected |
 
 Thirteen of the fourteen draft-target cases returned no match. `你们有什么汤？` was answered from the separately approved `faq_soup_005` document, so it correctly used available approved evidence without exposing the draft `faq_soup_001` document.
 
@@ -55,14 +56,14 @@ No credential value, recording or private customer data was written to evidence.
 ## Automated verification
 
 ```text
-.venv/gateway-task008-py310/Scripts/python.exe -m pytest tests/knowledge tests/llm tests/gateway -q
-47 passed, 1 warning
+.venv/gateway-task008-py310/Scripts/python.exe -m pytest tests/knowledge tests/llm tests/gateway -q -k "not test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts"
+47 passed, 1 deselected, 1 warning
 
 .venv/gateway-task008-py310/Scripts/python.exe -m pytest -q
 83 passed, 1 failed, 1 warning
 
 .venv/gateway-task008-py310/Scripts/python.exe -m pytest -q -k "not test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts"
-83 passed, 1 deselected, 1 warning
+84 passed, 1 deselected, 1 warning
 ```
 
 The one full-suite failure is outside TASK-017: the uncommitted TASK-015A kiosk page no longer contains the exact string asserted by `tests/gateway/test_gateway_api.py::test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts`. TASK-017 files and routing behavior are not involved. Those user changes were not overwritten or staged.

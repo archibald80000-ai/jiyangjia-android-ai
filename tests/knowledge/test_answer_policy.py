@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import pytest
+from pydantic import ValidationError
 
 from gateway.app.answer_policy import classify_answer_scope
+from gateway.app.schemas import KnowledgeSearchRequest
 
 
 @pytest.mark.parametrize(
@@ -35,3 +37,8 @@ def test_jiyangjia_and_related_product_questions_require_approved_knowledge(ques
 )
 def test_general_questions_do_not_use_business_knowledge(question: str) -> None:
     assert classify_answer_scope(question) == "general"
+
+
+def test_public_search_request_cannot_enable_draft_visibility() -> None:
+    with pytest.raises(ValidationError):
+        KnowledgeSearchRequest(query="积养家有小米吗？", include_draft=True)
