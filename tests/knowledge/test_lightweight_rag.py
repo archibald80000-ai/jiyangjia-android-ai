@@ -108,6 +108,43 @@ async def _assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match()
     assert matches == []
 
 
+@pytest.mark.parametrize(
+    ("query", "expected_id"),
+    [
+        ("积养家会员余额怎么查询？", "approved_member_boundary"),
+        ("帮我查一下积养家会员余额。", "approved_member_boundary"),
+        ("积养家今天价格是多少？", "approved_price_boundary"),
+    ],
+)
+def test_brand_prefix_does_not_dilute_approved_boundary_matches(query: str, expected_id: str) -> None:
+    asyncio.run(_assert_brand_prefix_does_not_dilute_approved_boundary_matches(query, expected_id))
+
+
+async def _assert_brand_prefix_does_not_dilute_approved_boundary_matches(query: str, expected_id: str) -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    store.upsert_many(
+        [
+            KnowledgeDocument(
+                "approved_member_boundary",
+                "会员余额查询",
+                "会员余额和账户信息属于个人隐私，我不能查询。请到前台或登录小程序查看。",
+                "approved",
+            ),
+            KnowledgeDocument(
+                "approved_price_boundary",
+                "问价格转人工",
+                "价格是多少，多少钱，怎么收费，请咨询现场工作人员或查看价目表。",
+                "approved",
+            ),
+        ]
+    )
+
+    matches = await store.search(query, top_k=3)
+
+    assert matches
+    assert matches[0]["id"] == expected_id
+
+
 def test_parse_selected_json_and_markdown(tmp_path: Path) -> None:
     docs = parse_selected_knowledge_path(Path("knowledge-test/faq_mvp_approved.example.json"))
     assert len(docs) >= 10

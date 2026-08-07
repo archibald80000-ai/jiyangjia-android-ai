@@ -21,6 +21,7 @@ CUSTOMER_ALLOWED_STATUSES = {"approved"}
 SAFE_TRANSFER_TEXT = "这项信息我暂时不能确认，请咨询现场工作人员。"
 STOP_TOKENS = {"有没有", "有没", "没有", "可以", "怎么", "什么", "现在", "今天", "你们", "我们", "一下", "多少", "是不是", "能不能"}
 MIN_KNOWLEDGE_SCORE = 0.6
+MIN_KEYWORD_ONLY_SCORE = 0.7
 MIN_VECTOR_ONLY_SCORE = 0.82
 
 
@@ -373,7 +374,8 @@ class SQLiteKnowledgeStore:
                 combined = keyword_score * 0.8 + max(vector_score, 0.0) * 0.2
             else:
                 combined = max(vector_score, 0.0) * 0.75
-            if combined < MIN_KNOWLEDGE_SCORE:
+            strong_keyword_evidence = keyword_score >= MIN_KEYWORD_ONLY_SCORE
+            if combined < MIN_KNOWLEDGE_SCORE and not strong_keyword_evidence:
                 continue
             if keyword_score == 0.0 and vector_score < MIN_VECTOR_ONLY_SCORE:
                 continue
@@ -622,6 +624,10 @@ def _match_from_row(row: sqlite3.Row, *, confidence: float, vector_score: float,
 
 def _tokens(text: str) -> list[str]:
     normalized = re.sub(r"\s+", " ", text.strip().lower())
+    # The brand selects the business corpus but should not dilute lexical
+    # relevance inside that corpus. Boundary documents intentionally omit the
+    # repeated brand prefix, so score only the customer's substantive terms.
+    normalized = normalized.replace("积养家", " ")
     if not normalized:
         return []
     ascii_tokens = re.findall(r"[a-z0-9_]+", normalized)
