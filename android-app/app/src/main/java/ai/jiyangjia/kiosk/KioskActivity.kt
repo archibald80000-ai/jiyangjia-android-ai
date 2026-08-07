@@ -33,6 +33,7 @@ class KioskActivity : Activity() {
     private lateinit var audioController: AudioLoopbackController
     private lateinit var contentSyncManager: ContentSyncManager
     private lateinit var managedKioskController: ManagedKioskController
+    private lateinit var releaseUpdateManager: ReleaseUpdateManager
     private var state: ConsultationState = ConsultationState.BOOT
     private var config: ClientConfig = ClientConfig.fromValues(null, null, null, null, null)
     private var lastRecording: PcmAudio? = null
@@ -72,6 +73,9 @@ class KioskActivity : Activity() {
         )
         contentSyncManager.cachedBundle()?.let(::applyCachedBundle)
         managedKioskController = ManagedKioskController(this)
+        releaseUpdateManager = ReleaseUpdateManager(this, { config.gatewayBaseUrl }) { message ->
+            runOnUiThread { diagnosticsText.text = message }
+        }
         audioController = AudioLoopbackController(this)
         audioController.startDeviceMonitoring { reason -> handleAudioDeviceChange(reason) }
         transitionTo(ConsultationState.IDLE_VIDEO)
@@ -84,6 +88,7 @@ class KioskActivity : Activity() {
     override fun onStart() {
         super.onStart()
         contentSyncManager.startForeground()
+        releaseUpdateManager.checkAndInstall()
     }
 
     override fun onResume() {

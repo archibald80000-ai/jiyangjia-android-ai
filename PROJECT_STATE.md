@@ -3,8 +3,8 @@
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014F managed-kiosk/boot code implemented and locally verified; Device Owner runtime acceptance pending
-- **Current authorized task:** TASK-014G release signing and controlled update
+- **Overall status:** TASK-014G signing/update pipeline implemented and locally verified with disposable test identity; formal release gates blocked
+- **Current authorized task:** TASK-015 Android 12 device acceptance evidence
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -247,10 +247,11 @@ Recent task results:
 - TASK-014D is PARTIAL. Media3 now applies background/character/subtitle/control layers and Display Profile geometry, switches video on first frame, and invokes TASK-014C rollback on decoder failure. Four viewport geometry tests and Android test/lint/debug assembly pass; screenshot baselines and a physical display remain unavailable.
 - TASK-014E is PARTIAL. Gateway and Android implement 16 kHz mono PCM16 streaming, exact 20 ms frames, WebRTC VAD, partial/final events, single WAV fallback, generation cancellation and AEC-aware automatic barge-in. Full Gateway regression passed 61 tests and Android test/lint/debug assembly passed. A controlled real Doubao `bigmodel_async` call produced three partials and one final; Android 12 USB/AEC latency and false-trigger acceptance remain unavailable.
 - TASK-014F is PARTIAL. The APK contains a minimal DPC, DeviceAdminReceiver, persistent Home configuration, BootReceiver and guarded Lock Task entry. Runtime diagnostics distinguish `managed_locked` from `limited_unmanaged`. Android unit/build/lint pass, but this workstation has no emulator package/system image and `adb devices -l` is empty, so Device Owner/reboot behavior is not claimed.
+- TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
 
 Next action:
 
-- Continue with `TASK-014G_ANDROID_RELEASE_SIGNING_UPDATE.md`. Device Owner/runtime acceptance remains an external gate; production rollout is still not authorized.
+- TASK-015 is blocked pending an Android 12 device, approved media, trusted HTTPS release hosting and formal signing identity/custody. Production rollout is still not authorized.
 
 ## Status vocabulary
 

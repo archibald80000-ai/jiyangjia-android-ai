@@ -3,6 +3,24 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+fun secretValue(property: String, environment: String = property): String? =
+    providers.gradleProperty(property).orNull ?: System.getenv(environment)
+
+val releaseRequested = gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = true) }
+val controlledVersionCode = secretValue("JIYANGJIA_VERSION_CODE")?.toIntOrNull()
+val controlledVersionName = secretValue("JIYANGJIA_VERSION_NAME")
+val signingStoreFile = secretValue("JIYANGJIA_SIGNING_STORE_FILE")
+val signingStorePassword = secretValue("JIYANGJIA_SIGNING_STORE_PASSWORD")
+val signingKeyAlias = secretValue("JIYANGJIA_SIGNING_KEY_ALIAS")
+val signingKeyPassword = secretValue("JIYANGJIA_SIGNING_KEY_PASSWORD")
+val signingReady = listOf(signingStoreFile, signingStorePassword, signingKeyAlias, signingKeyPassword).all { !it.isNullOrBlank() }
+
+if (releaseRequested) {
+    require(controlledVersionCode != null && controlledVersionCode > 0) { "Release requires positive JIYANGJIA_VERSION_CODE" }
+    require(!controlledVersionName.isNullOrBlank()) { "Release requires JIYANGJIA_VERSION_NAME" }
+    require(signingReady) { "Release requires JIYANGJIA_SIGNING_STORE_FILE/PASSWORD and KEY_ALIAS/PASSWORD" }
+}
+
 android {
     namespace = "ai.jiyangjia.kiosk"
     compileSdk = 35
@@ -11,13 +29,27 @@ android {
         applicationId = "ai.jiyangjia.kiosk"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0-task013"
+        versionCode = controlledVersionCode ?: 1
+        versionName = controlledVersionName ?: "0.1.0-development"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", "\"\"")
         buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
         manifestPlaceholders["usesCleartextTraffic"] = "false"
+    }
+
+    signingConfigs {
+        if (signingReady) {
+            create("controlledRelease") {
+                storeFile = file(requireNotNull(signingStoreFile))
+                storePassword = signingStorePassword
+                keyAlias = signingKeyAlias
+                keyPassword = signingKeyPassword
+                enableV1Signing = true
+                enableV2Signing = true
+                enableV3Signing = true
+            }
+        }
     }
 
     buildTypes {
@@ -30,6 +62,7 @@ android {
         }
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("controlledRelease")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

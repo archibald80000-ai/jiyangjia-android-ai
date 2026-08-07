@@ -227,6 +227,28 @@ def client_bootstrap(
     return conditional_json(request, payload, etag=f'"{digest}"')
 
 
+@app.get("/api/v1/client/release")
+def client_release(request: Request) -> Response:
+    payload = {
+        "package": settings.android_release_package,
+        "version_code": settings.android_release_version_code,
+        "version_name": settings.android_release_version_name,
+        "apk_url": settings.android_release_apk_url,
+        "size_bytes": settings.android_release_size_bytes,
+        "sha256": settings.android_release_sha256.upper(),
+        "signing_certificate_sha256": settings.android_release_certificate_sha256.upper(),
+        "release_notes": settings.android_release_notes,
+    }
+    required = ("version_code", "version_name", "apk_url", "size_bytes", "sha256", "signing_certificate_sha256")
+    missing = [name for name in required if not payload[name]]
+    if missing or not str(payload["apk_url"]).startswith("https://"):
+        raise HTTPException(
+            status_code=503,
+            detail={"code": "RELEASE_NOT_CONFIGURED", "missing": missing, "message_for_user": "当前没有可用的受控升级。"},
+        )
+    return conditional_json(request, payload)
+
+
 @app.post("/api/v1/dialogue/text", response_model=DialogueResponse)
 async def dialogue_text(request: Request, body: DialogueTextRequest) -> DialogueResponse:
     request_id = _request_id(request, body.request_id)
