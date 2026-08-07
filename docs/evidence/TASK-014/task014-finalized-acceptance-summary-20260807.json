@@ -1,0 +1,156 @@
+{
+  "recorded_at": "2026-08-07T21:41:00+08:00",
+  "host": "http://120.53.86.89",
+  "task": "TASK-014",
+  "status": "PARTIAL",
+  "notes": [
+    "dialogue/audio has intermittent 504/ASR_NO_TEXT depending on sample and runtime path",
+    "intermittent failures have been observed and recovered; do not mark fully stable without a retry baseline",
+    "Provider chain now shows all providers ready in readiness payload",
+    "env_file is mounted from /opt/jiyangjia-ai/secrets/.env.local with mode 600"
+  ],
+  "checks": [
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200,
+      "request_id": null,
+      "failed_stage": null,
+      "duration_ms": null
+    },
+    {
+      "path": "/api/v1/health",
+      "method": "GET",
+      "status": 200,
+      "request_id": null,
+      "failed_stage": null,
+      "duration_ms": null
+    },
+    {
+      "path": "/api/v1/readiness",
+      "method": "GET",
+      "status": 200,
+      "request_id": "d4aafc17-f01c-40b0-917f-c28e5d077ae7",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "request_id",
+        "ready",
+        "providers"
+      ]
+    },
+    {
+      "path": "/api/v1/client/config",
+      "method": "GET",
+      "status": 200,
+      "request_id": null,
+      "failed_stage": null,
+      "duration_ms": null
+    },
+    {
+      "path": "/api/v1/knowledge/status",
+      "method": "GET",
+      "status": 200,
+      "request_id": "81a2f03e-2a9f-4e94-b9d9-3ae67af1e7ce",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "embedding_ready",
+        "documents",
+        "vector_index",
+        "latest_run"
+      ]
+    },
+    {
+      "path": "/api/v1/knowledge/index",
+      "method": "POST",
+      "status": 200,
+      "request_id": "682b13cd-d948-4c22-92a7-a16e663b3063",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "indexed",
+        "chunks",
+        "status"
+      ]
+    },
+    {
+      "path": "/api/v1/knowledge/search",
+      "method": "POST",
+      "status": 200,
+      "request_id": "157c91bc-6747-4bd3-a0de-d66f0cdb56a8",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "matches",
+        "sources",
+        "status"
+      ]
+    },
+    {
+      "path": "/api/v1/dialogue/text",
+      "method": "POST",
+      "status": 200,
+      "request_id": "b397de2f-f8db-4b9e-8fb6-00101392da2d",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "transcript",
+        "knowledge",
+        "answer",
+        "tts",
+        "sources"
+      ]
+    },
+    {
+      "path": "/api/v1/dialogue/audio",
+      "method": "POST",
+      "status": 200,
+      "request_id": "task014-remote-audio-06",
+      "failed_stage": null,
+      "duration_ms": null,
+      "body_fields": [
+        "transcript",
+        "knowledge",
+        "answer",
+        "tts",
+        "sources",
+        "audio_id"
+      ],
+      "provider_chain_note": "transcript raw text normalized brand name to 积养家"
+    },
+    {
+      "path": "/api/v1/audio/aud_7ce9b5269cbe4badaa8824d754ac5164",
+      "method": "GET",
+      "status": 200,
+      "request_id": "1b996a91-80a4-4993-8533-9d6b7c74bc5a",
+      "failed_stage": null,
+      "duration_ms": null,
+      "content_type": "audio/mpeg",
+      "response_bytes": 204608
+    }
+  ],
+  "observed_failures": [
+    {
+      "path": "/api/v1/dialogue/audio",
+      "method": "POST",
+      "samples": [
+        {
+          "request_id": "d224ab37-fad0-4e91-8a62-6ddf370bcea6",
+          "error": "LLM_PROVIDER_UNAVAILABLE",
+          "status": 502
+        },
+        {
+          "request_id": null,
+          "error": "504 Gateway Time-out",
+          "status": 504
+        },
+        {
+          "request_id": "2e11db...",
+          "error": "no text payload or long-tail ASR transient",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

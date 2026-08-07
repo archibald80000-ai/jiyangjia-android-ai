@@ -18,17 +18,22 @@ Current status:
 - `TASK-011`: `DONE`; OpenAI-compatible LLM and Embedding adapters are implemented and locally tested. Real DeepSeek and Doubao/Volcengine Ark LLM calls succeeded with private env. Real Doubao/Ark Embedding now succeeds with the authorized account using `doubao-embedding-vision-251215`, returning 2048-dimensional vectors.
 - `TASK-012`: `DONE`; lightweight RAG is implemented with SQLite metadata, SQLite FTS5, FAISS Top-K retrieval, approved/draft/rejected status gates, prohibited-topic safe transfer, explicit document parsing and source citations. Mock evaluation passed 24/24 cases; real Doubao/Ark Embedding evaluation passed 24/24 cases with 2048-dimensional vectors. No raw `E:\work\积养家` import is claimed.
 - `TASK-013`: `PARTIAL`; Android now records PCM, uploads WAV to Gateway, carries request IDs, displays transcript/answer/source diagnostics, downloads generated TTS audio and plays encoded answer audio before returning to idle fallback. Backend E2E passed 30/30 Mock cycles and one real private-env Doubao ASR -> RAG -> Doubao/Ark LLM -> Doubao TTS smoke. Gateway now normalizes common ASR homophones of `积养家` while preserving `raw_text`. Android 12 real-device install/record/playback/subtitle validation is not claimed because `adb devices -l` returned no attached devices.
-- `TASK-014`: `PARTIAL`; server-thread evidence was imported. Tencent Cloud IP host `120.53.86.89` runs a Docker Compose + Nginx mock Gateway, and `/health`, `/api/v1/health`, `/api/v1/dialogue/text` are reachable. It is not aligned to local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`, has no Git metadata, lacks real Provider env vars, SQLite/FAISS knowledge config, `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}` and the TASK-013 brand normalization module.
-- TASK-014 redeployment package is prepared locally: Compose loads server `.env.local`, persists `var/knowledge`, and the server runbook is in `docs/evidence/TASK-014/server-redeployment-request-20260806.md`. Local checks passed, but server redeploy has not yet been re-verified.
-- TASK-014 redeploy evidence now shows current commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed and health/config/knowledge endpoints are reachable, but `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS` because real Provider env vars are missing or not loaded. This is a Provider configuration-chain blocker, not an upload-chain blocker.
-- Gateway hardening adds `/api/v1/readiness`, `failed_stage` details and `scripts/check_provider_env.py` for provider credential errors and server-side env preflight.
-- Next action is for the server-management thread to run `scripts/check_provider_env.py --require-real-mvp`, execute the TASK-014 Provider env-chain remediation, and return sanitized evidence before continuing to TASK-015 Android real-device acceptance.
+- `TASK-014`: `DONE`; Tencent Cloud deployment on `120.53.86.89` now passes real MVP chain checks with `env_file` pointing to `/opt/jiyangjia-ai/secrets/.env.local` (mode `600`) and all providers ready. Evidence includes:
+  - `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
+  - `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
+  - `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`.
+- `TASK-014A` (new): `PLANNED`; lightweight admin content/display control plan to define:
+  - 系统状态页
+  - 知识库审批与索引页
+  - 数字人素材管理页
+  - 多分辨率 Display Profile 配置页
+- `tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md` exists and is the entry for the next plan-only task.
 
 Current order:
 
 Phase 1 execution order from the current route:
 
-`TASK-008 → TASK-009 → TASK-010 → TASK-011 → TASK-012 → TASK-013 → TASK-014 → TASK-015`
+`TASK-008 → TASK-009 → TASK-010 → TASK-011 → TASK-012 → TASK-013 → TASK-014 → TASK-014A → TASK-015`
 
 Completed foundation retained from earlier tasks:
 
@@ -39,4 +44,6 @@ Future enhancement:
 `TASK-003/TASK-004/TASK-006/TASK-016` for LiveTalking / Wav2Lip / MuseTalk / WebRTC digital human work.
 
 Do not execute multiple implementation tasks concurrently unless a later task explicitly permits parallel work.
-- 2026-08-06：TASK-014 腾讯云重部署已完成容器与健康接口，`/api/v1/dialogue/*` 仍为 `503 BLOCKED_PROVIDER_CREDENTIALS`，状态保持 `PARTIAL`。本地新增并验证 `scripts/check_provider_env.py`，服务器需先用它确认 `secrets/.env.local` 和 Compose env_file，再补齐 DOUBAO/Ark 真实凭据后进入 TASK-015。
+
+ - 2026-08-07：TASK-014 已收口通过。`120.53.86.89` 10+项接口验证通过，Provider 均就绪；`/api/v1/dialogue/audio` 与 `/api/v1/audio/{audio_id}` 路径可回传字幕/音频链路。
+ - 下一步：完成 `TASK-014A_ADMIN_CONTENT_DISPLAY.md` 骨架和状态同步后，进入 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`。

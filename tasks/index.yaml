@@ -1,6 +1,6 @@
 version: 1
-updated: 2026-08-06
-current: TASK-014
+updated: 2026-08-07
+current: TASK-014A
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -90,8 +90,14 @@ tasks:
     file: TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md
     title: "Deploy the lightweight gateway to Tencent Cloud"
     priority: p1
-    status: PARTIAL
+    status: DONE
     depends_on: [TASK-013]
+  - id: TASK-014A
+    file: TASK-014A_ADMIN_CONTENT_DISPLAY.md
+    title: "Prepare lightweight admin content and display profile skeleton"
+    priority: p1
+    status: PLANNED
+    depends_on: [TASK-014]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md
     title: "Validate the actual Android 12 display in the store"

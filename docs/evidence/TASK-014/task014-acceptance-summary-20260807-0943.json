@@ -1,0 +1,412 @@
+{
+  "results": [
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200,
+      "request_id": "8106fde1-5814-4672-8f17-10ee884eb4c8",
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "elapsed_ms": 27.83,
+      "json": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T01:41:54.772835+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/health",
+      "method": "GET",
+      "status": 200,
+      "request_id": "3b8390a5-6d18-4415-b9d4-d71ebb8f4fd6",
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "elapsed_ms": 1.71,
+      "json": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T01:41:54.774936+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/readiness",
+      "method": "GET",
+      "status": 200,
+      "request_id": "7e937946-0dcc-4008-bde7-484cc4a42677",
+      "content_type": "application/json",
+      "response_bytes": 611,
+      "elapsed_ms": 1.85,
+      "json": {
+        "request_id": "36801a64-c661-476a-a411-a311cbb5b024",
+        "ready": true,
+        "status": "ready",
+        "providers": {
+          "asr": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "tts": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "llm": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "embedding": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          }
+        },
+        "knowledge": {
+          "documents": {
+            "approved": 12,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 14,
+          "embeddings": 13,
+          "faiss": {
+            "ready": true,
+            "vectors": 2,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_dbe4fd34fc4b4b1b",
+            "status": "done",
+            "document_count": 1,
+            "chunk_count": 1,
+            "error": null,
+            "created_at": "2026-08-07 01:39:49"
+          }
+        }
+      }
+    },
+    {
+      "path": "/api/v1/client/config",
+      "method": "GET",
+      "status": 200,
+      "request_id": "42426497-7926-473c-b5f1-5653e1fb0f56",
+      "content_type": "application/json",
+      "response_bytes": 346,
+      "elapsed_ms": 1.46,
+      "json": {
+        "display_mode": "idle_video_voice",
+        "max_record_seconds": 20,
+        "max_upload_bytes": 5242880,
+        "accepted_audio_types": [
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp4",
+          "audio/aac",
+          "audio/webm"
+        ],
+        "subtitle_max_chars": 80,
+        "idle_video_version": "local",
+        "api": {
+          "dialogue_text": "/api/v1/dialogue/text",
+          "dialogue_audio": "/api/v1/dialogue/audio",
+          "audio_base": "/api/v1/audio/"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/status",
+      "method": "GET",
+      "status": 200,
+      "request_id": "e44508e7-e7dd-40bb-a964-f9a727f55736",
+      "content_type": "application/json",
+      "response_bytes": 446,
+      "elapsed_ms": 1.79,
+      "json": {
+        "request_id": "21c7c9dc-7aac-4f39-b012-bb6ef81a1201",
+        "provider": "sqlite_lightweight",
+        "embedding_provider": "doubao",
+        "embedding_ready": true,
+        "embedding_missing": [],
+        "vector_index": {
+          "ready": true,
+          "vectors": 2,
+          "dimensions": 2048
+        },
+        "documents": {
+          "approved": 12,
+          "draft": 1,
+          "rejected": 1
+        },
+        "chunks": 14,
+        "embeddings": 13,
+        "latest_run": {
+          "run_id": "ing_dbe4fd34fc4b4b1b",
+          "status": "done",
+          "document_count": 1,
+          "chunk_count": 1,
+          "error": null,
+          "created_at": "2026-08-07 01:39:49"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/index",
+      "method": "POST",
+      "status": 200,
+      "request_id": "a0b004c3-9ff0-4764-beae-baa6d2743563",
+      "content_type": "application/json",
+      "response_bytes": 365,
+      "elapsed_ms": 122.35,
+      "json": {
+        "request_id": "805e13cb-0041-4f66-bc4a-3e3eee2b41d2",
+        "indexed": 1,
+        "chunks": 1,
+        "status": {
+          "documents": {
+            "approved": 12,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 14,
+          "embeddings": 13,
+          "faiss": {
+            "ready": true,
+            "vectors": 2,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_af56ae735e9d4988",
+            "status": "done",
+            "document_count": 1,
+            "chunk_count": 1,
+            "error": null,
+            "created_at": "2026-08-07 01:41:54"
+          }
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/search",
+      "method": "POST",
+      "status": 200,
+      "request_id": "2218ff87-12c8-4032-9af5-a40636054e35",
+      "content_type": "application/json",
+      "response_bytes": 1531,
+      "elapsed_ms": 126.52,
+      "json": {
+        "request_id": "8af2aa29-2a88-4443-9a64-6d2b718e0d36",
+        "status": "matched",
+        "matches": [
+          {
+            "id": "demo-knowledge-001",
+            "chunk_id": "demo-knowledge-001::chunk-0000",
+            "title": "Demo FAQ",
+            "status": "approved",
+            "score": 0.9167,
+            "confidence": 0.9167,
+            "vector_score": 0.8923,
+            "keyword_score": 0.9167,
+            "source": {
+              "uri": "local://task014-acc",
+              "chunk_id": "demo-knowledge-001::chunk-0000"
+            },
+            "excerpt": "积养家每日营业时间为 09:00-18:00，周一到周六。"
+          },
+          {
+            "id": "task014-smoke-001",
+            "chunk_id": "task014-smoke-001::chunk-0000",
+            "title": "门店工作时间",
+            "status": "approved",
+            "score": 0.9167,
+            "confidence": 0.9167,
+            "vector_score": 0.8553,
+            "keyword_score": 0.9167,
+            "source": {
+              "uri": "manual://smoke",
+              "chunk_id": "task014-smoke-001::chunk-0000"
+            },
+            "excerpt": "积养家门店营业时间为9:00-22:00，周一至周日都营业。"
+          },
+          {
+            "id": "faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000",
+            "title": "门店咨询定位",
+            "status": "approved",
+            "score": 0.5,
+            "confidence": 0.5,
+            "vector_score": 0.0,
+            "keyword_score": 0.5,
+            "source": {
+              "uri": "manual://task012/faq_mvp_001",
+              "chunk_id": "faq_mvp_001::chunk-0000"
+            },
+            "excerpt": "标题：门店咨询定位\n问题：积养家是做什么的；你们是什么门店\n回答：积养家门店可以提供现场咨询和服务引导。具体服务项目、价格和预约情况请以现场工作人员确认为准。"
+          }
+        ],
+        "sources": [
+          {
+            "uri": "local://task014-acc",
+            "chunk_id": "demo-knowledge-001::chunk-0000"
+          },
+          {
+            "uri": "manual://smoke",
+            "chunk_id": "task014-smoke-001::chunk-0000"
+          },
+          {
+            "uri": "manual://task012/faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/v1/dialogue/text",
+      "method": "POST",
+      "status": 200,
+      "request_id": "d42aa650-a362-4ae9-b598-3f38f8db3eeb",
+      "content_type": "application/json",
+      "response_bytes": 2329,
+      "elapsed_ms": 60070.25,
+      "json": {
+        "request_id": "task014-text-9db4a1710b484c3fa755c6efce562dc3",
+        "session_id": "task014-session",
+        "transcript": {
+          "text": "积养家几点营业？",
+          "provider": "text",
+          "language": "zh-CN",
+          "confidence": 1.0
+        },
+        "knowledge": {
+          "status": "matched",
+          "matches": [
+            {
+              "id": "demo-knowledge-001",
+              "chunk_id": "demo-knowledge-001::chunk-0000",
+              "title": "Demo FAQ",
+              "status": "approved",
+              "score": 0.7857,
+              "confidence": 0.7857,
+              "vector_score": 0.8532,
+              "keyword_score": 0.5833,
+              "source": {
+                "uri": "local://task014-acc",
+                "chunk_id": "demo-knowledge-001::chunk-0000"
+              },
+              "excerpt": "积养家每日营业时间为 09:00-18:00，周一到周六。"
+            },
+            {
+              "id": "task014-smoke-001",
+              "chunk_id": "task014-smoke-001::chunk-0000",
+              "title": "门店工作时间",
+              "status": "approved",
+              "score": 0.7674,
+              "confidence": 0.7674,
+              "vector_score": 0.8287,
+              "keyword_score": 0.5833,
+              "source": {
+                "uri": "manual://smoke",
+                "chunk_id": "task014-smoke-001::chunk-0000"
+              },
+              "excerpt": "积养家门店营业时间为9:00-22:00，周一至周日都营业。"
+            },
+            {
+              "id": "faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000",
+              "title": "服务时间",
+              "status": "approved",
+              "score": 0.6667,
+              "confidence": 0.6667,
+              "vector_score": 0.0,
+              "keyword_score": 0.6667,
+              "source": {
+                "uri": "manual://task012/faq_mvp_003",
+                "chunk_id": "faq_mvp_003::chunk-0000"
+              },
+              "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+            }
+          ],
+          "provider": "sqlite_lightweight"
+        },
+        "answer": {
+          "text": "门店服务时间请以当天现场公告或工作人员说明为准，我可以帮您联系现场人员确认。",
+          "provider": "doubao",
+          "source": "knowledge_grounded",
+          "subtitles": [
+            "门店服务时间请以当天现场公告或工作人员说明为准，我可以帮您联系现场人员确认。"
+          ]
+        },
+        "tts": {
+          "provider": "doubao",
+          "content_type": "audio/mpeg",
+          "audio_id": "aud_d00d91a5c725461baf4ea7da2d6a8ea6",
+          "duration_ms": null
+        },
+        "sources": [
+          {
+            "uri": "local://task014-acc",
+            "chunk_id": "demo-knowledge-001::chunk-0000",
+            "id": "demo-knowledge-001",
+            "title": "Demo FAQ",
+            "status": "approved"
+          },
+          {
+            "uri": "manual://smoke",
+            "chunk_id": "task014-smoke-001::chunk-0000",
+            "id": "task014-smoke-001",
+            "title": "门店工作时间",
+            "status": "approved"
+          },
+          {
+            "uri": "manual://task012/faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "id": "faq_mvp_003",
+            "title": "服务时间",
+            "status": "approved"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/v1/dialogue/audio",
+      "method": "POST",
+      "status": 502,
+      "request_id": "d224ab37-fad0-4e91-8a62-6ddf370bcea6",
+      "content_type": "application/json",
+      "response_bytes": 139,
+      "elapsed_ms": 61064.44,
+      "json": {
+        "detail": {
+          "code": "LLM_PROVIDER_UNAVAILABLE",
+          "message_for_user": "问答服务暂时不可用，请联系工作人员。",
+          "retryable": true
+        }
+      },
+      "error": true
+    }
+  ]
+}

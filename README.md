@@ -59,13 +59,13 @@ Codex 或新开发者必须依次阅读：
 7. [`docs/api/MVP_API_SPEC.md`](docs/api/MVP_API_SPEC.md)
 8. [`docs/testing/MVP_ACCEPTANCE.md`](docs/testing/MVP_ACCEPTANCE.md)
 9. [`tasks/README.md`](tasks/README.md)
-10. 当前被授权的 `TASK-xxx` 文件
+10. 当前被授权的 `TASK-xxx` 文件（当前阶段优先处理 `TASK-014A_ADMIN_CONTENT_DISPLAY.md`）
 
 不得跳过环境审查、直接同时开发 Android、后端、模型和知识库。
 
-## 首个开发任务
+## 当前开发任务
 
-从 [`tasks/TASK-000_PROJECT_BOOTSTRAP.md`](tasks/TASK-000_PROJECT_BOOTSTRAP.md) 开始。每个任务独立分支、独立验证、独立报告；只有验收通过后才能把状态改为 `DONE`。
+从 [`tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md`](tasks/TASK-014A_ADMIN_CONTENT_DISPLAY.md) 开始。每个任务独立分支、独立验证、独立报告；只有验收通过后才能把状态改为 `DONE`。
 
 ## 推荐本地初始化
 
@@ -104,12 +104,12 @@ tests/             跨模块测试与验收入口
 
 ## 当前状态
 
-仓库目前处于 **规划与工程骨架阶段**。没有宣称以下事项已经完成：
+仓库目前处于 **TASK-014 收口 + TASK-014A 准备阶段**：
 
-- Android APK 已构建并完成 USB 麦克风验证；
-- 豆包收费接口已接入；
-- 正式知识库已建立；
-- 腾讯云生产环境已部署。
-- LiveTalking 已在目标 GPU 上实时运行。
+- 腾讯云真实 Gateway 已部署并通过 `/health`、`/api/v1/readiness`、`/api/v1/client/config`、`/api/v1/knowledge/status`、`/api/v1/knowledge/index`、`/api/v1/knowledge/search`、`/api/v1/dialogue/text`、`/api/v1/dialogue/audio` 与 `/api/v1/audio/{audio_id}` 的链路核验；
+- `/api/v1/knowledge/status` 和 `/api/v1/readiness` 显示已加载本地 SQLite/FAISS 与 Doubao Provider；`/api/v1/dialogue/audio` 在有效语音输入下通过并返回 audio/sources 结果（静音样本会返回 `ASR_NO_TEXT`）。
+- Android 端 APK 已通过本地构建与播放链路验证，但真机 USB 麦克风/扬声器验收仍待 `TASK-015`；
+- 正式知识库仍处于轻量 MVP，使用人工确认 10–30 条 FAQ；
+- LiveTalking/Wav2Lip/MuseTalk/WebRTC 继续延后到后续增强阶段。
 
 真实进度只以 [`PROJECT_STATE.md`](PROJECT_STATE.md)、任务文件和可复现测试证据为准。

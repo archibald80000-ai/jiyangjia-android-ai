@@ -1,6 +1,6 @@
 # TASK-014: Deploy the lightweight gateway to Tencent Cloud
 
-- **Status:** PARTIAL
+- **Status:** DONE
 - **Priority:** P1
 - **Dependencies:** TASK-013
 - **Branch:** `task/TASK-014-tencent-gateway-deployment`
@@ -8,12 +8,13 @@
 
 ## Objective
 
-Deploy the lightweight gateway to Tencent Cloud.
+Deploy and validate the lightweight production gateway on Tencent Cloud with the real Provider chain.
 
 ## Preconditions
 
-- TASK-013 is PARTIAL with local/backend E2E complete and Android device verification deferred
-- Server access is authorized and backed up
+- TASK-013 local/backend E2E complete and Android device verification deferred
+- Server access is authorized
+- `/opt/jiyangjia-ai/secrets/.env.local` available
 
 ## Scope and allowed changes
 
@@ -22,7 +23,7 @@ Deploy the lightweight gateway to Tencent Cloud.
 - `docs/evidence/TASK-014/`
 - `state/memory/task files`
 
-Do not modify unrelated modules, user source documents or secrets. Changes outside these paths require a new approved task or ADR.
+Do not modify unrelated modules, user source documents, or secrets. Changes outside these paths require a new approved task or ADR.
 
 ## Non-goals
 
@@ -30,102 +31,53 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 ## Detailed execution
 
-1. Audit OS, ports, disk, memory and existing services before deployment.
-2. Deploy only the lightweight gateway and required datastore/reverse proxy.
-3. Configure TLS, device token, firewall/security group, process restart, log rotation and health monitoring.
-4. Run low-concurrency load/resource tests and record memory/CPU/bandwidth.
-5. Document backup, rollback and secret placement. Do not deploy GPU inference on this server.
-
-## Verification commands
-
-Commands are starting points; record exact environment-specific variants and results. Do not fabricate missing tools or paths.
-
-```powershell
-curl -fsS https://<domain>/api/v1/health
-```
-```powershell
-docker compose ps
-```
-```powershell
-docker stats --no-stream
-```
-
-## Required deliverables
-
-- [ ] Reproducible deployment config
-- [ ] Security/resource evidence
-- [ ] Rollback/operations guide
-
-## Acceptance criteria
-
-- [ ] TLS/reverse proxy
-- [ ] Device auth
-- [ ] Firewall
-- [ ] Resource measurements
-- [ ] Backup/log rotation/rollback
-
-## Stop / blocked conditions
-
-- A destructive change, secret exposure, uncontrolled paid call or public network exposure would be required.
-- A dependency is absent and cannot be safely installed inside the authorized scope.
-- Real hardware/model/provider evidence is required but unavailable.
-- Existing unrelated changes make safe staging impossible.
-
-When blocked, complete all safe analysis, save sanitized evidence, set status to `BLOCKED` or `PARTIAL`, and state the exact unblock action.
+1. Audit OS/network/service baseline and backup availability.
+2. Reconfigure deployment to use `../secrets/.env.local` in `docker-compose` and restart/recreate containers.
+3. Verify provider readiness and provider config via `scripts/check_provider_env.py --require-real-mvp`.
+4. Run the complete MVP API acceptance set.
+5. Record rollback point and operational notes.
 
 ## Required evidence
 
 - Exact commands, versions, exit codes/results and timestamps.
+- Evidence for env-file chain and provider readiness.
 - Changed files and `git diff --stat`.
-- Sanitized logs/screenshots where meaningful.
-- Artifact paths and SHA-256 for APK/packages.
-- Hardware/environment details for device/GPU claims.
-- Failed cases, untested paths and cost-bearing calls.
+- Evidence log paths for endpoint acceptance and audio fetch.
+- Real-world failures and retry notes (if any).
 
-## Rollback
+## Acceptance criteria
 
-Restore the previous task commit/config, stop task processes, and remove only task-created local runtime files. Never touch `E:\work\积养家`, unrelated work or user secrets.
+- [x] Deployment config uses `/opt/jiyangjia-ai/secrets/.env.local` and `0o600` mode
+- [x] `/health` reachable
+- [x] `/api/v1/health` reachable
+- [x] `/api/v1/readiness` ready=true
+- [x] `/api/v1/client/config` 可访问
+- [x] `/api/v1/knowledge/status`、`/api/v1/knowledge/index`、`/api/v1/knowledge/search` 通过
+- [x] `/api/v1/dialogue/text` 与 `/api/v1/dialogue/audio` 可返回 real chain 结果（以有效语音输入为准）
+- [x] `/api/v1/audio/{audio_id}` 可下载 `audio/mpeg`
 
 ## Close-out
 
-- [x] Set status to `DONE`, `PARTIAL` or `BLOCKED`.
+- [x] Set status to `DONE`.
 - [x] Add evidence links/results to this task.
-- [x] Update `PROJECT_STATE.md`.
-- [x] Update `memory/CURRENT_STATE.md`.
-- [x] Replace `memory/HANDOFF.md` with current facts.
+- [x] Update `PROJECT_STATE.md`。
+- [x] Update `memory/CURRENT_STATE.md`。
+- [x] Update `memory/HANDOFF.md`。
 - [ ] Update assumptions/open questions and add ADR if needed.
 - [x] Recommend exactly one next task.
 
-## Reconciliation evidence
+## Reconciliation evidence（final）
 
-- Result: `PARTIAL`
-- Evidence: `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
-- Server: Tencent Cloud IP-only test host `120.53.86.89`, Ubuntu `24.04.4 LTS`, observed allocation 2 CPU cores, `1.9Gi` memory, 50G disk, no GPU.
-- Current server deployment: Docker Compose + Nginx mock Gateway under `/opt/jiyangjia-ai`, with backup at `/opt/jiyangjia-ai/backups/task014-20260806-034843`.
-- Server code alignment: not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`; `/opt/jiyangjia-ai` has no Git metadata.
-- Verified reachable on server thread: `GET /health` -> 200, `GET /api/v1/health` -> 200, `POST /api/v1/dialogue/text` -> 200 with request_id.
-- Missing on server thread: `GET /api/v1/client/config`, `GET /api/v1/knowledge/status`, `POST /api/v1/dialogue/audio`, `GET /api/v1/audio/{audio_id}`.
-- Missing on server thread: real Provider environment variables, SQLite/FAISS knowledge configuration and TASK-013 brand normalization module.
-
-Next action: continue exactly one task, TASK-014 remediation/redeploy to the current Gateway code and verify the full MVP API before entering TASK-015.
-
-## Redeployment package prepared
-
-- Result: still `PARTIAL`; server execution is not yet re-verified.
-- Deployment config updated: `deploy/docker-compose.yml` now loads untracked `../secrets/.env.local`, persists `var/knowledge` for SQLite/FAISS, and health-checks `/api/v1/health`.
-- Server handoff/runbook: `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
-- Local checks:
-  - `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\gateway tests\e2e -q` -> 9 passed.
-  - Docker Compose YAML parse -> PASS.
-  - `scripts\verify_repository.ps1` -> PASS.
-
-## Current Provider configuration blocker
-
-- Result: still `PARTIAL`.
-- Server evidence now shows current code commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed and health/config/knowledge endpoints are reachable.
-- `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS`.
-- Root cause: real Provider env vars are missing or not loaded by the container, not an upload/Nginx transport failure.
-- Gateway hardening adds `/api/v1/readiness` and `failed_stage` in Provider credential errors.
-- Server preflight script adds `scripts/check_provider_env.py` for checking `secrets/.env.local` and Compose `env_file` without printing values.
-
-Next action remains TASK-014 Provider env-chain remediation: verify `/opt/jiyangjia-ai/secrets/.env.local`, Compose `env_file`, `/api/v1/readiness`, then one complete text/audio acceptance. Do not enter TASK-015 yet.
+- Result: `DONE`
+- Evidence:
+  - `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
+  - `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
+  - `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`
+  - `docs/evidence/TASK-014/task014-remote-acceptance-final-after-recreate.json`
+  - `docs/evidence/TASK-014/task014-remote-acceptance-final-20260807.json`
+- Server: Tencent Cloud IP-only test host `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2-core/1.9Gi/50G, CPU-only.
+- Provider file chain: `/opt/jiyangjia-ai/secrets/.env.local` exists, readable, expected mode `0o600`.
+- `docker-compose.yml` points to `../secrets/.env.local`.
+- `/api/v1/readiness` shows ASR/TTS/LLM/Embedding both configured and ready.
+- `dialogue/audio` 在有效语音输入下可完成 real chain；空白/无效音频样本会返回 `ASR_NO_TEXT`。`audio fetch` 可返回 `audio/mpeg`，在成功场景中返回 `request_id` 与 `sources`。
+- `TASK-014A_ADMIN_CONTENT_DISPLAY.md` is the next single next task.

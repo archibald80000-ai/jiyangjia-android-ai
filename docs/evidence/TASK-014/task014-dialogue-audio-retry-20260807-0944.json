@@ -1,0 +1,129 @@
+{
+  "attempt_1": {
+    "status": 200,
+    "request_id": "9ae14b5c-4785-4fcc-8764-9265348e8258",
+    "content_type": "application/json",
+    "bytes": 2595,
+    "elapsed_ms": 29594.35,
+    "json": {
+      "request_id": "task014-retry-b08f29ad37cf4f458c2992bd19d0af5f",
+      "session_id": "task014-session",
+      "transcript": {
+        "text": "您好，欢迎来到积养家。",
+        "provider": "doubao",
+        "language": "zh-CN",
+        "confidence": null,
+        "content_type": "audio/wav",
+        "normalized_content_type": "audio/wav",
+        "raw_status": "ok",
+        "raw_text": "您好，欢迎来到季养佳。",
+        "normalization": {
+          "changed": true,
+          "replacements": [
+            {
+              "from": "季养佳",
+              "to": "积养家",
+              "type": "brand"
+            }
+          ]
+        }
+      },
+      "knowledge": {
+        "status": "matched",
+        "matches": [
+          {
+            "id": "demo-knowledge-001",
+            "chunk_id": "demo-knowledge-001::chunk-0000",
+            "title": "Demo FAQ",
+            "status": "approved",
+            "score": 0.5274,
+            "confidence": 0.5274,
+            "vector_score": 0.5429,
+            "keyword_score": 0.4808,
+            "source": {
+              "uri": "local://task014-acc",
+              "chunk_id": "demo-knowledge-001::chunk-0000"
+            },
+            "excerpt": "积养家每日营业时间为 09:00-18:00，周一到周六。"
+          },
+          {
+            "id": "task014-smoke-001",
+            "chunk_id": "task014-smoke-001::chunk-0000",
+            "title": "门店工作时间",
+            "status": "approved",
+            "score": 0.5099,
+            "confidence": 0.5099,
+            "vector_score": 0.5196,
+            "keyword_score": 0.4808,
+            "source": {
+              "uri": "manual://smoke",
+              "chunk_id": "task014-smoke-001::chunk-0000"
+            },
+            "excerpt": "积养家门店营业时间为9:00-22:00，周一至周日都营业。"
+          },
+          {
+            "id": "faq_mvp_001",
+            "chunk_id": "faq_mvp_001::chunk-0000",
+            "title": "门店咨询定位",
+            "status": "approved",
+            "score": 0.4808,
+            "confidence": 0.4808,
+            "vector_score": 0.0,
+            "keyword_score": 0.4808,
+            "source": {
+              "uri": "manual://task012/faq_mvp_001",
+              "chunk_id": "faq_mvp_001::chunk-0000"
+            },
+            "excerpt": "标题：门店咨询定位\n问题：积养家是做什么的；你们是什么门店\n回答：积养家门店可以提供现场咨询和服务引导。具体服务项目、价格和预约情况请以现场工作人员确认为准。"
+          }
+        ],
+        "provider": "sqlite_lightweight"
+      },
+      "answer": {
+        "text": "您好呀~请问有什么能帮您的？门店营业时间、服务相关问题都可以咨询我。",
+        "provider": "doubao",
+        "source": "knowledge_grounded",
+        "subtitles": [
+          "您好呀~请问有什么能帮您的？门店营业时间、服务相关问题都可以咨询我。"
+        ]
+      },
+      "tts": {
+        "provider": "doubao",
+        "content_type": "audio/mpeg",
+        "audio_id": "aud_262324b447114a019d9f468b06d2dfec",
+        "duration_ms": null
+      },
+      "sources": [
+        {
+          "uri": "local://task014-acc",
+          "chunk_id": "demo-knowledge-001::chunk-0000",
+          "id": "demo-knowledge-001",
+          "title": "Demo FAQ",
+          "status": "approved"
+        },
+        {
+          "uri": "manual://smoke",
+          "chunk_id": "task014-smoke-001::chunk-0000",
+          "id": "task014-smoke-001",
+          "title": "门店工作时间",
+          "status": "approved"
+        },
+        {
+          "uri": "manual://task012/faq_mvp_001",
+          "chunk_id": "faq_mvp_001::chunk-0000",
+          "id": "faq_mvp_001",
+          "title": "门店咨询定位",
+          "status": "approved"
+        }
+      ]
+    }
+  },
+  "audio_fetch": {
+    "status": 200,
+    "request_id": "ce7a0f5d-3943-4944-830e-c315d69dc0e7",
+    "content_type": "audio/mpeg",
+    "bytes": 52845,
+    "elapsed_ms": 1.72,
+    "audio_id": "aud_262324b447114a019d9f468b06d2dfec"
+  }
+}

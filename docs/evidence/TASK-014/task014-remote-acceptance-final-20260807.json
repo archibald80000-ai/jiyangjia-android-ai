@@ -1,0 +1,419 @@
+{
+  "executed_at_utc": "2026-08-07T03:19:50Z",
+  "base_url": "http://120.53.86.89",
+  "checks": [
+    {
+      "name": "health",
+      "path": "/health",
+      "method": "GET",
+      "status": 200,
+      "latency_ms": 21.76,
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "request_id": null,
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:19:11.162311+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "name": "health",
+      "path": "/api/v1/health",
+      "method": "GET",
+      "status": 200,
+      "latency_ms": 25.13,
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "request_id": null,
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:19:11.182711+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "name": "readiness",
+      "path": "/api/v1/readiness",
+      "method": "GET",
+      "status": 200,
+      "latency_ms": 314.03,
+      "content_type": "application/json",
+      "response_bytes": 611,
+      "request_id": "306623d8-281c-4ac0-9459-5b7cf10c188b",
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "request_id": "306623d8-281c-4ac0-9459-5b7cf10c188b",
+        "ready": true,
+        "status": "ready",
+        "providers": {
+          "asr": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "tts": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "llm": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "embedding": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          }
+        },
+        "knowledge": {
+          "documents": {
+            "approved": 17,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 19,
+          "embeddings": 18,
+          "faiss": {
+            "ready": true,
+            "vectors": 7,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_e9b83684f43f44db",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 03:18:30"
+          }
+        }
+      }
+    },
+    {
+      "name": "config",
+      "path": "/api/v1/client/config",
+      "method": "GET",
+      "status": 200,
+      "latency_ms": 48.58,
+      "content_type": "application/json",
+      "response_bytes": 346,
+      "request_id": null,
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "display_mode": "idle_video_voice",
+        "max_record_seconds": 20,
+        "max_upload_bytes": 5242880,
+        "accepted_audio_types": [
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp4",
+          "audio/aac",
+          "audio/webm"
+        ],
+        "subtitle_max_chars": 80,
+        "idle_video_version": "local",
+        "api": {
+          "dialogue_text": "/api/v1/dialogue/text",
+          "dialogue_audio": "/api/v1/dialogue/audio",
+          "audio_base": "/api/v1/audio/"
+        }
+      }
+    },
+    {
+      "name": "status",
+      "path": "/api/v1/knowledge/status",
+      "method": "GET",
+      "status": 200,
+      "latency_ms": 34.3,
+      "content_type": "application/json",
+      "response_bytes": 446,
+      "request_id": "9e3e2391-29b3-4472-aa64-c1986f8ffa3f",
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "request_id": "9e3e2391-29b3-4472-aa64-c1986f8ffa3f",
+        "provider": "sqlite_lightweight",
+        "embedding_provider": "doubao",
+        "embedding_ready": true,
+        "embedding_missing": [],
+        "vector_index": {
+          "ready": true,
+          "vectors": 7,
+          "dimensions": 2048
+        },
+        "documents": {
+          "approved": 17,
+          "draft": 1,
+          "rejected": 1
+        },
+        "chunks": 19,
+        "embeddings": 18,
+        "latest_run": {
+          "run_id": "ing_e9b83684f43f44db",
+          "status": "done",
+          "document_count": 0,
+          "chunk_count": 0,
+          "error": null,
+          "created_at": "2026-08-07 03:18:30"
+        }
+      }
+    },
+    {
+      "name": "index",
+      "path": "/api/v1/knowledge/index",
+      "method": "POST",
+      "status": 200,
+      "latency_ms": 43.78,
+      "content_type": "application/json",
+      "response_bytes": 365,
+      "request_id": "5a41c77b-3b95-4b15-8676-dacf0141dad0",
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "request_id": "5a41c77b-3b95-4b15-8676-dacf0141dad0",
+        "indexed": 0,
+        "chunks": 0,
+        "status": {
+          "documents": {
+            "approved": 17,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 19,
+          "embeddings": 18,
+          "faiss": {
+            "ready": true,
+            "vectors": 7,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_568947d914ed46c5",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 03:19:11"
+          }
+        }
+      }
+    },
+    {
+      "name": "search",
+      "path": "/api/v1/knowledge/search",
+      "method": "POST",
+      "status": 200,
+      "latency_ms": 165.25,
+      "content_type": "application/json",
+      "response_bytes": 2322,
+      "request_id": "fc7dfb95-0357-4461-a4fd-ea25ddd64654",
+      "sources": [
+        {
+          "uri": "manual://task012/faq_mvp_003",
+          "chunk_id": "faq_mvp_003::chunk-0000"
+        },
+        {
+          "uri": "local://remote-014-001",
+          "chunk_id": "remote-014-001::chunk-0000"
+        },
+        {
+          "uri": "task014:remote-e2e",
+          "chunk_id": "task014_remote_demo_1::chunk-0000"
+        },
+        {
+          "uri": "task014:remote-final",
+          "chunk_id": "task014_remote_demo_2::chunk-0000"
+        },
+        {
+          "uri": "manual://smoke",
+          "chunk_id": "task014-smoke-001::chunk-0000"
+        }
+      ],
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "request_id": "fc7dfb95-0357-4461-a4fd-ea25ddd64654",
+        "status": "matched",
+        "matches": [
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.99,
+            "confidence": 0.99,
+            "vector_score": 0.0,
+            "keyword_score": 1.0,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          },
+          {
+            "id": "remote-014-001",
+            "chunk_id": "remote-014-001::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.85,
+            "confidence": 0.85,
+            "vector_score": 0.5713,
+            "keyword_score": 0.85,
+            "source": {
+              "uri": "local://remote-014-001",
+              "chunk_id": "remote-014-001::chunk-0000"
+            },
+            "excerpt": "积养家门店每日10:00-21:00对外接待。"
+          },
+          {
+            "id": "task014_remote_demo_1",
+            "chunk_id": "task014_remote_demo_1::chunk-0000",
+            "title": "Demo FAQ",
+            "status": "approved",
+            "score": 0.75,
+            "confidence": 0.75,
+            "vector_score": 0.425,
+            "keyword_score": 0.75,
+            "source": {
+              "uri": "task014:remote-e2e",
+              "chunk_id": "task014_remote_demo_1::chunk-0000"
+            },
+            "excerpt": "积养家提供 0-3 岁关节护理咨询与门店服务。"
+          },
+          {
+            "id": "task014_remote_demo_2",
+            "chunk_id": "task014_remote_demo_2::chunk-0000",
+            "title": "远程最终验证",
+            "status": "approved",
+            "score": 0.75,
+            "confidence": 0.75,
+            "vector_score": 0.4292,
+            "keyword_score": 0.75,
+            "source": {
+              "uri": "task014:remote-final",
+              "chunk_id": "task014_remote_demo_2::chunk-0000"
+            },
+            "excerpt": "积养家提供 0-6 岁关节护理咨询与门店服务。"
+          },
+          {
+            "id": "task014-smoke-001",
+            "chunk_id": "task014-smoke-001::chunk-0000",
+            "title": "门店工作时间",
+            "status": "approved",
+            "score": 0.4812,
+            "confidence": 0.4812,
+            "vector_score": 0.4915,
+            "keyword_score": 0.45,
+            "source": {
+              "uri": "manual://smoke",
+              "chunk_id": "task014-smoke-001::chunk-0000"
+            },
+            "excerpt": "积养家门店营业时间为9:00-22:00，周一至周日都营业。"
+          }
+        ],
+        "sources": [
+          {
+            "uri": "manual://task012/faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000"
+          },
+          {
+            "uri": "local://remote-014-001",
+            "chunk_id": "remote-014-001::chunk-0000"
+          },
+          {
+            "uri": "task014:remote-e2e",
+            "chunk_id": "task014_remote_demo_1::chunk-0000"
+          },
+          {
+            "uri": "task014:remote-final",
+            "chunk_id": "task014_remote_demo_2::chunk-0000"
+          },
+          {
+            "uri": "manual://smoke",
+            "chunk_id": "task014-smoke-001::chunk-0000"
+          }
+        ]
+      }
+    },
+    {
+      "name": "text",
+      "path": "/api/v1/dialogue/text",
+      "method": "POST",
+      "status": null,
+      "latency_ms": 40019.66,
+      "content_type": null,
+      "response_bytes": 0,
+      "request_id": null,
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "error": "HTTPConnectionPool(host='120.53.86.89', port=80): Read timed out. (read timeout=40)"
+      }
+    },
+    {
+      "name": "dialogue_audio",
+      "path": "/api/v1/dialogue/audio",
+      "method": "POST",
+      "status": 422,
+      "latency_ms": 97.6,
+      "content_type": "application/json",
+      "response_bytes": 90,
+      "request_id": null,
+      "sources": null,
+      "audio_id": null,
+      "failed_stage": null,
+      "body": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "audio"
+            ],
+            "msg": "Field required",
+            "input": null
+          }
+        ]
+      }
+    }
+  ]
+}

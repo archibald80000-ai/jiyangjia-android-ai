@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-08-06
+Updated: 2026-08-07
 
 ## Completed
 
@@ -55,17 +55,15 @@ Updated: 2026-08-06
   - one real private-env Gateway smoke passed through Doubao ASR, Doubao/Ark Embedding RAG, Doubao/Ark LLM and Doubao TTS;
   - Gateway normalizes common ASR homophones of `积养家` before RAG/LLM and preserves provider output as `transcript.raw_text` when changed;
   - Android real-device install/record/playback/subtitle behavior remains unverified.
-- TASK-014 is partial:
-  - server-thread evidence was imported from the Tencent Cloud host `120.53.86.89`;
-  - the host is Ubuntu `24.04.4 LTS`, observed as 2 CPU cores, about `1.9Gi` memory, 50G disk and no GPU;
-  - current commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed on Tencent Cloud;
-  - Docker Compose + Nginx runs a healthy Gateway and `/health`, `/api/v1/health`, `/api/v1/client/config`, knowledge index/search/status endpoints are reachable;
-  - `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS` because real Provider env vars are missing or not loaded by the container.
-- TASK-014 redeployment package is prepared locally:
-  - `deploy/docker-compose.yml` loads untracked server `secrets/.env.local`, persists `var/knowledge` and health-checks `/api/v1/health`;
-  - `docs/evidence/TASK-014/server-redeployment-request-20260806.md` gives the server thread exact redeploy, knowledge index, text dialogue, audio dialogue, brand normalization and evidence commands.
-- TASK-014 hardening now adds `/api/v1/readiness` and `failed_stage` values for Provider credential 503 responses.
-- TASK-014 now includes `scripts/check_provider_env.py`, a server preflight script that checks `secrets/.env.local`, Docker Compose `env_file` and Provider configured/missing status without printing secret values.
+- TASK-014 is DONE:
+  - Tencent Cloud host `120.53.86.89` now passes real MVP chain with `env_file` from `/opt/jiyangjia-ai/secrets/.env.local` (mode `600`) and all providers `ready`.
+  - `/api/v1/readiness`, `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/knowledge/index`, `/api/v1/knowledge/search`, `/api/v1/dialogue/text`, `/api/v1/dialogue/audio` 验证通过。
+  - `/api/v1/audio/{audio_id}` 返回 `audio/mpeg`，并包含 request_id/sources/audio_id。
+  - `scripts/check_provider_env.py --require-real-mvp` 验证通过；部署证据写入 `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`。
+- TASK-014 now includes hardened diagnostics:
+  - `/api/v1/readiness`；
+  - 统一 provider 配置检查；
+  - `/api/v1/dialogue/*` 已提供 `failed_stage` 信息用于错误分层（用于后续回归，不影响本次通过）。
 
 ## Route changed
 
@@ -124,18 +122,21 @@ Android recording
 - Android `testDebugUnitTest`, `assembleDebug` and `lintDebug` passed with project-local JDK 17.
 - TASK-013 debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144`, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`.
 - TASK-013 brand normalization: `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` normalize to `积养家`; `python -m pytest tests\asr tests\gateway tests\e2e -q` passed with 19 tests and full backend regression passed with 42 tests.
-- TASK-014 evidence reconciliation: imported server-thread report and recorded `PARTIAL`. Current server can run a mock Gateway but is not the current MVP deployment.
-- TASK-014 redeployment package checks: `python -m pytest tests\gateway tests\e2e -q` -> 9 passed; Docker Compose YAML parse -> PASS; repository verification -> PASS.
-- TASK-014 Provider env preflight checks: `python -m pytest tests\gateway tests\asr tests\tts tests\llm tests\e2e -q` -> 39 passed; Compose parse -> PASS; missing-env sample returned exit code 2; configured-env sample returned exit code 0; repository verification and secret scan passed.
+- TASK-014 evidence reconciliation: imported and re-verified on 2026-08-07 with real provider/env readiness.
+- TASK-014 acceptance evidence: `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`, `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`, `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`.
+- TASK-014 本地复核：`python -m pytest tests\gateway tests\e2e -q` -> 9 passed；Docker Compose YAML parse -> PASS；repository verification -> PASS。
 
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
 - Formal production knowledge base beyond the scoped demo FAQ set.
 - Android 12 large-screen real-device acceptance.
-- TASK-014 Provider env-chain remediation on Tencent Cloud: verify `/opt/jiyangjia-ai/secrets/.env.local`, Compose `env_file`, container env configured/missing status, then run one complete text/audio acceptance.
+- TASK-014A 轻量后台骨架尚待补齐：
+  - 页面架构（系统状态、知识库、数字人素材、显示配置）；
+  - Display Profile 字段枚举与默认策略；
+  - 初始素材/FAQ 审批清单及责任链。
 
 ## Next action
 
-Continue exactly one next task: have the server-management thread run `scripts/check_provider_env.py --require-real-mvp`, fix the Provider env chain, confirm `/api/v1/readiness`, and return one complete dialogue/text plus dialogue/audio acceptance before moving to `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`.
-- 2026-08-06：TASK-014 对 `120.53.86.89` 复核结果：网关容器健康，`/health`、`/api/v1/health`、`/api/v1/client/config`、知识索引/搜索/状态接口可达；`/api/v1/dialogue/text` 与 `/api/v1/dialogue/audio` 因 `DOUBAO_*` 等变量缺失返回 `503 BLOCKED_PROVIDER_CREDENTIALS`，`embedding_ready=false`。
+Complete next: `TASK-014A_ADMIN_CONTENT_DISPLAY.md` 草案先行，完成页面与状态模型定义后再推进 TASK-015。
+- 2026-08-07：TASK-014 已收口；`120.53.86.89` `/api/v1/dialogue/audio` 可回传 `audio/mpeg`，`request_id` 与 `sources` 均返回。

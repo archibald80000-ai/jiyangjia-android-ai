@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "env_file": {
+    "path": "/opt/jiyangjia-ai/secrets/.env.local",
+    "exists": true,
+    "readable": true,
+    "mode": "0o600"
+  },
+  "compose": {
+    "path": "/opt/jiyangjia-ai/docker/docker-compose.yml",
+    "exists": true,
+    "expected_env_file": "../secrets/.env.local",
+    "contains_expected": true,
+    "contains_old_root": false
+  },
+  "providers": {
+    "asr": {
+      "provider": "doubao",
+      "missing": [],
+      "ready": true
+    },
+    "tts": {
+      "provider": "doubao",
+      "missing": [],
+      "ready": true
+    },
+    "llm": {
+      "provider": "doubao",
+      "missing": [],
+      "ready": true
+    },
+    "embedding": {
+      "provider": "doubao",
+      "missing": [],
+      "ready": true
+    }
+  }
+}

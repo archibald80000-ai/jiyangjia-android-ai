@@ -1,0 +1,460 @@
+{
+  "collected_at_utc": "2026-08-07T03:25:07.513827+00:00",
+  "checks": {
+    "compose_and_env": {
+      "compose_exists": true,
+      "env_file_expected": true,
+      "env_file_old": false,
+      "env_exists": true,
+      "env_mode": "0o600"
+    },
+    "provider_env": {
+      "providers": {
+        "asr": {
+          "provider": "doubao",
+          "ready": true,
+          "missing": []
+        },
+        "tts": {
+          "provider": "doubao",
+          "ready": true,
+          "missing": []
+        },
+        "llm": {
+          "provider": "doubao",
+          "ready": true,
+          "missing": []
+        },
+        "embedding": {
+          "provider": "doubao",
+          "ready": true,
+          "missing": []
+        }
+      },
+      "require_real_mvp": true
+    },
+    "health": {
+      "command": "curl -sS -o /tmp/health.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' -X GET http://127.0.0.1:8080/health",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002316",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.002316,
+      "body_text": "{\"ok\":true,\"service\":\"jiyangjia-gateway\",\"version\":\"0.1.0-task011\",\"checked_at\":\"2026-08-07T03:25:07.520465+00:00\",\"providers\":{\"asr\":\"doubao\",\"tts\":\"doubao\",\"llm\":\"doubao\",\"embedding\":\"doubao\",\"knowledge\":\"sqlite_lightweight\"},\"checks\":{\"gateway\":\"healthy\",\"knowledge_store\":\"ready\"}}",
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:25:07.520465+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    "api_health": {
+      "command": "curl -sS -o /tmp/api_health.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' -X GET http://127.0.0.1:8080/api/v1/health",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002010",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.00201,
+      "body_text": "{\"ok\":true,\"service\":\"jiyangjia-gateway\",\"version\":\"0.1.0-task011\",\"checked_at\":\"2026-08-07T03:25:07.528246+00:00\",\"providers\":{\"asr\":\"doubao\",\"tts\":\"doubao\",\"llm\":\"doubao\",\"embedding\":\"doubao\",\"knowledge\":\"sqlite_lightweight\"},\"checks\":{\"gateway\":\"healthy\",\"knowledge_store\":\"ready\"}}",
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:25:07.528246+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    "readiness": {
+      "command": "curl -sS -o /tmp/readiness.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' -X GET http://127.0.0.1:8080/api/v1/readiness",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002204",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.002204,
+      "body_text": "{\"request_id\":\"b5f8b2ff-f1bd-40f3-aaa7-0158c7b7e9ae\",\"ready\":true,\"status\":\"ready\",\"providers\":{\"asr\":{\"provider\":\"doubao\",\"ready\":true,\"missing\":[]},\"tts\":{\"provider\":\"doubao\",\"ready\":true,\"missing\":[]},\"llm\":{\"provider\":\"doubao\",\"ready\":true,\"missing\":[]},\"embedding\":{\"provider\":\"doubao\",\"ready\":true,\"missing\":[]}},\"knowledge\":{\"documents\":{\"approved\":18,\"draft\":1,\"rejected\":1},\"chunks\":20,\"embeddings\":19,\"faiss\":{\"ready\":true,\"vectors\":8,\"dimensions\":2048},\"latest_run\":{\"run_id\":\"ing_db48e3d1",
+      "body": {
+        "request_id": "b5f8b2ff-f1bd-40f3-aaa7-0158c7b7e9ae",
+        "ready": true,
+        "status": "ready",
+        "providers": {
+          "asr": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "tts": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "llm": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "embedding": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          }
+        },
+        "knowledge": {
+          "documents": {
+            "approved": 18,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_db48e3d1fad84573",
+            "status": "done",
+            "document_count": 1,
+            "chunk_count": 1,
+            "error": null,
+            "created_at": "2026-08-07 03:24:27"
+          }
+        }
+      }
+    },
+    "client_config": {
+      "command": "curl -sS -o /tmp/client_config.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' -X GET http://127.0.0.1:8080/api/v1/client/config",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002046",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.002046,
+      "body_text": "{\"display_mode\":\"idle_video_voice\",\"max_record_seconds\":20,\"max_upload_bytes\":5242880,\"accepted_audio_types\":[\"audio/wav\",\"audio/mpeg\",\"audio/mp4\",\"audio/aac\",\"audio/webm\"],\"subtitle_max_chars\":80,\"idle_video_version\":\"local\",\"api\":{\"dialogue_text\":\"/api/v1/dialogue/text\",\"dialogue_audio\":\"/api/v1/dialogue/audio\",\"audio_base\":\"/api/v1/audio/\"}}",
+      "body": {
+        "display_mode": "idle_video_voice",
+        "max_record_seconds": 20,
+        "max_upload_bytes": 5242880,
+        "accepted_audio_types": [
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp4",
+          "audio/aac",
+          "audio/webm"
+        ],
+        "subtitle_max_chars": 80,
+        "idle_video_version": "local",
+        "api": {
+          "dialogue_text": "/api/v1/dialogue/text",
+          "dialogue_audio": "/api/v1/dialogue/audio",
+          "audio_base": "/api/v1/audio/"
+        }
+      }
+    },
+    "knowledge_status": {
+      "command": "curl -sS -o /tmp/knowledge_status.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' -X GET http://127.0.0.1:8080/api/v1/knowledge/status",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002051",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.002051,
+      "body_text": "{\"request_id\":\"ce560f74-a4c2-4a34-81b9-8ac50fbdddeb\",\"provider\":\"sqlite_lightweight\",\"embedding_provider\":\"doubao\",\"embedding_ready\":true,\"embedding_missing\":[],\"vector_index\":{\"ready\":true,\"vectors\":8,\"dimensions\":2048},\"documents\":{\"approved\":18,\"draft\":1,\"rejected\":1},\"chunks\":20,\"embeddings\":19,\"latest_run\":{\"run_id\":\"ing_db48e3d1fad84573\",\"status\":\"done\",\"document_count\":1,\"chunk_count\":1,\"error\":null,\"created_at\":\"2026-08-07 03:24:27\"}}",
+      "body": {
+        "request_id": "ce560f74-a4c2-4a34-81b9-8ac50fbdddeb",
+        "provider": "sqlite_lightweight",
+        "embedding_provider": "doubao",
+        "embedding_ready": true,
+        "embedding_missing": [],
+        "vector_index": {
+          "ready": true,
+          "vectors": 8,
+          "dimensions": 2048
+        },
+        "documents": {
+          "approved": 18,
+          "draft": 1,
+          "rejected": 1
+        },
+        "chunks": 20,
+        "embeddings": 19,
+        "latest_run": {
+          "run_id": "ing_db48e3d1fad84573",
+          "status": "done",
+          "document_count": 1,
+          "chunk_count": 1,
+          "error": null,
+          "created_at": "2026-08-07 03:24:27"
+        }
+      }
+    },
+    "knowledge_index": {
+      "command": "curl -sS -H 'Content-Type: application/json' -X POST -d @/tmp/idx.json -o /tmp/knowledge_index.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' http://127.0.0.1:8080/api/v1/knowledge/index",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.194254",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.194254,
+      "body_text": "{\"request_id\":\"991f4798-17fe-45bc-ab93-ea188f29abb3\",\"indexed\":1,\"chunks\":1,\"status\":{\"documents\":{\"approved\":18,\"draft\":1,\"rejected\":1},\"chunks\":20,\"embeddings\":19,\"faiss\":{\"ready\":true,\"vectors\":8,\"dimensions\":2048},\"latest_run\":{\"run_id\":\"ing_2f53536ee42545c5\",\"status\":\"done\",\"document_count\":1,\"chunk_count\":1,\"error\":null,\"created_at\":\"2026-08-07 03:25:07\"}}}",
+      "body": {
+        "request_id": "991f4798-17fe-45bc-ab93-ea188f29abb3",
+        "indexed": 1,
+        "chunks": 1,
+        "status": {
+          "documents": {
+            "approved": 18,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_2f53536ee42545c5",
+            "status": "done",
+            "document_count": 1,
+            "chunk_count": 1,
+            "error": null,
+            "created_at": "2026-08-07 03:25:07"
+          }
+        }
+      }
+    },
+    "knowledge_search": {
+      "command": "curl -sS -H 'Content-Type: application/json' -X POST -d @/tmp/search.json -o /tmp/knowledge_search.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' http://127.0.0.1:8080/api/v1/knowledge/search",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.245570",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.24557,
+      "body_text": "{\"request_id\":\"3ea0045e-c675-4439-9a2b-c1d6d05e8d73\",\"status\":\"matched\",\"matches\":[{\"id\":\"doc-task014\",\"chunk_id\":\"doc-task014::chunk-0000\",\"title\":\"积养家FAQ\",\"status\":\"approved\",\"score\":0.7062,\"confidence\":0.7062,\"vector_score\":0.7557,\"keyword_score\":0.5577,\"source\":{\"uri\":\"admin://seed/doc-task014\",\"chunk_id\":\"doc-task014::chunk-0000\"},\"excerpt\":\"积养家是门店品牌，提供咨询与健康调理服务。\"},{\"id\":\"task014_remote_demo_1\",\"chunk_id\":\"task014_remote_demo_1::chunk-0000\",\"title\":\"Demo FAQ\",\"status\":\"approved\",\"score\":0.6",
+      "body": {
+        "request_id": "3ea0045e-c675-4439-9a2b-c1d6d05e8d73",
+        "status": "matched",
+        "matches": [
+          {
+            "id": "doc-task014",
+            "chunk_id": "doc-task014::chunk-0000",
+            "title": "积养家FAQ",
+            "status": "approved",
+            "score": 0.7062,
+            "confidence": 0.7062,
+            "vector_score": 0.7557,
+            "keyword_score": 0.5577,
+            "source": {
+              "uri": "admin://seed/doc-task014",
+              "chunk_id": "doc-task014::chunk-0000"
+            },
+            "excerpt": "积养家是门店品牌，提供咨询与健康调理服务。"
+          },
+          {
+            "id": "task014_remote_demo_1",
+            "chunk_id": "task014_remote_demo_1::chunk-0000",
+            "title": "Demo FAQ",
+            "status": "approved",
+            "score": 0.6399,
+            "confidence": 0.6399,
+            "vector_score": 0.6673,
+            "keyword_score": 0.5577,
+            "source": {
+              "uri": "task014:remote-e2e",
+              "chunk_id": "task014_remote_demo_1::chunk-0000"
+            },
+            "excerpt": "积养家提供 0-3 岁关节护理咨询与门店服务。"
+          },
+          {
+            "id": "task014_remote_demo_2",
+            "chunk_id": "task014_remote_demo_2::chunk-0000",
+            "title": "远程最终验证",
+            "status": "approved",
+            "score": 0.6371,
+            "confidence": 0.6371,
+            "vector_score": 0.6636,
+            "keyword_score": 0.5577,
+            "source": {
+              "uri": "task014:remote-final",
+              "chunk_id": "task014_remote_demo_2::chunk-0000"
+            },
+            "excerpt": "积养家提供 0-6 岁关节护理咨询与门店服务。"
+          }
+        ],
+        "sources": [
+          {
+            "uri": "admin://seed/doc-task014",
+            "chunk_id": "doc-task014::chunk-0000"
+          },
+          {
+            "uri": "task014:remote-e2e",
+            "chunk_id": "task014_remote_demo_1::chunk-0000"
+          },
+          {
+            "uri": "task014:remote-final",
+            "chunk_id": "task014_remote_demo_2::chunk-0000"
+          }
+        ]
+      }
+    },
+    "dialogue_text": {
+      "command": "curl -sS -H 'Content-Type: application/json' -X POST -d @/tmp/text.json -o /tmp/dialogue_text.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' http://127.0.0.1:8080/api/v1/dialogue/text",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:25.015673",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 25.015673,
+      "body_text": "{\"request_id\":\"0c6710cd-34af-44e2-893f-05f8998b23a3\",\"session_id\":\"task014-final\",\"transcript\":{\"text\":\"积养家有提供什么服务？\",\"provider\":\"text\",\"language\":\"zh-CN\",\"confidence\":1.0},\"knowledge\":{\"status\":\"matched\",\"matches\":[{\"id\":\"doc-task014\",\"chunk_id\":\"doc-task014::chunk-0000\",\"title\":\"积养家FAQ\",\"status\":\"approved\",\"score\":0.7174,\"confidence\":0.7174,\"vector_score\":0.7752,\"keyword_score\":0.5441,\"source\":{\"uri\":\"admin://seed/doc-task014\",\"chunk_id\":\"doc-task014::chunk-0000\"},\"excerpt\":\"积养家是门店品牌，提供咨询与健康调理服务。\"},{\"id\":\"task014_remote_demo_1\",\"chunk_id\":\"task014_remote_demo_1::chunk-0000\",\"title\":\"Demo FAQ\",\"status\":\"approved\",\"score\":0.6486,\"confidence\":0.6486,\"vector_score\":0.6835,\"keyword_score\":0.5441,\"source\":{\"uri\":\"task014:remote-e2e\",\"chunk_id\":\"task014_remote_demo_1::chunk-0000\"},\"excerpt\":\"积养家提供 0-3 岁关节护理咨询与门店服务。\"},{\"id\":\"task014_remote_demo_2\",\"chunk_id\":\"task014_remote_demo_2::chunk-0000\",\"title\":\"远程最终验证\",\"status\":\"approved\",\"score\":0.6459,\"confidence\":0.6459,\"vector_score\":0.6798,\"keyword_score\":0.5441,\"source\":{\"uri\":\"task014:remote-final\",\"chunk_id\":\"task014_remote_demo_2::chunk-0000\"},\"excerpt\":\"积养家提供 0-6 岁关节护理咨询与门店服务。\"}],\"provider\":\"sqlite_lightweight\"},\"answer\":{\"text\":\"积养家是门店品",
+      "body": {
+        "request_id": "0c6710cd-34af-44e2-893f-05f8998b23a3",
+        "session_id": "task014-final",
+        "transcript": {
+          "text": "积养家有提供什么服务？",
+          "provider": "text",
+          "language": "zh-CN",
+          "confidence": 1.0
+        },
+        "knowledge": {
+          "status": "matched",
+          "matches": [
+            {
+              "id": "doc-task014",
+              "chunk_id": "doc-task014::chunk-0000",
+              "title": "积养家FAQ",
+              "status": "approved",
+              "score": 0.7174,
+              "confidence": 0.7174,
+              "vector_score": 0.7752,
+              "keyword_score": 0.5441,
+              "source": {
+                "uri": "admin://seed/doc-task014",
+                "chunk_id": "doc-task014::chunk-0000"
+              },
+              "excerpt": "积养家是门店品牌，提供咨询与健康调理服务。"
+            },
+            {
+              "id": "task014_remote_demo_1",
+              "chunk_id": "task014_remote_demo_1::chunk-0000",
+              "title": "Demo FAQ",
+              "status": "approved",
+              "score": 0.6486,
+              "confidence": 0.6486,
+              "vector_score": 0.6835,
+              "keyword_score": 0.5441,
+              "source": {
+                "uri": "task014:remote-e2e",
+                "chunk_id": "task014_remote_demo_1::chunk-0000"
+              },
+              "excerpt": "积养家提供 0-3 岁关节护理咨询与门店服务。"
+            },
+            {
+              "id": "task014_remote_demo_2",
+              "chunk_id": "task014_remote_demo_2::chunk-0000",
+              "title": "远程最终验证",
+              "status": "approved",
+              "score": 0.6459,
+              "confidence": 0.6459,
+              "vector_score": 0.6798,
+              "keyword_score": 0.5441,
+              "source": {
+                "uri": "task014:remote-final",
+                "chunk_id": "task014_remote_demo_2::chunk-0000"
+              },
+              "excerpt": "积养家提供 0-6 岁关节护理咨询与门店服务。"
+            }
+          ],
+          "provider": "sqlite_lightweight"
+        },
+        "answer": {
+          "text": "积养家是门店品牌，提供咨询与健康调理服务，包含0-6岁关节护理咨询及相关门店服务。",
+          "provider": "doubao",
+          "source": "knowledge_grounded",
+          "subtitles": [
+            "积养家是门店品牌，提供咨询与健康调理服务，包含0-6岁关节护理咨询及相关门店服务。"
+          ]
+        },
+        "tts": {
+          "provider": "doubao",
+          "content_type": "audio/mpeg",
+          "audio_id": "aud_bda8f2b01202491badcb8bfe64656574",
+          "duration_ms": null
+        },
+        "sources": [
+          {
+            "uri": "admin://seed/doc-task014",
+            "chunk_id": "doc-task014::chunk-0000",
+            "id": "doc-task014",
+            "title": "积养家FAQ",
+            "status": "approved"
+          },
+          {
+            "uri": "task014:remote-e2e",
+            "chunk_id": "task014_remote_demo_1::chunk-0000",
+            "id": "task014_remote_demo_1",
+            "title": "Demo FAQ",
+            "status": "approved"
+          },
+          {
+            "uri": "task014:remote-final",
+            "chunk_id": "task014_remote_demo_2::chunk-0000",
+            "id": "task014_remote_demo_2",
+            "title": "远程最终验证",
+            "status": "approved"
+          }
+        ]
+      }
+    },
+    "dialogue_audio": {
+      "command": "curl -sS -X POST -F 'audio=@/tmp/task014_silent.wav;type=audio/wav' -F 'session_id=task014-final-audio' -o /tmp/dialogue_audio.json -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' http://127.0.0.1:8080/api/v1/dialogue/audio",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:502 TIME:0.315872",
+      "stderr": "",
+      "http_code": 502,
+      "time_total": 0.315872,
+      "body_text": "{\"detail\":{\"code\":\"ASR_NO_TEXT\",\"message_for_user\":\"语音识别暂时不可用，请稍后再试。\",\"retryable\":true}}",
+      "body": {
+        "detail": {
+          "code": "ASR_NO_TEXT",
+          "message_for_user": "语音识别暂时不可用，请稍后再试。",
+          "retryable": true
+        }
+      }
+    },
+    "audio_fetch": {
+      "command": "curl -sS -o /tmp/audio_fetch.bin -w 'HTTP_CODE:%{http_code} TIME:%{time_total}' http://127.0.0.1:8080/api/v1/audio/aud_bda8f2b01202491badcb8bfe64656574",
+      "returncode": 0,
+      "stdout": "HTTP_CODE:200 TIME:0.002208",
+      "stderr": "",
+      "http_code": 200,
+      "time_total": 0.002208,
+      "audio_size": 79725
+    }
+  },
+  "summary": {
+    "provider_ready": true,
+    "dialogue_text_http": 200,
+    "dialogue_audio_http": 502,
+    "audio_fetch_http": 200,
+    "audio_id": "aud_bda8f2b01202491badcb8bfe64656574"
+  }
+}

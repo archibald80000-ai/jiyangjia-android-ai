@@ -1,0 +1,98 @@
+{
+  "phase": "TASK-014A skeleton",
+  "profiles": [
+    {
+      "profile_id": "kiosk-1080p-landscape",
+      "resolution": {
+        "w": 1920,
+        "h": 1080
+      },
+      "orientation": "landscape",
+      "fit_mode": "fit",
+      "character_anchor": {
+        "x": 0.42,
+        "y": 0.62,
+        "scale": 0.62
+      },
+      "subtitle_safe_area": {
+        "left": 0.06,
+        "right": 0.06,
+        "top": 0.88,
+        "bottom": 0.03
+      },
+      "subtitle_font_px": 36,
+      "button_positions": {
+        "start": [
+          0.80,
+          0.85
+        ],
+        "cancel": [
+          0.05,
+          0.85
+        ],
+        "help": [
+          0.05,
+          0.05
+        ]
+      },
+      "status": "approved",
+      "is_default": true
+    },
+    {
+      "profile_id": "kiosk-4k",
+      "resolution": {
+        "w": 3840,
+        "h": 2160
+      },
+      "orientation": "landscape",
+      "fit_mode": "fill",
+      "character_anchor": {
+        "x": 0.34,
+        "y": 0.58,
+        "scale": 0.65
+      },
+      "subtitle_safe_area": {
+        "left": 0.05,
+        "right": 0.05,
+        "top": 0.86,
+        "bottom": 0.04
+      },
+      "subtitle_font_px": 38,
+      "button_positions": {
+        "start": [0.84, 0.85],
+        "cancel": [0.08, 0.85],
+        "help": [0.08, 0.06]
+      },
+      "status": "draft",
+      "is_default": false
+    },
+    {
+      "profile_id": "kiosk-android-phone-vertical",
+      "resolution": {
+        "w": 1080,
+        "h": 1920
+      },
+      "orientation": "portrait",
+      "fit_mode": "crop",
+      "character_anchor": {
+        "x": 0.50,
+        "y": 0.60,
+        "scale": 0.90
+      },
+      "subtitle_safe_area": {
+        "left": 0.07,
+        "right": 0.07,
+        "top": 0.84,
+        "bottom": 0.05
+      },
+      "subtitle_font_px": 30,
+      "button_positions": {
+        "start": [0.85, 0.90],
+        "cancel": [0.08, 0.90],
+        "help": [0.08, 0.07]
+      },
+      "status": "rejected",
+      "is_default": false
+    }
+  ]
+}

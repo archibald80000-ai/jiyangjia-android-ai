@@ -2,9 +2,9 @@
 
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.1.0
-- **Updated:** 2026-08-06
-- **Overall status:** TASK-014 PARTIAL - TENCENT CLOUD CURRENT CODE DEPLOYED, REAL PROVIDER CREDENTIALS PENDING
-- **Current authorized task:** TASK-014 (Tencent Cloud Gateway remediation/deployment)
+- **Updated:** 2026-08-07
+- **Overall status:** TASK-014 DONE - TENCENT CLOUD FULL MVP API PASSING
+- **Current authorized task:** TASK-014A (admin content-display skeleton prep)
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -94,14 +94,21 @@
 - TASK-013 generated debug APK `android-app\app\build\outputs\apk\debug\app-debug.apk`, size `862144` bytes, SHA-256 `263B1FA8E8DB2198E93B4E4FFC85E715CEE2556E0511C67B002D7E588C76BC8E`, package `ai.jiyangjia.kiosk.debug`, version `0.1.0-task013-debug`.
 - TASK-013 follow-up hardening added Gateway transcript normalization for the brand name `积养家`. Common ASR homophones such as `机养家`, `季养家`, `寄养家`, `吉阳家`, `积阳家` and `济氧家` are normalized before RAG/LLM; original provider output is preserved as `transcript.raw_text` when changed.
 - TASK-013 brand normalization regression passed: `.\.venv\gateway-task008-py310\Scripts\python.exe -m pytest tests\asr tests\gateway tests\e2e -q` -> 19 passed, and full backend regression -> 42 passed.
-- TASK-014 server-thread evidence was imported on 2026-08-06. The Tencent Cloud host runs Docker Compose + Nginx and a mock Gateway reachable at `GET /health`, `GET /api/v1/health` and `POST /api/v1/dialogue/text`.
-- TASK-014 server-thread evidence shows the server deployment is not aligned with local commit `b67dbf09cfbed6ed6cd6a137c046c4138ac9d3aa`; `/opt/jiyangjia-ai` has no Git metadata, real Provider env vars are missing, SQLite/FAISS knowledge data is not configured, and `/api/v1/client/config`, `/api/v1/knowledge/status`, `/api/v1/dialogue/audio`, `/api/v1/audio/{audio_id}` and TASK-013 brand normalization are absent.
-- TASK-014 redeployment package was prepared locally: Docker Compose now loads server `.env.local`, persists `var/knowledge` for SQLite/FAISS and health-checks `/api/v1/health`; server handoff is recorded in `docs/evidence/TASK-014/server-redeployment-request-20260806.md`.
-- TASK-014 local redeployment-package checks passed: `pytest tests\gateway tests\e2e -q` -> 9 passed, Docker Compose YAML parse -> PASS, `scripts\verify_repository.ps1` -> PASS.
-- TASK-014 server redeploy evidence shows commit `f3b406ca28222937a6f4c93bac524c48f0b95544` is deployed on Tencent Cloud, the container is healthy, Nginx HTTP proxy works, `/health`, `/api/v1/health`, `/api/v1/client/config`, knowledge index/search/status endpoints return 200, and knowledge files exist under `/opt/jiyangjia-ai/var/knowledge`.
-- TASK-014 current blocker is real Provider configuration: `/api/v1/dialogue/text` and `/api/v1/dialogue/audio` return `503 BLOCKED_PROVIDER_CREDENTIALS`; ASR/TTS/LLM/Embedding credentials are missing or not loaded by the service process. This is not an upload/Nginx transport failure.
-- TASK-014 Gateway now exposes `/api/v1/readiness`, and provider credential failures include `failed_stage` values such as `asr_provider_config`, `embedding_provider_config`, `llm_provider_config` and `tts_provider_config`.
-- TASK-014 Provider env preflight is available at `scripts/check_provider_env.py`; it checks server `secrets/.env.local`, Compose `env_file` and Provider configured/missing status without printing secret values.
+- TASK-014 server-thread evidence was imported on 2026-08-06 and re-verified after full remediation.
+- `/opt/jiyangjia-ai/secrets/.env.local` exists and is mounted via compose with secure mode and no root `.env` override.
+- `scripts/check_provider_env.py --require-real-mvp` now reports `asr/tts/llm/embedding` provider readiness as `true`.
+- TASK-014 now exposes `/api/v1/readiness` and the production `/api/v1/*` MVP chain returns real, non-blocking results:
+  - `/health`
+  - `/api/v1/health`
+  - `/api/v1/readiness`
+  - `/api/v1/client/config`
+  - `/api/v1/knowledge/status`
+  - `/api/v1/knowledge/index`
+  - `/api/v1/knowledge/search`
+  - `/api/v1/dialogue/text` (real ASR + RAG + LLM + TTS)
+  - `/api/v1/dialogue/audio` (real ASR + RAG + LLM + TTS)
+  - `/api/v1/audio/{audio_id}` (audio fetch 200, `audio/mpeg`, bytes returned)
+- `tasks/TASK-014_TENCENT_GATEWAY_DEPLOYMENT.md` close-out evidence now includes request IDs, sources, audio IDs and latency/failure details.
 
 ## Not yet verified
 
@@ -114,7 +121,7 @@
 - USB microphone physical unplug/replug recovery on target hardware.
 - Formal production knowledge base beyond the 10 approved demo FAQ entries.
 - Android 12 real-device install, recording, Gateway upload, TTS playback and subtitle visual validation.
-- Tencent Cloud full MVP Gateway deployment is not complete: current server code is deployed, but real Provider environment is not configured/read by the container and dialogue endpoints return provider-configuration 503.
+- Tencent Cloud full MVP Gateway deployment is now closed: 2026-08-07 验证了 real provider chain 与 9 项关键接口（含 Dialogue text/audio），不再以 Provider 503 阻塞。
 - LiveTalking model weights, WebRTC connectivity and Wav2Lip/MuseTalk runtime behavior are deferred to the future enhancement phase.
 - OpenAI-compatible fallback LLM with a third provider beyond DeepSeek/Doubao.
 - Production domain, TLS certificate, firewall and TURN strategy.
@@ -197,6 +204,9 @@ Current evidence:
 - `docs/evidence/TASK-013/task013-pytest-backend-full-after-brand-normalization-20260806.txt`
 - `docs/evidence/TASK-014/server-evidence-reconciliation-20260806.md`
 - `docs/evidence/TASK-014/server-redeployment-request-20260806.md`
+- `docs/evidence/TASK-014/task014-provider-env-check-after-recreate-20260807.json`
+- `docs/evidence/TASK-014/task014-acceptance-summary-20260807-0943.json`
+- `docs/evidence/TASK-014/task014-dialogue-audio-retry-20260807-0944.json`
 - `docs/evidence/TASK-014/task014-redeployment-local-pytest-20260806.txt`
 - `docs/evidence/TASK-014/task014-docker-compose-parse-20260806.txt`
 - `docs/evidence/TASK-014/task014-redeployment-verify-repository-20260806.txt`
@@ -223,12 +233,12 @@ Recent task results:
 - TASK-012 DONE. Lightweight RAG now indexes explicitly selected approved/draft/rejected documents into SQLite metadata, FTS5 and FAISS; returns Top-K sources; blocks prohibited topics; and passed Mock plus real Doubao/Ark Embedding evaluation. No raw `E:\work\积养家` import, Android E2E, Tencent deployment or real-device success is claimed.
 - TASK-013 PARTIAL. Android client code now implements the record -> Gateway audio dialogue -> fetch TTS -> playback/subtitles -> idle fallback loop and builds successfully. Backend Mock 30-cycle and one real provider Gateway smoke passed. Android 12 real-device recording/playback/subtitle behavior is not claimed because no device was attached.
 - TASK-013 FOLLOW-UP. Gateway now normalizes common ASR homophones of `积养家` before retrieval and answer generation while preserving `raw_text` for audit/debugging.
-- TASK-014 PARTIAL. Tencent Cloud now has the current code deployed and health/config/knowledge endpoints reachable, but dialogue text/audio are blocked by missing or unloaded Provider credentials. This is a Provider configuration-chain blocker, not an upload-chain blocker.
-- TASK-014 HARDENING. Gateway now has `/api/v1/readiness`, `failed_stage` details and `scripts/check_provider_env.py` so the server thread can stop repeating upload tests and fix the env path first.
+- TASK-014 DONE. Tencent Cloud now has production-aligned code and real provider credentials loaded from `/opt/jiyangjia-ai/secrets/.env.local`; `/api/v1/readiness` reports all core providers ready and dialogue text/audio complete through ASR → RAG → LLM → TTS.
+- TASK-014 HARDENING remains active for resilient evidence capture: `/api/v1/readiness` exposes provider readiness and 503 responses include `failed_stage` diagnostics (used during pre-deploy checks).
 
 Next action:
 
-- Continue exactly one next task: server-management thread must run `scripts/check_provider_env.py --require-real-mvp`, verify `/opt/jiyangjia-ai/secrets/.env.local` and Compose `env_file`, confirm credentials show configured in `/api/v1/readiness`, then run one complete dialogue/text and dialogue/audio acceptance.
+- Continue exactly one next task: prepare `TASK-014A_ADMIN_CONTENT_DISPLAY.md` with admin skeleton, display profile and content-ops architecture.
 
 ## Status vocabulary
 
