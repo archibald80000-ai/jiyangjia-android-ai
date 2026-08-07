@@ -1,0 +1,1 @@
+{"display_mode":"idle_video_voice","max_record_seconds":20,"max_upload_bytes":5242880,"accepted_audio_types":["audio/wav","audio/mpeg","audio/mp4","audio/aac","audio/webm"],"subtitle_max_chars":80,"idle_video_version":"local","api":{"dialogue_text":"/api/v1/dialogue/text","dialogue_audio":"/api/v1/dialogue/audio","audio_base":"/api/v1/audio/"}}

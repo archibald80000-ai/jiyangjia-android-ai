@@ -2,7 +2,7 @@
 
 - **Status:** PLANNED
 - **Priority:** P0
-- **Dependencies:** TASK-014
+- **Dependencies:** TASK-014G DONE
 - **Branch:** `task/TASK-015-android-device-acceptance`
 - **Owner:** Codex / assigned developer
 
@@ -32,7 +32,7 @@ Do not modify unrelated modules, user source documents or secrets. Changes outsi
 
 1. Record exact device/firmware/ABI/display/network/audio hardware.
 2. Install the signed/debug candidate via the approved sideload path and record checksum.
-3. Run USB mic, speaker, idle video, Gateway voice FAQ loop, network recovery, reboot and kiosk tests.
+3. Run USB mic, speaker, synchronized 9:16 media/Profile, streaming ASR/VAD/interruption, Gateway voice FAQ loop, network recovery, reboot, Lock Task and signed update tests.
 4. Run a long-duration test and 30 realistic conversations in the store environment.
 5. Classify defects by release blocker/severity and issue a signed acceptance decision; do not hide failed cases.
 
@@ -66,6 +66,10 @@ adb logcat -d > <sanitized-log>
 - [ ] Speaker
 - [ ] Network recovery
 - [ ] Reboot/long-run test
+- [ ] Remote asset/Profile synchronization and rollback
+- [ ] Streaming ASR/VAD and playback interruption
+- [ ] Lock Task/limited-mode evidence
+- [ ] Signed update and rollback-release evidence
 - [ ] Signed acceptance report
 
 ## Stop / blocked conditions

@@ -1,0 +1,1 @@
+{"ok":true,"service":"jiyangjia-gateway","version":"0.1.0-task011","checked_at":"2026-08-07T03:33:59.652066+00:00","providers":{"asr":"doubao","tts":"doubao","llm":"doubao","embedding":"doubao","knowledge":"sqlite_lightweight"},"checks":{"gateway":"healthy","knowledge_store":"ready"}}

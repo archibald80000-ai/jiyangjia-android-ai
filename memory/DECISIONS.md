@@ -12,5 +12,7 @@
 | D-008 | Phase 1 ships idle-video voice FAQ MVP; LiveTalking/WebRTC/GPU inference deferred | Accepted | ADR-0008 |
 | D-009 | Phase 1 knowledge layer is lightweight RAG with SQLite, FAISS, document parsers and embedding provider; Android hardware acceptance is deferred to TASK-015 | Accepted | ADR-0009 |
 | D-010 | Phase 1 management uses the existing FastAPI/SQLite stack, explicit knowledge/media publish states and public asset/display contracts | Accepted | ADR-0010 |
+| D-011 | Phase 1 display defaults to 1080x1920 portrait (9:16), while alternate Display Profiles remain selectable | Accepted | ADR-0011 |
+| D-012 | Complete secure Android content sync, deterministic rendering, Gateway-proxied streaming ASR, managed kiosk and signed updates before physical acceptance | Accepted | ADR-0012 |
 
 New architectural decisions require a new ADR and an update to this table.

@@ -6,7 +6,7 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current task status: `TASK-014A DONE` locally after real-browser interaction repair
+- Current task status: `TASK-014A DONE` (in `main`), next is `TASK-015_ANDROID_DEVICE_ACCEPTANCE`
 - Next eligible task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` (not started; requires device and approved inputs)
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
@@ -23,7 +23,7 @@ Updated: 2026-08-07
 
 ## TASK-014A local state
 
-- Branch: `task/TASK-014A-admin-content-display`.
+- Branch: `main`（`task/TASK-014A-admin-content-display` 已完成并入 `main`）。
 - Local admin: `http://127.0.0.1:18081/admin/system` while the development process remains running.
 - Runtime state is under ignored `var/task014a-dev/`.
 - Production admin API requires `ADMIN_TOKEN`; no value is stored in Git or page source.

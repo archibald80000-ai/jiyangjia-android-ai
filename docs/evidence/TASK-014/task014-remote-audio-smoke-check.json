@@ -1,0 +1,18 @@
+{
+  "code": 400,
+  "duration_ms": 66,
+  "body": {
+    "detail": {
+      "code": "ASR_AUDIO_CONVERSION_FAILED",
+      "message_for_user": "语音识别暂时不可用，请稍后再试。",
+      "retryable": false
+    }
+  },
+  "headers": {
+    "x-request-id": "c0073624-b3f7-4878-8df9-76d47a4ffd7f"
+  },
+  "audio_fetch": {
+    "code": 0,
+    "note": "audio_id unavailable"
+  }
+}

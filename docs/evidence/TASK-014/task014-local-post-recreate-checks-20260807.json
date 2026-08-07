@@ -1,0 +1,503 @@
+{
+  "checked_at_local": "2026-08-06T22:41:49",
+  "host": "http://120.53.86.89",
+  "task": "TASK-014-closeout-local-audit",
+  "checks": [
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200,
+      "elapsed_ms": 90.43,
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "request_id": null,
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:41:38.922736+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/health",
+      "method": "GET",
+      "status": 200,
+      "elapsed_ms": 41.84,
+      "content_type": "application/json",
+      "response_bytes": 285,
+      "request_id": null,
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "ok": true,
+        "service": "jiyangjia-gateway",
+        "version": "0.1.0-task011",
+        "checked_at": "2026-08-07T03:41:38.968031+00:00",
+        "providers": {
+          "asr": "doubao",
+          "tts": "doubao",
+          "llm": "doubao",
+          "embedding": "doubao",
+          "knowledge": "sqlite_lightweight"
+        },
+        "checks": {
+          "gateway": "healthy",
+          "knowledge_store": "ready"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/readiness",
+      "method": "GET",
+      "status": 200,
+      "elapsed_ms": 53.93,
+      "content_type": "application/json",
+      "response_bytes": 611,
+      "request_id": "b23d38ee-5ad7-4d81-98c5-f443b1c4e62f",
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "request_id": "b23d38ee-5ad7-4d81-98c5-f443b1c4e62f",
+        "ready": true,
+        "status": "ready",
+        "providers": {
+          "asr": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "tts": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "llm": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          },
+          "embedding": {
+            "provider": "doubao",
+            "ready": true,
+            "missing": []
+          }
+        },
+        "knowledge": {
+          "documents": {
+            "approved": 18,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_ba18df4662d347aa",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 03:34:02"
+          }
+        }
+      }
+    },
+    {
+      "path": "/api/v1/client/config",
+      "method": "GET",
+      "status": 200,
+      "elapsed_ms": 65.65,
+      "content_type": "application/json",
+      "response_bytes": 346,
+      "request_id": null,
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "display_mode": "idle_video_voice",
+        "max_record_seconds": 20,
+        "max_upload_bytes": 5242880,
+        "accepted_audio_types": [
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp4",
+          "audio/aac",
+          "audio/webm"
+        ],
+        "subtitle_max_chars": 80,
+        "idle_video_version": "local",
+        "api": {
+          "dialogue_text": "/api/v1/dialogue/text",
+          "dialogue_audio": "/api/v1/dialogue/audio",
+          "audio_base": "/api/v1/audio/"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/status",
+      "method": "GET",
+      "status": 200,
+      "elapsed_ms": 24.32,
+      "content_type": "application/json",
+      "response_bytes": 446,
+      "request_id": "76bb257f-fab3-49e0-b59f-78a3b7dfeb09",
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "request_id": "76bb257f-fab3-49e0-b59f-78a3b7dfeb09",
+        "provider": "sqlite_lightweight",
+        "embedding_provider": "doubao",
+        "embedding_ready": true,
+        "embedding_missing": [],
+        "vector_index": {
+          "ready": true,
+          "vectors": 8,
+          "dimensions": 2048
+        },
+        "documents": {
+          "approved": 18,
+          "draft": 1,
+          "rejected": 1
+        },
+        "chunks": 20,
+        "embeddings": 19,
+        "latest_run": {
+          "run_id": "ing_ba18df4662d347aa",
+          "status": "done",
+          "document_count": 0,
+          "chunk_count": 0,
+          "error": null,
+          "created_at": "2026-08-07 03:34:02"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/index",
+      "method": "POST",
+      "status": 200,
+      "elapsed_ms": 35.19,
+      "content_type": "application/json",
+      "response_bytes": 365,
+      "request_id": "9a04f77d-f350-47c1-b217-5ed923607872",
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": null,
+      "body": {
+        "request_id": "9a04f77d-f350-47c1-b217-5ed923607872",
+        "indexed": 0,
+        "chunks": 0,
+        "status": {
+          "documents": {
+            "approved": 18,
+            "draft": 1,
+            "rejected": 1
+          },
+          "chunks": 20,
+          "embeddings": 19,
+          "faiss": {
+            "ready": true,
+            "vectors": 8,
+            "dimensions": 2048
+          },
+          "latest_run": {
+            "run_id": "ing_6261852b2bf54851",
+            "status": "done",
+            "document_count": 0,
+            "chunk_count": 0,
+            "error": null,
+            "created_at": "2026-08-07 03:41:39"
+          }
+        }
+      }
+    },
+    {
+      "path": "/api/v1/knowledge/search",
+      "method": "POST",
+      "status": 200,
+      "elapsed_ms": 202.14,
+      "content_type": "application/json",
+      "response_bytes": 2459,
+      "request_id": "74a406b0-3543-4b53-935a-69d3665124b6",
+      "failed_stage": null,
+      "audio_id": null,
+      "sources": [
+        {
+          "uri": "local://remote-014-001",
+          "chunk_id": "remote-014-001::chunk-0000"
+        },
+        {
+          "uri": "local://task014-acc",
+          "chunk_id": "demo-knowledge-001::chunk-0000"
+        },
+        {
+          "uri": "manual://task014-remote-verify",
+          "chunk_id": "task014-remote-004::chunk-0000"
+        },
+        {
+          "uri": "manual://task014-remote-verify",
+          "chunk_id": "task014-remote-002::chunk-0000"
+        },
+        {
+          "uri": "manual://task012/faq_mvp_003",
+          "chunk_id": "faq_mvp_003::chunk-0000"
+        }
+      ],
+      "body": {
+        "request_id": "74a406b0-3543-4b53-935a-69d3665124b6",
+        "status": "matched",
+        "matches": [
+          {
+            "id": "remote-014-001",
+            "chunk_id": "remote-014-001::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.9167,
+            "confidence": 0.9167,
+            "vector_score": 0.7227,
+            "keyword_score": 0.9167,
+            "source": {
+              "uri": "local://remote-014-001",
+              "chunk_id": "remote-014-001::chunk-0000"
+            },
+            "excerpt": "积养家门店每日10:00-21:00对外接待。"
+          },
+          {
+            "id": "demo-knowledge-001",
+            "chunk_id": "demo-knowledge-001::chunk-0000",
+            "title": "Demo FAQ",
+            "status": "approved",
+            "score": 0.6933,
+            "confidence": 0.6933,
+            "vector_score": 0.73,
+            "keyword_score": 0.5833,
+            "source": {
+              "uri": "local://task014-acc",
+              "chunk_id": "demo-knowledge-001::chunk-0000"
+            },
+            "excerpt": "积养家每日营业时间为 09:00-18:00，周一到周六。"
+          },
+          {
+            "id": "task014-remote-004",
+            "chunk_id": "task014-remote-004::chunk-0000",
+            "title": "远程验证条目",
+            "status": "approved",
+            "score": 0.6872,
+            "confidence": 0.6872,
+            "vector_score": 0.7218,
+            "keyword_score": 0.5833,
+            "source": {
+              "uri": "manual://task014-remote-verify",
+              "chunk_id": "task014-remote-004::chunk-0000"
+            },
+            "excerpt": "积养家每日营业时间为09:00-22:00，周一至周日；如有变动请以现场公告为准。"
+          },
+          {
+            "id": "task014-remote-002",
+            "chunk_id": "task014-remote-002::chunk-0000",
+            "title": "远程验证条目",
+            "status": "approved",
+            "score": 0.6851,
+            "confidence": 0.6851,
+            "vector_score": 0.7191,
+            "keyword_score": 0.5833,
+            "source": {
+              "uri": "manual://task014-remote-verify",
+              "chunk_id": "task014-remote-002::chunk-0000"
+            },
+            "excerpt": "积养家每日营业时间为09:00-22:00，周一至周日；如有变动请以现场公告为准。"
+          },
+          {
+            "id": "faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000",
+            "title": "服务时间",
+            "status": "approved",
+            "score": 0.6667,
+            "confidence": 0.6667,
+            "vector_score": 0.0,
+            "keyword_score": 0.6667,
+            "source": {
+              "uri": "manual://task012/faq_mvp_003",
+              "chunk_id": "faq_mvp_003::chunk-0000"
+            },
+            "excerpt": "标题：服务时间\n问题：门店几点营业；服务时间是什么\n回答：门店服务时间请以当天现场公告或工作人员说明为准。我可以帮您联系现场人员确认。"
+          }
+        ],
+        "sources": [
+          {
+            "uri": "local://remote-014-001",
+            "chunk_id": "remote-014-001::chunk-0000"
+          },
+          {
+            "uri": "local://task014-acc",
+            "chunk_id": "demo-knowledge-001::chunk-0000"
+          },
+          {
+            "uri": "manual://task014-remote-verify",
+            "chunk_id": "task014-remote-004::chunk-0000"
+          },
+          {
+            "uri": "manual://task014-remote-verify",
+            "chunk_id": "task014-remote-002::chunk-0000"
+          },
+          {
+            "uri": "manual://task012/faq_mvp_003",
+            "chunk_id": "faq_mvp_003::chunk-0000"
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/v1/dialogue/text",
+      "method": "POST",
+      "status": 200,
+      "elapsed_ms": 11645.83,
+      "content_type": "application/json",
+      "response_bytes": 2167,
+      "request_id": "2ff16194-d20d-4c9b-992d-9296825da422",
+      "failed_stage": null,
+      "audio_id": "aud_42d6c311f5ed490fa2b59eb102e751ac",
+      "sources": [
+        {
+          "uri": "local://remote-014-001",
+          "chunk_id": "remote-014-001::chunk-0000",
+          "id": "remote-014-001",
+          "title": "服务时间",
+          "status": "approved"
+        },
+        {
+          "uri": "admin://seed/doc-task014",
+          "chunk_id": "doc-task014::chunk-0000",
+          "id": "doc-task014",
+          "title": "积养家FAQ",
+          "status": "approved"
+        },
+        {
+          "uri": "manual://task014-remote-verify",
+          "chunk_id": "task014-remote-004::chunk-0000",
+          "id": "task014-remote-004",
+          "title": "远程验证条目",
+          "status": "approved"
+        }
+      ],
+      "body": {
+        "request_id": "2ff16194-d20d-4c9b-992d-9296825da422",
+        "session_id": "task014-audit-text",
+        "transcript": {
+          "text": "请问积养家怎么预约？",
+          "provider": "text",
+          "language": "zh-CN",
+          "confidence": 1.0
+        },
+        "knowledge": {
+          "status": "matched",
+          "matches": [
+            {
+              "id": "remote-014-001",
+              "chunk_id": "remote-014-001::chunk-0000",
+              "title": "服务时间",
+              "status": "approved",
+              "score": 0.6188,
+              "confidence": 0.6188,
+              "vector_score": 0.675,
+              "keyword_score": 0.45,
+              "source": {
+                "uri": "local://remote-014-001",
+                "chunk_id": "remote-014-001::chunk-0000"
+              },
+              "excerpt": "积养家门店每日10:00-21:00对外接待。"
+            },
+            {
+              "id": "doc-task014",
+              "chunk_id": "doc-task014::chunk-0000",
+              "title": "积养家FAQ",
+              "status": "approved",
+              "score": 0.5881,
+              "confidence": 0.5881,
+              "vector_score": 0.6341,
+              "keyword_score": 0.45,
+              "source": {
+                "uri": "admin://seed/doc-task014",
+                "chunk_id": "doc-task014::chunk-0000"
+              },
+              "excerpt": "积养家是门店品牌，提供咨询与健康调理服务。"
+            },
+            {
+              "id": "task014-remote-004",
+              "chunk_id": "task014-remote-004::chunk-0000",
+              "title": "远程验证条目",
+              "status": "approved",
+              "score": 0.5811,
+              "confidence": 0.5811,
+              "vector_score": 0.6248,
+              "keyword_score": 0.45,
+              "source": {
+                "uri": "manual://task014-remote-verify",
+                "chunk_id": "task014-remote-004::chunk-0000"
+              },
+              "excerpt": "积养家每日营业时间为09:00-22:00，周一至周日；如有变动请以现场公告为准。"
+            }
+          ],
+          "provider": "sqlite_lightweight"
+        },
+        "answer": {
+          "text": "不好意思，我暂时没有预约相关的信息，建议您转人工咨询哦。",
+          "provider": "doubao",
+          "source": "knowledge_grounded",
+          "subtitles": [
+            "不好意思，我暂时没有预约相关的信息，建议您转人工咨询哦。"
+          ]
+        },
+        "tts": {
+          "provider": "doubao",
+          "content_type": "audio/mpeg",
+          "audio_id": "aud_42d6c311f5ed490fa2b59eb102e751ac",
+          "duration_ms": null
+        },
+        "sources": [
+          {
+            "uri": "local://remote-014-001",
+            "chunk_id": "remote-014-001::chunk-0000",
+            "id": "remote-014-001",
+            "title": "服务时间",
+            "status": "approved"
+          },
+          {
+            "uri": "admin://seed/doc-task014",
+            "chunk_id": "doc-task014::chunk-0000",
+            "id": "doc-task014",
+            "title": "积养家FAQ",
+            "status": "approved"
+          },
+          {
+            "uri": "manual://task014-remote-verify",
+            "chunk_id": "task014-remote-004::chunk-0000",
+            "id": "task014-remote-004",
+            "title": "远程验证条目",
+            "status": "approved"
+          }
+        ]
+      }
+    }
+  ]
+}

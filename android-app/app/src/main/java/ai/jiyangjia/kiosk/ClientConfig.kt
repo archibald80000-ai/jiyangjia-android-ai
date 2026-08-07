@@ -11,7 +11,7 @@ data class ClientConfig(
         "gateway=$gatewayBaseUrl device=$deviceId mode=$displayMode maxRecordSeconds=$maxRecordSeconds"
 
     companion object {
-        const val DEFAULT_GATEWAY = "http://127.0.0.1:8080"
+        const val DEFAULT_GATEWAY = "http://120.53.86.89"
         const val DEFAULT_DEVICE_ID = "android-kiosk-dev"
         const val DISPLAY_MODE_IDLE_VIDEO_VOICE = "idle_video_voice"
 

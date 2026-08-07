@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
 
 from gateway.app.admin_routes import create_admin_router
-from gateway.app.admin_store import AdminContentStore
+from gateway.app.admin_store import AdminContentStore, DISPLAY_DEFAULT_MIGRATION_ID
 from gateway.app.admin_ui import admin_page
 from gateway.app.config import Settings
 from gateway.app.knowledge import SQLiteKnowledgeStore
@@ -92,6 +92,9 @@ def test_admin_ui_action_dispatch_contract_and_complete_display_fields() -> None
         "background_id",
     ):
         assert f'name="{field}"' in display_html
+    assert 'name="width_px" type="number" min="320" max="7680" value="1080"' in display_html
+    assert 'name="height_px" type="number" min="320" max="7680" value="1920"' in display_html
+    assert '<option value="portrait">竖屏</option><option value="landscape">横屏</option>' in display_html
 
 
 def test_knowledge_requires_publish_before_customer_search(tmp_path: Path) -> None:
@@ -217,6 +220,9 @@ def test_display_presets_custom_match_and_persistence(tmp_path: Path) -> None:
     client, _admin, _knowledge = _client(tmp_path)
     profiles = client.get("/api/v1/admin/display").json()["profiles"]
     assert {(p["width_px"], p["height_px"]) for p in profiles} >= {(1920, 1080), (3840, 2160), (1280, 720), (1080, 1920)}
+    default_profile = next(p for p in profiles if p["is_default"])
+    assert (default_profile["width_px"], default_profile["height_px"], default_profile["orientation"]) == (1080, 1920, "portrait")
+    assert client.get("/api/v1/display/profile").json()["profile"]["profile_id"] == "display-1080x1920"
 
     custom_payload = {
         "profile_name": "门店定制 1600x900",
@@ -243,6 +249,28 @@ def test_display_presets_custom_match_and_persistence(tmp_path: Path) -> None:
     reopened = AdminContentStore(str(tmp_path / "admin" / "admin.db"), upload_dir=str(tmp_path / "knowledge" / "uploads"), asset_dir=str(tmp_path / "assets"))
     assert reopened.get_display_profile(profile_id)["is_default"] is True
     assert reopened.default_display_profile()["profile_id"] == profile_id
+
+
+def test_existing_admin_database_migrates_to_portrait_default_once(tmp_path: Path) -> None:
+    _client_instance, admin, _knowledge = _client(tmp_path)
+    assert admin.set_default_profile("display-1920x1080")["is_default"] is True
+    admin._conn.execute("DELETE FROM admin_migrations WHERE migration_id = ?", (DISPLAY_DEFAULT_MIGRATION_ID,))
+    admin._conn.commit()
+
+    reopened = AdminContentStore(
+        str(tmp_path / "admin" / "admin.db"),
+        upload_dir=str(tmp_path / "knowledge" / "uploads"),
+        asset_dir=str(tmp_path / "assets"),
+    )
+    assert reopened.default_display_profile()["profile_id"] == "display-1080x1920"
+    assert reopened.set_default_profile("display-1920x1080")["is_default"] is True
+
+    reopened_again = AdminContentStore(
+        str(tmp_path / "admin" / "admin.db"),
+        upload_dir=str(tmp_path / "knowledge" / "uploads"),
+        asset_dir=str(tmp_path / "assets"),
+    )
+    assert reopened_again.default_display_profile()["profile_id"] == "display-1920x1080"
 
 
 def test_asset_content_signature_and_display_binding_are_enforced(tmp_path: Path) -> None:

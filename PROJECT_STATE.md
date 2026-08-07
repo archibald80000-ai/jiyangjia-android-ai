@@ -1,13 +1,15 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.2
+- **State version:** 0.1.3
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014A DONE LOCALLY - ADMIN ACTIONS VERIFIED IN REAL BROWSER
-- **Current authorized task:** TASK-014A DONE; TASK-015 not started
+- **Overall status:** TASK-014B DONE locally; TASK-014C implementation authorized
+- **Current authorized task:** TASK-014C Android secure content sync
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
+
+- Main branch (`origin/main`) commit: `a68f234` (TASK-014A administration and display controls included).
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.

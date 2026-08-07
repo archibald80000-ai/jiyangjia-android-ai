@@ -23,7 +23,7 @@ Current status:
   - `docs/evidence/TASK-014/task014-gateway-build-final-20260807.txt`
   - `docs/evidence/TASK-014/task014-provider-env-final-20260807.json`
   - `docs/evidence/TASK-014/task014-knowledge-cleanup-final-20260807.json`.
-- `TASK-014A`: `DONE` locally after browser interaction repair; 55 tests plus real-browser action verification passed:
+- `TASK-014A`: `DONE` in `main` after browser interaction repair; 55 tests plus real-browser action verification passed:
   - 系统状态页
   - 知识库审批与索引页
   - 数字人素材管理页
@@ -48,5 +48,7 @@ Future enhancement:
 
 Do not execute multiple implementation tasks concurrently unless a later task explicitly permits parallel work.
 
- - 2026-08-07：TASK-014 最终收口通过。线上容器包含 FFmpeg；Android WAV 与 MP3 都通过真实 ASR/RAG/LLM/TTS 和音频下载链路。
+- 2026-08-07：TASK-014 最终收口通过。线上容器包含 FFmpeg；Android WAV 与 MP3 都通过真实 ASR/RAG/LLM/TTS 和音频下载链路。
  - 下一步：取得 Android 12 真机和已批准素材/Profile 后，仅执行 `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`；TASK-014A 生产部署另行授权。
+
+**当前仓库基线更新：`main` 已包含 `TASK-014A`，当前任务序列已对齐到 `TASK-015`。**

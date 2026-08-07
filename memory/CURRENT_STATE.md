@@ -4,6 +4,7 @@ Updated: 2026-08-07
 
 ## Completed
 
+- `main` 分支已对齐到远端提交 `a68f234`，`TASK-014A` 已入库为正式主线内容，不再作为本地待完成开发项。
 - Product scope and development order documented.
 - LiveTalking upstream identified and commit lock recorded, but LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference are deferred.
 - TASK-000 environment/repository audit completed.

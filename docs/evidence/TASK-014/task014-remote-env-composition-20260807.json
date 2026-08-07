@@ -1,0 +1,36 @@
+{
+  "exists": true,
+  "mode": "0o600",
+  "owner_uid": 1000,
+  "owner_gid": 1001,
+  "config": {
+    "JIYANGJIA_ASR_PROVIDER": "configured",
+    "JIYANGJIA_TTS_PROVIDER": "configured",
+    "JIYANGJIA_LLM_PROVIDER": "configured",
+    "JIYANGJIA_EMBEDDING_PROVIDER": "configured",
+    "DOUBAO_ASR_API_KEY": "missing",
+    "DOUBAO_ASR_APP_ID": "configured",
+    "DOUBAO_ASR_ACCESS_TOKEN": "configured",
+    "DOUBAO_ASR_TOKEN": "missing",
+    "DOUBAO_ASR_KEY": "missing",
+    "DOUBAO_TTS_API_KEY": "missing",
+    "DOUBAO_TTS_APP_ID": "configured",
+    "DOUBAO_TTS_ACCESS_TOKEN": "configured",
+    "DOUBAO_TTS_TOKEN": "missing",
+    "DOUBAO_TTS_KEY": "missing",
+    "DOUBAO_TTS_SPEAKER": "configured",
+    "DOUBAO_TTS_VOICE_TYPE": "missing",
+    "DOUBAO_API_KEY": "configured",
+    "ARK_API_KEY": "missing",
+    "DOUBAO_MODEL": "configured",
+    "ARK_MODEL": "missing",
+    "DOUBAO_EMBEDDING_API_KEY": "configured",
+    "EMBEDDING_API_KEY": "missing"
+  },
+  "compose": {
+    "path": "/opt/jiyangjia-ai/docker/docker-compose.yml",
+    "exists": true,
+    "contains_expected_env_file": false,
+    "contains_relative_root_env": false
+  }
+}

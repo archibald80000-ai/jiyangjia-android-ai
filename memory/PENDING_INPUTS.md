@@ -9,6 +9,7 @@ Updated: 2026-08-07
 - TASK-014 腾讯云 Provider 配置链已完成并通过最终验收。
 - 线上 Gateway 已包含 FFmpeg，Android WAV 和 MP3 上传均通过真实 ASR/RAG/LLM/TTS 链路。
 - Provider 凭据不再是当前阻塞。
+- `TASK-014A` 已入主线 `main`，本轮不再重复实现，仅记录与生产验收、真机资料和部署交接清单。
 
 ## P0 - Android 12 真机
 

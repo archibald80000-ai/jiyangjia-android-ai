@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-07
-current: TASK-014A
+current: TASK-014C
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -98,12 +98,48 @@ tasks:
     priority: p1
     status: DONE
     depends_on: [TASK-014]
+  - id: TASK-014B
+    file: TASK-014B_DEFAULT_9_16_DISPLAY.md
+    title: "Set the default presentation profile to 1080x1920 portrait"
+    priority: p1
+    status: DONE
+    depends_on: [TASK-014A]
+  - id: TASK-014C
+    file: TASK-014C_ANDROID_SECURE_CONTENT_SYNC.md
+    title: "Synchronize secure versioned configuration and media to Android"
+    priority: p0
+    status: PLANNED
+    depends_on: [TASK-014B]
+  - id: TASK-014D
+    file: TASK-014D_ANDROID_DISPLAY_PROFILE_RENDERER.md
+    title: "Render published Display Profiles and media on Android"
+    priority: p0
+    status: PLANNED
+    depends_on: [TASK-014C]
+  - id: TASK-014E
+    file: TASK-014E_STREAMING_ASR_VAD_INTERRUPT.md
+    title: "Implement streaming ASR, VAD and playback interruption"
+    priority: p0
+    status: PLANNED
+    depends_on: [TASK-014D]
+  - id: TASK-014F
+    file: TASK-014F_ANDROID_MANAGED_KIOSK.md
+    title: "Implement managed kiosk mode and boot recovery"
+    priority: p0
+    status: PLANNED
+    depends_on: [TASK-014E]
+  - id: TASK-014G
+    file: TASK-014G_ANDROID_RELEASE_SIGNING_UPDATE.md
+    title: "Implement release signing and controlled Android updates"
+    priority: p0
+    status: PLANNED
+    depends_on: [TASK-014F]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md
     title: "Validate the actual Android 12 display in the store"
     priority: p0
     status: PLANNED
-    depends_on: [TASK-014A]
+    depends_on: [TASK-014G]
   - id: TASK-016
     file: TASK-016_MUSETALK_EVALUATION.md
     title: "Evaluate MuseTalk after the Phase 1 MVP"

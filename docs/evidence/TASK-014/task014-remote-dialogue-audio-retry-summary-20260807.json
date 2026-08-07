@@ -1,0 +1,126 @@
+{
+  "summary": [
+    {
+      "attempt": 1,
+      "status": "200",
+      "curl_elapsed_s": "27.051942",
+      "elapsed_ms": 27058.82,
+      "response": {
+        "request_id": "5a50e2ff-3b92-438f-a1c3-cde1db3834f8",
+        "session_id": "task014-audio-check-final",
+        "transcript": {
+          "text": "请问积养家今天几点到几点营业？",
+          "provider": "doubao",
+          "language": "zh-CN",
+          "confidence": null,
+          "content_type": "audio/wav",
+          "normalized_content_type": "audio/wav",
+          "raw_status": "ok",
+          "raw_text": "请问季氧家今天几点到几点营业？",
+          "normalization": {
+            "changed": true,
+            "replacements": [
+              {
+                "from": "季氧家",
+                "to": "积养家",
+                "type": "brand"
+              }
+            ]
+          }
+        },
+        "knowledge": {
+          "status": "matched",
+          "matches": [
+            {
+              "id": "demo-knowledge-001",
+              "chunk_id": "demo-knowledge-001::chunk-0000",
+              "title": "Demo FAQ",
+              "status": "approved",
+              "score": 0.7337,
+              "confidence": 0.7337,
+              "vector_score": 0.8394,
+              "keyword_score": 0.4167,
+              "source": {
+                "uri": "local://task014-acc",
+                "chunk_id": "demo-knowledge-001::chunk-0000"
+              },
+              "excerpt": "积养家每日营业时间为 09:00-18:00，周一到周六。"
+            },
+            {
+              "id": "task014-remote-004",
+              "chunk_id": "task014-remote-004::chunk-0000",
+              "title": "远程验证条目",
+              "status": "approved",
+              "score": 0.7329,
+              "confidence": 0.7329,
+              "vector_score": 0.8383,
+              "keyword_score": 0.4167,
+              "source": {
+                "uri": "manual://task014-remote-verify",
+                "chunk_id": "task014-remote-004::chunk-0000"
+              },
+              "excerpt": "积养家每日营业时间为09:00-22:00，周一至周日；如有变动请以现场公告为准。"
+            },
+            {
+              "id": "task014-remote-002",
+              "chunk_id": "task014-remote-002::chunk-0000",
+              "title": "远程验证条目",
+              "status": "approved",
+              "score": 0.7323,
+              "confidence": 0.7323,
+              "vector_score": 0.8375,
+              "keyword_score": 0.4167,
+              "source": {
+                "uri": "manual://task014-remote-verify",
+                "chunk_id": "task014-remote-002::chunk-0000"
+              },
+              "excerpt": "积养家每日营业时间为09:00-22:00，周一至周日；如有变动请以现场公告为准。"
+            }
+          ],
+          "provider": "sqlite_lightweight"
+        },
+        "answer": {
+          "text": "积养家每天09:00到22:00营业，周一到周日都开门，如有变动请以现场公告为准哈。",
+          "provider": "doubao",
+          "source": "knowledge_grounded",
+          "subtitles": [
+            "积养家每天09:00到22:00营业，周一到周日都开门，如有变动请以现场公告为准哈。"
+          ]
+        },
+        "tts": {
+          "provider": "doubao",
+          "content_type": "audio/mpeg",
+          "audio_id": "aud_03c42cc636e64816b1abdc040eb318ff",
+          "duration_ms": null
+        },
+        "sources": [
+          {
+            "uri": "local://task014-acc",
+            "chunk_id": "demo-knowledge-001::chunk-0000",
+            "id": "demo-knowledge-001",
+            "title": "Demo FAQ",
+            "status": "approved"
+          },
+          {
+            "uri": "manual://task014-remote-verify",
+            "chunk_id": "task014-remote-004::chunk-0000",
+            "id": "task014-remote-004",
+            "title": "远程验证条目",
+            "status": "approved"
+          },
+          {
+            "uri": "manual://task014-remote-verify",
+            "chunk_id": "task014-remote-002::chunk-0000",
+            "id": "task014-remote-002",
+            "title": "远程验证条目",
+            "status": "approved"
+          }
+        ]
+      },
+      "audio_id": "aud_03c42cc636e64816b1abdc040eb318ff",
+      "audio_fetch": "200 0.002426",
+      "audio_bytes": 61101,
+      "audio_mime": "audio/mpeg"
+    }
+  ]
+}

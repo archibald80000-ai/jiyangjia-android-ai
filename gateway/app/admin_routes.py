@@ -262,9 +262,9 @@ def create_admin_router(
     @router.get("/api/v1/display/profile")
     def display_profile(
         request: Request,
-        width: int = Query(ge=320, le=7680),
-        height: int = Query(ge=320, le=7680),
-        orientation: Literal["landscape", "portrait"] | None = None,
+        width: int = Query(default=1080, ge=320, le=7680),
+        height: int = Query(default=1920, ge=320, le=7680),
+        orientation: Literal["landscape", "portrait"] | None = "portrait",
     ) -> dict[str, Any]:
         return {"request_id": _request_id(request), "profile": admin_store.match_display_profile(width, height, orientation)}
 
