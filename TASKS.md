@@ -31,12 +31,15 @@ Current status:
   - evidence: `docs/evidence/TASK-014A/`
   - real-browser evidence: `task014a-real-browser-actions-20260807.json`
   - not yet deployed to Tencent Cloud; no formal media/business content or Android device result is claimed.
+- `TASK-015A`: `PARTIAL`; the user-approved portrait MOV was prepared as an ignored H.264 1080x1920 MP4 plus JPG background, published locally, bound to the default 9:16 Profile, and verified through a real browser RAG/LLM/TTS dialogue. Recording supports manual end/send and speech-first 3-second silence auto-send. Browser microphone permission remains a manual check; no Android device result is claimed. Evidence: `docs/evidence/TASK-015A/local-avatar-dialogue-demo-20260807.md`.
 
 Current order:
 
 Phase 1 execution order from the current route:
 
 `TASK-008 → TASK-009 → TASK-010 → TASK-011 → TASK-012 → TASK-013 → TASK-014 → TASK-014A → TASK-015`
+
+Local presentation side task: `TASK-015A(PARTIAL)`; it removes the missing-media blocker locally but does not replace TASK-015 device acceptance.
 
 Completed foundation retained from earlier tasks:
 

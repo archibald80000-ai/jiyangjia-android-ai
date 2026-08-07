@@ -46,6 +46,26 @@ def test_health_and_client_config_include_required_fields() -> None:
     assert "/api/v1/dialogue/audio" == payload["api"]["dialogue_audio"]
 
 
+def test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts() -> None:
+    response = client.get("/demo/kiosk")
+    assert response.status_code == 200
+    assert 'id="avatar"' in response.text
+    assert "/api/v1/client/bootstrap?width=1080&height=1920&orientation=portrait" in response.text
+    assert "manifest.video?.url" in response.text
+    assert "manifest.background?.url" in response.text
+    assert "navigator.mediaDevices.getUserMedia" in response.text
+    assert "SILENCE_AUTO_SEND_MS = 3000" in response.text
+    assert "SPEECH_CONFIRMATION_FRAMES = 2" in response.text
+    assert "shouldAutoSendAfterSilence" in response.text
+    assert "startSilenceMonitoring(microphone)" in response.text
+    assert "stopRecording('silence')" in response.text
+    assert "stopRecording('manual')" in response.text
+    assert "form.append('audio'" in response.text
+    assert "/api/v1/dialogue/audio" in response.text
+    assert "/api/v1/dialogue/text" in response.text
+    assert "/api/v1/audio/" in response.text
+
+
 def test_client_bootstrap_is_versioned_and_etag_aware() -> None:
     response = client.get("/api/v1/client/bootstrap?width=1080&height=1920&orientation=portrait&version_code=1")
     assert response.status_code == 200

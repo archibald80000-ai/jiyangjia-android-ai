@@ -1,15 +1,17 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.3
+- **State version:** 0.1.4
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-015 NO-GO/BLOCKED; local implementation passes but device/formal release inputs are absent
-- **Current authorized task:** TASK-015 resumes only when all recorded external gates are available
+- **Overall status:** TASK-015A local avatar dialogue is PARTIAL; TASK-015 remains NO-GO/BLOCKED pending a device and formal release inputs
+- **Current authorized task:** finish the manual browser microphone check for TASK-015A; TASK-015 resumes only when its remaining external gates are available
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
 
 - Main branch (`origin/main`) commit: `a68f234` (TASK-014A administration and display controls included).
+- User-approved portrait source media is available at `E:\work\ai-kefu\资料库\人像背景.MOV`; the source was not modified or committed.
+- A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -249,10 +251,11 @@ Recent task results:
 - TASK-014F is PARTIAL. The APK contains a minimal DPC, DeviceAdminReceiver, persistent Home configuration, BootReceiver and guarded Lock Task entry. Runtime diagnostics distinguish `managed_locked` from `limited_unmanaged`. Android unit/build/lint pass, but this workstation has no emulator package/system image and `adb devices -l` is empty, so Device Owner/reboot behavior is not claimed.
 - TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
 - TASK-015 is BLOCKED with a NO-GO decision. Gateway regression passed 63 tests, Android unit/lint/debug assembly and repository verification pass, but `adb devices -l` is empty and the local SDK has no emulator/system image. USB/AEC, visual, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
+- TASK-015A is PARTIAL. The rights-confirmed portrait source was converted to an ignored H.264 1080x1920 silent MP4 plus JPG background, published and bound to the 9:16 Profile. A real local browser dialogue passed RAG, Doubao LLM/TTS, sources, request ID, audio fetch and visible subtitle playback. Browser recording now supports manual end/send plus speech-first 3-second silence auto-send; browser microphone permission and Android device behavior remain manual/unverified.
 
 Next action:
 
-- Resume TASK-015 only after the Android 12 device/audio hardware, approved media/Profile, trusted HTTPS hosting and formal signing identity with N/N+1/N+2 candidates are available. Production rollout is still not authorized.
+- At `http://127.0.0.1:18084/demo/kiosk`, manually grant microphone permission and run one spoken question. Then resume TASK-015 only after Android device/audio hardware, trusted HTTPS hosting and formal signing identity with N/N+1/N+2 candidates are available. Production rollout is still not authorized.
 
 ## Status vocabulary
 

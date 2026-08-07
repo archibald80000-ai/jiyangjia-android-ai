@@ -2,6 +2,15 @@
 
 Updated: 2026-08-07
 
+## TASK-015A local avatar dialogue
+
+- PARTIAL: user-approved `E:\work\ai-kefu\资料库\人像背景.MOV` remains unchanged; ignored 1080x1920 H.264 MP4/JPG derivatives are published on the isolated local Gateway.
+- The default portrait Profile binds both assets with `fit`, 36 px subtitles, 16% bottom safe area and the consult button at `(0.5, 0.9)`.
+- Real browser dialogue returned a request ID, approved RAG source, Doubao answer/TTS and playable audio while the video remained decoded and looping.
+- Browser recording has two completion paths: tap `结束并发送`, or detect speech and automatically stop/upload after 3 seconds of continuous silence. A 20-second maximum duration remains the fallback and no-speech startup is not auto-uploaded.
+- Browser microphone capture exists but permission/recording is a manual pending check. No Android 12 physical-device result is claimed.
+- Evidence: `docs/evidence/TASK-015A/local-avatar-dialogue-demo-20260807.md`.
+
 ## TASK-014C through TASK-015 update
 
 - TASK-014C PARTIAL: secure ETag/bootstrap content synchronization, SHA-256/size/type validation, private staging, active/previous switching, offline cache and rollback are locally implemented and tested.
@@ -9,7 +18,7 @@ Updated: 2026-08-07
 - TASK-014E PARTIAL: 640-byte PCM WebSocket streaming, WebRTC VAD, real Doubao partial/final stream, final-only normalization/RAG/LLM/TTS, single WAV fallback, AEC diagnostics and generation cancellation are locally implemented. Device acoustic acceptance remains open.
 - TASK-014F PARTIAL: minimal DPC, BootReceiver, Home intent and guarded Lock Task are implemented; no AVD/device runtime evidence exists.
 - TASK-014G PARTIAL: fail-closed controlled signing, release manifest and verified PackageInstaller path are implemented. Disposable test signing passed and artifacts were deleted; formal identity/hosting/device upgrade are absent.
-- TASK-015 BLOCKED / NO-GO: no Android device or AVD, approved media, trusted HTTPS release host or formal signing custody/N-series APKs. Gateway tests: 63 passed. Android unit/lint/debug assembly and repository verification pass.
+- TASK-015 BLOCKED / NO-GO: no Android device or AVD, trusted HTTPS release host or formal signing custody/N-series APKs. Approved portrait media/Profile now exists locally but is not yet production-hosted. Gateway tests: 63 passed. Android unit/lint/debug assembly and repository verification pass.
 
 ## Completed
 
@@ -150,9 +159,9 @@ Android recording
 - Formal production knowledge base beyond the scoped demo FAQ set.
 - Android 12 large-screen real-device acceptance.
 - TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
-- Formal approved media, business knowledge and device-specific Display Profile values.
+- Production publication of the approved local portrait media/Profile, formal business knowledge and device-measured Profile tuning.
 - Android 12 physical validation of secure sync, Display Profile, USB/AEC, managed kiosk, signed update/rollback and long-run operation.
 
 ## Next action
 
-Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after all external gates in `memory/PENDING_INPUTS.md` are available. Do not claim production deployment or device acceptance.
+Complete the local browser microphone permission check, then resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after all remaining external gates in `memory/PENDING_INPUTS.md` are available. Do not claim production deployment or device acceptance.

@@ -15,6 +15,7 @@ from .asr import DoubaoASRConfig, DoubaoASRProvider
 from .audio_store import InMemoryAudioStore
 from .config import load_settings
 from .knowledge import KnowledgeDocument, SAFE_TRANSFER_TEXT, SQLiteKnowledgeStore
+from .kiosk_demo import router as kiosk_demo_router
 from .http_cache import conditional_json, payload_digest
 from .llm import (
     OpenAICompatibleChatConfig,
@@ -644,3 +645,4 @@ app.include_router(
         embedding_error=lambda: embedding_configuration_error,
     )
 )
+app.include_router(kiosk_demo_router)

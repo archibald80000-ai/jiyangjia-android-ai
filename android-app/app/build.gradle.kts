@@ -56,9 +56,9 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
-            buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", "\"http://10.0.2.2:8080\"")
-            buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "true")
-            manifestPlaceholders["usesCleartextTraffic"] = "true"
+            buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", "\"https://ai-jiyangjia.cloud\"")
+            buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
+            manifestPlaceholders["usesCleartextTraffic"] = "false"
         }
         release {
             isMinifyEnabled = false

@@ -140,6 +140,12 @@ tasks:
     priority: p0
     status: BLOCKED
     depends_on: [TASK-014G]
+  - id: TASK-015A
+    file: TASK-015A_LOCAL_AVATAR_DIALOGUE_DEMO.md
+    title: "Publish approved portrait media and verify the local avatar dialogue demo"
+    priority: p0
+    status: PARTIAL
+    depends_on: [TASK-014D]
   - id: TASK-016
     file: TASK-016_MUSETALK_EVALUATION.md
     title: "Evaluate MuseTalk after the Phase 1 MVP"
