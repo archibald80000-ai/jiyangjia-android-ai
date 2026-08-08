@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.7
+- **State version:** 0.1.8
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-020B formal knowledge/avatar binding is DONE locally; TASK-014H production domain and TASK-015 device acceptance remain BLOCKED
-- **Current authorized task:** TASK-020B closed; production publication waits for the TASK-014H ICP/domain gate
+- **Overall status:** TASK-020C production knowledge/avatar publication passed; public sharing remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
+- **Current authorized task:** TASK-020C publication closed as PARTIAL; next unblock external HTTPS through ICP/domain onboarding
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -16,6 +16,7 @@
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 - TASK-020A imported the reviewed v2.1 package into an isolated port-8090 Gateway with real Doubao Embedding: 65 documents, 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy acceptance passed 80/80 with 0 draft leaks; the unchanged legacy exact-label comparison was 42/80 and remains recorded separately.
 - TASK-020B bound that accepted candidate to the isolated port-18084 avatar demo with real Doubao ASR/TTS/LLM/Embedding. One real WAV and one browser text dialogue matched approved sources and returned playable TTS; the 1080x1920 Profile/assets remained active. Local source paths are now redacted to stable `knowledge://` URIs.
+- TASK-020C verified the same 41/24/65 formal knowledge state on Tencent Cloud, published the approved MOV-derived 1080x1920 H.264 video and matching JPG, bound the production portrait Profile, deployed source-URI redaction and passed one real production RAG/LLM/TTS dialogue. Public HTTPS is still reset externally, so sharing remains blocked.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -259,10 +260,11 @@ Recent task results:
 - TASK-014H is BLOCKED. DNS resolves to `120.53.86.89`; a valid Let's Encrypt certificate is installed; Nginx internal domain checks and Gateway readiness pass; Docker port 8080 is bound only to `127.0.0.1`; Android production Base URL is the canonical HTTPS domain. Public HTTP is redirected by Tencent to `dnspod.qcloud.com/static/webblock.html`, public HTTPS is reset before Nginx, and Certbot renewal dry-run fails at the same webblock layer.
 - TASK-020A is DONE for isolated local acceptance. The source package remained read-only, active demo data was preserved, timestamped SQLite/FAISS backups were created, both batches indexed with real Doubao Embedding, SQLite integrity and 65 x 2048 FAISS passed, approved Top-1 was 36/36, draft exclusion 14/14, safety cases 24/24, general no-match 6/6, sources completeness 80/80 and draft leaks 0. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 - TASK-020B is DONE for local binding. The existing avatar runtime was backed up, the TASK-020A candidate was mounted without overwriting the preserved demo database, all four real Providers were ready, `七养家` normalized to `积养家`, approved RAG sources and downloadable TTS passed, and the real browser returned to idle after a grounded answer. Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
+- TASK-020C is PARTIAL only at the external sharing gate. Production knowledge/media/Profile and dialogue passed; the server-local canonical HTTPS routes return 200, but external HTTPS remains reset by Tencent. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 
 Next action:
 
-- After Tencent ICP/domain access onboarding clears TASK-014H, publish the accepted knowledge/assets/Profile to the production Gateway and run the production acceptance once. TASK-015 remains blocked until trusted HTTPS and physical-device inputs are complete.
+- After Tencent ICP/domain access onboarding clears TASK-014H, run one external acceptance against the already-published demo/status/manifest/Profile URLs. TASK-015 remains blocked until trusted public HTTPS and physical-device inputs are complete.
 
 ## Status vocabulary
 

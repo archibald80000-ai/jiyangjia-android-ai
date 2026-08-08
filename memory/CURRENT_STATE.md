@@ -2,6 +2,16 @@
 
 Updated: 2026-08-07
 
+## TASK-020C production knowledge/avatar sharing
+
+- PARTIAL: production publication is complete; public sharing remains blocked by Tencent Webblock/ICP.
+- Active release knowledge paths are `var/knowledge/jiyangjia.db` and `var/knowledge/faiss.index` under `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/`; final state is 41 approved, 24 draft, 65 vectors at 2048 dimensions.
+- The approved MOV-derived 1080x1920 H.264 video is production asset `asset_6a549a648fe647f1`; same-source JPG is `asset_0f04a1bf5a0b4237`; both are bound to default `display-1080x1920`.
+- Production backup is `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`.
+- Real production dialogue `task020c-production-final` matched approved sources, returned only `knowledge://` URIs and fetched Doubao MP3 TTS.
+- Server-local canonical HTTPS health/demo/knowledge routes return 200. External HTTP redirects to HTTPS, while external HTTPS still resets before Nginx.
+- Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
+
 ## TASK-020B avatar knowledge binding
 
 - DONE locally at `http://127.0.0.1:18084/demo/kiosk` with real Doubao ASR/TTS/LLM/Embedding.
@@ -186,7 +196,7 @@ Android recording
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
-- Production publication of the accepted v2.1 knowledge candidate.
+- Public availability of the published v2.1 knowledge/avatar through trusted HTTPS.
 - Android 12 large-screen real-device acceptance.
 - TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
 - Production publication of the approved local portrait media/Profile, formal business knowledge and device-measured Profile tuning.
@@ -194,4 +204,4 @@ Android recording
 
 ## Next action
 
-Clear the TASK-014H ICP/domain access gate, then publish and verify the accepted knowledge/assets/Profile on the production Gateway. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after trusted HTTPS and all physical-device inputs are available.
+Clear the TASK-014H ICP/domain access gate, then run one external share acceptance against the already-published production knowledge/assets/Profile. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after trusted public HTTPS and all physical-device inputs are available.

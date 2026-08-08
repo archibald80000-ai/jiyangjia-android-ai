@@ -176,3 +176,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020A, TASK-015A]
+  - id: TASK-020C
+    file: TASK-020C_PRODUCTION_KNOWLEDGE_AVATAR_SHARE.md
+    title: "Publish formal knowledge/avatar state and document public sharing"
+    priority: p0
+    status: PARTIAL
+    depends_on: [TASK-020B, TASK-014H]
