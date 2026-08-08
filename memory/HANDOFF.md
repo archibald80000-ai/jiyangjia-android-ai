@@ -6,9 +6,9 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020B-avatar-knowledge-binding`, stacked on completed TASK-020A commit `dd1307c`.
-- Current task status: `TASK-020B DONE locally`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: after TASK-014H clears, publish the accepted knowledge/assets/Profile to production and run one bounded production acceptance.
+- Current branch: `task/TASK-020C-production-share-avatar`, stacked on completed TASK-020B commit `d0eea4f`.
+- Current task status: `TASK-020C PARTIAL (production published, public share blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -30,6 +30,16 @@ Updated: 2026-08-07
 - TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
 - TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
 - TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
+- TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
+
+## TASK-020C production paths
+
+- SQLite: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
+- FAISS: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`
+- Assets: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/assets/`
+- Backup: `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`
+- Target demo: `https://ai-jiyangjia.cloud/demo/kiosk` after TASK-014H unblock.
+- Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 
 ## TASK-020B runtime and rollback
 
@@ -106,7 +116,7 @@ Updated: 2026-08-07
 
 ## Next action
 
-Complete ICP/domain access onboarding for TASK-014H, then publish the accepted knowledge/assets/Profile to production and verify it once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
+Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
 
 ## Safety boundaries
 

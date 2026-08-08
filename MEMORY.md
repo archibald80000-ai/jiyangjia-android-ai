@@ -19,6 +19,7 @@
 - TASK-013 后续加固了品牌名 ASR 归一化：常见 `ji/yang/jia` 同音漂移会在 Gateway 侧统一为“积养家”，并保留原始 `raw_text`。
 - TASK-014 已完成腾讯云 Gateway 收口：生产 Compose 从 `/opt/jiyangjia-ai/secrets/.env.local` 加载真实 Provider，线上容器包含 FFmpeg；文本、Android WAV、MP3 均通过真实 ASR/RAG/LLM/TTS 与音频下载验收。部署测试知识已降为 draft，approved 仅保留 10 条受控 FAQ。
 - TASK-014A 已完成本地轻量管理后台：FastAPI 四页后台、知识审核发布、素材版本/manifest 和 Display Profile 持久化匹配均通过 55 项自动化与真实浏览器逐按钮验证；尚未部署生产，也未导入正式资料或素材。
+- TASK-020C 已完成腾讯云正式知识与人物素材发布：线上为 41 approved、24 draft、65 个 2048 维向量；用户指定 MOV 的 1080x1920 H.264 衍生视频和同源背景已发布并绑定默认 Profile。真实生产 RAG/LLM/TTS 与来源脱敏通过，但公网分享仍被腾讯 Webblock/ICP 门禁阻塞。
 - TASK-014C 至 TASK-014G 已完成本地实现并保持 `PARTIAL`：安全素材同步/回滚、Media3 Profile 渲染、真实豆包双向流式 ASR + WebRTC VAD、AEC 感知自动打断、DPC/Boot/Lock Task、受控签名与 PackageInstaller 均有代码和自动化证据；正式 HTTPS/素材/签名身份及 Android 12 设备门禁未完成。
 - TASK-015 当前结论为 `NO-GO / BLOCKED`：本机无 Android 设备或 AVD，不能宣称 USB/AEC、真 Lock Task、重启、正式升级回滚或长稳通过。
 
