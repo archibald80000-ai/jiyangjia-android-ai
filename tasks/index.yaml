@@ -164,3 +164,9 @@ tasks:
     priority: p2
     status: DONE
     depends_on: [TASK-015]
+  - id: TASK-020A
+    file: TASK-020A_FORMAL_KNOWLEDGE_IMPORT_ACCEPTANCE.md
+    title: "Accept the formal v2.1 knowledge package with real Embedding"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-017]

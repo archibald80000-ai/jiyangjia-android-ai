@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.5
+- **State version:** 0.1.6
 - **Updated:** 2026-08-07
-- **Overall status:** TASK-014H production domain is BLOCKED by Tencent DNSPod webblock/ICP access control; TASK-015 remains NO-GO/BLOCKED
-- **Current authorized task:** complete domain ICP/access onboarding, then rerun TASK-014H public HTTPS and renewal acceptance
+- **Overall status:** TASK-020A formal knowledge import acceptance is DONE locally; TASK-014H production domain and TASK-015 device acceptance remain BLOCKED
+- **Current authorized task:** TASK-020A closed; next bind the accepted formal knowledge candidate to the AI avatar dialogue demo without replacing the preserved demo database
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -14,6 +14,7 @@
 - DNS resolves correctly and the server-side Nginx/TLS/Gateway configuration passes internally, but public domain traffic is intercepted by Tencent DNSPod webblock and public TLS SNI is reset. The domain is not yet production-usable.
 - User-approved portrait source media is available at `E:\work\ai-kefu\资料库\人像背景.MOV`; the source was not modified or committed.
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
+- TASK-020A imported the reviewed v2.1 package into an isolated port-8090 Gateway with real Doubao Embedding: 65 documents, 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy acceptance passed 80/80 with 0 draft leaks; the unchanged legacy exact-label comparison was 42/80 and remains recorded separately.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -255,10 +256,11 @@ Recent task results:
 - TASK-015 is BLOCKED with a NO-GO decision. Gateway regression passed 63 tests, Android unit/lint/debug assembly and repository verification pass, but `adb devices -l` is empty and the local SDK has no emulator/system image. USB/AEC, visual, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
 - TASK-015A is PARTIAL. The rights-confirmed portrait source was converted to an ignored H.264 1080x1920 silent MP4 plus JPG background, published and bound to the 9:16 Profile. A real local browser dialogue passed RAG, Doubao LLM/TTS, sources, request ID, audio fetch and visible subtitle playback. Browser recording now supports manual end/send plus speech-first 3-second silence auto-send; browser microphone permission and Android device behavior remain manual/unverified.
 - TASK-014H is BLOCKED. DNS resolves to `120.53.86.89`; a valid Let's Encrypt certificate is installed; Nginx internal domain checks and Gateway readiness pass; Docker port 8080 is bound only to `127.0.0.1`; Android production Base URL is the canonical HTTPS domain. Public HTTP is redirected by Tencent to `dnspod.qcloud.com/static/webblock.html`, public HTTPS is reset before Nginx, and Certbot renewal dry-run fails at the same webblock layer.
+- TASK-020A is DONE for isolated local acceptance. The source package remained read-only, active demo data was preserved, timestamped SQLite/FAISS backups were created, both batches indexed with real Doubao Embedding, SQLite integrity and 65 x 2048 FAISS passed, approved Top-1 was 36/36, draft exclusion 14/14, safety cases 24/24, general no-match 6/6, sources completeness 80/80 and draft leaks 0. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 
 Next action:
 
-- Complete Tencent Cloud ICP/domain access onboarding for `ai-jiyangjia.cloud`, then rerun public HTTP/HTTPS and Certbot renewal dry-run. Do not enter TASK-015 while the canonical HTTPS endpoint remains externally blocked.
+- Bind the accepted TASK-020A candidate or already activated formal server knowledge to the AI avatar demo and run one real ASR -> RAG -> LLM -> TTS dialogue. Production HTTPS and TASK-015 remain blocked until Tencent ICP/domain access onboarding and physical-device inputs are complete.
 
 ## Status vocabulary
 

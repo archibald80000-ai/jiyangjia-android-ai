@@ -2,6 +2,16 @@
 
 Updated: 2026-08-07
 
+## TASK-020A formal knowledge import acceptance
+
+- DONE locally on isolated `127.0.0.1:8090` with real Doubao Embedding; port 8080 was not used.
+- The reviewed v2.1 package imported as 65 documents: 41 approved and 24 draft, with 65 chunks and 65 FAISS vectors at 2048 dimensions.
+- Current-policy 80-case acceptance passed 80/80: approved Top-1 36/36, draft exclusion 14/14, safe handling 24/24 and general no-match 6/6. Sources contract was complete 80/80 and draft leaks were 0.
+- The unchanged legacy exact-label result is 42/80 because it expects draft matches and the superseded `safe_transfer` response status; both metrics are retained.
+- Existing `var/task014a-dev/knowledge.db` and `faiss.index` were backed up with UTC stamp `20260808T023610Z` and left in use by the port-18081 demo. Candidate files and raw evaluation remain ignored under `var/task014a-dev/task020a-candidate-20260808T023610Z/`.
+- The 8090 acceptance process uses real Embedding only; ASR/TTS/LLM remain Mock, so this is not a completed voice-dialogue claim.
+- Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
+
 ## TASK-014H production domain
 
 - Canonical production domain is `ai-jiyangjia.cloud`; API base is `https://ai-jiyangjia.cloud/api/v1`; server is `120.53.86.89`.
