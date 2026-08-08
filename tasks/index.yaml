@@ -170,3 +170,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-017]
+  - id: TASK-020B
+    file: TASK-020B_AVATAR_KNOWLEDGE_BINDING.md
+    title: "Bind accepted formal knowledge to the local avatar dialogue demo"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020A, TASK-015A]

@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 
 CANONICAL_BRAND_NAME = "积养家"
-BRAND_ALIAS_PATTERN = re.compile(r"[积机季寄吉济记纪鸡极急级][养阳氧样杨羊][家佳]")
+BRAND_ALIAS_PATTERN = re.compile(r"[积机季寄吉济记纪鸡极急级七][养阳氧样杨羊][家佳]")
 
 
 @dataclass(frozen=True)

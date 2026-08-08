@@ -34,6 +34,7 @@ Current status:
 - `TASK-015A`: `PARTIAL`; the user-approved portrait MOV was prepared as an ignored H.264 1080x1920 MP4 plus JPG background, published locally, bound to the default 9:16 Profile, and verified through a real browser RAG/LLM/TTS dialogue. Recording supports manual end/send and speech-first 3-second silence auto-send. Browser microphone permission remains a manual check; no Android device result is claimed. Evidence: `docs/evidence/TASK-015A/local-avatar-dialogue-demo-20260807.md`.
 - `TASK-014H`: `BLOCKED`; canonical domain/DNS, server-side Let's Encrypt TLS, Nginx routing, loopback-only Gateway port and Android production Base URL are configured. Public HTTP is intercepted by Tencent DNSPod webblock, HTTPS SNI is reset, and Certbot dry-run cannot pass until ICP/domain access onboarding is released. Evidence: `docs/evidence/TASK-014H/production-domain-https-20260807.md`.
 - `TASK-020A`: `DONE`; the reviewed v2.1 package was imported through an isolated port-8090 Gateway using real Doubao Embedding. Final state is 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy evaluation passed 80/80, sources were complete for 80/80 responses and draft leaks were 0. The old exact-label score remains 42/80 because the unchanged test file predates draft-shadow and scoped safety routing. The active demo database was backed up and preserved. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
+- `TASK-020B`: `DONE` locally; the accepted candidate was bound to the isolated port-18084 9:16 avatar demo with real Doubao ASR/TTS/LLM/Embedding. A real WAV normalized `七养家` to `积养家`, matched approved sources and returned downloadable MP3 TTS. Browser text dialogue, 1080x1920 playback and return-to-idle passed. Local source paths are redacted from public citations. Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
 
 Current order:
 
@@ -45,7 +46,7 @@ Local presentation side task: `TASK-015A(PARTIAL)`; it removes the missing-media
 
 Production domain gate: `TASK-014H(BLOCKED_BY_TENCENT_WEBBLOCK_ICP)` must pass before TASK-015.
 
-Knowledge demo gate: `TASK-020A(DONE)` is ready for a separate avatar-dialogue binding check; it does not itself switch the preserved port-18081 demo database.
+Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally)`. The preserved TASK-014A demo database was not overwritten; production publication still waits for TASK-014H.
 
 Completed foundation retained from earlier tasks:
 

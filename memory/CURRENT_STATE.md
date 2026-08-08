@@ -2,6 +2,16 @@
 
 Updated: 2026-08-07
 
+## TASK-020B avatar knowledge binding
+
+- DONE locally at `http://127.0.0.1:18084/demo/kiosk` with real Doubao ASR/TTS/LLM/Embedding.
+- The demo uses `var/task014a-dev/task020a-candidate-20260808T023610Z/knowledge.db` and `faiss.index`: 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions.
+- The previous avatar admin/knowledge/FAISS state is preserved at `var/local-avatar-demo/backups/task020b-20260808T025409Z/`.
+- Real WAV acceptance normalized ASR `七养家` to `积养家`, matched `faq_brand_001` and `faq_boundary_009`, and fetched 140,781-byte `audio/mpeg` TTS.
+- Public source citations now redact local source paths to stable `knowledge://<doc_id>` URIs.
+- Browser text dialogue passed with the published 1080x1920 video playing and the UI returning to idle after playback.
+- Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
+
 ## TASK-020A formal knowledge import acceptance
 
 - DONE locally on isolated `127.0.0.1:8090` with real Doubao Embedding; port 8080 was not used.
@@ -176,7 +186,7 @@ Android recording
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
-- Formal production knowledge base beyond the scoped demo FAQ set.
+- Production publication of the accepted v2.1 knowledge candidate.
 - Android 12 large-screen real-device acceptance.
 - TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
 - Production publication of the approved local portrait media/Profile, formal business knowledge and device-measured Profile tuning.
@@ -184,4 +194,4 @@ Android recording
 
 ## Next action
 
-Complete the local browser microphone permission check, then resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after all remaining external gates in `memory/PENDING_INPUTS.md` are available. Do not claim production deployment or device acceptance.
+Clear the TASK-014H ICP/domain access gate, then publish and verify the accepted knowledge/assets/Profile on the production Gateway. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after trusted HTTPS and all physical-device inputs are available.

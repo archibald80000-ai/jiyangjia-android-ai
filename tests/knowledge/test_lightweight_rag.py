@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, chunk_text, parse_selected_knowledge_path
+from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, _public_source_uri, chunk_text, parse_selected_knowledge_path
 
 
 class SemanticEmbeddingProvider:
@@ -20,6 +20,14 @@ def test_schema_rejects_invalid_status() -> None:
     store = SQLiteKnowledgeStore(":memory:")
     with pytest.raises(ValueError):
         store.upsert_many([KnowledgeDocument("bad", "bad", "bad", "mock")])
+
+
+def test_public_source_uri_preserves_public_schemes_and_redacts_local_paths() -> None:
+    assert _public_source_uri("manual://faq/brand", "faq-brand") == "manual://faq/brand"
+    assert _public_source_uri("admin://knowledge/run/chunk", "faq-brand") == "admin://knowledge/run/chunk"
+    assert _public_source_uri("https://example.com/brand", "faq-brand") == "https://example.com/brand"
+    assert _public_source_uri(r"E:\private\brand.md", "faq-brand") == "knowledge://faq-brand"
+    assert _public_source_uri("file:///private/brand.md", "faq-brand") == "knowledge://faq-brand"
 
 
 def test_chunk_text_splits_long_content() -> None:

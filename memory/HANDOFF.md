@@ -6,9 +6,9 @@ Updated: 2026-08-07
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020A-formal-knowledge-acceptance`, based on the TASK-014H content commit `3cbe261` that is already merged remotely through PR #10.
-- Current task status: `TASK-020A DONE`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: bind the accepted TASK-020A knowledge candidate or the already activated formal server knowledge to the AI avatar demo and verify one real voice dialogue without replacing the preserved demo database.
+- Current branch: `task/TASK-020B-avatar-knowledge-binding`, stacked on completed TASK-020A commit `dd1307c`.
+- Current task status: `TASK-020B DONE locally`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Next action: after TASK-014H clears, publish the accepted knowledge/assets/Profile to production and run one bounded production acceptance.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -29,6 +29,16 @@ Updated: 2026-08-07
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
 - TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
 - TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
+- TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
+
+## TASK-020B runtime and rollback
+
+- Demo URL: `http://127.0.0.1:18084/demo/kiosk` while the isolated process remains running.
+- Bound SQLite/FAISS: `var/task014a-dev/task020a-candidate-20260808T023610Z/`.
+- Rollback backup: `var/local-avatar-demo/backups/task020b-20260808T025409Z/`.
+- Runtime dialogue evidence remains ignored at `var/local-avatar-demo/task020b-20260808T025409Z/`.
+- Public source URIs are sanitized to `knowledge://<doc_id>`; original local source paths are not returned.
+- Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
 
 ## TASK-020A runtime and rollback
 
@@ -96,7 +106,7 @@ Updated: 2026-08-07
 
 ## Next action
 
-Run the next AI avatar dialogue integration against the accepted formal knowledge without replacing the preserved demo database. Do not claim or repeat TASK-015 acceptance while TASK-014H public HTTPS is blocked; complete ICP/domain access onboarding before device acceptance.
+Complete ICP/domain access onboarding for TASK-014H, then publish the accepted knowledge/assets/Profile to production and verify it once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
 
 ## Safety boundaries
 

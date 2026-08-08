@@ -8,6 +8,7 @@ import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import quote
 from typing import Iterable, Protocol
 
 import faiss
@@ -617,9 +618,17 @@ def _match_from_row(row: sqlite3.Row, *, confidence: float, vector_score: float,
         "confidence": round(confidence, 4),
         "vector_score": round(float(vector_score), 4),
         "keyword_score": round(float(keyword_score), 4),
-        "source": {"uri": row["source_uri"] or "manual", "chunk_id": row["chunk_id"]},
+        "source": {"uri": _public_source_uri(row["source_uri"], row["doc_id"]), "chunk_id": row["chunk_id"]},
         "excerpt": row["text"][:240],
     }
+
+
+def _public_source_uri(source_uri: str | None, doc_id: str) -> str:
+    raw = str(source_uri or "").strip()
+    scheme = re.match(r"^([a-z][a-z0-9+.-]*)://", raw, flags=re.IGNORECASE)
+    if scheme and scheme.group(1).lower() in {"http", "https", "admin", "manual", "knowledge"}:
+        return raw
+    return f"knowledge://{quote(str(doc_id), safe='-._~')}"
 
 
 def _tokens(text: str) -> list[str]:

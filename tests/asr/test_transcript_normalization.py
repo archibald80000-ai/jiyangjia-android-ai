@@ -11,6 +11,7 @@ def test_normalizes_common_jiyangjia_homophones() -> None:
         "您好，欢迎来到吉阳家。",
         "您好，欢迎来到积阳家。",
         "请问济氧家有什么服务？",
+        "请问七养家是做什么的？",
     ]
 
     for sample in samples:
