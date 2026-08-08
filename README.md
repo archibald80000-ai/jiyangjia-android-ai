@@ -145,7 +145,9 @@ Copy-Item .env.example .env.local
 
 ## 在线知识库与实时分享
 
-线上知识库不是一个可直接下载分享的 JSON 文件，而是 Gateway 使用的 SQLite + FAISS 运行数据：
+GitHub 仓库中的公开知识库入口：[积养家 AI 客服知识库](docs/knowledge/README.md)。这里集中链接架构、API、TASK-020A/020B/020C 验收和生产分享状态，可以直接作为仓库内的知识库说明页分享。
+
+正式知识原文、SQLite 和 FAISS 不进入公共 GitHub；线上运行知识库也不是一个可直接下载分享的 JSON 文件，而是 Gateway 使用的 SQLite + FAISS 运行数据：
 
 - 服务器 SQLite：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
 - 服务器 FAISS：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`
