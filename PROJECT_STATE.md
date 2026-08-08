@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.1.9
-- **Updated:** 2026-08-07
-- **Overall status:** TASK-020D public knowledge package and production re-import passed; public HTTPS remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
-- **Current authorized task:** TASK-020D closed as DONE; next unblock external HTTPS through ICP/domain onboarding
+- **State version:** 0.2.0
+- **Updated:** 2026-08-08
+- **Overall status:** TASK-020E real Gateway import/dialogue acceptance passed and is READY_FOR_DEMO; public HTTPS remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
+- **Current authorized task:** TASK-020E closed as DONE; next unblock external HTTPS through ICP/domain onboarding
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -18,6 +18,7 @@
 - TASK-020B bound that accepted candidate to the isolated port-18084 avatar demo with real Doubao ASR/TTS/LLM/Embedding. One real WAV and one browser text dialogue matched approved sources and returned playable TTS; the 1080x1920 Profile/assets remained active. Local source paths are now redacted to stable `knowledge://` URIs.
 - TASK-020C verified the same 41/24/65 formal knowledge state on Tencent Cloud, published the approved MOV-derived 1080x1920 H.264 video and matching JPG, bound the production portrait Profile, deployed source-URI redaction and passed one real production RAG/LLM/TTS dialogue. Public HTTPS is still reset externally, so sharing remains blocked.
 - TASK-020D published the user-authorized v2.1 knowledge as reviewable JSON under `knowledge-public/v2.1/`, backed up the production SQLite/FAISS state, re-imported 50+15 documents with real Doubao Embedding, and verified 41 approved / 24 draft / 65 vectors at 2048 dimensions. Production 80-case policy acceptance passed 80/80 with zero draft leaks and complete `knowledge://` sources.
+- TASK-020E preserved both local demo/candidate indexes, imported v2.1 into an isolated port-8091 all-real Gateway, retained 65 x 2048 Doubao vectors, passed the 80-case search gate, and passed five synthetic-speech audio dialogues through real ASR/RAG/LLM/TTS after narrow kiosk-query and soup-homophone adaptations. Status is `READY_FOR_DEMO`, not Android device acceptance.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -263,6 +264,7 @@ Recent task results:
 - TASK-020B is DONE for local binding. The existing avatar runtime was backed up, the TASK-020A candidate was mounted without overwriting the preserved demo database, all four real Providers were ready, `七养家` normalized to `积养家`, approved RAG sources and downloadable TTS passed, and the real browser returned to idle after a grounded answer. Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
 - TASK-020C is PARTIAL only at the external sharing gate. Production knowledge/media/Profile and dialogue passed; the server-local canonical HTTPS routes return 200, but external HTTPS remains reset by Tencent. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 - TASK-020D is DONE. The authorized public JSON package is tracked under `knowledge-public/v2.1/`; production re-import and 80-case real-Embedding search acceptance passed. Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
+- TASK-020E is DONE / READY_FOR_DEMO. The isolated real Gateway import, 80-case search and five audio dialogue flows passed while old demo/index data remained preserved. Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
 
 Next action:
 

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-07
+updated: 2026-08-08
 current: TASK-014H
 tasks:
   - id: TASK-000
@@ -188,3 +188,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020C]
+  - id: TASK-020E
+    file: TASK-020E_GATEWAY_REAL_IMPORT_ACCEPTANCE.md
+    title: "Accept the v2.1 package in a real Provider Gateway"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020D]

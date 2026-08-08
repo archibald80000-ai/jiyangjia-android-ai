@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, _public_source_uri, chunk_text, parse_selected_knowledge_path
+from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, _expand_search_query, _public_source_uri, chunk_text, parse_selected_knowledge_path
 
 
 class SemanticEmbeddingProvider:
@@ -86,6 +86,16 @@ def test_jiyangjia_query_is_searched_instead_of_rejected_before_retrieval() -> N
     store = SQLiteKnowledgeStore(":memory:")
     policy = store.classify_query("这个项目能治病吗")
     assert policy == {"action": "search", "scope": "jiyangjia", "category": None, "message": None}
+
+
+def test_kiosk_short_queries_expand_without_changing_unrelated_questions() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+
+    assert store.classify_query("怎么体验？")["scope"] == "jiyangjia"
+    assert store.classify_query("这个游戏怎么体验？")["scope"] == "general"
+    assert "智能产品是什么" in _expand_search_query("有什么产品？")
+    assert "第一次来怎么办" in _expand_search_query("怎么体验？")
+    assert _expand_search_query("积养家是什么？") == "积养家是什么？"
 
 
 def test_general_query_bypasses_business_knowledge_search() -> None:
