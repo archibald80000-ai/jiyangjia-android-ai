@@ -2,6 +2,16 @@
 
 Updated: 2026-08-07
 
+## TASK-020D public knowledge package and production re-import
+
+- DONE: the user-authorized v2.1 package is published in repository source under `knowledge-public/v2.1/` for employee learning and Gateway import.
+- Public package contains 65 documents: 41 approved and 24 draft; local workstation paths are standardized to `knowledge://<doc_id>`.
+- Production backup: `/opt/jiyangjia-ai/backups/task020d-public-knowledge-20260808T034524Z`.
+- Production import used supported 50+15 batches with request IDs `task020d-batch-01` and `task020d-batch-02`; real Doubao Embedding produced 65 vectors at 2048 dimensions.
+- SQLite integrity is `ok`; content fingerprint matches the public package; Windows source URIs are 0.
+- Production search acceptance passed 80/80 under the current policy; approved Top-1 36/36, draft exclusion 14/14, safe handling 24/24, general no-match 6/6, sources complete 80/80 and draft leaks 0.
+- Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
+
 ## TASK-020C production knowledge/avatar sharing
 
 - PARTIAL: production publication is complete; public sharing remains blocked by Tencent Webblock/ICP.

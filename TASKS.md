@@ -36,6 +36,7 @@ Current status:
 - `TASK-020A`: `DONE`; the reviewed v2.1 package was imported through an isolated port-8090 Gateway using real Doubao Embedding. Final state is 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy evaluation passed 80/80, sources were complete for 80/80 responses and draft leaks were 0. The old exact-label score remains 42/80 because the unchanged test file predates draft-shadow and scoped safety routing. The active demo database was backed up and preserved. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 - `TASK-020B`: `DONE` locally; the accepted candidate was bound to the isolated port-18084 9:16 avatar demo with real Doubao ASR/TTS/LLM/Embedding. A real WAV normalized `七养家` to `积养家`, matched approved sources and returned downloadable MP3 TTS. Browser text dialogue, 1080x1920 playback and return-to-idle passed. Local source paths are redacted from public citations. Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
 - `TASK-020C`: `PARTIAL / BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; Tencent production now has the 41 approved/24 draft formal knowledge state, the approved MOV-derived 1080x1920 video/background and a bound default Profile. Real production RAG/LLM/TTS and source redaction passed. Server-local canonical HTTPS is 200; external HTTPS is still reset, so public sharing is not DONE. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
+- `TASK-020D`: `DONE`; the user-authorized v2.1 knowledge is available as public GitHub JSON under `knowledge-public/v2.1/`. Production was backed up and re-indexed in 50+15 batches with real Doubao Embedding; final state is 41 approved, 24 draft, 65 vectors at 2048 dimensions. Current-policy production search passed 80/80 with zero draft leaks and complete sources. Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
 
 Current order:
 
@@ -47,7 +48,7 @@ Local presentation side task: `TASK-015A(PARTIAL)`; it removes the missing-media
 
 Production domain gate: `TASK-014H(BLOCKED_BY_TENCENT_WEBBLOCK_ICP)` must pass before TASK-015.
 
-Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL production published / public share blocked)`.
+Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL production published / public HTTPS blocked) -> TASK-020D(DONE public GitHub package / production re-import)`.
 
 Completed foundation retained from earlier tasks:
 

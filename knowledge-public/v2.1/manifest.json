@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "package": "jiyangjia-digital-human-knowledge-v2.1",
+  "source_authorization": "public_marketing_and_employee_learning",
+  "documents": 65,
+  "statuses": {
+    "approved": 41,
+    "draft": 24
+  },
+  "source_uri_policy": "knowledge://<document_id>",
+  "files": [
+    {
+      "name": "import_all.json",
+      "documents": 65,
+      "statuses": {
+        "approved": 41,
+        "draft": 24
+      },
+      "sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3"
+    },
+    {
+      "name": "import_batch_01.json",
+      "documents": 50,
+      "statuses": {
+        "approved": 33,
+        "draft": 17
+      },
+      "sha256": "46F82250F0D5C0DC6DD2A231F79FFC4FA6FA96EE77961569486CC6D6EFB48024"
+    },
+    {
+      "name": "import_batch_02.json",
+      "documents": 15,
+      "statuses": {
+        "approved": 8,
+        "draft": 7
+      },
+      "sha256": "BDDF7D192A9811A9410D50EA888979F741CC5B78D4191E4120D31F040B56A2B9"
+    }
+  ]
+}

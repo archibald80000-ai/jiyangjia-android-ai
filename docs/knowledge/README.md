@@ -14,6 +14,11 @@
 
 ## GitHub 中包含什么
 
+- [可直接浏览和导入的公开知识包](../../knowledge-public/README.md)
+- [v2.1 完整知识内容](../../knowledge-public/v2.1/import_all.json)
+- [v2.1 第一批导入文件](../../knowledge-public/v2.1/import_batch_01.json)
+- [v2.1 第二批导入文件](../../knowledge-public/v2.1/import_batch_02.json)
+- [v2.1 文件清单与 SHA-256](../../knowledge-public/v2.1/manifest.json)
 - [轻量 RAG 架构](../architecture/LIGHTWEIGHT_RAG.md)
 - [MVP API 规范](../api/MVP_API_SPEC.md)
 - [TASK-020A 正式导入验收](../evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md)
@@ -23,17 +28,22 @@
 - [数字人绑定任务](../../tasks/TASK-020B_AVATAR_KNOWLEDGE_BINDING.md)
 - [生产发布任务](../../tasks/TASK-020C_PRODUCTION_KNOWLEDGE_AVATAR_SHARE.md)
 
-## 为什么没有直接提交数据库
+## GitHub 与运行数据库的区别
 
-GitHub 公共仓库不保存以下运行数据和原始业务资料：
+本次经用户明确授权，v2.1 的 65 条对外宣传和员工学习知识已作为 JSON 提交到 `knowledge-public/v2.1/`。公开副本保留正文和状态，只把本机来源路径标准化为 `knowledge://<doc_id>`。
+
+GitHub 公共仓库仍不保存以下运行数据和未授权原始资料：
 
 - `knowledge.db`
 - `faiss.index`
-- `import_all.json` 和原始导入批次
 - PDF、DOCX、录音、客户资料
 - Provider 密钥和 `.env.local`
 
-这些文件包含运行状态、向量或未经公开授权的业务原文。GitHub 只保存代码、接口、公开安全的统计、验收结论和回滚说明。
+SQLite 和 FAISS 包含线上运行状态与向量，不能代替可审阅的 JSON 知识包，也不应提交 Git。
+
+## 导入规则
+
+Gateway 单次最多接收 50 条，必须先导入 `import_batch_01.json`，再导入 `import_batch_02.json`。`import_all.json` 用于员工浏览、内容核对和完整包交换，不能直接提交到当前索引接口。
 
 ## 实时接口
 

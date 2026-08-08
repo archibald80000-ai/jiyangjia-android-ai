@@ -43,6 +43,7 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-014H：生产域名、服务器 TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已配置；公网仍被腾讯 DNSPod webblock/ICP 门禁阻塞。
 - TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
 - TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。公网分享仍受 ICP/Webblock 门禁阻塞。
+- TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
 
 ## 未完成项（不在本基线宣称范围）
 
@@ -58,6 +59,7 @@ android-app/     Android 大屏客户端源码（APK 产物不入库）
 gateway/         FastAPI 服务、路由、Provider 适配器
 integration/     外部服务适配说明（若新增）
 knowledge-test/   受控知识样例（可复用但非正式资料）
+knowledge-public/ 经授权公开的正式知识 JSON、分批导入文件和校验清单
 config/          示例配置与上游锁版本
 deploy/          Docker Compose 与部署说明（不含密钥）
 scripts/         校验、发布辅助、Provider 工具脚本
@@ -145,9 +147,9 @@ Copy-Item .env.example .env.local
 
 ## 在线知识库与实时分享
 
-GitHub 仓库中的公开知识库入口：[积养家 AI 客服知识库](docs/knowledge/README.md)。这里集中链接架构、API、TASK-020A/020B/020C 验收和生产分享状态，可以直接作为仓库内的知识库说明页分享。
+GitHub 仓库中的公开知识库入口：[积养家 AI 客服知识库](docs/knowledge/README.md)。员工可以从该页浏览 [v2.1 完整知识内容](knowledge-public/v2.1/import_all.json)，也可以使用 [第一批](knowledge-public/v2.1/import_batch_01.json) 和 [第二批](knowledge-public/v2.1/import_batch_02.json) 导入 Gateway。
 
-正式知识原文、SQLite 和 FAISS 不进入公共 GitHub；线上运行知识库也不是一个可直接下载分享的 JSON 文件，而是 Gateway 使用的 SQLite + FAISS 运行数据：
+本次经用户明确授权的 65 条对外宣传/员工学习知识已进入公共 GitHub。未授权原始 PDF/DOCX、SQLite 和 FAISS 仍不进入 Git；线上运行数据继续由 Gateway 的 SQLite + FAISS 保存：
 
 - 服务器 SQLite：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
 - 服务器 FAISS：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`

@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-07
-current: TASK-014D
+current: TASK-014H
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -182,3 +182,9 @@ tasks:
     priority: p0
     status: PARTIAL
     depends_on: [TASK-020B, TASK-014H]
+  - id: TASK-020D
+    file: TASK-020D_PUBLIC_KNOWLEDGE_PACKAGE.md
+    title: "Publish the authorized knowledge package and re-import production RAG"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020C]

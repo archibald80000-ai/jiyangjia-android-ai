@@ -28,4 +28,4 @@
 - A feature is not complete without reproducible tests and evidence.
 - Mock results must be labelled Mock.
 - Real API completion requires real Doubao ASR/TTS, Volcengine Ark or OpenAI-compatible LLM and embedding evidence; missing credentials are blockers, not success.
-- Public repository contains no private source documents, model weights, avatar rights-sensitive assets or secrets.
+- Public repository contains the user-authorized sanitized v2.1 JSON knowledge package under `knowledge-public/`; it still contains no private source documents, SQLite/FAISS runtime data, model weights, avatar rights-sensitive assets or secrets.
