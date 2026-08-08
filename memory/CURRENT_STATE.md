@@ -1,6 +1,16 @@
 # Current state
 
-Updated: 2026-08-07
+Updated: 2026-08-08
+
+## TASK-020E real Gateway import acceptance
+
+- DONE / READY_FOR_DEMO on isolated `http://127.0.0.1:8091`; this is not Android physical-device or public HTTPS acceptance.
+- Existing port-18081 demo and port-18084 real candidate SQLite/FAISS were backed up under `var/task020e/20260808T055957Z/backups/pre-import/` and left unchanged.
+- The two v2.1 batches imported with all four real Doubao Providers: 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions; SQLite integrity is `ok`.
+- Final 80-case search: policy 80/80, approved Top-3 36/36, sources complete 80/80 and draft leaks 0.
+- Five real audio requests used Doubao-generated synthetic speech and passed Doubao ASR -> SQLite/FAISS RAG -> Doubao LLM -> Doubao TTS plus audio fetch. They are not human microphone recordings.
+- Scoped fixes add soup-context `漆扇/七扇/七善 -> 七膳` normalization and retrieval expansion for `有什么产品` / `怎么体验`; the v2.1 JSON, statuses and vectors were not modified.
+- Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
 
 ## TASK-020D public knowledge package and production re-import
 

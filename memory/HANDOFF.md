@@ -1,13 +1,13 @@
 # Handoff
 
-Updated: 2026-08-07
+Updated: 2026-08-08
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020D-public-knowledge-package`, stacked on local TASK-020C documentation commits.
-- Current task status: `TASK-020D DONE`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Current branch: `task/TASK-020E-gateway-real-import`, based on completed TASK-020D commit `7036a2a`.
+- Current task status: `TASK-020E DONE / READY_FOR_DEMO`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
 - Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
@@ -32,6 +32,15 @@ Updated: 2026-08-07
 - TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
 - TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
 - TASK-020D: DONE. The explicitly authorized v2.1 JSON is tracked under `knowledge-public/v2.1/`; production was backed up and re-imported in 50+15 batches with real Doubao Embedding. Final 80-case current-policy acceptance is 100%, sources are complete and draft leaks are 0.
+- TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
+
+## TASK-020E runtime and rollback
+
+- Gateway: `http://127.0.0.1:8091` while PID from `var/task020e/20260808T055957Z/candidate/gateway.pid` remains running.
+- Candidate SQLite/FAISS: `var/task020e/20260808T055957Z/candidate/knowledge.db` and `faiss.index`.
+- Preserved demo/real backups: `var/task020e/20260808T055957Z/backups/pre-import/`.
+- Raw ignored evidence: `var/task020e/20260808T055957Z/candidate/`.
+- Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
 
 ## TASK-020D public package and rollback
 
