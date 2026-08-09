@@ -1,0 +1,293 @@
+{
+  "schema_version": 2,
+  "package": "jiyangjia-digital-human-knowledge-v2.2",
+  "version": "2.2",
+  "source_authorization": "user_confirmed_public_and_human_approved",
+  "source_policy": "source-derived-only; no external factual enrichment",
+  "documents": 204,
+  "legacy_documents": 65,
+  "new_documents": 139,
+  "statuses": {
+    "approved": 180,
+    "draft": 24
+  },
+  "new_statuses": {
+    "approved": 139
+  },
+  "coverage": {
+    "source_pages": 25,
+    "solar_terms": 24,
+    "food_medicine_ingredients": 19,
+    "dayougu_skus": 11,
+    "test_questions": 240
+  },
+  "source_uri_policy": "knowledge://<document_id>",
+  "batch_size": 50,
+  "source_files": [
+    {
+      "name": "24节气养生茶速查表.html",
+      "title": "24节气养生茶速查表",
+      "slug": "solar-term-tea-guide",
+      "bytes": 9595,
+      "sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "path": "sources/aiye-foods/24节气养生茶速查表.html"
+    },
+    {
+      "name": "茶油品牌故事.html",
+      "title": "茶油品牌故事",
+      "slug": "camellia-oil",
+      "bytes": 20434,
+      "sha256": "5C6EC52D6E302F55D9E62F972D4F4E030AE15BC4CC4A5E9A959F7ED9C226DD62",
+      "path": "sources/aiye-foods/茶油品牌故事.html"
+    },
+    {
+      "name": "大有谷合作产品手册.html",
+      "title": "大有谷合作产品手册",
+      "slug": "dayougu-products",
+      "bytes": 29180,
+      "sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "path": "sources/aiye-foods/大有谷合作产品手册.html"
+    },
+    {
+      "name": "二十四节气养生茶品牌故事.html",
+      "title": "二十四节气养生茶品牌故事",
+      "slug": "solar-term-tea-story",
+      "bytes": 43515,
+      "sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "path": "sources/aiye-foods/二十四节气养生茶品牌故事.html"
+    },
+    {
+      "name": "飞鸡蛋品牌故事.html",
+      "title": "飞鸡蛋品牌故事",
+      "slug": "free-range-eggs",
+      "bytes": 33056,
+      "sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "path": "sources/aiye-foods/飞鸡蛋品牌故事.html"
+    },
+    {
+      "name": "旱地亚麻籽品牌故事.html",
+      "title": "旱地亚麻籽品牌故事",
+      "slug": "golden-flaxseed",
+      "bytes": 28306,
+      "sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "path": "sources/aiye-foods/旱地亚麻籽品牌故事.html"
+    },
+    {
+      "name": "黄芪蜂蜜醋品牌故事.html",
+      "title": "黄芪蜂蜜醋品牌故事",
+      "slug": "astragalus-honey-vinegar",
+      "bytes": 22940,
+      "sha256": "D42D939FBEED23BF720B40F716038A30DA1A5403AF3B6393CFC751B4718604A1",
+      "path": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html"
+    },
+    {
+      "name": "积养家社区健康臻选计划-拓客活动.html",
+      "title": "积养家社区健康臻选计划",
+      "slug": "community-health-event",
+      "bytes": 36834,
+      "sha256": "1FA27ED50FE2AB01C5B19B652451DB9A0B00CEBE5474BDEFD4E6B822FA35BA8B",
+      "path": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html"
+    },
+    {
+      "name": "积养家下午茶体验菜单.html",
+      "title": "积养家下午茶体验菜单",
+      "slug": "afternoon-tea-menu",
+      "bytes": 24265,
+      "sha256": "385014D802032A25D7C687831E284DC492FA3A0F33678CC7F4E99CFA05C4AD40",
+      "path": "sources/aiye-foods/积养家下午茶体验菜单.html"
+    },
+    {
+      "name": "积养家药食同源食材大全.html",
+      "title": "积养家药食同源食材大全",
+      "slug": "food-medicine-ingredients",
+      "bytes": 32201,
+      "sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "path": "sources/aiye-foods/积养家药食同源食材大全.html"
+    },
+    {
+      "name": "金华古法酱油品牌故事.html",
+      "title": "金华古法酱油品牌故事",
+      "slug": "jinhua-soy-sauce",
+      "bytes": 28178,
+      "sha256": "A412297BFCB3DA5A93CDAE9E57595B5E45F7C75434A1ED41C006FF518FDB706D",
+      "path": "sources/aiye-foods/金华古法酱油品牌故事.html"
+    },
+    {
+      "name": "金华两头乌火腿品牌故事.html",
+      "title": "金华两头乌火腿品牌故事",
+      "slug": "jinhua-liangtouyu-ham",
+      "bytes": 34837,
+      "sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "path": "sources/aiye-foods/金华两头乌火腿品牌故事.html"
+    },
+    {
+      "name": "金华农家火腿品牌故事.html",
+      "title": "金华农家火腿品牌故事",
+      "slug": "jinhua-farm-ham",
+      "bytes": 28111,
+      "sha256": "47B8D02483FF4362A809AA84A7FC9DAD9FC15798F11893E76B597F887280E585",
+      "path": "sources/aiye-foods/金华农家火腿品牌故事.html"
+    },
+    {
+      "name": "罗埠土酱油礼盒装品牌故事.html",
+      "title": "罗埠土酱油礼盒品牌故事",
+      "slug": "luobu-soy-sauce-gift",
+      "bytes": 28544,
+      "sha256": "35C564D7C00879B094BD56546077BDD93712CB2C8882DDF3B2D071E40589F9F5",
+      "path": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html"
+    },
+    {
+      "name": "农家古法黄豆酱品牌故事.html",
+      "title": "农家古法黄豆酱品牌故事",
+      "slug": "farm-soybean-paste",
+      "bytes": 22964,
+      "sha256": "AF0F08C13AA96793AD3EB7726B5752835F6D3C2E89C158AD65CD2482F9B7FAA9",
+      "path": "sources/aiye-foods/农家古法黄豆酱品牌故事.html"
+    },
+    {
+      "name": "沙漠一号虎坚果油品牌故事.html",
+      "title": "沙漠一号虎坚果油品牌故事",
+      "slug": "tiger-nut-oil",
+      "bytes": 31650,
+      "sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "path": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html"
+    },
+    {
+      "name": "山西老陈醋品牌故事.html",
+      "title": "山西老陈醋品牌故事",
+      "slug": "shanxi-aged-vinegar",
+      "bytes": 23580,
+      "sha256": "FA62C66B846ECA2E0818E20AD93507472F88F1609BDF0E5C72EB785AEE8DE0DA",
+      "path": "sources/aiye-foods/山西老陈醋品牌故事.html"
+    },
+    {
+      "name": "上珍缘宣莲品牌故事.html",
+      "title": "上珍缘宣莲品牌故事",
+      "slug": "xuan-lotus-seed",
+      "bytes": 32135,
+      "sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "path": "sources/aiye-foods/上珍缘宣莲品牌故事.html"
+    },
+    {
+      "name": "时珍太和圣坊养生茶系列.html",
+      "title": "时珍太和圣坊养生茶系列",
+      "slug": "shizhen-health-tea",
+      "bytes": 35253,
+      "sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "path": "sources/aiye-foods/时珍太和圣坊养生茶系列.html"
+    },
+    {
+      "name": "塔牌黄酒品牌故事.html",
+      "title": "塔牌黄酒品牌故事",
+      "slug": "tapai-rice-wine",
+      "bytes": 26647,
+      "sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "path": "sources/aiye-foods/塔牌黄酒品牌故事.html"
+    },
+    {
+      "name": "藤茶品牌故事.html",
+      "title": "藤茶品牌故事",
+      "slug": "vine-tea",
+      "bytes": 28125,
+      "sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "path": "sources/aiye-foods/藤茶品牌故事.html"
+    },
+    {
+      "name": "五指岩鲜姜品牌故事.html",
+      "title": "五指岩鲜姜品牌故事",
+      "slug": "wuzhiyan-ginger",
+      "bytes": 23607,
+      "sha256": "715A4C7F0762262FA6B42C98DF673B7ACC8410A4892365E01E2814488E02E33A",
+      "path": "sources/aiye-foods/五指岩鲜姜品牌故事.html"
+    },
+    {
+      "name": "武当山野山蜂蜜品牌故事.html",
+      "title": "武当山野山蜂蜜品牌故事",
+      "slug": "wudang-wild-honey",
+      "bytes": 29517,
+      "sha256": "02FF2A62955D27157E247D34E43EAE9D46398E4663691A48AB5A99AECD622DDC",
+      "path": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html"
+    },
+    {
+      "name": "香榧油品牌故事.html",
+      "title": "香榧油品牌故事",
+      "slug": "torreya-oil",
+      "bytes": 23429,
+      "sha256": "D1ECFDD6B70EBE0C2DD367D766CDC86E3350A35755151E5266D945A3C2FDA42D",
+      "path": "sources/aiye-foods/香榧油品牌故事.html"
+    },
+    {
+      "name": "云南文山三七片品牌故事.html",
+      "title": "云南文山三七片品牌故事",
+      "slug": "wenshan-notoginseng",
+      "bytes": 30043,
+      "sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "path": "sources/aiye-foods/云南文山三七片品牌故事.html"
+    }
+  ],
+  "files": [
+    {
+      "name": "import_all.json",
+      "documents": 204,
+      "sha256": "3D9F6FF041331BDDED1EE4A0E40205ADB3D57AA2CFF3BFC65570979A8DA848E7"
+    },
+    {
+      "name": "import_batch_01.json",
+      "documents": 50,
+      "statuses": {
+        "approved": 33,
+        "draft": 17
+      },
+      "sha256": "00A833FCFFB8297B3EEE544C4AA7A08BC1AF7DFBF5428A810CB7E37E7E7755CA"
+    },
+    {
+      "name": "import_batch_02.json",
+      "documents": 50,
+      "statuses": {
+        "approved": 43,
+        "draft": 7
+      },
+      "sha256": "21BD6F0A3965488E76E4009B1B978778479B28DF91F2C6BFC24A05544552D8AB"
+    },
+    {
+      "name": "import_batch_03.json",
+      "documents": 50,
+      "statuses": {
+        "approved": 50
+      },
+      "sha256": "051809D38727AA002402228845390B2490D7B5D12D04C4B868511D05C60C98A8"
+    },
+    {
+      "name": "import_batch_04.json",
+      "documents": 50,
+      "statuses": {
+        "approved": 50
+      },
+      "sha256": "B5C2BA7A0BB908C6C7DE6307D502E636362FEF9C2C3789FA5057491AB4B70BA9"
+    },
+    {
+      "name": "import_batch_05.json",
+      "documents": 4,
+      "statuses": {
+        "approved": 4
+      },
+      "sha256": "9B5820B3A0B9C0F068A1013D48795D90F66B00FB552B48FD22B13B5B75137AA2"
+    },
+    {
+      "name": "source-map.json",
+      "sha256": "AA0430577ABDC1B0187DAE33FC4B418D14E5F14C67406F5AA1752FC547270D62"
+    },
+    {
+      "name": "catalog.json",
+      "sha256": "2A20312C5BEFB08358EE289E2F83CEDC5E8195F0754312DD348481F5D7B383FF"
+    },
+    {
+      "name": "test_questions.json",
+      "sha256": "D8DDB6CF63DBC27E0A5EF010F2164FCE8E4393E7C9B8DB0CE6F73CF3FE7D1B93"
+    },
+    {
+      "name": "claim-audit.json",
+      "sha256": "0DE543BC16CDDB4AA08AFF20698FCA298115E77D72C587698FC8D8D79A2E766C"
+    }
+  ]
+}

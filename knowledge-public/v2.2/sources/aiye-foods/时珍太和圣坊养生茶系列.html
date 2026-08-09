@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时珍太和圣坊 · 养生茶系列 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1F10;
+    --ink-soft:#5C4430;
+    --paper:#FCF8F1;
+    --paper-2:#F5EDDC;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --amber:#C97A1F;
+    --amber-deep:#8B4F0D;
+    --green:#4A7C59;
+    --green-light:#6B9F7A;
+    --line:rgba(45,31,16,.1);
+    --card:#F5EDDC;
+    --card-green:#EBF3E8;
+    --warm-red:#C0504D;
+    --teal:#3A8B8B;
+    --purple:#7B5B8C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(184,134,11,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(74,124,89,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--green);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--amber-deep);}
+  .cover h1 em{font-style:normal;color:var(--green);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--gold);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--gold);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--gold);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--gold);
+    background:var(--paper-2);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);text-align:center;
+  }
+  .card .val{font-size:28px;font-weight:700;color:var(--amber-deep);line-height:1.3;}
+  .card .val.green{color:var(--green);}
+  .card .val.teal{color:var(--teal);}
+  .card .val.purple{color:var(--purple);}
+  .card .label{font-size:12px;color:var(--ink-soft);margin-top:6px;letter-spacing:.06em;}
+  .card .note{font-size:11px;color:#9C8B72;margin-top:4px;}
+
+  /* ===== 功效列表 ===== */
+  .benefit-item{
+    margin-bottom:22px;padding:16px 18px;
+    border-left:2px solid var(--green-light);
+    background:var(--card-green);
+    border-radius:0 8px 8px 0;
+  }
+  .benefit-item .b-title{font-size:16px;font-weight:600;color:var(--green);margin-bottom:6px;}
+  .benefit-item p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* ===== 产品卡 ===== */
+  .product-card{
+    background:var(--paper);border:1.5px solid var(--gold-light);border-radius:14px;
+    padding:32px 28px;margin:28px 0;
+  }
+  .product-card .p-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:20px;}
+  .product-card .p-icon{
+    width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;flex-shrink:0;
+  }
+  .product-card .p-icon.qi{background:#FFF3E0;}
+  .product-card .p-icon.warm{background:#E8F5E9;}
+  .product-card .p-icon.clear{background:#E3F2FD;}
+  .product-card .p-title{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:.06em;}
+  .product-card .p-sub{font-size:13px;color:var(--ink-soft);margin-top:4px;}
+  .product-card .p-formula{
+    font-size:15px;color:var(--gold);letter-spacing:.08em;margin:14px 0;
+    padding:10px 14px;background:var(--paper-2);border-radius:8px;
+  }
+  .product-card .p-desc{font-size:14px;color:var(--ink-soft);line-height:1.8;}
+
+  /* ===== 配方独白 ===== */
+  .formula-box{
+    margin:34px 0;padding:28px 24px;
+    background:linear-gradient(135deg,var(--card-green),var(--card));
+    border-radius:12px;text-align:center;border:1px solid var(--line);
+  }
+  .formula-box .big{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:.1em;line-height:1.8;}
+  .formula-box .big em{font-style:normal;color:var(--green);}
+  .formula-box .big em.purple{color:var(--purple);}
+  .formula-box .big em.gold{color:var(--gold);}
+
+  /* ===== 对比表 ===== */
+  .compare-table{width:100%;border-collapse:collapse;margin:28px 0 40px;font-size:14px;}
+  .compare-table th,.compare-table td{padding:12px 14px;border:1px solid var(--line);text-align:center;}
+  .compare-table th{background:var(--card);font-weight:600;color:var(--ink);font-size:13px;}
+  .compare-table td{color:var(--ink-soft);}
+  .compare-table .win{color:var(--green);font-weight:600;}
+  .compare-table td.highlight{background:#FFF8E1;font-weight:600;}
+
+  /* 警告框 */
+  .warn-box{
+    margin:24px 0;padding:18px 22px;
+    background:#FEF2F2;border-left:3px solid var(--warm-red);
+    border-radius:0 8px 8px 0;font-size:14px;color:var(--warm-red);
+  }
+
+  /* 销售卡 */
+  .sales-box{
+    background:linear-gradient(135deg,#FFF8E1,#F5EDDC);
+    border:1.5px solid var(--gold-light);border-radius:14px;
+    padding:32px 28px;margin:28px 0;text-align:center;
+  }
+  .sales-box h4{font-size:18px;color:var(--amber-deep);margin-bottom:12px;letter-spacing:.1em;}
+  .sales-box .price{font-size:42px;font-weight:700;color:var(--amber-deep);}
+  .sales-box .price-note{font-size:14px;color:var(--ink-soft);}
+
+  .sales-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0;}
+  .sales-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    padding:20px 16px;text-align:center;
+  }
+  .sales-card .s-icon{font-size:28px;margin-bottom:10px;}
+  .sales-card .s-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .sales-card .s-desc{font-size:13px;color:var(--ink-soft);line-height:1.7;}
+
+  /* 分隔线 */
+  .divider{text-align:center;padding:30px 0;color:var(--gold);font-size:20px;letter-spacing:.3em;opacity:.6;}
+
+  /* 尾章 */
+  .ending{text-align:center;padding:60px 0 80px;}
+  .ending .aiye{font-size:11px;letter-spacing:.5em;color:#9C8B72;margin-bottom:16px;}
+  .ending .motto{font-size:18px;color:var(--gold);letter-spacing:.12em;}
+
+  /* 品牌徽标行 */
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0;}
+  .badge{font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:20px;color:var(--ink-soft);background:var(--paper-2);}
+</style>
+</head>
+<body>
+
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="cover">
+  <div class="brand">爱野  GIARDINO VERDE</div>
+  <div class="tagline">时珍太和圣坊 · 养生茶系列</div>
+  <h1>医圣故里的<br><em>三杯好茶</em></h1>
+  <div class="sub">
+    湖北蕲春 · 李时珍故乡 · <span>古方新制</span>
+  </div>
+
+  <svg class="fusion-svg" viewBox="0 0 260 120" style="margin-top:50px;width:min(260px,62%);opacity:.88;">
+    <!-- 三杯茶 -->
+    <g transform="translate(30,20)">
+      <ellipse cx="30" cy="55" rx="22" ry="28" fill="#E8D5B7" opacity="0.6"/>
+      <ellipse cx="30" cy="45" rx="8" ry="12" fill="#D4A745" opacity="0.4"/>
+      <text x="30" y="90" text-anchor="middle" font-size="10" fill="#8B4F0D" opacity="0.7">补</text>
+    </g>
+    <g transform="translate(108,20)">
+      <ellipse cx="30" cy="55" rx="22" ry="28" fill="#C8E6C9" opacity="0.6"/>
+      <ellipse cx="30" cy="45" rx="8" ry="12" fill="#4A7C59" opacity="0.4"/>
+      <text x="30" y="90" text-anchor="middle" font-size="10" fill="#4A7C59" opacity="0.7">温</text>
+    </g>
+    <g transform="translate(186,20)">
+      <ellipse cx="30" cy="55" rx="22" ry="28" fill="#BBDEFB" opacity="0.6"/>
+      <ellipse cx="30" cy="45" rx="8" ry="12" fill="#3A8B8B" opacity="0.4"/>
+      <text x="30" y="90" text-anchor="middle" font-size="10" fill="#3A8B8B" opacity="0.7">清</text>
+    </g>
+    <!-- 蒸汽 -->
+    <path d="M60 25 Q55 15 60 8" stroke="#9C8B72" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M138 25 Q133 15 138 8" stroke="#9C8B72" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M216 25 Q211 15 216 8" stroke="#9C8B72" stroke-width="1.5" fill="none" opacity="0.4"/>
+  </svg>
+
+  <div class="meta">元气四宝茶 · 黄芽汤 · 人参菊花决明子茶</div>
+  <div class="scroll-hint">向下探索<span class="arr">↓</span></div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序章</div>
+    <h2>李时珍的故乡，出了三杯好茶</h2>
+    <p class="dropcap">湖北蕲春，鄂东大别山南麓，长江北岸。这里是《本草纲目》作者李时珍的故乡，也是中国中医药文化的重要发源地之一。</p>
+    <p>四百多年前，李时珍踏遍名山大川，历时二十七年，著成《本草纲目》——这部收录1892种药物的巨著，至今仍是中医药学的核心典籍。</p>
+    <p>四百年后，湖北李时珍现代生物医药集团扎根蕲春，延续着"关注健康，珍爱生命"的宗旨。集团旗下拥有15家子公司、500余个注册商标、100余项专利技术，"李时珍"品牌于2024年获评蕲春县首个"湖北老字号"。</p>
+
+    <div class="badge-row">
+      <span class="badge">湖北老字号</span>
+      <span class="badge">国家高新技术企业</span>
+      <span class="badge">HACCP认证</span>
+      <span class="badge">ISO9001认证</span>
+      <span class="badge">GMP达标车间</span>
+      <span class="badge">李时珍故乡</span>
+    </div>
+
+    <div class="quote">
+      时珍太和圣坊，承袭《本草纲目》药食同源之精髓，甄选道地药材，以古方新制之法，将千年中医智慧融入一杯日常茶饮。
+      <span class="src">—— 时珍太和圣坊</span>
+    </div>
+
+    <p>三款养生茶，三个经典古方，三种不同体质的调养方向。全部采用<strong>低温热风循环烘干</strong>工艺——无硫熏、无香精、无色素、无防腐剂。今天，我们把它们带到了积养家——开袋闻到的，是药材本来的香气。</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 壹 · 元气四宝茶 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹 · 补气</div>
+    <h2>元气四宝茶</h2>
+
+    <div class="product-card">
+      <div class="p-header">
+        <div class="p-icon qi">☀️</div>
+        <div>
+          <div class="p-title">元气四宝茶</div>
+          <div class="p-sub">黄芪 · 麦冬 · 党参 · 西洋参 | 5克×30袋 | 150克/盒</div>
+        </div>
+      </div>
+      <div class="p-formula">黄芪 5g + 党参 4g + 麦冬 4g + 西洋参 3g</div>
+      <div class="p-desc">
+        元气四宝茶是近年来中医养生界的明星配方，由上海交通大学医学院附属瑞金医院中医科副主任医师朱建秀等多位专家在临床中推荐。四味药材各司其职：黄芪补气升阳、党参健脾益肺、麦冬养阴生津、西洋参补气养阴清热——四者合力，专补"气虚"。
+      </div>
+    </div>
+
+    <h3>四味各司其职</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="val">黄芪</div>
+        <div class="label">补气升阳 · 固表止汗</div>
+        <div class="note">补一身之气，提升正气</div>
+      </div>
+      <div class="card">
+        <div class="val green">党参</div>
+        <div class="label">健脾益肺 · 养血生津</div>
+        <div class="note">改善脾胃运化，面色红润</div>
+      </div>
+      <div class="card">
+        <div class="val teal">麦冬</div>
+        <div class="label">养阴润肺 · 清心除烦</div>
+        <div class="note">缓解口干心烦失眠</div>
+      </div>
+      <div class="card">
+        <div class="val purple">西洋参</div>
+        <div class="label">补气养阴 · 清热生津</div>
+        <div class="note">补气同时清虚热，不上火</div>
+      </div>
+    </div>
+
+    <h3>适合谁喝</h3>
+    <div class="benefit-item">
+      <div class="b-title">✓ 气虚乏力、气短懒言、面色萎黄</div>
+      <p>总感觉"气不够用"、说话没力气、脸色发黄发暗——这是典型的气虚表现，四宝茶直接补气。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 熬夜族、上班族、工作压力大</div>
+      <p>长期加班熬夜耗气伤阴，四宝茶中的西洋参清虚热，麦冬养阴，补气不上火。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 体虚易感冒、免疫力低下</div>
+      <p>黄芪固表止汗、增强免疫，减少感冒和其他疾病风险。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 产后恢复、术后调养</div>
+      <p>气血双亏的恢复期，温和补气养血，不峻不燥。</p>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ 注意事项：</strong>实热/湿热体质者（发热口渴、大便干结、口苦口干）慎用；孕妇、哺乳期妇女禁用；感冒发热期间不宜饮用。建议每日1-2次，连续饮用不超过2周后停用3-5天。
+    </div>
+
+    <div class="sales-box">
+      <h4>🍵 元气四宝茶</h4>
+      <span class="price">¥158</span>
+      <span class="price-note">/ 盒 · 5克×30袋 · 可冲30次</span>
+      <p style="margin-top:12px;font-size:14px;color:var(--ink-soft);">每天一袋，开水冲泡或养生壶煮10分钟。一盒刚好一个月。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 贰 · 黄芽汤 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰 · 温中</div>
+    <h2>黄芽汤 · 党参茯苓甘草干姜茶</h2>
+
+    <div class="product-card">
+      <div class="p-header">
+        <div class="p-icon warm">🔥</div>
+        <div>
+          <div class="p-title">黄芽汤</div>
+          <div class="p-sub">党参 · 茯苓 · 甘草 · 干姜 | 5克×30袋 | 150克/盒</div>
+        </div>
+      </div>
+      <div class="p-formula">党参 10g + 干姜 5g + 茯苓 5g + 炙甘草 5g</div>
+      <div class="p-desc">
+        黄芽汤出自清代医学家黄元御所著《四圣心源》（1753年），是书中的首要汤方。黄元御是乾隆皇帝的御医，乾隆皇帝亲书"妙悟岐黄"褒奖其学识。"黄"代表脾胃在五行中的颜色，"芽"寓意破土而出的新生力量——这碗汤的核心就是：温养脾胃，让中焦重新"发芽"。
+      </div>
+    </div>
+
+    <div class="quote">
+      2025年3月，国家卫健委举行新闻发布会，河南省中医院吕沛宛主任医师向大家推荐的第一道体重管理食养方，就是"黄芽汤代茶饮"。
+      <span class="src">—— 国家卫健委新闻发布会，2025年3月</span>
+    </div>
+
+    <h3>四味配伍智慧</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="val">党参</div>
+        <div class="label">君药 · 补中益气</div>
+        <div class="note">夯实脾胃运化动力</div>
+      </div>
+      <div class="card">
+        <div class="val green">干姜</div>
+        <div class="label">温阳 · 温中散寒</div>
+        <div class="note">为脾胃"添温助运"</div>
+      </div>
+      <div class="card">
+        <div class="val teal">茯苓</div>
+        <div class="label">渗湿 · 健脾利水</div>
+        <div class="note">排出湿浊，"补而不滞"</div>
+      </div>
+      <div class="card">
+        <div class="val purple">甘草</div>
+        <div class="label">调和 · 补脾益气</div>
+        <div class="note">缓和干姜燥烈，协调全方</div>
+      </div>
+    </div>
+
+    <h3>适合谁喝</h3>
+    <div class="benefit-item">
+      <div class="b-title">✓ 脾胃虚寒、手脚冰凉、吃生冷就腹泻</div>
+      <p>干姜温中散寒，直接温暖脾胃。北京中医药大学东直门医院李春燕主治医师指出：黄芽汤通过"补、温、渗"恢复脾胃运化。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 大便黏腻粘马桶、身体沉重困乏</div>
+      <p>茯苓健脾渗湿，搭配党参形成"补而不滞、渗湿不伤正"的黄金组合，化解湿浊内阻。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 体重管理、想"轻身"的人群</div>
+      <p>国家卫健委推荐食养方。脾胃虚弱导致水湿停滞、痰浊积聚，黄芽汤调理中焦，"轻身"是机能改善的自然结果。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 秋季养胃、四季调脾</div>
+      <p>秋季需"养收护脾胃"，黄芽汤温和调补，不耗正气。药性平和，适合长期日常调理。</p>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ 注意事项：</strong>阴虚火旺者（口干咽燥、五心烦热）慎用干姜；湿热体质者（舌苔黄腻、口苦口臭）慎用；孕妇、哺乳期妇女及儿童需在医生指导下使用。服用期间忌食山楂、萝卜、佛手柑、槟榔、大蒜、酒及肥甘厚腻煎炸食物。
+    </div>
+
+    <div class="sales-box">
+      <h4>🍵 黄芽汤</h4>
+      <span class="price">¥158</span>
+      <span class="price-note">/ 盒 · 5克×30袋 · 可冲30次</span>
+      <p style="margin-top:12px;font-size:14px;color:var(--ink-soft);">每日一袋，养生壶煮沸后小火煮10-15分钟。乾隆御医的方子，今天煮给自己喝。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 叁 · 人参菊花决明子茶 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁 · 清肝</div>
+    <h2>人参菊花决明子茶</h2>
+
+    <div class="product-card">
+      <div class="p-header">
+        <div class="p-icon clear">🌿</div>
+        <div>
+          <div class="p-title">人参菊花决明子茶</div>
+          <div class="p-sub">19味药食同源大组方 | 5克×30袋 | 150克/盒</div>
+        </div>
+      </div>
+      <div class="p-formula">人参 + 菊花 + 决明子 + 枸杞 + 金银花 + 罗汉果 + 酸枣仁 + 牛蒡根 + 蒲公英 + 葛根 + 山药 + 芡实 + 茯苓 + 甘草 + 陈皮 + 大枣 + 桑葚 + 薄荷 + 金桔</div>
+      <div class="p-desc">
+        这是一款"大组方"养生茶——19味药食同源食材协同配伍，核心 trio 是人参补气、菊花清肝明目、决明子降火润肠。其余16味各司其职：枸杞桑葚补肝肾、金银花罗汉果清热利咽、酸枣仁安神、牛蒡根蒲公英排毒、葛根解酒、山药芡实健脾……一杯茶，养全身。
+      </div>
+    </div>
+
+    <h3>三大核心 + 十六味协同</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="val">人参</div>
+        <div class="label">补气固本 · 提神抗疲劳</div>
+        <div class="note">人参皂苷增强体力免疫力</div>
+      </div>
+      <div class="card">
+        <div class="val green">菊花</div>
+        <div class="label">清肝明目 · 疏散风热</div>
+        <div class="note">黄酮类物质缓解眼干涩</div>
+      </div>
+      <div class="card">
+        <div class="val teal">决明子</div>
+        <div class="label">降肝火 · 润肠通便</div>
+        <div class="note">蒽醌类物质促进肠道蠕动</div>
+      </div>
+      <div class="card">
+        <div class="val purple">枸杞</div>
+        <div class="label">滋补肝肾 · 益精明目</div>
+        <div class="note">枸杞多糖+玉米黄质护眼</div>
+      </div>
+    </div>
+
+    <h3>组方解析</h3>
+    <p><strong>第一层：清肝明目</strong>——菊花+决明子+枸杞，直接作用于肝，缓解眼疲劳、干涩、视力模糊。广东省中医院推荐此方用于熬夜后口干眼涩。</p>
+    <p><strong>第二层：清热解毒</strong>——金银花+罗汉果+蒲公英+薄荷，清上焦热毒，利咽润喉，适合咽痛口苦、上火长痘。</p>
+    <p><strong>第三层：补气安神</strong>——人参+酸枣仁+大枣，补气同时安神助眠，缓解心烦失眠。</p>
+    <p><strong>第四层：健脾护胃</strong>——山药+芡实+茯苓+甘草+陈皮，护住中焦，避免寒凉伤脾。</p>
+    <p><strong>第五层：排毒解酒</strong>——葛根+牛蒡根+桑葚，加速代谢，适合应酬多、饮酒频繁的人群。</p>
+
+    <h3>适合谁喝</h3>
+    <div class="benefit-item">
+      <div class="b-title">✓ 长期用眼、眼干涩疲劳（学生/上班族/程序员）</div>
+      <p>菊花+决明子+枸杞三重护眼，缓解屏幕蓝光导致的视疲劳。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 熬夜党、心肝火旺、口苦咽干</div>
+      <p>"人卧则血归于肝"——熬夜伤肝，人参补气、菊花决明子清肝，把耗掉的补回来。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 应酬多、饮酒频繁</div>
+      <p>葛根解酒毒、蒲公英利肝胆、牛蒡根排毒，酒前酒后喝一杯，减轻肝脏负担。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 上火便秘、咽喉肿痛</div>
+      <p>决明子润肠通便，金银花罗汉果清热利咽，薄荷清凉解表。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">✓ 失眠多梦、心烦易怒</div>
+      <p>酸枣仁安神助眠，大枣补中益气，人参提气不耗气。</p>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ 注意事项：</strong>体质偏寒、脾胃虚寒者（易腹泻、畏寒）减少饮用频次或搭配生姜；孕妇、哺乳期妇女禁用；低血压患者慎用（人参可能影响血压）；腹泻期间不宜饮用；建议每日1杯，连续饮用不超过2周后停用3-5天。决明子不宜长期连续大量服用。
+    </div>
+
+    <div class="sales-box">
+      <h4>🍵 人参菊花决明子茶</h4>
+      <span class="price">¥158</span>
+      <span class="price-note">/ 盒 · 5克×30袋 · 可冲30次</span>
+      <p style="margin-top:12px;font-size:14px;color:var(--ink-soft);">19味大组方，一杯茶养全身。每天一袋，开水冲泡5-10分钟即可。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 肆 · 无添加烘干工艺 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆 · 工艺</div>
+    <h2>无添加烘干，锁住每一味药性</h2>
+    <p class="dropcap">养生茶好不好，配方占一半，工艺占另外一半。</p>
+    <p>市面上很多养生茶用的是传统摊晒——铺在水泥地上晒几天，靠天吃饭。阳光直射导致黄酮类、挥发油类活性成分大量流失；露天暴露带来灰尘、虫蝇污染；干了之后颜色发暗、香气散尽，只能靠香精色素"补救"。</p>
+    <p>时珍太和圣坊的三款养生茶，全部采用<strong>低温热风循环烘干</strong>工艺——从入料到出仓，全程<strong>无硫熏、无香精、无色素、无防腐剂</strong>。就是药材本来的味道。</p>
+
+    <h3>烘干 vs 摊晒：差的不止一点点</h3>
+    <table class="compare-table">
+      <tr>
+        <th>对比维度</th>
+        <th>❌ 传统摊晒</th>
+        <th>✅ 低温热风循环烘干</th>
+      </tr>
+      <tr>
+        <td><strong>干燥时间</strong></td>
+        <td>3-7天（看天吃饭）</td>
+        <td class="win">6-20小时（恒温恒湿）</td>
+      </tr>
+      <tr>
+        <td><strong>温度控制</strong></td>
+        <td>无控温，地表可达50°C+</td>
+        <td class="win">40-60°C精准控温</td>
+      </tr>
+      <tr>
+        <td><strong>黄酮保留率</strong></td>
+        <td>65%左右（热降解）</td>
+        <td class="win">90%+（《Foods》2023年研究）</td>
+      </tr>
+      <tr>
+        <td><strong>挥发油保留</strong></td>
+        <td>损失25-30%（光氧化）</td>
+        <td class="win">损失不到5%</td>
+      </tr>
+      <tr>
+        <td><strong>色泽</strong></td>
+        <td>发暗、发褐、不均匀</td>
+        <td class="win">鲜绿或自然原色</td>
+      </tr>
+      <tr>
+        <td><strong>香气</strong></td>
+        <td>淡、散，甚至霉味</td>
+        <td class="win">浓郁、纯正、层次分明</td>
+      </tr>
+      <tr>
+        <td><strong>卫生条件</strong></td>
+        <td>露天，灰尘虫蝇</td>
+        <td class="win">GMP洁净车间全封闭</td>
+      </tr>
+      <tr>
+        <td><strong>含水率</strong></td>
+        <td>不稳，易回潮发霉</td>
+        <td class="win">稳定≤8%，独立密封袋</td>
+      </tr>
+    </table>
+
+    <div class="quote">
+      MDPI期刊《Foods》（2023）发表的对比研究表明：低温热风干燥（40°C）的茶品，其总抗氧化能力（FRAP、DPPH、ABTS三种测定法）和对α-葡萄糖苷酶的抑制活性，均显著优于传统日光摊晒。黄酮、多酚等核心活性物质保留率高出20-30%。
+      <span class="src">—— MDPI Foods, 2023, 12(9):1913</span>
+    </div>
+
+    <h3>四种"不添加"</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="val green">无硫熏</div>
+        <div class="label">不熏硫磺护色防虫</div>
+        <div class="note">用温度杀灭细菌虫卵，不用化学熏蒸</div>
+      </div>
+      <div class="card">
+        <div class="val teal">无香精</div>
+        <div class="label">香气来自药材本身</div>
+        <div class="note">低温锁鲜，打开袋子闻到的是真药香</div>
+      </div>
+      <div class="card">
+        <div class="val purple">无色素</div>
+        <div class="label">汤色来自天然溶出</div>
+        <div class="note">黄芽汤微黄、四宝茶淡金、菊花茶浅绿</div>
+      </div>
+      <div class="card">
+        <div class="val">无防腐</div>
+        <div class="label">含水率≤8% + 密封包装</div>
+        <div class="note">物理保鲜，不是靠添加剂堆出来的</div>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="big">
+        <em>烘干</em>不是可有可无的步骤——<br>
+        它决定了你打开袋子闻到的，是<em>药香</em>还是<em>霉味</em>；<br>
+        泡出来的汤色，是<em>天然溶出</em>还是<em>色素兑水</em>。
+      </div>
+    </div>
+
+    <p>还有一个容易被忽略的细节：时珍太和圣坊的三款茶全部采用<strong>独立小袋密封包装</strong>（5克/袋），每袋拆封即冲，其余继续密封。不像大袋散装茶，打开一次，剩下的天天跟空气接触，一个月下来，有效成分已经氧化降解了一大半。</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 伍 · 三款对比 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍 · 怎么选</div>
+    <h2>三款茶，你适合哪一款？</h2>
+
+    <table class="compare-table">
+      <tr>
+        <th>对比项</th>
+        <th>元气四宝茶</th>
+        <th>黄芽汤</th>
+        <th>人参菊花决明子茶</th>
+      </tr>
+      <tr>
+        <td><strong>核心方向</strong></td>
+        <td class="highlight">补气养阴</td>
+        <td class="highlight">温中健脾</td>
+        <td class="highlight">清肝明目</td>
+      </tr>
+      <tr>
+        <td><strong>配方来源</strong></td>
+        <td>现代中医经典方<br><small>瑞金医院推荐</small></td>
+        <td>清代《四圣心源》<br><small>乾隆御医黄元御</small></td>
+        <td>传统清肝明目方<br><small>19味大组方</small></td>
+      </tr>
+      <tr>
+        <td><strong>味数</strong></td>
+        <td>4味</td>
+        <td>4味</td>
+        <td>19味</td>
+      </tr>
+      <tr>
+        <td><strong>性味</strong></td>
+        <td>偏温补</td>
+        <td>温热</td>
+        <td>偏寒凉</td>
+      </tr>
+      <tr>
+        <td><strong>适合体质</strong></td>
+        <td>气虚、阴虚</td>
+        <td>脾胃虚寒、湿重</td>
+        <td>肝火上炎、眼疲劳</td>
+      </tr>
+      <tr>
+        <td><strong>典型症状</strong></td>
+        <td>乏力、气短、面色差</td>
+        <td>手脚冰凉、腹泻、体沉</td>
+        <td>眼干涩、口苦、失眠</td>
+      </tr>
+      <tr>
+        <td><strong>不宜人群</strong></td>
+        <td>实热/湿热体质</td>
+        <td>阴虚火旺者</td>
+        <td>脾胃虚寒者</td>
+      </tr>
+      <tr>
+        <td><strong>规格</strong></td>
+        <td>5g×30袋</td>
+        <td>5g×30袋</td>
+        <td>5g×30袋</td>
+      </tr>
+      <tr>
+        <td><strong>价格</strong></td>
+        <td><strong>¥158/盒</strong></td>
+        <td><strong>¥158/盒</strong></td>
+        <td><strong>¥158/盒</strong></td>
+      </tr>
+    </table>
+
+    <div class="formula-box">
+      <div class="big">
+        气虚乏力 → <em>元气四宝茶</em><br>
+        脾胃虚寒 → <em class="purple">黄芽汤</em><br>
+        肝火眼累 → <em class="gold">人参菊花决明子茶</em>
+      </div>
+    </div>
+
+    <h3>也可以组合喝</h3>
+    <div class="benefit-item">
+      <div class="b-title">🌅 早晨：黄芽汤（温养脾胃，开启一天）</div>
+      <p>早上脾胃阳气初生，一杯温热的黄芽汤，帮助脾胃启动运化功能。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">☀️ 下午：元气四宝茶（补气提神，抗疲劳）</div>
+      <p>下午三点犯困？四宝茶补气养阴，比咖啡温和，不刺激神经。</p>
+    </div>
+    <div class="benefit-item">
+      <div class="b-title">🌙 晚上：人参菊花决明子茶（清肝护眼，安神助眠）</div>
+      <p>睡前两小时，菊花决明子清一天积累的肝火，酸枣仁安神，助你好眠。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 陆 · 价格与购买 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆 · 到店</div>
+    <h2>积养家 · 现货在售</h2>
+
+    <div class="sales-box">
+      <h4>时珍太和圣坊养生茶系列</h4>
+      <span class="price">¥158</span>
+      <span class="price-note">/ 盒 · 三款同价</span>
+      <p style="margin-top:16px;font-size:15px;color:var(--ink-soft);line-height:1.8;">
+        每盒30袋，每天一袋，刚好一个月。<br>
+        三盒组合 ¥450（省¥24），刚好一个季度。<br>
+        到店可先试饮，喝对了再买。
+      </p>
+    </div>
+
+    <h3>销售话术</h3>
+    <div class="sales-grid">
+      <div class="sales-card">
+        <div class="s-icon">🎁</div>
+        <div class="s-title">送爸妈</div>
+        <div class="s-desc">「爸，您不是总说胃寒吗？这个黄芽汤是乾隆御医的方子，国家卫健委都推荐了。」</div>
+      </div>
+      <div class="sales-card">
+        <div class="s-icon">💼</div>
+        <div class="s-title">送同事/朋友</div>
+        <div class="s-desc">「看你天天盯着电脑，眼睛都红了。这个菊花决明子茶，19味药材，护肝明目。」</div>
+      </div>
+      <div class="sales-card">
+        <div class="s-icon">👩</div>
+        <div class="s-title">送自己</div>
+        <div class="s-desc">「最近总觉得累，脸色也不好。元气四宝茶补补气，一盒喝一个月，每天不到五块钱。」</div>
+      </div>
+      <div class="sales-card">
+        <div class="s-icon">🍵</div>
+        <div class="s-title">组合推荐</div>
+        <div class="s-desc">「早黄芽、午四宝、晚菊花——三盒刚好一个季度，一天不到16块钱，比一杯奶茶还便宜。」</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<!-- ===== 柒 · 爱野选品 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒 · 选品</div>
+    <h2>爱野为什么选时珍太和圣坊</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="val green">✓</div>
+        <div class="label">道地产区</div>
+        <div class="note">李时珍故乡蕲春，大别山中药材资源丰富</div>
+      </div>
+      <div class="card">
+        <div class="val green">✓</div>
+        <div class="label">正统配方</div>
+        <div class="note">古方有典可依（《四圣心源》/现代中医临床）</div>
+      </div>
+      <div class="card">
+        <div class="val green">✓</div>
+        <div class="label">无添加烘干</div>
+        <div class="note">低温热风循环、无硫熏、无香精色素防腐剂</div>
+      </div>
+      <div class="card">
+        <div class="val green">✓</div>
+        <div class="label">品质背书</div>
+        <div class="note">湖北老字号、国家高新技术企业、GMP车间</div>
+      </div>
+      <div class="card">
+        <div class="val green">✓</div>
+        <div class="label">真材实料</div>
+        <div class="note">配料表干净，药材本来的味道</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      市面上的养生茶，很多是香精+色素+碎渣拼凑的。时珍太和圣坊的这三款茶，配方有典籍支撑、产地有地理标志、生产有GMP认证——这才是真正能喝出效果的茶。
+      <span class="src">—— 爱野选品标准</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 收尾 ===== -->
+<div class="ending">
+  <div class="aiye">爱野 GIARDINO VERDE</div>
+  <div class="motto">医圣故里一杯茶 · 古方今饮养今人</div>
+  <p style="margin-top:20px;font-size:13px;color:#9C8B72;">时珍太和圣坊 · 湖北蕲春</p>
+</div>
+
+</body>
+</html>

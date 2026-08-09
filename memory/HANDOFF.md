@@ -1,13 +1,13 @@
 # Handoff
 
-Updated: 2026-08-08
+Updated: 2026-08-09
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020E-gateway-real-import`, based on completed TASK-020D commit `7036a2a`.
-- Current task status: `TASK-020E DONE / READY_FOR_DEMO`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Current branch: `task/TASK-020F-aiye-product-knowledge-v22`.
+- Current task status: `TASK-020F DONE / PRODUCTION_PUBLISHED`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
 - Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
@@ -33,6 +33,16 @@ Updated: 2026-08-08
 - TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
 - TASK-020D: DONE. The explicitly authorized v2.1 JSON is tracked under `knowledge-public/v2.1/`; production was backed up and re-imported in 50+15 batches with real Doubao Embedding. Final 80-case current-policy acceptance is 100%, sources are complete and draft leaks are 0.
 - TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
+- TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Public HTTPS remains a separate TASK-014H blocker.
+
+## TASK-020F package and production rollback
+
+- Employee/public package: `knowledge-public/v2.2/README.md`.
+- Source archive: `knowledge-public/v2.2/sources/aiye-foods/` (25 HTML files with hashes in `manifest.json`).
+- Import order: `import_batch_01.json` through `import_batch_05.json`; do not submit `import_all.json` to the Gateway.
+- Production SQLite/FAISS: `/opt/jiyangjia-ai/current/var/knowledge/jiyangjia.db` and `faiss.index`.
+- Production rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`.
+- Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 ## TASK-020E runtime and rollback
 
@@ -135,7 +145,7 @@ Updated: 2026-08-08
 
 ## Next action
 
-Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
+Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published v2.2 demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
 
 ## Safety boundaries
 

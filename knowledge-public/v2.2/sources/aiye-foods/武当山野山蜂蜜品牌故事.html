@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悬在树梢的甜 · 武当山野山蜂蜜 | 爱野</title>
+<style>
+  :root{
+    --ink:#3E2F23;
+    --ink-soft:#6B5846;
+    --paper:#FAF6EF;
+    --paper-2:#F3EBDD;
+    --honey:#C98A2D;
+    --honey-deep:#A96F1E;
+    --honey-light:#F5D98E;
+    --leaf:#5C6B4F;
+    --line:rgba(62,47,35,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hex-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.45;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 2l24 14v28L28 58 4 44V16z' fill='none' stroke='%23C98A2D' stroke-opacity='0.10' stroke-width='1'/%3E%3Cpath d='M28 34l24 14v28L28 90 4 76V48z' fill='none' stroke='%23C98A2D' stroke-opacity='0.10' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:56px 96px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--honey-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--honey);opacity:.5;}
+  .cover h1{font-size:clamp(40px,8vw,64px);font-weight:600;letter-spacing:.12em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--honey-deep);}
+  .cover .meta{margin-top:64px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  .mountains{margin-top:56px;width:min(560px,90%);opacity:.9;}
+  .scroll-hint{margin-top:40px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--honey-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--honey-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--honey);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(19px,3.5vw,24px);font-weight:600;letter-spacing:.06em;margin-bottom:20px;color:var(--honey-deep);}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--honey-deep);font-weight:600;
+  }
+  .quote{
+    margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--honey);
+    font-size:clamp(16px,3vw,18px);color:var(--ink);font-style:normal;border-radius:0 14px 14px 0;
+  }
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;font-style:normal;}
+
+  /* 蜂巢网格卡片 */
+  .honey-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:36px 0;}
+  .h-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .h-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(62,47,35,.08);}
+  .h-card .num{font-size:12px;letter-spacing:.3em;color:var(--honey-deep);margin-bottom:12px;display:block;}
+  .h-card h3{font-size:17px;font-weight:600;margin-bottom:10px;letter-spacing:.04em;color:var(--ink);}
+  .h-card p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 营养数据大卡片（4列2行） */
+  .data-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:36px 0;}
+  .d-card{background:linear-gradient(160deg,var(--paper-2),var(--paper));border:1px solid var(--line);border-radius:16px;padding:24px 16px;text-align:center;transition:transform .25s ease;}
+  .d-card:hover{transform:translateY(-4px);}
+  .d-card .d-val{font-size:clamp(22px,4vw,32px);font-weight:700;color:var(--honey-deep);line-height:1.2;margin-bottom:6px;}
+  .d-card .d-unit{font-size:11px;color:#A7947E;letter-spacing:.15em;margin-bottom:10px;}
+  .d-card .d-label{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+
+  /* 食用方式卡片 */
+  .eat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:36px 0;}
+  .eat-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:transform .25s ease;}
+  .eat-card:hover{transform:translateY(-3px);}
+  .eat-card .emoji{font-size:32px;flex-shrink:0;line-height:1.2;}
+  .eat-card .eat-info h4{font-size:16px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .eat-card .eat-info p{font-size:13px;color:var(--ink-soft);line-height:1.7;margin:0;}
+
+  /* 对比表 */
+  .comp-table{width:100%;border-collapse:collapse;margin:36px 0;font-size:14px;}
+  .comp-table th{background:var(--honey-deep);color:#fff;padding:14px 10px;font-weight:500;letter-spacing:.06em;text-align:center;font-size:13px;}
+  .comp-table th:first-child{border-radius:10px 0 0 0;}
+  .comp-table th:last-child{border-radius:0 10px 0 0;}
+  .comp-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;color:var(--ink-soft);}
+  .comp-table td:first-child{font-weight:600;color:var(--ink);text-align:left;padding-left:16px;}
+  .comp-table tr:last-child td:first-child{border-radius:0 0 0 10px;}
+  .comp-table tr:last-child td:last-child{border-radius:0 0 10px 0;}
+  .comp-table .win{color:var(--honey-deep);font-weight:600;}
+  .comp-table .lose{color:#A7947E;}
+
+  /* 产量强调块 */
+  .yield-box{
+    margin:44px 0;padding:44px 36px;text-align:center;
+    background:linear-gradient(160deg,rgba(201,138,45,.08),rgba(201,138,45,.02));
+    border:1px solid rgba(201,138,45,.25);border-radius:18px;
+  }
+  .yield-box .big-num{font-size:clamp(44px,8vw,64px);font-weight:700;color:var(--honey-deep);line-height:1.1;}
+  .yield-box .big-sub{font-size:15px;color:var(--ink-soft);margin-top:8px;letter-spacing:.08em;}
+  .yield-range{display:flex;justify-content:center;gap:60px;margin-top:30px;flex-wrap:wrap;}
+  .yield-range .yr{text-align:center;}
+  .yield-range .yr .yr-num{font-size:28px;font-weight:700;color:var(--honey-deep);}
+  .yield-range .yr .yr-label{font-size:12px;color:#A7947E;letter-spacing:.12em;margin-top:4px;}
+
+  /* 分隔符 */
+  .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:70px 0 0;color:var(--honey);}
+  .divider svg{width:14px;height:14px;opacity:.7;}
+
+  /* 尾声 */
+  .ending{
+    margin:70px 0 20px;padding:60px 36px;text-align:center;
+    background:linear-gradient(160deg,#F3EBDD 0%,#FAF6EF 100%);
+    border:1px solid var(--line);border-radius:20px;
+  }
+  .ending .honey-drop{width:52px;height:52px;margin:0 auto 26px;}
+  .ending p{font-size:clamp(16px,3vw,19px);letter-spacing:.06em;line-height:2.1;margin-bottom:16px;}
+  .ending .sign{font-size:13px;letter-spacing:.4em;color:var(--honey-deep);margin-top:30px;}
+  .ending .sign::before,.ending .sign::after{content:"";display:inline-block;width:26px;height:1px;background:var(--honey);vertical-align:middle;margin:0 12px;opacity:.55;}
+
+  /* 爱野标准对照 */
+  .std-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:36px 0;}
+  .std-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px;align-items:flex-start;}
+  .std-card .std-icon{font-size:26px;flex-shrink:0;}
+  .std-card .std-info h4{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .std-card .std-info p{font-size:13px;color:var(--ink-soft);line-height:1.7;margin:0;}
+
+  footer{padding:50px 0 70px;text-align:center;font-size:12px;color:#A7947E;letter-spacing:.28em;line-height:2.2;}
+  footer .foot-brand{color:var(--ink-soft);}
+
+  @media (max-width:640px){
+    .data-grid{grid-template-columns:repeat(2,1fr);}
+    .eat-grid{grid-template-columns:1fr;}
+    .std-grid{grid-template-columns:1fr;}
+    .yield-range{gap:36px;}
+  }
+  @media (max-width:520px){
+    .cover{min-height:88vh;}
+    section{padding:64px 0 10px;}
+    .quote{padding:26px 20px;}
+    .ending{padding:44px 22px;}
+    .yield-box{padding:32px 22px;}
+  }
+</style>
+</head>
+<body>
+<div class="hex-bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="wrap">
+    <div class="brand">爱野 · 天然食材</div>
+    <h1>悬在树梢的甜</h1>
+    <p class="sub">武当山 <span>·</span> 野山百花蜜</p>
+    <svg class="mountains" viewBox="0 0 560 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 118 L90 40 L150 84 L230 18 L320 96 L390 52 L470 88 L560 30 L560 120 L0 120 Z" fill="#D8CCB6"/>
+      <path d="M0 118 L110 74 L190 104 L300 60 L400 108 L480 88 L560 104 L560 120 L0 120 Z" fill="#C9BCA1" opacity=".8"/>
+      <circle cx="230" cy="18" r="3.5" fill="#C98A2D"/>
+      <circle cx="470" cy="88" r="3" fill="#C98A2D"/>
+      <circle cx="390" cy="52" r="2.5" fill="#C98A2D"/>
+    </svg>
+    <div class="meta">一年一取 · 攀树采撷 · 深山原蜜</div>
+    <div class="scroll-hint">往下看，听一个故事<span class="arr">▼</span></div>
+  </div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序 章</div>
+    <h2>进山</h2>
+    <p class="lead">从武当山山门往里走，路就开始爬山。</p>
+    <p>车越走越窄，林子越来越密，海拔一点点往上抬，空气里草木的凉意也一点点浓起来。手机信号从两格掉到一格，最后彻底消失——这反倒让人安心：连信号都进不来的地方，蜜蜂才过得自在。</p>
+    <p>这一次进山，不为别的，就为一罐<span style="color:var(--honey-deep);">挂在树上的蜜</span>。</p>
+  </div>
+  <div class="wrap"><div class="divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.5 6.5L22 9.3l-5 4.9 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.3l6.5-.8z"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.5 6.5L22 9.3l-5 4.9 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.3l6.5-.8z"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.5 6.5L22 9.3l-5 4.9 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.3l6.5-.8z"/></svg>
+  </div></div>
+</section>
+
+<!-- ===== 壹 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>蜜，长在树上</h2>
+    <p class="dropcap">在山里转了大半日，终于到了蜂场。抬头的一瞬间，人有点愣住——那不是整齐排列在地上的蜂箱，而是一只只蜂巢，稳稳悬在老树的枝桠间，离地十几米高。</p>
+    <p>为什么要挂到那么高的地方？山里人说得简单：树高了，风能吹到，阳光能晒到，人烟和野兽都够不着。蜜蜂在高处自由来去，采的是深山野花，不受半点干扰。蜜，自然就纯。</p>
+    <p>这些蜂巢不是工厂批量生产的塑料蜂箱，是农户用树干挖空、模仿土蜂天然巢穴做出来的。中华土蜂就认这个——它们体型小，只在树洞里、岩壁缝隙间安家，人造的塑料箱子，它们不待。</p>
+    <div class="quote">
+      「蜜蜂在山里飞，采的从来不是一两种花。武当山植被深，野花杂而密——今天落在山茶上，明天掠过野菊，后天在山茱萸上停一停。酿出来的蜜，带着整座山的味道。」
+      <span class="src">—— 山中老蜂农</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 采蜜的人 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>采蜜的人</h2>
+    <p class="dropcap">取蜜这天，是要靠爬的。</p>
+    <p>没有机械，没有索道，没有任何现代化工具。蜂农就靠一架竹梯——有时候连竹梯都够不着，就得徒手攀上去。一棵树一棵树地爬，一座山一座山地翻，几十个蜂巢散落在不同的山头、不同的树上，没有路，全是走出来的。</p>
+    <p>到了树冠，人要一只脚踩在枝桠上保持平衡，一只手扶住树干，另一只手小心翼翼取下蜜脾。脚下十几米是山石，风一吹树一晃，手心全是汗。割开蜡盖的那一刻，琥珀色的蜜顺着蜂巢缓缓往下淌——那股香味，瞬间炸开，人在树上都能闻得清清楚楚。</p>
+    <p>取下来的蜜脾，从树上一点点吊下去。地上的人拿盆接住，再沿着山路，一步步背出山。山路陡，一不留神就滑一跤，没人敢大意——这一罐蜜，等了整整一年，洒了一滴都心疼。</p>
+    <p style="color:var(--ink-soft);">一年四季，蜂农与树为伴。攀上去的是人，采下来的是蜜，托住的，是一家人对自然的敬畏。</p>
+  </div>
+</section>
+
+<!-- ===== 叁 产量 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>看天吃饭的甜</h2>
+    <p class="dropcap">很多人以为，一窝蜜蜂，一年总能产不少蜜。山里人听了只会摇头。</p>
+    <p>武当山的野山蜂蜜，一年的产量——不是看人，是看天。</p>
+    <div class="yield-box">
+      <div class="big-num">看天吃饭</div>
+      <div class="big-sub">同一个蜂巢，每年产量天差地别</div>
+      <div class="yield-range">
+        <div class="yr">
+          <div class="yr-num">10斤+</div>
+          <div class="yr-label">好年份 · 花开得盛</div>
+        </div>
+        <div class="yr">
+          <div class="yr-num">3-5斤</div>
+          <div class="yr-label">一般年份 · 雨水尚可</div>
+        </div>
+        <div class="yr">
+          <div class="yr-num">不足1斤</div>
+          <div class="yr-label">差年份 · 花开得稀</div>
+        </div>
+      </div>
+    </div>
+    <p>花多的时候，蜜蜂忙得团团转，一箱能产十来斤。遇到倒春寒、花期雨水太多、山上野花没开好的年份——蜜蜂采不到花，酿不出蜜，一整年的等待，可能连一斤都凑不够。所以它不是工厂里按配方批量生产的甜，它是大山给的，给多少全看缘分。</p>
+    <p>蜂农也不多取——每次只割一部分，留足给蜜蜂过冬的口粮。山里有山里的规矩：<span style="color:var(--honey-deep);">你善待蜂，蜂才善待你。</span>这是千百年来传下来的道理，比什么标准都管用。</p>
+  </div>
+</section>
+
+<!-- ===== 肆 营养 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>浓缩的天然药库</h2>
+    <p class="lead">李时珍在《本草纲目》中把土蜂蜜称为"百花丹"，说它"安五脏之不足，益气补中、止痛解毒，除众病、和百药，久服强志轻身，不老延年"。这不是文学修辞——现代科学已经证实了其中的道理。</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <div class="d-val">70%+</div>
+        <div class="d-unit">葡萄糖 + 果糖</div>
+        <div class="d-label">天然单糖，无需消化直接吸收，快速补充能量</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">180+</div>
+        <div class="d-unit">种活性物质</div>
+        <div class="d-label">有机酸、多酚、酶、黄酮、微量元素等</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">高活性</div>
+        <div class="d-unit">天然酶系</div>
+        <div class="d-label">淀粉酶、转化酶、葡萄糖氧化酶、过氧化氢酶</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">20+</div>
+        <div class="d-unit">种氨基酸</div>
+        <div class="d-label">含人体必需氨基酸，牛磺酸促进大脑发育</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">丰富</div>
+        <div class="d-unit">维生素群</div>
+        <div class="d-label">维生素B₁/B₂/B₆/C/K、叶酸、烟酸等</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">丰富</div>
+        <div class="d-unit">矿物质</div>
+        <div class="d-label">钙、磷、钾、镁、铁、锌、硒等微量元素</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">天然</div>
+        <div class="d-unit">抑菌因子</div>
+        <div class="d-label">过氧化氢 + 高渗透压 + 酸性环境，天然防腐</div>
+      </div>
+      <div class="d-card">
+        <div class="d-val">零添加</div>
+        <div class="d-unit">无任何加工</div>
+        <div class="d-label">不浓缩、不掺糖、不过滤、不添加任何东西</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 好处 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>这一口甜，究竟好在哪</h2>
+    <p class="lead">土蜂蜜之所以被称为"蜜之珍品"，不只是因为产量少——更是因为它对身体的益处，远远超出普通蜂蜜。</p>
+    <div class="honey-grid">
+      <div class="h-card">
+        <span class="num">壹</span>
+        <h3>快速补充能量</h3>
+        <p>葡萄糖和果糖是天然单糖，无需消化，直接进入血液转化为能量。晨起一勺、运动后一杯蜂蜜水，比任何功能饮料都天然。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">贰</span>
+        <h3>润肠通便</h3>
+        <p>丰富的活性酶和益生菌促进肠胃蠕动，果糖在肠道形成渗透效应软化大便。《本草纲目》称其"润滑胃肠"，对习惯性便秘尤其温和有效。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">叁</span>
+        <h3>改善睡眠</h3>
+        <p>蜂蜜中的葡萄糖、维生素、牛磺酸及镁、磷、钙能调节植物神经，提高血液含氧量。睡前一杯温蜂蜜水，帮助身体自然进入放松状态。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">肆</span>
+        <h3>养肝护肝</h3>
+        <p>单糖不经过肝脏加工直接入血，减轻肝脏负担。丰富的氨基酸和有机酸促进肝细胞修复，长期适量食用对肝脏有保护作用。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">伍</span>
+        <h3>天然抗氧化</h3>
+        <p>多酚类、黄酮类化合物和维生素C协同清除自由基，延缓细胞氧化。土蜂蜜蜜源越杂、花越多，抗氧化活性越强。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">陆</span>
+        <h3>增强免疫力</h3>
+        <p>含天然抑菌因子（过氧化氢），对大肠杆菌、链球菌等十几种细菌有抑制作用。活性酶和微量元素协同提升机体抗病能力。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">柒</span>
+        <h3>舒缓咽喉</h3>
+        <p>质地黏稠的蜂蜜在咽喉黏膜形成天然保护膜，缓解干燥刺痒。糖分刺激唾液分泌，进一步湿润咽喉。嗓子不舒服时含一勺，比喉糖温和得多。</p>
+      </div>
+      <div class="h-card">
+        <span class="num">捌</span>
+        <h3>美容养颜</h3>
+        <p>丰富的氨基酸、维生素和抗氧化物质促进皮肤代谢，改善气色。《神农本草经》记载"久服强志轻身，不老延年"，民间称其为"内服的护肤品"。</p>
+      </div>
+    </div>
+    <div class="quote">
+      「土蜂蜜不是药，但它比任何保健品都诚实——山里有什么花，蜜里就有什么营养。不加不减，不多不少。」
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 口感 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>香气扑鼻，甜而不苦</h2>
+    <p class="dropcap">打开罐子的第一秒，你就知道它不一样。</p>
+    <p>普通超市蜂蜜打开，顶多闻到一股淡淡的甜味。这罐武当山百花蜜不一样——罐盖拧开的瞬间，整座山的味道"轰"一下涌出来。是花香，但不是某一种花，是几十种野花叠在一起的复合香气，浓烈、立体、有层次。你甚至能分辨出里面有一丝山茶的清冽、一缕野菊的甘爽、一脉荆条的暖甜。</p>
+    <p>舀一勺入口——第一感觉是<span style="color:var(--honey-deep);">甜，非常甜</span>，但和白糖、果糖的甜完全不一样。它是润的、醇的，顺着喉咙滑下去，不会发苦、不会齁嗓子、不会反酸。咽下去之后，嘴里留下的是花香的回甘，而不是工业糖浆那种黏腻的余味。</p>
+    <p>为什么？因为百花蜜里的葡萄糖和果糖比例天然平衡——葡萄糖提供甜度的"爆发力"，果糖负责"后劲"和回甘。人工勾兑的糖浆永远调不出这个比例，那是大自然给蜜蜂的配方，蜜蜂用它酿了上亿年，早就打磨到了极致。</p>
+    <p style="color:var(--ink-soft);">而且，正因为它是百花蜜、不是单一花蜜，其中丰富的活性酶和有机酸让甜味变得柔和、好吸收。入口不腻，入胃不烧，老人小孩都能放心吃。</p>
+  </div>
+</section>
+
+<!-- ===== 柒 怎么吃 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>一罐蜜，八般吃法</h2>
+    <p class="lead">好蜜不该被"一杯蜂蜜水"框住。它可以出现在你一天的任何时刻、任何食物上——每一种吃法，都是惊喜。</p>
+    <div class="eat-grid">
+      <div class="eat-card">
+        <span class="emoji">🍞</span>
+        <div class="eat-info">
+          <h4>抹面包 / 蘸馒头</h4>
+          <p>烤一片全麦面包，趁热抹一层野山蜂蜜。面包的麦香撞上蜂蜜的花香，比任何果酱都高级。白馒头掰开蘸一蘸，朴实却惊艳。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🥛</span>
+        <div class="eat-info">
+          <h4>温水冲饮（40℃以下）</h4>
+          <p>一勺蜜 + 一杯温水（不超过40℃，沸水会杀死活性酶），晨起空腹一杯唤醒肠胃，睡前一小时一杯帮助安神入睡。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🍋</span>
+        <div class="eat-info">
+          <h4>蜂蜜柠檬水</h4>
+          <p>两片鲜柠檬 + 一勺蜂蜜 + 温水，酸甜清润。夏天加冰，冬天喝暖的，家里来客人的时候端一杯，比饮料体面太多。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🥗</span>
+        <div class="eat-info">
+          <h4>拌酸奶 / 淋沙拉</h4>
+          <p>无糖酸奶加一勺蜜，瞬间高级。蔬菜沙拉用蜂蜜代替沙拉酱，甜得清爽不腻口。凉拌西红柿淋上蜂蜜，酸甜层次翻倍。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🍓</span>
+        <div class="eat-info">
+          <h4>蘸水果</h4>
+          <p>草莓、香蕉、苹果切片，蘸一点蜂蜜吃——水果的酸甜被蜂蜜包裹，孩子抢着吃。而且比蘸白糖健康太多。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🥞</span>
+        <div class="eat-info">
+          <h4>淋松饼 / 华夫饼</h4>
+          <p>周末早上一份热松饼，淋上野山蜂蜜，再摆几颗蓝莓。拍照发朋友圈，不输网红早午餐店。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🍵</span>
+        <div class="eat-info">
+          <h4>调茶饮 / 甜品</h4>
+          <p>红茶、绿茶、花茶里加半勺蜂蜜替代白糖，茶的苦涩被蜂蜜圆润包裹，口感温柔。银耳羹、莲子汤煮好后淋一勺，甜得恰到好处。</p>
+        </div>
+      </div>
+      <div class="eat-card">
+        <span class="emoji">🥄</span>
+        <div class="eat-info">
+          <h4>直接含服</h4>
+          <p>嗓子干痒的时候，舀小半勺直接含在嘴里，让蜜慢慢融化、从喉咙滑下去。比喉糖舒服，比药水好喝。这是最简单、也最奢侈的吃法。</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:32px;color:var(--ink-soft);font-size:14px;text-align:center;">每日建议：成人20-30g（约1-2勺），儿童减半。一岁以下婴儿请勿食用蜂蜜。</p>
+  </div>
+</section>
+
+<!-- ===== 捌 对比 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">捌</div>
+    <h2>它和超市里的蜜，不一样</h2>
+    <p class="lead">很多人觉得蜂蜜都一样——甜就行了。但土蜂蜜和市面普通蜂蜜的差距，是本质上的。</p>
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr><th>对比维度</th><th>武当山野山百花蜜</th><th>市面普通洋蜂蜜</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>蜂种</td><td class="win">中华土蜂（本土野生蜂）</td><td class="lose">意大利蜂（引进外来种）</td></tr>
+          <tr><td>蜜源</td><td class="win">深山百花 · 百种野花随机采</td><td class="lose">单一花种追花采蜜</td></tr>
+          <tr><td>酿蜜周期</td><td class="win">一整年 · 充分成熟</td><td class="lose">7-15天 · 快速周转</td></tr>
+          <tr><td>含水量</td><td class="win">极低 · 挂勺不滴 · 稠厚</td><td class="lose">偏高 · 流动性强 · 偏稀</td></tr>
+          <tr><td>活性酶含量</td><td class="win">极高 · 未加工 · 天然保留</td><td class="lose">低 · 浓缩加热后大量损失</td></tr>
+          <tr><td>加工方式</td><td class="win">零加工 · 从蜂巢直接入罐</td><td class="lose">浓缩/过滤/巴氏杀菌</td></tr>
+          <tr><td>香气</td><td class="win">浓郁复合花香 · 层次丰富</td><td class="lose">单一甜味 · 花香气淡</td></tr>
+          <tr><td>产量</td><td class="win">极少 · 看天吃饭</td><td class="lose">极大 · 工业化量产</td></tr>
+          <tr><td>抗生素</td><td class="win">零 · 土蜂抗病力强</td><td class="lose">可能 · 意蜂需喂药防病</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:24px;color:var(--ink-soft);font-size:14px;">一句话总结：洋蜂蜜是"工业品"，土蜂蜜是"大自然的限量版"。一个追求效率，一个尊重时间。</p>
+  </div>
+</section>
+
+<!-- ===== 玖 爱野标准 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">玖</div>
+    <h2>爱野四重标准</h2>
+    <p class="dropcap">我们做天然食材，就认一条死理：是真的，是天然的，是能说清楚来路的。</p>
+    <div class="std-grid">
+      <div class="std-card">
+        <span class="std-icon">🏔️</span>
+        <div class="std-info">
+          <h4>原产地直采</h4>
+          <p>武当山高海拔蜂场，亲眼看着蜂农爬上树取的蜜。没有中间商，没有转手环节。</p>
+        </div>
+      </div>
+      <div class="std-card">
+        <span class="std-icon">🐝</span>
+        <div class="std-info">
+          <h4>纯天然零添加</h4>
+          <p>从蜂巢到罐子，不浓缩、不掺糖、不过滤、不添加任何东西。山里是什么样，罐子里就是什么样。</p>
+        </div>
+      </div>
+      <div class="std-card">
+        <span class="std-icon">🌿</span>
+        <div class="std-info">
+          <h4>生态友善</h4>
+          <p>只取一部分蜜，留足蜜蜂过冬口粮。不破坏蜂巢、不伤害蜂群，山里的规矩比认证更重要。</p>
+        </div>
+      </div>
+      <div class="std-card">
+        <span class="std-icon">📜</span>
+        <div class="std-info">
+          <h4>全程可溯源</h4>
+          <p>每一罐都能说清：哪座山头、哪位蜂农、哪一年取的。不是讲故事——是真的能走回去看。</p>
+        </div>
+      </div>
+    </div>
+    <p>这罐蜜，是我们亲眼看着蜂农爬上树取的。对山、对蜂、对人，我们信得过。</p>
+  </div>
+</section>
+
+<!-- ===== 尾声 ===== -->
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="ending">
+      <svg class="honey-drop" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 2 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-7-13-7-13z" fill="#C98A2D"/>
+        <ellipse cx="12" cy="15.5" rx="3.4" ry="2.6" fill="#FAF6EF" opacity=".55"/>
+      </svg>
+      <p>现在，这一口甜，要从武当山出发了。<br>它爬过了一棵棵树，翻过了一座座山，<br>等过了一整年的风吹日晒，才到你手上。</p>
+      <p>愿你打开这罐蜜的时候，<br>尝到的，是山的样子。</p>
+      <div class="sign">爱 野</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">爱野有限公司 · 天然食材</div>
+  <div>原生 · 天然 · 真实 · 可溯源</div>
+</footer>
+
+</body>
+</html>

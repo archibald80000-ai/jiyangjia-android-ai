@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一滴足矣，何须他物 · 金华古法酱油 | 爱野</title>
+<style>
+  :root{
+    --ink:#3B3028;
+    --ink-soft:#6E5E4A;
+    --paper:#F8F3EA;
+    --paper-2:#EEE3D2;
+    --soy:#8B4513;
+    --soy-deep:#5C2D0A;
+    --soy-light:#C4956A;
+    --sauce:#B8652A;
+    --sauce-light:#E8C9A0;
+    --leaf:#5C6B4F;
+    --line:rgba(59,48,40,.13);
+    --card:#EDE2D1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 背景纹理 */
+  .vat-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Ccircle cx='35' cy='35' r='24' fill='none' stroke='%238B4513' stroke-opacity='0.06' stroke-width='1.1'/%3E%3Ccircle cx='35' cy='35' r='15' fill='none' stroke='%238B4513' stroke-opacity='0.04' stroke-width='.8'/%3E%3C/svg%3E");
+    background-size:70px 70px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--soy-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--soy);opacity:.5;}
+  .cover h1{font-size:clamp(34px,7vw,54px);font-weight:600;letter-spacing:.1em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--soy-deep);}
+  .cover .meta{margin-top:60px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  /* 酱缸断面图 */
+  .vat-svg{margin-top:50px;width:min(340px,76%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--soy-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--soy-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--soy);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--soy-deep);font-weight:600;
+  }
+  .quote{
+    margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--soy);
+    font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;
+  }
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  /* 工艺步骤 */
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--soy);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 数据卡 */
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(59,48,40,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--soy-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card .desc{font-size:14px;color:var(--ink-soft);margin-top:6px;line-height:1.7;}
+
+  /* 品级对比表 */
+  .grade-compare{margin:36px 0;overflow-x:auto;}
+  .grade-compare table{width:100%;border-collapse:collapse;font-size:14px;}
+  .grade-compare th{background:var(--soy-deep);color:#F8F3EA;padding:14px 16px;text-align:left;font-size:13px;letter-spacing:.12em;}
+  .grade-compare th:first-child{border-radius:12px 0 0 0;}
+  .grade-compare th:last-child{border-radius:0 12px 0 0;}
+  .grade-compare td{padding:13px 16px;border-bottom:1px solid var(--line);color:var(--ink);}
+  .grade-compare tr:nth-child(even) td{background:rgba(139,69,19,.04);}
+  .grade-compare tr:last-child td:first-child{border-radius:0 0 0 12px;}
+  .grade-compare tr:last-child td:last-child{border-radius:0 0 12px 0;}
+  .grade-compare .hi{color:var(--soy-deep);font-weight:600;}
+
+  /* 好处列表 */
+  .benefit-list{margin:36px 0;}
+  .b-item{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding:20px 22px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);}
+  .b-item .bn{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--soy);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;}
+  .b-item h4{font-size:16px;font-weight:600;margin-bottom:5px;letter-spacing:.03em;}
+  .b-item p{font-size:14px;color:var(--ink-soft);line-height:1.75;margin:0;}
+
+  /* 品级双卡 */
+  .grade-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin:36px 0;}
+  .g-card{background:var(--paper-2);border:2px solid var(--line);border-radius:16px;padding:30px 26px;transition:transform .25s ease,box-shadow .25s ease;position:relative;overflow:hidden;}
+  .g-card:hover{transform:translateY(-4px);box-shadow:0 16px 35px rgba(59,48,40,.1);}
+  .g-card.premium{border-color:var(--soy);}
+  .g-card .gbadge{display:inline-block;font-size:11px;letter-spacing:.25em;padding:4px 14px;border-radius:20px;margin-bottom:18px;}
+  .g-card.premium .gbadge{background:var(--soy-deep);color:#F8F3EA;}
+  .g-card.classic .gbadge{background:var(--ink-soft);color:#F8F3EA;}
+  .g-card .gname{font-size:24px;font-weight:600;margin-bottom:10px;letter-spacing:.06em;}
+  .g-card .gperiod{font-size:14px;color:var(--soy-deep);margin-bottom:18px;letter-spacing:.08em;}
+  .g-card .gspec{margin-bottom:14px;}
+  .g-card .gspec li{font-size:14px;color:var(--ink-soft);margin-bottom:8px;padding-left:18px;position:relative;line-height:1.7;}
+  .g-card .gspec li::before{content:"▸";position:absolute;left:0;color:var(--soy);font-size:12px;top:2px;}
+  .g-card .gnumber{font-size:38px;font-weight:700;color:var(--soy);margin-top:12px;letter-spacing:.02em;}
+  .g-card .gnumber em{font-style:normal;font-size:16px;font-weight:400;color:var(--ink-soft);}
+  .g-card.premium .gnumber{color:var(--soy-deep);}
+
+  /* 价格展示 */
+  .price-show{text-align:center;margin:40px 0;}
+  .price-show .amount{font-size:clamp(42px,8vw,68px);font-weight:700;color:var(--soy-deep);letter-spacing:.02em;}
+  .price-show .amount em{font-style:normal;font-size:18px;font-weight:400;}
+  .price-show .unit{font-size:14px;color:var(--ink-soft);margin-top:8px;letter-spacing:.15em;}
+
+  /* 底部 */
+  .footer{padding:70px 0 50px;text-align:center;}
+  .footer h3{font-size:clamp(20px,4vw,26px);font-weight:600;letter-spacing:.08em;margin-bottom:18px;}
+  .footer .end-logo{font-size:13px;letter-spacing:.3em;color:var(--ink-soft);margin-bottom:20px;}
+  .footer p.f-note{font-size:14px;color:var(--ink-soft);max-width:540px;margin:0 auto;line-height:1.9;}
+
+  /* 澄清框 */
+  .clarify{background:#FFF8F0;border:1px solid var(--sauce-light);border-radius:14px;padding:26px 28px;margin:36px 0;}
+  .clarify .ctitle{font-size:14px;font-weight:600;color:var(--soy-deep);margin-bottom:12px;letter-spacing:.08em;display:flex;align-items:center;gap:8px;}
+  .clarify .ctitle::before{content:"⚠";font-size:18px;}
+  .clarify p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 响应式 */
+  @media(max-width:560px){
+    .wrap{padding:0 18px;}
+    section{padding:60px 0 20px;}
+    .step{flex-direction:column;gap:12px;}
+    .data-grid{grid-template-columns:1fr 1fr;}
+    .grade-cards{grid-template-columns:1fr;}
+    .b-item{flex-direction:column;gap:10px;}
+    .cover h1{font-size:30px;}
+    .price-show .amount{font-size:44px;}
+  }
+</style>
+</head>
+<body>
+<div class="vat-bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="brand">爱野天然食材 呈献</div>
+  <h1>一滴足矣<br>何须他物</h1>
+  <p class="sub">浙江金华 · 农户手酿 · <span>日晒夜露一年起</span></p>
+  <div class="meta">特级 / 一级 · 古法酿造酱油</div>
+
+  <!-- 酱缸断面SVG -->
+  <svg class="vat-svg" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="soyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#B8652A" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#5C2D0A" stop-opacity=".65"/>
+      </linearGradient>
+    </defs>
+    <!-- 斗笠缸盖 -->
+    <path d="M60,38 L140,8 L220,38" fill="none" stroke="#8B4513" stroke-width="2.2"/>
+    <path d="M80,30 L140,0 L200,30" fill="none" stroke="#6E5E4A" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <!-- 缸体 -->
+    <path d="M62,40 Q58,110 66,170 Q72,198 140,205 Q208,198 214,170 Q222,110 218,40" fill="url(#soyGrad)" stroke="#8B4513" stroke-width="2.5"/>
+    <!-- 缸内酱油液面 -->
+    <ellipse cx="140" cy="108" rx="74" ry="12" fill="#5C2D0A" opacity=".55"/>
+    <ellipse cx="140" cy="105" rx="74" ry="12" fill="none" stroke="#B8652A" stroke-width="1" opacity=".4"/>
+    <!-- 缸沿 -->
+    <ellipse cx="140" cy="42" rx="76" ry="14" fill="none" stroke="#8B4513" stroke-width="2.2"/>
+    <!-- 文字标注 -->
+    <text x="140" y="92" text-anchor="middle" font-size="11" fill="#5C2D0A" letter-spacing=".2em" opacity=".75">日晒夜露</text>
+  </svg>
+
+  <div class="scroll-hint">向下翻阅<span class="arr">↓</span></div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>金华三千年<br>酱里藏的才是真功夫</h2>
+    <p class="dropcap">浙江金华，不止有火腿。在这片土地上，酱油的酿造史可溯至宋代。金华罗埠老街的酱油坊始于1894年，公盛酱园始于1876年——百余年来，一代代手艺人守着一口口陶缸，春制曲、夏晒酱、秋出油，不急不躁。金华古法酱油传统制作技艺已被列入非物质文化遗产代表性项目名录，公盛酱油更荣获"浙江省老字号"。</p>
+    <p>这酱油，是农户自己酿的。不是工厂流水线上的速成品，不是加了焦糖色调出来的假颜色，不是用味精堆出来的假鲜味。从一粒非转基因大豆到一滴琥珀色酱油，快的一年，慢的两年——时间，是它唯一也最贵的配料。</p>
+    <div class="quote">
+      「一滴鲜香，一年深酿。」
+      <span class="src">—— 金华罗埠酱油坊百年古训</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 壹 · 古法工艺 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>365天起步<br>十道工序，急不得</h2>
+    <p class="lead">古法酱油酿造，从来不是"加料搅拌"那么简单。从一粒大豆到一滴酱油，至少十道工序环环相扣。每一道都靠老师傅的眼力和手感——他们在这酱缸边站了二三十年，看一眼豆子的颜色、闻一下缸里的气味，就知道今天该翻缸还是盖盖。</p>
+
+    <div class="steps">
+      <div class="step"><div class="tag">1</div><div><h3>选豆</h3><p>只用本地产非转基因黄豆，颗粒饱满，淘汰率近三成。歪豆瘪豆一律不要，这是出油率的关键。</p></div></div>
+      <div class="step"><div class="tag">2</div><div><h3>浸泡蒸煮</h3><p>清水浸泡6-8小时，大锅高温蒸至豆粒软烂但不碎——硬度刚好能捏开，是师傅十几年的手感。</p></div></div>
+      <div class="step"><div class="tag">3</div><div><h3>拌曲发酵</h3><p>蒸好的大豆拌入面粉，接入米曲霉菌种。最关键的两天——温度必须稳在35°C左右，高了散热，低了升温，24小时不离人。</p></div></div>
+      <div class="step"><div class="tag">4</div><div><h3>入缸加盐</h3><p>发酵好的豆曲装入陶缸，加盐水搅成酱醪。盐水浓度12%-13%——既能抑制杂菌，又不伤酶的活性，分寸极讲究。</p></div></div>
+      <div class="step"><div class="tag">5</div><div><h3>日晒夜露</h3><p>这是古法酱油的魂。酱缸露天摆开，白天掀盖暴晒，夜晚盖上斗笠接露水。夏天最热时师傅顶着烈日翻缸——一天翻80多缸，衣服能拧出水。日晒催化酯化生香，夜露带入天然菌群。这一晒，至少一年。</p></div></div>
+      <div class="step"><div class="tag">6</div><div><h3>压榨过滤</h3><p>酱醪完全成熟后，用传统压榨法出油。500公斤大豆仅出50公斤酱油，十斤豆出一斤油。滤出来的生酱油还要静置沉淀，绝不加增稠剂做假挂杯。</p></div></div>
+    </div>
+
+    <div class="quote">
+      「春曲、夏酱、秋油——古法酱油是利用自然的温度变化，经过日晒夜露制作而成的。」
+    </div>
+
+    <p style="color:var(--ink-soft);">整个过程没有任何添加剂提味、没有任何防腐剂、没有任何增稠调色剂。琥珀色是时间自己染的，浓稠是自然蒸发浓缩的，鲜味是蛋白质慢慢分解出来的。</p>
+  </div>
+</section>
+
+<!-- ===== 贰 · 特级 vs 一级 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>特级与一级<br>差之毫厘，鲜之千里</h2>
+    <p class="dropcap">酱油好不好，核心看一个硬指标：氨基酸态氮。它是大豆蛋白被微生物酶分解后生成的氨基酸含量——直接代表了酱油的鲜味强度和营养密度。国家标准GB/T 18186-2000将酿造酱油分为四个等级，特级是最高荣誉。</p>
+
+    <div class="grade-compare">
+      <table>
+        <thead>
+          <tr><th>质量等级</th><th>氨基酸态氮</th><th>全氮</th><th>可溶性无盐固形物</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="hi" style="font-weight:700;">特级（爱野精选）</td><td class="hi">≥ 0.80g/100mL</td><td>≥ 1.50g/100mL</td><td>≥ 15.00g/100mL</td></tr>
+          <tr><td style="font-weight:600;">一级（爱野精选）</td><td>≥ 0.70g/100mL</td><td>≥ 1.30g/100mL</td><td>≥ 13.00g/100mL</td></tr>
+          <tr><td>二级</td><td>≥ 0.55g/100mL</td><td>≥ 1.00g/100mL</td><td>≥ 10.00g/100mL</td></tr>
+          <tr><td>三级</td><td>≥ 0.40g/100mL</td><td>≥ 0.70g/100mL</td><td>≥ 8.00g/100mL</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:var(--ink-soft);text-align:center;margin-bottom:36px;">数据来源：GB/T 18186-2000《酿造酱油》· 高盐稀态发酵标准</p>
+
+    <p>爱野只拿特级和一级两个品级——三级酱油的氨基酸态氮才0.4g/100mL，比特级差了一倍不止。这不仅仅是鲜不鲜的问题，而是蛋白质分解是否充分、风味物质是否丰富、酿造时间有没有给够的根本区别。</p>
+
+    <div class="grade-cards">
+      <!-- 特级卡 -->
+      <div class="g-card premium">
+        <span class="gbadge">爱野精选 · 特级</span>
+        <div class="gname">古法特酿</div>
+        <div class="gperiod">酿造周期：约两年</div>
+        <ul class="gspec">
+          <li>氨基酸态氮 ≥ 0.80g/100mL</li>
+          <li>全氮 ≥ 1.50g/100mL</li>
+          <li>滋味醇厚饱满，酱香浓郁悠长</li>
+          <li>凉拌蘸点，一滴出鲜</li>
+        </ul>
+        <div class="gnumber">0.80+<em>g/100mL</em></div>
+        <div class="price-show" style="margin-top:7px;font-size:21px;font-weight:700;color:var(--soy-deep);"><span style="font-size:14px;font-weight:400;">¥</span>21.8<span style="font-size:13px;font-weight:400;color:var(--ink-soft);"> / 斤</span></div>
+      </div>
+      <!-- 一级卡 -->
+      <div class="g-card classic">
+        <span class="gbadge">爱野精选 · 一级</span>
+        <div class="gname">匠心真酿</div>
+        <div class="gperiod">酿造周期：约一年</div>
+        <ul class="gspec">
+          <li>氨基酸态氮 ≥ 0.70g/100mL</li>
+          <li>全氮 ≥ 1.30g/100mL</li>
+          <li>咸鲜均衡适口，日常炒烧皆宜</li>
+          <li>红烧焖炖，上色增香</li>
+        </ul>
+        <div class="gnumber">0.70+<em>g/100mL</em></div>
+        <div class="price-show" style="margin-top:7px;font-size:21px;font-weight:700;color:var(--soy-deep);"><span style="font-size:14px;font-weight:400;">¥</span>16.8<span style="font-size:13px;font-weight:400;color:var(--ink-soft);"> / 斤</span></div>
+      </div>
+    </div>
+
+    <div class="clarify">
+      <div class="ctitle">选酱油避坑提醒</div>
+      <p>注意看配料表。有些酱油标签上印着"特级"，配料表里却加了谷氨酸钠（味精）和呈味核苷酸二钠——这些添加剂能人为拉高氨基酸态氮检测值，但不是酿出来的鲜，是兑出来的。爱野精选的这款酱油，配料表只有四样：<strong>水、非转基因大豆、小麦、食盐</strong>。氨基酸态氮是时间酿出来的真本事，不是添加剂刷出来的假分数。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>一瓶酱油里<br>藏了多少好东西</h2>
+    <p class="lead">古法酿造酱油不是"咸水加色素"。大豆和小麦在长达一至两年的高盐稀态发酵过程中，被米曲霉、酵母菌、乳酸菌等微生物一步步分解转化，生成了丰富的营养成分——这是一部微型的生物化学工程。</p>
+
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">AMINO ACIDS</span>
+        <div class="big">18<em>种</em></div>
+        <div class="desc">含8种人体必需氨基酸，谷氨酸赋予天然鲜味，无需额外添加味精。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">FULL NITROGEN</span>
+        <div class="big">≥1.30-1.50<em>g/100mL</em></div>
+        <div class="desc">全氮含量反映蛋白质分解充分度，远高于国标三级（0.70g）。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ORGANIC ACIDS</span>
+        <div class="big">6<em>种+</em></div>
+        <div class="desc">乳酸（占比最大）、醋酸、琥珀酸、柠檬酸等，天然提鲜增香。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">MINERALS</span>
+        <div class="big">铁·钙·锌·镁</div>
+        <div class="desc">每100g约含铁5mg、钙66mg，天然微量元素随发酵释放。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ISOFLAVONES</span>
+        <div class="big">大豆异黄酮</div>
+        <div class="desc">大豆天然活性成分，强抗氧化性，发酵后生物利用度更高。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">MELANOIDINS</span>
+        <div class="big">类黑精</div>
+        <div class="desc">发酵后期氨基酸与糖类发生美拉德反应生成，天然色素+抗氧化剂。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">SOLUBLE SOLIDS</span>
+        <div class="big">≥13-15<em>g/100mL</em></div>
+        <div class="desc">可溶性无盐固形物反映风味丰富度——越高越醇厚。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ESTERS</span>
+        <div class="big">酯类物质</div>
+        <div class="desc">脂肪酸与醇反应生成的芳香化合物，是酱油复合香气的来源。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>不只是调味<br>是对身体的好</h2>
+    <p class="lead">传统酿造酱油的营养价值，近年来得到了越来越多的科学研究关注。它不是药，但每天一勺真正的古法酱油，确确实实能给身体带来一些好处——前提是，它是真酿的。</p>
+
+    <div class="benefit-list">
+      <div class="b-item">
+        <div class="bn">1</div>
+        <div>
+          <h4>天然增鲜，减少食盐摄入</h4>
+          <p>酱油中的天然氨基酸（谷氨酸、天冬氨酸）提供鲜味，用酱油替代一部分食盐调味，可减少总钠摄入量。以鲜代咸，是更聪明的调味方式。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">2</div>
+        <div>
+          <h4>促进胃液分泌，助消化</h4>
+          <p>日本群马大学医学部研究指出，天然酿造酱油具有促进胃液分泌的作用。发酵过程中产生的有机酸和酶类物质能刺激消化酶活性，增进食欲。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">3</div>
+        <div>
+          <h4>抗氧化，延缓衰老</h4>
+          <p>酱油中含有大豆异黄酮（大豆苷、染料木苷）、类黑精和多酚——这些都是已被证实的抗氧化成分，能抑制自由基和脂质过氧化。《中国调味品》综述指出这些物质共同赋予了酱油的抗氧化活性。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">4</div>
+        <div>
+          <h4>辅助降低胆固醇</h4>
+          <p>大豆异黄酮具有降低血清胆固醇的功能。适量摄入发酵豆制品与维持正常血脂水平存在相关性——这是大豆在发酵过程中释放出的天然好处。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">5</div>
+        <div>
+          <h4>调节血压</h4>
+          <p>大豆蛋白分解产生的大豆多肽，可对血管紧张素转换酶（ACE）产生抑制作用，有助于血管舒张、维持正常血压。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">6</div>
+        <div>
+          <h4>天然抗菌</h4>
+          <p>酱油中含高浓度食盐（12%-13%）和酸性pH环境，加上发酵产生的微量乙醇，对引起食物中毒的微生物病菌有显著抑制作用。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">7</div>
+        <div>
+          <h4>补充微量元素</h4>
+          <p>每100克酿造酱油约含铁5mg、钙66mg、以及镁、锌等微量元素。虽日常用量有限，但作为膳食补充来源，对预防微量营养素缺乏有一定意义。</p>
+        </div>
+      </div>
+      <div class="b-item">
+        <div class="bn">8</div>
+        <div>
+          <h4>抗过敏潜力</h4>
+          <p>酱油原料大豆和小麦经微生物酶水解后，会生成约1%未被完全分解的酱油多糖（SPS），该物质经研究证明具有一定的抗过敏功能。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「天然酿造酱油具有促进胃液分泌的作用，从而促进食物的消化。」
+      <span class="src">—— 日本群马大学医学部研究报告</span>
+    </div>
+
+    <p style="color:var(--ink-soft);font-size:14px;">* 以上功效均来自公开发表的学术研究和医学综述。酱油是食品而非药品，不能替代药物治疗。健康成人建议每日摄入不超过10-15毫升（约2-3茶匙），高血压及肾病患者请遵医嘱控制钠摄入。</p>
+  </div>
+</section>
+
+<!-- ===== 伍 · 价格 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>一斤酱油<br>便宜和贵差在哪</h2>
+
+    <p class="dropcap">市面上的酱油，超市货架上三块五一瓶的有，二三十一瓶的也有。价格差距不在瓶子，在时间。</p>
+
+    <p>工业化酱油：低盐固态发酵，28天出货。大豆用脱脂豆粕（榨油后的渣），加麸皮充数，靠添加剂调色增鲜——氨基酸态氮不够？加味精。颜色太淡？加焦糖色。不够稠？加黄原胶。三块五一瓶不是因为它良心，是因为它根本没等。</p>
+
+    <p>农户手酿酱油：高盐稀态发酵，365天起步，特级两年。纯大豆小麦，不掺豆粕麸皮。不加焦糖色——琥珀色是日晒出来的。不加味精——鲜味是大豆蛋白自己分解出来的。不加增稠剂——浓稠是蒸发浓缩出来的。一斤酱油的成本里，大头不是原料，是等的时间。</p>
+
+    <div style="display:flex;gap:20px;margin:36px 0;flex-wrap:wrap;">
+      <div style="flex:1;min-width:180px;text-align:center;background:var(--paper-2);border-radius:14px;padding:24px 18px;border:1px solid var(--line);">
+        <div style="font-size:12px;letter-spacing:.2em;color:var(--soy-deep);margin-bottom:8px;">爱野精选 · 一级</div>
+        <div style="font-size:clamp(28px,5vw,40px);font-weight:700;color:var(--soy-deep);">¥16.8</div>
+        <div style="font-size:13px;color:var(--ink-soft);margin-top:4px;">元 / 斤 · 酿造约一年</div>
+        <div style="font-size:12px;color:#A7947E;margin-top:6px;">日常炒烧炖煮 · 性价比之选</div>
+      </div>
+      <div style="flex:1;min-width:180px;text-align:center;background:linear-gradient(160deg,rgba(72,40,16,.06),var(--paper-2));border-radius:14px;padding:24px 18px;border:2px solid var(--soy-deep);">
+        <div style="font-size:12px;letter-spacing:.2em;color:var(--soy-deep);margin-bottom:8px;">爱野精选 · 特级</div>
+        <div style="font-size:clamp(28px,5vw,40px);font-weight:700;color:var(--soy-deep);">¥21.8</div>
+        <div style="font-size:13px;color:var(--ink-soft);margin-top:4px;">元 / 斤 · 酿造约两年</div>
+        <div style="font-size:12px;color:#A7947E;margin-top:6px;">凉拌蘸点 · 一滴出鲜</div>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-soft);">你买的不是一瓶黑色的咸水，是几百个日夜的风吹日晒、师傅几十年的手艺、和一口陶缸里微生物慢慢干活的结果。</p>
+  </div>
+</section>
+
+<!-- ===== 陆 · 爱野坚持 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>爱野为什么选它</h2>
+    <p class="lead">爱野选品的逻辑不复杂：一样东西是不是真的好，不看包装，看它是怎么做出来的。</p>
+    <p>这款金华古法酱油，和爱野的其他食材一样——没有捷径、没有添加剂、没有"科技与狠活"。它的全部配方只有四样东西：水、非转基因大豆、小麦、食盐。剩下的一切都交给时间。</p>
+    <p>一瓶酱油在陶缸里晒了两年，和一瓶酱油在工厂罐子里28天速成——它们都叫"酱油"，但不是同一种东西。爱野的责任，就是把那些没走过捷径的好东西，送到识货的人碗里。</p>
+  </div>
+</section>
+
+<!-- ===== 底部 ===== -->
+<div class="footer">
+  <div class="end-logo">爱野天然食材</div>
+  <h3>一滴足矣，何须他物。</h3>
+  <p class="f-note">浙江金华农户手酿 · 古法日晒夜露 · 纯大豆酿造 · 零添加<br>特级 / 一级 · 酿造周期一年至两年</p>
+</div>
+
+</body>
+</html>

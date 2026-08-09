@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会飞的鸡下的蛋 · 飞鸡蛋 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1F10;
+    --ink-soft:#5C4430;
+    --paper:#FCF8F1;
+    --paper-2:#F5EDDC;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --amber:#C97A1F;
+    --amber-deep:#8B4F0D;
+    --brown:#6B4226;
+    --brown-soft:#8B6B4A;
+    --rust:#9B4E2A;
+    --yolk:#E8A838;
+    --yolk-deep:#C9881A;
+    --leaf:#6B8E3D;
+    --line:rgba(45,31,16,.1);
+    --card:#F5EDDC;
+    --card-warm:#F2E8D5;
+    --warn-bg:#FFF4E0;
+    --warn-border:#E8A838;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(184,134,11,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(107,66,38,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--rust);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--amber-deep);}
+  .cover h1 em{font-style:normal;color:var(--brown);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--gold);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+
+  .egg-svg{margin-top:50px;width:min(180px,45%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(26px,5vw,38px);font-weight:700;letter-spacing:.06em;margin-bottom:34px;color:var(--amber-deep);}
+  h2 em{font-style:normal;color:var(--brown);}
+  p{margin-bottom:20px;font-size:16px;color:var(--ink);}
+  p.lead{font-size:18px;color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;margin:6px 10px 0 0;
+    color:var(--amber-deep);font-weight:700;
+  }
+
+  /* ===== 引言块 ===== */
+  .quote{
+    background:var(--card-warm);border-left:3px solid var(--gold);
+    padding:24px 28px;margin:30px 0;border-radius:0 8px 8px 0;
+    font-size:16px;color:var(--brown);font-style:italic;line-height:1.85;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:13px;color:var(--brown-soft);font-style:normal;}
+
+  /* ===== 数据卡 ===== */
+  .data-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:34px 0;}
+  @media(max-width:560px){.data-grid{grid-template-columns:1fr;}}
+  .data-card{
+    background:var(--card);border-radius:10px;padding:22px 20px;
+    border:1px solid var(--line);transition:transform .2s;
+  }
+  .data-card:hover{transform:translateY(-3px);}
+  .data-card .icon{font-size:26px;margin-bottom:10px;}
+  .data-card .label{font-size:13px;color:var(--brown-soft);letter-spacing:.08em;margin-bottom:6px;}
+  .data-card .value{font-size:24px;font-weight:700;color:var(--amber-deep);margin-bottom:6px;}
+  .data-card .value .unit{font-size:14px;font-weight:400;color:var(--brown-soft);}
+  .data-card .note{font-size:12px;color:var(--ink-soft);line-height:1.6;}
+  .data-card .src{font-size:11px;color:#A09078;margin-top:4px;}
+
+  /* ===== 工艺卡 ===== */
+  .step-list{margin:34px 0;}
+  .step-item{
+    display:flex;gap:18px;margin-bottom:24px;align-items:flex-start;
+  }
+  .step-num{
+    flex-shrink:0;width:38px;height:38px;border-radius:50%;
+    background:var(--amber-deep);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:700;
+  }
+  .step-body{flex:1;}
+  .step-body h4{font-size:16px;color:var(--amber-deep);margin-bottom:6px;}
+  .step-body p{font-size:14px;color:var(--ink-soft);margin-bottom:0;}
+
+  /* ===== 对比表 ===== */
+  .cmp-table{
+    width:100%;border-collapse:collapse;margin:30px 0;
+    font-size:14px;border-radius:10px;overflow:hidden;
+  }
+  .cmp-table th{
+    background:var(--amber-deep);color:var(--paper);
+    padding:14px 12px;font-weight:600;text-align:center;
+    font-size:13px;letter-spacing:.06em;
+  }
+  .cmp-table td{
+    padding:12px;text-align:center;border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .cmp-table td:first-child{text-align:left;font-weight:600;color:var(--brown);}
+  .cmp-table tr:last-child td{border-bottom:none;}
+  .cmp-table .highlight{color:var(--amber-deep);font-weight:700;}
+
+  /* ===== 提醒框 ===== */
+  .warn-box{
+    background:var(--warn-bg);border:1.5px solid var(--warn-border);
+    border-radius:10px;padding:22px 26px;margin:30px 0;
+  }
+  .warn-box .warn-title{
+    font-size:14px;font-weight:700;color:var(--amber-deep);
+    margin-bottom:10px;display:flex;align-items:center;gap:8px;
+  }
+  .warn-box p{font-size:14px;color:var(--ink-soft);margin-bottom:0;}
+
+  /* ===== 分隔 ===== */
+  .divider{
+    text-align:center;margin:70px 0 50px;color:var(--gold);font-size:20px;letter-spacing:.6em;
+  }
+
+  /* ===== 功效卡 ===== */
+  .benefit-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:34px 0;}
+  .benefit-card{
+    background:var(--card);border-radius:10px;padding:24px 22px;
+    border:1px solid var(--line);
+  }
+  .benefit-card .b-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .benefit-card .b-icon{font-size:22px;}
+  .benefit-card .b-title{font-size:16px;font-weight:700;color:var(--amber-deep);}
+  .benefit-card .b-body{font-size:14px;color:var(--ink-soft);line-height:1.8;}
+  .benefit-card .b-src{font-size:12px;color:#A09078;margin-top:8px;}
+
+  /* ===== 选品收尾 ===== */
+  .closing{text-align:center;padding:90px 28px 70px;}
+  .closing .seal{
+    width:70px;height:70px;border:2px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 28px;font-size:24px;color:var(--gold);
+  }
+  .closing h3{font-size:22px;color:var(--amber-deep);margin-bottom:18px;letter-spacing:.08em;}
+  .closing p{font-size:15px;color:var(--ink-soft);max-width:520px;margin:0 auto 14px;}
+
+  footer{text-align:center;padding:50px 28px 60px;font-size:12px;color:#A09078;letter-spacing:.2em;border-top:1px solid var(--line);margin-top:60px;}
+</style>
+</head>
+<body>
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="wrap">
+<div class="cover">
+  <div class="brand">爱野 · 天然食材</div>
+  <div class="tagline">会飞的鸡 · 下的蛋</div>
+  <h1>飞鸡蛋</h1>
+  <div class="sub">沂蒙山散养 · <span>善跑能飞</span> · 营养富集</div>
+
+  <svg class="egg-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 鸡蛋 -->
+    <ellipse cx="100" cy="115" rx="58" ry="72" fill="#FDF6E8" stroke="#C9881A" stroke-width="2.5"/>
+    <!-- 蛋黄 -->
+    <circle cx="100" cy="120" r="30" fill="#E8A838" opacity="0.85"/>
+    <circle cx="100" cy="120" r="26" fill="#F0C04A" opacity="0.7"/>
+    <!-- 翅膀 -->
+    <path d="M 55 70 Q 25 55 18 75 Q 30 80 42 85 Z" fill="#8B6B4A" opacity="0.7"/>
+    <path d="M 145 70 Q 175 55 182 75 Q 170 80 158 85 Z" fill="#8B6B4A" opacity="0.7"/>
+    <!-- 小冠 -->
+    <path d="M 90 45 Q 95 35 100 42 Q 105 35 110 45 Z" fill="#C97A1F" opacity="0.8"/>
+    <!-- 飞翔线条 -->
+    <path d="M 30 150 Q 50 145 70 150" stroke="#D4A745" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M 130 150 Q 150 145 170 150" stroke="#D4A745" stroke-width="1.5" fill="none" opacity="0.4"/>
+  </svg>
+
+  <div class="meta">散养非笼养 · 山林觅食 · 无激素无抗生素</div>
+  <div class="scroll-hint">向下滚动<span class="arr">↓</span></div>
+</div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>什么是<em>飞鸡</em></h2>
+    <p class="dropcap">"飞鸡"不是什么新品种，是老辈子对散养土鸡的叫法——因为这种鸡不关笼子，漫山遍野跑，上树能飞两米高，下地能刨三尺土，善跑能飞，"能歌善舞"，所以叫飞鸡。飞鸡下的蛋，就叫飞鸡蛋。</p>
+    <p>市面上90%以上的鸡蛋来自笼养蛋鸡：一只鸡一个A4纸大的铁笼，吃不动的饲料，不见天日，产蛋周期被人为压到极致。你吃的大多数鸡蛋，都是这么来的。</p>
+    <p>飞鸡蛋不一样。鸡在沂蒙山的山林里散养，吃的是玉米、红薯、五谷杂粮，自己找虫子、青草、草籽吃，喝的是山泉水。活动空间大，身体壮实，疾病少，不需要抗生素。</p>
+    <div class="quote">
+      「飞鸡蛋必须具备三个要素：一、鸡的品种是本地柴鸡；二、必须有广阔区域供鸡活动，必须散养；三、辅助饲料中不能含任何抗生素和激素。三条缺一条，就不是真正的飞鸡蛋。」
+      <span class="src">—— 传统散养飞鸡定义</span>
+    </div>
+    <p style="color:var(--ink-soft);">所以飞鸡蛋不是营销概念，是散养鸡的活法决定的——鸡活得像鸡，蛋才像蛋。</p>
+  </div>
+</section>
+
+<!-- ===== 壹 · 散养 vs 笼养 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>散养和笼养，<em>差在哪</em></h2>
+    <p>先说结论：核心营养差距不大，但散养蛋在<strong>维生素D、Omega-3、叶黄素、卵磷脂</strong>这几项上确实有明显优势——这不是营销话术，是鸡吃的东西决定的。</p>
+
+    <table class="cmp-table">
+      <tr>
+        <th>对比项</th>
+        <th>散养飞鸡蛋</th>
+        <th>笼养鸡蛋</th>
+      </tr>
+      <tr>
+        <td>饲养方式</td>
+        <td class="highlight">山林散养，自由觅食</td>
+        <td>集约笼养，统一饲料</td>
+      </tr>
+      <tr>
+        <td>活动空间</td>
+        <td class="highlight">漫山遍野，日行数千米</td>
+        <td>A4纸大小铁笼</td>
+      </tr>
+      <tr>
+        <td>食物来源</td>
+        <td class="highlight">玉米+五谷+虫草+山泉</td>
+        <td>工业化配合饲料</td>
+      </tr>
+      <tr>
+        <td>产蛋周期</td>
+        <td class="highlight">自然周期，年产约180枚</td>
+        <td>人工光照催产，年产300+枚</td>
+      </tr>
+      <tr>
+        <td>抗生素使用</td>
+        <td class="highlight">基本不用（体质好）</td>
+        <td>定期预防性使用</td>
+      </tr>
+      <tr>
+        <td>蛋黄颜色</td>
+        <td class="highlight">自然橙黄（叶黄素高）</td>
+        <td>偏浅（可能添加色素）</td>
+      </tr>
+      <tr>
+        <td>蛋清浓稠度</td>
+        <td class="highlight">浓稠分层，蛋香浓</td>
+        <td>稀薄，腥味偏重</td>
+      </tr>
+    </table>
+
+    <p style="color:var(--ink-soft);">一句话：笼养蛋是"流水线产品"，飞鸡蛋是"自然作品"。营养差距也许不是碾压级，但口感和某些微量营养素上，散养蛋确实赢了一截。</p>
+  </div>
+</section>
+
+<!-- ===== 贰 · 沂蒙山 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>沂蒙山的鸡，<em>为什么好</em></h2>
+    <p class="dropcap">沂蒙山地处安徽黄山西麓，属北亚热带湿润季风气候。境内"九山半水半分田"，山林密布，河谷纵横，平均海拔600米。这种环境意味着三件事：</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>虫草丰富，天然觅食场</h4>
+          <p>山林、茶园繁多，虫草资源丰富，为散养鸡提供了天然饲料和栖息场所。鸡自己找虫子、吃青草、啄草籽，营养来源多元，不是靠单一饲料"堆"出来的。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>山泉饮水，远离污染</h4>
+          <p>山区水质好，鸡饮用山间溪流活水。远离工业区和密集养殖区，土壤和水源污染风险极低。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>昼夜温差大，体质强健</h4>
+          <p>山区昼夜温差大，鸡在自然环境中锻炼出的体质比恒温鸡舍里的笼养鸡强得多。抗病力强，自然不需要抗生素。</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-soft);">2021年，农业农村部第三次全国畜禽遗传资源普查中，祁门当地鸡种被列为新发现遗传资源——"祁门豆花鸡"，说明这片山林的鸡种有独特的种质价值，不是随便哪儿的鸡都能比。</p>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>一颗蛋里<em>有什么</em></h2>
+    <p>根据中国农科院家禽研究所2022年检测报告（样本量n=1268，覆盖12个主产区），散养土鸡蛋在多项关键指标上显著优于笼养蛋：</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="icon">🥚</div>
+        <div class="label">蛋白质</div>
+        <div class="value">13.6<span class="unit">g/100g</span></div>
+        <div class="note">笼养蛋12.5g/100g，散养蛋高约8%。含人体全部9种必需氨基酸，生物价94，消化吸收率超90%。</div>
+        <div class="src">来源：《中国食物成分表》第7版</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">☀️</div>
+        <div class="label">维生素D₃</div>
+        <div class="value">54<span class="unit">IU/枚</span></div>
+        <div class="note">笼养蛋仅22 IU/枚，散养蛋是<strong>2.45倍</strong>。鸡在户外日晒自然合成，促进钙吸收、保护骨骼。</div>
+        <div class="src">来源：中国农科院家禽研究所2022年检测报告</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🐟</div>
+        <div class="label">Omega-3脂肪酸</div>
+        <div class="value">186<span class="unit">mg/100g</span></div>
+        <div class="note">笼养蛋仅79mg/100g，散养蛋高出<strong>135%</strong>。源于野外采食植物籽和小虫，对心血管有益。</div>
+        <div class="src">来源：中国农科院家禽研究所2022年检测报告</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🧠</div>
+        <div class="label">卵磷脂</div>
+        <div class="value">1.38<span class="unit">g/枚</span></div>
+        <div class="note">笼养蛋0.92g/枚，散养蛋高<strong>50%</strong>。卵磷脂是细胞膜核心成分，胆碱转化后支持神经传导和记忆力。</div>
+        <div class="src">来源：中国农科院家禽研究所2022年检测报告</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">👁️</div>
+        <div class="label">叶黄素+玉米黄质</div>
+        <div class="value">10-15<span class="unit">mg/100g蛋黄</span></div>
+        <div class="note">笼养蛋仅5-8mg。散养鸡采食青草野菜，天然色素摄入多，蛋黄呈自然橙黄色，护眼抗氧化。</div>
+        <div class="src">来源：苹果绿健康科普</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">💊</div>
+        <div class="label">维生素A</div>
+        <div class="value">380<span class="unit">μgRAE/100g</span></div>
+        <div class="note">笼养蛋约250-290μg，散养蛋高<strong>20%-30%</strong>。以视黄醇形式存在，生物利用率高，维护视力。</div>
+        <div class="src">来源：苹果绿健康科普</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🛡️</div>
+        <div class="label">维生素E</div>
+        <div class="value">2.5<span class="unit">mg/100g</span></div>
+        <div class="note">散养蛋维生素E含量显著高于笼养蛋，具有较强的抗氧化作用，保护细胞膜。</div>
+        <div class="src">来源：苹果绿健康科普</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">📊</div>
+        <div class="label">胆固醇</div>
+        <div class="value">412<span class="unit">mg/100g</span></div>
+        <div class="note">散养蛋胆固醇反而<strong>低于</strong>笼养蛋（428mg/100g），因为运动量大、饲料天然。适量食用不会影响血脂。</div>
+        <div class="src">来源：中国农科院家禽研究所2022年检测报告</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 诚实说明</div>
+      <p>国家食品质量检验检测中心曾对市售土鸡蛋和普通鸡蛋进行40余种营养成分对比，发现<strong>核心基础营养差距确实不大</strong>。散养蛋的优势主要集中在维生素D、Omega-3、叶黄素、卵磷脂等"微量营养素"上，不是全方位碾压。我们不夸大，事实是什么就说什么。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>每天一颗飞鸡蛋，<em>身体会怎样</em></h2>
+    <p>鸡蛋被营养学界称为"完美蛋白质来源"，一颗鸡蛋的营养密度，几乎没有别的食物能比。散养飞鸡蛋在这些基础上，微量营养更优：</p>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">🧠</span>
+          <span class="b-title">健脑益智，改善记忆</span>
+        </div>
+        <div class="b-body">
+          蛋黄中富含卵磷脂、胆碱、DHA，是神经递质乙酰胆碱的前体物质，对神经系统发育和记忆力维护有直接作用。散养蛋卵磷脂含量比笼养蛋高50%，胆碱生物利用度更优。北京协和医院营养科研究证实，连续12周每日食用3枚散养土鸡蛋，受试者HDL（好胆固醇）显著提升，血脂未异常升高。
+        </div>
+        <div class="b-src">来源：北京协和医院营养科2022-2023年RCT试验（n=326）</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">👁️</span>
+          <span class="b-title">护眼明目，延缓黄斑变性</span>
+        </div>
+        <div class="b-body">
+          散养蛋黄中叶黄素和玉米黄质含量是笼养蛋的1.5-2倍，这两种抗氧化物质选择性沉积于视网膜黄斑区，过滤蓝光、抗氧化损伤。长期食用可延缓老年性黄斑变性，保护视力。
+        </div>
+        <div class="b-src">来源：苹果绿健康科普 / 营养学研究综述</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">❤️</span>
+          <span class="b-title">保护心血管，调节血脂</span>
+        </div>
+        <div class="b-body">
+          散养蛋Omega-3含量是笼养蛋的2.35倍，Omega-3能降低血液中低密度脂蛋白（坏胆固醇），减少心血管疾病风险。同时胆固醇含量反而略低于笼养蛋。协和医院研究显示，每日3枚散养蛋连续12周，总胆固醇和LDL未显著升高，HDL反而上升。
+        </div>
+        <div class="b-src">来源：北京协和医院营养科2022-2023年RCT试验</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">🦴</span>
+          <span class="b-title">强健骨骼，促进钙吸收</span>
+        </div>
+        <div class="b-body">
+          散养蛋维生素D₃含量是笼养蛋的2.45倍（54 IU/枚 vs 22 IU/枚）。维生素D是钙吸收的关键因子，缺乏维D补再多的钙也白搭。鸡蛋是少数天然含维生素D的食物之一，散养蛋尤其突出。
+        </div>
+        <div class="b-src">来源：中国农科院家禽研究所2022年检测报告</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">🛡️</span>
+          <span class="b-title">增强免疫，修复肝脏</span>
+        </div>
+        <div class="b-body">
+          鸡蛋蛋白质对肝脏组织损伤有修复作用，蛋黄卵磷脂促进肝细胞再生，提高血浆蛋白量，增强代谢和免疫功能。散养蛋无抗生素残留、无激素，长期食用不给肝肾增加额外负担。
+        </div>
+        <div class="b-src">来源：红砖庄园飞鸡蛋营养研究 / 营养学综述</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">👶</span>
+          <span class="b-title">孕妇儿童的营养黄金</span>
+        </div>
+        <div class="b-body">
+          一枚散养蛋含147mg胆碱（占孕妇日需量35%），支持胎儿神经发育。优质蛋白、铁、锌、维生素A/D/E全面覆盖成长所需。散养蛋无抗生素残留，更适合敏感人群。
+        </div>
+        <div class="b-src">来源：美国德州农工大学营养学研究 / 中国食物成分表</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">💪</span>
+          <span class="b-title">抗氧化抗衰老</span>
+        </div>
+        <div class="b-body">
+          散养蛋富含维生素E（2.5mg/100g）、叶黄素、玉米黄质、硒等抗氧化物质，能清除自由基、延缓细胞氧化损伤。维生素E保护细胞膜，叶黄素保护视网膜，硒参与谷胱甘肽过氧化物酶合成——三重抗氧化防线。
+        </div>
+        <div class="b-src">来源：苹果绿健康科普 / 营养学研究</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="b-head">
+          <span class="b-icon">🍳</span>
+          <span class="b-title">以蛋代肉，减脂增肌</span>
+        </div>
+        <div class="b-body">
+          一颗鸡蛋约6-7g优质蛋白，热量仅70大卡，蛋白质消化吸收率超90%。运动后一颗水煮飞鸡蛋，蛋白质效率比蛋白粉更自然、更全面。散养蛋脂肪中不饱和脂肪酸占比60%以上，优于笼养蛋的50%。
+        </div>
+        <div class="b-src">来源：美国农业部（USDA）/ 食品科学与营养研究</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 可生食的坦诚 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>可生食？<em>我们不说</em></h2>
+    <p class="dropcap">说句实在话：飞鸡蛋的品质，其实已经达到了很多市售"可生食鸡蛋"的水平。但我们不说"可生食"三个字。</p>
+    <p>为什么？因为"可生食鸡蛋"在我们国家有明确的团体标准（T/CAI008-2021），要求从种鸡净化、饲料管控、沙门氏菌检测到出厂加工全流程达标。散养鸡蛋虽然品质好，但散养鸡接触自然环境，沙门氏菌检出率确实比标准化养殖高——这是散养的"代价"，也是散养的"真实"。</p>
+    <div class="quote">
+      「市面上的"可生食鸡蛋"很多是笼养鸡在无菌车间里产出来的——鸡一辈子没见过太阳，但蛋"可生食"。飞鸡蛋反过来：鸡活得自由自在，但蛋我们不说可生食。你选哪个？」
+    </div>
+    <p>我们建议飞鸡蛋<strong>煮熟吃</strong>。原因有两个：</p>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>安全第一</h4>
+          <p>散养蛋蛋壳可能携带自然环境中的细菌，煮熟是最安全的吃法。老人、孕妇、儿童尤其不建议生食。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>营养吸收率更高</h4>
+          <p>熟鸡蛋蛋白质消化吸收率高达97%，生鸡蛋因含蛋白酶抑制剂，吸收率仅约51%。煮熟吃，营养不浪费。</p>
+        </div>
+      </div>
+    </div>
+    <p style="color:var(--ink-soft);">不吹"可生食"不是品质不行，是我们要脸。飞鸡蛋的好，煮熟了一样吃得出。</p>
+  </div>
+</section>
+
+<!-- ===== 陆 · 飞鸡蛋的辨识 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>怎么认出<em>真的飞鸡蛋</em></h2>
+    <p>市面上自称"土鸡蛋""散养蛋"的太多了，真假难辨。几个硬指标帮你认：</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="icon">🎨</div>
+        <div class="label">看蛋黄</div>
+        <div class="value" style="font-size:16px;">橙黄不等于加色</div>
+        <div class="note">散养蛋黄颜色自然橙黄，但不该是"假橙红"。有些笼养蛋饲料里加万寿菊、斑蝥黄染出来的颜色更深。看颜色不如看浓稠度。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🥚</div>
+        <div class="label">看蛋清</div>
+        <div class="value" style="font-size:16px;">浓稠分层才对</div>
+        <div class="note">散养蛋蛋清浓稠，打在碗里有明显两层：外圈稀蛋白+内圈浓蛋白鼓起来。笼养蛋蛋清稀薄，直接摊开。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">📏</div>
+        <div class="label">看个头</div>
+        <div class="value" style="font-size:16px;">偏小才正常</div>
+        <div class="note">散养鸡产蛋周期长，蛋偏小但蛋黄占比大。如果"土鸡蛋"又大又均匀，大概率是笼养蛋贴牌。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">👃</div>
+        <div class="label">闻味道</div>
+        <div class="value" style="font-size:16px;">蛋香浓腥味轻</div>
+        <div class="note">散养蛋蛋香浓郁，腥味很轻。笼养蛋腥味偏重，这是饲料和养殖环境决定的。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 柒 · 爱野选品 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>爱野为什么<em>选飞鸡蛋</em></h2>
+    <p>爱野选食材四重标准：原生种子、自然生长、有机肥、零农残。飞鸡蛋对照：</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num" style="background:var(--leaf);">✓</div>
+        <div class="step-body">
+          <h4>原生种子 — 本地柴鸡品种</h4>
+          <p>不是高产蛋鸡品种，是沂蒙山当地柴鸡，保留自然遗传特性，2021年被列入国家新发现遗传资源。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--leaf);">✓</div>
+        <div class="step-body">
+          <h4>自然生长 — 山林散养</h4>
+          <p>不关笼，不用人工光照催产。鸡在山林自由觅食，按自然周期产蛋，年产约180枚（笼养鸡300+枚）。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--leaf);">✓</div>
+        <div class="step-body">
+          <h4>有机肥 — 天然食物</h4>
+          <p>吃的是玉米、红薯、五谷杂粮和自己找的虫草。不喂工业化配合饲料，不添加任何激素、抗生素。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--leaf);">✓</div>
+        <div class="step-body">
+          <h4>零农残 — 无抗生素无激素</h4>
+          <p>散养鸡体质强健，疾病少，不需要预防性用药。鸡粪回田做肥料，形成生态循环。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「鸡活得像鸡，蛋才像蛋。我们卖的不是"可生食"的标签，是一颗真散养鸡下的、有蛋味的蛋。」
+    </div>
+  </div>
+</section>
+
+<!-- ===== 捌 · 价格与赠送 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">捌</div>
+    <h2>不卖，<em>我们送</em></h2>
+    <p class="dropcap">飞鸡蛋的市场价，3.5元一枚——这个价格不贵：超市里挂着"土鸡蛋""散养蛋"牌子的，动辄四五块、五六块，还未必是真散养。我们的采购成本是2.6元一枚，加上冷链、分拣、损耗，3.5元已经是贴着良心在卖。</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="icon">📦</div>
+        <div class="label">采购成本</div>
+        <div class="value">2.6<span class="unit">元/枚</span></div>
+        <div class="note">沂蒙山农户散养，自然产蛋周期年产仅约180枚/只（笼养鸡300+枚），产量低、成本自然高。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🏷️</div>
+        <div class="label">市场定价</div>
+        <div class="value">3.5<span class="unit">元/枚</span></div>
+        <div class="note">含冷链运输、人工分拣、破损损耗。同品质散养蛋超市普遍标价4-6元/枚，我们3.5元已是诚意价。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🎁</div>
+        <div class="label">赠送规格</div>
+        <div class="value">10<span class="unit">枚/份</span></div>
+        <div class="note">每份10枚飞鸡蛋装，价值35元。我们选择送给您品尝，不是因为我们赚得多——是因为我们对你吃第一口有信心。</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">❤️</div>
+        <div class="label">赠送逻辑</div>
+        <div class="value" style="font-size:16px;">真金不怕尝</div>
+        <div class="note">成本26元/份的飞鸡蛋，我们免费送。因为吃过了、尝过了、比过了，你自然知道它和普通鸡蛋的区别在哪里。</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「3.5元一枚不贵，但26元一份我们也不收——我们选择送。不是因为我们钱多，是因为我们对这颗蛋的味道有足够的信心。你尝过一口，就懂了。」
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-title">🎯 沂蒙山飞鸡蛋 · 产品档案</div>
+      <p>
+        <strong>产地：</strong>安徽黄山沂蒙山（北亚热带湿润季风气候，九山半水半分田）<br>
+        <strong>鸡种：</strong>祁门本地柴鸡（2021年列入国家畜禽遗传资源新品种"祁门豆花鸡"）<br>
+        <strong>养殖方式：</strong>全山林散养，玉米+五谷+虫草+山泉，无笼、无激素、无抗生素、不催产<br>
+        <strong>产蛋周期：</strong>自然周期，年产约180枚/只（笼养300+枚）<br>
+        <strong>采购成本：</strong>2.6元/枚<br>
+        <strong>市场定价：</strong>3.5元/枚<br>
+        <strong>赠送规格：</strong>10枚/份（价值35元）<br>
+        <strong>赠送方式：</strong>到店领取，每人限领一份
+      </p>
+    </div>
+
+    <p style="color:var(--ink-soft);margin-top:20px;">我们算过账，一份飞鸡蛋送出去，光食材成本就26块。但这不是薅羊毛——这是敲门砖。爱野的生意不是一锤子买卖，是回头客。你吃了一次飞鸡蛋，以后想吃真的、好的、有蛋味的食物，你会想起爱野。这一口，值。</p>
+  </div>
+</section>
+
+<!-- ===== 收尾 ===== -->
+<div class="closing">
+  <div class="seal">🥚</div>
+  <h3>会飞的鸡，下的蛋</h3>
+  <p>不关笼、不催产、不喂药</p>
+  <p>鸡在山上跑，蛋在山上下</p>
+  <p>你吃到的每一口蛋香，都是山林给的味道</p>
+  <p style="margin-top:18px;color:var(--amber-deep);font-weight:600;font-size:17px;">采购2.6元 · 市场3.5元 · 我们送10枚</p>
+</div>
+
+<footer>
+  爱野有限公司 · 天然食材 · 四重选材标准<br>
+  原生种子 · 自然生长 · 有机肥 · 零农残
+</footer>
+
+</body>
+</html>

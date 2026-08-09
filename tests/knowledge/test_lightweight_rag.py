@@ -113,6 +113,21 @@ async def _assert_general_query_bypasses_business_knowledge_search() -> None:
     assert matches == []
 
 
+@pytest.mark.parametrize(
+    "query",
+    [
+        "飞鸡蛋是什么？",
+        "立秋喝什么养生茶？",
+        "金华古法酱油怎么做？",
+        "大有谷有哪些产品？",
+        "生姜有什么特点？",
+        "云南文山三七片怎么吃？",
+    ],
+)
+def test_aiye_product_vocabulary_is_in_business_scope(query: str) -> None:
+    assert SQLiteKnowledgeStore(":memory:").classify_query(query)["scope"] == "jiyangjia"
+
+
 def test_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match() -> None:
     asyncio.run(_assert_unknown_jiyangjia_product_does_not_use_a_weak_semantic_match())
 
