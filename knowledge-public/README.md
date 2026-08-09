@@ -4,6 +4,8 @@
 
 ## 当前发布
 
+GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.2>
+
 - [v2.2 爱野食材正式知识库](v2.2/README.md)
 - [v2.2 完整知识内容](v2.2/import_all.json)
 - [v2.2 产品目录](v2.2/catalog.json)
