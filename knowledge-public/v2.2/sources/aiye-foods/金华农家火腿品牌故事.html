@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间给的风味 · 金华农家火腿 | 爱野</title>
+<style>
+  :root{
+    --ink:#3D3025;
+    --ink-soft:#6B5842;
+    --paper:#F9F4EC;
+    --paper-2:#EEE3D0;
+    --ham:#C0392B;
+    --ham-deep:#8B1A1A;
+    --ham-light:#E07860;
+    --fat:#F2E0C8;
+    --leaf:#5C6B4F;
+    --line:rgba(61,48,37,.13);
+    --card:#EDE1D2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 背景纹理 - 琵琶形暗纹 */
+  .vat-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.32;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='22' fill='none' stroke='%23C0392B' stroke-opacity='0.05' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23C0392B' stroke-opacity='0.04' stroke-width='.7'/%3E%3C/svg%3E");
+    background-size:60px 60px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--ham-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--ham);opacity:.5;}
+  .cover h1{font-size:clamp(34px,7vw,54px);font-weight:600;letter-spacing:.1em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--ham-deep);}
+  .cover .meta{margin-top:60px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  /* 琵琶火腿SVG */
+  .pip-svg{margin-top:50px;width:min(320px,74%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--ham-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--ham-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--ham);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--ham-deep);font-weight:600;
+  }
+  .quote{
+    margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--ham);
+    font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;
+  }
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  /* 工艺步骤 */
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--ham);color:#F9F4EC;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 数据卡 */
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(61,48,37,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--ham-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card .desc{font-size:14px;color:var(--ink-soft);margin-top:6px;line-height:1.7;}
+
+  /* 好处列表 */
+  .benefit-list{margin:36px 0;}
+  .b-item{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding:20px 22px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);}
+  .b-item .bn{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--ham);color:#F9F4EC;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;}
+  .b-item h4{font-size:16px;font-weight:600;margin-bottom:5px;letter-spacing:.03em;}
+  .b-item p{font-size:14px;color:var(--ink-soft);line-height:1.75;margin:0;}
+
+  /* 价格展示 */
+  .price-show{text-align:center;margin:44px 0;}
+  .price-show .amount{font-size:clamp(44px,8vw,72px);font-weight:700;color:var(--ham-deep);letter-spacing:.02em;}
+  .price-show .amount em{font-style:normal;font-size:18px;font-weight:400;}
+  .price-show .unit{font-size:14px;color:var(--ink-soft);margin-top:8px;letter-spacing:.15em;}
+
+  /* 底部 */
+  .footer{padding:70px 0 50px;text-align:center;}
+  .footer h3{font-size:clamp(20px,4vw,26px);font-weight:600;letter-spacing:.08em;margin-bottom:18px;}
+  .footer .end-logo{font-size:13px;letter-spacing:.3em;color:var(--ink-soft);margin-bottom:20px;}
+  .footer p.f-note{font-size:14px;color:var(--ink-soft);max-width:560px;margin:0 auto;line-height:1.9;}
+
+  /* 响应式 */
+  @media(max-width:560px){
+    .wrap{padding:0 18px;}
+    section{padding:60px 0 20px;}
+    .step{flex-direction:column;gap:12px;}
+    .data-grid{grid-template-columns:1fr 1fr;}
+    .b-item{flex-direction:column;gap:10px;}
+    .cover h1{font-size:30px;}
+    .price-show .amount{font-size:46px;}
+  }
+</style>
+</head>
+<body>
+<div class="vat-bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="brand">爱野天然食材 × 金字火腿 · 上市公司出品</div>
+  <h1>一条走了<br>十个月的路</h1>
+  <p class="sub">浙江金华 · 农家手作 · <span>净重十斤之上</span></p>
+  <div class="meta">金字火腿 · 上市公司 · 30年品牌传承 · 国家级非遗</div>
+
+  <!-- 琵琶形火腿SVG -->
+  <svg class="pip-svg" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hamGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#C0392B" stop-opacity=".45"/>
+        <stop offset="40%" stop-color="#8B1A1A" stop-opacity=".6"/>
+        <stop offset="70%" stop-color="#F2E0C8" stop-opacity=".2"/>
+        <stop offset="100%" stop-color="#C0392B" stop-opacity=".35"/>
+      </linearGradient>
+    </defs>
+    <!-- 琵琶形火腿轮廓 -->
+    <path d="M50,60 Q40,80 38,100 Q36,120 45,145 Q52,165 70,178 Q90,192 120,198 Q155,205 188,195 Q210,185 222,165 Q232,145 230,120 Q228,100 218,80 Q208,62 190,52 Q165,38 132,36 Q95,35 70,44 Z" fill="url(#hamGrad)" stroke="#8B1A1A" stroke-width="2.2"/>
+    <!-- 骨柄 -->
+    <line x1="222" y1="165" x2="242" y2="178" stroke="#5C2D0A" stroke-width="3" stroke-linecap="round"/>
+    <!-- 瘦肉纹理 -->
+    <path d="M70,90 Q110,85 160,92 Q190,96 210,110" fill="none" stroke="#C0392B" stroke-width="1" opacity=".4"/>
+    <path d="M65,115 Q100,108 150,114 Q185,118 215,130" fill="none" stroke="#C0392B" stroke-width=".8" opacity=".35"/>
+    <path d="M80,140 Q120,134 165,140 Q195,144 210,152" fill="none" stroke="#C0392B" stroke-width=".7" opacity=".3"/>
+    <!-- 脂肪边 -->
+    <path d="M38,100 Q32,130 40,155 Q48,175 62,188" fill="none" stroke="#F2E0C8" stroke-width="3" opacity=".5"/>
+    <!-- 垂直悬挂绳 -->
+    <line x1="132" y1="36" x2="132" y2="16" stroke="#6B5842" stroke-width="1.5" opacity=".5" stroke-linecap="round"/>
+    <!-- 标注 -->
+    <text x="130" y="130" text-anchor="middle" font-size="13" fill="#8B1A1A" letter-spacing=".25em" opacity=".7">琵琶形</text>
+  </svg>
+
+  <div class="scroll-hint">向下翻阅<span class="arr">↓</span></div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>一条腿走了一千两百年<br>才走到你的厨房</h2>
+    <p class="dropcap">金华火腿，与西湖龙井、绍兴黄酒并称"浙江三宝"。它的历史可溯至唐代——《本草拾遗》载："火腿，产金华者佳。"距今1200余年。宋代抗金名将宗泽将家乡腌腿献予宋高宗，赵构见肉色鲜红似火，赞不绝口，赐名"火腿"。1905年，金华火腿在德国莱比锡万国博览会上斩获金奖。2001年获批国家地理标志保护产品，2008年，金华火腿腌制技艺被列入国家级非物质文化遗产名录。</p>
+    <p>但说这些"大词"没用——你吃的不是博物馆里的展品，是农家院子里挂了十个月的一条腿。金华三面环山，四季分明、干湿交替的独特气候，是天然的火腿熟成室。农户们在立冬宰猪、上盐、晾晒，经历一整个冬天、春天、夏天，到次年秋天才下架——十个月，是急不来的。</p>
+    <div class="quote">
+      「至味惟猪肉，金华早得名。珊瑚同肉软，琥珀并脂明。」
+      <span class="src">—— 明代 · 张岱《浦江火肉》</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 壹 · 古法工艺 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>十个月，八道大工序<br>每一步都是手艺</h2>
+    <p class="lead">金华火腿的制作有"8大工序48道工艺步骤"之说。农户手中的每一条火腿，都是手和刀、盐和时间反复对话的结果。没有捷径，没有机器替代——机器做不出琵琶形，做不出那条腿该有的弧度。</p>
+
+    <div class="steps">
+      <div class="step"><div class="tag">1</div><div><h3>选腿</h3><p>农户自养或本地散养的黑毛猪，取后腿。要求爪白、脚直、腿形完好，皮薄骨细，肌肉饱满。不是随便什么猪腿都能做火腿——两头乌猪后腿是最佳选择。</p></div></div>
+      <div class="step"><div class="tag">2</div><div><h3>修坯</h3><p>用刀刮去腿面残毛和污物，削去多余的脂肪和筋膜，把一条猪后腿修成琵琶形。这一步全凭师傅的眼力和刀工——削多了伤肉，削少了形不正。</p></div></div>
+      <div class="step"><div class="tag">3</div><div><h3>上盐腌制</h3><p>立冬到立春之间，气温最低，是上盐的最佳时机。将粗盐均匀揉擦在腿面，一个月内上盐6-8次。每次上盐的时机和用量，取决于气温和湿度——师傅的手感比温度计更准。</p></div></div>
+      <div class="step"><div class="tag">4</div><div><h3>堆叠浸洗</h3><p>腌制好的腿一层层整齐堆叠成"腿墙"，20多天后取出，用清水浸泡刷洗，洗去表面多余盐分和杂质。</p></div></div>
+      <div class="step"><div class="tag">5</div><div><h3>晒腿整形</h3><p>选晴朗天气挂晒，直至皮面黄亮、肉面溢出油脂。然后绞直脚骨、锤平关节、捏拢小蹄、捧拢腿心——削、割、修、压、绞、敲、捧、拍，八种手法轮番上阵，把腿形做到位。</p></div></div>
+      <div class="step"><div class="tag">6</div><div><h3>上架发酵</h3><p>这是最关键的一步。火腿挂入通风阴凉处，在酶的作用下，蛋白质逐步分解为氨基酸，脂肪转化为风味物质——香气从无到有，从淡到浓。发酵需要五个月以上，温度、湿度、通风，哪一样不对都出不来好腿。</p></div></div>
+      <div class="step"><div class="tag">7</div><div><h3>落架堆叠</h3><p>发酵完成后的火腿擦拭上油，再次堆叠半个月左右做后熟。这是风味最后的沉淀，至此一条火腿才算真正"熟了"。</p></div></div>
+      <div class="step"><div class="tag">8</div><div><h3>闻香定级</h3><p>老师傅用竹签插入火腿三个特定部位，拔出后闻香判断品质——特级、一级、二级、三级，一签之下，味道骗不了人。</p></div></div>
+    </div>
+
+    <div class="quote">
+      「金华火腿的腌制技法是先上盐，再一层层往上堆叠，组成一堵腿墙。腌制过程中，上盐至少6-7次，直到猪腿皮面坚硬，肉面产生白色的盐霜结晶。」
+      <span class="src">—— 国家级非遗 · 金华火腿腌制技艺</span>
+    </div>
+
+    <p style="color:var(--ink-soft);">一条火腿从立冬到次年秋分，整整十个月。不像工厂化量产的火腿用恒温恒湿箱加速发酵——农户的火腿，靠的是金华的风、金华的冬、和那些在腿架旁守了半辈子的手艺人。</p>
+  </div>
+</section>
+
+<!-- ===== 贰 · 品相与风味 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>色香味形四绝<br>一刀下去见分晓</h2>
+    <p class="lead">金华火腿以色、香、味、形"四绝"闻名。但说"四绝"太抽象，切开一条腿你就明白了——</p>
+
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">COLOR</span>
+        <div class="big">玫瑰红<em>瘦肉</em></div>
+        <div class="desc">切开后瘦肉呈深玫瑰红色，肥肉晶莹透亮如琥珀。这是自然发酵的结果，不是染的。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">AROMA</span>
+        <div class="big">浓郁<em>火腿香</em></div>
+        <div class="desc">蛋白质分解产生的上百种风味物质，形成独特的火腿香气——开袋即能闻到，加热后更浓。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">TASTE</span>
+        <div class="big">咸鲜回甘<em>不腻</em></div>
+        <div class="desc">咸中带鲜，回味有淡淡甜感。肥而不腻、瘦而不柴，这是时间才做得到的口感。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">SHAPE</span>
+        <div class="big">琵琶<em>竹叶形</em></div>
+        <div class="desc">修坯整形后的火腿形如琵琶，又名竹叶形。这是金华火腿的标志性外观，一看腿形就知道出身。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>浓缩的不只是风味<br>还有营养</h2>
+    <p class="lead">十个月的自然风干发酵，水分蒸发，营养浓缩。一条金华火腿，本质上是猪肉在时间中"提纯"的结果——蛋白质和氨基酸被酶分解为更易吸收的小分子形态。</p>
+
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">PROTEIN</span>
+        <div class="big">16-30<em>g/100g</em></div>
+        <div class="desc">高蛋白，含8种人体必需氨基酸，发酵后蛋白质被分解为小分子肽和氨基酸，更易吸收。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">LYSINE</span>
+        <div class="big">1289<em>mg/100g</em></div>
+        <div class="desc">赖氨酸含量极高，是谷物蛋白的第一限制氨基酸，火腿配米饭，营养互补。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">POTASSIUM</span>
+        <div class="big">389<em>mg/100g</em></div>
+        <div class="desc">钾含量丰富，帮助维持体液电解质平衡和神经肌肉正常功能。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ZINC</span>
+        <div class="big">2.26<em>mg/100g</em></div>
+        <div class="desc">锌含量突出，对免疫系统功能和细胞代谢有重要辅助作用。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">SELENIUM</span>
+        <div class="big">13<em>μg/100g</em></div>
+        <div class="desc">硒是人体必需微量元素，具有抗氧化作用，帮助清除自由基。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">PHOSPHORUS</span>
+        <div class="big">125<em>mg/100g</em></div>
+        <div class="desc">磷与钙协同维护骨骼和牙齿健康，参与能量代谢。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">VITAMIN B</span>
+        <div class="big">B1·B2·烟酸</div>
+        <div class="desc">硫胺素（B1）0.51mg、核黄素（B2）0.18mg、烟酸4.8mg——维持神经系统健康和能量代谢。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">IRON</span>
+        <div class="big">2.1<em>mg/100g</em></div>
+        <div class="desc">血红素铁易于人体吸收，适量食用有助于改善缺铁性贫血。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>不止是美味<br>是滋补</h2>
+    <p class="lead">中医认为火腿性温、味咸，归脾、胃经。它不是药，但在传统饮食观念里，一条好的金华火腿，既是调味品，也是滋补食材。</p>
+
+    <div class="benefit-list">
+      <div class="b-item">
+        <div class="bn">1</div><div><h4>健脾开胃</h4><p>发酵过程中蛋白质分解产生的谷氨酸等风味物质能刺激唾液和胃液分泌，天然增进食欲。中医认为其性温味咸入脾，适合脾胃虚寒、食欲不振者。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">2</div><div><h4>补充优质蛋白</h4><p>蛋白质含量16-30%，经长时间发酵分解为小分子肽和游离氨基酸，消化吸收率高，适合术后、体弱者作为营养补充。含8种人体必需氨基酸，营养完整。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">3</div><div><h4>补血益气</h4><p>血红素铁含量2.1mg/100g，赖氨酸1289mg/100g——铁是血红蛋白合成的关键元素，赖氨酸促进铁的吸收。中医认为火腿性温，可缓解气血不足引起的乏力。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">4</div><div><h4>滋补肾气</h4><p>传统医学认为火腿咸味入肾，可辅助滋补肾气。硒元素（13μg/100g）和锌元素（2.26mg/100g）对生殖系统和免疫调节有重要支持作用。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">5</div><div><h4>抗氧化延缓衰老</h4><p>火腿中含硒（13μg/100g）和部分氨基酸（如组氨酸），具有一定的抗氧化作用，帮助清除体内自由基。发酵过程中产生的多肽类物质也具有生物活性。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">6</div><div><h4>增强骨骼健康</h4><p>磷（125mg/100g）与钙协作维护骨骼密度，锌参与骨胶原蛋白的合成。对维持骨骼和牙齿健康具有辅助作用。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">7</div><div><h4>调味提鲜，以鲜代盐</h4><p>火腿中的天然谷氨酸是极佳的鲜味来源，炖汤时放几片，整锅汤不用另外加盐加味精。用火腿替代部分食盐和鸡精，是更天然的调味方式。</p></div>
+      </div>
+      <div class="b-item">
+        <div class="bn">8</div><div><h4>温中祛寒</h4><p>中医视角下火腿性温，有温中祛寒之效。冬季用火腿炖汤，既暖身又滋补——金华本地人的冬日传统，一碗火腿炖笋汤下肚，比什么补药都实在。</p></div>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-soft);font-size:14px;">* 以上功效基于传统中医理论和现代营养学数据。火腿是高盐食品（约2000mg钠/100g），建议每日食用不超过30-50克，高血压、肾病、心血管疾病患者请遵医嘱控制摄入。</p>
+  </div>
+</section>
+
+<!-- ===== 伍 · 价格 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>十斤多的腿<br>五百二十八</h2>
+
+    <p class="dropcap">这条农家火腿净重十斤多，约5-6公斤，售价528元，折合约52元一斤。</p>
+
+    <p>对比一下就知道了：超市里真空包装的"金华火腿"，几十块一条，切开只有咸味没有香味——那是工厂速成货，恒温恒湿箱里催熟，几个月就出货，蛋白质根本没来得及充分分解。真正的农户手工火腿，一条腿从立冬挂到第二年秋分，整整十个月，一头猪只有两条后腿能做，还要淘汰掉腿形不好的——这才是实打实的成本。</p>
+
+    <div class="price-show">
+      <div class="amount">528<em>元</em></div>
+      <div class="unit">净重10斤+ · 约52元/斤 · 一条整腿</div>
+    </div>
+
+    <p style="color:var(--ink-soft);">52块一斤听起来不算便宜，但把十个月的风吹日晒、师傅几十年的手艺、和一刀下去肉色如火的那一刻算进去——就不贵了。这条腿能炖几十锅汤、炒几十盘菜，每次只用切薄薄两三片，一条腿够一家人吃大半年。算到每一餐，其实比买味精鸡精还划算。</p>
+
+    <!-- 品牌背书 -->
+    <div style="margin:40px 0;padding:30px;background:#fff;border:2px solid var(--ham);border-radius:14px;">
+      <p style="font-size:13px;letter-spacing:.3em;color:var(--ham-deep);margin-bottom:14px;">品 牌 背 书</p>
+      <p style="font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;">金字火腿 —— 上市公司 · 放心品牌</p>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0;">金字火腿是金华火腿行业首家上市公司，30余年专注火腿及肉制品研发与生产。从原料采购到工艺标准，全程可追溯。上市公司背书的品质，加上爱野严选的农户手作源头——大企业出品，小农户温度，两者兼得。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍点五 · 同场竞技 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍点伍</div>
+    <h2>两款火腿，怎么选</h2>
+    <p class="lead">店里还有一款1680元的金华两头乌珍藏版火腿。两款都是好腿，但适合不同的人。</p>
+
+    <div class="compare-table" style="margin:30px 0;">
+      <table style="width:100%;border-collapse:collapse;background:var(--paper-2);border-radius:14px;overflow:hidden;border:1px solid var(--line);">
+        <thead>
+          <tr><th style="background:var(--ham-deep);color:#F9F4EC;padding:14px 12px;font-size:14px;">对比项</th><th style="background:var(--ham-deep);color:#F9F4EC;padding:14px 12px;font-size:14px;">本款 · 金字农家火腿</th><th style="background:var(--ham);color:#F9F4EC;padding:14px 12px;font-size:14px;">珍藏版 · 天金两头乌</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">价格</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);"><strong style="color:var(--ham-deep);">¥528</strong></td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">¥1680</td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">净重</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);"><strong style="color:var(--ham-deep);">5kg以上（约10斤+）</strong></td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">3.5kg</td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">品牌</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">金字（上市公司）</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">天金</td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var (line);">猪种</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">农家散养黑毛猪</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);"><strong style="color:var(--ham-deep);">两头乌（中华熊猫猪）</strong></td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">包装</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">红色精品礼盒 + 手提袋</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);"><strong style="color:var(--ham-deep);">木盒珍藏版（雕刻）</strong></td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">定位</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">大众精品 · 分量足</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">高端珍藏 · 稀缺限量</td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;border-bottom:1px solid var(--line);">适合</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">家庭自用、节日送礼、员工福利</td><td style="padding:12px;text-align:center;border-bottom:1px solid var(--line);">重要客户、长辈大礼、收藏</td></tr>
+          <tr><td style="padding:12px;text-align:center;font-weight:600;">每斤单价</td><td style="padding:12px;text-align:center;"><strong style="color:var(--ham-deep);">约52元/斤</strong></td><td style="padding:12px;text-align:center;">约240元/斤</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="quote">
+      一句话：要分量足、性价比高、上市公司品质兜底——选528元金字火腿；要顶级猪种、珍藏木盒、送礼有面子——选1680元两头乌珍藏版。
+      <span class="src">—— 积养家选品建议</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 爱野坚持 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>爱野为什么选它</h2>
+    <p class="lead">爱野的选品标准一直没变：一样东西是不是真的好，不看广告，看它花了多少时间。</p>
+    <p>这条金华农家火腿，十个月自然风干发酵，不催熟、不加添加剂、不走捷径。1200年的非遗手艺在农户院子里一代代传下来——这种慢，在速食时代是奢侈。</p>
+    <p>但恰恰是这种奢侈，才是爱野想给你的东西。不是一块咸肉，是一条走了十个月才到你这儿的路。</p>
+
+    <div style="margin:36px 0;padding:28px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;text-align:center;">
+      <p style="font-size:13px;letter-spacing:.25em;color:var(--ham-deep);margin-bottom:12px;">包 装</p>
+      <p style="font-size:15px;color:var(--ink);margin-bottom:8px;">红色精品礼盒 + 金色手提袋</p>
+      <p style="font-size:13px;color:var(--ink-soft);margin:0;">大气喜庆的中国红，配上烫金"金字火腿"字样——无论是中秋、春节还是日常走访，拎出去就是一份沉甸甸的心意。礼盒内部衬垫厚实，运输途中不怕磕碰。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 底部 ===== -->
+<div class="footer">
+  <div class="end-logo">爱野天然食材</div>
+  <h3>时间给的风味，机器做不出来。</h3>
+  <p class="f-note">浙江金华 · 农家手作火腿 · 国家级非遗技艺<br>净重十斤以上 · 售价528元 · 十个月自然熟成</p>
+</div>
+
+</body>
+</html>

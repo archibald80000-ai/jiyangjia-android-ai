@@ -1,6 +1,17 @@
 # Current state
 
-Updated: 2026-08-08
+Updated: 2026-08-09
+
+## TASK-020F Aiye public knowledge v2.2
+
+- DONE / PRODUCTION_PUBLISHED. `knowledge-public/v2.2/` archives 25 authorized HTML files byte-for-byte and contains a source-derived 204-document package: 65 preserved v2.1 records plus 139 approved `aiye_` records.
+- Coverage: 24 solar-term recipes, 19 food-medicine ingredients, 11 Dayougu SKUs and one Dayougu product catalog; every new record maps to a source HTML, section and SHA-256.
+- Local isolated and Tencent production retrieval both passed 240/240 Top-3 cases with sources 100%, draft leakage 0 and real Doubao 2048-dimensional Embedding.
+- Production state: 180 approved, 24 draft, 340 chunks/embeddings/FAISS vectors. Six text dialogues and one Doubao-generated synthetic-speech audio dialogue passed the real DeepSeek LLM plus Doubao ASR/TTS/Embedding chain.
+- Health/nutrition grounding now requires explicit attribution to source/traditional food-use language and forbids extending it into treatment promises. Two production risk-focused checks passed after deployment.
+- Production rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`.
+- Public HTTPS is still blocked before Nginx by the separate TASK-014H Tencent webblock/ICP issue. This is not Android or human microphone acceptance.
+- Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 ## TASK-020E real Gateway import acceptance
 

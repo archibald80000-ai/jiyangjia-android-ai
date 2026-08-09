@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金不换 · 云南文山三七片 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1A0E;
+    --ink-soft:#5C3D28;
+    --paper:#FCF6EE;
+    --paper-2:#F5E8D5;
+    --red:#A0301A;
+    --red-deep:#6B1E0D;
+    --red-light:#C75542;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --green:#4A7C59;
+    --green-light:#6B9F7A;
+    --herb:#7B8B3A;
+    --line:rgba(45,26,14,.1);
+    --card:#F5E8D5;
+    --card-green:#EBF3E8;
+    --warm-red:#C0504D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(160,48,26,.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(184,134,11,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--red);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--red-deep);}
+  .cover h1 em{font-style:normal;color:var(--gold);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--red);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+
+  .hero-svg{margin-top:50px;width:min(280px,66%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--gold);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--red);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--gold);
+    background:var(--paper-2);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);
+    transition:transform .2s;
+  }
+  .card:hover{transform:translateY(-2px);}
+  .card .label{font-size:12px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:8px;}
+  .card .value{font-size:28px;font-weight:700;color:var(--red-deep);line-height:1.2;}
+  .card .value span{font-size:14px;font-weight:400;color:var(--ink-soft);}
+  .card .desc{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.6;}
+  .card .src{font-size:11px;color:#9C8B72;margin-top:6px;}
+
+  /* ===== 功效卡 ===== */
+  .effect-list{margin:28px 0;}
+  .effect-item{
+    display:flex;gap:18px;margin-bottom:20px;
+    padding:20px;background:var(--card);border-radius:10px;
+    border:1px solid var(--line);
+  }
+  .effect-num{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;
+    background:var(--red);color:#fff;font-size:14px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .effect-body h4{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .effect-body p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.7;}
+  .effect-body .src{font-size:11px;color:#9C8B72;margin-top:6px;display:block;}
+
+  /* ===== 对比表 ===== */
+  .compare-table{
+    width:100%;border-collapse:collapse;margin:28px 0;
+    font-size:14px;border-radius:10px;overflow:hidden;
+  }
+  .compare-table th{
+    background:var(--red-deep);color:#fff;padding:12px 14px;
+    font-weight:600;text-align:left;font-size:13px;
+  }
+  .compare-table td{
+    padding:12px 14px;border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .compare-table td:first-child{font-weight:600;color:var(--ink);}
+  .compare-table tr:last-child td{border-bottom:none;}
+
+  /* ===== 警告框 ===== */
+  .warn{
+    margin:28px 0;padding:20px 22px;
+    background:#FFF3E0;border:1px solid #FFB74D;
+    border-radius:10px;font-size:14px;color:#8B5E12;
+  }
+  .warn strong{color:var(--red-deep);}
+  .warn-red{
+    margin:28px 0;padding:20px 22px;
+    background:#FFEBEE;border:1px solid #EF5350;
+    border-radius:10px;font-size:14px;color:#B71C1C;
+  }
+  .warn-red strong{color:var(--red-deep);}
+
+  /* ===== 分隔符 ===== */
+  .divider{
+    text-align:center;margin:60px 0;color:var(--gold);
+    font-size:18px;letter-spacing:.5em;opacity:.4;
+  }
+
+  /* ===== 销售话术框 ===== */
+  .sales-box{
+    margin:34px 0;padding:28px 26px;
+    background:linear-gradient(135deg,var(--red-deep),var(--red));
+    color:#fff;border-radius:12px;
+  }
+  .sales-box h3{color:#fff;border:none;margin-top:0;}
+  .sales-box p{color:rgba(255,255,255,.9);}
+  .sales-box .price{
+    font-size:42px;font-weight:700;color:#FFD54F;
+    text-align:center;margin:18px 0;
+  }
+  .sales-box .price span{font-size:16px;font-weight:400;}
+
+  /* ===== 用法卡 ===== */
+  .usage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0;}
+  .usage-card{
+    padding:18px;background:var(--card-green);border-radius:10px;
+    border:1px solid rgba(74,124,89,.15);
+  }
+  .usage-card .title{font-size:14px;font-weight:600;color:var(--green);margin-bottom:8px;}
+  .usage-card .detail{font-size:13px;color:var(--ink-soft);line-height:1.7;}
+
+  /* footer */
+  .footer{text-align:center;padding:60px 28px 80px;font-size:13px;color:#9C8B72;letter-spacing:.1em;}
+  .footer .logo{font-size:20px;font-weight:700;color:var(--gold);margin-bottom:12px;letter-spacing:.3em;}
+</style>
+</head>
+<body>
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="cover">
+  <div class="brand">爱野 · 天然食材</div>
+  <div class="tagline">南国神草 · 金不换</div>
+  <h1>云南文山<em>三七片</em></h1>
+  <p class="sub">北纬23.5° · 红土道地 · <span>三年育一株，七年成药性</span></p>
+
+  <svg class="hero-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 红土山丘 -->
+    <path d="M0,160 Q60,130 120,145 T280,140 L280,200 L0,200 Z" fill="#A0301A" opacity=".15"/>
+    <path d="M0,170 Q80,145 160,155 T280,150 L280,200 L0,200 Z" fill="#A0301A" opacity=".25"/>
+    <!-- 三七植株 -->
+    <g transform="translate(140,40)">
+      <!-- 三枝七叶 -->
+      <line x1="0" y1="100" x2="0" y2="50" stroke="#4A7C59" stroke-width="2.5"/>
+      <!-- 左枝 -->
+      <path d="M0,70 Q-30,60 -45,45" fill="none" stroke="#4A7C59" stroke-width="2"/>
+      <ellipse cx="-48" cy="42" rx="12" ry="7" fill="#6B9F7A" opacity=".8" transform="rotate(-30 -48 42)"/>
+      <ellipse cx="-35" cy="55" rx="10" ry="6" fill="#6B9F7A" opacity=".7" transform="rotate(-20 -35 55)"/>
+      <!-- 右枝 -->
+      <path d="M0,70 Q30,60 45,45" fill="none" stroke="#4A7C59" stroke-width="2"/>
+      <ellipse cx="48" cy="42" rx="12" ry="7" fill="#6B9F7A" opacity=".8" transform="rotate(30 48 42)"/>
+      <ellipse cx="35" cy="55" rx="10" ry="6" fill="#6B9F7A" opacity=".7" transform="rotate(20 35 55)"/>
+      <!-- 顶部花 -->
+      <circle cx="0" cy="45" r="6" fill="#C75542" opacity=".85"/>
+      <circle cx="-8" cy="50" r="4" fill="#C75542" opacity=".7"/>
+      <circle cx="8" cy="50" r="4" fill="#C75542" opacity=".7"/>
+      <!-- 根部（三七主体） -->
+      <ellipse cx="0" cy="115" rx="18" ry="28" fill="#8B4F0D" opacity=".7"/>
+      <ellipse cx="0" cy="115" rx="14" ry="24" fill="#A0301A" opacity=".4"/>
+      <!-- 须根 -->
+      <path d="M-10,135 Q-18,150 -15,165" fill="none" stroke="#8B4F0D" stroke-width="1.5" opacity=".5"/>
+      <path d="M0,140 Q0,155 0,170" fill="none" stroke="#8B4F0D" stroke-width="1.5" opacity=".5"/>
+      <path d="M10,135 Q18,150 15,165" fill="none" stroke="#8B4F0D" stroke-width="1.5" opacity=".5"/>
+    </g>
+    <!-- 文字标注 -->
+    <text x="140" y="195" text-anchor="middle" font-size="10" fill="#9C8B72" letter-spacing="2">三年生 · 主根入药</text>
+  </svg>
+
+  <div class="meta">国家地理标志保护产品 · 中国三七之乡</div>
+  <div class="scroll-hint">向下查看<span class="arr">↓</span></div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>金不换的来历</h2>
+    <p class="dropcap">云南文山，北回归线穿境而过。这里的山是喀斯特地貌，土是红色的，富含矿物质和微量元素。全中国只有这一小片地方——海拔1000到1800米，北纬23.5度，冬暖夏凉、雨量充沛——能种出真正的道地三七。</p>
+    <p>全世界95%以上的三七产自文山。别的地方也试过种，广西种过，贵州种过，四川也种过，但科学检测一出来，皂苷含量差一大截。就像只有波尔多的葡萄才能酿顶级红酒，只有文山的红土才能长出最好的三七。</p>
+
+    <div class="quote">
+      「人参补气第一，三七补血第一，味同而功亦等，故称人参三七，为中药之最珍贵者。」
+      <span class="src">—— 清·赵学敏《本草纲目拾遗》</span>
+    </div>
+
+    <p>民间叫它"金不换"，意思是拿金子来换都不换。又叫"南国神草"、"血症圣药"。1902年，云南江川伤科名医曲焕章用三七做核心原料，研制出"百宝丹"——后来改名<strong>云南白药</strong>，至今畅销全世界。说三七是中国伤科第一药，不为过。</p>
+    <p>文山种三七，有确切文字记载的历史超过400年。2023年，三七正式被纳入国家药食同源目录——既是药，也是食，寻常百姓也能日常用。</p>
+  </div>
+</section>
+
+<!-- ===== 壹 · 道地 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>为什么只有文山</h2>
+    <p>三七是世界上最"挑地"的植物之一。它对生长条件的要求苛刻到什么程度？看这几条：</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">纬度</div>
+        <div class="value">23.5°<span>N</span></div>
+        <div class="desc">北回归线穿境，只有这一条纬度带能种</div>
+      </div>
+      <div class="card">
+        <div class="label">海拔</div>
+        <div class="value">1000-1800<span>m</span></div>
+        <div class="desc">高了冻死，低了热死，区间极窄</div>
+      </div>
+      <div class="card">
+        <div class="label">温度</div>
+        <div class="value">-5~35<span>°C</span></div>
+        <div class="desc">冬不低于零下5度，夏不高于35度</div>
+      </div>
+      <div class="card">
+        <div class="label">土壤含水</div>
+        <div class="value">22-40<span>%</span></div>
+        <div class="desc">怕旱更怕涝，过黏过沙都不行</div>
+      </div>
+    </div>
+
+    <p>满足了以上所有条件，还得是文山特有的红壤——钾和钙含量高，正好是三七总皂苷积累的关键元素。换一块地，哪怕只隔一座山，皂苷含量就可能差出20%以上。</p>
+
+    <p>还有一个"死规矩"：三七<strong>忌连作</strong>。一块地种过一茬三七，至少要休耕5到20年才能再种。这意味着每一株三七的背后，都是被时间养出来的土地。</p>
+
+    <div class="quote">
+      「三年育一株，七年成药性。」
+      <span class="src">—— 文山三七民间谚语</span>
+    </div>
+
+    <p>种子播下去，第一年育苗，第二年移栽，第三年才能采收。采回来还要经过清洗、干燥、分选——从种到制成饮片，没有一步能省。这就是"金不换"三个字的重量。</p>
+  </div>
+</section>
+
+<!-- ===== 贰 · 生打熟补 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>生打熟补：一味药，两种用法</h2>
+    <p>文山民间有句老话，叫"生打熟补"。同一个三七，用法不同，效果截然相反——这叫"双向调节"，是三七最神奇的地方。</p>
+
+    <div class="compare-table">
+      <tr>
+        <th style="width:20%">对比</th>
+        <th>生三七（打粉/切片冲服）</th>
+        <th>熟三七（炖煮/蒸制后食用）</th>
+      </tr>
+      <tr>
+        <td>核心功效</td>
+        <td>活血化瘀、消肿定痛</td>
+        <td>补血和血、补气养身</td>
+      </tr>
+      <tr>
+        <td>适合人群</td>
+        <td>心脑血管亚健康、跌打损伤、血瘀体质</td>
+        <td>产后体虚、术后恢复、贫血、气血不足</td>
+      </tr>
+      <tr>
+        <td>日常场景</td>
+        <td>三七粉温水冲服，每日1-3g</td>
+        <td>三七片炖鸡/炖排骨，煲汤食用</td>
+      </tr>
+      <tr>
+        <td>中医原理</td>
+        <td>"止血不留瘀，行血不伤新"</td>
+        <td>"去瘀生新，补益健体"</td>
+      </tr>
+    </table>
+
+    <div class="warn">
+      <strong>关键区分：</strong>生三七是"通"——打通血管淤堵，化掉瘀血；熟三七是"补"——把血补回来，把气养足。一个散一个收，方向完全不同。买的时候要搞清楚自己要哪种效果。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>营养成分</h2>
+    <p>三七的有效成分已经被现代科学研究了几十年，发表论文6700余篇。以下数据均标注来源，不做野鸡宣传。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">三七总皂苷（PNS）</div>
+        <div class="value">6-14<span>%</span></div>
+        <div class="desc">三七核心活性成分，含人参皂苷Rg1、Rb1、Re、Rd及三七皂苷R1等</div>
+        <div class="src">来源：《中国药典》2020年版</div>
+      </div>
+      <div class="card">
+        <div class="label">人参皂苷Rg1</div>
+        <div class="value">≥2.5<span>%</span></div>
+        <div class="desc">改善微循环、抗血栓、促进神经细胞再生的核心成分</div>
+        <div class="src">来源：药典皂苷含量标准</div>
+      </div>
+      <div class="card">
+        <div class="label">人参皂苷Rb1</div>
+        <div class="value">≥3.0<span>%</span></div>
+        <div class="desc">镇静安神、保护脑神经、改善学习记忆能力</div>
+        <div class="src">来源：药典皂苷含量标准</div>
+      </div>
+      <div class="card">
+        <div class="label">三七素</div>
+        <div class="value">0.8-1.2<span>%</span></div>
+        <div class="desc">三七特有的止血成分，能缩短凝血时间，止血不留瘀</div>
+        <div class="src">来源：昆明理工大学/云南农大研究</div>
+      </div>
+      <div class="card">
+        <div class="label">黄酮类</div>
+        <div class="value">1-3<span>%</span></div>
+        <div class="desc">槲皮素等，抗氧化、抗炎、保护血管内皮</div>
+        <div class="src">来源：《中国药典》</div>
+      </div>
+      <div class="card">
+        <div class="label">三七多糖</div>
+        <div class="value">5-8<span>%</span></div>
+        <div class="desc">增强免疫、抗疲劳、调节糖代谢</div>
+        <div class="src">来源：云南中医药大学2023年研究</div>
+      </div>
+      <div class="card">
+        <div class="label">氨基酸</div>
+        <div class="value">17<span>种</span></div>
+        <div class="desc">含7种人体必需氨基酸，总氨基酸含量约5.2%</div>
+        <div class="src">来源：中国食物成分表</div>
+      </div>
+      <div class="card">
+        <div class="label">微量元素</div>
+        <div class="value">钙铁锌硒<span></span></div>
+        <div class="desc">钙1.2mg/g、铁0.08mg/g、锌0.05mg/g、硒0.12μg/g</div>
+        <div class="src">来源：文山三七质量检测中心</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「文山三七总皂苷含量远超药典标准，红壤中钾和钙含量与皂苷积累密切相关。」
+      <span class="src">—— 文山三七研究院栽培研究所 王勇所长</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>对人体有什么好处</h2>
+    <p>三七总皂苷制剂已入选多项国家级专家共识，在心脑血管、神经系统、肾脏保护等领域有大量临床研究支撑。以下8项，每一项都有科研背书。</p>
+
+    <div class="effect-list">
+      <div class="effect-item">
+        <div class="effect-num">1</div>
+        <div class="effect-body">
+          <h4>活血化瘀，疏通血管</h4>
+          <p>三七皂苷能抑制血小板异常聚集，降低血液黏稠度，改善微循环血流速度。对胸闷、头痛、肢体麻木等气滞血瘀症状有显著改善作用。</p>
+          <span class="src">来源：《中国中药杂志》2021年研究；38项RCT Meta分析（n=4074）证实血栓通对冠心病心绞痛有效率显著优于常规治疗</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">2</div>
+        <div class="effect-body">
+          <h4>双向止血——止血不留瘀</h4>
+          <p>三七素能促进血小板聚集，缩短凝血时间，快速止住外伤出血、咯血、便血等内外出血。同时其活血作用可清除瘀血，"止血不留瘀，行血不伤新"——这是三七独有的双向调节特性。</p>
+          <span class="src">来源：《本草纲目》"止血，散血，定痛"；现代药理学实验证实</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">3</div>
+        <div class="effect-body">
+          <h4>保护心血管，改善心肌缺血</h4>
+          <p>三七皂苷能扩张冠状动脉，增加冠脉血流量，提高心肌对缺氧的耐受性。可减少心肌梗死范围，降低血清LDH、CK等心肌损伤标志物。对冠心病、心绞痛患者的心绞痛发作频率有降低作用。</p>
+          <span class="src">来源：《三七总皂苷制剂临床应用中国专家共识》（国家中医心血管病临床医学研究中心编）</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">4</div>
+        <div class="effect-body">
+          <h4>保护脑血管，改善脑缺血</h4>
+          <p>能缩小脑梗死体积，减轻脑水肿，抑制神经细胞凋亡，促进神经干细胞增殖分化，参与脑组织修复和神经功能重建。对脑梗死后遗症的恢复有积极意义。</p>
+          <span class="src">来源：入选《中国急性缺血性脑卒中中西医急诊诊治专家共识》</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">5</div>
+        <div class="effect-body">
+          <h4>调节血脂，辅助稳血糖</h4>
+          <p>注射用血栓通可降低总胆固醇、甘油三酯和低密度脂蛋白胆固醇，升高高密度脂蛋白胆固醇。三七皂苷还能调节糖代谢，对糖尿病模型的血糖有降低作用。</p>
+          <span class="src">来源：《三七总皂苷制剂临床应用中国专家共识》</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">6</div>
+        <div class="effect-body">
+          <h4>抗炎镇痛，天然安全</h4>
+          <p>三七皂苷能抑制炎症因子释放，减轻炎症相关的肿胀和疼痛。药效学实验显示其有显著的镇痛活性（扭体试验），且Rg1含量与镇痛潜伏时间显著正相关。</p>
+          <span class="src">来源：云南农业大学/昆明理工大学成分-药效相关性研究</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">7</div>
+        <div class="effect-body">
+          <h4>抗氧化抗衰老</h4>
+          <p>三七多糖、黄酮等成分能清除自由基，抑制脂质过氧化物生成，增强超氧化物歧化酶（SOD）活性。对延缓组织衰老、维护血管弹性、改善皮肤自由基损伤有潜在益处。</p>
+          <span class="src">来源：北京大学第三医院 王春勇副主任医师；动物实验证实</span>
+        </div>
+      </div>
+
+      <div class="effect-item">
+        <div class="effect-num">8</div>
+        <div class="effect-body">
+          <h4>增强免疫，扶正固本</h4>
+          <p>三七多糖能提高免疫细胞活性，促进免疫球蛋白生成，增强巨噬细胞吞噬功能。对长期疲劳、易感冒人群的机体抵抗力有提升作用。云南中医药大学2023年研究发现其能提高能量代谢水平，增强运动耐力。</p>
+          <span class="src">来源：云南中医药大学2023年研究；云南中医药大学官网</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 鉴别 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>铜皮铁骨狮子头菊花心</h2>
+    <p>正宗文山三七，行家看一眼就知道。八个字记住，走到哪儿都不怕被忽悠：</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">铜皮</div>
+        <div class="value" style="font-size:18px;">灰黄褐色外皮</div>
+        <div class="desc">传统加工不水洗，外表带泥土晒干呈土黄色，像铜的颜色</div>
+      </div>
+      <div class="card">
+        <div class="label">铁骨</div>
+        <div class="value" style="font-size:18px;">质地坚硬难断</div>
+        <div class="desc">晒干的三七头砸在地上不会断，有清脆的响声</div>
+      </div>
+      <div class="card">
+        <div class="label">狮子头</div>
+        <div class="value" style="font-size:18px;">顶端瘤状突起</div>
+        <div class="desc">顶端及周围有不规则的瘤状突起物，像狮子头</div>
+      </div>
+      <div class="card">
+        <div class="label">菊花心</div>
+        <div class="value" style="font-size:18px;">断面放射纹理</div>
+        <div class="desc">切开后断面呈灰绿色或黄绿色，有放射状纹理如菊花</div>
+      </div>
+    </div>
+
+    <div class="warn-red">
+      <strong>⚠️ 市场避坑——当心"土三七"！</strong><br><br>
+      市面上有一种叫"土三七"的东西，和三七只差一个字，但<strong>完全不是一种植物</strong>，含有吡咯烷生物碱，会导致肝小静脉闭塞，严重的会致命。已有多起因误服土三七导致急性药物性肝损伤的案例。<br><br>
+      识别要点：土三七多来自菊科或景天科，断面没有菊花心纹理，味甘微苦带酸。买三七一定要认准正规渠道、认准文山地理标志。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 吃法 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>怎么吃</h2>
+
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="title">每日冲服（生用）</div>
+        <div class="detail">三七粉1-3g，温开水送服。建议早上空腹或饭前服用，增强免疫力、抗衰老。不加糖，可用玉米淀粉纸隔离味蕾。</div>
+      </div>
+      <div class="usage-card">
+        <div class="title">三七炖鸡（熟用）</div>
+        <div class="detail">三七片10-15g，母鸡一只，加红枣枸杞，小火炖2小时。补血养气，适合产后体虚、术后恢复、贫血面色萎黄。</div>
+      </div>
+      <div class="usage-card">
+        <div class="title">三七泡酒</div>
+        <div class="detail">三七10-30g浸入白酒500ml，泡一周。每日2次，每次5-10ml。活血化瘀止痛，适合跌打损伤、关节疼痛。</div>
+      </div>
+      <div class="usage-card">
+        <div class="title">三七花茶</div>
+        <div class="detail">三七花3-5朵，开水冲泡代茶饮。清热平肝，适合高血压、咽喉肿痛、头晕目眩。</div>
+      </div>
+    </div>
+
+    <div class="warn-red">
+      <strong>⚠️ 禁忌提醒（务必阅读）</strong><br>
+      ① <strong>孕妇禁用</strong>——活血化瘀作用可能刺激子宫<br>
+      ② 经期女性慎用——可能导致经量增多<br>
+      ③ 正在服用抗凝药（华法林、阿司匹林）者需咨询医生——三七可能增强抗凝效果<br>
+      ④ 10岁以下儿童不宜长期服用——可能影响自身免疫力发育<br>
+      ⑤ 感冒发热期间暂停——活血作用可能加重内热<br>
+      ⑥ 每日总量不超过6g（生用），一次不超过3g
+    </div>
+  </div>
+</section>
+
+<!-- ===== 柒 · 销售 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>为什么值得买</h2>
+
+    <div class="sales-box">
+      <h3>积养家 · 文山道地三七片</h3>
+      <p>不是所有三七都叫文山三七。</p>
+      <p>我们的三七片，来自云南文山核心产区，三年生主根切片，铜皮铁骨狮子头菊花心，每一片都是道地品质。打粉、炖汤、泡酒，生打熟补，一味药用出两种效果。</p>
+      <p>国家地理标志保护产品，药食同源，日常可用。</p>
+      <div class="price">到店咨询 <span>· 按规格计价</span></div>
+      <p style="text-align:center;">三七粉 / 三七片 / 三七花 / 礼盒装<br>到店免费品鉴三七炖鸡汤</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:30px;">
+      <div class="card">
+        <div class="label">送爸妈</div>
+        <div class="value" style="font-size:18px;">心血管守护</div>
+        <div class="desc">三高人群日常调理，扩张血管、改善微循环，6700篇论文背书</div>
+      </div>
+      <div class="card">
+        <div class="label">送自己</div>
+        <div class="value" style="font-size:18px;">抗疲劳护肝</div>
+        <div class="desc">加班熬夜族的护肝神器，增强免疫、抗氧化、提升能量代谢</div>
+      </div>
+      <div class="card">
+        <div class="label">送女性</div>
+        <div class="value" style="font-size:18px;">活血养颜</div>
+        <div class="desc">熟用补血养气，生用活血化瘀，长期服用气色红润（经期暂停）</div>
+      </div>
+      <div class="card">
+        <div class="label">术后恢复</div>
+        <div class="value" style="font-size:18px;">补血化瘀</div>
+        <div class="desc">术后瘀血消散、气血双补，"去瘀生新"加速组织修复</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 捌 · 爱野选品 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">捌</div>
+    <h2>爱野为什么选它</h2>
+    <p>爱野四重选材标准：原生种子、自然生长、有机肥、零农残。三七的种植方式，正好四条全中——</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">原生种子</div>
+        <div class="value" style="font-size:16px;">文山道地种源</div>
+        <div class="desc">文山三七种植系统获评中国重要农业文化遗产，种源纯正</div>
+      </div>
+      <div class="card">
+        <div class="label">自然生长</div>
+        <div class="value" style="font-size:16px;">三年足期不催熟</div>
+        <div class="desc">三年育一株七年成药性，不催长不催熟，时间给品质</div>
+      </div>
+      <div class="card">
+        <div class="label">红土养根</div>
+        <div class="value" style="font-size:16px;">高钾钙红壤</div>
+        <div class="desc">文山特有的喀斯特红壤，钾钙含量高，皂苷积累的关键</div>
+      </div>
+      <div class="card">
+        <div class="label">国标认证</div>
+        <div class="value" style="font-size:16px;">地理标志+药食同源</div>
+        <div class="desc">国家地理标志保护产品，2023年纳入药食同源目录</div>
+      </div>
+    </div>
+
+    <p style="color:var(--ink-soft);text-align:center;font-size:15px;margin-top:30px;">金不换，是古人给它起的名字。<br>意思是：拿金子来，都不换。</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◆ ◆</div>
+
+<div class="footer">
+  <div class="logo">爱野 · 积养家</div>
+  <p>积善积德积福 · 养人养生养体</p>
+  <p style="margin-top:8px;">数据来源：《中国药典》2020年版 · 《本草纲目》《本草纲目拾遗》<br>三七总皂苷制剂临床应用中国专家共识 · 文山三七研究院<br>云南中医药大学 · 昆明理工大学 · 北京大学第三医院</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+{
+  "version": "2.2",
+  "source_pages": [
+    {
+      "name": "24节气养生茶速查表.html",
+      "title": "24节气养生茶速查表",
+      "slug": "solar-term-tea-guide"
+    },
+    {
+      "name": "茶油品牌故事.html",
+      "title": "茶油品牌故事",
+      "slug": "camellia-oil"
+    },
+    {
+      "name": "大有谷合作产品手册.html",
+      "title": "大有谷合作产品手册",
+      "slug": "dayougu-products"
+    },
+    {
+      "name": "二十四节气养生茶品牌故事.html",
+      "title": "二十四节气养生茶品牌故事",
+      "slug": "solar-term-tea-story"
+    },
+    {
+      "name": "飞鸡蛋品牌故事.html",
+      "title": "飞鸡蛋品牌故事",
+      "slug": "free-range-eggs"
+    },
+    {
+      "name": "旱地亚麻籽品牌故事.html",
+      "title": "旱地亚麻籽品牌故事",
+      "slug": "golden-flaxseed"
+    },
+    {
+      "name": "黄芪蜂蜜醋品牌故事.html",
+      "title": "黄芪蜂蜜醋品牌故事",
+      "slug": "astragalus-honey-vinegar"
+    },
+    {
+      "name": "积养家社区健康臻选计划-拓客活动.html",
+      "title": "积养家社区健康臻选计划",
+      "slug": "community-health-event"
+    },
+    {
+      "name": "积养家下午茶体验菜单.html",
+      "title": "积养家下午茶体验菜单",
+      "slug": "afternoon-tea-menu"
+    },
+    {
+      "name": "积养家药食同源食材大全.html",
+      "title": "积养家药食同源食材大全",
+      "slug": "food-medicine-ingredients"
+    },
+    {
+      "name": "金华古法酱油品牌故事.html",
+      "title": "金华古法酱油品牌故事",
+      "slug": "jinhua-soy-sauce"
+    },
+    {
+      "name": "金华两头乌火腿品牌故事.html",
+      "title": "金华两头乌火腿品牌故事",
+      "slug": "jinhua-liangtouyu-ham"
+    },
+    {
+      "name": "金华农家火腿品牌故事.html",
+      "title": "金华农家火腿品牌故事",
+      "slug": "jinhua-farm-ham"
+    },
+    {
+      "name": "罗埠土酱油礼盒装品牌故事.html",
+      "title": "罗埠土酱油礼盒品牌故事",
+      "slug": "luobu-soy-sauce-gift"
+    },
+    {
+      "name": "农家古法黄豆酱品牌故事.html",
+      "title": "农家古法黄豆酱品牌故事",
+      "slug": "farm-soybean-paste"
+    },
+    {
+      "name": "沙漠一号虎坚果油品牌故事.html",
+      "title": "沙漠一号虎坚果油品牌故事",
+      "slug": "tiger-nut-oil"
+    },
+    {
+      "name": "山西老陈醋品牌故事.html",
+      "title": "山西老陈醋品牌故事",
+      "slug": "shanxi-aged-vinegar"
+    },
+    {
+      "name": "上珍缘宣莲品牌故事.html",
+      "title": "上珍缘宣莲品牌故事",
+      "slug": "xuan-lotus-seed"
+    },
+    {
+      "name": "时珍太和圣坊养生茶系列.html",
+      "title": "时珍太和圣坊养生茶系列",
+      "slug": "shizhen-health-tea"
+    },
+    {
+      "name": "塔牌黄酒品牌故事.html",
+      "title": "塔牌黄酒品牌故事",
+      "slug": "tapai-rice-wine"
+    },
+    {
+      "name": "藤茶品牌故事.html",
+      "title": "藤茶品牌故事",
+      "slug": "vine-tea"
+    },
+    {
+      "name": "五指岩鲜姜品牌故事.html",
+      "title": "五指岩鲜姜品牌故事",
+      "slug": "wuzhiyan-ginger"
+    },
+    {
+      "name": "武当山野山蜂蜜品牌故事.html",
+      "title": "武当山野山蜂蜜品牌故事",
+      "slug": "wudang-wild-honey"
+    },
+    {
+      "name": "香榧油品牌故事.html",
+      "title": "香榧油品牌故事",
+      "slug": "torreya-oil"
+    },
+    {
+      "name": "云南文山三七片品牌故事.html",
+      "title": "云南文山三七片品牌故事",
+      "slug": "wenshan-notoginseng"
+    }
+  ],
+  "coverage": {
+    "source_pages": 25,
+    "solar_terms": [
+      "立春",
+      "雨水",
+      "惊蛰",
+      "春分",
+      "清明",
+      "谷雨",
+      "立夏",
+      "小满",
+      "芒种",
+      "夏至",
+      "小暑",
+      "大暑",
+      "立秋",
+      "处暑",
+      "白露",
+      "秋分",
+      "寒露",
+      "霜降",
+      "立冬",
+      "小雪",
+      "大雪",
+      "冬至",
+      "小寒",
+      "大寒"
+    ],
+    "food_medicine_ingredients": [
+      "生姜",
+      "黄芪",
+      "党参段",
+      "三七",
+      "茯苓",
+      "当归",
+      "芡实仁",
+      "百合",
+      "无花果",
+      "大玫瑰",
+      "铁皮石斛",
+      "麦冬",
+      "九蒸黄精",
+      "老陈皮",
+      "福建莲子",
+      "宁夏枸杞",
+      "山药",
+      "桑葚",
+      "西洋参片"
+    ],
+    "dayougu_skus": [
+      "福人 · 有机五常大米",
+      "尚乾 · 有机五常大米",
+      "十年有机小米 · 礼盒装",
+      "十年有机小米 · 家庭装",
+      "有机鲜食玉米",
+      "有机糯玉米",
+      "有机杂粮（8品种）",
+      "39°有机盐田虾",
+      "肉苁蓉奶粉",
+      "芥花油（大桶）",
+      "芥花油（双瓶）"
+    ]
+  }
+}

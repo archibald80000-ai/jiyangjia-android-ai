@@ -1,0 +1,268 @@
+{
+  "version": "2.2",
+  "review_basis": "User confirmed all source materials were human-reviewed and approved for public/customer use.",
+  "fidelity_policy": "Knowledge text is extracted from the archived HTML. No external facts are added by the builder.",
+  "runtime_policy": "The LLM may summarize retrieved approved text but must not invent medical efficacy, diagnosis, price, inventory or activity facts.",
+  "independent_external_fact_check": false,
+  "pages": [
+    {
+      "name": "24节气养生茶速查表.html",
+      "sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "price_terms": [
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "茶油品牌故事.html",
+      "sha256": "5C6EC52D6E302F55D9E62F972D4F4E030AE15BC4CC4A5E9A959F7ED9C226DD62",
+      "price_terms": [
+        "价格",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "大有谷合作产品手册.html",
+      "sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "price_terms": [
+        "零售价",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "二十四节气养生茶品牌故事.html",
+      "sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "price_terms": [
+        "¥"
+      ],
+      "health_claim_terms": [
+        "治疗",
+        "疾病"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "飞鸡蛋品牌故事.html",
+      "sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "price_terms": [
+        "价格",
+        "活动",
+        "元/"
+      ],
+      "health_claim_terms": [
+        "疾病"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "旱地亚麻籽品牌故事.html",
+      "sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "price_terms": [
+        "零售价",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "黄芪蜂蜜醋品牌故事.html",
+      "sha256": "D42D939FBEED23BF720B40F716038A30DA1A5403AF3B6393CFC751B4718604A1",
+      "price_terms": [],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "积养家社区健康臻选计划-拓客活动.html",
+      "sha256": "1FA27ED50FE2AB01C5B19B652451DB9A0B00CEBE5474BDEFD4E6B822FA35BA8B",
+      "price_terms": [
+        "零售价",
+        "优惠",
+        "活动",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "积养家下午茶体验菜单.html",
+      "sha256": "385014D802032A25D7C687831E284DC492FA3A0F33678CC7F4E99CFA05C4AD40",
+      "price_terms": [
+        "价格",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "积养家药食同源食材大全.html",
+      "sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "price_terms": [],
+      "health_claim_terms": [
+        "抗癌",
+        "心肌缺血"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "金华古法酱油品牌故事.html",
+      "sha256": "A412297BFCB3DA5A93CDAE9E57595B5E45F7C75434A1ED41C006FF518FDB706D",
+      "price_terms": [
+        "价格",
+        "¥"
+      ],
+      "health_claim_terms": [
+        "治疗"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "金华两头乌火腿品牌故事.html",
+      "sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "price_terms": [
+        "价格",
+        "元/",
+        "¥"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "金华农家火腿品牌故事.html",
+      "sha256": "47B8D02483FF4362A809AA84A7FC9DAD9FC15798F11893E76B597F887280E585",
+      "price_terms": [
+        "价格",
+        "元/",
+        "¥"
+      ],
+      "health_claim_terms": [
+        "疾病"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "罗埠土酱油礼盒装品牌故事.html",
+      "sha256": "35C564D7C00879B094BD56546077BDD93712CB2C8882DDF3B2D071E40589F9F5",
+      "price_terms": [
+        "价格",
+        "元/",
+        "¥"
+      ],
+      "health_claim_terms": [
+        "疾病"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "农家古法黄豆酱品牌故事.html",
+      "sha256": "AF0F08C13AA96793AD3EB7726B5752835F6D3C2E89C158AD65CD2482F9B7FAA9",
+      "price_terms": [],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "沙漠一号虎坚果油品牌故事.html",
+      "sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "price_terms": [],
+      "health_claim_terms": [
+        "抗癌"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "山西老陈醋品牌故事.html",
+      "sha256": "FA62C66B846ECA2E0818E20AD93507472F88F1609BDF0E5C72EB785AEE8DE0DA",
+      "price_terms": [
+        "价格"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "上珍缘宣莲品牌故事.html",
+      "sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "price_terms": [],
+      "health_claim_terms": [
+        "降血压",
+        "心肌缺血"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "时珍太和圣坊养生茶系列.html",
+      "sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "price_terms": [
+        "价格",
+        "¥"
+      ],
+      "health_claim_terms": [
+        "疾病"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "塔牌黄酒品牌故事.html",
+      "sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "price_terms": [
+        "价格",
+        "元/"
+      ],
+      "health_claim_terms": [
+        "降血压"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "藤茶品牌故事.html",
+      "sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "price_terms": [
+        "零售价",
+        "¥"
+      ],
+      "health_claim_terms": [
+        "治疗",
+        "降血压",
+        "降血糖"
+      ],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "五指岩鲜姜品牌故事.html",
+      "sha256": "715A4C7F0762262FA6B42C98DF673B7ACC8410A4892365E01E2814488E02E33A",
+      "price_terms": [],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "武当山野山蜂蜜品牌故事.html",
+      "sha256": "02FF2A62955D27157E247D34E43EAE9D46398E4663691A48AB5A99AECD622DDC",
+      "price_terms": [],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "香榧油品牌故事.html",
+      "sha256": "D1ECFDD6B70EBE0C2DD367D766CDC86E3350A35755151E5266D945A3C2FDA42D",
+      "price_terms": [
+        "价格"
+      ],
+      "health_claim_terms": [],
+      "status": "approved_by_user"
+    },
+    {
+      "name": "云南文山三七片品牌故事.html",
+      "sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "price_terms": [],
+      "health_claim_terms": [
+        "治疗",
+        "心肌缺血",
+        "脑缺血"
+      ],
+      "status": "approved_by_user"
+    }
+  ]
+}

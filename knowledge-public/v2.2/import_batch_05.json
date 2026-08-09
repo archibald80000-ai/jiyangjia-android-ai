@@ -1,0 +1,34 @@
+{
+  "version": "2.2",
+  "status": "approved_with_legacy_statuses",
+  "documents": [
+    {
+      "id": "aiye_dayougu_organic-salt-field-shrimp",
+      "title": "大有谷产品：39°有机盐田虾",
+      "text": "39°有机盐田虾是什么\n请详细讲讲39°有机盐田虾\n39°有机盐田虾有什么特点\n39°有机盐田虾多少钱\n39°有机盐田虾什么规格\n39°有机盐田虾从哪里发货\n产品名称：39°有机盐田虾\n品类：海鲜\n规格：300g×5盒 / 箱\n零售价：¥45/盒（¥225/箱）\n发货地：内蒙古磴口",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_organic-salt-field-shrimp"
+    },
+    {
+      "id": "aiye_dayougu_cistanche-milk-powder",
+      "title": "大有谷产品：肉苁蓉奶粉",
+      "text": "肉苁蓉奶粉是什么\n请详细讲讲肉苁蓉奶粉\n肉苁蓉奶粉有什么特点\n肉苁蓉奶粉多少钱\n肉苁蓉奶粉什么规格\n肉苁蓉奶粉从哪里发货\n产品名称：肉苁蓉奶粉\n品类：乳品\n规格：400g×2 / 份\n零售价：¥319\n发货地：天津武清",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_cistanche-milk-powder"
+    },
+    {
+      "id": "aiye_dayougu_canola-oil-5l",
+      "title": "大有谷产品：芥花油（大桶）",
+      "text": "芥花油（大桶）是什么\n请详细讲讲芥花油（大桶）\n芥花油（大桶）有什么特点\n芥花油（大桶）多少钱\n芥花油（大桶）什么规格\n芥花油（大桶）从哪里发货\n产品名称：芥花油（大桶）\n品类：食用油\n规格：5L / 桶\n零售价：¥138\n发货地：呼伦贝尔",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_canola-oil-5l"
+    },
+    {
+      "id": "aiye_dayougu_canola-oil-twin-pack",
+      "title": "大有谷产品：芥花油（双瓶）",
+      "text": "芥花油（双瓶）是什么\n请详细讲讲芥花油（双瓶）\n芥花油（双瓶）有什么特点\n芥花油（双瓶）多少钱\n芥花油（双瓶）什么规格\n芥花油（双瓶）从哪里发货\n产品名称：芥花油（双瓶）\n品类：食用油\n规格：1.8L×2 / 份\n零售价：¥68\n发货地：呼伦贝尔",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_canola-oil-twin-pack"
+    }
+  ]
+}
