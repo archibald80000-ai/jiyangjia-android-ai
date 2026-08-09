@@ -86,3 +86,9 @@ TASK-020F 的知识整理、真实 Embedding 隔离验收和腾讯云生产发�
 ## 回滚
 
 如生产数据回归，停止 Gateway 写入后，从 `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z/knowledge/` 将数据库和索引复制到同目录临时文件，核对 SHA-256，再使用同文件系统原子 `mv` 替换活动文件，最后只重建 Gateway 并复核 readiness/status。不得直接覆盖正在写入的 SQLite/FAISS。
+
+## GitHub 发布
+
+- 内容提交：`fcaa1f29a6b645a536fa39d5903f357e4d5b672b`。
+- PR：<https://github.com/archibald80000-ai/jiyangjia-android-ai/pull/12>。
+- 员工分享：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.2>。
