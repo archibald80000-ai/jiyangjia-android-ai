@@ -187,6 +187,17 @@ def test_no_context_prompt_refuses_only_unverified_jiyangjia_facts() -> None:
     assert "当前不使用品牌知识库" in general[1]["content"]
 
 
+def test_grounding_prompt_requires_attributed_non_promissory_health_language() -> None:
+    messages = _build_grounded_messages(
+        [{"role": "user", "content": "生姜有什么特点？"}],
+        [{"title": "生姜", "excerpt": "原资料中的传统食养描述。"}],
+    )
+
+    assert "传统食养说法" in messages[0]["content"]
+    assert "不得扩写成确定疗效" in messages[0]["content"]
+    assert "不得使用‘管用’" in messages[0]["content"]
+
+
 def test_mock_llm_routes_general_and_unverified_business_questions() -> None:
     asyncio.run(_assert_mock_llm_routes_general_and_unverified_business_questions())
 

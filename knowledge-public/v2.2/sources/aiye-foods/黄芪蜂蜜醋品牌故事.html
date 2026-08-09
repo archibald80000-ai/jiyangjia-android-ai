@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>补气入醋 · 黄芪蜂蜜醋 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1F10;
+    --ink-soft:#5C4430;
+    --paper:#FCF8F1;
+    --paper-2:#F5EDDC;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --amber:#C97A1F;
+    --amber-deep:#8B4F0D;
+    --green:#4A7C59;
+    --green-light:#6B9F7A;
+    --herb:#7B8B3A;
+    --line:rgba(45,31,16,.1);
+    --card:#F5EDDC;
+    --card-green:#EBF3E8;
+    --warm-red:#C0504D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(184,134,11,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(74,124,89,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--green);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--amber-deep);}
+  .cover h1 em{font-style:normal;color:var(--green);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--gold);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+
+  .fusion-svg{margin-top:50px;width:min(260px,62%);opacity:.88;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--gold);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--gold);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--gold);
+    background:var(--paper-2);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);text-align:center;
+  }
+  .card .val{font-size:28px;font-weight:700;color:var(--amber-deep);line-height:1.3;}
+  .card .val.green{color:var(--green);}
+  .card .label{font-size:12px;color:var(--ink-soft);margin-top:6px;letter-spacing:.06em;}
+  .card .note{font-size:11px;color:#9C8B72;margin-top:4px;}
+
+  /* ===== 功效列表 ===== */
+  .benefit-item{
+    margin-bottom:22px;padding:16px 18px;
+    border-left:2px solid var(--green-light);
+    background:var(--card-green);
+    border-radius:0 8px 8px 0;
+  }
+  .benefit-item .b-title{font-size:16px;font-weight:600;color:var(--green);margin-bottom:6px;}
+  .benefit-item p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* ===== 工艺流程图 ===== */
+  .process-row{display:flex;gap:12px;margin:32px 0;overflow-x:auto;padding-bottom:8px;}
+  .process-step{
+    flex:1;min-width:100px;background:var(--card);
+    border:1px solid var(--line);border-radius:10px;
+    padding:18px 10px;text-align:center;
+  }
+  .process-step .step-num{font-size:12px;color:var(--gold);letter-spacing:.2em;margin-bottom:8px;}
+  .process-step .step-icon{font-size:32px;margin-bottom:8px;}
+  .process-step .step-name{font-size:14px;font-weight:600;color:var(--ink);}
+  .process-step .step-detail{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+
+  /* ===== 配方独白 ===== */
+  .formula-box{
+    margin:34px 0;padding:28px 24px;
+    background:linear-gradient(135deg,var(--card-green),var(--card));
+    border-radius:12px;text-align:center;border:1px solid var(--line);
+  }
+  .formula-box .big{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:.1em;line-height:1.8;}
+  .formula-box .big em{font-style:normal;color:var(--green);}
+  .formula-box .big em.purple{color:var(--warm-red);}
+  .formula-box .big em.gold{color:var(--gold);}
+
+  /* ===== 对比表 ===== */
+  .compare-table{width:100%;border-collapse:collapse;margin:28px 0 40px;font-size:14px;}
+  .compare-table th,.compare-table td{padding:12px 14px;border:1px solid var(--line);text-align:center;}
+  .compare-table th{background:var(--card);font-weight:600;color:var(--ink);font-size:13px;}
+  .compare-table td{color:var(--ink-soft);}
+  .compare-table .win{color:var(--green);font-weight:600;}
+
+  /* 分隔线 */
+  .divider{text-align:center;padding:30px 0;color:var(--gold);font-size:20px;letter-spacing:.3em;opacity:.6;}
+
+  /* 尾章 */
+  .ending{text-align:center;padding:60px 0 80px;}
+  .ending .aiye{font-size:11px;letter-spacing:.5em;color:#9C8B72;margin-bottom:16px;}
+  .ending .motto{font-size:18px;color:var(--gold);letter-spacing:.12em;}
+</style>
+</head>
+<body>
+
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="cover">
+  <div class="brand">爱野  GIARDINO VERDE</div>
+  <div class="tagline">ASTRAgalus · HONEY · VINEGAR</div>
+  <h1>补气<em>入</em>醋</h1>
+  <div class="sub">
+    黄芪 · 蜂蜜 · 醋 — <span>三者合一</span>，自古养人之道
+  </div>
+
+  <svg class="fusion-svg" viewBox="0 0 260 120">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#D4A745"/>
+        <stop offset="100%" stop-color="#8B4F0D"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6B9F7A"/>
+        <stop offset="100%" stop-color="#4A7C59"/>
+      </linearGradient>
+    </defs>
+    <!-- 蜜滴 -->
+    <ellipse cx="80" cy="55" rx="30" ry="38" fill="url(#g1)" opacity="0.7"/>
+    <ellipse cx="88" cy="42" rx="12" ry="16" fill="url(#g1)" opacity="0.4"/>
+    <!-- 醋滴 -->
+    <ellipse cx="180" cy="55" rx="30" ry="38" fill="url(#g2)" opacity="0.7"/>
+    <ellipse cx="172" cy="42" rx="12" ry="16" fill="url(#g2)" opacity="0.4"/>
+    <!-- 黄芪根 -->
+    <path d="M120 100 Q115 85 110 72 Q108 65 112 60" stroke="#8B7355" stroke-width="2.5" fill="none"/>
+    <path d="M125 102 Q125 88 124 75 Q124 68 128 63" stroke="#9B8365" stroke-width="2" fill="none"/>
+    <path d="M130 100 Q136 85 140 73 Q143 66 139 61" stroke="#A89375" stroke-width="2" fill="none"/>
+    <!-- 交汇点 -->
+    <circle cx="130" cy="95" r="8" fill="var(--gold)" opacity="0.6"/>
+  </svg>
+
+  <div class="meta">药食同源 · 国家认证 · 2023年列入名录</div>
+  <div class="scroll-hint">向下探索<span class="arr">↓</span></div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">序</div>
+  <h2>不是兑出来的，是酿出来的</h2>
+  <p class="dropcap">市面上大多数"养生醋"，说白了就是把干黄芪泡进米醋里，再兑点蜂蜜——药材还没泡透，醋还是那股工业醋，蜂蜜只是遮了遮酸味。这种兑制醋，黄芪的有效成分溶出不到三成。</p>
+  <p>黄芪蜂蜜醋不是这个做法。它从原料到成品，全程只有三样东西：<strong>黄芪、蜂蜜、水</strong>。先把纯蜂蜜加水稀释，接入酵母菌做酒精发酵，酿成蜜酒；再接入醋酸菌做醋酸发酵，酿成蜂蜜醋——在这期间，黄芪的活性成分与蜜醋同步深度发酵，不是事后"泡进去"的，而是从一开始就"长在一起"的。</p>
+  <p>一句话：<strong>兑制醋是中药泡酒，黄芪蜂蜜醋是陈年酿造。</strong>一样的原料，不一样的功夫。</p>
+
+  <div class="formula-box">
+    <div class="big">
+      配料表只有三行：<br>
+      <em class="gold">蜂蜜</em> ·
+      <em>黄芪</em> ·
+      水
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 壹 · 黄芪 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">壹</div>
+  <h2>补气之王——黄芪</h2>
+  <p class="dropcap">《神农本草经》将黄芪列为"上品"——无毒，可久服。《本草纲目》李时珍说："耆者，长也，为补药之长。"耆，就是长者、首领的意思——在补气这件事上，黄芪是老大。</p>
+  <p>2023年，黄芪正式被国家卫健委列入<strong>药食同源物质目录</strong>。这不是民间偏方自嗨，是国家级认定——黄芪既能入药，也能入食，安全级别经过了现代毒理学验证。</p>
+  <p>黄芪的核心活性成分有三大家族：</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val green">8-15%</div>
+      <div class="label">黄芪多糖（APS）</div>
+      <div class="note">激活巨噬细胞，免疫调节核心</div>
+    </div>
+    <div class="card">
+      <div class="val green">40.6mg/g</div>
+      <div class="label">总皂苷（含黄芪甲苷）</div>
+      <div class="note">抗炎、护心、抗疲劳</div>
+    </div>
+    <div class="card">
+      <div class="val green">60+种</div>
+      <div class="label">黄酮类化合物</div>
+      <div class="note">抗氧化、保护血管</div>
+    </div>
+    <div class="card">
+      <div class="val green">20+种</div>
+      <div class="label">氨基酸</div>
+      <div class="note">含7种必需氨基酸，总量8-12%</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    「黄芪多糖促进免疫细胞增殖和分化，增强巨噬细胞吞噬能力。」
+    <span class="src">—— 广州中医药大学，2024年研究</span>
+  </div>
+</div>
+</section>
+
+<!-- ===== 贰 · 蜂蜜醋 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">贰</div>
+  <h2>纯蜂蜜酿的醋</h2>
+  <p class="dropcap">蜂蜜醋和米醋不是一回事。米醋的原料是谷物淀粉，蜂蜜醋的原料是<strong>纯蜂蜜</strong>——含果糖、葡萄糖、活性酶、多酚、维生素、矿物质，发酵前本身就是一种营养完整的天然产物。</p>
+
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">STEP 1</div>
+      <div class="step-icon">🍯</div>
+      <div class="step-name">蜂蜜+水</div>
+      <div class="step-detail">1:4稀释调蜜</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 2</div>
+      <div class="step-icon">🍷</div>
+      <div class="step-name">酒精发酵</div>
+      <div class="step-detail">22-25°C · 15-30天</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 3</div>
+      <div class="step-icon">🫗</div>
+      <div class="step-name">醋酸发酵</div>
+      <div class="step-detail">30-35°C · 1-2个月</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 4</div>
+      <div class="step-icon">🏺</div>
+      <div class="step-name">陶缸陈酿</div>
+      <div class="step-detail">≥30天 · 自然圆润</div>
+    </div>
+  </div>
+
+  <p>这个过程和酿蜜酒一样，只是多走了一步——让蜜酒继续被醋酸菌"吃掉"酒精，转化成醋酸。蜂蜜里的果糖、葡萄糖、多酚、酶、矿物质，依次穿过酒精发酵和醋酸发酵两个阶段，最终保留在醋液里。所以蜂蜜醋不止有醋酸，还有<strong>蜂蜜自带的多酚、活性酶、B族维生素、钾钙镁</strong>。</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val">≥5g</div>
+      <div class="label">有机酸 / 100ml</div>
+      <div class="note">醋酸+乳酸+柠檬酸</div>
+    </div>
+    <div class="card">
+      <div class="val green">100-143</div>
+      <div class="label">总多酚 mg GAE/L</div>
+      <div class="note">蜂蜜天然来源</div>
+    </div>
+    <div class="card">
+      <div class="val green">10+种</div>
+      <div class="label">氨基酸</div>
+      <div class="note">蜂蜜+发酵双向生成</div>
+    </div>
+    <div class="card">
+      <div class="val">K+Ca+Mg</div>
+      <div class="label">矿物质</div>
+      <div class="note">钾50-80mg · 钙镁锌</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 叁 · 三者合一 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">叁</div>
+  <h2>为什么要把黄芪、蜂蜜、醋酿在一起？</h2>
+  <p class="dropcap">中医讲究配伍——一味药单用，远不如几味搭配用得当。黄芪蜂蜜醋的厉害之处，不是三样东西简单叠加，而是<strong>三者互为君臣佐使</strong>。</p>
+
+  <h3>一 · 蜂蜜化解黄芪的"燥"</h3>
+  <p>黄芪性微温，单吃容易口干上火。蜂蜜性平味甘，滋阴润燥——用蜂蜜的甘润去平衡黄芪的温性，实现了"补气不伤津"。这是历代中医的经典搭配：《本草纲目》记载黄芪配蜂蜜，主治"虚劳、肺痿"。</p>
+
+  <h3>二 · 醋把药力引入肝脾</h3>
+  <p>醋性酸、入肝经。中医有"醋制入肝"的说法——醋能引药归经，把黄芪的补气之力导向肝脾，同时醋本身活血化瘀，与黄芪的"推动气血运行"功效形成协同。</p>
+
+  <h3>三 · 深度发酵，不是浸泡</h3>
+  <p>这是黄芪蜂蜜醋和普通黄芪醋最大的区别。浸泡法只能提取黄芪中约30-40%的水溶性成分，脂溶性的皂苷和黄酮几乎出不来。而深度发酵过程中，微生物产生的酶系能逐步分解黄芪细胞壁，将多糖、皂苷、黄酮等活性物质高效释放到醋液中。第三方检测数据显示：<strong>深度发酵黄芪醋的总黄酮含量可达103.57mg/100g，而传统浸泡醋一般不超过20mg/100g</strong>。</p>
+
+  <div class="quote">
+    「黄芪醋可显著降低模型小鼠空腹血糖，修复高血糖引发的肝脏病理损伤，提升血清SOD、CAT抗氧化酶活力。」
+    <span class="src">—— 上海飞凡检测，黄芪醋2型糖尿病小鼠动物试验</span>
+  </div>
+</div>
+</section>
+
+<!-- ===== 肆 · 营养成分 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">肆</div>
+  <h2>三层叠加的营养矩阵</h2>
+  <p class="dropcap">黄芪蜂蜜醋的营养不是"A+B+C"，而是三者各自贡献、互相放大的复合矩阵。</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val green">总黄酮<br>103mg/100g</div>
+      <div class="label">黄芪黄酮 + 蜂蜜多酚</div>
+      <div class="note">双重抗氧化防线</div>
+    </div>
+    <div class="card">
+      <div class="val green">黄芪多糖<br>5.58g/100g</div>
+      <div class="label">免疫调节核心</div>
+      <div class="note">粗多糖总量16.1g/100g</div>
+    </div>
+    <div class="card">
+      <div class="val green">皂苷类</div>
+      <div class="label">黄芪甲苷为代表</div>
+      <div class="note">抗炎 · 护心 · 抗疲劳</div>
+    </div>
+    <div class="card">
+      <div class="val">氨基酸<br>0.23g/100ml</div>
+      <div class="label">氨基酸态氮</div>
+      <div class="note">20+种 · 含全部必需氨基酸</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val green">有机酸<br>6.8g/100ml</div>
+      <div class="label">总酸（以乙酸计）</div>
+      <div class="note">醋酸+乳酸+柠檬酸+苹果酸</div>
+    </div>
+    <div class="card">
+      <div class="val">钾<br>80-120mg</div>
+      <div class="label">电解质平衡</div>
+      <div class="note">调血压 · 解疲劳</div>
+    </div>
+    <div class="card">
+      <div class="val green">B族<br>维生素</div>
+      <div class="label">B1 · B2 · B6</div>
+      <div class="note">蜂蜜+发酵双来源</div>
+    </div>
+    <div class="card">
+      <div class="val green">硒<br>0.25mg/kg</div>
+      <div class="label">道地黄芪自带</div>
+      <div class="note">抗氧化能力是VE的400倍</div>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+
+  <p style="text-align:center;color:var(--ink-soft);font-size:14px;">以上营养数据综合自第三方检测报告及公开发表的黄芪成分研究文献。</p>
+</div>
+</section>
+
+<!-- ===== 伍 · 健康功效 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">伍</div>
+  <h2>黄芪蜂蜜醋 · 八大协同功效</h2>
+  <p class="dropcap">不是三样东西的好处简单罗列——而是三者协同产生的新效果。</p>
+
+  <div class="benefit-item">
+    <div class="b-title">1. 补气升阳 · 改善气虚乏力</div>
+    <p>黄芪是中医"补气第一要药"，蜂蜜补中益气，醋引药入脾。三者合用，对气短懒言、易疲劳、自汗等气虚症状有系统调理作用。《神农本草经》将黄芪列为上品，现代研究证实黄芪多糖可提升能量代谢水平。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">2. 增强免疫 · 少感冒少生病</div>
+    <p>黄芪多糖激活巨噬细胞和T淋巴细胞，广州中医药大学2024年研究证实其促进免疫细胞增殖。蜂蜜中的多酚和醋中的有机酸进一步强化抗菌抗病毒能力，三重防线。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">3. 双重抗氧化 · 延缓衰老</div>
+    <p>黄芪黄酮（103mg/100g）+蜂蜜多酚（100-143mg GAE/L）=双重抗氧化矩阵。动物试验证实：黄芪醋可显著提升血清SOD、CAT抗氧化酶活力。搭配黄芪自带的硒元素（抗氧化能力是维生素E的400倍），三重抗氧化防线。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">4. 辅助调节血糖</div>
+    <p>醋酸延缓胃排空、减缓碳水吸收速度；黄芪多糖改善胰岛素敏感性。上海飞凡检测动物试验证实：黄芪醋可显著降低2型糖尿病模型小鼠空腹血糖，并修复高血糖引发的肝脏病理损伤。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">5. 保护心血管</div>
+    <p>黄芪黄酮扩张血管、改善微循环，抑制血小板聚集。醋酸帮助降低血液黏稠度。蜂蜜中的钾（80-120mg/100g）辅助调节血压。三者联手，对心血管形成系统保护。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">6. 促消化 · 养脾胃</div>
+    <p>醋酸刺激胃酸分泌、帮助分解蛋白质。黄芪补脾气，缓解脾胃虚弱引起的食欲不振。蜂蜜润肠通便。三者合用：开胃→消化→吸收→排泄，一条线打通。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">7. 抗疲劳 · 快速恢复精力</div>
+    <p>黄芪总苷减少运动后乳酸堆积（动物实验延长小鼠游泳时间）。蜂蜜中的果糖和葡萄糖快速补充能量。醋中的有机酸（柠檬酸、苹果酸）参与三羧酸循环，加速能量代谢。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">8. 补气不伤津 · 温润不上火</div>
+    <p>这是黄芪蜂蜜醋最独特的优势——单吃黄芪容易口干上火（温燥），但蜂蜜的甘润正好对冲黄芪的温性，醋的酸性收敛又进一步平衡。结果：补了气、润了燥、不上火。适合长期日常调理。</p>
+  </div>
+</div>
+</section>
+
+<!-- ===== 陆 · 食用方法 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">陆</div>
+  <h2>怎么吃 · 怎么搭配</h2>
+
+  <div class="benefit-item">
+    <div class="b-title">🍵 每日养生饮（最推荐）</div>
+    <p>黄芪蜂蜜醋10ml + 温水200ml，晨起空腹或饭后半小时饮用。每日1次。水温不要超过60°C，以免破坏蜂蜜中的活性酶。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">🥗 凉拌沙拉酱</div>
+    <p>黄芪蜂蜜醋15ml + 橄榄油5ml + 少许食盐，代替市售沙拉酱。补气+抗氧化+零添加剂。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">🍲 炖汤提鲜</div>
+    <p>鸡汤/排骨汤出锅前，加入黄芪蜂蜜醋10-15ml。醋的酸味提鲜，黄芪补气，蜂蜜增香——比单放醋层次丰富得多。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">🫚 姜茶暖胃</div>
+    <p>生姜3片煮水5分钟，降温至60°C后加入黄芪蜂蜜醋8ml。驱寒暖胃，补气活血，秋冬必备。</p>
+  </div>
+
+  <p style="margin-top:28px;color:var(--warm-red);font-size:14px;text-align:center;">
+    ⚠️ 每日建议不超过30ml · 胃溃疡/胃酸过多者慎用 · 孕妇咨询医生后使用 · 1岁以下婴幼儿禁用
+  </p>
+</div>
+</section>
+
+<!-- ===== 柒 · 爱野选品逻辑 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">柒</div>
+  <h2>爱野为什么选它</h2>
+  <p class="dropcap">市面上养生醋很多——枸杞醋、黑豆醋、姜醋……为什么爱野独选黄芪蜂蜜醋？</p>
+  <p>因为黄芪+蜂蜜+醋这三样东西的搭配，不是拍脑袋凑出来的，而是<strong>中医几千年验证过的黄金组合</strong>：一个补气（黄芪）、一个润燥（蜂蜜）、一个引经（醋）——君臣佐使，各司其职，做成了一瓶每天都能喝的日常调理品。</p>
+  <p>更关键的是工艺。深度发酵，不是浸泡兑制。这意味着你喝进去的每一口，都是真正"酿"出来的——黄芪的有效成分析出率远高于浸泡法，而且风味是融合的、圆润的，不是药材泡醋那股突兀的分离感。</p>
+  <p>爱野选品不图品类齐全，只认一条：<strong>东西本身要站得住。</strong>黄芪蜂蜜醋——药食同源有国家背书，三者配伍有中医典籍支撑，深度发酵工艺有第三方检测数据佐证。不给消费者讲故事，给消费者交数据。</p>
+</div>
+</section>
+
+<!-- ===== 尾章 ===== -->
+<div class="ending">
+  <div class="aiye">AIYE 爱野</div>
+  <div class="motto">补气的醋，酿出来的，不是兑出来的</div>
+</div>
+
+</body>
+</html>

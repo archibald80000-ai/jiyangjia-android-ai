@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>积养家 · 药食同源食材大全</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --card-bg: #fffef9;
+  --text: #3b3328;
+  --text-soft: #6b5e4f;
+  --text-light: #8c7b69;
+  --accent: #8b5e3c;
+  --accent-light: #c49a6c;
+  --gold: #b8860b;
+  --red-warm: #a0522d;
+  --green-herb: #5d7a4a;
+  --border: #e8dfd0;
+  --shadow: 0 2px 12px rgba(60, 40, 20, 0.06);
+  --shadow-hover: 0 4px 20px rgba(60, 40, 20, 0.12);
+  --radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "PingFang SC", "Noto Serif SC", "STSong", "Songti SC", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- COVER ---- */
+.cover {
+  background: linear-gradient(160deg, #2c1810 0%, #4a2c17 30%, #6b3a2a 60%, #3d2b1f 100%);
+  color: #f5e6d3;
+  text-align: center;
+  padding: 80px 24px 70px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(180,130,80,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(180,130,80,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.cover-brand {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.cover-brand span { color: #d4a85c; }
+.cover-sub {
+  font-size: 1.15rem;
+  letter-spacing: 0.25em;
+  color: #c9a87c;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+.cover-motto {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+.cover-motto-item {
+  text-align: center;
+}
+.cover-motto-item .big {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d4a85c;
+  display: block;
+  line-height: 1.3;
+}
+.cover-motto-item .small {
+  font-size: 0.85rem;
+  color: #b8956e;
+  letter-spacing: 0.1em;
+}
+.cover-line {
+  width: 60px; height: 2px;
+  background: #d4a85c;
+  margin: 28px auto;
+  position: relative;
+  z-index: 1;
+}
+.cover-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+  color: #c9a87c;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- INTRO ---- */
+.intro {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+.intro h2 {
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.intro p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 2;
+}
+.intro .badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.intro .badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border: 1px solid var(--accent-light);
+  border-radius: 20px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---- GRID ---- */
+.grid-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 50px 0 32px;
+  letter-spacing: 0.08em;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px; height: 2px;
+  background: var(--gold);
+  margin: 12px auto 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* ---- CARD ---- */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 26px 24px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent-light), var(--green-herb));
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.card-icon.warm { background: #fdf2e9; }
+.card-icon.cool { background: #eaf5ea; }
+.card-icon.earth { background: #f7f1e6; }
+.card-icon.dark { background: #f0ebe4; }
+.card-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+.card-latin {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  margin-top: -2px;
+}
+.card-nature {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  background: #fdf2e9;
+  padding: 3px 12px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+.card-nature.cool-type { background: #eaf5ea; color: var(--green-herb); }
+.card-nature.neutral { background: #f7f1e6; color: #7a6b55; }
+.card-effect {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+.card-effect strong { color: var(--accent); }
+.card-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+.card-benefits li {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  padding: 2px 0 2px 18px;
+  position: relative;
+  line-height: 1.7;
+}
+.card-benefits li::before {
+  content: '•';
+  position: absolute;
+  left: 2px;
+  color: var(--accent-light);
+  font-weight: bold;
+}
+.card-nutrients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+.card-nutrients span {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  background: #faf7f2;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+}
+.card-warning {
+  font-size: 0.72rem;
+  color: #c0392b;
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: #fef5f5;
+  border-radius: 6px;
+  line-height: 1.6;
+}
+
+/* ---- OUTRO ---- */
+.outro {
+  max-width: 800px;
+  margin: 40px auto 80px;
+  padding: 36px 32px;
+  background: linear-gradient(135deg, #fdf2e9, #fffef9);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.outro h3 {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+.outro p {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.footer {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  padding: 20px;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .cover-brand { font-size: 2rem; }
+  .cover-motto { gap: 20px; }
+  .cover-motto-item .big { font-size: 1.4rem; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== COVER ====== -->
+<section class="cover">
+  <div class="cover-brand">积<span>养</span>家</div>
+  <div class="cover-sub">— 药食同源食材大全 —</div>
+  <div class="cover-motto">
+    <div class="cover-motto-item">
+      <span class="big">积</span>
+      <span class="small">善 · 德 · 福</span>
+    </div>
+    <div class="cover-motto-item">
+      <span class="big">养</span>
+      <span class="small">人 · 生 · 体</span>
+    </div>
+  </div>
+  <div class="cover-line"></div>
+  <p class="cover-desc">十九味道地药食同源食材，每一味都是大自然的馈赠。<br>药补不如食补，食补贵在道地。</p>
+</section>
+
+<!-- ====== INTRO ====== -->
+<section class="intro">
+  <h2>什么是药食同源？</h2>
+  <p>「空腹食之为食物，患者食之为药物」—— 《黄帝内经·素问》两千年前就已道破天机。<br>截至2024年，国家卫健委共公布<b>106种</b>药食同源物质。积养家从中精选19味道地食材，<br>每味皆有出处，每味皆可日常食用，真正做到<b>"厨房即药房，三餐即养生"</b>。</p>
+  <div class="badge-row">
+    <span class="badge">国家卫健委认证</span>
+    <span class="badge">道地产区直采</span>
+    <span class="badge">传统炮制工艺</span>
+    <span class="badge">无硫无添加</span>
+  </div>
+</section>
+
+<!-- ====== GRID CARDS ====== -->
+<div class="grid-section">
+  <div class="section-title">— 十九味 · 药食同源食材 —</div>
+  <div class="grid">
+
+    <!-- 1. 生姜 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🫚</div>
+        <div>
+          <div class="card-name">生姜</div>
+          <div class="card-latin">Zingiber officinale</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味辛 · 归肺脾胃经</div>
+      <p class="card-effect"><strong>温中散寒，回阳通脉。</strong>「呕家圣药」，驱寒暖身第一品。</p>
+      <ul class="card-benefits">
+        <li>驱寒暖身：扩张血管加速循环，风寒感冒初起时煮姜汤发汗</li>
+        <li>温中止呕：美国妇产科医师学会推荐用于孕吐及晕车</li>
+        <li>天然抗炎：姜辣素抑制COX酶，缓解关节与肌肉炎症</li>
+        <li>辅助降糖、降脂：姜辣素+姜烯酚改善胰岛素敏感性</li>
+        <li>杀菌防腐：抑制金黄色葡萄球菌和大肠杆菌</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>姜辣素</span><span>姜烯酚</span><span>挥发油</span><span>锰</span><span>硒</span><span>钾</span><span>B族维生素</span>
+      </div>
+    </div>
+
+    <!-- 2. 黄芪 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🪵</div>
+        <div>
+          <div class="card-name">黄芪</div>
+          <div class="card-latin">Astragalus membranaceus</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味甘 · 归脾肺经</div>
+      <p class="card-effect"><strong>补气升阳，固表止汗。</strong>《神农本草经》上品，「补药之长」。</p>
+      <ul class="card-benefits">
+        <li>补气固表：改善气短乏力、易出虚汗、抵抗力差</li>
+        <li>增强免疫：黄芪多糖激活巨噬细胞和NK细胞（广州中医药大学2024研究）</li>
+        <li>保护心血管：增强心肌收缩力，改善微循环</li>
+        <li>利尿消肿：对慢性肾炎蛋白尿有辅助改善作用</li>
+        <li>抗衰老：黄芪甲苷抗氧化，清除自由基</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>黄芪多糖</span><span>黄芪甲苷</span><span>黄酮类</span><span>20+种氨基酸</span><span>硒</span><span>锌</span><span>铁</span>
+      </div>
+      <div class="card-warning">⚠ 感冒发热、实热证者不宜单独大量使用。</div>
+    </div>
+
+    <!-- 3. 党参段 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🌿</div>
+        <div>
+          <div class="card-name">党参段</div>
+          <div class="card-latin">Codonopsis pilosula</div>
+        </div>
+      </div>
+      <div class="card-nature">性平 · 味甘 · 归脾肺经</div>
+      <p class="card-effect"><strong>补中益气，健脾益肺。</strong>力道平和，日常补气首选，全家适用。</p>
+      <ul class="card-benefits">
+        <li>健脾益气：改善食欲不振、倦怠乏力、面色萎黄</li>
+        <li>养血生津：气血双补，适合产后、术后及贫血恢复期</li>
+        <li>益肺止咳：对脾肺气虚导致的久咳虚喘有改善作用</li>
+        <li>增强免疫力：党参多糖促进淋巴细胞增殖</li>
+        <li>调节血压：双向调节，对低血压有升压作用</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>党参多糖</span><span>党参苷</span><span>17种氨基酸</span><span>铁</span><span>锌</span><span>钙</span><span>B族维生素</span>
+      </div>
+      <div class="card-warning">⚠ 气滞火盛者慎用，不宜与藜芦同用。</div>
+    </div>
+
+    <!-- 4. 三七 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon dark">🪨</div>
+        <div>
+          <div class="card-name">三七</div>
+          <div class="card-latin">Panax notoginseng</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味甘微苦 · 归肝胃经</div>
+      <p class="card-effect"><strong>散瘀止血，消肿定痛。</strong>「人参补气第一，三七补血第一」——《本草纲目拾遗》。</p>
+      <ul class="card-benefits">
+        <li>活血化瘀：改善微循环，预防心脑血管问题</li>
+        <li>止血不留瘀：独特双向调节——既能止血又能化瘀</li>
+        <li>保护心血管：三七总皂苷扩张冠脉、降低心肌耗氧</li>
+        <li>消肿止痛：跌打损伤、瘀血肿痛外用内服皆宜</li>
+        <li>护肝：减轻化学性肝损伤，改善肝功能指标</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>三七总皂苷</span><span>人参皂苷</span><span>三七素</span><span>黄酮</span><span>多糖</span><span>钙</span><span>铁</span>
+      </div>
+      <div class="card-warning">⚠ 孕妇禁用。经期、出血性疾患者慎用。每日建议不超过3-9g。</div>
+    </div>
+
+    <!-- 5. 茯苓 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon earth">🍄</div>
+        <div>
+          <div class="card-name">茯苓</div>
+          <div class="card-latin">Poria cocos</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘淡 · 归心脾肾经</div>
+      <p class="card-effect"><strong>利水渗湿，健脾宁心。</strong>四时神药，祛湿不伤正，健脾不上火。</p>
+      <ul class="card-benefits">
+        <li>健脾祛湿：改善脾虚湿盛导致的浮肿、大便溏稀</li>
+        <li>宁心安神：用于心悸失眠、心神不宁</li>
+        <li>利水不伤阴：温和利尿，不损耗津液</li>
+        <li>提高免疫：茯苓多糖激活免疫系统（日本北里研究所研究）</li>
+        <li>辅助抗癌：茯苓多糖在多项研究中显示出抑瘤潜力</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>茯苓多糖</span><span>三萜类</span><span>茯苓酸</span><span>钾</span><span>镁</span><span>膳食纤维</span>
+      </div>
+    </div>
+
+    <!-- 6. 当归 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🌺</div>
+        <div>
+          <div class="card-name">当归</div>
+          <div class="card-latin">Angelica sinensis</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味甘辛 · 归肝心脾经</div>
+      <p class="card-effect"><strong>补血活血，调经止痛。</strong>「血中圣药」，「十方九归」——女性养血第一品。</p>
+      <ul class="card-benefits">
+        <li>补血养血：改善血虚导致的面色萎黄、头晕心悸</li>
+        <li>调经止痛：当归挥发油缓解子宫平滑肌痉挛，祛瘀生新</li>
+        <li>润肠通便：当归油脂润滑肠道，适合血虚便秘</li>
+        <li>抗炎镇痛：阿魏酸抑制炎症因子</li>
+        <li>保护肝脏：促进肝细胞再生，改善微循环</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>阿魏酸</span><span>藁本内酯</span><span>当归多糖</span><span>维生素B12</span><span>叶酸</span><span>铁</span><span>锌</span>
+      </div>
+      <div class="card-warning">⚠ 湿盛中满、大便溏泄者不宜。孕妇需遵医嘱。</div>
+    </div>
+
+    <!-- 7. 芡实仁 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon earth">🪷</div>
+        <div>
+          <div class="card-name">芡实仁</div>
+          <div class="card-latin">Euryale ferox</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘涩 · 归脾肾经</div>
+      <p class="card-effect"><strong>益肾固精，补脾止泻。</strong>「水中人参」，健脾祛湿食养两宜。</p>
+      <ul class="card-benefits">
+        <li>健脾祛湿：改善脾虚泄泻、大便不成形</li>
+        <li>益肾固精：用于肾虚遗精、尿频、带下</li>
+        <li>补而不腻：吸收好不易上火，老人小孩均可食</li>
+        <li>强健筋骨：丰富的钙磷镁促进骨骼发育</li>
+        <li>低GI慢消化：糖尿病友好型碳水来源</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>蛋白质8.3g</span><span>淀粉</span><span>钙</span><span>磷</span><span>铁</span><span>维生素B1</span><span>膳食纤维</span>
+      </div>
+    </div>
+
+    <!-- 8. 百合 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon cool">🌸</div>
+        <div>
+          <div class="card-name">百合</div>
+          <div class="card-latin">Lilium lancifolium</div>
+        </div>
+      </div>
+      <div class="card-nature cool-type">性微寒 · 味甘 · 归心肺经</div>
+      <p class="card-effect"><strong>养阴润肺，清心安神。</strong>秋燥润肺首选，「润肺止咳安神三效合一」。</p>
+      <ul class="card-benefits">
+        <li>润肺止咳：缓解肺燥干咳、咽干、痰少粘稠</li>
+        <li>清心安神：改善虚烦惊悸、失眠多梦</li>
+        <li>美容养颜：丰富的黏液质和维生素滋润肌肤</li>
+        <li>调节免疫：百合多糖增强巨噬细胞活性</li>
+        <li>辅助抗疲劳：提高机体耐受缺氧能力</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>百合多糖</span><span>秋水仙碱</span><span>蛋白质</span><span>钙</span><span>磷</span><span>铁</span><span>维生素C</span>
+      </div>
+      <div class="card-warning">⚠ 风寒咳嗽、脾胃虚寒泄泻者不宜。</div>
+    </div>
+
+    <!-- 9. 无花果 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🫐</div>
+        <div>
+          <div class="card-name">无花果</div>
+          <div class="card-latin">Ficus carica</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘 · 归肺胃大肠经</div>
+      <p class="card-effect"><strong>润肺止咳，健胃清肠。</strong>《本草纲目》称其「开胃，止泄痢」。天然甜，无添加糖。</p>
+      <ul class="card-benefits">
+        <li>健胃清肠：富含膳食纤维和果胶，促进肠道蠕动</li>
+        <li>润肺利咽：缓解肺热咳嗽、咽喉肿痛</li>
+        <li>辅助降三高：果胶和植物甾醇降低胆固醇吸收</li>
+        <li>天然抗氧化：多酚含量居常见水果前列</li>
+        <li>补钙补铁：钙含量是苹果的10倍以上</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>膳食纤维</span><span>果胶</span><span>多酚</span><span>钙</span><span>铁</span><span>钾</span><span>维生素A/E</span>
+      </div>
+    </div>
+
+    <!-- 10. 大玫瑰 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🌹</div>
+        <div>
+          <div class="card-name">大玫瑰</div>
+          <div class="card-latin">Rosa rugosa cv. Plena</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味甘微苦 · 归肝脾经</div>
+      <p class="card-effect"><strong>行气解郁，和血调经。</strong>《本草正义》赞其「芳香诸品，殆无其匹」。</p>
+      <ul class="card-benefits">
+        <li>疏肝解郁：缓解情绪压力导致的胸闷、胁痛、烦躁</li>
+        <li>活血调经：改善肝气郁滞导致的月经不调、经前乳胀</li>
+        <li>美容养颜：花青素+维生素C抗氧化、提亮肤色</li>
+        <li>理气和胃：缓解胃胀、消化不良</li>
+        <li>安神助眠：玫瑰芳香通过嗅觉舒缓神经系统</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>香茅醇</span><span>花青素</span><span>维生素C</span><span>鞣质</span><span>类黄酮</span><span>挥发油</span>
+      </div>
+      <div class="card-warning">⚠ 孕妇慎用（活血）。阴虚火旺者不宜大量。</div>
+    </div>
+
+    <!-- 11. 铁皮石斛 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon cool">🌱</div>
+        <div>
+          <div class="card-name">铁皮石斛</div>
+          <div class="card-latin">Dendrobium officinale</div>
+        </div>
+      </div>
+      <div class="card-nature cool-type">性微寒 · 味甘 · 归胃肾经</div>
+      <p class="card-effect"><strong>益胃生津，滋阴清热。</strong>「中华九大仙草之首」，养胃阴之极品。</p>
+      <ul class="card-benefits">
+        <li>养胃生津：改善胃阴不足导致的胃痛、口干、食欲减退</li>
+        <li>滋阴明目：调理肝肾阴虚引起的视物模糊、眼干</li>
+        <li>增强免疫：石斛多糖显著提高免疫球蛋白水平</li>
+        <li>辅助降糖：石斛碱双向调节血糖</li>
+        <li>抗疲劳抗衰老：多糖+生物碱清除自由基</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>石斛多糖</span><span>石斛碱</span><span>氨基酸</span><span>钙</span><span>铁</span><span>锌</span><span>黏液质</span>
+      </div>
+      <div class="card-warning">⚠ 脾胃虚寒、大便溏泄者慎用。感冒初期不宜。</div>
+    </div>
+
+    <!-- 12. 麦冬 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon cool">🌾</div>
+        <div>
+          <div class="card-name">麦冬</div>
+          <div class="card-latin">Ophiopogon japonicus</div>
+        </div>
+      </div>
+      <div class="card-nature cool-type">性微寒 · 味甘微苦 · 归心肺胃经</div>
+      <p class="card-effect"><strong>养阴润肺，益胃生津。</strong>2024年新入药食同源目录，清补上品。</p>
+      <ul class="card-benefits">
+        <li>养阴润肺：缓解肺燥干咳、咽干口渴</li>
+        <li>清心除烦：改善心烦失眠、心悸怔忡</li>
+        <li>益胃生津：对口干舌燥、胃阴不足效果好</li>
+        <li>保护心肌：麦冬总皂苷改善心肌缺血</li>
+        <li>辅助降糖：麦冬多糖调节糖代谢</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>麦冬多糖</span><span>麦冬皂苷</span><span>高异黄酮</span><span>钾</span><span>钙</span><span>镁</span>
+      </div>
+      <div class="card-warning">⚠ 脾胃虚寒、大便溏泄者不宜。风寒咳嗽忌用。</div>
+    </div>
+
+    <!-- 13. 九蒸黄精 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon dark">✨</div>
+        <div>
+          <div class="card-name">九蒸黄精</div>
+          <div class="card-latin">Polygonatum sibiricum</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘 · 归脾肺肾经</div>
+      <p class="card-effect"><strong>补气养阴，健脾润肺益肾。</strong>「仙人余粮」，九蒸九晒后温润平和，效力倍增。</p>
+      <ul class="card-benefits">
+        <li>补气养阴不燥：九蒸后性平味甘，比生品温补3.7倍（浙江中医药大学2026研究）</li>
+        <li>健脾润肺：改善体倦乏力、干咳、食欲差</li>
+        <li>滋补肾精：对腰膝酸软、须发早白有调理作用</li>
+        <li>辅助降糖降脂：黄精多糖调节糖脂代谢</li>
+        <li>抗氧化抗衰老：抗氧化能力比生品提高4.2倍</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>黄精多糖10-15%</span><span>皂苷</span><span>17种氨基酸</span><span>黄酮</span><span>锌</span><span>硒</span><span>铁</span>
+      </div>
+      <div class="card-warning">⚠ 脾虚有湿、腹胀便溏者不宜。阳衰阴盛者慎用。</div>
+    </div>
+
+    <!-- 14. 老陈皮 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🍊</div>
+        <div>
+          <div class="card-name">老陈皮</div>
+          <div class="card-latin">Citrus reticulata 'Chachi'</div>
+        </div>
+      </div>
+      <div class="card-nature">性温 · 味辛苦 · 归脾肺经</div>
+      <p class="card-effect"><strong>理气健脾，燥湿化痰。</strong>「一两陈皮一两金，百年陈皮胜黄金」，越陈越香越值钱。</p>
+      <ul class="card-benefits">
+        <li>理气健脾：缓解脾胃气滞导致的腹胀、食欲不振</li>
+        <li>燥湿化痰：改善湿痰咳嗽、痰多胸闷</li>
+        <li>降逆止呕：对晕车呕吐、孕期晨吐有安抚作用</li>
+        <li>抗氧化：川陈皮素+橙皮苷清除自由基</li>
+        <li>化油腻：助消化、去腻，火锅/大餐后泡一壶</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>川陈皮素</span><span>橙皮苷</span><span>挥发油≥2%</span><span>柠檬烯</span><span>维生素C</span><span>钾</span>
+      </div>
+    </div>
+
+    <!-- 15. 福建莲子 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon cool">🪷</div>
+        <div>
+          <div class="card-name">福建莲子</div>
+          <div class="card-latin">Nelumbo nucifera</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘涩 · 归脾肾心经</div>
+      <p class="card-effect"><strong>补脾止泻，益肾固精，养心安神。</strong>建宁贡莲，粒大饱满，一煮即糯。</p>
+      <ul class="card-benefits">
+        <li>健脾养胃：改善脾虚食欲差、慢性腹泻</li>
+        <li>养心安神：莲子心碱宁心安神，缓解心悸失眠</li>
+        <li>益肾固精：调理肾虚遗精、带下</li>
+        <li>优质植物蛋白：蛋白质含量约17%，氨基酸均衡</li>
+        <li>低脂高纤：润肠通便，控制体重好帮手</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>蛋白质17g</span><span>莲子碱</span><span>棉子糖</span><span>钙</span><span>磷</span><span>钾</span><span>铁</span>
+      </div>
+    </div>
+
+    <!-- 16. 宁夏枸杞 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon warm">🔴</div>
+        <div>
+          <div class="card-name">宁夏枸杞</div>
+          <div class="card-latin">Lycium barbarum</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘 · 归肝肾经</div>
+      <p class="card-effect"><strong>滋补肝肾，益精明目。</strong>「人到中年不得已，保温杯里泡枸杞」——最深入人心的养生符号。</p>
+      <ul class="card-benefits">
+        <li>养肝明目：枸杞多糖保护视网膜，改善视物模糊</li>
+        <li>滋补肾精：调理腰膝酸软、头晕耳鸣</li>
+        <li>抗氧化之王：ORAC抗氧化值居常见食材前三</li>
+        <li>辅助降三高：枸杞多糖调节血糖血脂</li>
+        <li>增强免疫：促进淋巴细胞转化（宁夏医科大学研究）</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>枸杞多糖</span><span>玉米黄质</span><span>β-胡萝卜素</span><span>甜菜碱</span><span>维生素C</span><span>铁</span><span>锌</span><span>硒</span>
+      </div>
+      <div class="card-warning">⚠ 外邪实热、脾虚泄泻者不宜大量。每日建议10-20g。</div>
+    </div>
+
+    <!-- 17. 山药 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon earth">🥔</div>
+        <div>
+          <div class="card-name">山药</div>
+          <div class="card-latin">Dioscorea opposita</div>
+        </div>
+      </div>
+      <div class="card-nature neutral">性平 · 味甘 · 归脾肺肾经</div>
+      <p class="card-effect"><strong>补脾养胃，生津益肺，补肾涩精。</strong>怀山药为道地，药食两用最家常之选。</p>
+      <ul class="card-benefits">
+        <li>健脾养胃：山药多糖保护胃黏膜，改善消化不良</li>
+        <li>补肺益气：缓解脾肺气虚导致的久咳虚喘</li>
+        <li>益肾填精：用于肾虚尿频、腰膝乏力</li>
+        <li>辅助降糖：黏液蛋白减缓碳水吸收速度</li>
+        <li>老少皆宜：质地细腻好消化，婴幼儿辅食亦可</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>山药多糖</span><span>黏液蛋白</span><span>薯蓣皂苷</span><span>淀粉</span><span>钾</span><span>磷</span><span>维生素B1</span>
+      </div>
+    </div>
+
+    <!-- 18. 桑葚 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon dark">🫐</div>
+        <div>
+          <div class="card-name">桑葚</div>
+          <div class="card-latin">Morus alba</div>
+        </div>
+      </div>
+      <div class="card-nature cool-type">性寒 · 味甘酸 · 归肝肾经</div>
+      <p class="card-effect"><strong>滋阴补血，生津润燥。</strong>「民间圣果」——黑紫色的天然补血剂，花青素之王。</p>
+      <ul class="card-benefits">
+        <li>补血养肝：铁含量较高，配合维生素C促进吸收</li>
+        <li>乌发明目：花青素保护视神经+滋养肝肾</li>
+        <li>润肠通便：丰富的果胶和膳食纤维</li>
+        <li>抗氧化抗衰老：花青素ORAC值居水果之首</li>
+        <li>辅助降脂：白藜芦醇调节血脂代谢</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>花青素</span><span>白藜芦醇</span><span>维生素C</span><span>铁</span><span>钙</span><span>锌</span><span>鞣酸</span>
+      </div>
+      <div class="card-warning">⚠ 脾胃虚寒泄泻者不宜。糖尿病需计入糖分。不宜空腹大量食用。</div>
+    </div>
+
+    <!-- 19. 西洋参片 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon cool">🍃</div>
+        <div>
+          <div class="card-name">西洋参片</div>
+          <div class="card-latin">Panax quinquefolius</div>
+        </div>
+      </div>
+      <div class="card-nature cool-type">性凉 · 味甘微苦 · 归心肺肾经</div>
+      <p class="card-effect"><strong>补气养阴，清热生津。</strong>「无火之参」——补气不上火，适合中国人体质的日常参。</p>
+      <ul class="card-benefits">
+        <li>补气养阴不燥：与人参相比性凉不上火，适合长期日常服用</li>
+        <li>清热生津：对口干咽燥、虚热烦倦效果显著</li>
+        <li>抗疲劳：人参皂苷Rb1提高耐力和抗应激能力</li>
+        <li>保护心血管：调节血压、抗心律失常</li>
+        <li>增强记忆：改善脑血流和认知功能</li>
+      </ul>
+      <div class="card-nutrients">
+        <span>人参皂苷Rb1</span><span>人参皂苷Rg1</span><span>多糖</span><span>17种氨基酸</span><span>锌</span><span>铁</span><span>硒</span>
+      </div>
+      <div class="card-warning">⚠ 脾胃虚寒、大便溏泄者慎用。感冒发热期间暂停。每日建议3-6g。</div>
+    </div>
+
+  </div><!-- /.grid -->
+</div><!-- /.grid-section -->
+
+<!-- ====== OUTRO ====== -->
+<section class="outro">
+  <h3>积养家 · 选品哲学</h3>
+  <p>
+    <b>产地不对，功效打折。</b>宁夏枸杞、福建建莲、新会陈皮、甘肃党参——道地产区是第一道门槛。<br>
+    <b>炮制不对，功效再打折。</b>九蒸九晒黄精、自然陈化的老陈皮——炮制功夫决定药力深浅。<br>
+    <b>年份不够，功效继续打折。</b>三年陈皮和十年陈皮天差地别，时间本身就是一味药。<br><br>
+    <b>积养家只做一件事：</b>替你把这三道关都守好。<br>
+    你在积养家拿到的每一味食材，都是道地、真年份、正统炮制。<br>
+    <b>不掺假、不虚标、不妥协。</b>
+  </p>
+</section>
+
+<div class="footer">
+  积养家 · 药食同源食材大全 &nbsp;|&nbsp; 积善积德积福 · 养人养生养体
+</div>
+
+</body>
+</html>

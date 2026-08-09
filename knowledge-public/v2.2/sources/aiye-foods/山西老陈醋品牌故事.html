@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间是唯一的配方 · 山西老陈醋 | 爱野</title>
+<style>
+  :root{
+    --ink:#3D3328;           /* 深醋棕 主文字 */
+    --ink-soft:#6B5A46;      /* 次级文字 */
+    --paper:#FAF6EF;         /* 米白 底色 */
+    --paper-2:#F3EBDB;       /* 浅米 卡片 */
+    --vinegar:#8C4A23;       /* 陈醋琥珀 强调 */
+    --vinegar-deep:#6B3410;
+    --vinegar-light:#C4956A;
+    --leaf:#5C6B4F;          /* 山绿 点缀 */
+    --line:rgba(61,51,40,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ===== 陶缸纹背景 ===== */
+  .vat-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='28' fill='none' stroke='%238C4A23' stroke-opacity='0.07' stroke-width='1.2'/%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%238C4A23' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:80px 80px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--vinegar-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--vinegar);opacity:.5;}
+  .cover h1{font-size:clamp(36px,7.5vw,58px);font-weight:600;letter-spacing:.12em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--vinegar-deep);}
+  .cover .meta{margin-top:64px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  /* 陶缸断面图 */
+  .vat-svg{margin-top:56px;width:min(360px,80%);opacity:.9;}
+  .scroll-hint{margin-top:40px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--vinegar-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--vinegar-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--vinegar);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--vinegar-deep);font-weight:600;
+  }
+  .quote{
+    margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--vinegar);
+    font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;
+  }
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  /* 工艺步骤 */
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--vinegar);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 数据卡 */
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(61,51,40,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--vinegar-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card h3{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:.04em;}
+  .d-card p{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 价格标签 */
+  .price-tag{
+    margin:44px 0;padding:34px 36px;text-align:center;
+    background:linear-gradient(160deg,#F3EBDB 0%,#FAF6EF 100%);
+    border:1px solid var(--line);border-radius:16px;
+    position:relative;overflow:hidden;
+  }
+  .price-tag::before{content:"";position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:var(--vinegar);opacity:.04;border-radius:50%;}
+  .price-tag .label{font-size:13px;letter-spacing:.3em;color:var(--vinegar-deep);margin-bottom:10px;}
+  .price-tag .price{font-size:44px;font-weight:600;color:var(--ink);letter-spacing:.04em;}
+  .price-tag .price .unit{font-size:16px;font-weight:400;color:var(--ink-soft);}
+  .price-tag .note{font-size:13px;color:#9C8B76;margin-top:6px;}
+
+  /* 分隔符 */
+  .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:70px 0 0;color:var(--vinegar);}
+  .divider svg{width:14px;height:14px;opacity:.7;}
+
+  /* 尾声 */
+  .ending{
+    margin:70px 0 20px;padding:60px 36px;text-align:center;
+    background:linear-gradient(160deg,#F3EBDB 0%,#FAF6EF 100%);
+    border:1px solid var(--line);border-radius:20px;
+  }
+  .ending .vat-icon{width:52px;height:52px;margin:0 auto 26px;}
+  .ending p{font-size:clamp(16px,3vw,19px);letter-spacing:.06em;line-height:2.1;margin-bottom:16px;}
+  .ending .sign{font-size:13px;letter-spacing:.4em;color:var(--vinegar-deep);margin-top:30px;}
+  .ending .sign::before,.ending .sign::after{content:"";display:inline-block;width:26px;height:1px;background:var(--vinegar);vertical-align:middle;margin:0 12px;opacity:.55;}
+
+  footer{padding:50px 0 70px;text-align:center;font-size:12px;color:#A7947E;letter-spacing:.28em;line-height:2.2;}
+  footer .foot-brand{color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .cover{min-height:88vh;}
+    section{padding:64px 0 10px;}
+    .quote{padding:26px 20px;}
+    .ending{padding:44px 22px;}
+    .step{padding:18px 16px;gap:14px;}
+    .price-tag{padding:28px 20px;}
+    .price-tag .price{font-size:36px;}
+  }
+</style>
+</head>
+<body>
+<div class="vat-bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="wrap">
+    <div class="brand">爱野 · 天然食材</div>
+    <h1>时间是唯一的配方</h1>
+    <p class="sub">山西清徐 <span>·</span> 手工老陈醋</p>
+    <svg class="vat-svg" viewBox="0 0 360 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 陶缸 -->
+      <path d="M90 20 Q90 10 120 10 L240 10 Q270 10 270 20 L275 80 Q278 100 260 108 L180 130 L100 108 Q82 100 85 80 Z" fill="#D8C8B0" stroke="#C4B090" stroke-width="1.5"/>
+      <!-- 醋液面 -->
+      <ellipse cx="180" cy="55" rx="78" ry="10" fill="#8C4A23" opacity=".65"/>
+      <ellipse cx="180" cy="55" rx="78" ry="10" fill="none" stroke="#6B3410" stroke-width="1" opacity=".4"/>
+      <!-- 醋液波纹 -->
+      <ellipse cx="180" cy="52" rx="55" ry="6" fill="none" stroke="#C4956A" stroke-width=".8" opacity=".35"/>
+      <!-- 陶缸标签 -->
+      <rect x="145" y="75" width="70" height="26" rx="6" fill="#F3EBDB" stroke="#C4B090" stroke-width="1"/>
+      <text x="180" y="93" text-anchor="middle" font-size="11" fill="#6B3410" font-family="serif" letter-spacing="2">老 陈 醋</text>
+      <!-- 蒸汽 -->
+      <path d="M160 32 Q155 22 162 14" fill="none" stroke="#C4956A" stroke-width="1" opacity=".3"/>
+      <path d="M180 28 Q176 16 184 8" fill="none" stroke="#C4956A" stroke-width="1" opacity=".25"/>
+      <path d="M200 32 Q197 20 205 12" fill="none" stroke="#C4956A" stroke-width="1" opacity=".2"/>
+    </svg>
+    <div class="meta">蒸 · 酵 · 熏 · 淋 · 陈 ｜ 古法五艺 ｜ 越陈越香</div>
+    <div class="scroll-hint">往下看，听一个故事<span class="arr">▼</span></div>
+  </div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序 章</div>
+    <h2>清徐</h2>
+    <p class="lead">山西，太原南边六十里，有一个地方叫清徐。</p>
+    <p>黄土高原的风从太行山吹过来，汾河的水从吕梁山流下来。这里的水富含钙盐，这里的高粱粒粒饱满，这里的日头烈、冬天冷——天然的酿醋宝地。</p>
+    <p>从西周到现在，三千年了。这里的人酿醋，跟吃饭睡觉一样自然。家家有醋缸，人人会酿醋。逢年过节吃醋饺子，婚礼喜宴讲究"有醋有爱"。</p>
+    <p>中国的醋千千万，但头一把交椅，一直坐在这块黄土地上——<span style="color:var(--vinegar-deep);">天下第一醋</span>。</p>
+  </div>
+  <div class="wrap"><div class="divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+  </div></div>
+</section>
+
+<!-- ===== 壹 · 五艺 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>不是所有的醋，都能叫"老陈醋"</h2>
+    <p class="lead">很多人不知道——陈酿半年的只能叫"陈醋"，陈酿一年以上，才配叫"老陈醋"。一字之差，天壤之别。</p>
+    <p>真正的山西老陈醋，从一粒高粱到一滴醋，要走五步：</p>
+    <div class="steps">
+      <div class="step">
+        <div class="tag">蒸</div>
+        <div>
+          <h3>蒸料</h3>
+          <p>精选高粱、大麦、豌豆，高温蒸煮使淀粉糊化。原料好不好，这一步就知道——杂质多的，一蒸就露馅。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">酵</div>
+        <div>
+          <h3>发酵</h3>
+          <p>拌入大曲入陶缸，二十八天。微生物在缸里协同作用：淀粉变糖，糖变酒，乳酸菌产酸。一口缸，就是一个微型生态系统。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">熏</div>
+        <div>
+          <h3>熏醅</h3>
+          <p>山西独有的工艺。醋醅经高温熏制，发生美拉德反应——颜色由黄转紫黑，生出独特的焦香和熏香。这是老陈醋"色"与"香"的灵魂。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">淋</div>
+        <div>
+          <h3>淋醋</h3>
+          <p>以清水慢淋醋醅，像泡茶一样，把醋酸、氨基酸、有机酸一层层萃取出来。急不得，快不得。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">陈</div>
+        <div>
+          <h3>陈酿</h3>
+          <p>最关键的一步。新醋注入陶缸，置于室外，开始漫长的等待——"夏伏晒、冬捞冰"。烈日下蒸发水分、促进酯化；寒冬里捞出冰渣、浓缩精华。经年累月，总量蒸发近半，留下的全是精华。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 · 陈酿 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>夏伏晒，冬捞冰</h2>
+    <p class="dropcap">这六个字，是山西老陈醋的魂。</p>
+    <p>清徐的夏天，日头毒辣。陶缸敞着口，醋液在缸里翻滚冒泡——低沸点的酸挥发掉了，留下的全是醇厚的精华。同时，有机酸和醇类在高温下发生酯化反应，酸味变得柔和，香气层层叠出来。</p>
+    <p>清徐的冬天，冰封雪盖。醋缸表面结了一层薄冰，老师傅们一块一块捞出来——冰是水，捞走了水，醋就浓了。反复几轮，酸度越来越高，味道越来越醇。</p>
+    <div class="quote">
+      「百年陈酿赛黄金。」
+      <span class="src">—— 山西醋谚</span>
+    </div>
+    <p style="color:var(--ink-soft);">一缸醋，要在外边风吹日晒一整年，才敢叫"老陈醋"。酿三年的、五年的，更是极品——色泽紫黑透亮，挂壁如油，酸不扎嘴，入口绵长，咽下去之后，回甘能在喉咙里停好久。</p>
+  </div>
+</section>
+
+<!-- ===== 叁 · 味道 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>一口下去，五个字</h2>
+    <p class="lead">真正的好老陈醋，不是单纯的酸。它层次分明，一口尝得出五个字：</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <h3>绵</h3>
+        <p>入口不冲不扎，柔和顺滑。像丝绸滑过舌尖，酸的力道包裹在绵密的口感里。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <h3>酸</h3>
+        <p>总酸达6度以上，但经过漫长酯化，酸得醇厚、酸得舒服，不是工业速酿醋那种尖锐的刺激。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <h3>香</h3>
+        <p>熏醅带来的焦香，陈酿带来的酯香，高粱谷糠自带的谷物香——三重香气融为一体，开盖满屋飘。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <h3>甜</h3>
+        <p>咽下去之后舌根泛起的回甘。不是加糖的甜，是谷物发酵和陈酿自然生出的甘醇。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">伍</span>
+        <h3>鲜</h3>
+        <p>18种氨基酸赋予的天然鲜味，不靠任何添加剂。滴几滴在菜里，整道菜都活了。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>一缸醋里，藏了多少好东西</h2>
+    <p class="lead">山西老陈醋不只是一瓶酸味调料——它是一缸经过长年累月浓缩的"液体营养"。以下数据来自国标GB/T 19777《地理标志产品 山西老陈醋》及科研检测：</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <div class="big">18<em>种</em></div>
+        <h3>氨基酸</h3>
+        <p>含18种游离氨基酸，其中8种为人体必需氨基酸。氨基酸态氮 ≥ 0.2g/100ml，这是普通食醋不做要求的指标。谷氨酸供鲜，丙氨酸供甜，一口醋里就有鲜甜层次。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <div class="big">6<em>种+</em></div>
+        <h3>有机酸</h3>
+        <p>乙酸（醋酸）为主，另有乳酸、苹果酸、柠檬酸、丙酮酸、琥珀酸。乳酸让酸味柔和醇厚，柠檬酸和苹果酸提升口感层次，不是单一刺激的尖酸。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <div class="big">B<em>族</em></div>
+        <h3>维生素</h3>
+        <p>富含维生素B1、B2、B6等B族维生素，由发酵过程中酵母和细菌自然合成。参与能量代谢，辅助改善微循环。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <div class="big">5<em>种</em></div>
+        <h3>矿物质</h3>
+        <p>钙、铁、锌、钾、镁——来自山西黄土高原的原料和水源。烹饪时加醋能促进食物中矿物质的析出，提高吸收率。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">伍</span>
+        <div class="big">60mg<em>/100g</em></div>
+        <h3>总黄酮</h3>
+        <p>国标要求总黄酮含量不低于60mg/100g。黄酮类物质是天然抗氧化剂，有抗炎、保护心血管的作用。年份越高，含量越高。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">陆</span>
+        <div class="big">30mg<em>/L</em></div>
+        <h3>川芎嗪</h3>
+        <p>国标要求川芎嗪含量不低于30mg/L。这是老陈醋特有的活性物质——既贡献特殊香气，又能扩张血管、改善心脑血管健康。</p>
+      </div>
+    </div>
+    <div class="quote">
+      「山西老陈醋经过陈酿浓缩，维生素和矿物质含量远高于普通食醋。陈酿年份越高，多酚类、黄酮类、川芎嗪含量也越高。」
+      <span class="src">—— GB/T 19777《地理标志产品 山西老陈醋》</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 对人类的好处 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>它到底对人好在哪</h2>
+    <p class="dropcap">山西有句老话："家有二两醋，不用去药铺。"这不是瞎说，现代科学一项一项验证了。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="tag" style="background:#5C6B4F;">消</div>
+        <div>
+          <h3>开胃促消化</h3>
+          <p>醋酸和乳酸刺激唾液、胃液分泌，增强胃肠蠕动。餐前少量喝一点，食欲就上来了；吃多了油腻的，来点醋帮助化解。发酵产生的乳杆菌还能改善肠道菌群。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--vinegar);">糖</div>
+        <div>
+          <h3>稳定血糖</h3>
+          <p>醋酸能延缓胃排空速度，抑制碳水化合物快速转化为葡萄糖，帮助平缓餐后血糖波动。对关注血糖管理的人尤其友好。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--vinegar-deep);">心</div>
+        <div>
+          <h3>保护心血管</h3>
+          <p>川芎嗪扩张血管、减少胆固醇在血管壁沉积；多酚和黄酮抗氧化抗炎；山西医科大学长期跟踪研究证实：每日适量食用15-20毫升，可显著降低甘油三酯和胆固醇水平。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#8C4A23;">肝</div>
+        <div>
+          <h3>护肝解酒</h3>
+          <p>天津科技大学郑宇教授团队通过动物和细胞试验证实：老陈醋提取物能调节肠道菌群，增加短链脂肪酸生成，有效减轻酒精诱导的肝损伤和氧化应激。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#6B3410;">菌</div>
+        <div>
+          <h3>天然抗菌</h3>
+          <p>老陈醋pH值2.0-3.0的酸性环境能抑制大肠杆菌、金黄色葡萄球菌等致病菌繁殖。凉拌菜里加醋，不仅提味，还多了一层天然保护。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#4A2A10;">疲</div>
+        <div>
+          <h3>缓解疲劳</h3>
+          <p>醋酸代谢产生的丙酮酸参与三羧酸循环，帮助分解运动后堆积的乳酸。运动完来一杯温水调醋，比功能饮料更天然。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--leaf);">钙</div>
+        <div>
+          <h3>促进矿物质吸收</h3>
+          <p>醋中的有机酸能让食物中的钙、铁、锌更容易溶解出来。炖骨头汤加一勺醋，钙的溶出量能翻好几倍——这是老百姓几千年验证过的智慧。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#7A5A3A;">氧</div>
+        <div>
+          <h3>抗氧化抗衰老</h3>
+          <p>多酚类、黄酮类、类黑精——三大抗氧化物质协同清除自由基，减缓细胞氧化损伤。陈酿越久，这些物质的含量越高。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 价格 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>一斤二十</h2>
+    <p class="lead">这个价格，放在超市货架上不算最便宜。但你要是知道一缸醋是怎么酿出来的——你会觉得它太值了。</p>
+    <div class="price-tag">
+      <div class="label">爱野 · 山西老陈醋</div>
+      <div class="price">20 <span class="unit">元 / 斤</span></div>
+      <div class="note">传统工艺 ｜ 陶缸陈酿 ｜ 零添加</div>
+    </div>
+    <p>工业醋几天就能出一批，用冰醋酸勾兑，成本几毛钱一斤——但它只有酸，没有香，没有绵，没有那股子咽下去之后的回甘。</p>
+    <p>这一缸醋，从高粱下地算起，蒸了、酵了、熏了、淋了，又在日头底下晒了一整个夏天，在冰天雪地里冻了一整个冬天。一年甚至更长的时间，蒸发掉近一半的量，才浓缩出这么一缸。</p>
+    <p>合下来一斤二十。<span style="color:var(--vinegar-deep);">买的不是醋，是时间。</span></p>
+  </div>
+</section>
+
+<!-- ===== 柒 · 爱野坚持 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>爱野为什么选它</h2>
+    <p class="dropcap">我们做天然食材，不看广告，不看包装，只看它是不是真东西。</p>
+    <p>这缸老陈醋，我们尝了，闻了，看了它的颜色，看了它的挂壁。紫黑透亮，酸香不冲，入口绵柔——舌头不骗人。</p>
+    <p>它是清徐的老师傅们用古法一口缸一口缸酿的，是顶着夏天的日头、捞着冬天的冰渣，一年一年等出来的。没有添加剂，没有勾兑，没有速成。</p>
+    <p style="color:var(--ink-soft);">爱野把它从山西带回来，不为别的——就想让你尝尝，时间的味道。</p>
+  </div>
+</section>
+
+<!-- ===== 尾声 ===== -->
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="ending">
+      <svg class="vat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4 Q6 2 9 2 L15 2 Q18 2 18 4 L19 12 Q20 16 18 18 L13 22 L11 22 L6 18 Q4 16 5 12 Z" fill="#8C4A23" opacity=".85"/>
+        <ellipse cx="12" cy="8" rx="5.5" ry="2" fill="#6B3410" opacity=".8"/>
+        <ellipse cx="12" cy="7.5" rx="3.5" ry="1.2" fill="#C4956A" opacity=".3"/>
+        <rect x="9" y="12" width="6" height="3" rx="1.5" fill="#F3EBDB" opacity=".7"/>
+      </svg>
+      <p>醋是酸的，但好醋酸得暖。<br>它不刺喉咙，不呛鼻子，咽下去之后，回甘就在那里。</p>
+      <p>这缸醋，从三千年走到今天。<br>现在，轮到它走进你的厨房了。</p>
+      <div class="sign">爱 野</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">爱野有限公司 · 天然食材</div>
+  <div>原生 · 天然 · 真实 · 可溯源</div>
+</footer>
+
+</body>
+</html>

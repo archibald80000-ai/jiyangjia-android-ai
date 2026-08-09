@@ -2,9 +2,9 @@
 
 - **Project:** jiyangjia-android-ai
 - **State version:** 0.2.0
-- **Updated:** 2026-08-08
-- **Overall status:** TASK-020E real Gateway import/dialogue acceptance passed and is READY_FOR_DEMO; public HTTPS remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
-- **Current authorized task:** TASK-020E closed as DONE; next unblock external HTTPS through ICP/domain onboarding
+- **Updated:** 2026-08-09
+- **Overall status:** TASK-020F public Aiye knowledge v2.2 is published to Tencent production and accepted; public HTTPS remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
+- **Current authorized task:** TASK-020F closed as DONE; next unblock external HTTPS through ICP/domain onboarding
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -19,6 +19,9 @@
 - TASK-020C verified the same 41/24/65 formal knowledge state on Tencent Cloud, published the approved MOV-derived 1080x1920 H.264 video and matching JPG, bound the production portrait Profile, deployed source-URI redaction and passed one real production RAG/LLM/TTS dialogue. Public HTTPS is still reset externally, so sharing remains blocked.
 - TASK-020D published the user-authorized v2.1 knowledge as reviewable JSON under `knowledge-public/v2.1/`, backed up the production SQLite/FAISS state, re-imported 50+15 documents with real Doubao Embedding, and verified 41 approved / 24 draft / 65 vectors at 2048 dimensions. Production 80-case policy acceptance passed 80/80 with zero draft leaks and complete `knowledge://` sources.
 - TASK-020E preserved both local demo/candidate indexes, imported v2.1 into an isolated port-8091 all-real Gateway, retained 65 x 2048 Doubao vectors, passed the 80-case search gate, and passed five synthetic-speech audio dialogues through real ASR/RAG/LLM/TTS after narrow kiosk-query and soup-homophone adaptations. Status is `READY_FOR_DEMO`, not Android device acceptance.
+- TASK-020F archived 25 user-authorized public Aiye HTML files byte-for-byte with SHA-256, preserved all 65 v2.1 documents, and added 139 approved `aiye_` records. The v2.2 package has 204 documents, 340 chunks/vectors at 2048 dimensions, 24 solar-term recipes, 19 food-medicine ingredients and 11 Dayougu SKUs plus a product catalog.
+- TASK-020F local and Tencent production real-Embedding retrieval passed 240/240 Top-3 cases with 100% sources and zero draft leakage. Six real text dialogues and one Doubao-generated synthetic-speech audio dialogue completed through real RAG/LLM/TTS or ASR/RAG/LLM/TTS. This is not human microphone or Android device evidence.
+- TASK-020F production backup is `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`; active production knowledge is 180 approved, 24 draft and 340 x 2048 FAISS vectors. Health/nutrition grounding was tightened after manual answer review. External HTTPS remains reset by the separate TASK-014H Tencent webblock/ICP issue.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -265,6 +268,7 @@ Recent task results:
 - TASK-020C is PARTIAL only at the external sharing gate. Production knowledge/media/Profile and dialogue passed; the server-local canonical HTTPS routes return 200, but external HTTPS remains reset by Tencent. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 - TASK-020D is DONE. The authorized public JSON package is tracked under `knowledge-public/v2.1/`; production re-import and 80-case real-Embedding search acceptance passed. Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
 - TASK-020E is DONE / READY_FOR_DEMO. The isolated real Gateway import, 80-case search and five audio dialogue flows passed while old demo/index data remained preserved. Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
+- TASK-020F is DONE / PRODUCTION_PUBLISHED. The public v2.2 package, real local/production 240-case retrieval, source-complete real dialogue and rollback backup passed. Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 Next action:
 

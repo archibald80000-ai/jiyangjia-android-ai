@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白玉莲 · 上珍缘宣莲 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1A0E;
+    --ink-soft:#5C3D28;
+    --paper:#FCF6EE;
+    --paper-2:#F5E8D5;
+    --red:#A0301A;
+    --red-deep:#6B1E0D;
+    --red-light:#C75542;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --green:#4A7C59;
+    --green-light:#6B9F7A;
+    --lotus:#C8859E;
+    --lotus-soft:#E8C5D0;
+    --line:rgba(45,26,14,.1);
+    --card:#F5E8D5;
+    --card-green:#EBF3E8;
+    --card-lotus:#F9EDF1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(160,48,26,.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(184,134,11,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--red);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--red-deep);}
+  .cover h1 em{font-style:normal;color:var(--gold);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--red);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+
+  .hero-svg{margin-top:50px;width:min(280px,66%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--gold);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--red);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--gold);
+    background:var(--paper-2);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);
+    transition:transform .2s;
+  }
+  .card:hover{transform:translateY(-2px);}
+  .card .label{font-size:12px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:8px;}
+  .card .value{font-size:28px;font-weight:700;color:var(--red-deep);line-height:1.2;}
+  .card .value span{font-size:14px;font-weight:400;color:var(--ink-soft);}
+  .card .desc{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.6;}
+  .card .src{font-size:11px;color:#9C8B72;margin-top:6px;}
+
+  /* ===== 功效卡 ===== */
+  .effect-list{margin:28px 0;}
+  .effect-item{
+    display:flex;gap:18px;margin-bottom:20px;
+    padding:20px;background:var(--card);border-radius:10px;
+    border:1px solid var(--line);
+  }
+  .effect-num{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;
+    background:var(--red);color:#fff;font-size:14px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .effect-body h4{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .effect-body p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.7;}
+  .effect-body .src{font-size:11px;color:#9C8B72;margin-top:6px;display:block;}
+
+  /* ===== 对比表 ===== */
+  .compare-table{
+    width:100%;border-collapse:collapse;margin:28px 0;
+    font-size:14px;border-radius:10px;overflow:hidden;
+  }
+  .compare-table th{
+    background:var(--red-deep);color:#fff;padding:12px 14px;
+    font-weight:600;text-align:left;font-size:13px;
+  }
+  .compare-table td{
+    padding:12px 14px;border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .compare-table td:first-child{font-weight:600;color:var(--ink);}
+  .compare-table tr:last-child td{border-bottom:none;}
+
+  /* ===== 警告框 ===== */
+  .warn{
+    margin:28px 0;padding:20px 22px;
+    background:#FFF3E0;border:1px solid #FFB74D;
+    border-radius:10px;font-size:14px;color:#8B5E12;
+  }
+  .warn strong{color:var(--red-deep);}
+  .warn-red{
+    margin:28px 0;padding:20px 22px;
+    background:#FFEBEE;border:1px solid #EF5350;
+    border-radius:10px;font-size:14px;color:#B71C1C;
+  }
+  .warn-red strong{color:var(--red-deep);}
+
+  /* ===== 分隔符 ===== */
+  .divider{
+    text-align:center;margin:60px 0;color:var(--gold);
+    font-size:18px;letter-spacing:.5em;opacity:.4;
+  }
+
+  /* ===== 销售话术框 ===== */
+  .sales-box{
+    margin:34px 0;padding:28px 26px;
+    background:linear-gradient(135deg,var(--red-deep),var(--red));
+    color:#fff;border-radius:12px;
+  }
+  .sales-box h3{color:#fff;border:none;margin-top:0;}
+  .sales-box p{color:rgba(255,255,255,.9);}
+  .sales-box .price{
+    font-size:42px;font-weight:700;color:#FFD54F;
+    text-align:center;margin:18px 0;
+  }
+  .sales-box .price span{font-size:16px;font-weight:400;}
+
+  /* ===== 用法卡 ===== */
+  .usage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0;}
+  .usage-card{
+    background:var(--card-green);padding:18px;border-radius:10px;
+    border:1px solid rgba(74,124,89,.15);
+  }
+  .usage-card h4{font-size:15px;color:var(--green);margin-bottom:8px;font-weight:600;}
+  .usage-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.6;}
+
+  /* ===== 徽标条 ===== */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0;}
+  .badge{
+    padding:8px 16px;border-radius:20px;font-size:12px;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--ink-soft);letter-spacing:.05em;
+  }
+  .badge.gold{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .badge.red{background:var(--red-deep);color:#fff;border-color:var(--red-deep);}
+
+  /* ===== 选品对照 ===== */
+  .standard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:28px 0;}
+  .standard-card{
+    padding:18px 16px;border-radius:10px;text-align:center;
+    background:var(--card-green);border:1px solid rgba(74,124,89,.2);
+  }
+  .standard-card .icon{font-size:24px;margin-bottom:8px;}
+  .standard-card .title{font-size:14px;font-weight:600;color:var(--green);margin-bottom:6px;}
+  .standard-card .text{font-size:12px;color:var(--ink-soft);line-height:1.6;}
+
+  /* ===== 手机适配 ===== */
+  @media(max-width:520px){
+    .wrap{padding:0 20px;}
+    section{padding:60px 0 20px;}
+    .cover{padding:60px 20px 30px;}
+    .card-grid{grid-template-columns:1fr;}
+    .compare-table{font-size:12px;}
+    .compare-table th,.compare-table td{padding:8px 10px;}
+    .effect-item{flex-direction:column;gap:10px;padding:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="wrap">
+<div class="cover">
+  <div class="brand">上珍缘 · 爱野天然食材</div>
+  <div class="tagline">中国三大名莲之首</div>
+  <h1>白玉莲<br><em>天赐宣平黄金土</em></h1>
+  <div class="sub">唐朝始种 · <span>嘉庆贡品</span> · 国家地理标志</div>
+
+  <svg class="hero-svg" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+    <!-- 莲花 -->
+    <g transform="translate(140,100)">
+      <!-- 外层花瓣 -->
+      <ellipse cx="0" cy="-50" rx="22" ry="48" fill="#F5E8D5" stroke="#C8859E" stroke-width="1.5" opacity=".7"/>
+      <ellipse cx="-42" cy="-30" rx="22" ry="46" fill="#F5E8D5" stroke="#C8859E" stroke-width="1.5" opacity=".7" transform="rotate(-40)"/>
+      <ellipse cx="42" cy="-30" rx="22" ry="46" fill="#F5E8D5" stroke="#C8859E" stroke-width="1.5" opacity=".7" transform="rotate(40)"/>
+      <ellipse cx="-55" cy="5" rx="20" ry="44" fill="#F5E8D5" stroke="#C8859E" stroke-width="1.5" opacity=".6" transform="rotate(-70)"/>
+      <ellipse cx="55" cy="5" rx="20" ry="44" fill="#F5E8D5" stroke="#C8859E" stroke-width="1.5" opacity=".6" transform="rotate(70)"/>
+      <!-- 内层花瓣 -->
+      <ellipse cx="0" cy="-35" rx="16" ry="36" fill="#E8C5D0" stroke="#C8859E" stroke-width="1" opacity=".8"/>
+      <ellipse cx="-25" cy="-18" rx="15" ry="34" fill="#E8C5D0" stroke="#C8859E" stroke-width="1" opacity=".8" transform="rotate(-35)"/>
+      <ellipse cx="25" cy="-18" rx="15" ry="34" fill="#E8C5D0" stroke="#C8859E" stroke-width="1" opacity=".8" transform="rotate(35)"/>
+      <!-- 莲蓬 -->
+      <circle cx="0" cy="-15" r="18" fill="#B8860B" opacity=".85"/>
+      <circle cx="-6" cy="-18" r="3" fill="#6B1E0D" opacity=".6"/>
+      <circle cx="6" cy="-18" r="3" fill="#6B1E0D" opacity=".6"/>
+      <circle cx="0" cy="-10" r="3" fill="#6B1E0D" opacity=".6"/>
+      <circle cx="-8" cy="-10" r="3" fill="#6B1E0D" opacity=".6"/>
+      <circle cx="8" cy="-10" r="3" fill="#6B1E0D" opacity=".6"/>
+    </g>
+    <!-- 水面波纹 -->
+    <ellipse cx="140" cy="160" rx="80" ry="6" fill="none" stroke="#4A7C59" stroke-width="1" opacity=".3"/>
+    <ellipse cx="140" cy="170" rx="100" ry="8" fill="none" stroke="#4A7C59" stroke-width="1" opacity=".2"/>
+    <ellipse cx="140" cy="180" rx="120" ry="10" fill="none" stroke="#4A7C59" stroke-width="1" opacity=".1"/>
+    <!-- 莲子 -->
+    <g transform="translate(50,190)">
+      <ellipse cx="0" cy="0" rx="8" ry="12" fill="#F5E8D5" stroke="#B8860B" stroke-width="1"/>
+      <ellipse cx="-1" cy="-2" rx="3" ry="5" fill="#fff" opacity=".6"/>
+    </g>
+    <g transform="translate(230,195)">
+      <ellipse cx="0" cy="0" rx="8" ry="12" fill="#F5E8D5" stroke="#B8860B" stroke-width="1"/>
+      <ellipse cx="-1" cy="-2" rx="3" ry="5" fill="#fff" opacity=".6"/>
+    </g>
+  </svg>
+
+  <div class="meta">浙江武义 · 柳城畲族镇 · 1300年种植史</div>
+  <div class="scroll-hint">向下阅读<span class="arr">↓</span></div>
+</div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">序章</div>
+  <h2>地育宫廷白玉莲</h2>
+  <p class="dropcap">"天赐宣平黄金土，地育宫廷白玉莲。"</p>
+  <p>宣莲，因产于浙江历史上原宣平县域（1958年撤县并入武义）而得名，与湖南湘潭湘莲、福建建宁建莲并称<strong>中国三大名莲</strong>。论历史之悠久、底蕴之深厚，宣莲居三大名莲之首。</p>
+  <p>始种于唐朝显庆年间（公元656—660年），最初作为观赏植物种植于寺观和私家花园的放生池中。到了清嘉庆六年（1802年），宣莲被正式列为<strong>朝廷贡品</strong>，成为御膳房必备之物，民间遂有"一斤莲子值一担谷"的说法。</p>
+
+  <div class="quote">
+    「碧水荷花通仙境，玉珠莲子溢清香。」
+    <span class="src">—— 历代文人赞宣莲</span>
+  </div>
+
+  <p>民间流传着一个美丽的传说：金童玉女趁观音菩萨去西天听经，驾莲座下凡游玩，行至宣平乌龙山下壶源村，被老农收养。后来观音施法收回金童玉女，二人急忙从莲座上抠下一颗莲子扔给老农。莲子落入池塘，生根开花结子，宣莲便在壶源传种开来。</p>
+
+  <p>传说归传说，宣莲的品质是真的好——<strong>颗大粒圆、色白芬芳、肉厚饱满、酥而不烂</strong>，这是1300年风土和匠心共同给出的答案。</p>
+
+  <div class="badges">
+    <span class="badge gold">中国三大名莲</span>
+    <span class="badge red">嘉庆贡品</span>
+    <span class="badge">国家地理标志产品</span>
+    <span class="badge">农产品地理标志</span>
+    <span class="badge">浙江省最具历史价值十强品牌</span>
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 壹 · 为什么只有武义 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">壹</div>
+  <h2>一方水土一方莲</h2>
+  <p>宣莲主产区在武义县南部柳城畲族镇、西联乡、桃溪镇一带。这里地处金衢盆地南缘，峰峦连绵，形成独特的<strong>盆地小气候</strong>——亚热带季风气候，年均气温约17.3°C，年降水量1400毫米以上，光照充足，昼夜温差大。</p>
+  <p>土壤以红壤、黄壤为主，富含有机质和微量元素，泥层深厚，土质肥沃——正是所谓"黄金土"。灌溉水源全部为清洁的山泉、山坑冷水或水库冷水，水质无污染。</p>
+
+  <div class="quote">
+    「莲过七里垄，功价与参同。」
+    <span class="src">—— 宣莲民间谚语：过了七里垄这一段，种出来的莲子品质如人参</span>
+  </div>
+
+  <p>更关键的是——宣莲<strong>忌连作</strong>，一块地种过之后要休耕5到8年才能再种。土壤里的养分被莲子吸透了，非得养几年才恢复得了。这是老天爷定的规矩，不是人为能改变的。</p>
+  <p>全国各地都试过种宣莲，但"色香味皆不及宣平莲子"。这不是偏见，是风土——纬度、海拔、温差、红黄壤、山泉水，五者缺一不可，缺了就不是那个味。</p>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 贰 · 古法种植 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">贰</div>
+  <h2>千年莲田的老规矩</h2>
+  <p>宣莲的种植，从选种到收获，遵循着1300年传下来的规矩，不催熟、不施药、不取巧。</p>
+
+  <h3>六道工序</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="label">第一步</div>
+      <div class="value" style="font-size:20px;">选种留种</div>
+      <div class="desc">莲农自家留种，选取颗粒最大、最饱满的莲子作为来年种藕。品种1300年不变，不引外来种。</div>
+    </div>
+    <div class="card">
+      <div class="label">第二步</div>
+      <div class="value" style="font-size:20px;">清明排藕</div>
+      <div class="desc">清明节前后将种藕排入莲田，株距1.5米左右，每亩约120-150株。早了冻死，晚了少花。</div>
+    </div>
+    <div class="card">
+      <div class="label">第三步</div>
+      <div class="value" style="font-size:20px;">田间管理</div>
+      <div class="desc">山泉水灌溉，施用农家肥和菜籽饼。不用化学农药——推广"莲鳖共养"生态模式，鳖吃虫除草，全程零农药。</div>
+    </div>
+    <div class="card">
+      <div class="label">第四步</div>
+      <div class="value" style="font-size:20px;">大暑采莲</div>
+      <div class="desc">大暑至白露，莲子陆续成熟。每天清晨趁露水未干时采摘，一天只能采一遍，每蓬只取熟透的。</div>
+    </div>
+    <div class="card">
+      <div class="label">第五步</div>
+      <div class="value" style="font-size:20px;">去壳通芯</div>
+      <div class="desc">手工去壳、去衣、通芯。通芯用竹签从底部捅出莲心，一根一根来。莲心苦，留着就毁了一锅汤。</div>
+    </div>
+    <div class="card">
+      <div class="label">第六步</div>
+      <div class="value" style="font-size:20px;">日晒烘干</div>
+      <div class="desc">先日晒3-5天，再炭火低温烘干。不用硫磺熏白——宣莲的奶白色是天生的，不是漂出来的。</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>辨别小贴士：</strong>真正的宣莲颜色是<strong>奶白或淡黄</strong>，表皮微皱。如果白得发亮、通体光滑，大概率是硫磺熏过的。闻一下，有酸味的不能要。
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 叁 · 三大名莲对比 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">叁</div>
+  <h2>三大名莲，各有千秋</h2>
+  <p>中国三大名莲——宣莲、湘莲、建莲——各有特色，但宣莲在历史底蕴和药用价值上公认居首。</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>对比项</th>
+        <th>宣莲（武义）</th>
+        <th>湘莲（湘潭）</th>
+        <th>建莲（建宁）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>始种年代</td>
+        <td>唐显庆年间<br>（656年）</td>
+        <td>战国时期</td>
+        <td>五代梁龙德初<br>（921年）</td>
+      </tr>
+      <tr>
+        <td>贡品历史</td>
+        <td>清嘉庆六年<br>（1802年）</td>
+        <td>清乾隆年间</td>
+        <td>清乾隆年间</td>
+      </tr>
+      <tr>
+        <td>颗粒大小</td>
+        <td>465粒/500g<br>颗大粒圆</td>
+        <td>500粒/500g</td>
+        <td>480粒/500g</td>
+      </tr>
+      <tr>
+        <td>口感特点</td>
+        <td>酥而不烂<br>食而无渣</td>
+        <td>软糯细腻<br>适合制馅</td>
+        <td>清甜爽口<br>久煮不糊</td>
+      </tr>
+      <tr>
+        <td>黄酮含量</td>
+        <td>普通莲子1.7倍</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>地理标志</td>
+        <td>国家地理标志<br>+ 农产品地理标志</td>
+        <td>国家地理标志</td>
+        <td>国家地理标志</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="quote">
+    「1999年全国莲子良种品尝会上，宣莲获色、味、香、质第一名。」
+    <span class="src">—— 官方评比记录</span>
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 肆 · 营养成分 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">肆</div>
+  <h2>营养成分</h2>
+  <p>宣莲的营养价值远超普通莲子。干莲子蛋白质含量高达18.5%，黄酮含量是普通莲子的1.7倍，还含有一般食材中罕见的<strong>氧化黄心树宁碱</strong>——一种对鼻咽癌有抑制作用的活性成分。</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="label">蛋白质</div>
+      <div class="value">18.5<span>g/100g</span></div>
+      <div class="desc">干莲子蛋白质含量，属优质植物蛋白，含17种氨基酸（含7种必需氨基酸）</div>
+      <div class="src">数据来源：百度百科·武义宣莲词条</div>
+    </div>
+    <div class="card">
+      <div class="label">总黄酮</div>
+      <div class="value">1.7<span>倍</span></div>
+      <div class="desc">宣莲黄酮含量为普通莲子的1.7倍，总黄酮100-140mg/100g，抗氧化能力强</div>
+      <div class="src">数据来源：百度百科·武义宣莲词条</div>
+    </div>
+    <div class="card">
+      <div class="label">钾</div>
+      <div class="value">846<span>mg/100g</span></div>
+      <div class="desc">香蕉的3倍，"高钾低钠"特性突出（钠仅5.1mg），天然调节血压</div>
+      <div class="src">数据来源：《中国食物成分表》第6版</div>
+    </div>
+    <div class="card">
+      <div class="label">钙</div>
+      <div class="value">97<span>mg/100g</span></div>
+      <div class="desc">与牛奶相当，磷含量550mg/100g，钙磷比合理，骨骼健康双管齐下</div>
+      <div class="src">数据来源：《中国食物成分表》第6版</div>
+    </div>
+    <div class="card">
+      <div class="label">氧化黄心树宁碱</div>
+      <div class="value" style="font-size:22px;">特有活性物</div>
+      <div class="desc">莲子中罕见的生物碱，对鼻咽癌有抑制作用，是莲子防癌功效的核心成分</div>
+      <div class="src">数据来源：《中药大辞典》</div>
+    </div>
+    <div class="card">
+      <div class="label">氨基酸总量</div>
+      <div class="value">15.79<span>%</span></div>
+      <div class="desc">含17种氨基酸，包括7种人体必需氨基酸，棉子糖对体虚者有滋补作用</div>
+      <div class="src">数据来源：拔丝宣莲·营养成分检测</div>
+    </div>
+    <div class="card">
+      <div class="label">莲子碱</div>
+      <div class="value">0.08-0.15<span>%</span></div>
+      <div class="desc">生物碱类活性物，具镇静、抗心律失常作用，莲子芯含量更高</div>
+      <div class="src">数据来源：药典检测标准</div>
+    </div>
+    <div class="card">
+      <div class="label">淀粉 + 膳食纤维</div>
+      <div class="value">42.8<span>g淀粉</span></div>
+      <div class="desc">淀粉42.8%、膳食纤维4.2g/100g，低GI值（约45），缓释能量不升糖</div>
+      <div class="src">数据来源：营养成分检测报告</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 伍 · 健康功效 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">伍</div>
+  <h2>对人体的好处</h2>
+  <p>莲子是卫生部首批公布的<strong>药食同源</strong>食材。《神农本草经》列为上品，《本草纲目》称其"享清芳之气，得稼穑之味，乃脾之果也"。宣莲因黄酮和活性成分含量更高，保健价值尤为突出。</p>
+
+  <div class="effect-list">
+    <div class="effect-item">
+      <div class="effect-num">1</div>
+      <div class="effect-body">
+        <h4>养心安神，改善失眠</h4>
+        <p>莲子肉补益心脾、宁心安神。现代研究显示，莲芯碱、荷叶碱等生物碱能调节中枢神经递质（5-羟色胺），对心脾两虚型失眠（伴心悸、乏力）有辅助改善作用。中老年人、脑力劳动者常食可健脑、增强记忆力。</p>
+        <span class="src">来源：《中国药典》2015版 / 承德医学院附属医院中医科</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">2</div>
+      <div class="effect-body">
+        <h4>健脾止泻，调理肠胃</h4>
+        <p>莲子碱、莲多糖等成分可调节肠道菌群平衡，促进消化酶活性。临床常用于缓解脾虚湿盛型泄泻（如慢性肠炎、肠易激综合征）。莲子发酵乳对胃肠蠕动有调节作用，可缓解便秘，保护胃肠黏膜屏障。</p>
+        <span class="src">来源：承德医学院附属医院中医科 / 莲子发酵乳肠道调节研究</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">3</div>
+      <div class="effect-body">
+        <h4>益肾固精</h4>
+        <p>莲子能固涩肾精，改善肾虚不固所致的遗精、滑精、夜尿频多。棉子糖对久病、产后或年老体虚者有滋补作用。适合中青年男性及老年肾气不足者辅助调理。</p>
+        <span class="src">来源：《中国药典》2015版</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">4</div>
+      <div class="effect-body">
+        <h4>保护心血管，调节血压</h4>
+        <p>莲子有效成分对血流动力学有抑制作用，能扩张冠状动脉、松弛血管、降低血压，并有抗心律失常、抗心肌缺血作用。钾846mg/100g（香蕉3倍）、钠仅5.1mg，"高钾低钠"特性天然利于血压管理。莲子芯碱结晶有显著降压功效。</p>
+        <span class="src">来源：现代药理学研究 / 《中药大辞典》</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">5</div>
+      <div class="effect-body">
+        <h4>辅助稳血糖</h4>
+        <p>莲子中的荷叶碱、莲心碱等生物碱可抑制α-葡萄糖苷酶活性，延缓餐后血糖上升。膳食纤维结合胆汁酸，辅助调节血脂。试验证明，食物中添加莲子能显著降低II型糖尿病患者的血糖水平。</p>
+        <span class="src">来源：莲子对NIDDM患者血糖影响临床研究</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">6</div>
+      <div class="effect-body">
+        <h4>抗氧化抗衰老</h4>
+        <p>莲子糖蛋白、莲子多酚、有机提取物和水提取物均具有潜在抗氧化活性，能清除自由基。黄酮含量为普通莲子1.7倍，抗氧化能力更强。动物实验证实莲子有抗衰老、延长寿命的作用。</p>
+        <span class="src">来源：国内外莲子抗氧化研究综述</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">7</div>
+      <div class="effect-body">
+        <h4>防癌辅助</h4>
+        <p>莲子含氧化黄心树宁碱（Liensinine），对鼻咽癌有抑制作用。莲子中的生物碱对大鼠脑细胞膜上的ATP酶有抑制活性。这不是说吃了就不得癌，而是长期食用有辅助保护作用。</p>
+        <span class="src">来源：《中药大辞典》 / 现代药理研究</span>
+      </div>
+    </div>
+
+    <div class="effect-item">
+      <div class="effect-num">8</div>
+      <div class="effect-body">
+        <h4>增强免疫力</h4>
+        <p>莲子多糖具有增强免疫的作用，能提升机体巨噬细胞吞噬能力。莲子中的棉子糖是天然益生元，促进肠道有益菌增殖，从肠道免疫入手提升整体抵抗力。</p>
+        <span class="src">来源：莲子多糖免疫调节研究</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>食用提醒：</strong>莲子性平偏涩，<strong>大便干燥、腹胀者不宜多食</strong>。每日建议10-15g（约15-20粒）。莲芯味苦性寒，体寒者建议去芯食用。孕妇及慢性病患者请咨询医师后食用。
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 陆 · 免泡易煮 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">陆</div>
+  <h2>免泡易煮，30分钟就软糯</h2>
+  <p>宣莲有一个其他莲子比不了的特点——<strong>免浸泡，直接炖煮约30分钟即熟</strong>，汤水不糊，软糯适口。</p>
+  <p>普通莲子往往需要提前浸泡2-4小时，煮1小时还可能硬芯。宣莲不需要——肉质厚实但结构疏松，水分渗透快，下锅半小时就酥而不烂。</p>
+  <p>这是因为宣莲的淀粉结构特殊：支链淀粉比例高，糊化温度低，受热后迅速软化。加上通芯干净、去衣彻底，没有阻挡水分渗透的障碍层。</p>
+
+  <div class="quote">
+    「早上抓一把跟小米、百合一起熬粥，配个鸡蛋，舒舒服服一顿早餐。」
+    <span class="src">—— 宣莲老客户的日常吃法</span>
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 柒 · 经典吃法 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">柒</div>
+  <h2>一莲多吃</h2>
+
+  <div class="usage-grid">
+    <div class="usage-card">
+      <h4>莲子百合粥</h4>
+      <p>宣莲+百合+小米/粳米，文火慢熬30分钟。养心安神，睡前一碗助眠。</p>
+    </div>
+    <div class="usage-card">
+      <h4>银耳莲子羹</h4>
+      <p>银耳+宣莲+红枣+冰糖，炖40分钟。润肺养颜，全家老少都爱喝。</p>
+    </div>
+    <div class="usage-card">
+      <h4>莲子炖排骨</h4>
+      <p>排骨+宣莲+山药，煲汤1小时。汤头清润解腻，夏天喝特别舒服。</p>
+    </div>
+    <div class="usage-card">
+      <h4>冰糖莲子</h4>
+      <p>宣莲+冰糖+清水，蒸30分钟。原汁原味，最能品出宣莲的酥糯清甜。</p>
+    </div>
+    <div class="usage-card">
+      <h4>拔丝宣莲</h4>
+      <p>浙江金华传统名点。莲子裹蛋液炸金黄，糖汁拔丝，外焦脆内粉糯。</p>
+    </div>
+    <div class="usage-card">
+      <h4>莲子心茶</h4>
+      <p>通出来的莲芯别扔，泡水喝，清心火、降血压，苦口良药。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 捌 · 销售话术 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">捌</div>
+  <h2>为什么选上珍缘宣莲</h2>
+
+  <div class="sales-box">
+    <h3>三大名莲之首 · 嘉庆贡品</h3>
+    <p>1300年种植史，清嘉庆年间朝廷贡品，国家地理标志双认证。465粒就有一斤，颗大粒圆，奶白芬芳。免泡30分钟即熟，酥而不烂，食而无渣。</p>
+    <p>黄酮含量是普通莲子的1.7倍，含罕见活性成分氧化黄心树宁碱。养心安神、健脾止泻、益肾固精——药食同源里的全能选手。</p>
+
+    <div class="price">上珍缘 宣莲<span> · 到店品鉴</span></div>
+
+    <p style="margin-top:16px;">送爸妈——养心安神，改善睡眠，中老年人最适合<br>
+    送女性——银耳莲子羹养颜润肤，低脂高纤<br>
+    送孩子——健脑益智，增强记忆，考试季必备<br>
+    送自己——加班熬夜心悸失眠，睡前一碗莲子粥</p>
+
+    <p style="margin-top:14px;font-size:13px;opacity:.85;">到店免费品鉴冰糖炖莲子 · 莲子百合粥每周限量供应</p>
+  </div>
+
+  <div class="warn">
+    <strong>温馨提示：</strong>宣莲每年只产一季，大暑到白露采收，干莲9-10月集中上市。<strong>卖完只能等明年</strong>。前期没抢到的朋友，新一批到店了，数量有限。
+  </div>
+</div>
+</section>
+
+<div class="divider">❀</div>
+
+<!-- ===== 玖 · 爱野选品对照 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">玖</div>
+  <h2>爱野四重标准对照</h2>
+  <p>宣莲能不能过爱野的选品关？四条标准，逐条对照——</p>
+
+  <div class="standard-grid">
+    <div class="standard-card">
+      <div class="icon">🌱</div>
+      <div class="title">原生种子</div>
+      <div class="text">1300年本地品种，莲农自家留种，不引外来种。品种千年不变。</div>
+    </div>
+    <div class="standard-card">
+      <div class="icon">⛰️</div>
+      <div class="title">自然生长</div>
+      <div class="text">柳城山区盆地小气候，昼夜温差大，山泉灌溉，红黄壤富含微量元素。忌连作，休耕5-8年。</div>
+    </div>
+    <div class="standard-card">
+      <div class="icon">🧪</div>
+      <div class="title">有机肥</div>
+      <div class="text">农家肥+菜籽饼，推广"莲鳖共养"生态模式，鳖吃虫除草，全程不用化学农药。</div>
+    </div>
+    <div class="standard-card">
+      <div class="icon">✅</div>
+      <div class="title">零农残</div>
+      <div class="text">莲鳖共养模式下全程零化学农药，不硫熏不漂白，奶白色是天生的。</div>
+    </div>
+  </div>
+
+  <p style="margin-top:20px;color:var(--ink-soft);">四条全中。宣莲不是"差不多符合"，是每一条都扎扎实实命中——这1300年的老规矩，本就是爱野四重标准的活样板。</p>
+</div>
+</section>
+
+<div class="divider">❀ ❀ ❀</div>
+
+<!-- ===== 尾声 ===== -->
+<section style="padding-bottom:80px;">
+<div class="wrap" style="text-align:center;">
+  <p style="font-size:15px;color:var(--ink-soft);letter-spacing:.08em;">上珍缘 · 宣莲</p>
+  <p style="font-size:13px;color:#9C8B72;margin-top:8px;">天赐宣平黄金土 · 地育宫廷白玉莲</p>
+  <p style="font-size:12px;color:#A09078;margin-top:20px;letter-spacing:.15em;">爱野天然食材 · 积善积德积福 · 养人养生养体</p>
+</div>
+</section>
+
+</body>
+</html>

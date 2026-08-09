@@ -194,3 +194,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020D]
+  - id: TASK-020F
+    file: TASK-020F_AIYE_PRODUCT_KNOWLEDGE_V22.md
+    title: "Publish and accept the public Aiye product knowledge v2.2"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020E]

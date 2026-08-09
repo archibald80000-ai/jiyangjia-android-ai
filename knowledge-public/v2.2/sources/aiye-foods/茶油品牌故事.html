@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>茶油品牌故事 — 积养家·爱野天然食材</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background: #faf8f5; color: #3d3229; line-height: 1.8; }
+  img { max-width: 100%; display: block; }
+
+  .container { max-width: 720px; margin: 0 auto; background: #fff; }
+
+  /* ===== 封面 ===== */
+  .cover { position: relative; background: linear-gradient(135deg,#2d5a1e 0%,#4a7c2e 50%,#6b9b3f 100%); color: #fff; padding: 80px 24px 60px; text-align: center; overflow: hidden; }
+  .cover::before { content: ""; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .cover::after { content: ""; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .cover-badge { display: inline-block; border: 1px solid rgba(255,255,255,0.5); padding: 4px 16px; font-size: 12px; letter-spacing: 3px; margin-bottom: 20px; }
+  .cover h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; letter-spacing: 2px; }
+  .cover-sub { font-size: 16px; opacity: 0.9; margin-bottom: 30px; }
+  .cover-price { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 10px 28px; border-radius: 30px; font-size: 18px; }
+  .cover-price strong { font-size: 32px; }
+
+  /* ===== 章节通用 ===== */
+  .section { padding: 50px 24px; }
+  .section:nth-child(even) { background: #faf8f5; }
+  .section-title { font-size: 22px; font-weight: 700; color: #2d5a1e; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .section-title .num { display: inline-block; width: 36px; height: 36px; background: #2d5a1e; color: #fff; border-radius: 50%; text-align: center; line-height: 36px; font-size: 16px; flex-shrink: 0; }
+  .section-subtitle { font-size: 13px; color: #999; margin-bottom: 28px; padding-left: 46px; }
+
+  /* ===== 正文块 ===== */
+  .story-block { background: #f7f5f0; border-left: 3px solid #2d5a1e; padding: 20px; margin-bottom: 20px; border-radius: 0 8px 8px 0; }
+  .story-block p { margin-bottom: 10px; font-size: 15px; }
+  .story-block p:last-child { margin-bottom: 0; }
+  .highlight { color: #c45c26; font-weight: 600; }
+
+  /* ===== 数据卡 ===== */
+  .data-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 20px; }
+  .data-card { background: #fff; border: 1px solid #e8e4de; border-radius: 10px; padding: 18px 14px; text-align: center; }
+  .data-card .icon { font-size: 28px; margin-bottom: 6px; }
+  .data-card .value { font-size: 26px; font-weight: 700; color: #2d5a1e; }
+  .data-card .unit { font-size: 13px; color: #888; }
+  .data-card .label { font-size: 13px; color: #666; margin-top: 4px; }
+  .data-card.highlight-card { background: linear-gradient(135deg,#2d5a1e,#4a7c2e); color: #fff; border: none; }
+  .data-card.highlight-card .value { color: #fff; }
+  .data-card.highlight-card .unit,.data-card.highlight-card .label { color: rgba(255,255,255,0.85); }
+
+  /* ===== 功效列表 ===== */
+  .benefit-list { margin-top: 20px; }
+  .benefit-item { display: flex; gap: 14px; padding: 16px; background: #fff; border-radius: 10px; margin-bottom: 12px; border: 1px solid #e8e4de; }
+  .benefit-item .icon { width: 44px; height: 44px; background: linear-gradient(135deg,#2d5a1e,#6b9b3f); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .benefit-item .text h4 { font-size: 15px; color: #2d5a1e; margin-bottom: 4px; }
+  .benefit-item .text p { font-size: 13px; color: #666; line-height: 1.7; }
+
+  /* ===== 亮点 ===== */
+  .feature-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 20px; }
+  .feature-item { background: #fff; padding: 18px 14px; border-radius: 10px; border: 1px solid #e8e4de; text-align: center; }
+  .feature-item .emoji { font-size: 32px; margin-bottom: 8px; }
+  .feature-item h4 { font-size: 14px; color: #2d5a1e; margin-bottom: 6px; }
+  .feature-item p { font-size: 12px; color: #888; line-height: 1.6; }
+
+  /* ===== 对比表 ===== */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+  .compare-table th { background: #2d5a1e; color: #fff; padding: 12px 8px; text-align: center; }
+  .compare-table td { padding: 12px 8px; text-align: center; border-bottom: 1px solid #e8e4de; background: #fff; }
+  .compare-table tr:nth-child(even) td { background: #f9f7f4; }
+  .compare-table .winner { background: #e8f5e0 !important; color: #2d5a1e; font-weight: 600; }
+  .compare-table .tag { display: inline-block; background: #2d5a1e; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+
+  /* ===== 食用建议 ===== */
+  .usage-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 20px; }
+  .usage-card { background: #fff; border-radius: 10px; padding: 20px; border: 1px solid #e8e4de; text-align: center; }
+  .usage-card .icon { font-size: 36px; margin-bottom: 10px; }
+  .usage-card h4 { font-size: 15px; color: #2d5a1e; margin-bottom: 6px; }
+  .usage-card p { font-size: 13px; color: #666; }
+  .usage-tips { background: #f0f7ec; border-radius: 10px; padding: 16px 20px; margin-top: 20px; }
+  .usage-tips h4 { color: #2d5a1e; font-size: 14px; margin-bottom: 8px; }
+  .usage-tips ul { list-style: none; }
+  .usage-tips li { font-size: 13px; color: #555; padding: 4px 0; padding-left: 18px; position: relative; }
+  .usage-tips li::before { content: "✓"; position: absolute; left: 0; color: #2d5a1e; font-weight: 700; }
+
+  /* ===== 标准 ===== */
+  .standard-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 20px; }
+  .standard-item { background: #fff; padding: 16px; border-radius: 10px; border: 1px solid #e8e4de; }
+  .standard-item .check { display: inline-block; width: 22px; height: 22px; background: #2d5a1e; color: #fff; border-radius: 50%; text-align: center; line-height: 22px; font-size: 13px; margin-right: 8px; }
+  .standard-item h4 { font-size: 14px; color: #2d5a1e; display: inline; }
+  .standard-item p { font-size: 12px; color: #888; margin-top: 6px; padding-left: 30px; }
+
+  /* ===== 结语 ===== */
+  .closing { background: linear-gradient(135deg,#2d5a1e,#4a7c2e); color: #fff; padding: 50px 24px; text-align: center; }
+  .closing h2 { font-size: 24px; margin-bottom: 16px; }
+  .closing p { font-size: 15px; opacity: 0.9; line-height: 2; }
+  .closing .brand { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
+  .closing .brand-name { font-size: 20px; font-weight: 700; letter-spacing: 4px; }
+  .closing .slogan { font-size: 13px; opacity: 0.8; margin-top: 6px; letter-spacing: 2px; }
+
+  @media (max-width: 480px) {
+    .cover h1 { font-size: 28px; }
+    .data-grid,.feature-grid,.usage-grid,.standard-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 封面 -->
+  <section class="cover">
+    <div class="cover-badge">积养家 · 爱野天然食材</div>
+    <h1>茶油</h1>
+    <p class="cover-sub">农户直采 · 纯正山茶籽油<br>东方液体黄金，中国人的本命好油</p>
+    <div class="cover-price">农户价 <strong>¥39</strong> /斤</div>
+  </section>
+
+  <!-- 壹·千年木本油 -->
+  <section class="section">
+    <div class="section-title"><span class="num">壹</span>千年木本油</div>
+    <div class="section-subtitle">一株油茶树，承载中国人的油脂智慧</div>
+
+    <div class="story-block">
+      <p>茶油，又名<strong>山茶油、油茶籽油</strong>，是从油茶树的种子中榨取的油脂。它是<span class="highlight">中国最古老的木本食用植物油之一</span>，有着两千多年的食用历史，历属皇家贡品。</p>
+      <p>在福建、台湾等地，茶油被称为<span class="highlight">"月子宝"</span>——女人怀孕、坐月子、养孩子，一定要吃山茶油。它脂肪酸比例接近母乳，温和滋养，是代代相传的养生智慧。</p>
+      <p>油茶树生长极慢，<span class="highlight">5-8年方能挂果</span>；从开花到成熟，要经历整整13个月的阳光雨露。更令人惊叹的是，<span class="highlight">约25斤新鲜茶果，才能榨出1斤茶油</span>。每一滴，都是时间与自然的馈赠。</p>
+    </div>
+
+    <div class="story-block">
+      <p><strong>积养家·爱野天然食材</strong>这款茶油，直接从农户手中采购，<span class="highlight">无中间环节、无添加勾兑</span>。农户用传统工艺低温压榨，保留了茶油最本真的香气和营养。金黄透亮、清香不腻，是城市里难觅的纯正滋味。</p>
+    </div>
+  </section>
+
+  <!-- 贰·营养数据 -->
+  <section class="section">
+    <div class="section-title"><span class="num">贰</span>营养数据</div>
+    <div class="section-subtitle">为什么营养学界称它为"单不饱和脂肪酸之王"</div>
+
+    <div class="data-grid">
+      <div class="data-card highlight-card">
+        <div class="icon">💧</div>
+        <div class="value">90<span class="unit">%+</span></div>
+        <div class="label">不饱和脂肪酸</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🫒</div>
+        <div class="value">80<span class="unit">%</span></div>
+        <div class="label">单不饱和脂肪酸（油酸）</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🛡️</div>
+        <div class="value">27<span class="unit">mg/100g</span></div>
+        <div class="label">维生素E（橄榄油的2倍）</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🌊</div>
+        <div class="value">150-700<span class="unit">mg/kg</span></div>
+        <div class="label">角鲨烯</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">🔥</div>
+        <div class="value">≥220<span class="unit">℃</span></div>
+        <div class="label">烟点（远超橄榄油）</div>
+      </div>
+      <div class="data-card">
+        <div class="icon">⚖️</div>
+        <div class="value">1:4</div>
+        <div class="label">亚麻酸:亚油酸（同母乳）</div>
+      </div>
+    </div>
+
+    <div class="story-block" style="margin-top:20px;">
+      <p>根据联合国粮农组织FAO发布的《健康食用油的标准》：饱和脂肪酸10%以下、单不饱和脂肪酸75%以上、亚麻酸与亚油酸比例≤1:4。<span class="highlight">茶油恰好全部符合。</span></p>
+      <p>茶油中的<span class="highlight">油酸含量冠绝所有食用油</span>（高于橄榄油的75%），被营养学界称为"安全脂肪酸"，是国际公认的最健康油脂之一。</p>
+    </div>
+  </section>
+
+  <!-- 叁·健康益处 -->
+  <section class="section">
+    <div class="section-title"><span class="num">叁</span>喝了（吃了）对人体有什么好处</div>
+    <div class="section-subtitle">从内到外，每一滴都在滋养</div>
+
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <div class="icon">❤️</div>
+        <div class="text">
+          <h4>守护心血管</h4>
+          <p>油酸能有效降低"坏胆固醇"（LDL），提升"好胆固醇"（HDL），软化血管、减少动脉粥样硬化风险。被誉为"血管清道夫"。</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🧠</div>
+        <div class="text">
+          <h4>促进大脑发育</h4>
+          <p>油酸和亚油酸可在人体内转化为DHA（脑黄金）和EPA，对大脑发育、记忆力提升和视力保护有重要作用。老人、孩子、孕妈都受益。</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🌿</div>
+        <div class="text">
+          <h4>天然抗氧化</h4>
+          <p>维生素E含量是橄榄油的2倍，搭配角鲨烯、茶多酚，形成强大的抗氧化矩阵，清除自由基、延缓细胞衰老、保护皮肤弹性。</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🔥</div>
+        <div class="text">
+          <h4>抗炎抗菌</h4>
+          <p>茶油中的茶多酚、山茶皂苷等活性物质具有天然抗炎抗菌作用，对幽门螺杆菌有一定抑制作用，辅助调节血糖、预防慢性炎症。</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">💪</div>
+        <div class="text">
+          <h4>增强免疫力</h4>
+          <p>角鲨烯能促进血液循环、增强细胞供氧能力，帮助提高免疫力。长期食用油茶，身体底子更扎实。</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🌙</div>
+        <div class="text">
+          <h4>润肠通便</h4>
+          <p>晨起空腹一小勺茶油，能润滑肠道、促进排便，唤醒一天的新陈代谢。温和不刺激，老少皆宜。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 肆·茶油的不一样 -->
+  <section class="section">
+    <div class="section-title"><span class="num">肆</span>茶油有什么不一样</div>
+    <div class="section-subtitle">六大独特亮点，告诉你为什么选它</div>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="emoji">👑</div>
+ <h4>单不饱和脂肪酸之王</h4>
+        <p>油酸含量80%+，超越橄榄油，冠绝所有食用油</p>
+      </div>
+      <div class="feature-item">
+        <div class="emoji">🔥</div>
+        <h4>高烟点，更适合中式烹饪</h4>
+        <p>烟点≥220℃，远超橄榄油（160℃），爆炒煎炸少油烟、少有害物质</p>
+      </div>
+      <div class="feature-item">
+        <div class="emoji">🤱</div>
+        <h4>脂肪酸比例同母乳</h4>
+        <p>亚麻酸:亚油酸≈1:4，与母乳一致，人体最易吸收利用</p>
+      </div>
+      <div class="feature-item">
+        <div class="emoji">🏔️</div>
+        <h4>独有活性物质</h4>
+        <p>含山茶皂苷、茶多酚、角鲨烯等橄榄油没有的营养素，营养更全面</p>
+      </div>
+      <div class="feature-item">
+        <div class="emoji">👨‍🌾</div>
+        <h4>农户直采，零添加</h4>
+        <p>从农户手中直接采购，传统工艺低温压榨，不勾兑、不精炼过度</p>
+      </div>
+      <div class="feature-item">
+        <div class="emoji">💰</div>
+        <h4>超值价格</h4>
+        <p>仅¥39/斤，远低于市面茶油价，农户直供的良心价</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 伍·对比表 -->
+  <section class="section">
+    <div class="section-title"><span class="num">伍</span>茶油 vs 常见食用油</div>
+    <div class="section-subtitle">一张表看懂，为什么茶油更适合中国人</div>
+
+    <table class="compare-table">
+      <tr>
+        <th>对比维度</th>
+        <th>茶油</th>
+        <th>橄榄油</th>
+        <th>花生油</th>
+        <th>大豆油</th>
+      </tr>
+      <tr>
+        <td><strong>单不饱和脂肪酸</strong></td>
+        <td class="winner">80-83% <span class="tag">最优</span></td>
+        <td>约75%</td>
+        <td>约45%</td>
+        <td>约25%</td>
+      </tr>
+      <tr>
+        <td><strong>不饱和脂肪酸总量</strong></td>
+        <td class="winner">90%+ <span class="tag">最优</span></td>
+        <td>约85%</td>
+        <td>约80%</td>
+        <td>约85%</td>
+      </tr>
+      <tr>
+        <td><strong>烟点</strong></td>
+        <td class="winner">≥220℃ <span class="tag">最高</span></td>
+        <td>160-190℃</td>
+        <td>约160℃</td>
+        <td>约160℃</td>
+      </tr>
+      <tr>
+        <td><strong>维生素E</strong></td>
+        <td class="winner">27mg/100g <span class="tag">最高</span></td>
+        <td>14mg/100g</td>
+        <td>11mg/100g</td>
+        <td>约12mg/100g</td>
+      </tr>
+      <tr>
+        <td><strong>角鲨烯</strong></td>
+        <td class="winner">150-700mg/kg <span class="tag">独有</span></td>
+        <td>微量</td>
+        <td>微量</td>
+        <td>微量</td>
+      </tr>
+      <tr>
+        <td><strong>活性物质</strong></td>
+        <td class="winner">茶多酚、山茶皂苷 <span class="tag">独有</span></td>
+        <td>橄榄多酚</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><strong>适合中式烹饪</strong></td>
+        <td class="winner">✓ 全能 <span class="tag">最适合</span></td>
+        <td>凉拌为主</td>
+        <td>热炒</td>
+        <td>热炒</td>
+      </tr>
+    </table>
+
+    <div class="story-block" style="margin-top:20px;">
+      <p><strong>一句话总结：</strong>茶油既有橄榄油的健康基因，又有比橄榄油更高的烟点和更丰富的活性物质，是<span class="highlight">真正适合中式高温烹饪的健康好油</span>。凉拌、热炒、煎炸、炖汤，样样行。</p>
+    </div>
+  </section>
+
+  <!-- 陆·食用建议 -->
+  <section class="section">
+    <div class="section-title"><span class="num">陆</span>怎么吃最营养</div>
+    <div class="section-subtitle">茶油百搭，但这些吃法最推荐</div>
+
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="icon">🥗</div>
+        <h4>凉拌淋油</h4>
+        <p>凉拌菜出锅前淋一勺，清香扑鼻，活性成分零损耗</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🍳</div>
+        <h4>热炒煎炸</h4>
+        <p>高烟点不惧高温，炒菜少油烟、不油腻，菜肴鲜亮爽口</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🍲</div>
+        <h4>炖汤增香</h4>
+        <p>汤品出锅前点几滴，增添醇厚香气，营养融入汤中</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🥄</div>
+        <h4>晨起空腹</h4>
+        <p>清晨一小勺（5-10ml），润肠通便，唤醒全天代谢</p>
+      </div>
+    </div>
+
+    <div class="usage-tips">
+      <h4>💡 积养家小贴士</h4>
+      <ul>
+        <li>每日建议用量：成人25-30g（约2-3汤匙）</li>
+        <li>茶油耐高温，但炒菜时建议油温控制在180℃以下，营养保留最佳</li>
+        <li>开封后密封避光保存，建议3个月内用完，保证新鲜</li>
+        <li>孕妈、宝宝、老人、三高人群，尤其推荐以茶油作为主要烹调用油</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 柒·爱野四重标准 -->
+  <section class="section">
+    <div class="section-title"><span class="num">柒</span>爱野四重标准</div>
+    <div class="section-subtitle">积养家选品，从不将就</div>
+
+    <div class="standard-grid">
+      <div class="standard-item">
+        <span class="check">✓</span>
+        <h4>产地严选</h4>
+        <p>直接从油茶产区农户手中采购，源头可溯，正宗地道</p>
+      </div>
+      <div class="standard-item">
+        <span class="check">✓</span>
+        <h4>天然纯净</h4>
+        <p>传统物理压榨，不添加、不勾兑、不过度精炼，保留天然营养</p>
+      </div>
+      <div class="standard-item">
+        <span class="check">✓</span>
+        <h4>货真价实</h4>
+        <p>农户直供价¥39/斤，透明定价，不玩套路，让健康触手可及</p>
+      </div>
+      <div class="standard-item">
+        <span class="check">✓</span>
+        <h4>养生适配</h4>
+        <p>高烟点、高油酸、高维E，从心血管到皮肤，全年龄段养生适配</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 结语 -->
+  <section class="closing">
+    <h2>一滴茶油，千年滋养</h2>
+    <p>它是皇家贡品，是"月子宝"，是"东方液体黄金"<br>
+    它是中国人吃了两千年的本命好油<br>
+    现在，它从农户手中，直接来到你的厨房<br>
+    <strong>¥39/斤</strong>，让健康不再昂贵</p>
+    <div class="brand">
+      <div class="brand-name">积养家 · 爱野天然食材</div>
+      <div class="slogan">积善积德积福 · 养人养生养体</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

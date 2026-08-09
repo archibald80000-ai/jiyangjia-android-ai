@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一缸老酱 · 农家古法黄豆酱 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1F10;
+    --ink-soft:#5C4430;
+    --paper:#FCF8F1;
+    --paper-2:#F5EDDC;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --amber:#C97A1F;
+    --amber-deep:#8B4F0D;
+    --brown:#6B4226;
+    --brown-soft:#8B6B4A;
+    --rust:#9B4E2A;
+    --line:rgba(45,31,16,.1);
+    --card:#F5EDDC;
+    --card-warm:#F2E8D5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(184,134,11,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(107,66,38,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--rust);margin-bottom:18px;}
+  .cover h1{font-size:clamp(36px,7vw,56px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--amber-deep);}
+  .cover h1 em{font-style:normal;color:var(--brown);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--gold);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+
+  .jar-svg{margin-top:50px;width:min(220px,55%);opacity:.88;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--brown);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--amber);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--brown-soft);
+    background:var(--card-warm);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);text-align:center;
+  }
+  .card .val{font-size:28px;font-weight:700;color:var(--amber-deep);line-height:1.3;}
+  .card .val.brown{color:var(--brown);}
+  .card .label{font-size:12px;color:var(--ink-soft);margin-top:6px;letter-spacing:.06em;}
+  .card .note{font-size:11px;color:#9C8B72;margin-top:4px;}
+
+  /* ===== 功效列表 ===== */
+  .benefit-item{
+    margin-bottom:22px;padding:16px 18px;
+    border-left:2px solid var(--brown-soft);
+    background:var(--card-warm);
+    border-radius:0 8px 8px 0;
+  }
+  .benefit-item .b-title{font-size:16px;font-weight:600;color:var(--brown);margin-bottom:6px;}
+  .benefit-item p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* ===== 工艺流程图 ===== */
+  .process-row{display:flex;gap:12px;margin:32px 0;overflow-x:auto;padding-bottom:8px;}
+  .process-step{
+    flex:1;min-width:100px;background:var(--card);
+    border:1px solid var(--line);border-radius:10px;
+    padding:18px 10px;text-align:center;
+  }
+  .process-step .step-num{font-size:12px;color:var(--gold);letter-spacing:.2em;margin-bottom:8px;}
+  .process-step .step-icon{font-size:32px;margin-bottom:8px;}
+  .process-step .step-name{font-size:14px;font-weight:600;color:var(--ink);}
+  .process-step .step-detail{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+
+  /* 配方展示 */
+  .formula-box{
+    margin:34px 0;padding:28px 24px;
+    background:linear-gradient(135deg,var(--card-warm),var(--card));
+    border-radius:12px;text-align:center;border:1px solid var(--line);
+  }
+  .formula-box .big{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:.1em;line-height:1.8;}
+  .formula-box .big em{font-style:normal;color:var(--brown);}
+
+  /* 分隔线 */
+  .divider{text-align:center;padding:30px 0;color:var(--gold);font-size:20px;letter-spacing:.3em;opacity:.6;}
+
+  /* 尾章 */
+  .ending{text-align:center;padding:60px 0 80px;}
+  .ending .aiye{font-size:11px;letter-spacing:.5em;color:#9C8B72;margin-bottom:16px;}
+  .ending .motto{font-size:18px;color:var(--brown);letter-spacing:.12em;}
+
+  /* 吃法卡片 */
+  .eat-card{
+    margin-bottom:16px;padding:14px 16px;
+    background:var(--card);border-radius:8px;
+    border:1px solid var(--line);
+  }
+  .eat-card .eat-title{font-size:15px;font-weight:600;color:var(--brown);margin-bottom:4px;}
+  .eat-card .eat-desc{font-size:13px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="cover">
+  <div class="brand">爱野  GIARDINO VERDE</div>
+  <div class="tagline">TRADITIONAL FERMENTED SOYBEAN PASTE</div>
+  <h1>一缸<em>老</em>酱</h1>
+  <div class="sub">
+    <span>1kg大瓶装</span> · 小时候的味道
+  </div>
+
+  <svg class="jar-svg" viewBox="0 0 220 260">
+    <defs>
+      <linearGradient id="jarGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E8D5B0"/>
+        <stop offset="100%" stop-color="#C9A87C"/>
+      </linearGradient>
+      <linearGradient id="sauceGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#9B4E2A"/>
+        <stop offset="30%" stop-color="#7B3F1F"/>
+        <stop offset="100%" stop-color="#5C2D12"/>
+      </linearGradient>
+    </defs>
+    <!-- 瓶盖 -->
+    <rect x="70" y="10" width="80" height="18" rx="4" fill="#D4A745"/>
+    <!-- 瓶颈 -->
+    <rect x="78" y="28" width="64" height="16" rx="2" fill="url(#jarGrad)"/>
+    <!-- 瓶身 -->
+    <path d="M60 44 Q58 44 55 48 L50 220 Q50 235 65 240 L155 240 Q170 235 170 220 L165 48 Q162 44 160 44 Z" fill="url(#jarGrad)" opacity="0.9"/>
+    <!-- 酱体 -->
+    <path d="M55 80 L165 80 L165 225 Q165 235 155 237 L65 237 Q55 235 55 225 Z" fill="url(#sauceGrad)" opacity="0.85"/>
+    <!-- 酱面光泽 -->
+    <ellipse cx="110" cy="85" rx="45" ry="6" fill="#C97A1F" opacity="0.4"/>
+    <!-- 标签 -->
+    <rect x="80" y="120" width="60" height="80" rx="6" fill="#F5EDDC" opacity="0.9"/>
+    <text x="110" y="145" text-anchor="middle" font-size="12" fill="#8B4F0D" font-weight="700">农家</text>
+    <text x="110" y="165" text-anchor="middle" font-size="14" fill="#6B4226" font-weight="700">黄豆酱</text>
+    <text x="110" y="185" text-anchor="middle" font-size="9" fill="#9C8B72">净含量：1kg</text>
+    <!-- 太阳光线 -->
+    <line x1="20" y1="60" x2="50" y2="60" stroke="#D4A745" stroke-width="1.5" opacity="0.4"/>
+    <line x1="15" y1="45" x2="48" y2="50" stroke="#D4A745" stroke-width="1" opacity="0.3"/>
+    <line x1="15" y1="75" x2="48" y2="70" stroke="#D4A745" stroke-width="1" opacity="0.3"/>
+  </svg>
+
+  <div class="meta">配料只有四样：黄豆 · 小麦粉 · 食盐 · 水</div>
+  <div class="scroll-hint">向下品味<span class="arr">↓</span></div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">序</div>
+  <h2>酱，八珍主人也</h2>
+  <p class="dropcap">宋代陶穀在《清异录》里说："酱，八珍主人也。"什么意思？山珍海味排成队，酱是它们的主人——没有酱，再好的食材也少了魂。</p>
+  <p>中国做酱的历史至少三千年。孔子在《论语》里说"不得其酱不食"——没有对的酱，饭菜不入口。古人吃饭，酱是第一道关。</p>
+  <p>但现在呢？超市货架上的黄豆酱，配料表一长串——增稠剂、防腐剂、味精、焦糖色、山梨酸钾……黄豆反而成了配角。你把那种酱打开，闻到的是一股添加剂的冲味，根本闻不到豆子本来的香。</p>
+  <p>这瓶酱不一样。它的配料表只有四行——<strong>黄豆、小麦粉、食盐、水</strong>。打开瓶盖，扑面而来的是纯粹的豆香，绵长醇厚，不加任何修饰——就是你记忆里，外婆在院子里那口大缸边，用筷子蘸一点塞到你嘴里的味道。</p>
+
+  <div class="formula-box">
+    <div class="big">
+      配料表只有四样：<br>
+      <em>黄豆</em> · 小麦粉 · 食盐 · 水
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 壹 · 古法工艺 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">壹</div>
+  <h2>八道老工序 · 最少三个月</h2>
+  <p class="dropcap">不是所有黄豆酱都叫"古法"。真正的古法黄豆酱，从一颗干豆子到一瓶酱，至少要走过八道工序、晒足三个月。</p>
+
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">STEP 1</div>
+      <div class="step-icon">🫘</div>
+      <div class="step-name">选豆</div>
+      <div class="step-detail">只取浑圆饱满的老品种黄豆</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 2</div>
+      <div class="step-icon">💧</div>
+      <div class="step-name">浸泡</div>
+      <div class="step-detail">山泉水泡至鼓胀无硬芯</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 3</div>
+      <div class="step-icon">🔥</div>
+      <div class="step-name">柴火煮豆</div>
+      <div class="step-detail">大铁锅煮到一捻即化</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 4</div>
+      <div class="step-icon">🌾</div>
+      <div class="step-name">拌粉制曲</div>
+      <div class="step-detail">裹面粉 · 自然长黄衣菌丝</div>
+    </div>
+  </div>
+
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">STEP 5</div>
+      <div class="step-icon">🏺</div>
+      <div class="step-name">入缸加盐</div>
+      <div class="step-detail">霉豆入陶缸 · 盐水淹没</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 6</div>
+      <div class="step-icon">☀️</div>
+      <div class="step-name">日晒夜露</div>
+      <div class="step-detail">白天暴晒 · 夜里接露水</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 7</div>
+      <div class="step-icon">🥢</div>
+      <div class="step-name">每日翻搅</div>
+      <div class="step-detail">长竹筷搅拌 · 上下均匀</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">STEP 8</div>
+      <div class="step-icon">🫙</div>
+      <div class="step-name">熟成装瓶</div>
+      <div class="step-detail">酱色栗红 · 油光透亮</div>
+    </div>
+  </div>
+
+  <p>最关键的是第六步——<strong>日晒夜露</strong>。白天让酱缸在大太阳底下暴晒，紫外线杀菌的同时，高温加速蛋白酶和淀粉酶分解豆蛋白和淀粉，释放出氨基酸和小分子肽——这才是"鲜"的来源。夜里不收缸，放在露天接露水——夜间空气中的水分凝结滴入酱缸，代替了人工加水，带着夜间的微生物，让风味多了一层不可复制的层次感。</p>
+  <p>每天傍晚用长竹筷搅一次缸，把底下的翻上来、上面的翻下去，让每一颗豆子都均匀地晒透。就这样日复一日，两个月起步，好酱晒到三个月以上——<strong>酱色从土黄逐渐变成栗红，表面泛起一层油亮的光，搅动时能闻到挡不住的酱香</strong>。这时候才算大功告成。</p>
+
+  <div class="quote">
+    「经过个把月的日晒夜露，酱缸里的酱料由稀变浓，酱的颜色也由土黄色变成栗红色，酱缸里泛出一层油油的光，老远就能闻到酱脂香气，诱人至极。」
+    <span class="src">—— 农家黄豆酱手记</span>
+  </div>
+</div>
+</section>
+
+<!-- ===== 贰 · 小时候的味道 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">贰</div>
+  <h2>豆香，不是添加剂调出来的</h2>
+  <p class="dropcap">为什么你记忆里的黄豆酱那么香？因为那是靠发酵"养"出来的香，不是靠添加剂"调"出来的香。</p>
+  <p>现代工业黄豆酱，生产周期28天封顶。恒温恒湿车间、人工接种纯菌种、加谷氨酸钠（味精）提鲜、加焦糖色调色、加防腐剂延长保质期——快是快了，但酱的香气只有一层：第一口冲，第二口淡，第三口就没了。</p>
+  <p>古法黄豆酱的香气是分层的：</p>
+  <p><strong>第一层——豆香。</strong>老品种黄豆本身油脂含量高，柴火慢煮激活豆油，发酵过程释放出天然的坚果香。</p>
+  <p><strong>第二层——酱香。</strong>米曲霉分解蛋白质产生的游离氨基酸（尤其是谷氨酸），和天然存在的核苷酸结合，形成柔和绵长的鲜味——它不是味精那一下子的"冲击"，而是舌根上慢慢化开的"回甘"。</p>
+  <p><strong>第三层——阳光香。</strong>晒制过程中，酱体接触空气氧化产生的微量类黑精和美拉德反应产物，带来类似烘焙的焦甜底味。这种风味只有自然晒制做得到，恒温车间模仿不了。</p>
+  <p>打开瓶盖，你能闻到这三层香依次出来——<strong>先是豆香，然后是酱香，最后是阳光把一切融合在一起的醇厚底香</strong>。蘸一点到舌尖上：咸里透鲜，鲜里有甜，甜后回甘。这就是小时候的味道，没有别的——就是黄豆该有的味道，被时间放大了而已。</p>
+</div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">叁</div>
+  <h2>发酵，让黄豆营养翻了倍</h2>
+  <p class="dropcap">黄豆本来就有营养，但发酵这个步骤，让它的营养翻了倍。</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val brown">13g</div>
+      <div class="label">优质蛋白 / 100g</div>
+      <div class="note">发酵分解为小分子肽和氨基酸，吸收率大幅提升</div>
+    </div>
+    <div class="card">
+      <div class="val brown">5-8倍</div>
+      <div class="label">维生素B2 提升</div>
+      <div class="note">米曲霉发酵使B2含量飙升，烟酸增约3倍</div>
+    </div>
+    <div class="card">
+      <div class="val brown">2-3倍</div>
+      <div class="label">异黄酮生物利用率</div>
+      <div class="note">发酵将苷转化为苷元，吸收率飙升</div>
+    </div>
+    <div class="card">
+      <div class="val brown">300mg</div>
+      <div class="label">钙 / 100g</div>
+      <div class="note">发酵释放大豆中的矿物质</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="val">谷氨酸</div>
+      <div class="label">天然鲜味氨基酸</div>
+      <div class="note">不是加味精，是发酵自己产生的鲜</div>
+    </div>
+    <div class="card">
+      <div class="val brown">蛋白酶+淀粉酶</div>
+      <div class="label">活性消化酶</div>
+      <div class="note">辅助分解食物中的蛋白质和淀粉</div>
+    </div>
+    <div class="card">
+      <div class="val brown">铁5-8mg</div>
+      <div class="label">补血关键矿物质</div>
+      <div class="note">发酵提升矿物质溶出率</div>
+    </div>
+    <div class="card">
+      <div class="val brown">3g</div>
+      <div class="label">膳食纤维 / 100g</div>
+      <div class="note">低聚糖促进肠道有益菌增殖</div>
+    </div>
+  </div>
+
+  <div class="divider">✦</div>
+  <p style="text-align:center;color:var(--ink-soft);font-size:14px;">数据来源：《中国食物成分表》及相关发酵豆制品研究文献。</p>
+</div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">肆</div>
+  <h2>一勺好酱 · 六重滋养</h2>
+
+  <div class="benefit-item">
+    <div class="b-title">1. 优质植物蛋白 · 素食者的宝</div>
+    <p>每100克约含13克蛋白质，发酵分解为小分子肽和游离氨基酸，吸收率远超直接吃煮黄豆。素食者、术后恢复、老年人补充蛋白质的天然好来源。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">2. 天然助消化 · 调理肠胃</div>
+    <p>发酵过程中产生的蛋白酶、淀粉酶、脂肪酶——这些活性酶进入消化道后辅助分解食物，减轻胃肠负担。乳酸菌等益生菌成分帮助维持肠道菌群平衡。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">3. B族维生素倍增 · 神经系统养护</div>
+    <p>大豆经米曲霉发酵后，维生素B2含量暴增5-8倍，烟酸增加约3倍。这些水溶性维生素参与能量代谢、维持神经系统功能——吃酱也在补B族。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">4. 异黄酮活化 · 抗氧化抗衰老</div>
+    <p>发酵将大豆异黄酮从糖苷形式转化为苷元——生物利用率提升2-3倍。异黄酮具有抗氧化、调节脂代谢的作用，是传统发酵豆制品的核心健康因子之一。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">5. 天然开胃 · 以酱代盐更健康</div>
+    <p>黄豆酱的鲜来自天然氨基酸和核苷酸，不是工业味精。做菜时用一勺酱代替盐和味精——咸度降低三分之一，鲜味提升两倍，还能额外补到蛋白质、B族、矿物质。</p>
+  </div>
+
+  <div class="benefit-item">
+    <div class="b-title">6. 补钙补铁 · 全家受益</div>
+    <p>每100克含钙约300mg、铁5-8mg。发酵释放了大豆中原本难以吸收的矿物质，老人补钙、女性补铁、孩子长身体——一瓶酱，全家人都用得上。</p>
+  </div>
+</div>
+</section>
+
+<!-- ===== 伍 · 怎么吃 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">伍</div>
+  <h2>一瓶酱 · 百种吃法</h2>
+
+  <div class="eat-card">
+    <div class="eat-title">🥒 大葱/黄瓜蘸酱——最经典的吃法</div>
+    <div class="eat-desc">大葱香辣、黄瓜清脆、酱香醇厚。"大葱蘸酱，越吃越胖"——这是北方人刻在骨头里的吃法。</div>
+  </div>
+
+  <div class="eat-card">
+    <div class="eat-title">🍚 热米饭拌酱——最简单的美味</div>
+    <div class="eat-desc">刚出锅的热米饭，挑一筷子黄豆酱进去，拌匀。不用别的菜，一碗酱拌饭能把人撑哭。</div>
+  </div>
+
+  <div class="eat-card">
+    <div class="eat-title">🥘 酱炖豆腐 / 酱烧茄子 / 酱焖鱼</div>
+    <div class="eat-desc">炒菜时用一勺黄豆酱代替盐和味精——酱香把食材本味托起来，不加一滴酱油，颜色自然红亮。</div>
+  </div>
+
+  <div class="eat-card">
+    <div class="eat-title">🥬 酱腌黄瓜 / 酱腌辣椒</div>
+    <div class="eat-desc">新鲜蔬菜切段，埋进黄豆酱里腌一两天，捞出来脆生生、咸鲜鲜——比任何泡菜都好吃。</div>
+  </div>
+
+  <div class="eat-card">
+    <div class="eat-title">🥚 鸡蛋炒酱 / 辣椒炒酱</div>
+    <div class="eat-desc">鸡蛋打散炒熟、加入一勺黄豆酱翻炒均匀，出锅撒葱花。两分钟一道菜，拌饭拌面都是极品。</div>
+  </div>
+
+  <p style="margin-top:28px;text-align:center;color:var(--brown-soft);font-size:14px;">
+    ⚠️ 黄豆酱含盐量约12-15g/100g（天然防腐，不加防腐剂照样经放）<br>
+    每日建议摄入量：15-20g（约一汤匙）· 高血压/肾病患者遵医嘱减量 · 开封后冷藏保存
+  </p>
+</div>
+</section>
+
+<!-- ===== 陆 · 1kg大瓶装 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">陆</div>
+  <h2>为什么要用大瓶？</h2>
+  <p class="dropcap">1kg大瓶装，不是随便定的。</p>
+  <p>古法黄豆酱是<strong>靠盐分天然防腐</strong>的——配料表里没有山梨酸钾、没有苯甲酸钠。它不像工业酱那样能放两年不变味。但好处是——黄豆酱开封后只要冷藏保存，半年内风味不会衰减。因为它本身就是高度发酵的稳定产物，盐分和天然有机酸联手抑菌。</p>
+  <p>大瓶装的逻辑：<strong>一瓶够全家吃两三个月，刚好在最佳风味期内用完。</strong>不像小瓶装一两周就空了，还没来得及品出滋味就没了。而且黄豆酱是属于"越吃越香"的类型——开封头几天是"熟悉感"，吃了一个月之后酱的层次感才真正醒过来。</p>
+  <p>另外，大瓶装的性价比远高于小瓶。同样的手工酿造功夫，摊到每斤上，大瓶比小瓶便宜将近三分之一。爱野的原则：<strong>好东西要让更多人吃得起。</strong></p>
+</div>
+</section>
+
+<!-- ===== 柒 · 爱野选品逻辑 ===== -->
+<section>
+<div class="wrap">
+  <div class="kicker">柒</div>
+  <h2>爱野为什么选这瓶酱</h2>
+  <p class="dropcap">选品的时候，我们试了十几款黄豆酱。说实话，大部分一打开就知道不行——那股工业调味的"鲜"太冲了，闻不到豆子味。</p>
+  <p>这瓶酱是唯一一个——打开盖子后，我们不约而同说了一句：<strong>"就是这个味儿。"</strong></p>
+  <p>配料表干净到只有四行。不加防腐剂，靠盐分和日晒天然防腐。不加味精，鲜味全部来自发酵释放的氨基酸。不加焦糖色，酱色是太阳晒出来的。不加增稠剂，浓稠度是水分自然蒸发浓缩出来的。</p>
+  <p><strong>爱野选品的标准从来不是"有什么"，而是"没有什么"。</strong>这瓶黄豆酱，没有添加剂、没有防腐剂、没有味精、没有色素——所有的"没有"，换来了一个"有"：有真的豆香。</p>
+</div>
+</section>
+
+<!-- ===== 尾章 ===== -->
+<div class="ending">
+  <div class="aiye">AIYE 爱野</div>
+  <div class="motto">一勺老酱，回到小时候</div>
+</div>
+
+</body>
+</html>

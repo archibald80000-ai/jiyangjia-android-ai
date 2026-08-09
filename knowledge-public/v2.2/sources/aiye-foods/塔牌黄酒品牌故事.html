@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一冬一酿十四年 · 塔牌黄酒 | 爱野</title>
+<style>
+  :root{
+    --ink:#3A3028;
+    --ink-soft:#6B5A46;
+    --paper:#FAF6EF;
+    --paper-2:#F3EBDB;
+    --wine:#A0522D;
+    --wine-deep:#703010;
+    --wine-light:#D4A870;
+    --wine-dark:#4A1C08;
+    --leaf:#5C6B4F;
+    --line:rgba(61,51,40,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='38' ry='38' fill='none' stroke='%23A0522D' stroke-opacity='.06' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-size:100px 100px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--wine-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--wine);opacity:.5;}
+  .cover h1{font-size:clamp(36px,7.5vw,58px);font-weight:600;letter-spacing:.12em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--wine-deep);}
+  .cover .meta{margin-top:64px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  .scroll-hint{margin-top:40px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--wine-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--wine-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--wine);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--wine-deep);font-weight:600;}
+  .quote{margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--wine);font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;}
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--wine);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(61,51,40,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--wine-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card h3{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:.04em;}
+  .d-card p{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 价格标签 */
+  .price-tag{margin:44px 0;padding:34px 36px;text-align:center;background:linear-gradient(160deg,#F3EBDB 0%,#FAF6EF 100%);border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;}
+  .price-tag::before{content:"";position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:var(--wine);opacity:.04;border-radius:50%;}
+  .price-tag .label{font-size:13px;letter-spacing:.3em;color:var(--wine-deep);margin-bottom:10px;}
+  .price-tag .price{font-size:44px;font-weight:600;color:var(--ink);letter-spacing:.04em;}
+  .price-tag .price .unit{font-size:16px;font-weight:400;color:var(--ink-soft);}
+  .price-tag .note{font-size:13px;color:#9C8B76;margin-top:6px;}
+
+  /* 年份大数字 */
+  .year-highlight{margin:50px 0;text-align:center;padding:50px 30px;background:linear-gradient(160deg,rgba(160,82,45,.06) 0%,rgba(160,82,45,.02) 100%);border:1px solid rgba(160,82,45,.15);border-radius:20px;}
+  .year-highlight .y-big{font-size:clamp(72px,15vw,120px);font-weight:800;color:var(--wine);line-height:1;letter-spacing:-.03em;font-family:"Georgia","Times New Roman",serif;}
+  .year-highlight .y-desc{font-size:14px;color:var(--ink-soft);letter-spacing:.2em;margin-top:12px;}
+
+  .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:70px 0 0;color:var(--wine);}
+  .divider svg{width:14px;height:14px;opacity:.7;}
+
+  .ending{margin:70px 0 20px;padding:60px 36px;text-align:center;background:linear-gradient(160deg,#F3EBDB 0%,#FAF6EF 100%);border:1px solid var(--line);border-radius:20px;}
+  .ending .end-icon{width:52px;height:52px;margin:0 auto 26px;}
+  .ending p{font-size:clamp(16px,3vw,19px);letter-spacing:.06em;line-height:2.1;margin-bottom:16px;}
+  .ending .sign{font-size:13px;letter-spacing:.4em;color:var(--wine-deep);margin-top:30px;}
+  .ending .sign::before,.ending .sign::after{content:"";display:inline-block;width:26px;height:1px;background:var(--wine);vertical-align:middle;margin:0 12px;opacity:.55;}
+
+  footer{padding:50px 0 70px;text-align:center;font-size:12px;color:#A7947E;letter-spacing:.28em;line-height:2.2;}
+  footer .foot-brand{color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .cover{min-height:88vh;}
+    section{padding:64px 0 10px;}
+    .quote{padding:26px 20px;}
+    .ending{padding:44px 22px;}
+    .step{padding:18px 16px;gap:14px;}
+    .price-tag{padding:28px 20px;}
+    .price-tag .price{font-size:36px;}
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="wrap">
+    <div class="brand">爱野 · 天然食材</div>
+    <h1>一冬一酿十四年</h1>
+    <p class="sub">绍兴湖塘 <span>·</span> 塔牌2012年原酒</p>
+    <svg style="margin-top:56px;width:min(280px,70%);opacity:.9;" viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 酒坛 -->
+      <path d="M100 20 Q100 10 125 8 L155 8 Q180 10 180 20 L184 90 Q186 120 170 132 L140 148 L140 120 Q140 115 145 110 L150 100 L130 100 L135 110 Q140 115 140 120 L140 148 L110 132 Q94 120 96 90 Z" fill="#C4A070" stroke="#A0522D" stroke-width="1.5"/>
+      <!-- 坛口荷叶 -->
+      <ellipse cx="140" cy="8" rx="48" ry="8" fill="#D4C8A0" stroke="#B8A878" stroke-width="1"/>
+      <!-- 坛身标签 -->
+      <rect x="115" y="55" width="50" height="30" rx="6" fill="#F3EBDB" stroke="#C4B090" stroke-width=".8"/>
+      <text x="140" y="68" text-anchor="middle" font-size="8" fill="#703010" font-family="serif">2012</text>
+      <text x="140" y="79" text-anchor="middle" font-size="7" fill="#A0522D" font-family="serif">冬 酿</text>
+      <!-- 酒液滴落 -->
+      <circle cx="158" cy="108" r="2" fill="#A0522D" opacity=".4"/>
+      <!-- 鉴湖水波纹 -->
+      <path d="M60 130 Q80 124 100 130 Q120 136 140 130 Q160 124 180 130 Q200 136 220 130" fill="none" stroke="#A07050" stroke-width=".8" opacity=".3"/>
+      <path d="M50 140 Q75 134 100 140 Q125 146 150 140 Q175 134 200 140 Q225 146 230 140" fill="none" stroke="#A07050" stroke-width=".7" opacity=".2"/>
+    </svg>
+    <div class="meta">中华老字号 ｜ 全国最大纯手工黄酒酿造基地 ｜ 出口40余国</div>
+    <div class="scroll-hint">往下看，听一个故事<span class="arr">▼</span></div>
+  </div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序 章</div>
+    <h2>绍兴湖塘</h2>
+    <p class="lead">浙江绍兴，鉴湖的源头，有一个镇叫湖塘。</p>
+    <p>这里是鉴湖水系的上游——湖水穿山岩层，经过层层过滤，到了湖塘这一带，水质清冽甘甜，硬度适中，富含钙、镁等矿物质。南宋人梁章钜在《浪迹续谈》里写过一句大实话："盖山阴、会稽山之间，水最宜酒，易地则不能为良。"</p>
+    <p>翻译过来就是：离了鉴湖这口水的黄酒，哪怕一模一样的配方、一模一样的师傅，味道也会差一截。</p>
+    <p>1994年，塔牌酒厂在湖塘建厂。占地550亩，就在鉴湖源头不到500米的地方。它不学别家上机器、上流水线——它死磕一件事：<span style="color:var(--wine-deep);">纯手工酿造</span>。到今天，它是全国最大的纯手工黄酒酿造基地，拥有3位国家级酿酒大师、12个手工酿造班组。</p>
+    <p>1958年，第一批贴着"塔牌"商标的黄酒从上海港出海。近70年过去，它占据了中国黄酒出口量的三分之一，飘香40多个国家和地区。在日本的高级中华料理店里，塔牌黄酒配大闸蟹是经典搭配。</p>
+    <div class="quote">
+      「塔牌黄酒的香气里，有鉴湖的风、江南的雨，还有中国工匠的耐心。」
+      <span class="src">—— 日本酒商评价</span>
+    </div>
+  </div>
+  <div class="wrap"><div class="divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+  </div></div>
+</section>
+
+<!-- ===== 壹 · 一冬一酿 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>机器能算温度，算不出灵气</h2>
+    <p class="lead">塔牌黄酒的规矩，写在四句话里——天有时，地有气，材有美，工有巧。这不是广告词，是每个酿酒师刻进骨子里的东西。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="tag">天</div>
+        <div>
+          <h3>天有时 — 只在冬天酿</h3>
+          <p>每年立冬开酿，来年立春封坛。整整九十天，在最冷的季节里低温慢发酵。冬天杂菌少、发酵稳，酿出来的酒才最真、最醇、最美。这是三千年不破的铁律。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">地</div>
+        <div>
+          <h3>地有气 — 就是这口水</h3>
+          <p>鉴湖源头500米处取水，湖水经山岩层过滤，硬度刚好。同样的师傅、同样的米，换了个地方的水——味道就差了。绍兴酒的"魂"，是鉴湖水给的。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">材</div>
+        <div>
+          <h3>材有美 — 单季晚糯</h3>
+          <p>只选蜡白圆润的太湖单季晚糯——从种子到收割全程把控。糯米浸泡18天进行乳酸发酵，蒸出来米饭十里飘香。米不好，酿不出好酒。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag">工</div>
+        <div>
+          <h3>工有巧 — 三十六道手工</h3>
+          <p>浸米、蒸饭、落缸、开耙、发酵……三十六道工序，三道国家级大师把关，十二个手工班组操作。开耙时，老师傅把手伸进缸里摸温度——这种手感，机器永远替代不了。用国家级酿酒大师的话说："机器能算出温度，却算不出鉴湖水与糯米相遇时的那一分灵气。"</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      「糯米为酒之肉，麦曲为酒之骨，酒药为酒之魂，鉴湖水为酒之血，酿酒工艺为酒之经络。」
+      <span class="src">—— 绍兴酿酒古训</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 · 2012年 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>那一年冬天，发生了什么</h2>
+    <div class="year-highlight">
+      <div class="y-big">2012</div>
+      <div class="y-desc">龙年 · 壬辰 · 立冬开酿</div>
+    </div>
+    <p class="dropcap">2012年立冬那天，塔牌的酿酒师傅们跟往年一样，天没亮就到了车间。糯米已经在鉴湖水里泡了18天，蒸饭的大灶烧得正旺。等第一批蒸好的糯米出了锅，倒进陶缸，拌入麦曲和鉴湖水——这一年的冬酿，正式开始了。</p>
+    <p>前发酵四天——酿酒技师24小时轮班，每一缸都靠手摸温度判断发酵进度，和宋代《酒谱》里记载的手法一模一样。然后移入露天罐坛，在冬天的低温下再慢慢发酵整整90天。发酵结束，榨酒、煎酒，用箬壳荷叶扎口封坛，送入酒窖。</p>
+    <p>从那之后，这坛酒就待在黑暗里。一待就是<strong style="color:var(--wine-deep);">14年</strong>。</p>
+    <p>14年是什么概念？一个上初中的孩子，现在已经工作了。而这一坛酒，安静地躺在陶坛里——酒体从新酿的浅黄逐渐转为深邃的琥珀色，酸、酯、醛、酚在大分子与小分子之间缓慢地重新组合，每一年的香气都多一点，每一年的口感都醇一层。</p>
+    <p>塔牌的年份酒不是勾兑调出来的，是<strong style="color:var(--wine-deep);">单一原酒、原坛陈放</strong>。2012年酿的，就是2012年那缸里出来的，不掺一滴别的年份。</p>
+    <p>不加焦糖色调色——琥珀色是时间自己染的。</p>
+    <div class="quote">
+      「三年陈的爽洁，五年陈的醇厚，八年陈的馥郁，十四年陈——你喝的是光阴。」
+      <span class="src">—— 塔牌酒窖记录</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>液体蛋糕——一坛黄酒里藏了多少好东西</h2>
+    <p class="lead">黄酒在古代被称为"液体蛋糕"，这不是修辞——现代科学检测验证了。以下数据来自日本宝酒造株式会社检测报告、中国食品发酵工业研究院及江南大学/浙江大学合作研究：</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <div class="big">21<em>种</em></div>
+        <h3>氨基酸</h3>
+        <p>氨基酸总含量6670.9mg/L，含8种人体必需氨基酸（2557.5mg/L）。必需氨基酸含量是日本清酒的1.8倍、啤酒的11倍、葡萄酒的12倍。黄酒"鲜"和"甜"的秘密就在这里。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <div class="big">18<em>种+</em></div>
+        <h3>矿物质</h3>
+        <p>含钾、钙、镁、铁、铜、锌、硒等18种以上无机盐。镁含量200-300mg/L（是红葡萄酒5倍、白葡萄酒10倍），硒约40μg/L。它们是心血管系统的天然保护因子。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <div class="big">B/C/E</div>
+        <h3>复合维生素</h3>
+        <p>富含B族维生素（B1、B2、B6、烟酸）、维生素C和维生素E。B族来自发酵菌群的自然合成，维生素E和烟酸协同护皮肤、抗氧化。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <div class="big">多酚</div>
+        <h3>天然抗氧化</h3>
+        <p>黄酒中的多酚类化合物来自糯米和麦曲，清除自由基能力经江南大学/浙江大学联合研究验证。陈酿年份越高，多酚氧化聚合产物越丰富、抗氧化活性越强。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">伍</span>
+        <div class="big">GABA</div>
+        <h3>γ-氨基丁酸</h3>
+        <p>谷物发酵过程中自然生成的神经活性物质。科学证实GABA能降低血压、改善脑功能、增强长期记忆、抗焦虑、提高肝肾机能。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">陆</span>
+        <div class="big">低聚糖</div>
+        <h3>功能性益生元</h3>
+        <p>富含功能性低聚糖——肠道益生菌的"食物"，改善肠道微生态环境，促进消化。这不是添加剂，是纯粮食发酵的天然产物。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">柒</span>
+        <div class="big">活性肽</div>
+        <h3>生物活性肽</h3>
+        <p>谷物蛋白在发酵过程中酶解生成的短链肽。研究表明具有降血压、降胆固醇、免疫调节、抗氧化等多重生理活性。福州大学和江南大学均已从黄酒中分离鉴定出降血压肽。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">捌</span>
+        <div class="big">川芎嗪</div>
+        <h3>四甲基吡嗪</h3>
+        <p>麦曲发酵和长期陈酿过程中自然形成的活性成分——也是中药川芎的核心有效物质。能扩张血管、改善微循环和脑血流、抑制血小板集聚。</p>
+      </div>
+    </div>
+    <div class="quote">
+      「黄酒中已检测出的无机盐有20余种，其中钾、钙、镁、锌、硒含量丰富，是心血管系统的保护因子。富含功能性低聚糖、多酚、γ-氨基丁酸、生物活性肽等多重生物活性物质。」
+      <span class="src">—— 江南大学 · 浙江大学联合研究</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>它到底对人好在哪</h2>
+    <p class="dropcap">东汉王充年近七旬写下《养性》，总结养生要诀："长寿之道，在于养气自守、适时则酒。"南宋陆游借酒做诗活到86岁。蔡元培"每饭必酒"。邓小平85岁后每天一杯绍兴酒。</p>
+    <p>这不是名人效应——现代科学一项一项全验证了：</p>
+    <div class="steps">
+      <div class="step">
+        <div class="tag" style="background:var(--leaf);">心</div>
+        <div>
+          <h3>保护心血管</h3>
+          <p>绍兴市人民医院临床研究表明：适量饮用绍兴黄酒能使血液中高密度脂蛋白（"好胆固醇"）增加、同型半胱氨酸下降，延缓动脉粥样硬化，降低冠心病风险。上海中医药大学附属普陀医院研究证实：适量饮用能有效降低低密度脂蛋白及甘油三酯，且对肝功能无不良影响。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--wine);">脉</div>
+        <div>
+          <h3>舒筋活血、驱寒暖身</h3>
+          <p>黄酒性温，冬天温饮——加热到35-45℃，酒香充分释放，入口暖到胃。促进血液循环、改善手脚冰凉。江南湿冷的冬天，半碗温黄酒加几片姜——比什么暖气都好使。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--wine-deep);">消</div>
+        <div>
+          <h3>开胃促消化</h3>
+          <p>功能性低聚糖+活性肽刺激胃液分泌，帮助分解蛋白质和脂肪。对大闸蟹、红烧肉这类"硬菜"——配黄酒不只是讲究，更是科学。蟹寒酒温，一阴一阳，绝配。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--wine-dark);">氧</div>
+        <div>
+          <h3>抗氧化、延缓衰老</h3>
+          <p>浙江大学与古越龙山的合作研究证实：绍兴黄酒具有显著的延缓衰老、排铅、增强学习记忆能力、增强免疫力、提高耐缺氧能力、抗氧化等保健功能。多酚+活性肽+硒+维生素E，四重抗氧化防线。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#8C5030;">血</div>
+        <div>
+          <h3>辅助调节血压血脂</h3>
+          <p>GABA降血压、川芎嗪扩张血管、活性肽降胆固醇——三种成分协同作用。世界卫生组织统计数据显示，长期适量饮用黄酒类发酵酒的日本清酒人群，冠心病死亡率全球最低（0.041%），不到美国的十分之一。黄酒的营养密度远高于清酒。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#6B3A18;">眠</div>
+        <div>
+          <h3>安神助眠</h3>
+          <p>GABA是中枢神经系统抑制性递质，能镇静、抗焦虑、改善睡眠质量。睡前一小杯温黄酒（不超过100ml），比安眠药温和一万倍。蒋介石晚年失眠，中医给他的方子是：晚饭后睡觉前绍酒三盅——胃病也不治而愈了。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#4A2008;">美</div>
+        <div>
+          <h3>养颜美容</h3>
+          <p>维生素PP（烟酸）+锌含量高——两者协同维护皮肤健康。B族维生素加速新陈代谢，让皮肤红润有光泽。"黄酒养人"这四个字，老一辈说了几千年，现在有维生素锌验证了。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--wine);">药</div>
+        <div>
+          <h3>百药之长 · 理想药引</h3>
+          <p>《汉书·食货志》说"酒，百药之长"。《本草纲目》记载：黄酒通血脉、厚肠胃、润皮肤、散湿气、养脾气、扶肝、除风下气。同仁堂至今用绍兴酒做药引——黄酒能帮中药成分更好地被身体吸收。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 价格 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>一斤八十八</h2>
+    <p class="lead">你买的不是酒，是2012年那一个冬天。是十四年黑暗里的等待。</p>
+    <div class="price-tag">
+      <div class="label">爱野 · 塔牌2012年原酒</div>
+      <div class="price">88 <span class="unit">元 / 斤</span></div>
+      <div class="note">2012年立冬开酿 ｜ 陶坛原坛陈放14年 ｜ 单一原酒 不勾兑 无焦糖色</div>
+    </div>
+    <p>市面上几十块钱的"年份黄酒"多的是——但那是用新酒勾兑一丁点老酒调出来的，标签上印个"X年陈"就能上市。塔牌这坛是真正的单一原酒——2012年冬天那一批糯米蒸出来、那一缸鉴湖水发酵、那一只陶坛里放了14年。一滴别的年份都没掺。</p>
+    <p>全年只酿一季，一季只酿240天。550亩酒厂、12个手工班组、660位匠人——一年的产能就只有这么多。14年前那批酒，卖掉一坛就少一坛。</p>
+    <p>88元一斤，买的是<strong style="color:var(--wine-deep);">2012年那个冬天的阳光、鉴湖的水、太湖的糯米和14年一刻不停的陈化。</strong></p>
+  </div>
+</section>
+
+<!-- ===== 陆 · 爱野坚持 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>爱野为什么选它</h2>
+    <p class="dropcap">爱野做食材，核心标准只有四个：真东西、好东西、实在价格、可溯源。塔牌2012年原酒全中。</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <h3>真年份</h3>
+        <p>不是勾兑年份酒。单一原酒，标明2012年立冬开酿，陶坛原坛陈放至今14年。不加一滴焦糖色，颜色是时间染的。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <h3>真手工</h3>
+        <p>全国最大纯手工黄酒酿造基地。36道工序、12个手工班组、3位国家级大师。开耙靠手摸，不是机器读数字。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <h3>真溯源</h3>
+        <p>鉴湖源头500米取水。太湖单季晚糯——安徽白湖农场2007年起为塔牌种植基地，土壤水质全程检测。中华老字号+国家地理标志，每坛都有自己的身份。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <h3>真合理价</h3>
+        <p>14年陈单一原酒，88元/斤。对比白酒几十年的炒作和动不动上千的价位，这坛黄酒的价格——良心到不能再良心了。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 尾声 ===== -->
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="ending">
+      <svg class="end-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="12" cy="10" rx="9" ry="11" fill="#A0522D" opacity=".85"/>
+        <ellipse cx="12" cy="4" rx="5" ry="2.5" fill="#D4A870" opacity=".5"/>
+        <rect x="8" y="14" width="8" height="2" rx="1" fill="#FAF6EF" opacity=".6"/>
+        <text x="12" y="15.8" text-anchor="middle" font-size="6" fill="#703010" font-family="serif" opacity=".8">2012</text>
+      </svg>
+      <p>黄酒是有生命的。<br>它在坛里活着，跟人一样，经历青春、成熟、沉稳。</p>
+      <p>这坛酒14岁了。<br>2012年的冬天已经过去，<br>但那一个冬天的鉴湖水、太湖糯、酿酒人的手温——<br>全封在这一坛琥珀色里了。</p>
+      <p>现在，打开它，尝尝十四年前那个冬天的味道。</p>
+      <div class="sign">爱 野</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">爱野有限公司 · 天然食材</div>
+  <div>原生 · 天然 · 真实 · 可溯源</div>
+</footer>
+
+</body>
+</html>

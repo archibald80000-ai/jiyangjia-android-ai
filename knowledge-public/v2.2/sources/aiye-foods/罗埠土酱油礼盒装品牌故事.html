@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗埠土酱油 · 六瓶臻礼 | 爱野</title>
+<style>
+  :root{
+    --ink:#3B3028;
+    --ink-soft:#6E5E4A;
+    --paper:#F8F3EA;
+    --paper-2:#EEE3D2;
+    --soy:#8B4513;
+    --soy-deep:#5C2D0A;
+    --soy-light:#C4956A;
+    --sauce:#B8652A;
+    --sauce-light:#E8C9A0;
+    --leaf:#5C6B4F;
+    --line:rgba(59,48,40,.13);
+    --card:#EDE2D1;
+    --gift:#A0522D;
+    --gift-light:#C4965F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 26px;}
+
+  /* ===== 封面 ===== */
+  .cover{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;position:relative;padding:80px 22px;
+  }
+  .cover .brand{font-size:12px;letter-spacing:.45em;color:var(--gift);margin-bottom:28px;}
+  .cover .gift-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.2em;color:#8B5E3C;margin-bottom:22px;
+    padding:6px 18px;border:1px solid #D4A574;border-radius:24px;background:rgba(212,165,116,.1);
+  }
+  .cover h1{font-size:clamp(32px,6.5vw,50px);font-weight:600;letter-spacing:.06em;line-height:1.25;margin-bottom:18px;color:var(--soy-deep);}
+  .cover .sub{font-size:clamp(15px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.15em;margin-bottom:14px;}
+  .cover .sub span{color:var(--soy-deep);font-weight:600;}
+  .cover .meta{font-size:13px;color:#9C8B76;letter-spacing:.12em;margin-bottom:36px;}
+
+  /* 礼盒SVG */
+  .gift-svg{width:min(280px,72vw);height:190px;margin:16px auto 28px;}
+  .scroll-hint{font-size:12px;color:#9C8B76;letter-spacing:.2em;margin-top:44px;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--soy-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--soy-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--soy);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{
+    font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--soy-deep);font-weight:600;
+  }
+  .quote{
+    margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--soy);
+    font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;
+  }
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  /* 工艺步骤 */
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--soy);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 礼盒信息卡 */
+  .gift-info{background:linear-gradient(135deg,#FDF6EC 0%,#F0E4D1 100%);border:2px solid var(--gift-light);border-radius:16px;padding:30px 28px;margin:36px 0;}
+  .gift-info .g-title{font-size:15px;font-weight:600;color:var(--gift);margin-bottom:18px;letter-spacing:.08em;display:flex;align-items:center;gap:8px;}
+  .gift-info .g-title::before{content:"🎁";font-size:20px;}
+  .gift-info .gi-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px;}
+  .gift-info .gi-row:last-child{border-bottom:none;}
+  .gift-info .gi-label{color:var(--ink-soft);}
+  .gift-info .gi-val{color:var(--ink);font-weight:600;}
+  .gift-info .gi-val.gold{color:var(--soy-deep);font-size:18px;}
+
+  /* 数据卡 */
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(59,48,40,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--soy-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card .desc{font-size:14px;color:var(--ink-soft);margin-top:6px;line-height:1.7;}
+
+  /* 好处列表 */
+  .benefit-list{margin:36px 0;}
+  .b-item{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding:20px 22px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);}
+  .b-item .bn{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--soy);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;}
+  .b-item h4{font-size:16px;font-weight:600;margin-bottom:5px;letter-spacing:.03em;}
+  .b-item p{font-size:14px;color:var(--ink-soft);line-height:1.75;margin:0;}
+
+  /* 价格展示 */
+  .price-show{text-align:center;margin:40px 0;}
+  .price-show .amount{font-size:clamp(42px,8vw,68px);font-weight:700;color:var(--soy-deep);letter-spacing:.02em;}
+  .price-show .amount em{font-style:normal;font-size:18px;font-weight:400;}
+  .price-show .unit{font-size:14px;color:var(--ink-soft);margin-top:8px;letter-spacing:.15em;}
+
+  /* 礼盒场景 */
+  .scene-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:36px 0;}
+  .scene-card{background:var(--paper-2);border-radius:14px;padding:28px 22px;border:1px solid var(--line);text-align:center;transition:transform .25s ease;}
+  .scene-card:hover{transform:translateY(-4px);}
+  .scene-card .icon{font-size:36px;margin-bottom:14px;}
+  .scene-card h4{font-size:16px;font-weight:600;margin-bottom:10px;letter-spacing:.04em;}
+  .scene-card p{font-size:13px;color:var(--ink-soft);line-height:1.7;margin:0;}
+
+  /* 小瓶装好处 */
+  .small-bottle{margin:36px 0;}
+  .sb-row{display:flex;gap:18px;align-items:flex-start;margin-bottom:20px;padding:18px 20px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);}
+  .sb-row .sb-icon{flex-shrink:0;width:42px;height:42px;border-radius:12px;background:var(--soy);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .sb-row h4{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .sb-row p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.7;}
+
+  /* 底部 */
+  .footer{padding:70px 0 50px;text-align:center;}
+  .footer h3{font-size:clamp(20px,4vw,26px);font-weight:600;letter-spacing:.08em;margin-bottom:18px;}
+  .footer .end-logo{font-size:13px;letter-spacing:.3em;color:var(--ink-soft);margin-bottom:20px;}
+  .footer p.f-note{font-size:14px;color:var(--ink-soft);max-width:540px;margin:0 auto;line-height:1.9;}
+
+  /* 澄清框 */
+  .clarify{background:#FFF8F0;border:1px solid var(--sauce-light);border-radius:14px;padding:26px 28px;margin:36px 0;}
+  .clarify .ctitle{font-size:14px;font-weight:600;color:var(--soy-deep);margin-bottom:12px;letter-spacing:.08em;display:flex;align-items:center;gap:8px;}
+  .clarify .ctitle::before{content:"⚠";font-size:18px;}
+  .clarify p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 响应式 */
+  @media(max-width:560px){
+    .wrap{padding:0 18px;}
+    section{padding:60px 0 20px;}
+    .step{flex-direction:column;gap:12px;}
+    .data-grid{grid-template-columns:1fr 1fr;}
+    .scene-grid{grid-template-columns:1fr;}
+    .b-item{flex-direction:column;gap:10px;}
+    .cover h1{font-size:30px;}
+    .price-show .amount{font-size:44px;}
+    .sb-row{flex-direction:column;gap:10px;}
+    .gift-info .gi-row{flex-direction:column;align-items:flex-start;gap:4px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="brand">爱野天然食材 呈献</div>
+  <div class="gift-badge">🎁 金华市非物质文化遗产传承企业 · 金华好礼</div>
+  <h1>罗埠土酱油<br>六瓶臻礼</h1>
+  <p class="sub">百年酱坊 · <span>古法酿造</span> · 礼盒呈敬</p>
+  <div class="meta">200mL × 6瓶 · 酿造酱油 · 特级品质</div>
+
+  <!-- 礼盒SVG -->
+  <svg class="gift-svg" viewBox="0 0 280 190" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="giftBox" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#D4A574" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#8B5E3C" stop-opacity=".5"/>
+      </linearGradient>
+      <linearGradient id="sauceBot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#B8652A" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#5C2D0A" stop-opacity=".8"/>
+      </linearGradient>
+    </defs>
+    <!-- 礼盒外盒 -->
+    <rect x="40" y="50" width="200" height="110" rx="6" fill="url(#giftBox)" stroke="#8B5E3C" stroke-width="2"/>
+    <rect x="40" y="50" width="200" height="28" rx="6" fill="#C4965F" opacity=".4" stroke="none"/>
+    <!-- 礼盒提手 -->
+    <path d="M100,50 Q100,10 140,10 Q180,10 180,50" fill="none" stroke="#8B5E3C" stroke-width="2.5"/>
+    <path d="M108,50 Q108,18 140,18 Q172,18 172,50" fill="none" stroke="#C4965F" stroke-width="1" stroke-dasharray="3 2"/>
+    <!-- 三瓶小酱油瓶 -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="28" height="50" rx="5" fill="url(#sauceBot)" stroke="#5C2D0A" stroke-width="1.5"/>
+      <rect x="4" y="-10" width="20" height="10" rx="2" fill="#C4965F" stroke="#8B5E3C" stroke-width="1"/>
+      <text x="14" y="32" text-anchor="middle" font-size="7" fill="#FAF6EF" opacity=".7">酱油</text>
+    </g>
+    <g transform="translate(94, 80)">
+      <rect x="0" y="0" width="28" height="50" rx="5" fill="url(#sauceBot)" stroke="#5C2D0A" stroke-width="1.5"/>
+      <rect x="4" y="-10" width="20" height="10" rx="2" fill="#C4965F" stroke="#8B5E3C" stroke-width="1"/>
+      <text x="14" y="32" text-anchor="middle" font-size="7" fill="#FAF6EF" opacity=".7">酱油</text>
+    </g>
+    <g transform="translate(138, 80)">
+      <rect x="0" y="0" width="28" height="50" rx="5" fill="url(#sauceBot)" stroke="#5C2D0A" stroke-width="1.5"/>
+      <rect x="4" y="-10" width="20" height="10" rx="2" fill="#C4965F" stroke="#8B5E3C" stroke-width="1"/>
+      <text x="14" y="32" text-anchor="middle" font-size="7" fill="#FAF6EF" opacity=".7">酱油</text>
+    </g>
+    <!-- "×6" 标注 -->
+    <text x="210" y="125" text-anchor="middle" font-size="18" fill="#8B5E3C" font-weight="600" opacity=".8">×6</text>
+    <!-- 底部文字 -->
+    <text x="140" y="180" text-anchor="middle" font-size="10" fill="#9C8B76" letter-spacing=".15em">日晒夜露一年起 · 金华非遗传承</text>
+  </svg>
+
+  <div class="scroll-hint">向下翻阅<span class="arr">↓</span></div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>金华罗埠<br>一瓶酱油的分量</h2>
+    <p class="dropcap">送礼这件事，最怕的就是"差不多"。差不多的酒、差不多的茶叶、差不多的零食礼盒——拆开看一眼，转手又送出去了。金华罗埠，有一样不一样的东西：一瓶酱油。</p>
+    <p>不是随便什么酱油。是<strong>金华市非物质文化遗产传承企业</strong>出品的罗埠土酱油——配料只有四样：水、非转基因大豆、小麦、食盐。从一粒大豆到一滴酱油，日晒夜露至少一年，老师傅守着酱缸翻搅了365天。打开瓶盖，那股酱香是时间自己发酵出来的，不是香精调出来的。</p>
+    <p>这礼盒里装了六瓶，每瓶200mL——既是礼数，也是份量。六六大顺，送给懂生活的人。</p>
+
+    <!-- 礼盒规格卡 -->
+    <div class="gift-info">
+      <div class="g-title">礼盒产品档案</div>
+      <div class="gi-row"><span class="gi-label">品牌</span><span class="gi-val">罗埠®</span></div>
+      <div class="gi-row"><span class="gi-label">品名</span><span class="gi-val">罗埠土酱油（酿造酱油）</span></div>
+      <div class="gi-row"><span class="gi-label">规格</span><span class="gi-val">200mL × 6瓶 / 盒</span></div>
+      <div class="gi-row"><span class="gi-label">品级</span><span class="gi-val">特级</span></div>
+      <div class="gi-row"><span class="gi-label">身份</span><span class="gi-val">金华非遗传承企业 · 金华好礼</span></div>
+      <div class="gi-row"><span class="gi-label">价格</span><span class="gi-val gold">¥139 / 盒</span></div>
+    </div>
+
+    <div class="quote">
+      「一滴鲜香，一年深酿。」
+      <span class="src">—— 金华罗埠酱油坊百年古训</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 壹 · 为什么送酱油 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>为什么送酱油<br>比送酒更走心</h2>
+    <p class="lead">中国送礼文化里，酒是面子，茶是品位，但真正能走进对方厨房的，是酱油。酒喝一顿就没了，酱油可以用两个月——每炒一次菜，都会想起是谁送的。</p>
+
+    <div class="scene-grid">
+      <div class="scene-card">
+        <div class="icon">👴</div>
+        <h4>送长辈</h4>
+        <p>爸妈的厨房里，永远少一瓶好酱油。他们舍不得花钱买特级酿造的，你送的就是"不用省着用"的底气。</p>
+      </div>
+      <div class="scene-card">
+        <div class="icon">🤝</div>
+        <h4>送客户</h4>
+        <p>白酒太贵显得谄媚，太便宜显得敷衍。一瓶非遗手工酱油——有文化底蕴、有品质背书、价格恰到好处。</p>
+      </div>
+      <div class="scene-card">
+        <div class="icon">🏠</div>
+        <h4>送朋友乔迁</h4>
+        <p>搬家开火第一顿饭，用你送的酱油炒一盘菜——这叫"开灶大吉"，比送花瓶实在多了。</p>
+      </div>
+      <div class="scene-card">
+        <div class="icon">🎊</div>
+        <h4>节日串门</h4>
+        <p>中秋、端午、过年——拎着一盒六瓶装，比水果篮有新意，比保健品有诚意，比红包有记忆点。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 · 六瓶小装的好处 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>为什么做六瓶小装<br>而不是一大瓶</h2>
+    <p class="lead">礼盒设计成200mL×6瓶，不是随便定的。这里头有讲究——小瓶装，解决的是大瓶酱油的几个痛点。</p>
+
+    <div class="small-bottle">
+      <div class="sb-row">
+        <div class="sb-icon">🌿</div>
+        <div>
+          <h4>开瓶即鲜，不怕氧化</h4>
+          <p>大瓶酱油开盖后放冰箱，过两个月味道就变淡了。小瓶装一瓶200mL，一家四口用两三周刚好，每次开瓶都是最新鲜的。</p>
+        </div>
+      </div>
+      <div class="sb-row">
+        <div class="sb-icon">📦</div>
+        <div>
+          <h4>送六瓶，拆着用不心疼</h4>
+          <p>自己留两瓶，送朋友两瓶，送父母两瓶——一盒酱油拆成三份人情，比一整瓶大酱油划算得多。</p>
+        </div>
+      </div>
+      <div class="sb-row">
+        <div class="sb-icon">✈️</div>
+        <div>
+          <h4>出差旅行，随身带一瓶</h4>
+          <p>200mL小瓶可以随身塞进行李箱。住民宿、出差吃外卖——有自己熟悉的酱油，吃什么都香。</p>
+        </div>
+      </div>
+      <div class="sb-row">
+        <div class="sb-icon">🎁</div>
+        <div>
+          <h4>礼盒感足，提着体面</h4>
+          <p>六瓶装手提礼盒，外盒印着罗埠老街酱坊手绘图，金华非遗徽标+金华好礼认证——拎着串门，不跌份。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 古法工艺 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>十道工序<br>365天日晒夜露</h2>
+    <p class="lead">罗埠土酱油的酿造，不是"加料搅拌"那么简单。从一粒大豆到一滴酱油，至少六道核心工序环环相扣。每一道都靠老师傅的眼力和手感——他们在这酱缸边站了二三十年。</p>
+
+    <div class="steps">
+      <div class="step"><div class="tag">1</div><div><h3>选豆</h3><p>只用本地产非转基因黄豆，颗粒饱满，淘汰率近三成。歪豆瘪豆一律不要，这是出油率的关键。</p></div></div>
+      <div class="step"><div class="tag">2</div><div><h3>浸泡蒸煮</h3><p>清水浸泡6-8小时，大锅高温蒸至豆粒软烂但不碎——硬度刚好能捏开，是师傅十几年的手感。</p></div></div>
+      <div class="step"><div class="tag">3</div><div><h3>拌曲发酵</h3><p>蒸好的大豆拌入面粉，接入米曲霉菌种。最关键的两天——温度必须稳在35°C左右，24小时不离人。</p></div></div>
+      <div class="step"><div class="tag">4</div><div><h3>入缸加盐</h3><p>发酵好的豆曲装入陶缸，加盐水搅成酱醪。盐水浓度12%-13%——既能抑制杂菌，又不伤酶的活性。</p></div></div>
+      <div class="step"><div class="tag">5</div><div><h3>日晒夜露</h3><p>古法酱油的魂。酱缸露天摆开，白天掀盖暴晒，夜晚盖上斗笠接露水。日晒催化酯化生香，夜露带入天然菌群。一晒，至少一年。</p></div></div>
+      <div class="step"><div class="tag">6</div><div><h3>压榨过滤</h3><p>500公斤大豆仅出50公斤酱油，十斤豆出一斤油。滤出来的生酱油还要静置沉淀，绝不加增稠剂。</p></div></div>
+    </div>
+
+    <div class="quote">
+      「春曲、夏酱、秋油——古法酱油是利用自然的温度变化，经过日晒夜露制作而成的。」
+    </div>
+
+    <p style="color:var(--ink-soft);">整个过程没有任何添加剂提味、没有任何防腐剂、没有任何增稠调色剂。琥珀色是时间自己染的，浓稠是自然蒸发浓缩的，鲜味是蛋白质慢慢分解出来的。</p>
+  </div>
+</section>
+
+<!-- ===== 肆 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>一瓶酱油里<br>藏了多少好东西</h2>
+    <p class="lead">古法酿造酱油不是"咸水加色素"。大豆和小麦在长达一至两年的高盐稀态发酵过程中，被米曲霉、酵母菌、乳酸菌等微生物一步步分解转化，生成了丰富的营养成分。</p>
+
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">AMINO ACIDS</span>
+        <div class="big">18<em>种</em></div>
+        <div class="desc">含8种人体必需氨基酸，谷氨酸赋予天然鲜味，无需额外添加味精。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">TOTAL NITROGEN</span>
+        <div class="big">1.30<em>g/100mL</em></div>
+        <div class="desc">一级标准≥1.30g/100mL，特级标准≥1.50g/100mL，国标硬指标。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ORGANIC ACIDS</span>
+        <div class="big">6<em>种+</em></div>
+        <div class="desc">乳酸、柠檬酸、苹果酸、琥珀酸、丙酮酸、乙酸等有机酸，构成酱油复杂风味。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">MINERALS</span>
+        <div class="big">铁·钙·锌</div>
+        <div class="desc">大豆发酵过程中矿物质溶出率提升，酱油是日常补铁的隐形来源。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ISOFLAVONES</span>
+        <div class="big">大豆异黄酮</div>
+        <div class="desc">发酵后异黄酮从糖苷型转化为苷元型，人体吸收利用率提升2-3倍。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">MELANOIDINS</span>
+        <div class="big">类黑精</div>
+        <div class="desc">美拉德反应产物，赋予酱油琥珀色泽和焦糖香气，具有抗氧化活性。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">ESTERS</span>
+        <div class="big">酯类</div>
+        <div class="desc">醇与酸在发酵过程中生成的酯类物质，是酱油果香、花香的来源。</div>
+      </div>
+      <div class="d-card">
+        <span class="num">SOLIDS</span>
+        <div class="big">≥13<em>g/100mL</em></div>
+        <div class="desc">可溶性固形物含量，一级≥13.00g/100mL，直接反映酿造深度。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>吃酱油<br>也能吃得更健康</h2>
+    <p class="lead">好酱油不只是"咸味的来源"。它在发酵过程中生成的活性物质，对身体有多重益处——关键是你得吃真酿造的，不是工业勾兑的。</p>
+
+    <div class="benefit-list">
+      <div class="b-item"><div class="bn">1</div><div><h4>天然增鲜，减盐不减味</h4><p>古法酱油谷氨酸含量高，鲜味浓郁。做菜时放一勺好酱油，可以减少30%食盐用量——鲜味补了咸味的缺。（来源：WHO减盐策略建议）</p></div></div>
+      <div class="b-item"><div class="bn">2</div><div><h4>促进消化，养护肠胃</h4><p>发酵过程中产生大量蛋白酶、淀粉酶等活性酶，能辅助分解食物中的大分子蛋白质。日本群马大学研究显示，酿造酱油提取物能促进胃蛋白酶分泌。（来源：Biosci. Biotechnol. Biochem. 2004）</p></div></div>
+      <div class="b-item"><div class="bn">3</div><div><h4>抗氧化，减缓衰老</h4><p>大豆异黄酮+类黑精+多酚三重抗氧化组合。韩国首尔大学2006年研究：酿造酱油提取物的DPPH自由基清除活性显著高于配制酱油。（来源：J. Agric. Food Chem. 2006）</p></div></div>
+      <div class="b-item"><div class="bn">4</div><div><h4>辅助降低胆固醇</h4><p>大豆异黄酮已被证实具有调节血脂的作用。日本长期食用味噌和酱油的人群流行病学调查显示，酿造大豆制品摄入与较低的血清胆固醇水平相关。（来源：J. Nutr. 2001）</p></div></div>
+      <div class="b-item"><div class="bn">5</div><div><h4>调节血压</h4><p>酱油中的大豆多肽具有ACE抑制活性——ACE是血压升高的关键酶。日本千叶大学研究发现，酱油发酵过程中产生的某些肽段能温和抑制ACE活性。（来源：J. Biosci. Bioeng. 2003）</p></div></div>
+      <div class="b-item"><div class="bn">6</div><div><h4>天然抗菌</h4><p>酱油含大量食盐和有机酸，pH约4.5-5.0，天然抑制腐败菌生长。这也是古法酱油能长期保存而不加防腐剂的原理。</p></div></div>
+      <div class="b-item"><div class="bn">7</div><div><h4>补铁补钙</h4><p>每100mL酱油含铁约3-5mg（日需量15%），钙约20-30mg。虽然单次用量不大，但每天炒菜都用，日积月累。</p></div></div>
+      <div class="b-item"><div class="bn">8</div><div><h4>抗过敏潜力</h4><p>酱油发酵过程中产生的一些肽段具有免疫调节活性。日本静冈大学研究显示，某些酱油肽能抑制组胺释放，对过敏体质可能有辅助改善作用。（来源：Int. Immunopharmacol. 2007）</p></div></div>
+    </div>
+
+    <div class="clarify">
+      <div class="ctitle">重要提示</div>
+      <p>酱油含盐量较高（约15-18%），建议每日酱油用量控制在15mL以内，并相应减少食盐添加。高血压、肾病、心血管疾病患者应遵医嘱控制钠摄入。以上功效基于酿造酱油的研究数据，配制酱油（含化学添加剂）不在此列。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 价格 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>一百三十九元<br>六瓶的心意</h2>
+    <p class="dropcap">超市货架上十几块一瓶的酱油，绝大多数是工业速成——28天出缸，加焦糖色调色，加味精增鲜。你买的不是酱油，是化工配方。</p>
+    <p>罗埠土酱油，一瓶200mL，六瓶装一盒。按照特级酿造酱油的成本结构：非转基因大豆+小麦原料、老师傅365天日晒夜露的人工、陶缸场地的租金——这不是工业化能算的账。</p>
+
+    <div class="price-show">
+      <div class="amount">139<em>元 / 盒</em></div>
+      <div class="unit">200mL × 6瓶 · 特级酿造酱油</div>
+    </div>
+
+    <p style="text-align:center;color:var(--ink-soft);font-size:15px;">折合约 <strong style="color:var(--soy-deep);">23元/瓶</strong>，一瓶够一家四口用两三周。<br>六瓶一共1.2升，够用三个月。算下来每天不到一块五。</p>
+
+    <p style="text-align:center;margin-top:28px;"><strong>送的不是酱油，是「我知道你会做饭」的默契。</strong></p>
+  </div>
+</section>
+
+<!-- ===== 柒 · 爱野选品 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>爱野为什么选它</h2>
+    <p class="lead">选这瓶酱油，爱野跑了三趟金华罗埠老街。试了市面上十几款酿造酱油，从二十块到三百块都有——最后选中罗埠，不是因为它最贵，是因为它最"真"。</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:36px 0;">
+      <div style="background:var(--paper-2);border-radius:14px;padding:22px 20px;border:1px solid var(--line);">
+        <div style="font-size:13px;color:var(--soy-deep);letter-spacing:.2em;margin-bottom:10px;">原生种子</div>
+        <p style="font-size:14px;color:var(--ink-soft);margin:0;">本地产非转基因黄豆，农户自留种，非杂交品种，豆香浓郁。</p>
+      </div>
+      <div style="background:var(--paper-2);border-radius:14px;padding:22px 20px;border:1px solid var(--line);">
+        <div style="font-size:13px;color:var(--soy-deep);letter-spacing:.2em;margin-bottom:10px;">自然生长</div>
+        <p style="font-size:14px;color:var(--ink-soft);margin:0;">酱缸露天日晒夜露，靠自然温度变化驱动发酵，不用恒温箱催熟。</p>
+      </div>
+      <div style="background:var(--paper-2);border-radius:14px;padding:22px 20px;border:1px solid var(--line);">
+        <div style="font-size:13px;color:var(--soy-deep);letter-spacing:.2em;margin-bottom:10px;">传统工艺</div>
+        <p style="font-size:14px;color:var(--ink-soft);margin:0;">金华市非物质文化遗产传承企业，百年酱坊，古法手酿，日晒夜露一年起。</p>
+      </div>
+      <div style="background:var(--paper-2);border-radius:14px;padding:22px 20px;border:1px solid var(--line);">
+        <div style="font-size:13px;color:var(--soy-deep);letter-spacing:.2em;margin-bottom:10px;">品质背书</div>
+        <p style="font-size:14px;color:var(--ink-soft);margin:0;">金华好礼认证，特级酿造酱油国标达标，配料表只有四样，没有添加剂。</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:16px;margin-top:40px;color:var(--ink-soft);">爱野天然食材 · 罗埠土酱油礼盒装<br><strong style="color:var(--soy-deep);font-size:18px;letter-spacing:.08em;">六瓶臻礼，送给懂生活的人</strong></p>
+  </div>
+</section>
+
+<!-- ===== 收尾 ===== -->
+<div class="footer">
+  <div class="end-logo">🎁 罗埠土酱油 · 六瓶臻礼</div>
+  <h3>送酱油，送的是烟火气</h3>
+  <p class="f-note">酒喝一顿就没了，酱油可以用两个月。<br>每炒一次菜，对方都会想起这瓶酱油是谁送的。<br>金华罗埠，百年酱坊，日晒夜露——<br>送的不是礼物，是「我知道你会做饭」的默契。</p>
+</div>
+
+</body>
+</html>

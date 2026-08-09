@@ -1,0 +1,356 @@
+{
+  "version": "2.2",
+  "status": "approved_with_legacy_statuses",
+  "documents": [
+    {
+      "id": "aiye_solar_term_yushui",
+      "title": "24节气养生茶：雨水",
+      "text": "雨水喝什么茶\n雨水养生茶配方\n雨水节气怎么喝\n雨水\n2/18\n茯苓 炒薏米 生姜\n健脾祛湿 · 驱寒暖身",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_yushui"
+    },
+    {
+      "id": "aiye_solar_term_jingzhe",
+      "title": "24节气养生茶：惊蛰",
+      "text": "惊蛰喝什么茶\n惊蛰养生茶配方\n惊蛰节气怎么喝\n惊蛰\n3/5\n黄芪 党参 陈皮\n补气升阳 · 增强免疫",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_jingzhe"
+    },
+    {
+      "id": "aiye_solar_term_chunfen",
+      "title": "24节气养生茶：春分",
+      "text": "春分喝什么茶\n春分养生茶配方\n春分节气怎么喝\n春分\n3/20\n菊花 枸杞 决明子\n清肝明目 · 平抑肝阳",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_chunfen"
+    },
+    {
+      "id": "aiye_solar_term_qingming",
+      "title": "24节气养生茶：清明",
+      "text": "清明喝什么茶\n清明养生茶配方\n清明节气怎么喝\n清明\n4/4\n薄荷 金银花 菊花\n疏风清热 · 解表防感",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_qingming"
+    },
+    {
+      "id": "aiye_solar_term_guyu",
+      "title": "24节气养生茶：谷雨",
+      "text": "谷雨喝什么茶\n谷雨养生茶配方\n谷雨节气怎么喝\n谷雨\n4/19\n玫瑰 无花果 茯苓\n疏肝健脾 · 润肠通便\n夏 · 清热养心",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_guyu"
+    },
+    {
+      "id": "aiye_solar_term_lixia",
+      "title": "24节气养生茶：立夏",
+      "text": "立夏喝什么茶\n立夏养生茶配方\n立夏节气怎么喝\n立夏\n5/5\n莲子心 麦冬 绿茶\n清心降火 · 养心安神",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_lixia"
+    },
+    {
+      "id": "aiye_solar_term_xiaoman",
+      "title": "24节气养生茶：小满",
+      "text": "小满喝什么茶\n小满养生茶配方\n小满节气怎么喝\n小满\n5/20\n炒薏米 赤小豆 陈皮\n祛湿利水 · 健脾消肿",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_xiaoman"
+    },
+    {
+      "id": "aiye_solar_term_mangzhong",
+      "title": "24节气养生茶：芒种",
+      "text": "芒种喝什么茶\n芒种养生茶配方\n芒种节气怎么喝\n芒种\n6/5\n桑葚 枸杞 白茶\n滋阴补血 · 补肾乌发",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_mangzhong"
+    },
+    {
+      "id": "aiye_solar_term_xiazhi",
+      "title": "24节气养生茶：夏至",
+      "text": "夏至喝什么茶\n夏至养生茶配方\n夏至节气怎么喝\n夏至\n6/21\n乌梅 山楂 甘草\n酸甘化阴 · 生津止渴",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_xiazhi"
+    },
+    {
+      "id": "aiye_solar_term_xiaoshu",
+      "title": "24节气养生茶：小暑",
+      "text": "小暑喝什么茶\n小暑养生茶配方\n小暑节气怎么喝\n小暑\n7/6\n荷叶 藿香 茯苓\n清暑化湿 · 健脾开胃",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_xiaoshu"
+    },
+    {
+      "id": "aiye_solar_term_dashu",
+      "title": "24节气养生茶：大暑",
+      "text": "大暑喝什么茶\n大暑养生茶配方\n大暑节气怎么喝\n大暑\n7/22\n莲子 西洋参 陈皮\n补气养心 · 清热祛湿\n秋 · 润肺养阴",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_dashu"
+    },
+    {
+      "id": "aiye_solar_term_liqiu",
+      "title": "24节气养生茶：立秋",
+      "text": "立秋喝什么茶\n立秋养生茶配方\n立秋节气怎么喝\n立秋\n8/7\n百合 雪梨 蜂蜜\n润肺止咳 · 养阴清燥",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_liqiu"
+    },
+    {
+      "id": "aiye_solar_term_chushu",
+      "title": "24节气养生茶：处暑",
+      "text": "处暑喝什么茶\n处暑养生茶配方\n处暑节气怎么喝\n处暑\n8/22\n石斛 麦冬 桂花\n滋阴润燥 · 生津养胃",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_chushu"
+    },
+    {
+      "id": "aiye_solar_term_bailu",
+      "title": "24节气养生茶：白露",
+      "text": "白露喝什么茶\n白露养生茶配方\n白露节气怎么喝\n白露\n9/7\n银耳 莲子 红枣\n润肺养颜 · 安神补血",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_bailu"
+    },
+    {
+      "id": "aiye_solar_term_qiufen",
+      "title": "24节气养生茶：秋分",
+      "text": "秋分喝什么茶\n秋分养生茶配方\n秋分节气怎么喝\n秋分\n9/22\n杏仁 罗汉果 桔梗\n润肺化痰 · 利咽止咳",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_qiufen"
+    },
+    {
+      "id": "aiye_solar_term_hanlu",
+      "title": "24节气养生茶：寒露",
+      "text": "寒露喝什么茶\n寒露养生茶配方\n寒露节气怎么喝\n寒露\n10/8\n老陈皮 生姜 红糖\n温中散寒 · 理气化痰",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_hanlu"
+    },
+    {
+      "id": "aiye_solar_term_shuangjiang",
+      "title": "24节气养生茶：霜降",
+      "text": "霜降喝什么茶\n霜降养生茶配方\n霜降节气怎么喝\n霜降\n10/23\n桂圆 黑豆 枸杞\n温补肾阳 · 养血固精\n冬 · 温阳补肾",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_shuangjiang"
+    },
+    {
+      "id": "aiye_solar_term_lidong",
+      "title": "24节气养生茶：立冬",
+      "text": "立冬喝什么茶\n立冬养生茶配方\n立冬节气怎么喝\n立冬\n11/7\n桂圆 红枣 生姜\n温阳驱寒 · 补血益气",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_lidong"
+    },
+    {
+      "id": "aiye_solar_term_xiaoxue",
+      "title": "24节气养生茶：小雪",
+      "text": "小雪喝什么茶\n小雪养生茶配方\n小雪节气怎么喝\n小雪\n11/22\n麦冬 菊花 枸杞\n滋阴清热 · 养肝明目",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_xiaoxue"
+    },
+    {
+      "id": "aiye_solar_term_daxue",
+      "title": "24节气养生茶：大雪",
+      "text": "大雪喝什么茶\n大雪养生茶配方\n大雪节气怎么喝\n大雪\n12/6\n黄芪 当归 红枣\n气血双补 · 温经散寒",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_daxue"
+    },
+    {
+      "id": "aiye_solar_term_dongzhi",
+      "title": "24节气养生茶：冬至",
+      "text": "冬至喝什么茶\n冬至养生茶配方\n冬至节气怎么喝\n冬至\n12/21\n九蒸黄精 枸杞\n大补元气 · 滋肾填精",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_dongzhi"
+    },
+    {
+      "id": "aiye_solar_term_xiaohan",
+      "title": "24节气养生茶：小寒",
+      "text": "小寒喝什么茶\n小寒养生茶配方\n小寒节气怎么喝\n小寒\n1/5\n黑芝麻 核桃 红茶\n补肾乌发 · 润肠通便",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_xiaohan"
+    },
+    {
+      "id": "aiye_solar_term_dahan",
+      "title": "24节气养生茶：大寒",
+      "text": "大寒喝什么茶\n大寒养生茶配方\n大寒节气怎么喝\n大寒\n1/20\n山药 茯苓 陈皮 蜂蜜\n健脾益气 · 理气和胃\n用法提醒\n① 每包可冲泡15-20次，沸水冲泡焖5分钟\n② 每日1-2杯，建议上午饮用\n③ 孕妇、慢性病、儿童请咨询医师\n④ 服用西药间隔2小时以上\n¥39/包 · ¥399/年（24节气）\n积养家 · 积善积德积福 · 养人养生养体",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_solar_term_dahan"
+    },
+    {
+      "id": "aiye_ingredient_ginger",
+      "title": "药食同源食材：生姜",
+      "text": "生姜是什么\n请详细讲讲生姜\n生姜怎么吃\n生姜有什么特点\n生姜\nZingiber officinale\n性温 · 味辛 · 归肺脾胃经\n温中散寒，回阳通脉。 「呕家圣药」，驱寒暖身第一品。\n驱寒暖身：扩张血管加速循环，风寒感冒初起时煮姜汤发汗\n温中止呕：美国妇产科医师学会推荐用于孕吐及晕车\n天然抗炎：姜辣素抑制COX酶，缓解关节与肌肉炎症\n辅助降糖、降脂：姜辣素+姜烯酚改善胰岛素敏感性\n杀菌防腐：抑制金黄色葡萄球菌和大肠杆菌\n姜辣素 姜烯酚 挥发油 锰 硒 钾 B族维生素",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_ginger"
+    },
+    {
+      "id": "aiye_ingredient_astragalus",
+      "title": "药食同源食材：黄芪",
+      "text": "黄芪是什么\n请详细讲讲黄芪\n黄芪怎么吃\n黄芪有什么特点\n黄芪\nAstragalus membranaceus\n性温 · 味甘 · 归脾肺经\n补气升阳，固表止汗。 《神农本草经》上品，「补药之长」。\n补气固表：改善气短乏力、易出虚汗、抵抗力差\n增强免疫：黄芪多糖激活巨噬细胞和NK细胞（广州中医药大学2024研究）\n保护心血管：增强心肌收缩力，改善微循环\n利尿消肿：对慢性肾炎蛋白尿有辅助改善作用\n抗衰老：黄芪甲苷抗氧化，清除自由基\n黄芪多糖 黄芪甲苷 黄酮类 20+种氨基酸 硒 锌 铁\n⚠ 感冒发热、实热证者不宜单独大量使用。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_astragalus"
+    },
+    {
+      "id": "aiye_ingredient_codonopsis",
+      "title": "药食同源食材：党参段",
+      "text": "党参段是什么\n请详细讲讲党参段\n党参段怎么吃\n党参段有什么特点\n党参段\nCodonopsis pilosula\n性平 · 味甘 · 归脾肺经\n补中益气，健脾益肺。 力道平和，日常补气首选，全家适用。\n健脾益气：改善食欲不振、倦怠乏力、面色萎黄\n养血生津：气血双补，适合产后、术后及贫血恢复期\n益肺止咳：对脾肺气虚导致的久咳虚喘有改善作用\n增强免疫力：党参多糖促进淋巴细胞增殖\n调节血压：双向调节，对低血压有升压作用\n党参多糖 党参苷 17种氨基酸 铁 锌 钙 B族维生素\n⚠ 气滞火盛者慎用，不宜与藜芦同用。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_codonopsis"
+    },
+    {
+      "id": "aiye_ingredient_notoginseng",
+      "title": "药食同源食材：三七",
+      "text": "三七是什么\n请详细讲讲三七\n三七怎么吃\n三七有什么特点\n三七\nPanax notoginseng\n性温 · 味甘微苦 · 归肝胃经\n散瘀止血，消肿定痛。 「人参补气第一，三七补血第一」——《本草纲目拾遗》。\n活血化瘀：改善微循环，预防心脑血管问题\n止血不留瘀：独特双向调节——既能止血又能化瘀\n保护心血管：三七总皂苷扩张冠脉、降低心肌耗氧\n消肿止痛：跌打损伤、瘀血肿痛外用内服皆宜\n护肝：减轻化学性肝损伤，改善肝功能指标\n三七总皂苷 人参皂苷 三七素 黄酮 多糖 钙 铁\n⚠ 孕妇禁用。经期、出血性疾患者慎用。每日建议不超过3-9g。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_notoginseng"
+    },
+    {
+      "id": "aiye_ingredient_poria",
+      "title": "药食同源食材：茯苓",
+      "text": "茯苓是什么\n请详细讲讲茯苓\n茯苓怎么吃\n茯苓有什么特点\n茯苓\nPoria cocos\n性平 · 味甘淡 · 归心脾肾经\n利水渗湿，健脾宁心。 四时神药，祛湿不伤正，健脾不上火。\n健脾祛湿：改善脾虚湿盛导致的浮肿、大便溏稀\n宁心安神：用于心悸失眠、心神不宁\n利水不伤阴：温和利尿，不损耗津液\n提高免疫：茯苓多糖激活免疫系统（日本北里研究所研究）\n辅助抗癌：茯苓多糖在多项研究中显示出抑瘤潜力\n茯苓多糖 三萜类 茯苓酸 钾 镁 膳食纤维",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_poria"
+    },
+    {
+      "id": "aiye_ingredient_angelica",
+      "title": "药食同源食材：当归",
+      "text": "当归是什么\n请详细讲讲当归\n当归怎么吃\n当归有什么特点\n当归\nAngelica sinensis\n性温 · 味甘辛 · 归肝心脾经\n补血活血，调经止痛。 「血中圣药」，「十方九归」——女性养血第一品。\n补血养血：改善血虚导致的面色萎黄、头晕心悸\n调经止痛：当归挥发油缓解子宫平滑肌痉挛，祛瘀生新\n润肠通便：当归油脂润滑肠道，适合血虚便秘\n抗炎镇痛：阿魏酸抑制炎症因子\n保护肝脏：促进肝细胞再生，改善微循环\n阿魏酸 藁本内酯 当归多糖 维生素B12 叶酸 铁 锌\n⚠ 湿盛中满、大便溏泄者不宜。孕妇需遵医嘱。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_angelica"
+    },
+    {
+      "id": "aiye_ingredient_euryale",
+      "title": "药食同源食材：芡实仁",
+      "text": "芡实仁是什么\n请详细讲讲芡实仁\n芡实仁怎么吃\n芡实仁有什么特点\n芡实仁\nEuryale ferox\n性平 · 味甘涩 · 归脾肾经\n益肾固精，补脾止泻。 「水中人参」，健脾祛湿食养两宜。\n健脾祛湿：改善脾虚泄泻、大便不成形\n益肾固精：用于肾虚遗精、尿频、带下\n补而不腻：吸收好不易上火，老人小孩均可食\n强健筋骨：丰富的钙磷镁促进骨骼发育\n低GI慢消化：糖尿病友好型碳水来源\n蛋白质8.3g 淀粉 钙 磷 铁 维生素B1 膳食纤维",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_euryale"
+    },
+    {
+      "id": "aiye_ingredient_lily-bulb",
+      "title": "药食同源食材：百合",
+      "text": "百合是什么\n请详细讲讲百合\n百合怎么吃\n百合有什么特点\n百合\nLilium lancifolium\n性微寒 · 味甘 · 归心肺经\n养阴润肺，清心安神。 秋燥润肺首选，「润肺止咳安神三效合一」。\n润肺止咳：缓解肺燥干咳、咽干、痰少粘稠\n清心安神：改善虚烦惊悸、失眠多梦\n美容养颜：丰富的黏液质和维生素滋润肌肤\n调节免疫：百合多糖增强巨噬细胞活性\n辅助抗疲劳：提高机体耐受缺氧能力\n百合多糖 秋水仙碱 蛋白质 钙 磷 铁 维生素C\n⚠ 风寒咳嗽、脾胃虚寒泄泻者不宜。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_lily-bulb"
+    },
+    {
+      "id": "aiye_ingredient_fig",
+      "title": "药食同源食材：无花果",
+      "text": "无花果是什么\n请详细讲讲无花果\n无花果怎么吃\n无花果有什么特点\n无花果\nFicus carica\n性平 · 味甘 · 归肺胃大肠经\n润肺止咳，健胃清肠。 《本草纲目》称其「开胃，止泄痢」。天然甜，无添加糖。\n健胃清肠：富含膳食纤维和果胶，促进肠道蠕动\n润肺利咽：缓解肺热咳嗽、咽喉肿痛\n辅助降三高：果胶和植物甾醇降低胆固醇吸收\n天然抗氧化：多酚含量居常见水果前列\n补钙补铁：钙含量是苹果的10倍以上\n膳食纤维 果胶 多酚 钙 铁 钾 维生素A/E",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_fig"
+    },
+    {
+      "id": "aiye_ingredient_rose",
+      "title": "药食同源食材：大玫瑰",
+      "text": "大玫瑰是什么\n请详细讲讲大玫瑰\n大玫瑰怎么吃\n大玫瑰有什么特点\n大玫瑰\nRosa rugosa cv. Plena\n性温 · 味甘微苦 · 归肝脾经\n行气解郁，和血调经。 《本草正义》赞其「芳香诸品，殆无其匹」。\n疏肝解郁：缓解情绪压力导致的胸闷、胁痛、烦躁\n活血调经：改善肝气郁滞导致的月经不调、经前乳胀\n美容养颜：花青素+维生素C抗氧化、提亮肤色\n理气和胃：缓解胃胀、消化不良\n安神助眠：玫瑰芳香通过嗅觉舒缓神经系统\n香茅醇 花青素 维生素C 鞣质 类黄酮 挥发油\n⚠ 孕妇慎用（活血）。阴虚火旺者不宜大量。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_rose"
+    },
+    {
+      "id": "aiye_ingredient_dendrobium",
+      "title": "药食同源食材：铁皮石斛",
+      "text": "铁皮石斛是什么\n请详细讲讲铁皮石斛\n铁皮石斛怎么吃\n铁皮石斛有什么特点\n铁皮石斛\nDendrobium officinale\n性微寒 · 味甘 · 归胃肾经\n益胃生津，滋阴清热。 「中华九大仙草之首」，养胃阴之极品。\n养胃生津：改善胃阴不足导致的胃痛、口干、食欲减退\n滋阴明目：调理肝肾阴虚引起的视物模糊、眼干\n增强免疫：石斛多糖显著提高免疫球蛋白水平\n辅助降糖：石斛碱双向调节血糖\n抗疲劳抗衰老：多糖+生物碱清除自由基\n石斛多糖 石斛碱 氨基酸 钙 铁 锌 黏液质\n⚠ 脾胃虚寒、大便溏泄者慎用。感冒初期不宜。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_dendrobium"
+    },
+    {
+      "id": "aiye_ingredient_ophiopogon",
+      "title": "药食同源食材：麦冬",
+      "text": "麦冬是什么\n请详细讲讲麦冬\n麦冬怎么吃\n麦冬有什么特点\n麦冬\nOphiopogon japonicus\n性微寒 · 味甘微苦 · 归心肺胃经\n养阴润肺，益胃生津。 2024年新入药食同源目录，清补上品。\n养阴润肺：缓解肺燥干咳、咽干口渴\n清心除烦：改善心烦失眠、心悸怔忡\n益胃生津：对口干舌燥、胃阴不足效果好\n保护心肌：麦冬总皂苷改善心肌缺血\n辅助降糖：麦冬多糖调节糖代谢\n麦冬多糖 麦冬皂苷 高异黄酮 钾 钙 镁\n⚠ 脾胃虚寒、大便溏泄者不宜。风寒咳嗽忌用。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_ophiopogon"
+    },
+    {
+      "id": "aiye_ingredient_polygonatum",
+      "title": "药食同源食材：九蒸黄精",
+      "text": "九蒸黄精是什么\n请详细讲讲九蒸黄精\n九蒸黄精怎么吃\n九蒸黄精有什么特点\n九蒸黄精\nPolygonatum sibiricum\n性平 · 味甘 · 归脾肺肾经\n补气养阴，健脾润肺益肾。 「仙人余粮」，九蒸九晒后温润平和，效力倍增。\n补气养阴不燥：九蒸后性平味甘，比生品温补3.7倍（浙江中医药大学2026研究）\n健脾润肺：改善体倦乏力、干咳、食欲差\n滋补肾精：对腰膝酸软、须发早白有调理作用\n辅助降糖降脂：黄精多糖调节糖脂代谢\n抗氧化抗衰老：抗氧化能力比生品提高4.2倍\n黄精多糖10-15% 皂苷 17种氨基酸 黄酮 锌 硒 铁\n⚠ 脾虚有湿、腹胀便溏者不宜。阳衰阴盛者慎用。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_polygonatum"
+    },
+    {
+      "id": "aiye_ingredient_aged-tangerine-peel",
+      "title": "药食同源食材：老陈皮",
+      "text": "老陈皮是什么\n请详细讲讲老陈皮\n老陈皮怎么吃\n老陈皮有什么特点\n老陈皮\nCitrus reticulata 'Chachi'\n性温 · 味辛苦 · 归脾肺经\n理气健脾，燥湿化痰。 「一两陈皮一两金，百年陈皮胜黄金」，越陈越香越值钱。\n理气健脾：缓解脾胃气滞导致的腹胀、食欲不振\n燥湿化痰：改善湿痰咳嗽、痰多胸闷\n降逆止呕：对晕车呕吐、孕期晨吐有安抚作用\n抗氧化：川陈皮素+橙皮苷清除自由基\n化油腻：助消化、去腻，火锅/大餐后泡一壶\n川陈皮素 橙皮苷 挥发油≥2% 柠檬烯 维生素C 钾",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_aged-tangerine-peel"
+    },
+    {
+      "id": "aiye_ingredient_fujian-lotus-seed",
+      "title": "药食同源食材：福建莲子",
+      "text": "福建莲子是什么\n请详细讲讲福建莲子\n福建莲子怎么吃\n福建莲子有什么特点\n福建莲子\nNelumbo nucifera\n性平 · 味甘涩 · 归脾肾心经\n补脾止泻，益肾固精，养心安神。 建宁贡莲，粒大饱满，一煮即糯。\n健脾养胃：改善脾虚食欲差、慢性腹泻\n养心安神：莲子心碱宁心安神，缓解心悸失眠\n益肾固精：调理肾虚遗精、带下\n优质植物蛋白：蛋白质含量约17%，氨基酸均衡\n低脂高纤：润肠通便，控制体重好帮手\n蛋白质17g 莲子碱 棉子糖 钙 磷 钾 铁",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_fujian-lotus-seed"
+    },
+    {
+      "id": "aiye_ingredient_ningxia-goji",
+      "title": "药食同源食材：宁夏枸杞",
+      "text": "宁夏枸杞是什么\n请详细讲讲宁夏枸杞\n宁夏枸杞怎么吃\n宁夏枸杞有什么特点\n宁夏枸杞\nLycium barbarum\n性平 · 味甘 · 归肝肾经\n滋补肝肾，益精明目。 「人到中年不得已，保温杯里泡枸杞」——最深入人心的养生符号。\n养肝明目：枸杞多糖保护视网膜，改善视物模糊\n滋补肾精：调理腰膝酸软、头晕耳鸣\n抗氧化之王：ORAC抗氧化值居常见食材前三\n辅助降三高：枸杞多糖调节血糖血脂\n增强免疫：促进淋巴细胞转化（宁夏医科大学研究）\n枸杞多糖 玉米黄质 β-胡萝卜素 甜菜碱 维生素C 铁 锌 硒\n⚠ 外邪实热、脾虚泄泻者不宜大量。每日建议10-20g。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_ningxia-goji"
+    },
+    {
+      "id": "aiye_ingredient_yam",
+      "title": "药食同源食材：山药",
+      "text": "山药是什么\n请详细讲讲山药\n山药怎么吃\n山药有什么特点\n山药\nDioscorea opposita\n性平 · 味甘 · 归脾肺肾经\n补脾养胃，生津益肺，补肾涩精。 怀山药为道地，药食两用最家常之选。\n健脾养胃：山药多糖保护胃黏膜，改善消化不良\n补肺益气：缓解脾肺气虚导致的久咳虚喘\n益肾填精：用于肾虚尿频、腰膝乏力\n辅助降糖：黏液蛋白减缓碳水吸收速度\n老少皆宜：质地细腻好消化，婴幼儿辅食亦可\n山药多糖 黏液蛋白 薯蓣皂苷 淀粉 钾 磷 维生素B1",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_yam"
+    },
+    {
+      "id": "aiye_ingredient_mulberry",
+      "title": "药食同源食材：桑葚",
+      "text": "桑葚是什么\n请详细讲讲桑葚\n桑葚怎么吃\n桑葚有什么特点\n桑葚\nMorus alba\n性寒 · 味甘酸 · 归肝肾经\n滋阴补血，生津润燥。 「民间圣果」——黑紫色的天然补血剂，花青素之王。\n补血养肝：铁含量较高，配合维生素C促进吸收\n乌发明目：花青素保护视神经+滋养肝肾\n润肠通便：丰富的果胶和膳食纤维\n抗氧化抗衰老：花青素ORAC值居水果之首\n辅助降脂：白藜芦醇调节血脂代谢\n花青素 白藜芦醇 维生素C 铁 钙 锌 鞣酸\n⚠ 脾胃虚寒泄泻者不宜。糖尿病需计入糖分。不宜空腹大量食用。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_mulberry"
+    },
+    {
+      "id": "aiye_ingredient_american-ginseng",
+      "title": "药食同源食材：西洋参片",
+      "text": "西洋参片是什么\n请详细讲讲西洋参片\n西洋参片怎么吃\n西洋参片有什么特点\n西洋参片\nPanax quinquefolius\n性凉 · 味甘微苦 · 归心肺肾经\n补气养阴，清热生津。 「无火之参」——补气不上火，适合中国人体质的日常参。\n补气养阴不燥：与人参相比性凉不上火，适合长期日常服用\n清热生津：对口干咽燥、虚热烦倦效果显著\n抗疲劳：人参皂苷Rb1提高耐力和抗应激能力\n保护心血管：调节血压、抗心律失常\n增强记忆：改善脑血流和认知功能\n人参皂苷Rb1 人参皂苷Rg1 多糖 17种氨基酸 锌 铁 硒\n⚠ 脾胃虚寒、大便溏泄者慎用。感冒发热期间暂停。每日建议3-6g。",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_ingredient_american-ginseng"
+    },
+    {
+      "id": "aiye_dayougu_catalog",
+      "title": "大有谷产品目录",
+      "text": "大有谷有哪些产品\n大有谷产品目录\n请介绍大有谷全线产品\n大米：福人 · 有机五常大米；规格：2.7kg / 提；零售价：¥198；发货地：黑龙江五常\n大米：尚乾 · 有机五常大米；规格：5kg / 袋；零售价：¥188；发货地：黑龙江五常\n小米：十年有机小米 · 礼盒装；规格：4kg / 提；零售价：¥159；发货地：内蒙古敖汉旗\n小米：十年有机小米 · 家庭装；规格：2.5kg / 提；零售价：¥72；发货地：内蒙古敖汉旗\n玉米：有机鲜食玉米；规格：200g×10穗 / 箱；零售价：¥69；发货地：内蒙古敖汉旗\n玉米：有机糯玉米；规格：200g×10穗 / 箱；零售价：¥59.8；发货地：内蒙古敖汉旗\n杂粮：有机杂粮（8品种）；规格：3690g / 箱；零售价：¥158；发货地：内蒙古敖汉旗\n海鲜：39°有机盐田虾；规格：300g×5盒 / 箱；零售价：¥45/盒（¥225/箱）；发货地：内蒙古磴口\n乳品：肉苁蓉奶粉；规格：400g×2 / 份；零售价：¥319；发货地：天津武清\n食用油：芥花油（大桶）；规格：5L / 桶；零售价：¥138；发货地：呼伦贝尔\n食用油：芥花油（双瓶）；规格：1.8L×2 / 份；零售价：¥68；发货地：呼伦贝尔",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_catalog"
+    },
+    {
+      "id": "aiye_dayougu_furen-wuchang-rice",
+      "title": "大有谷产品：福人 · 有机五常大米",
+      "text": "福人 · 有机五常大米是什么\n请详细讲讲福人 · 有机五常大米\n福人 · 有机五常大米有什么特点\n福人 · 有机五常大米多少钱\n福人 · 有机五常大米什么规格\n福人 · 有机五常大米从哪里发货\n产品名称：福人 · 有机五常大米\n品类：大米\n规格：2.7kg / 提\n零售价：¥198\n发货地：黑龙江五常",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_furen-wuchang-rice"
+    },
+    {
+      "id": "aiye_dayougu_shangqian-wuchang-rice",
+      "title": "大有谷产品：尚乾 · 有机五常大米",
+      "text": "尚乾 · 有机五常大米是什么\n请详细讲讲尚乾 · 有机五常大米\n尚乾 · 有机五常大米有什么特点\n尚乾 · 有机五常大米多少钱\n尚乾 · 有机五常大米什么规格\n尚乾 · 有机五常大米从哪里发货\n产品名称：尚乾 · 有机五常大米\n品类：大米\n规格：5kg / 袋\n零售价：¥188\n发货地：黑龙江五常",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_shangqian-wuchang-rice"
+    },
+    {
+      "id": "aiye_dayougu_aohan-millet-gift",
+      "title": "大有谷产品：十年有机小米 · 礼盒装",
+      "text": "十年有机小米 · 礼盒装是什么\n请详细讲讲十年有机小米 · 礼盒装\n十年有机小米 · 礼盒装有什么特点\n十年有机小米 · 礼盒装多少钱\n十年有机小米 · 礼盒装什么规格\n十年有机小米 · 礼盒装从哪里发货\n产品名称：十年有机小米 · 礼盒装\n品类：小米\n规格：4kg / 提\n零售价：¥159\n发货地：内蒙古敖汉旗",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_aohan-millet-gift"
+    },
+    {
+      "id": "aiye_dayougu_aohan-millet-family",
+      "title": "大有谷产品：十年有机小米 · 家庭装",
+      "text": "十年有机小米 · 家庭装是什么\n请详细讲讲十年有机小米 · 家庭装\n十年有机小米 · 家庭装有什么特点\n十年有机小米 · 家庭装多少钱\n十年有机小米 · 家庭装什么规格\n十年有机小米 · 家庭装从哪里发货\n产品名称：十年有机小米 · 家庭装\n品类：小米\n规格：2.5kg / 提\n零售价：¥72\n发货地：内蒙古敖汉旗",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_aohan-millet-family"
+    },
+    {
+      "id": "aiye_dayougu_organic-fresh-corn",
+      "title": "大有谷产品：有机鲜食玉米",
+      "text": "有机鲜食玉米是什么\n请详细讲讲有机鲜食玉米\n有机鲜食玉米有什么特点\n有机鲜食玉米多少钱\n有机鲜食玉米什么规格\n有机鲜食玉米从哪里发货\n产品名称：有机鲜食玉米\n品类：玉米\n规格：200g×10穗 / 箱\n零售价：¥69\n发货地：内蒙古敖汉旗",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_organic-fresh-corn"
+    },
+    {
+      "id": "aiye_dayougu_organic-waxy-corn",
+      "title": "大有谷产品：有机糯玉米",
+      "text": "有机糯玉米是什么\n请详细讲讲有机糯玉米\n有机糯玉米有什么特点\n有机糯玉米多少钱\n有机糯玉米什么规格\n有机糯玉米从哪里发货\n产品名称：有机糯玉米\n品类：玉米\n规格：200g×10穗 / 箱\n零售价：¥59.8\n发货地：内蒙古敖汉旗",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_organic-waxy-corn"
+    },
+    {
+      "id": "aiye_dayougu_organic-mixed-grains",
+      "title": "大有谷产品：有机杂粮（8品种）",
+      "text": "有机杂粮（8品种）是什么\n请详细讲讲有机杂粮（8品种）\n有机杂粮（8品种）有什么特点\n有机杂粮（8品种）多少钱\n有机杂粮（8品种）什么规格\n有机杂粮（8品种）从哪里发货\n产品名称：有机杂粮（8品种）\n品类：杂粮\n规格：3690g / 箱\n零售价：¥158\n发货地：内蒙古敖汉旗",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_organic-mixed-grains"
+    }
+  ]
+}

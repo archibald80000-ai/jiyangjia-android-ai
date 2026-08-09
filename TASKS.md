@@ -38,6 +38,7 @@ Current status:
 - `TASK-020C`: `PARTIAL / BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; Tencent production now has the 41 approved/24 draft formal knowledge state, the approved MOV-derived 1080x1920 video/background and a bound default Profile. Real production RAG/LLM/TTS and source redaction passed. Server-local canonical HTTPS is 200; external HTTPS is still reset, so public sharing is not DONE. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 - `TASK-020D`: `DONE`; the user-authorized v2.1 knowledge is available as public GitHub JSON under `knowledge-public/v2.1/`. Production was backed up and re-indexed in 50+15 batches with real Doubao Embedding; final state is 41 approved, 24 draft, 65 vectors at 2048 dimensions. Current-policy production search passed 80/80 with zero draft leaks and complete sources. Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
 - `TASK-020E`: `DONE / READY_FOR_DEMO`; a new port-8091 candidate imported the two v2.1 batches with real Doubao Embedding and retained 41/24 documents plus 65 x 2048 FAISS vectors. Search passed 80/80 with approved Top-3 36/36, sources 100% and zero draft leaks. Five synthetic-speech audio requests passed real ASR/RAG/LLM/TTS and audio fetch after scoped short-query and `七膳` ASR normalization. Existing demo and old indexes were backed up and preserved. Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
+- `TASK-020F`: `DONE / PRODUCTION_PUBLISHED`; 25 authorized Aiye HTML files are publicly archived with SHA-256. v2.2 preserves 65 v2.1 records and adds 139 approved `aiye_` records for a 204-document production state. Real Doubao Embedding produced 340 x 2048 vectors; local and production Top-3 search passed 240/240 with sources 100% and draft leaks 0. Six text and one synthetic-speech audio flow passed the real production chain. Rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`. Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 Current order:
 
@@ -49,7 +50,7 @@ Local presentation side task: `TASK-015A(PARTIAL)`; it removes the missing-media
 
 Production domain gate: `TASK-014H(BLOCKED_BY_TENCENT_WEBBLOCK_ICP)` must pass before TASK-015.
 
-Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL production published / public HTTPS blocked) -> TASK-020D(DONE public package / production re-import) -> TASK-020E(DONE / READY_FOR_DEMO)`.
+Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL production published / public HTTPS blocked) -> TASK-020D(DONE public package / production re-import) -> TASK-020E(DONE / READY_FOR_DEMO) -> TASK-020F(DONE / v2.2 production published)`.
 
 Completed foundation retained from earlier tasks:
 

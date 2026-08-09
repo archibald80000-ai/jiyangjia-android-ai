@@ -1,0 +1,3779 @@
+{
+  "version": "2.2",
+  "cases": [
+    {
+      "id": "source-story-24-01",
+      "question": "24节气养生茶速查表是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar_term_bailu",
+        "aiye_solar_term_chunfen",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_dashu",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_dongzhi",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_jingzhe",
+        "aiye_solar_term_lichun",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_liqiu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_mangzhong",
+        "aiye_solar_term_qingming",
+        "aiye_solar_term_qiufen",
+        "aiye_solar_term_shuangjiang",
+        "aiye_solar_term_xiaohan",
+        "aiye_solar_term_xiaoman",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_xiaoxue",
+        "aiye_solar_term_xiazhi",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "24节气养生茶速查表"
+      ],
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html"
+    },
+    {
+      "id": "source-story-24-02",
+      "question": "请详细讲讲24节气养生茶速查表。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar_term_bailu",
+        "aiye_solar_term_chunfen",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_dashu",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_dongzhi",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_jingzhe",
+        "aiye_solar_term_lichun",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_liqiu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_mangzhong",
+        "aiye_solar_term_qingming",
+        "aiye_solar_term_qiufen",
+        "aiye_solar_term_shuangjiang",
+        "aiye_solar_term_xiaohan",
+        "aiye_solar_term_xiaoman",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_xiaoxue",
+        "aiye_solar_term_xiazhi",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "24节气养生茶速查表"
+      ],
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html"
+    },
+    {
+      "id": "source-story-24-03",
+      "question": "24节气养生茶速查表有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar_term_bailu",
+        "aiye_solar_term_chunfen",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_dashu",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_dongzhi",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_jingzhe",
+        "aiye_solar_term_lichun",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_liqiu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_mangzhong",
+        "aiye_solar_term_qingming",
+        "aiye_solar_term_qiufen",
+        "aiye_solar_term_shuangjiang",
+        "aiye_solar_term_xiaohan",
+        "aiye_solar_term_xiaoman",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_xiaoxue",
+        "aiye_solar_term_xiazhi",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "24节气养生茶速查表"
+      ],
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html"
+    },
+    {
+      "id": "source-story-2eea52f6246c-01",
+      "question": "茶油品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_camellia-oil_story_01",
+        "aiye_camellia-oil_story_02"
+      ],
+      "match_terms": [
+        "茶油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/茶油品牌故事.html"
+    },
+    {
+      "id": "source-story-2eea52f6246c-02",
+      "question": "请详细讲讲茶油品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_camellia-oil_story_01",
+        "aiye_camellia-oil_story_02"
+      ],
+      "match_terms": [
+        "茶油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/茶油品牌故事.html"
+    },
+    {
+      "id": "source-story-2eea52f6246c-03",
+      "question": "茶油品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_camellia-oil_story_01",
+        "aiye_camellia-oil_story_02"
+      ],
+      "match_terms": [
+        "茶油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/茶油品牌故事.html"
+    },
+    {
+      "id": "source-story-60979ab62ff0-01",
+      "question": "大有谷合作产品手册是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷合作产品手册"
+      ],
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html"
+    },
+    {
+      "id": "source-story-60979ab62ff0-02",
+      "question": "请详细讲讲大有谷合作产品手册。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷合作产品手册"
+      ],
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html"
+    },
+    {
+      "id": "source-story-60979ab62ff0-03",
+      "question": "大有谷合作产品手册有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷合作产品手册"
+      ],
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html"
+    },
+    {
+      "id": "source-story-0af5c452957d-01",
+      "question": "二十四节气养生茶品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "二十四节气养生茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html"
+    },
+    {
+      "id": "source-story-0af5c452957d-02",
+      "question": "请详细讲讲二十四节气养生茶品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "二十四节气养生茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html"
+    },
+    {
+      "id": "source-story-0af5c452957d-03",
+      "question": "二十四节气养生茶品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "二十四节气养生茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html"
+    },
+    {
+      "id": "source-story-d26990670bbd-01",
+      "question": "飞鸡蛋品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_free-range-eggs_story_01",
+        "aiye_free-range-eggs_story_02",
+        "aiye_free-range-eggs_story_03",
+        "aiye_free-range-eggs_story_04"
+      ],
+      "match_terms": [
+        "飞鸡蛋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html"
+    },
+    {
+      "id": "source-story-d26990670bbd-02",
+      "question": "请详细讲讲飞鸡蛋品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_free-range-eggs_story_01",
+        "aiye_free-range-eggs_story_02",
+        "aiye_free-range-eggs_story_03",
+        "aiye_free-range-eggs_story_04"
+      ],
+      "match_terms": [
+        "飞鸡蛋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html"
+    },
+    {
+      "id": "source-story-d26990670bbd-03",
+      "question": "飞鸡蛋品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_free-range-eggs_story_01",
+        "aiye_free-range-eggs_story_02",
+        "aiye_free-range-eggs_story_03",
+        "aiye_free-range-eggs_story_04"
+      ],
+      "match_terms": [
+        "飞鸡蛋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html"
+    },
+    {
+      "id": "source-story-09759045ee45-01",
+      "question": "旱地亚麻籽品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_golden-flaxseed_story_01",
+        "aiye_golden-flaxseed_story_02",
+        "aiye_golden-flaxseed_story_03",
+        "aiye_golden-flaxseed_story_04"
+      ],
+      "match_terms": [
+        "旱地亚麻籽品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html"
+    },
+    {
+      "id": "source-story-09759045ee45-02",
+      "question": "请详细讲讲旱地亚麻籽品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_golden-flaxseed_story_01",
+        "aiye_golden-flaxseed_story_02",
+        "aiye_golden-flaxseed_story_03",
+        "aiye_golden-flaxseed_story_04"
+      ],
+      "match_terms": [
+        "旱地亚麻籽品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html"
+    },
+    {
+      "id": "source-story-09759045ee45-03",
+      "question": "旱地亚麻籽品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_golden-flaxseed_story_01",
+        "aiye_golden-flaxseed_story_02",
+        "aiye_golden-flaxseed_story_03",
+        "aiye_golden-flaxseed_story_04"
+      ],
+      "match_terms": [
+        "旱地亚麻籽品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html"
+    },
+    {
+      "id": "source-story-69d3191e5bba-01",
+      "question": "黄芪蜂蜜醋品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03"
+      ],
+      "match_terms": [
+        "黄芪蜂蜜醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html"
+    },
+    {
+      "id": "source-story-69d3191e5bba-02",
+      "question": "请详细讲讲黄芪蜂蜜醋品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03"
+      ],
+      "match_terms": [
+        "黄芪蜂蜜醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html"
+    },
+    {
+      "id": "source-story-69d3191e5bba-03",
+      "question": "黄芪蜂蜜醋品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03"
+      ],
+      "match_terms": [
+        "黄芪蜂蜜醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html"
+    },
+    {
+      "id": "source-story-0fdb22a00924-01",
+      "question": "积养家社区健康臻选计划是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_community-health-event_story_01",
+        "aiye_community-health-event_story_02"
+      ],
+      "match_terms": [
+        "积养家社区健康臻选计划"
+      ],
+      "source_file": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html"
+    },
+    {
+      "id": "source-story-0fdb22a00924-02",
+      "question": "请详细讲讲积养家社区健康臻选计划。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_community-health-event_story_01",
+        "aiye_community-health-event_story_02"
+      ],
+      "match_terms": [
+        "积养家社区健康臻选计划"
+      ],
+      "source_file": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html"
+    },
+    {
+      "id": "source-story-0fdb22a00924-03",
+      "question": "积养家社区健康臻选计划有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_community-health-event_story_01",
+        "aiye_community-health-event_story_02"
+      ],
+      "match_terms": [
+        "积养家社区健康臻选计划"
+      ],
+      "source_file": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html"
+    },
+    {
+      "id": "source-story-fd6ae94c528d-01",
+      "question": "积养家下午茶体验菜单是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03"
+      ],
+      "match_terms": [
+        "积养家下午茶体验菜单"
+      ],
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html"
+    },
+    {
+      "id": "source-story-fd6ae94c528d-02",
+      "question": "请详细讲讲积养家下午茶体验菜单。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03"
+      ],
+      "match_terms": [
+        "积养家下午茶体验菜单"
+      ],
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html"
+    },
+    {
+      "id": "source-story-fd6ae94c528d-03",
+      "question": "积养家下午茶体验菜单有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03"
+      ],
+      "match_terms": [
+        "积养家下午茶体验菜单"
+      ],
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html"
+    },
+    {
+      "id": "source-story-caeee0b9f4fd-01",
+      "question": "积养家药食同源食材大全是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_ingredient_american-ginseng",
+        "aiye_ingredient_angelica",
+        "aiye_ingredient_astragalus",
+        "aiye_ingredient_codonopsis",
+        "aiye_ingredient_dendrobium",
+        "aiye_ingredient_euryale",
+        "aiye_ingredient_fig",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_ingredient_ginger",
+        "aiye_ingredient_lily-bulb",
+        "aiye_ingredient_mulberry",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_ingredient_notoginseng",
+        "aiye_ingredient_ophiopogon",
+        "aiye_ingredient_polygonatum",
+        "aiye_ingredient_poria",
+        "aiye_ingredient_rose",
+        "aiye_ingredient_yam"
+      ],
+      "match_terms": [
+        "积养家药食同源食材大全"
+      ],
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html"
+    },
+    {
+      "id": "source-story-caeee0b9f4fd-02",
+      "question": "请详细讲讲积养家药食同源食材大全。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_ingredient_american-ginseng",
+        "aiye_ingredient_angelica",
+        "aiye_ingredient_astragalus",
+        "aiye_ingredient_codonopsis",
+        "aiye_ingredient_dendrobium",
+        "aiye_ingredient_euryale",
+        "aiye_ingredient_fig",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_ingredient_ginger",
+        "aiye_ingredient_lily-bulb",
+        "aiye_ingredient_mulberry",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_ingredient_notoginseng",
+        "aiye_ingredient_ophiopogon",
+        "aiye_ingredient_polygonatum",
+        "aiye_ingredient_poria",
+        "aiye_ingredient_rose",
+        "aiye_ingredient_yam"
+      ],
+      "match_terms": [
+        "积养家药食同源食材大全"
+      ],
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html"
+    },
+    {
+      "id": "source-story-caeee0b9f4fd-03",
+      "question": "积养家药食同源食材大全有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_ingredient_american-ginseng",
+        "aiye_ingredient_angelica",
+        "aiye_ingredient_astragalus",
+        "aiye_ingredient_codonopsis",
+        "aiye_ingredient_dendrobium",
+        "aiye_ingredient_euryale",
+        "aiye_ingredient_fig",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_ingredient_ginger",
+        "aiye_ingredient_lily-bulb",
+        "aiye_ingredient_mulberry",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_ingredient_notoginseng",
+        "aiye_ingredient_ophiopogon",
+        "aiye_ingredient_polygonatum",
+        "aiye_ingredient_poria",
+        "aiye_ingredient_rose",
+        "aiye_ingredient_yam"
+      ],
+      "match_terms": [
+        "积养家药食同源食材大全"
+      ],
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html"
+    },
+    {
+      "id": "source-story-01e5d6546b57-01",
+      "question": "金华古法酱油品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-soy-sauce_story_01",
+        "aiye_jinhua-soy-sauce_story_02",
+        "aiye_jinhua-soy-sauce_story_03"
+      ],
+      "match_terms": [
+        "金华古法酱油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html"
+    },
+    {
+      "id": "source-story-01e5d6546b57-02",
+      "question": "请详细讲讲金华古法酱油品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-soy-sauce_story_01",
+        "aiye_jinhua-soy-sauce_story_02",
+        "aiye_jinhua-soy-sauce_story_03"
+      ],
+      "match_terms": [
+        "金华古法酱油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html"
+    },
+    {
+      "id": "source-story-01e5d6546b57-03",
+      "question": "金华古法酱油品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-soy-sauce_story_01",
+        "aiye_jinhua-soy-sauce_story_02",
+        "aiye_jinhua-soy-sauce_story_03"
+      ],
+      "match_terms": [
+        "金华古法酱油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html"
+    },
+    {
+      "id": "source-story-91f4ad24f799-01",
+      "question": "金华两头乌火腿品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_04"
+      ],
+      "match_terms": [
+        "金华两头乌火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-91f4ad24f799-02",
+      "question": "请详细讲讲金华两头乌火腿品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_04"
+      ],
+      "match_terms": [
+        "金华两头乌火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-91f4ad24f799-03",
+      "question": "金华两头乌火腿品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_04"
+      ],
+      "match_terms": [
+        "金华两头乌火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-6eb4b2228cf6-01",
+      "question": "金华农家火腿品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_02",
+        "aiye_jinhua-farm-ham_story_03"
+      ],
+      "match_terms": [
+        "金华农家火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-6eb4b2228cf6-02",
+      "question": "请详细讲讲金华农家火腿品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_02",
+        "aiye_jinhua-farm-ham_story_03"
+      ],
+      "match_terms": [
+        "金华农家火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-6eb4b2228cf6-03",
+      "question": "金华农家火腿品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_02",
+        "aiye_jinhua-farm-ham_story_03"
+      ],
+      "match_terms": [
+        "金华农家火腿品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html"
+    },
+    {
+      "id": "source-story-e32bf379ed5b-01",
+      "question": "罗埠土酱油礼盒品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_luobu-soy-sauce-gift_story_01",
+        "aiye_luobu-soy-sauce-gift_story_02",
+        "aiye_luobu-soy-sauce-gift_story_03"
+      ],
+      "match_terms": [
+        "罗埠土酱油礼盒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html"
+    },
+    {
+      "id": "source-story-e32bf379ed5b-02",
+      "question": "请详细讲讲罗埠土酱油礼盒品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_luobu-soy-sauce-gift_story_01",
+        "aiye_luobu-soy-sauce-gift_story_02",
+        "aiye_luobu-soy-sauce-gift_story_03"
+      ],
+      "match_terms": [
+        "罗埠土酱油礼盒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html"
+    },
+    {
+      "id": "source-story-e32bf379ed5b-03",
+      "question": "罗埠土酱油礼盒品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_luobu-soy-sauce-gift_story_01",
+        "aiye_luobu-soy-sauce-gift_story_02",
+        "aiye_luobu-soy-sauce-gift_story_03"
+      ],
+      "match_terms": [
+        "罗埠土酱油礼盒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html"
+    },
+    {
+      "id": "source-story-611c5d1c6aa4-01",
+      "question": "农家古法黄豆酱品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_farm-soybean-paste_story_01",
+        "aiye_farm-soybean-paste_story_02",
+        "aiye_farm-soybean-paste_story_03"
+      ],
+      "match_terms": [
+        "农家古法黄豆酱品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html"
+    },
+    {
+      "id": "source-story-611c5d1c6aa4-02",
+      "question": "请详细讲讲农家古法黄豆酱品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_farm-soybean-paste_story_01",
+        "aiye_farm-soybean-paste_story_02",
+        "aiye_farm-soybean-paste_story_03"
+      ],
+      "match_terms": [
+        "农家古法黄豆酱品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html"
+    },
+    {
+      "id": "source-story-611c5d1c6aa4-03",
+      "question": "农家古法黄豆酱品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_farm-soybean-paste_story_01",
+        "aiye_farm-soybean-paste_story_02",
+        "aiye_farm-soybean-paste_story_03"
+      ],
+      "match_terms": [
+        "农家古法黄豆酱品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html"
+    },
+    {
+      "id": "source-story-3a92b2edabe7-01",
+      "question": "沙漠一号虎坚果油品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tiger-nut-oil_story_01",
+        "aiye_tiger-nut-oil_story_02",
+        "aiye_tiger-nut-oil_story_03",
+        "aiye_tiger-nut-oil_story_04"
+      ],
+      "match_terms": [
+        "沙漠一号虎坚果油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html"
+    },
+    {
+      "id": "source-story-3a92b2edabe7-02",
+      "question": "请详细讲讲沙漠一号虎坚果油品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tiger-nut-oil_story_01",
+        "aiye_tiger-nut-oil_story_02",
+        "aiye_tiger-nut-oil_story_03",
+        "aiye_tiger-nut-oil_story_04"
+      ],
+      "match_terms": [
+        "沙漠一号虎坚果油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html"
+    },
+    {
+      "id": "source-story-3a92b2edabe7-03",
+      "question": "沙漠一号虎坚果油品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tiger-nut-oil_story_01",
+        "aiye_tiger-nut-oil_story_02",
+        "aiye_tiger-nut-oil_story_03",
+        "aiye_tiger-nut-oil_story_04"
+      ],
+      "match_terms": [
+        "沙漠一号虎坚果油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html"
+    },
+    {
+      "id": "source-story-cec7d8dc2d31-01",
+      "question": "山西老陈醋品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shanxi-aged-vinegar_story_01",
+        "aiye_shanxi-aged-vinegar_story_02",
+        "aiye_shanxi-aged-vinegar_story_03"
+      ],
+      "match_terms": [
+        "山西老陈醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html"
+    },
+    {
+      "id": "source-story-cec7d8dc2d31-02",
+      "question": "请详细讲讲山西老陈醋品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shanxi-aged-vinegar_story_01",
+        "aiye_shanxi-aged-vinegar_story_02",
+        "aiye_shanxi-aged-vinegar_story_03"
+      ],
+      "match_terms": [
+        "山西老陈醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html"
+    },
+    {
+      "id": "source-story-cec7d8dc2d31-03",
+      "question": "山西老陈醋品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shanxi-aged-vinegar_story_01",
+        "aiye_shanxi-aged-vinegar_story_02",
+        "aiye_shanxi-aged-vinegar_story_03"
+      ],
+      "match_terms": [
+        "山西老陈醋品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html"
+    },
+    {
+      "id": "source-story-0bf486caeae8-01",
+      "question": "上珍缘宣莲品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_02",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "上珍缘宣莲品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html"
+    },
+    {
+      "id": "source-story-0bf486caeae8-02",
+      "question": "请详细讲讲上珍缘宣莲品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_02",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "上珍缘宣莲品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html"
+    },
+    {
+      "id": "source-story-0bf486caeae8-03",
+      "question": "上珍缘宣莲品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_02",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "上珍缘宣莲品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html"
+    },
+    {
+      "id": "source-story-b47bb436a9fd-01",
+      "question": "时珍太和圣坊养生茶系列是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_shizhen-health-tea_story_04"
+      ],
+      "match_terms": [
+        "时珍太和圣坊养生茶系列"
+      ],
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html"
+    },
+    {
+      "id": "source-story-b47bb436a9fd-02",
+      "question": "请详细讲讲时珍太和圣坊养生茶系列。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_shizhen-health-tea_story_04"
+      ],
+      "match_terms": [
+        "时珍太和圣坊养生茶系列"
+      ],
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html"
+    },
+    {
+      "id": "source-story-b47bb436a9fd-03",
+      "question": "时珍太和圣坊养生茶系列有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_shizhen-health-tea_story_04"
+      ],
+      "match_terms": [
+        "时珍太和圣坊养生茶系列"
+      ],
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html"
+    },
+    {
+      "id": "source-story-7a75fc16471a-01",
+      "question": "塔牌黄酒品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_02",
+        "aiye_tapai-rice-wine_story_03",
+        "aiye_tapai-rice-wine_story_04"
+      ],
+      "match_terms": [
+        "塔牌黄酒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html"
+    },
+    {
+      "id": "source-story-7a75fc16471a-02",
+      "question": "请详细讲讲塔牌黄酒品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_02",
+        "aiye_tapai-rice-wine_story_03",
+        "aiye_tapai-rice-wine_story_04"
+      ],
+      "match_terms": [
+        "塔牌黄酒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html"
+    },
+    {
+      "id": "source-story-7a75fc16471a-03",
+      "question": "塔牌黄酒品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_02",
+        "aiye_tapai-rice-wine_story_03",
+        "aiye_tapai-rice-wine_story_04"
+      ],
+      "match_terms": [
+        "塔牌黄酒品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html"
+    },
+    {
+      "id": "source-story-192fb2f8707e-01",
+      "question": "藤茶品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_vine-tea_story_01",
+        "aiye_vine-tea_story_02",
+        "aiye_vine-tea_story_03",
+        "aiye_vine-tea_story_04"
+      ],
+      "match_terms": [
+        "藤茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html"
+    },
+    {
+      "id": "source-story-192fb2f8707e-02",
+      "question": "请详细讲讲藤茶品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_vine-tea_story_01",
+        "aiye_vine-tea_story_02",
+        "aiye_vine-tea_story_03",
+        "aiye_vine-tea_story_04"
+      ],
+      "match_terms": [
+        "藤茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html"
+    },
+    {
+      "id": "source-story-192fb2f8707e-03",
+      "question": "藤茶品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_vine-tea_story_01",
+        "aiye_vine-tea_story_02",
+        "aiye_vine-tea_story_03",
+        "aiye_vine-tea_story_04"
+      ],
+      "match_terms": [
+        "藤茶品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html"
+    },
+    {
+      "id": "source-story-dd0678b65b71-01",
+      "question": "五指岩鲜姜品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "五指岩鲜姜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html"
+    },
+    {
+      "id": "source-story-dd0678b65b71-02",
+      "question": "请详细讲讲五指岩鲜姜品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "五指岩鲜姜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html"
+    },
+    {
+      "id": "source-story-dd0678b65b71-03",
+      "question": "五指岩鲜姜品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "五指岩鲜姜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html"
+    },
+    {
+      "id": "source-story-ad6d3d0ce1f4-01",
+      "question": "武当山野山蜂蜜品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wudang-wild-honey_story_02",
+        "aiye_wudang-wild-honey_story_03"
+      ],
+      "match_terms": [
+        "武当山野山蜂蜜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html"
+    },
+    {
+      "id": "source-story-ad6d3d0ce1f4-02",
+      "question": "请详细讲讲武当山野山蜂蜜品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wudang-wild-honey_story_02",
+        "aiye_wudang-wild-honey_story_03"
+      ],
+      "match_terms": [
+        "武当山野山蜂蜜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html"
+    },
+    {
+      "id": "source-story-ad6d3d0ce1f4-03",
+      "question": "武当山野山蜂蜜品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wudang-wild-honey_story_02",
+        "aiye_wudang-wild-honey_story_03"
+      ],
+      "match_terms": [
+        "武当山野山蜂蜜品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html"
+    },
+    {
+      "id": "source-story-9145064f7931-01",
+      "question": "香榧油品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_torreya-oil_story_01",
+        "aiye_torreya-oil_story_02",
+        "aiye_torreya-oil_story_03"
+      ],
+      "match_terms": [
+        "香榧油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html"
+    },
+    {
+      "id": "source-story-9145064f7931-02",
+      "question": "请详细讲讲香榧油品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_torreya-oil_story_01",
+        "aiye_torreya-oil_story_02",
+        "aiye_torreya-oil_story_03"
+      ],
+      "match_terms": [
+        "香榧油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html"
+    },
+    {
+      "id": "source-story-9145064f7931-03",
+      "question": "香榧油品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_torreya-oil_story_01",
+        "aiye_torreya-oil_story_02",
+        "aiye_torreya-oil_story_03"
+      ],
+      "match_terms": [
+        "香榧油品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html"
+    },
+    {
+      "id": "source-story-b2a51d99e365-01",
+      "question": "云南文山三七片品牌故事是什么？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "云南文山三七片品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html"
+    },
+    {
+      "id": "source-story-b2a51d99e365-02",
+      "question": "请详细讲讲云南文山三七片品牌故事。",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "云南文山三七片品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html"
+    },
+    {
+      "id": "source-story-b2a51d99e365-03",
+      "question": "云南文山三七片品牌故事有什么特点？",
+      "category": "source-story",
+      "expected_any": [
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "云南文山三七片品牌故事"
+      ],
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html"
+    },
+    {
+      "id": "solar-term-49593251d56d-01",
+      "question": "立春养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lichun",
+        "aiye_tapai-rice-wine_story_01"
+      ],
+      "match_terms": [
+        "立春"
+      ]
+    },
+    {
+      "id": "solar-term-49593251d56d-02",
+      "question": "请详细讲讲立春养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lichun",
+        "aiye_tapai-rice-wine_story_01"
+      ],
+      "match_terms": [
+        "立春"
+      ]
+    },
+    {
+      "id": "solar-term-49593251d56d-03",
+      "question": "立春养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lichun",
+        "aiye_tapai-rice-wine_story_01"
+      ],
+      "match_terms": [
+        "立春"
+      ]
+    },
+    {
+      "id": "solar-term-7965be586bc2-01",
+      "question": "雨水养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar_term_yushui",
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "雨水"
+      ]
+    },
+    {
+      "id": "solar-term-7965be586bc2-02",
+      "question": "请详细讲讲雨水养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar_term_yushui",
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "雨水"
+      ]
+    },
+    {
+      "id": "solar-term-7965be586bc2-03",
+      "question": "雨水养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar_term_yushui",
+        "aiye_wudang-wild-honey_story_01",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "雨水"
+      ]
+    },
+    {
+      "id": "solar-term-0c812fe10542-01",
+      "question": "惊蛰养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "惊蛰"
+      ]
+    },
+    {
+      "id": "solar-term-0c812fe10542-02",
+      "question": "请详细讲讲惊蛰养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "惊蛰"
+      ]
+    },
+    {
+      "id": "solar-term-0c812fe10542-03",
+      "question": "惊蛰养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "惊蛰"
+      ]
+    },
+    {
+      "id": "solar-term-8254b5a8ddac-01",
+      "question": "春分养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_chunfen"
+      ],
+      "match_terms": [
+        "春分"
+      ]
+    },
+    {
+      "id": "solar-term-8254b5a8ddac-02",
+      "question": "请详细讲讲春分养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_chunfen"
+      ],
+      "match_terms": [
+        "春分"
+      ]
+    },
+    {
+      "id": "solar-term-8254b5a8ddac-03",
+      "question": "春分养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_chunfen"
+      ],
+      "match_terms": [
+        "春分"
+      ]
+    },
+    {
+      "id": "solar-term-9509a9c3aeee-01",
+      "question": "清明养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_qingming",
+        "aiye_vine-tea_story_03",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_03",
+        "aiye_xuan-lotus-seed_story_01"
+      ],
+      "match_terms": [
+        "清明"
+      ]
+    },
+    {
+      "id": "solar-term-9509a9c3aeee-02",
+      "question": "请详细讲讲清明养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_qingming",
+        "aiye_vine-tea_story_03",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_03",
+        "aiye_xuan-lotus-seed_story_01"
+      ],
+      "match_terms": [
+        "清明"
+      ]
+    },
+    {
+      "id": "solar-term-9509a9c3aeee-03",
+      "question": "清明养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_qingming",
+        "aiye_vine-tea_story_03",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_03",
+        "aiye_xuan-lotus-seed_story_01"
+      ],
+      "match_terms": [
+        "清明"
+      ]
+    },
+    {
+      "id": "solar-term-413c715dea0b-01",
+      "question": "谷雨养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "谷雨"
+      ]
+    },
+    {
+      "id": "solar-term-413c715dea0b-02",
+      "question": "请详细讲讲谷雨养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "谷雨"
+      ]
+    },
+    {
+      "id": "solar-term-413c715dea0b-03",
+      "question": "谷雨养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "谷雨"
+      ]
+    },
+    {
+      "id": "solar-term-b0fa1af3d77f-01",
+      "question": "立夏养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_lixia"
+      ],
+      "match_terms": [
+        "立夏"
+      ]
+    },
+    {
+      "id": "solar-term-b0fa1af3d77f-02",
+      "question": "请详细讲讲立夏养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_lixia"
+      ],
+      "match_terms": [
+        "立夏"
+      ]
+    },
+    {
+      "id": "solar-term-b0fa1af3d77f-03",
+      "question": "立夏养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_lixia"
+      ],
+      "match_terms": [
+        "立夏"
+      ]
+    },
+    {
+      "id": "solar-term-b9322b11b1b0-01",
+      "question": "小满养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiaoman"
+      ],
+      "match_terms": [
+        "小满"
+      ]
+    },
+    {
+      "id": "solar-term-b9322b11b1b0-02",
+      "question": "请详细讲讲小满养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiaoman"
+      ],
+      "match_terms": [
+        "小满"
+      ]
+    },
+    {
+      "id": "solar-term-b9322b11b1b0-03",
+      "question": "小满养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiaoman"
+      ],
+      "match_terms": [
+        "小满"
+      ]
+    },
+    {
+      "id": "solar-term-c5fcdb9f9364-01",
+      "question": "芒种养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "芒种"
+      ]
+    },
+    {
+      "id": "solar-term-c5fcdb9f9364-02",
+      "question": "请详细讲讲芒种养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "芒种"
+      ]
+    },
+    {
+      "id": "solar-term-c5fcdb9f9364-03",
+      "question": "芒种养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "芒种"
+      ]
+    },
+    {
+      "id": "solar-term-a78082fc0d9d-01",
+      "question": "夏至养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiazhi"
+      ],
+      "match_terms": [
+        "夏至"
+      ]
+    },
+    {
+      "id": "solar-term-a78082fc0d9d-02",
+      "question": "请详细讲讲夏至养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiazhi"
+      ],
+      "match_terms": [
+        "夏至"
+      ]
+    },
+    {
+      "id": "solar-term-a78082fc0d9d-03",
+      "question": "夏至养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_xiazhi"
+      ],
+      "match_terms": [
+        "夏至"
+      ]
+    },
+    {
+      "id": "solar-term-3ed3bc0826a4-01",
+      "question": "小暑养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_xiaoshu"
+      ],
+      "match_terms": [
+        "小暑"
+      ]
+    },
+    {
+      "id": "solar-term-3ed3bc0826a4-02",
+      "question": "请详细讲讲小暑养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_xiaoshu"
+      ],
+      "match_terms": [
+        "小暑"
+      ]
+    },
+    {
+      "id": "solar-term-3ed3bc0826a4-03",
+      "question": "小暑养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_xiaoshu"
+      ],
+      "match_terms": [
+        "小暑"
+      ]
+    },
+    {
+      "id": "solar-term-19970681a018-01",
+      "question": "大暑养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_dashu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "大暑"
+      ]
+    },
+    {
+      "id": "solar-term-19970681a018-02",
+      "question": "请详细讲讲大暑养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_dashu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "大暑"
+      ]
+    },
+    {
+      "id": "solar-term-19970681a018-03",
+      "question": "大暑养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_dashu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "大暑"
+      ]
+    },
+    {
+      "id": "solar-term-0911f0f90eaa-01",
+      "question": "立秋养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu"
+      ],
+      "match_terms": [
+        "立秋"
+      ]
+    },
+    {
+      "id": "solar-term-0911f0f90eaa-02",
+      "question": "请详细讲讲立秋养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu"
+      ],
+      "match_terms": [
+        "立秋"
+      ]
+    },
+    {
+      "id": "solar-term-0911f0f90eaa-03",
+      "question": "立秋养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu"
+      ],
+      "match_terms": [
+        "立秋"
+      ]
+    },
+    {
+      "id": "solar-term-c2a8e5db0582-01",
+      "question": "处暑养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_chushu"
+      ],
+      "match_terms": [
+        "处暑"
+      ]
+    },
+    {
+      "id": "solar-term-c2a8e5db0582-02",
+      "question": "请详细讲讲处暑养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_chushu"
+      ],
+      "match_terms": [
+        "处暑"
+      ]
+    },
+    {
+      "id": "solar-term-c2a8e5db0582-03",
+      "question": "处暑养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_chushu"
+      ],
+      "match_terms": [
+        "处暑"
+      ]
+    },
+    {
+      "id": "solar-term-74a1f3943ea6-01",
+      "question": "白露养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_bailu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "白露"
+      ]
+    },
+    {
+      "id": "solar-term-74a1f3943ea6-02",
+      "question": "请详细讲讲白露养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_bailu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "白露"
+      ]
+    },
+    {
+      "id": "solar-term-74a1f3943ea6-03",
+      "question": "白露养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_bailu",
+        "aiye_xuan-lotus-seed_story_01",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "白露"
+      ]
+    },
+    {
+      "id": "solar-term-d3a3aa6af72d-01",
+      "question": "秋分养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_qiufen"
+      ],
+      "match_terms": [
+        "秋分"
+      ]
+    },
+    {
+      "id": "solar-term-d3a3aa6af72d-02",
+      "question": "请详细讲讲秋分养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_qiufen"
+      ],
+      "match_terms": [
+        "秋分"
+      ]
+    },
+    {
+      "id": "solar-term-d3a3aa6af72d-03",
+      "question": "秋分养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_qiufen"
+      ],
+      "match_terms": [
+        "秋分"
+      ]
+    },
+    {
+      "id": "solar-term-4e75036d689f-01",
+      "question": "寒露养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "寒露"
+      ]
+    },
+    {
+      "id": "solar-term-4e75036d689f-02",
+      "question": "请详细讲讲寒露养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "寒露"
+      ]
+    },
+    {
+      "id": "solar-term-4e75036d689f-03",
+      "question": "寒露养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "寒露"
+      ]
+    },
+    {
+      "id": "solar-term-e9be5ea79534-01",
+      "question": "霜降养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_shuangjiang",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "霜降"
+      ]
+    },
+    {
+      "id": "solar-term-e9be5ea79534-02",
+      "question": "请详细讲讲霜降养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_shuangjiang",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "霜降"
+      ]
+    },
+    {
+      "id": "solar-term-e9be5ea79534-03",
+      "question": "霜降养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_shuangjiang",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "霜降"
+      ]
+    },
+    {
+      "id": "solar-term-bde2f599adfb-01",
+      "question": "立冬养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_04",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lidong",
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_03"
+      ],
+      "match_terms": [
+        "立冬"
+      ]
+    },
+    {
+      "id": "solar-term-bde2f599adfb-02",
+      "question": "请详细讲讲立冬养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_04",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lidong",
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_03"
+      ],
+      "match_terms": [
+        "立冬"
+      ]
+    },
+    {
+      "id": "solar-term-bde2f599adfb-03",
+      "question": "立冬养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_jinhua-farm-ham_story_01",
+        "aiye_jinhua-farm-ham_story_03",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_jinhua-liangtouyu-ham_story_04",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_lidong",
+        "aiye_tapai-rice-wine_story_01",
+        "aiye_tapai-rice-wine_story_03"
+      ],
+      "match_terms": [
+        "立冬"
+      ]
+    },
+    {
+      "id": "solar-term-5641a328d1f5-01",
+      "question": "小雪养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "小雪"
+      ]
+    },
+    {
+      "id": "solar-term-5641a328d1f5-02",
+      "question": "请详细讲讲小雪养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "小雪"
+      ]
+    },
+    {
+      "id": "solar-term-5641a328d1f5-03",
+      "question": "小雪养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "小雪"
+      ]
+    },
+    {
+      "id": "solar-term-39d6539f406e-01",
+      "question": "大雪养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "大雪"
+      ]
+    },
+    {
+      "id": "solar-term-39d6539f406e-02",
+      "question": "请详细讲讲大雪养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "大雪"
+      ]
+    },
+    {
+      "id": "solar-term-39d6539f406e-03",
+      "question": "大雪养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "大雪"
+      ]
+    },
+    {
+      "id": "solar-term-c63c5e8210d3-01",
+      "question": "冬至养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "冬至"
+      ]
+    },
+    {
+      "id": "solar-term-c63c5e8210d3-02",
+      "question": "请详细讲讲冬至养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "冬至"
+      ]
+    },
+    {
+      "id": "solar-term-c63c5e8210d3-03",
+      "question": "冬至养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_jinhua-liangtouyu-ham_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "冬至"
+      ]
+    },
+    {
+      "id": "solar-term-2f1fbb513a38-01",
+      "question": "小寒养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaohan"
+      ],
+      "match_terms": [
+        "小寒"
+      ]
+    },
+    {
+      "id": "solar-term-2f1fbb513a38-02",
+      "question": "请详细讲讲小寒养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaohan"
+      ],
+      "match_terms": [
+        "小寒"
+      ]
+    },
+    {
+      "id": "solar-term-2f1fbb513a38-03",
+      "question": "小寒养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_xiaohan"
+      ],
+      "match_terms": [
+        "小寒"
+      ]
+    },
+    {
+      "id": "solar-term-fd50c4d554fb-01",
+      "question": "大寒养生茶是什么？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dahan"
+      ],
+      "match_terms": [
+        "大寒"
+      ]
+    },
+    {
+      "id": "solar-term-fd50c4d554fb-02",
+      "question": "请详细讲讲大寒养生茶。",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dahan"
+      ],
+      "match_terms": [
+        "大寒"
+      ]
+    },
+    {
+      "id": "solar-term-fd50c4d554fb-03",
+      "question": "大寒养生茶有什么特点？",
+      "category": "solar-term",
+      "expected_any": [
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_dahan"
+      ],
+      "match_terms": [
+        "大寒"
+      ]
+    },
+    {
+      "id": "ingredient-ginger-01",
+      "question": "生姜是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_ginger",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_yushui",
+        "aiye_vine-tea_story_04",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "生姜"
+      ]
+    },
+    {
+      "id": "ingredient-ginger-02",
+      "question": "请详细讲讲生姜。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_ginger",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_yushui",
+        "aiye_vine-tea_story_04",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "生姜"
+      ]
+    },
+    {
+      "id": "ingredient-ginger-03",
+      "question": "生姜有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_ginger",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_hanlu",
+        "aiye_solar_term_lidong",
+        "aiye_solar_term_yushui",
+        "aiye_vine-tea_story_04",
+        "aiye_wuzhiyan-ginger_story_01",
+        "aiye_wuzhiyan-ginger_story_02",
+        "aiye_wuzhiyan-ginger_story_03"
+      ],
+      "match_terms": [
+        "生姜"
+      ]
+    },
+    {
+      "id": "ingredient-astragalus-01",
+      "question": "黄芪是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_golden-flaxseed_story_01",
+        "aiye_ingredient_astragalus",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "黄芪"
+      ]
+    },
+    {
+      "id": "ingredient-astragalus-02",
+      "question": "请详细讲讲黄芪。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_golden-flaxseed_story_01",
+        "aiye_ingredient_astragalus",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "黄芪"
+      ]
+    },
+    {
+      "id": "ingredient-astragalus-03",
+      "question": "黄芪有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_astragalus-honey-vinegar_story_01",
+        "aiye_astragalus-honey-vinegar_story_02",
+        "aiye_astragalus-honey-vinegar_story_03",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_golden-flaxseed_story_01",
+        "aiye_ingredient_astragalus",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue",
+        "aiye_solar_term_jingzhe"
+      ],
+      "match_terms": [
+        "黄芪"
+      ]
+    },
+    {
+      "id": "ingredient-codonopsis-01",
+      "question": "党参段是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_codonopsis"
+      ],
+      "match_terms": [
+        "党参段"
+      ]
+    },
+    {
+      "id": "ingredient-codonopsis-02",
+      "question": "请详细讲讲党参段。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_codonopsis"
+      ],
+      "match_terms": [
+        "党参段"
+      ]
+    },
+    {
+      "id": "ingredient-codonopsis-03",
+      "question": "党参段有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_codonopsis"
+      ],
+      "match_terms": [
+        "党参段"
+      ]
+    },
+    {
+      "id": "ingredient-notoginseng-01",
+      "question": "三七是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_notoginseng",
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "三七"
+      ]
+    },
+    {
+      "id": "ingredient-notoginseng-02",
+      "question": "请详细讲讲三七。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_notoginseng",
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "三七"
+      ]
+    },
+    {
+      "id": "ingredient-notoginseng-03",
+      "question": "三七有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_ingredient_notoginseng",
+        "aiye_wenshan-notoginseng_story_01",
+        "aiye_wenshan-notoginseng_story_02",
+        "aiye_wenshan-notoginseng_story_03",
+        "aiye_wenshan-notoginseng_story_04"
+      ],
+      "match_terms": [
+        "三七"
+      ]
+    },
+    {
+      "id": "ingredient-poria-01",
+      "question": "茯苓是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_poria",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "茯苓"
+      ]
+    },
+    {
+      "id": "ingredient-poria-02",
+      "question": "请详细讲讲茯苓。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_poria",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "茯苓"
+      ]
+    },
+    {
+      "id": "ingredient-poria-03",
+      "question": "茯苓有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_01",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_poria",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_solar_term_guyu",
+        "aiye_solar_term_xiaoshu",
+        "aiye_solar_term_yushui"
+      ],
+      "match_terms": [
+        "茯苓"
+      ]
+    },
+    {
+      "id": "ingredient-angelica-01",
+      "question": "当归是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_angelica",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "当归"
+      ]
+    },
+    {
+      "id": "ingredient-angelica-02",
+      "question": "请详细讲讲当归。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_angelica",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "当归"
+      ]
+    },
+    {
+      "id": "ingredient-angelica-03",
+      "question": "当归有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_01",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_angelica",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_daxue"
+      ],
+      "match_terms": [
+        "当归"
+      ]
+    },
+    {
+      "id": "ingredient-euryale-01",
+      "question": "芡实仁是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_euryale"
+      ],
+      "match_terms": [
+        "芡实仁"
+      ]
+    },
+    {
+      "id": "ingredient-euryale-02",
+      "question": "请详细讲讲芡实仁。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_euryale"
+      ],
+      "match_terms": [
+        "芡实仁"
+      ]
+    },
+    {
+      "id": "ingredient-euryale-03",
+      "question": "芡实仁有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_euryale"
+      ],
+      "match_terms": [
+        "芡实仁"
+      ]
+    },
+    {
+      "id": "ingredient-lily-bulb-01",
+      "question": "百合是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_lily-bulb",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "百合"
+      ]
+    },
+    {
+      "id": "ingredient-lily-bulb-02",
+      "question": "请详细讲讲百合。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_lily-bulb",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "百合"
+      ]
+    },
+    {
+      "id": "ingredient-lily-bulb-03",
+      "question": "百合有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_lily-bulb",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_liqiu",
+        "aiye_xuan-lotus-seed_story_03",
+        "aiye_xuan-lotus-seed_story_04"
+      ],
+      "match_terms": [
+        "百合"
+      ]
+    },
+    {
+      "id": "ingredient-fig-01",
+      "question": "无花果是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_fig",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "无花果"
+      ]
+    },
+    {
+      "id": "ingredient-fig-02",
+      "question": "请详细讲讲无花果。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_fig",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "无花果"
+      ]
+    },
+    {
+      "id": "ingredient-fig-03",
+      "question": "无花果有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_fig",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_guyu"
+      ],
+      "match_terms": [
+        "无花果"
+      ]
+    },
+    {
+      "id": "ingredient-rose-01",
+      "question": "大玫瑰是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_rose"
+      ],
+      "match_terms": [
+        "大玫瑰"
+      ]
+    },
+    {
+      "id": "ingredient-rose-02",
+      "question": "请详细讲讲大玫瑰。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_rose"
+      ],
+      "match_terms": [
+        "大玫瑰"
+      ]
+    },
+    {
+      "id": "ingredient-rose-03",
+      "question": "大玫瑰有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_rose"
+      ],
+      "match_terms": [
+        "大玫瑰"
+      ]
+    },
+    {
+      "id": "ingredient-dendrobium-01",
+      "question": "铁皮石斛是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_dendrobium"
+      ],
+      "match_terms": [
+        "铁皮石斛"
+      ]
+    },
+    {
+      "id": "ingredient-dendrobium-02",
+      "question": "请详细讲讲铁皮石斛。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_dendrobium"
+      ],
+      "match_terms": [
+        "铁皮石斛"
+      ]
+    },
+    {
+      "id": "ingredient-dendrobium-03",
+      "question": "铁皮石斛有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_ingredient_dendrobium"
+      ],
+      "match_terms": [
+        "铁皮石斛"
+      ]
+    },
+    {
+      "id": "ingredient-ophiopogon-01",
+      "question": "麦冬是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_ophiopogon",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "麦冬"
+      ]
+    },
+    {
+      "id": "ingredient-ophiopogon-02",
+      "question": "请详细讲讲麦冬。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_ophiopogon",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "麦冬"
+      ]
+    },
+    {
+      "id": "ingredient-ophiopogon-03",
+      "question": "麦冬有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_afternoon-tea-menu_story_03",
+        "aiye_food-medicine-ingredients_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_ophiopogon",
+        "aiye_shizhen-health-tea_story_01",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar_term_chushu",
+        "aiye_solar_term_lixia",
+        "aiye_solar_term_xiaoxue"
+      ],
+      "match_terms": [
+        "麦冬"
+      ]
+    },
+    {
+      "id": "ingredient-polygonatum-01",
+      "question": "九蒸黄精是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_polygonatum",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "九蒸黄精"
+      ]
+    },
+    {
+      "id": "ingredient-polygonatum-02",
+      "question": "请详细讲讲九蒸黄精。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_polygonatum",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "九蒸黄精"
+      ]
+    },
+    {
+      "id": "ingredient-polygonatum-03",
+      "question": "九蒸黄精有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_polygonatum",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dongzhi"
+      ],
+      "match_terms": [
+        "九蒸黄精"
+      ]
+    },
+    {
+      "id": "ingredient-aged-tangerine-peel-01",
+      "question": "老陈皮是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "老陈皮"
+      ]
+    },
+    {
+      "id": "ingredient-aged-tangerine-peel-02",
+      "question": "请详细讲讲老陈皮。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "老陈皮"
+      ]
+    },
+    {
+      "id": "ingredient-aged-tangerine-peel-03",
+      "question": "老陈皮有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_aged-tangerine-peel",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_03",
+        "aiye_solar_term_hanlu"
+      ],
+      "match_terms": [
+        "老陈皮"
+      ]
+    },
+    {
+      "id": "ingredient-fujian-lotus-seed-01",
+      "question": "福建莲子是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "福建莲子"
+      ]
+    },
+    {
+      "id": "ingredient-fujian-lotus-seed-02",
+      "question": "请详细讲讲福建莲子。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "福建莲子"
+      ]
+    },
+    {
+      "id": "ingredient-fujian-lotus-seed-03",
+      "question": "福建莲子有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_fujian-lotus-seed",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "福建莲子"
+      ]
+    },
+    {
+      "id": "ingredient-ningxia-goji-01",
+      "question": "宁夏枸杞是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "宁夏枸杞"
+      ]
+    },
+    {
+      "id": "ingredient-ningxia-goji-02",
+      "question": "请详细讲讲宁夏枸杞。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "宁夏枸杞"
+      ]
+    },
+    {
+      "id": "ingredient-ningxia-goji-03",
+      "question": "宁夏枸杞有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_ningxia-goji",
+        "aiye_solar-term-tea-story_story_05"
+      ],
+      "match_terms": [
+        "宁夏枸杞"
+      ]
+    },
+    {
+      "id": "ingredient-yam-01",
+      "question": "山药是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_yam",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_xuan-lotus-seed_story_03"
+      ],
+      "match_terms": [
+        "山药"
+      ]
+    },
+    {
+      "id": "ingredient-yam-02",
+      "question": "请详细讲讲山药。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_yam",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_xuan-lotus-seed_story_03"
+      ],
+      "match_terms": [
+        "山药"
+      ]
+    },
+    {
+      "id": "ingredient-yam-03",
+      "question": "山药有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_afternoon-tea-menu_story_02",
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_yam",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_04",
+        "aiye_solar-term-tea-story_story_05",
+        "aiye_solar_term_dahan",
+        "aiye_xuan-lotus-seed_story_03"
+      ],
+      "match_terms": [
+        "山药"
+      ]
+    },
+    {
+      "id": "ingredient-mulberry-01",
+      "question": "桑葚是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_mulberry",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "桑葚"
+      ]
+    },
+    {
+      "id": "ingredient-mulberry-02",
+      "question": "请详细讲讲桑葚。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_mulberry",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "桑葚"
+      ]
+    },
+    {
+      "id": "ingredient-mulberry-03",
+      "question": "桑葚有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_03",
+        "aiye_ingredient_mulberry",
+        "aiye_shizhen-health-tea_story_02",
+        "aiye_shizhen-health-tea_story_03",
+        "aiye_solar-term-tea-guide_story_01",
+        "aiye_solar-term-tea-story_story_02",
+        "aiye_solar_term_mangzhong"
+      ],
+      "match_terms": [
+        "桑葚"
+      ]
+    },
+    {
+      "id": "ingredient-american-ginseng-01",
+      "question": "西洋参片是什么？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_american-ginseng"
+      ],
+      "match_terms": [
+        "西洋参片"
+      ]
+    },
+    {
+      "id": "ingredient-american-ginseng-02",
+      "question": "请详细讲讲西洋参片。",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_american-ginseng"
+      ],
+      "match_terms": [
+        "西洋参片"
+      ]
+    },
+    {
+      "id": "ingredient-american-ginseng-03",
+      "question": "西洋参片有什么特点？",
+      "category": "ingredient",
+      "expected_any": [
+        "aiye_food-medicine-ingredients_story_04",
+        "aiye_ingredient_american-ginseng"
+      ],
+      "match_terms": [
+        "西洋参片"
+      ]
+    },
+    {
+      "id": "dayougu-catalog-8f42eb55cacd-01",
+      "question": "大有谷产品目录是什么？",
+      "category": "dayougu-catalog",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷"
+      ]
+    },
+    {
+      "id": "dayougu-catalog-8f42eb55cacd-02",
+      "question": "请详细讲讲大有谷产品目录。",
+      "category": "dayougu-catalog",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷"
+      ]
+    },
+    {
+      "id": "dayougu-catalog-8f42eb55cacd-03",
+      "question": "大有谷产品目录有什么特点？",
+      "category": "dayougu-catalog",
+      "expected_any": [
+        "aiye_dayougu-products_story_01",
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu-products_story_04",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder",
+        "aiye_dayougu_furen-wuchang-rice",
+        "aiye_dayougu_organic-fresh-corn",
+        "aiye_dayougu_organic-mixed-grains",
+        "aiye_dayougu_organic-salt-field-shrimp",
+        "aiye_dayougu_organic-waxy-corn",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "大有谷"
+      ]
+    },
+    {
+      "id": "dayougu-sku-furen-wuchang-rice-01",
+      "question": "福人 · 有机五常大米是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_furen-wuchang-rice"
+      ],
+      "match_terms": [
+        "福人 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-furen-wuchang-rice-02",
+      "question": "请详细讲讲福人 · 有机五常大米。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_furen-wuchang-rice"
+      ],
+      "match_terms": [
+        "福人 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-furen-wuchang-rice-03",
+      "question": "福人 · 有机五常大米有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_furen-wuchang-rice"
+      ],
+      "match_terms": [
+        "福人 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-shangqian-wuchang-rice-01",
+      "question": "尚乾 · 有机五常大米是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "尚乾 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-shangqian-wuchang-rice-02",
+      "question": "请详细讲讲尚乾 · 有机五常大米。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "尚乾 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-shangqian-wuchang-rice-03",
+      "question": "尚乾 · 有机五常大米有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_shangqian-wuchang-rice"
+      ],
+      "match_terms": [
+        "尚乾 · 有机五常大米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-gift-01",
+      "question": "十年有机小米 · 礼盒装是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 礼盒装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-gift-02",
+      "question": "请详细讲讲十年有机小米 · 礼盒装。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 礼盒装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-gift-03",
+      "question": "十年有机小米 · 礼盒装有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-gift",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 礼盒装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-family-01",
+      "question": "十年有机小米 · 家庭装是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 家庭装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-family-02",
+      "question": "请详细讲讲十年有机小米 · 家庭装。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 家庭装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-aohan-millet-family-03",
+      "question": "十年有机小米 · 家庭装有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_aohan-millet-family",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "十年有机小米 · 家庭装"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-fresh-corn-01",
+      "question": "有机鲜食玉米是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-fresh-corn"
+      ],
+      "match_terms": [
+        "有机鲜食玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-fresh-corn-02",
+      "question": "请详细讲讲有机鲜食玉米。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-fresh-corn"
+      ],
+      "match_terms": [
+        "有机鲜食玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-fresh-corn-03",
+      "question": "有机鲜食玉米有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-fresh-corn"
+      ],
+      "match_terms": [
+        "有机鲜食玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-waxy-corn-01",
+      "question": "有机糯玉米是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-waxy-corn"
+      ],
+      "match_terms": [
+        "有机糯玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-waxy-corn-02",
+      "question": "请详细讲讲有机糯玉米。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-waxy-corn"
+      ],
+      "match_terms": [
+        "有机糯玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-waxy-corn-03",
+      "question": "有机糯玉米有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-waxy-corn"
+      ],
+      "match_terms": [
+        "有机糯玉米"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-mixed-grains-01",
+      "question": "有机杂粮（8品种）是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-mixed-grains"
+      ],
+      "match_terms": [
+        "有机杂粮（8品种）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-mixed-grains-02",
+      "question": "请详细讲讲有机杂粮（8品种）。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-mixed-grains"
+      ],
+      "match_terms": [
+        "有机杂粮（8品种）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-mixed-grains-03",
+      "question": "有机杂粮（8品种）有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-mixed-grains"
+      ],
+      "match_terms": [
+        "有机杂粮（8品种）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-salt-field-shrimp-01",
+      "question": "39°有机盐田虾是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-salt-field-shrimp"
+      ],
+      "match_terms": [
+        "39°有机盐田虾"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-salt-field-shrimp-02",
+      "question": "请详细讲讲39°有机盐田虾。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-salt-field-shrimp"
+      ],
+      "match_terms": [
+        "39°有机盐田虾"
+      ]
+    },
+    {
+      "id": "dayougu-sku-organic-salt-field-shrimp-03",
+      "question": "39°有机盐田虾有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_02",
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_organic-salt-field-shrimp"
+      ],
+      "match_terms": [
+        "39°有机盐田虾"
+      ]
+    },
+    {
+      "id": "dayougu-sku-cistanche-milk-powder-01",
+      "question": "肉苁蓉奶粉是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder"
+      ],
+      "match_terms": [
+        "肉苁蓉奶粉"
+      ]
+    },
+    {
+      "id": "dayougu-sku-cistanche-milk-powder-02",
+      "question": "请详细讲讲肉苁蓉奶粉。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder"
+      ],
+      "match_terms": [
+        "肉苁蓉奶粉"
+      ]
+    },
+    {
+      "id": "dayougu-sku-cistanche-milk-powder-03",
+      "question": "肉苁蓉奶粉有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_catalog",
+        "aiye_dayougu_cistanche-milk-powder"
+      ],
+      "match_terms": [
+        "肉苁蓉奶粉"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-5l-01",
+      "question": "芥花油（大桶）是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（大桶）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-5l-02",
+      "question": "请详细讲讲芥花油（大桶）。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（大桶）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-5l-03",
+      "question": "芥花油（大桶）有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-5l",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（大桶）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-twin-pack-01",
+      "question": "芥花油（双瓶）是什么？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（双瓶）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-twin-pack-02",
+      "question": "请详细讲讲芥花油（双瓶）。",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（双瓶）"
+      ]
+    },
+    {
+      "id": "dayougu-sku-canola-oil-twin-pack-03",
+      "question": "芥花油（双瓶）有什么特点？",
+      "category": "dayougu-sku",
+      "expected_any": [
+        "aiye_dayougu-products_story_03",
+        "aiye_dayougu_canola-oil-twin-pack",
+        "aiye_dayougu_catalog"
+      ],
+      "match_terms": [
+        "芥花油（双瓶）"
+      ]
+    }
+  ]
+}
