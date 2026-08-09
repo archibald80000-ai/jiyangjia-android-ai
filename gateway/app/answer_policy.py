@@ -121,6 +121,8 @@ JIYANGJIA_BUSINESS_PHRASES = (
     "做完要注意",
 )
 
+JIYANGJIA_SHORT_INTENTS = {"怎么体验", "怎么体验？", "怎么体验?"}
+
 
 def classify_answer_scope(text: str) -> AnswerScope:
     """Classify whether a question requires approved 积养家 knowledge.
@@ -133,6 +135,8 @@ def classify_answer_scope(text: str) -> AnswerScope:
     normalized = "".join(text.lower().split())
     if not normalized:
         return "general"
+    if normalized in JIYANGJIA_SHORT_INTENTS:
+        return "jiyangjia"
     if "积养家" in normalized:
         return "jiyangjia"
     if any(term in normalized for term in GENERAL_INTENT_TERMS):

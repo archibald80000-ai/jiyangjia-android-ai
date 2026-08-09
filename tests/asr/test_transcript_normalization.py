@@ -11,6 +11,7 @@ def test_normalizes_common_jiyangjia_homophones() -> None:
         "您好，欢迎来到吉阳家。",
         "您好，欢迎来到积阳家。",
         "请问济氧家有什么服务？",
+        "请问七养家是做什么的？",
     ]
 
     for sample in samples:
@@ -26,6 +27,18 @@ def test_keeps_correct_brand_unchanged() -> None:
     assert result.text == "您好，欢迎来到积养家。"
     assert result.changed is False
     assert result.replacements == []
+
+
+def test_normalizes_seven_meal_alias_only_in_soup_context() -> None:
+    result = normalize_transcript_text("漆扇鸡汤是什么？")
+
+    assert result.text == "七膳鸡汤是什么？"
+    assert result.changed is True
+    assert result.replacements == [{"from": "漆扇", "to": "七膳", "type": "product"}]
+
+    unrelated = normalize_transcript_text("我想体验漆扇制作。")
+    assert unrelated.text == "我想体验漆扇制作。"
+    assert unrelated.changed is False
 
 
 def test_does_not_change_unrelated_text() -> None:

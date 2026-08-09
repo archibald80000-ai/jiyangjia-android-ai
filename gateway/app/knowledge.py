@@ -8,6 +8,7 @@ import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import quote
 from typing import Iterable, Protocol
 
 import faiss
@@ -23,6 +24,11 @@ STOP_TOKENS = {"有没有", "有没", "没有", "可以", "怎么", "什么", "�
 MIN_KNOWLEDGE_SCORE = 0.6
 MIN_KEYWORD_ONLY_SCORE = 0.7
 MIN_VECTOR_ONLY_SCORE = 0.82
+
+SHORT_QUERY_EXPANSIONS = (
+    (re.compile(r"^(?:你们)?有(?:什么|哪些)产品[？?。]?$"), "食材有什么 汤品有什么 智能产品是什么"),
+    (re.compile(r"^(?:第一次来)?怎么体验[？?。]?$"), "第一次来怎么办 第一次来有什么流程"),
+)
 
 
 class EmbeddingLike(Protocol):
@@ -316,10 +322,11 @@ class SQLiteKnowledgeStore:
         # strongest relevant document is still draft, the information is not
         # approved for use and tangential approved documents must not mask it.
         candidate_statuses = ("approved", "draft")
+        search_query = _expand_search_query(query)
         vector_scores: dict[str, float] = {}
         if embedding_provider is not None and self._vector_index is not None and self._vector_index.ntotal > 0 and self._vector_dimensions > 1:
-            vector_scores = await self._vector_search(query, embedding_provider, request_id, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
-        keyword_scores = self._keyword_search(query, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
+            vector_scores = await self._vector_search(search_query, embedding_provider, request_id, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
+        keyword_scores = self._keyword_search(search_query, top_k=max(top_k * 4, 8), allowed=candidate_statuses)
         merged = self._merge_scores(vector_scores, keyword_scores, allowed=candidate_statuses)
         if include_draft:
             return merged[:top_k]
@@ -617,9 +624,17 @@ def _match_from_row(row: sqlite3.Row, *, confidence: float, vector_score: float,
         "confidence": round(confidence, 4),
         "vector_score": round(float(vector_score), 4),
         "keyword_score": round(float(keyword_score), 4),
-        "source": {"uri": row["source_uri"] or "manual", "chunk_id": row["chunk_id"]},
+        "source": {"uri": _public_source_uri(row["source_uri"], row["doc_id"]), "chunk_id": row["chunk_id"]},
         "excerpt": row["text"][:240],
     }
+
+
+def _public_source_uri(source_uri: str | None, doc_id: str) -> str:
+    raw = str(source_uri or "").strip()
+    scheme = re.match(r"^([a-z][a-z0-9+.-]*)://", raw, flags=re.IGNORECASE)
+    if scheme and scheme.group(1).lower() in {"http", "https", "admin", "manual", "knowledge"}:
+        return raw
+    return f"knowledge://{quote(str(doc_id), safe='-._~')}"
 
 
 def _tokens(text: str) -> list[str]:
@@ -639,6 +654,14 @@ def _tokens(text: str) -> list[str]:
         trigrams.extend(chunk[i : i + 3] for i in range(max(0, len(chunk) - 2)))
     tokens = ascii_tokens + chinese_chunks + trigrams + bigrams
     return [token for token in dict.fromkeys(tokens) if token not in STOP_TOKENS]
+
+
+def _expand_search_query(query: str) -> str:
+    normalized = "".join(query.strip().split())
+    for pattern, expansion in SHORT_QUERY_EXPANSIONS:
+        if pattern.fullmatch(normalized):
+            return f"{query.strip()} {expansion}"
+    return query
 
 
 def _rough_token_count(text: str) -> int:

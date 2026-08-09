@@ -1,6 +1,6 @@
 version: 1
-updated: 2026-08-07
-current: TASK-014D
+updated: 2026-08-08
+current: TASK-014H
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -164,3 +164,33 @@ tasks:
     priority: p2
     status: DONE
     depends_on: [TASK-015]
+  - id: TASK-020A
+    file: TASK-020A_FORMAL_KNOWLEDGE_IMPORT_ACCEPTANCE.md
+    title: "Accept the formal v2.1 knowledge package with real Embedding"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-017]
+  - id: TASK-020B
+    file: TASK-020B_AVATAR_KNOWLEDGE_BINDING.md
+    title: "Bind accepted formal knowledge to the local avatar dialogue demo"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020A, TASK-015A]
+  - id: TASK-020C
+    file: TASK-020C_PRODUCTION_KNOWLEDGE_AVATAR_SHARE.md
+    title: "Publish formal knowledge/avatar state and document public sharing"
+    priority: p0
+    status: PARTIAL
+    depends_on: [TASK-020B, TASK-014H]
+  - id: TASK-020D
+    file: TASK-020D_PUBLIC_KNOWLEDGE_PACKAGE.md
+    title: "Publish the authorized knowledge package and re-import production RAG"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020C]
+  - id: TASK-020E
+    file: TASK-020E_GATEWAY_REAL_IMPORT_ACCEPTANCE.md
+    title: "Accept the v2.1 package in a real Provider Gateway"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020D]

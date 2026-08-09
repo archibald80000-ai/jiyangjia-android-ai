@@ -41,11 +41,14 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-014：腾讯云部署与 Gateway 生产链路收口（基于任务环境）。
 - TASK-014A：四页管理后台（system / knowledge / avatar / display）+发布闭环+路由 API。
 - TASK-014H：生产域名、服务器 TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已配置；公网仍被腾讯 DNSPod webblock/ICP 门禁阻塞。
+- TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
+- TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。公网分享仍受 ICP/Webblock 门禁阻塞。
+- TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
 
 ## 未完成项（不在本基线宣称范围）
 
 - Android 12 真机验收（TASK-015）。
-- 生产环境 ADMIN_TOKEN 与正式内容发布流程。
+- 公网域名 ICP/Webblock 放行后的正式分享验收。
 - LiveTalking 全流程重入与实时口型（增强阶段）。
 - 生产监控、告警、CDN/成本保护与长期稳定性验证。
 
@@ -56,6 +59,7 @@ android-app/     Android 大屏客户端源码（APK 产物不入库）
 gateway/         FastAPI 服务、路由、Provider 适配器
 integration/     外部服务适配说明（若新增）
 knowledge-test/   受控知识样例（可复用但非正式资料）
+knowledge-public/ 经授权公开的正式知识 JSON、分批导入文件和校验清单
 config/          示例配置与上游锁版本
 deploy/          Docker Compose 与部署说明（不含密钥）
 scripts/         校验、发布辅助、Provider 工具脚本
@@ -140,6 +144,36 @@ Copy-Item .env.example .env.local
 - `GET /api/v1/client/config`
 - `GET /api/v1/admin/system/status`
 - `GET|POST /api/v1/admin/*`
+
+## 在线知识库与实时分享
+
+GitHub 仓库中的公开知识库入口：[积养家 AI 客服知识库](docs/knowledge/README.md)。员工可以从该页浏览 [v2.1 完整知识内容](knowledge-public/v2.1/import_all.json)，也可以使用 [第一批](knowledge-public/v2.1/import_batch_01.json) 和 [第二批](knowledge-public/v2.1/import_batch_02.json) 导入 Gateway。
+
+本次经用户明确授权的 65 条对外宣传/员工学习知识已进入公共 GitHub。未授权原始 PDF/DOCX、SQLite 和 FAISS 仍不进入 Git；线上运行数据继续由 Gateway 的 SQLite + FAISS 保存：
+
+- 服务器 SQLite：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
+- 服务器 FAISS：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`
+- 当前状态：41 approved、24 draft、65 chunks、65 个 2048 维向量
+- 只读状态接口：[知识库实时状态](https://ai-jiyangjia.cloud/api/v1/knowledge/status)
+
+备案/腾讯接入放行后的正式分享入口：
+
+- [AI 数字人演示](https://ai-jiyangjia.cloud/demo/kiosk)
+- [系统健康状态](https://ai-jiyangjia.cloud/health)
+- [知识库实时状态](https://ai-jiyangjia.cloud/api/v1/knowledge/status)
+- [数字人素材清单](https://ai-jiyangjia.cloud/api/v1/assets/manifest)
+- [大屏 Display Profile](https://ai-jiyangjia.cloud/api/v1/display/profile)
+
+当前外网实测状态：HTTP 正确 308 跳转 HTTPS，但 HTTPS 仍在腾讯侧被重置；服务器内部经正式域名 TLS 的上述接口均为 200。**在 ICP/Webblock 门禁解除前，这些链接不能对外宣称已可访问。** 不得通过开放 8080 或取消 HTTPS 跳转来绕过门禁。
+
+线上默认虚拟人视频来自 `E:\work\ai-kefu\资料库\人像背景.MOV`，生产使用其浏览器/Android 兼容的 H.264 1080x1920 MP4 衍生版：
+
+- 视频 ID：`asset_6a549a648fe647f1`
+- 视频 SHA-256：`7B19190A3A13A149780B3D9FC371D296EF356C92A8F8744119E573F673221AEB`
+- 背景 ID：`asset_0f04a1bf5a0b4237`
+- Profile：`display-1080x1920`，portrait、fit、默认启用
+
+管理后台 `https://ai-jiyangjia.cloud/admin` 和 `ADMIN_TOKEN` 仅供管理员使用，不应作为分享链接发送。
 
 ## Android 端位置
 

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, chunk_text, parse_selected_knowledge_path
+from gateway.app.knowledge import KnowledgeDocument, SQLiteKnowledgeStore, _expand_search_query, _public_source_uri, chunk_text, parse_selected_knowledge_path
 
 
 class SemanticEmbeddingProvider:
@@ -20,6 +20,14 @@ def test_schema_rejects_invalid_status() -> None:
     store = SQLiteKnowledgeStore(":memory:")
     with pytest.raises(ValueError):
         store.upsert_many([KnowledgeDocument("bad", "bad", "bad", "mock")])
+
+
+def test_public_source_uri_preserves_public_schemes_and_redacts_local_paths() -> None:
+    assert _public_source_uri("manual://faq/brand", "faq-brand") == "manual://faq/brand"
+    assert _public_source_uri("admin://knowledge/run/chunk", "faq-brand") == "admin://knowledge/run/chunk"
+    assert _public_source_uri("https://example.com/brand", "faq-brand") == "https://example.com/brand"
+    assert _public_source_uri(r"E:\private\brand.md", "faq-brand") == "knowledge://faq-brand"
+    assert _public_source_uri("file:///private/brand.md", "faq-brand") == "knowledge://faq-brand"
 
 
 def test_chunk_text_splits_long_content() -> None:
@@ -78,6 +86,16 @@ def test_jiyangjia_query_is_searched_instead_of_rejected_before_retrieval() -> N
     store = SQLiteKnowledgeStore(":memory:")
     policy = store.classify_query("这个项目能治病吗")
     assert policy == {"action": "search", "scope": "jiyangjia", "category": None, "message": None}
+
+
+def test_kiosk_short_queries_expand_without_changing_unrelated_questions() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+
+    assert store.classify_query("怎么体验？")["scope"] == "jiyangjia"
+    assert store.classify_query("这个游戏怎么体验？")["scope"] == "general"
+    assert "智能产品是什么" in _expand_search_query("有什么产品？")
+    assert "第一次来怎么办" in _expand_search_query("怎么体验？")
+    assert _expand_search_query("积养家是什么？") == "积养家是什么？"
 
 
 def test_general_query_bypasses_business_knowledge_search() -> None:

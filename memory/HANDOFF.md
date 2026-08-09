@@ -1,14 +1,14 @@
 # Handoff
 
-Updated: 2026-08-07
+Updated: 2026-08-08
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-014H-production-domain-https`; baseline `main` was `49dc45f` at task start.
-- Current task status: `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: complete Tencent Cloud ICP/domain access onboarding, then rerun TASK-014H public HTTPS and Certbot renewal acceptance before TASK-015.
+- Current branch: `task/TASK-020E-gateway-real-import`, based on completed TASK-020D commit `7036a2a`.
+- Current task status: `TASK-020E DONE / READY_FOR_DEMO`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
+- Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -28,6 +28,56 @@ Updated: 2026-08-07
 - TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
 - TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
+- TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
+- TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
+- TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
+- TASK-020D: DONE. The explicitly authorized v2.1 JSON is tracked under `knowledge-public/v2.1/`; production was backed up and re-imported in 50+15 batches with real Doubao Embedding. Final 80-case current-policy acceptance is 100%, sources are complete and draft leaks are 0.
+- TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
+
+## TASK-020E runtime and rollback
+
+- Gateway: `http://127.0.0.1:8091` while PID from `var/task020e/20260808T055957Z/candidate/gateway.pid` remains running.
+- Candidate SQLite/FAISS: `var/task020e/20260808T055957Z/candidate/knowledge.db` and `faiss.index`.
+- Preserved demo/real backups: `var/task020e/20260808T055957Z/backups/pre-import/`.
+- Raw ignored evidence: `var/task020e/20260808T055957Z/candidate/`.
+- Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
+
+## TASK-020D public package and rollback
+
+- Public employee entry: `knowledge-public/README.md`.
+- Full review file: `knowledge-public/v2.1/import_all.json`.
+- Gateway import files: `knowledge-public/v2.1/import_batch_01.json`, then `import_batch_02.json`; the API rejects more than 50 documents per request.
+- Manifest/checksums: `knowledge-public/v2.1/manifest.json`.
+- Production rollback backup: `/opt/jiyangjia-ai/backups/task020d-public-knowledge-20260808T034524Z`.
+- Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
+
+## TASK-020C production paths
+
+- SQLite: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
+- FAISS: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`
+- Assets: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/assets/`
+- Backup: `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`
+- Target demo: `https://ai-jiyangjia.cloud/demo/kiosk` after TASK-014H unblock.
+- Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
+
+## TASK-020B runtime and rollback
+
+- Demo URL: `http://127.0.0.1:18084/demo/kiosk` while the isolated process remains running.
+- Bound SQLite/FAISS: `var/task014a-dev/task020a-candidate-20260808T023610Z/`.
+- Rollback backup: `var/local-avatar-demo/backups/task020b-20260808T025409Z/`.
+- Runtime dialogue evidence remains ignored at `var/local-avatar-demo/task020b-20260808T025409Z/`.
+- Public source URIs are sanitized to `knowledge://<doc_id>`; original local source paths are not returned.
+- Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
+
+## TASK-020A runtime and rollback
+
+- Existing active files: `var/task014a-dev/knowledge.db` and `var/task014a-dev/faiss.index`.
+- Required backups: `knowledge.db.backup.20260808T023610Z` and `faiss.index.backup.20260808T023610Z` in the same ignored directory.
+- Candidate: `var/task014a-dev/task020a-candidate-20260808T023610Z/`.
+- Candidate Gateway: `http://127.0.0.1:8090`; it uses real Doubao Embedding and must not be confused with the Mock-Embedding port-18081 demo.
+- ASR, TTS and LLM on 8090 are Mock. The next dialogue task must use real providers before claiming an AI avatar voice demonstration.
+- Raw 80-case output stays in ignored runtime state and must not be committed or uploaded.
+- Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 
 ## TASK-014H server state
 
@@ -79,13 +129,13 @@ Updated: 2026-08-07
 
 ## Human inputs still required
 
-- Reviewed formal business knowledge beyond the controlled demo FAQ set.
+- No additional formal knowledge content is required for the v2.1 demo gate; future content changes still require review and versioned approval.
 - Target Android screen resolution, density, orientation, safe area and audio hardware details.
 - Android 12 physical device for TASK-015 USB microphone, speaker, network, reboot and long-run acceptance.
 
 ## Next action
 
-Do not claim or repeat TASK-015 acceptance while TASK-014H public HTTPS is blocked. Complete ICP/domain access onboarding, rerun public HTTPS and Certbot dry-run, then reassess TASK-015 inputs.
+Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
 
 ## Safety boundaries
 

@@ -1,6 +1,56 @@
 # Current state
 
-Updated: 2026-08-07
+Updated: 2026-08-08
+
+## TASK-020E real Gateway import acceptance
+
+- DONE / READY_FOR_DEMO on isolated `http://127.0.0.1:8091`; this is not Android physical-device or public HTTPS acceptance.
+- Existing port-18081 demo and port-18084 real candidate SQLite/FAISS were backed up under `var/task020e/20260808T055957Z/backups/pre-import/` and left unchanged.
+- The two v2.1 batches imported with all four real Doubao Providers: 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions; SQLite integrity is `ok`.
+- Final 80-case search: policy 80/80, approved Top-3 36/36, sources complete 80/80 and draft leaks 0.
+- Five real audio requests used Doubao-generated synthetic speech and passed Doubao ASR -> SQLite/FAISS RAG -> Doubao LLM -> Doubao TTS plus audio fetch. They are not human microphone recordings.
+- Scoped fixes add soup-context `漆扇/七扇/七善 -> 七膳` normalization and retrieval expansion for `有什么产品` / `怎么体验`; the v2.1 JSON, statuses and vectors were not modified.
+- Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
+
+## TASK-020D public knowledge package and production re-import
+
+- DONE: the user-authorized v2.1 package is published in repository source under `knowledge-public/v2.1/` for employee learning and Gateway import.
+- Public package contains 65 documents: 41 approved and 24 draft; local workstation paths are standardized to `knowledge://<doc_id>`.
+- Production backup: `/opt/jiyangjia-ai/backups/task020d-public-knowledge-20260808T034524Z`.
+- Production import used supported 50+15 batches with request IDs `task020d-batch-01` and `task020d-batch-02`; real Doubao Embedding produced 65 vectors at 2048 dimensions.
+- SQLite integrity is `ok`; content fingerprint matches the public package; Windows source URIs are 0.
+- Production search acceptance passed 80/80 under the current policy; approved Top-1 36/36, draft exclusion 14/14, safe handling 24/24, general no-match 6/6, sources complete 80/80 and draft leaks 0.
+- Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
+
+## TASK-020C production knowledge/avatar sharing
+
+- PARTIAL: production publication is complete; public sharing remains blocked by Tencent Webblock/ICP.
+- Active release knowledge paths are `var/knowledge/jiyangjia.db` and `var/knowledge/faiss.index` under `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/`; final state is 41 approved, 24 draft, 65 vectors at 2048 dimensions.
+- The approved MOV-derived 1080x1920 H.264 video is production asset `asset_6a549a648fe647f1`; same-source JPG is `asset_0f04a1bf5a0b4237`; both are bound to default `display-1080x1920`.
+- Production backup is `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`.
+- Real production dialogue `task020c-production-final` matched approved sources, returned only `knowledge://` URIs and fetched Doubao MP3 TTS.
+- Server-local canonical HTTPS health/demo/knowledge routes return 200. External HTTP redirects to HTTPS, while external HTTPS still resets before Nginx.
+- Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
+
+## TASK-020B avatar knowledge binding
+
+- DONE locally at `http://127.0.0.1:18084/demo/kiosk` with real Doubao ASR/TTS/LLM/Embedding.
+- The demo uses `var/task014a-dev/task020a-candidate-20260808T023610Z/knowledge.db` and `faiss.index`: 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions.
+- The previous avatar admin/knowledge/FAISS state is preserved at `var/local-avatar-demo/backups/task020b-20260808T025409Z/`.
+- Real WAV acceptance normalized ASR `七养家` to `积养家`, matched `faq_brand_001` and `faq_boundary_009`, and fetched 140,781-byte `audio/mpeg` TTS.
+- Public source citations now redact local source paths to stable `knowledge://<doc_id>` URIs.
+- Browser text dialogue passed with the published 1080x1920 video playing and the UI returning to idle after playback.
+- Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
+
+## TASK-020A formal knowledge import acceptance
+
+- DONE locally on isolated `127.0.0.1:8090` with real Doubao Embedding; port 8080 was not used.
+- The reviewed v2.1 package imported as 65 documents: 41 approved and 24 draft, with 65 chunks and 65 FAISS vectors at 2048 dimensions.
+- Current-policy 80-case acceptance passed 80/80: approved Top-1 36/36, draft exclusion 14/14, safe handling 24/24 and general no-match 6/6. Sources contract was complete 80/80 and draft leaks were 0.
+- The unchanged legacy exact-label result is 42/80 because it expects draft matches and the superseded `safe_transfer` response status; both metrics are retained.
+- Existing `var/task014a-dev/knowledge.db` and `faiss.index` were backed up with UTC stamp `20260808T023610Z` and left in use by the port-18081 demo. Candidate files and raw evaluation remain ignored under `var/task014a-dev/task020a-candidate-20260808T023610Z/`.
+- The 8090 acceptance process uses real Embedding only; ASR/TTS/LLM remain Mock, so this is not a completed voice-dialogue claim.
+- Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 
 ## TASK-014H production domain
 
@@ -166,7 +216,7 @@ Android recording
 ## Not completed
 
 - OpenAI-compatible fallback LLM with a non-DeepSeek, non-Doubao third provider.
-- Formal production knowledge base beyond the scoped demo FAQ set.
+- Public availability of the published v2.1 knowledge/avatar through trusted HTTPS.
 - Android 12 large-screen real-device acceptance.
 - TASK-014A production deployment and production `ADMIN_TOKEN` configuration.
 - Production publication of the approved local portrait media/Profile, formal business knowledge and device-measured Profile tuning.
@@ -174,4 +224,4 @@ Android recording
 
 ## Next action
 
-Complete the local browser microphone permission check, then resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after all remaining external gates in `memory/PENDING_INPUTS.md` are available. Do not claim production deployment or device acceptance.
+Clear the TASK-014H ICP/domain access gate, then run one external share acceptance against the already-published production knowledge/assets/Profile. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after trusted public HTTPS and all physical-device inputs are available.
