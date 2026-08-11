@@ -1,6 +1,6 @@
 # Pending inputs / 待补资料
 
-Updated: 2026-08-07
+Updated: 2026-08-10
 
 本文件只记录继续落地需要的人工作业、外部资料和未闭环项。禁止写入任何真实密钥值。
 
@@ -27,7 +27,7 @@ TASK-015 还必须同时具备：
 
 - 可恢复出厂并配置 Fully Managed Device Owner 的确认窗口；
 - 已批准 MP4/背景及 Profile 的可信 HTTPS 生产发布；
-- 可信 HTTPS bootstrap 与 APK 地址（当前被腾讯 DNSPod webblock/ICP 接入门禁阻塞）；
+- 可信 HTTPS bootstrap 与 APK 地址（HTTP 已恢复为本站 308，HTTPS/SNI 仍在腾讯接入传播阶段）；
 - 正式签名身份、双人保管/备份记录；
 - 同一正式证书签名且 versionCode 单调递增的 N、N+1，以及上一稳定源码构建的 N+2 回滚包。
 
@@ -62,8 +62,8 @@ Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
 
 ## P2 - 上线前
 
-- 完成 `ai-jiyangjia.cloud` 的 ICP/腾讯云接入审核，解除 DNSPod webblock；
-- 解除后重新通过公网 HTTPS 和 Certbot renewal dry-run；
+- ICP 已由用户确认完成；仍需等待腾讯公网 HTTPS/SNI 接入传播完成；
+- 传播完成后只重新执行一次公网 HTTPS、APK 浏览器下载和 Certbot renewal dry-run；
 - Device token 和管理后台 `ADMIN_TOKEN`；
 - 知识库、素材和 Display Profile 的备份恢复；
 - 监控、告警、请求限流和成本保护；

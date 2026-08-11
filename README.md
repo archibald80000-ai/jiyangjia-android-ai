@@ -40,7 +40,7 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-013：Android 到 Gateway 对话链路联调（无真机验收）。
 - TASK-014：腾讯云部署与 Gateway 生产链路收口（基于任务环境）。
 - TASK-014A：四页管理后台（system / knowledge / avatar / display）+发布闭环+路由 API。
-- TASK-014H：生产域名、服务器 TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已配置；公网仍被腾讯 DNSPod webblock/ICP 门禁阻塞。
+- TASK-014H：生产域名、服务器 TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已配置；HTTP 已恢复为本站 308，公网 HTTPS/SNI 仍在腾讯接入传播阶段。
 - TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
 - TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。公网分享仍受 ICP/Webblock 门禁阻塞。
 - TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
@@ -128,7 +128,7 @@ Copy-Item .env.example .env.local
 
 ## Gateway API
 
-正式目标地址：`https://ai-jiyangjia.cloud/api/v1`。当前公网访问尚未通过 TASK-014H 门禁，不得用服务器内部检查替代外部验收。
+正式目标地址：`https://ai-jiyangjia.cloud/api/v1`。当前公网 HTTPS 尚未通过 TASK-014H 门禁，不得用服务器内部检查替代外部验收。
 
 基础接口来自 [`docs/api/MVP_API_SPEC.md`](docs/api/MVP_API_SPEC.md)：
 
@@ -196,8 +196,8 @@ APK 以本地构建产物为准，不提交到 Git；未进行 Android 真机发
 
 ## 当前任务与下一任务
 
-- 当前生产域名任务：`TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`。
-- 下一步唯一任务：完成 `ai-jiyangjia.cloud` 的 ICP/腾讯云接入放行并复验公网 HTTPS 与 Certbot dry-run；通过前不进入 TASK-015。
+- 当前生产域名任务：`TASK-014H BLOCKED_BY_TENCENT_HTTPS_PROPAGATION`。
+- 下一步唯一任务：等待腾讯 HTTPS/SNI 接入传播，然后只复验一次公网 HTTPS、APK 浏览器下载与 Certbot dry-run；通过前不进入 TASK-015。
 
 ## 证据与交接
 

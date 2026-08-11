@@ -31,6 +31,15 @@ TASK-005 verified output:
 
 Android 12 device installation and rendering remain separate acceptance work.
 
+Current Demo build (`TASK-014H`, debug signing):
+
+- APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`
+- Size: `6,451,723` bytes
+- SHA-256: `C18EE46E93153E925B807E48D72BB7A8D66865C1247794B19B4DAA098D7B396E`
+- Target download URL: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk`
+
+The server-local HTTPS download is verified. Public browser download remains blocked until Tencent HTTPS access propagation completes. This debug APK is for Demo installation only and is not the formally signed production release required by TASK-015.
+
 ## Gateway Base URL
 
 - Production release origin: `https://ai-jiyangjia.cloud`.

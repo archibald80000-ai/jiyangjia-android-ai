@@ -1,14 +1,14 @@
 # Handoff
 
-Updated: 2026-08-09
+Updated: 2026-08-10
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020F-aiye-product-knowledge-v22`.
-- Current task status: `TASK-020F DONE / PRODUCTION_PUBLISHED`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
+- Current branch: `task/TASK-014H-production-demo-closeout`.
+- Current task status: `TASK-014H BLOCKED_BY_TENCENT_HTTPS_PROPAGATION`; internal Demo stack is ready, while `TASK-015` remains `BLOCKED / NO-GO`.
+- Next action: after Tencent HTTPS propagation, run one public HTTPS, Certbot renewal and APK browser-download acceptance; do not repeat internal Provider/RAG tests.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -27,7 +27,7 @@ Updated: 2026-08-09
 - TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
 - TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
-- TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
+- TASK-014H: BLOCKED externally. Public HTTP now reaches Nginx with `308`, while HTTPS SNI is still reset before Nginx. Fixed secrets, loopback 8080, real Providers, v2.1 RAG, dialogue and server-local APK download are complete.
 - TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
 - TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
 - TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
@@ -93,10 +93,11 @@ Updated: 2026-08-09
 
 - Canonical URL: `https://ai-jiyangjia.cloud`; API: `https://ai-jiyangjia.cloud/api/v1`; admin target: `https://ai-jiyangjia.cloud/admin`.
 - Active release Compose: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/deploy/docker-compose.yml`.
-- Rollback backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
+- Current close-out rollback: `/opt/jiyangjia-ai/backups/task014h-demo-online-20260811T034331Z`; it contains the displaced v2.2 SQLite/FAISS plus pre-change secrets/Compose/Nginx and query code.
 - Gateway container is healthy and bound to `127.0.0.1:8080`; Nginx listens on 80/443; UFW allows only 22/80/443.
-- Certificate exists and is valid until 2026-11-05; snap Certbot timer is active, but dry-run currently fails at the Tencent webblock interception.
-- Do not retry Nginx/Certbot changes until the ICP/access block is released; then run the commands in `docs/server/operations.md` once.
+- Production uses v2.1 at 41 approved / 24 draft / 65 x 2048 vectors. Search is 80/80 with zero draft leaks; text and Android WAV dialogue use real Doubao/Ark Providers.
+- Demo APK: `/var/www/jiyangjia/downloads/jiyangjia-ai-demo.apk`, debug signed, SHA-256 `C18EE46E93153E925B807E48D72BB7A8D66865C1247794B19B4DAA098D7B396E`.
+- Certificate exists and is valid until 2026-11-05; timer is active. Public HTTPS and renewal dry-run remain blocked during Tencent access propagation.
 
 ## TASK-015A local demo
 
@@ -145,7 +146,7 @@ Updated: 2026-08-09
 
 ## Next action
 
-Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published v2.2 demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
+Wait for Tencent public HTTPS/SNI propagation, then run one external HTTPS, Certbot dry-run and APK browser-download acceptance. Do not repeat the already-passed internal Provider/RAG/dialogue tests and do not start TASK-015 before the public gate passes.
 
 ## Safety boundaries
 

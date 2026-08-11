@@ -28,12 +28,14 @@ Make `https://ai-jiyangjia.cloud` the canonical production Gateway address acros
 
 If public DNS, TLS handshake, Nginx or Gateway checks do not all pass, keep this task `PARTIAL` or `BLOCKED` and record the exact failed layer.
 
-## Result (2026-08-07)
+## Result (updated 2026-08-10)
 
 - DNS A records from the local resolver, Cloudflare and Google resolve to `120.53.86.89`.
 - Nginx, the existing Let's Encrypt certificate, internal HTTPS routes, Gateway readiness and loopback-only port 8080 all pass on the server.
 - Android production configuration is fixed to `https://ai-jiyangjia.cloud`; debug remains explicitly overridable.
-- Public HTTP is intercepted with a redirect to `dnspod.qcloud.com/static/webblock.html`, and public HTTPS SNI is reset before Nginx.
-- Certbot renewal dry-run fails because the ACME challenge is also redirected to the DNSPod webblock page.
+- After the user reported ICP completion, public HTTP progressed to the required Nginx `308` redirect.
+- Public HTTPS SNI is still reset before Nginx, and a browser cannot download the published Demo APK.
+- Certbot renewal dry-run still observed partial Tencent webblock propagation during ACME validation.
+- Internal production acceptance now additionally passes fixed secrets, all-real Providers, v2.1 at 41 approved / 24 draft / 65 x 2048 vectors, 80/80 search, real text/WAV dialogue and server-local APK download.
 
-Status is `BLOCKED_BY_TENCENT_WEBBLOCK_ICP`. Do not mark DONE until Tencent Cloud domain access/ICP onboarding is approved and all public checks plus Certbot dry-run pass.
+Status is `BLOCKED_BY_TENCENT_HTTPS_PROPAGATION`. Do not mark DONE until public HTTPS, APK browser download and Certbot dry-run all pass.

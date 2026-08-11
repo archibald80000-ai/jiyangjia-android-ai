@@ -51,6 +51,16 @@ sudo certbot renew --cert-name ai-jiyangjia.cloud --dry-run \
 
 The timer being active is insufficient if dry-run fails.
 
+## Demo APK download
+
+```bash
+curl --noproxy '*' -I --resolve ai-jiyangjia.cloud:443:127.0.0.1 \
+  https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk
+sha256sum /var/www/jiyangjia/downloads/jiyangjia-ai-demo.apk
+```
+
+Expected headers include `application/vnd.android.package-archive` and `Content-Disposition: attachment`. The internal check does not replace a public browser download.
+
 ## Current rollback
 
 Backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
