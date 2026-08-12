@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.3.1
+- **State version:** 0.3.3
 - **Updated:** 2026-08-12
-- **Overall status:** TASK-015B public streaming voice and dual Android variants are deployed; automated/public checks and Android 13 phone navigation smoke passed, while MIUI USB-install approval and human microphone acceptance remain open; TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
-- **Current authorized task:** TASK-015B close-out is PARTIAL; complete only its two manual gates before resuming bounded TASK-015 Android 12 device acceptance
+- **Overall status:** TASK-021 grounded response persona is published on Gateway 0.3.3; TASK-015B remains PARTIAL pending manual microphone/install gates and TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
+- **Current authorized task:** TASK-021 is DONE; the next executable device task remains TASK-015 Android 12 acceptance
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -25,6 +25,8 @@
 - TASK-020G archived the user-authorized 135-file public training site under `knowledge-public/v2.3/site/`, preserved all 204 v2.2 records and generated 47 approved product records from structured site data rather than a hardcoded product list.
 - TASK-020G made unknown business-term routing data-driven: explicit general intent stays outside the business corpus, while a strong approved SQLite/FTS match enters the existing hybrid FTS/FAISS RAG as `dynamic_corpus`.
 - TASK-020G production state is 227 approved, 24 draft, 387 chunks/vectors at 2048 dimensions. Real Doubao product retrieval passed 141/141 Top-3 with sources 100% and draft leaks 0; a real public dialogue returned grounded Doubao LLM/TTS output and downloadable audio. Rollback: `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
+- TASK-020H repaired the v2.3 manifest's Windows newline-derived byte/hash mismatch without changing its 251 documents. The two later-authorized soup-story HTML files are archived byte-for-byte in v2.4 and add 15 draft records for two collections and thirteen soups. Production now has 227 approved, 39 draft and 402 x 2048 real Doubao vectors. Approved-product retrieval passed 141/141 with sources 100%; 43 new draft questions leaked 0 draft records. Rollback: `/opt/jiyangjia-ai/backups/task020h-20260812T150643Z`.
+- TASK-021 published Gateway `0.3.3` with persona `jiyangjia-neighbor-guide-v1`, response-mode-aware retrieval, approved full-context hydration, natural subtitles and deterministic inventory/medical-promise guards. Doubao deep thinking is disabled for real-time Chat requests; a real story dialogue fell from repeated 60-second timeouts to 8.5 seconds. Four public dialogues returned real TTS audio and correct source behavior. Production release: `/opt/jiyangjia-ai/releases/release-task021-persona-20260812T155015Z`; rollback: `/opt/jiyangjia-ai/backups/task021-persona-20260812T155015Z`.
 - TASK-015 launch/audio recovery has Android 13 Xiaomi smoke evidence: the debug client captured real built-in-mic PCM, auto-ended after three seconds of silence, completed ASR/RAG/LLM/TTS, played answer audio and returned to idle. This does not replace Android 12 USB-microphone, speaker, reboot, managed-kiosk or long-run acceptance.
 - TASK-015B publishes version 9 / `0.1.8` as two debug-signed variants. Phone package `ai.jiyangjia.kiosk.debug` is 6,402,961 bytes, SHA-256 `63E21EBC75030EA3AEEFD24C53D22349791E23707A150BDD4DA32C0BF3BAB31D`, at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`. Store package `ai.jiyangjia.kiosk.store` is 6,388,417 bytes, SHA-256 `F2963F0411BD706996B9D6B95B74ACC17917F860578C9998C9BEFC7B59CE7BDC`, at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk`. Formal production signing remains pending.
 - TASK-015B production WSS accepted a real Doubao stream for `积养家是什么？`, returned approved RAG sources, answer heartbeat, Doubao TTS and a downloadable 137,325-byte MP3. Malformed string generations now return structured `INVALID_START` errors.

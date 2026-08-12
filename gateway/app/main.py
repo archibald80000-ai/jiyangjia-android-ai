@@ -564,7 +564,8 @@ async def _run_dialogue(
             },
         )
     try:
-        llm = await llm_provider.chat([{"role": "user", "content": question}], matches, request_id)
+        llm_context = knowledge_store.answer_context(matches)
+        llm = await llm_provider.chat([{"role": "user", "content": question}], llm_context, request_id)
     except ProviderCallError as exc:
         raise HTTPException(
             status_code=502 if exc.retryable else 400,
@@ -603,7 +604,14 @@ async def _run_dialogue(
         session_id=session_id,
         transcript=transcript or {"text": question, "provider": transcript_provider, "language": "zh-CN", "confidence": 1.0},
         knowledge={"status": "matched" if matches else "no_match", "matches": matches, "provider": settings.knowledge_provider},
-        answer={"text": llm["text"], "provider": llm["provider"], "source": llm["source"], "subtitles": llm["subtitles"]},
+        answer={
+            "text": llm["text"],
+            "provider": llm["provider"],
+            "source": llm["source"],
+            "persona": llm.get("persona"),
+            "response_mode": llm.get("response_mode"),
+            "subtitles": llm["subtitles"],
+        },
         tts={"provider": tts["provider"], "content_type": tts["content_type"], "audio_id": blob.audio_id, "duration_ms": tts["duration_ms"]},
         sources=sources,
     )

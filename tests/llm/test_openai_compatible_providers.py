@@ -16,8 +16,11 @@ from gateway.app.llm import (
     _embedding_route,
     _endpoint,
     _build_grounded_messages,
+    _sanitize_grounded_answer,
+    _split_subtitles,
 )
 from gateway.app.providers import MockLLMProvider
+from gateway.app.persona import PERSONA_VERSION, format_approved_context, prepare_spoken_messages, response_direction, response_mode
 from gateway.app.tts import ProviderCallError, ProviderConfigurationError
 from scripts.test_embedding_provider import embedding_config_status
 from scripts.test_llm_provider import llm_config_status
@@ -48,6 +51,34 @@ def test_llm_config_status_redacts_values(monkeypatch: pytest.MonkeyPatch) -> No
 
 def test_llm_provider_builds_openai_compatible_chat_payload() -> None:
     asyncio.run(_assert_llm_provider_builds_openai_compatible_chat_payload())
+
+
+def test_story_mode_applies_a_hard_generation_budget() -> None:
+    asyncio.run(_assert_story_mode_applies_a_hard_generation_budget())
+
+
+async def _assert_story_mode_applies_a_hard_generation_budget() -> None:
+    seen: dict[str, object] = {}
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        seen.update(json.loads(request.read().decode("utf-8")))
+        return httpx.Response(200, json={"choices": [{"message": {"content": "这是已确认的小故事。"}}]})
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    provider = OpenAICompatibleLLMProvider(
+        OpenAICompatibleChatConfig("doubao", "secret", "https://example.invalid/v1", "model", 3, 300, 0.45),
+        client=client,
+    )
+    result = await provider.chat(
+        [{"role": "user", "content": "详细讲讲大有谷的故事。"}],
+        [{"title": "大有谷", "excerpt": "已确认资料。"}],
+        "req-story-budget",
+    )
+    await client.aclose()
+
+    assert seen["max_tokens"] == 180
+    assert seen["thinking"] == {"type": "disabled"}
+    assert result["response_mode"] == "story"
 
 
 async def _assert_llm_provider_builds_openai_compatible_chat_payload() -> None:
@@ -92,6 +123,8 @@ async def _assert_llm_provider_builds_openai_compatible_chat_payload() -> None:
     assert "服务时间" in str(seen["payload"])
     assert result["text"] == "请咨询现场工作人员。"
     assert result["source"] == "knowledge_grounded"
+    assert result["persona"] == PERSONA_VERSION
+    assert result["response_mode"] == "concise"
     assert result["usage"] == {"total_tokens": 12}
 
 
@@ -196,6 +229,65 @@ def test_grounding_prompt_requires_attributed_non_promissory_health_language() -
     assert "传统食养说法" in messages[0]["content"]
     assert "不得扩写成确定疗效" in messages[0]["content"]
     assert "不得使用‘管用’" in messages[0]["content"]
+
+
+def test_persona_prompt_is_warm_varied_and_still_grounded() -> None:
+    messages = _build_grounded_messages(
+        [{"role": "user", "content": "详细讲讲七膳鸡汤的故事。"}],
+        [{"title": "七膳鸡汤", "excerpt": "这是一段已确认的产品故事。", "source": {"uri": "public://story"}}],
+    )
+
+    assert "邻里生活向导" in messages[0]["content"]
+    assert "不要每次都使用同一个开场" in messages[0]["content"]
+    assert "绝不能增加资料之外的事实" in messages[0]["content"]
+    assert "来历介绍" in messages[1]["content"]
+    assert "唯一可使用的品牌事实" in messages[2]["content"]
+    assert "这是一段已确认的产品故事" in messages[2]["content"]
+
+
+def test_response_modes_choose_the_right_conversation_rhythm() -> None:
+    assert response_mode("讲讲这款汤的来历") == "story"
+    assert response_mode("送老人怎么选？") == "choice"
+    assert response_mode("门店在哪里？") == "concise"
+    assert "90 到 140" in response_direction("详细讲讲它的故事")
+    assert "80 到 180" in response_direction("哪一种适合我")
+    prepared = prepare_spoken_messages([{"role": "user", "content": "详细讲讲大有谷的故事。"}])
+    assert prepared[-1]["content"] == "请用90到140个汉字介绍大有谷的来历，并讲一个已确认资料中的真实细节。"
+
+
+def test_context_formatter_uses_four_traceable_sources_and_bounded_text() -> None:
+    context = [
+        {"title": f"资料{i}", "excerpt": "甲" * 1000, "source": {"uri": f"public://{i}"}}
+        for i in range(1, 6)
+    ]
+    rendered = format_approved_context(context)
+
+    assert "[资料4]" in rendered
+    assert "[资料5]" not in rendered
+    assert "public://1" in rendered
+    assert "甲" * 701 not in rendered
+
+
+def test_subtitles_prefer_natural_chinese_pauses() -> None:
+    text = "这是第一句，带有一个自然停顿，也有更长的说明。" + "这是第二句。" * 8
+    subtitles = _split_subtitles(text, max_chars=30)
+
+    assert all(len(item) <= 30 for item in subtitles)
+    assert "".join(subtitles) == text
+    assert subtitles[0].endswith(("，", "。"))
+
+
+def test_grounded_answer_sanitizer_removes_dynamic_inventory_and_medical_promises() -> None:
+    raw = "这款产品不错。\n门店现在有现货，还能现场看。它保证疗效，能治好失眠。欢迎了解。"
+    answer = _sanitize_grounded_answer(raw)
+
+    assert "现货" not in answer
+    assert "保证疗效" not in answer
+    assert "能治好" not in answer
+    assert "具体库存和到店情况请咨询现场工作人员" in answer
+    assert "不能替代专业诊断或治疗" in answer
+    assert "\n" not in answer
+    assert "。 " not in answer
 
 
 def test_mock_llm_routes_general_and_unverified_business_questions() -> None:

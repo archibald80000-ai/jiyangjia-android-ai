@@ -45,7 +45,7 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
 - TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。历史 ICP/Webblock 门禁已解除。
 - TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
-- TASK-020F/020G：v2.2 爱野食材与 v2.3 公开培训站点已进入正式公开知识包；v2.3 由结构化产品数据生成，生产为 227 approved、24 draft、387 x 2048，产品检索 141/141。
+- TASK-020F/020G/020H：v2.2 爱野食材、v2.3 公开培训站点与 v2.4 汤膳故事资料已进入正式公开知识包；生产为 227 approved、39 draft、402 x 2048，原 141 条 approved 产品检索保持 141/141，新增汤膳资料在确认前为 draft。
 
 ## 未完成项（不在本基线宣称范围）
 
@@ -149,13 +149,13 @@ Copy-Item .env.example .env.local
 
 ## 在线知识库与实时分享
 
-GitHub 仓库中的公开知识库入口：[积养家公开知识资料](knowledge-public/README.md)。当前版本为 [v2.3](knowledge-public/v2.3/README.md)，员工可浏览 [完整知识](knowledge-public/v2.3/import_all.json)、[产品目录](knowledge-public/v2.3/catalog.json) 和 [原始公开培训站点](knowledge-public/v2.3/site/)。实际 Gateway 导入必须按 manifest 的批次顺序执行。
+GitHub 仓库中的公开知识库入口：[积养家公开知识资料](knowledge-public/README.md)。当前版本为 [v2.4](knowledge-public/v2.4/README.md)，员工可浏览 [完整知识](knowledge-public/v2.4/import_all.json)、[汤膳资料目录](knowledge-public/v2.4/catalog.json) 和 [两份授权原始 HTML](knowledge-public/v2.4/sources/)。全新 Gateway 按完整批次导入，v2.3 生产升级只提交 manifest 指定的增量批次。
 
 本次经用户明确授权的 65 条对外宣传/员工学习知识已进入公共 GitHub。未授权原始 PDF/DOCX、SQLite 和 FAISS 仍不进入 Git；线上运行数据继续由 Gateway 的 SQLite + FAISS 保存：
 
 - 服务器 SQLite：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/jiyangjia.db`
 - 服务器 FAISS：`/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/var/knowledge/faiss.index`
-- 当前状态：41 approved、24 draft、65 chunks、65 个 2048 维向量
+- 当前状态：227 approved、39 draft、402 chunks、402 个 2048 维向量
 - 只读状态接口：[知识库实时状态](https://ai-jiyangjia.cloud/api/v1/knowledge/status)
 
 正式分享入口：

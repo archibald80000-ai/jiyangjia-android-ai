@@ -1,0 +1,356 @@
+{
+  "version": "2.4",
+  "batch": 1,
+  "documents": [
+    {
+      "id": "faq_brand_001",
+      "title": "品牌定位——积养家是做什么的",
+      "text": "积养家是做什么的\n你们是什么门店\n你们这是干什么的\n积养家是干嘛的\n这是什么店\n我们是积养家，社区里的健康生活馆，说白了就是邻里会客厅。进来有免费热姜茶、现熬的老火鸡汤、放心的天然食材，也有地方坐着拉家常。您先进来坐坐，喝杯茶，慢慢看。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_001"
+    },
+    {
+      "id": "faq_brand_002",
+      "title": "品牌名称含义",
+      "text": "积养家是什么意思\n为什么叫积养家\n你们名字有什么讲究\n积养家三个字都有讲究。积，是积善、积德、积福，老话说「积善之家必有余庆」。养，是养护自己的身体。家，就是想让每位邻居进了这个门都像回自己家。我们的口号是八个字：日积月养，天天开心。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_002"
+    },
+    {
+      "id": "faq_brand_003",
+      "title": "品牌理念与差异化",
+      "text": "你们和别的养生馆有什么不一样\n你们有什么特别的\n你们是变着法搞推销的吧\n免费这么多你们图什么\n我们就三个字：真诚与爱。不推销、不套路，免费的东西真免费，东西好不好您自己尝、自己体验。我们把邻居当家人处，不是做一锤子买卖，是想跟大家处几十年的邻居。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_003"
+    },
+    {
+      "id": "faq_brand_004",
+      "title": "门店性质与连锁问题",
+      "text": "你们是连锁店吗\n你们有几家店\n积养家是连锁的吗\n我们现在就用心做好这一家，先把街坊邻居服务好。您常来，看着我们慢慢长大。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_004"
+    },
+    {
+      "id": "faq_brand_005",
+      "title": "门店地址",
+      "text": "你们在哪儿\n积养家地址是什么\n你们店在哪里\n怎么去你们店\n我们在北京市昌平区国风美唐3期4号楼底商。您到了附近就能看到我们的招牌，进门就是客，欢迎随时来坐。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_brand_005"
+    },
+    {
+      "id": "faq_brand_006",
+      "title": "免费项目总览",
+      "text": "你们有什么免费的\n免费项目有哪些\n进来要钱吗\n进来了看看要钱吗\n我们店里有五项永远免费：暖心姜茶、社群活动、AI健康体验、健康讲座、公益咨询。都是真免费，不扫码、不登记、不用转发。进门就是客，坐下就是家人。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_006"
+    },
+    {
+      "id": "faq_brand_007",
+      "title": "免费姜茶",
+      "text": "姜茶免费吗\n喝茶要钱吗\n免费姜茶是真的吗\n暖心姜茶永远免费，您放开喝，喝完我给您续。天热解乏、天冷暖身，不扫码不登记。我们就是想让邻居进门就有口热乎的。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_007"
+    },
+    {
+      "id": "faq_brand_008",
+      "title": "健康承诺边界",
+      "text": "你们能保证我健康吗\n你们能让我长寿吗\n来了真的能变健康吗\n保证不敢说。但我们相信健康是平时一天一天养出来的--吃点放心的，喝口热乎的，心里舒坦，身体自然就好。我们陪着大家好好吃饭、好好生活，剩下的交给日积月累。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_brand_008"
+    },
+    {
+      "id": "faq_food_001",
+      "title": "4S食材标准",
+      "text": "你们的食材有什么标准\n4S是什么意思\n你们怎么选食材的\n什么是4S食材\n我们的食材有四个硬标准，叫4S：原生种子、自然成长、有机肥、零农药。茶叶还多一条，必须长在海拔八百米以上。我们按这标准挑了两年，才挑出三十一款。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_food_001"
+    },
+    {
+      "id": "faq_food_002",
+      "title": "食材为什么比超市贵",
+      "text": "你们食材怎么比超市贵\n你们的东西为什么这么贵\n超市便宜多了为什么买你的\n超市的货也有超市的好。我们走的是另一条路：老品种、自然长、产量低，成本摆在那儿。您先尝一口，觉得值再买，不买也常来。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_food_002"
+    },
+    {
+      "id": "faq_food_003",
+      "title": "食材是否去过产地",
+      "text": "你们亲自去过产地吗\n这些食材你们去看了吗\n你们怎么保证食材来源\n我们的选品标准是4S铁规，供应商资料和检测报告我们都会留存。但实话实说，目前没有团队亲自到所有产地的走访记录，我们不会编造去过这样的话。您想了解哪款的具体信息，我帮您查一下。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_food_003"
+    },
+    {
+      "id": "faq_food_004",
+      "title": "食材吃了能调理身体吗",
+      "text": "你们食材能调理身体吗\n吃了对身体有什么好处\n这些食材能治病吗\n这就是家常好食材，不是药。就是吃着香、吃着放心。身体不舒服，一定先去医院。我们不讲食材功效。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_food_004"
+    },
+    {
+      "id": "faq_food_005",
+      "title": "五常大米介绍",
+      "text": "你们有五常大米吗\n大米多少钱\n你们的大米有什么特别\n我们有有机五常大米，分两种规格：福仁2.7公斤适合送人或试尝，尚乾5公斤适合家里常吃。产地黑龙江五常，米香清楚，回家先蒸一锅，闻香、看口感，觉得顺再说。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_005"
+    },
+    {
+      "id": "faq_food_006",
+      "title": "敖汉小米介绍",
+      "text": "你们有小米吗\n小米怎么卖\n敖汉小米是什么\n我们有敖汉金石碾有机小米，产自内蒙古敖汉旗。礼盒装4公斤适合送人，家庭装2.5公斤适合自己家熬粥。您先熬一小锅，闻香、看粥感，觉得顺口再说。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_006"
+    },
+    {
+      "id": "faq_food_007",
+      "title": "玉米产品介绍",
+      "text": "你们有玉米吗\n鲜食玉米和糯玉米有什么区别\n你们玉米怎么卖\n我们有两款敖汉金有机玉米：鲜食玉米偏清甜，糯玉米偏软糯。都是一箱十穗，回家水煮、蒸、微波都可以。口感每个人不一样，最好先尝一根。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_007"
+    },
+    {
+      "id": "faq_food_008",
+      "title": "杂粮礼盒介绍",
+      "text": "你们有杂粮吗\n杂粮怎么卖\n有机杂粮有什么品种\n我们有敖汉金有机杂粮礼盒，一箱八个品种已经配好，回家煮粥煮饭都能用。豆类不容易熟，提前泡一下更方便。具体的八个品种您可以看包装确认。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_008"
+    },
+    {
+      "id": "faq_food_009",
+      "title": "盐田虾介绍",
+      "text": "你们有虾吗\n盐田虾是什么\n你们的虾怎么卖\n我们有39度有机盐田虾，规格是三百克乘五盒。建议先用白灼做法，别放太多调料，主要尝虾肉弹不弹、鲜不鲜。水开后下锅，时间别太久，出锅蘸自己喜欢的料汁就行。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_009"
+    },
+    {
+      "id": "faq_food_010",
+      "title": "芥花油介绍",
+      "text": "你们有食用油吗\n芥花油是什么油\n你们卖油吗\n我们有芥花油，是压榨一级菜籽油。两个规格：五升大桶和一点八升两桶。炒菜、拌菜都能用，味道温和。具体的产地和证书资料还在补充中，您可以先看包装。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_food_010"
+    },
+    {
+      "id": "faq_soup_001",
+      "title": "聚宝盆鸡汤介绍",
+      "text": "你们有什么汤\n聚宝盆鸡汤是什么\n你们的鸡汤怎么样\n店里卖什么汤\n我们的聚养汤饮主打老火鸡汤，天天现熬。鸡是山里散养的草虫鸡，炖出来的汤油是金黄的，肉紧实。您先免费尝小半碗，觉得香再说。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_soup_001"
+    },
+    {
+      "id": "faq_soup_002",
+      "title": "草虫鸡鉴别方法",
+      "text": "怎么知道你们的鸡真是散养的\n草虫鸡怎么辨别\n你们鸡真的是散养的吗\n教您三看：一看腿，散养的鸡腿长。二看肉，紧实。三看嘴，散养鸡天天低头啄草啄虫，上嘴壳比下嘴壳长，笼养喂饲料的正好反过来。您下回买鸡也用得上。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_soup_002"
+    },
+    {
+      "id": "faq_soup_003",
+      "title": "鸡汤价格",
+      "text": "鸡汤多少钱\n一份汤多少钱\n你们的汤怎么卖\n汤品明码标价，具体价格请您看店里的价目表或咨询现场工作人员。您先免费尝一口，觉得香再说。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_soup_003"
+    },
+    {
+      "id": "faq_soup_004",
+      "title": "汤品功效边界",
+      "text": "喝这个汤对身体有什么好处\n鸡汤能补什么\n你们汤有什么功效\n这个汤能治什么病\n咱不说功效，就是好食材、老火慢炖，吃着香、喝着舒坦。身体要是不舒服，您一定先去医院看。我们的汤就是日常饮食的一部分，不是药。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_soup_004"
+    },
+    {
+      "id": "faq_soup_005",
+      "title": "七膳煨汤系列",
+      "text": "你们有几种汤\n还有什么汤\n除了鸡汤还有别的吗\n七膳煨汤是什么\n我们有聚宝盆七膳煨汤系列，七款不同口味的汤品。有菌菇安神汤、姜酒暖身汤、乌鸡月子汤、鸽子元气汤、猪脚轻盈汤、鲍参补气汤、猪肚强腰汤。每款都有自己的特色，您可以问工作人员今天有哪些在售。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_soup_005"
+    },
+    {
+      "id": "faq_soup_006",
+      "title": "汤品规格",
+      "text": "汤有几种规格\n能打包带走吗\n汤可以外卖吗\n有家庭装吗\n汤品有单人份和家庭装两种规格，单人份适合到店品尝，家庭装可以带回家。具体规格和价格您到店问工作人员，以当天为准。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_soup_006"
+    },
+    {
+      "id": "faq_service_001",
+      "title": "生活养护是什么",
+      "text": "你们有按摩吗\n生活养护是什么\n你们楼上做什么的\n你们二楼是干嘛的\n楼上是我们生活养护空间，做的是放松和舒缓。说清楚：我们不跟医院抢活，医院干的事我们不干，我们只做医院之前的调、医院之后的养。做完您觉得松快，那是您自己的身体在恢复。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_service_001"
+    },
+    {
+      "id": "faq_service_002",
+      "title": "能治病吗",
+      "text": "你们这个能治病吗\n养护能治病吗\n你们能看病吗\n能治好我的腰疼吗\n治不了，我们也从来不说能治。我们不做治疗，就做放松养护。有病一定去医院，医院看完了，回来我们帮您舒缓舒缓、养一养。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_service_002"
+    },
+    {
+      "id": "faq_service_003",
+      "title": "养护价格",
+      "text": "养护多少钱一次\n做一次多少钱\n你们楼上怎么收费\n养护服务的具体价格请咨询现场工作人员或看店里的价目表。首次体验有优惠价格，您可以先体验，觉得合适再说，我们不劝、不催。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_service_003"
+    },
+    {
+      "id": "faq_service_004",
+      "title": "技师专业性",
+      "text": "给我做的人专业吗\n技师有证吗\n你们技师什么水平\n我们的养护师都经过系统培训，每个项目都有标准流程。具体资质证书请到店查看墙上公示。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_service_004"
+    },
+    {
+      "id": "faq_service_005",
+      "title": "养护后注意事项",
+      "text": "做完要注意什么\n做完能洗澡吗\n做完有什么不舒服\n做完养护后建议多喝温水，注意保暖。如果有什么不舒服的感觉，正常休息一下就好。具体注意事项养护师会在服务结束后跟您说明。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_service_005"
+    },
+    {
+      "id": "faq_service_006",
+      "title": "二楼环境",
+      "text": "二楼怎么样\n你们楼上环境好吗\n养护区安静吗\n二楼安静的，没人推销、没人聊天。我们注意卫生和隐私，您安心享受养护就行。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_service_006"
+    },
+    {
+      "id": "faq_service_007",
+      "title": "高新康养产品",
+      "text": "你们有按摩椅吗\n智能产品是什么\n你们卖器械吗\n我们有一些智能康养产品，您可以免费上手体验。可以租回家用，觉得好再买。我们教您怎么用，老人也能学会。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_service_007"
+    },
+    {
+      "id": "faq_service_008",
+      "title": "设备租售方式",
+      "text": "设备怎么租\n按摩椅多少钱\n能租回家吗\n租了可以买吗\n部分设备可以租回家体验，觉得好再买。具体租售方式、质保条款和配送范围，请咨询现场工作人员看合同说明。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_service_008"
+    },
+    {
+      "id": "faq_service_009",
+      "title": "适老化改造建议",
+      "text": "家里老人需要扶手怎么办\n你们帮看家里安全吗\n能帮装扶手吗\n我们提供适老化改造的建议：卫生间要不要装扶手、浴室怎么防滑、哪些地方容易磕碰。建议不收钱，就是邻里间帮着参谋参谋。要不要改、怎么改、找谁改，都您自己定。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_service_009"
+    },
+    {
+      "id": "faq_service_010",
+      "title": "社区便民服务",
+      "text": "你们能帮忙提东西吗\n社区服务有哪些\n你们帮邻居做什么\n下雨能借伞吗\n我们这儿也是邻里会客厅。老人家没事就来坐坐聊聊天，下雨天忘带伞我们借您，东西买重了帮您提，家里临时缺块姜缺包盐先拿去用。都是举手之劳，不收钱。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_service_010"
+    },
+    {
+      "id": "faq_scenario_001",
+      "title": "第一次来怎么办",
+      "text": "第一次来怎么办\n我是新来的\n第一次来有什么流程\n新客户怎么安排\n欢迎您第一次来！进门先坐下喝杯免费姜茶歇歇脚，然后您告诉我您想了解哪方面：是看看食材、尝尝鸡汤，还是想体验一下养护服务？不着急，慢慢来。买不买都一样热情。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_001"
+    },
+    {
+      "id": "faq_scenario_002",
+      "title": "带老人来",
+      "text": "带老人来有什么推荐\n适合老人的有什么\n家里老人能来玩吗\n带老人来太好了！先请老人家坐下喝杯姜茶，姜茶免费。老人可以参加我们的社群活动、听听健康讲座，或者体验放松养护。上下楼有人扶着，我们还能帮您看看家里的扶手和防滑怎么装。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_002"
+    },
+    {
+      "id": "faq_scenario_003",
+      "title": "送礼推荐",
+      "text": "送人送什么好\n有什么适合送礼的\n给长辈买点什么\n送礼的话推荐我们的敖汉有机小米礼盒装，四公斤一提，送人体面。或者五常大米的福仁款，2.7公斤也是礼盒装。还有有机杂粮礼盒也不错。您可以到店看看实物再决定。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_003"
+    },
+    {
+      "id": "faq_scenario_004",
+      "title": "一个人来坐坐",
+      "text": "一个人来坐坐可以吗\n我一个人住能常来吗\n无聊能来坐吗\n太欢迎了！您天天来都行，茶给您留着，座给您留着。不买东西也一样热情，我们这就是邻居歇脚的地方。变天的时候您没来，我们还惦记呢。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_004"
+    },
+    {
+      "id": "faq_scenario_005",
+      "title": "送货上门",
+      "text": "能送货上门吗\n买了能送到家吗\n能帮我拿回家吗\n您离得近、拿不动的，我们帮您送到单元门口，不加钱。大件设备的具体配送范围请咨询现场工作人员。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_005"
+    },
+    {
+      "id": "faq_scenario_006",
+      "title": "外小区/路人能进来吗",
+      "text": "不住这个小区能来吗\n路过的能进吗\n外人可以进来吗\n能，路过的都是客。快递小哥、环卫师傅进来喝口水喝口茶，我们都欢迎。不扫码、不登记、不要求转发，进门就是客。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_006"
+    },
+    {
+      "id": "faq_scenario_007",
+      "title": "社群活动",
+      "text": "社群活动是什么\n有什么活动可以参加\n你们办什么活动\n我们定期办免费的社群活动，邻居们凑一块聊聊天、听听分享。逢年过节按老传统来：入伏喝伏阳汤、冬至包饺子、腊八熬粥、小年写春联。都是免费的。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_007"
+    },
+    {
+      "id": "faq_scenario_008",
+      "title": "健康讲座",
+      "text": "健康讲座讲什么\n有讲座可以听吗\n讲座收费吗\n我们每月办免费健康讲座，请懂行的老师用大白话聊聊怎么吃饭、怎么作息、家里老人怎么陪伴照护。不讲大道理，不卖课不卖货。时间到了会写在门口小黑板上。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_scenario_008"
+    },
+    {
+      "id": "faq_boundary_001",
+      "title": "转人工",
+      "text": "我要找工作人员\n可以转人工吗\n我想找真人\n有服务员吗\n好的，我帮您联系现场工作人员。您可以到前台或者找附近穿工服的店员，他们随时在的。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_001"
+    },
+    {
+      "id": "faq_boundary_002",
+      "title": "问价格转人工",
+      "text": "价格是多少\n多少钱\n怎么收费\n有价目表吗\n这个多少钱\n关于具体价格和优惠，建议您咨询现场工作人员或看店里的价目表。我帮您请工作人员来确认，请稍等。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_002"
+    },
+    {
+      "id": "faq_boundary_003",
+      "title": "预约方式",
+      "text": "可以预约吗\n怎么预约\n需要预约吗\n能提前定吗\n如需预约，请让现场工作人员根据当天的排班和服务资源为您确认。我不能直接承诺具体时段。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_boundary_003"
+    },
+    {
+      "id": "faq_boundary_004",
+      "title": "排队等待",
+      "text": "现在要等多久\n需要排队吗\n要等吗\n现在人多吗\n当前等待时间会随现场情况变化，请您到现场后让工作人员实时确认。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_004"
+    },
+    {
+      "id": "faq_boundary_005",
+      "title": "医疗健康转人工",
+      "text": "能治病吗\n有没有治疗效果\n保证治好吗\n你们能看病吗\n我不能提供医疗诊断、处方或疗效保证。如有健康问题，请咨询专业医疗机构或现场工作人员。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_005"
+    },
+    {
+      "id": "faq_boundary_006",
+      "title": "会员余额查询",
+      "text": "我卡里有多少钱\n会员余额多少\n我的积分多少\n查一下我的账户\n会员余额和账户信息属于个人隐私，我不能查询。请您到前台找工作人员帮您查看，或者登录小程序查看。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_006"
+    },
+    {
+      "id": "faq_boundary_007",
+      "title": "临时活动优惠",
+      "text": "现在有什么活动\n有优惠吗\n最近有什么折扣\n有什么促销\n关于当前活动和优惠信息，请到店咨询现场工作人员，他们会告诉您最新详情。活动内容以门店公示为准。",
+      "status": "approved",
+      "source_uri": "knowledge://faq_boundary_007"
+    },
+    {
+      "id": "faq_boundary_008",
+      "title": "营业时间",
+      "text": "你们几点开门\n营业时间是几点\n几点到几点\n你们几点关门\n门店服务时间请以当天现场公告或工作人员说明为准。建议您到店前先致电确认。",
+      "status": "draft",
+      "source_uri": "knowledge://faq_boundary_008"
+    }
+  ]
+}

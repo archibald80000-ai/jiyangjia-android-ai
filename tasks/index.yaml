@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-12
-current: TASK-015B
+current: TASK-021
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -212,3 +212,15 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020F]
+  - id: TASK-020H
+    file: TASK-020H_V23_INTEGRITY_RESYNC.md
+    title: "Repair v2.3 integrity and publish the authorized soup-story v2.4 delta"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020G]
+  - id: TASK-021
+    file: TASK-021_RESPONSE_PERSONA_STYLE.md
+    title: "Publish grounded persona and natural conversational answers"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020H]
