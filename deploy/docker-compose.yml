@@ -6,7 +6,8 @@ services:
     container_name: jiyangjia-gateway
     restart: unless-stopped
     env_file:
-      - ../secrets/.env.local
+      - path: /opt/jiyangjia-ai/secrets/.env.local
+        format: raw
     environment:
       - TZ=Asia/Shanghai
       - APP_NAME=jiyangjia-gateway

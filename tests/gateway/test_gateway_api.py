@@ -73,8 +73,12 @@ def test_public_demo_exposes_navigation_and_phone_safe_download() -> None:
     response = client.get("/demo/public")
     assert response.status_code == 200
     assert 'class="public"' in response.text
-    assert "https://jiyangjia-ai.netlify.app/" in response.text
-    assert "knowledge-public/v2.3" in response.text
+    assert 'data-access-target="knowledge-center"' in response.text
+    assert 'data-access-target="public-materials"' in response.text
+    assert "/api/v1/public-access/login" in response.text
+    assert "/access/go/" in response.text
+    assert "jiyangjia-ai.netlify.app" not in response.text
+    assert "github.com/archibald80000-ai" not in response.text
     assert "/downloads/jiyangjia-ai-digital-human.apk" in response.text
     assert "/downloads/jiyangjia-ai-store-kiosk.apk" in response.text
     assert "麦克风帮助" in response.text
