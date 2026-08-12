@@ -23,7 +23,8 @@ def _read_json(path: Path) -> dict:
 
 def _write_json(path: Path, payload: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    content = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    path.write_bytes(content.encode("utf-8"))
 
 
 def _sha256(path: Path) -> str:
@@ -192,7 +193,7 @@ def build(source_dir: Path, base_package: Path, output_dir: Path) -> dict[str, o
         ],
     }
     _write_json(output_dir / "manifest.json", manifest)
-    (output_dir / "README.md").write_text(
+    readme = (
         "# 积养家公开知识库 v2.3\n\n"
         "本包由公开发布站点 `knowledge/index.json` 数据驱动生成，不在代码中手写产品清单。\n\n"
         f"- 完整知识：{len(documents)} 条（新增公开产品卡 {len(product_documents)} 条）\n"
@@ -200,9 +201,11 @@ def build(source_dir: Path, base_package: Path, output_dir: Path) -> dict[str, o
         f"- 来源文档：{len(index.get('source_documents', []))} 份\n"
         f"- 公开镜像：`site/`（{len(site_files)} 个文件）\n"
         "- Gateway 导入：按 `manifest.json` 的 `batches` 顺序导入，不要再重复导入 `import_all.json`。\n"
-        "- 安全边界：资料待补、诊疗承诺、未发布库存和活动不得由 AI 自行补写。\n",
-        encoding="utf-8",
+        "- 安全边界：资料待补、诊疗承诺、未发布库存和活动不得由 AI 自行补写。\n"
     )
+    readme_path = output_dir / "README.md"
+    if not readme_path.exists():
+        readme_path.write_bytes(readme.encode("utf-8"))
     return manifest
 
 

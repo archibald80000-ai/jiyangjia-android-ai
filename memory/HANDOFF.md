@@ -6,10 +6,10 @@ Updated: 2026-08-12
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `codex/TASK-015B-public-voice-phone-mode`.
-- Current task status: `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-020G DONE`; `TASK-014H DONE`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
-- Current public knowledge: `knowledge-public/v2.3/`; production 227 approved, 24 draft and 387 x 2048 real Doubao vectors.
-- Next action: unlock the connected Xiaomi device, approve one USB installation, reinstall the phone APK and rerun the bounded instrumentation/real-microphone checks once; then execute only the remaining Android 12 store-screen TASK-015 gates.
+- Current branch: `codex/TASK-020H-v23-integrity-resync`.
+- Current task status: `TASK-020H DONE / PRODUCTION_PUBLISHED`; `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
+- Current public knowledge: `knowledge-public/v2.4/`; production 227 approved, 39 draft and 402 x 2048 real Doubao vectors.
+- Next authorized work: implement a separate grounded response-persona/style task so answers are warmer and more natural without changing knowledge facts; Android manual gates remain pending afterward.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -36,6 +36,7 @@ Updated: 2026-08-12
 - TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
 - TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Public HTTPS remains a separate TASK-014H blocker.
 - TASK-020G: DONE / PRODUCTION_PUBLISHED. The 135-file public training site and 251-document v2.3 package are ready for GitHub sharing. Production search passed 141/141 with sources 100% and no draft leaks; rollback is `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
+- TASK-020H: DONE / PRODUCTION_PUBLISHED. v2.3 hashes are deterministic; v2.4 adds the two authorized soup-story sources as 15 draft records. Production is 227/39 with 402 x 2048 vectors; 141 approved cases passed and 43 draft questions leaked none. Rollback is `/opt/jiyangjia-ai/backups/task020h-20260812T150643Z`.
 - TASK-014H: DONE. Public HTTP/HTTPS, root Demo and APIs are reachable; Certbot dry-run passes.
 - TASK-015: PARTIAL. Xiaomi Android 13 built-in-mic capture, 3-second-silence send, ASR/RAG/LLM/TTS, speaker playback and return to idle passed. Android 12 USB and managed-device acceptance remains required.
 - TASK-015B: PARTIAL. Production public/kiosk pages, WSS real Doubao ASR/RAG/LLM/TTS, v9 dual builds, package/signature checks, public downloads and normal phone navigation passed. MIUI rejected the instrumentation APK with `INSTALL_FAILED_USER_RESTRICTED`, and human browser-microphone speech remains manual.

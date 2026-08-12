@@ -87,6 +87,11 @@ def test_v23_builder_accepts_new_products_without_code_changes(tmp_path: Path) -
 
     assert manifest["new_product_documents"] == 48
     assert any(item["id"] == "site_product_dynamic-test-product" for item in documents)
+    for item in manifest["files"]:
+        generated = output / item["name"]
+        assert b"\r\n" not in generated.read_bytes()
+        assert generated.stat().st_size == item["bytes"]
+        assert _sha256(generated) == item["sha256"]
 
 
 def test_v23_public_package_excludes_secrets_and_runtime_data() -> None:

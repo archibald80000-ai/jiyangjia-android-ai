@@ -4,7 +4,13 @@
 
 ## 当前发布
 
-GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.3>
+GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.4>
+
+- [v2.4 当前正式知识库](v2.4/README.md)
+- [v2.4 完整知识内容](v2.4/import_all.json)
+- [v2.4 汤膳资料目录](v2.4/catalog.json)
+- [v2.4 两份授权原始 HTML](v2.4/sources/)
+- [v2.4 Manifest 与 SHA-256](v2.4/manifest.json)
 
 - [v2.3 当前正式公开知识库](v2.3/README.md)
 - [v2.3 完整知识内容](v2.3/import_all.json)
@@ -23,7 +29,7 @@ GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-andr
 - [v2.1 第二批](v2.1/import_batch_02.json)
 - [v2.1 Manifest](v2.1/manifest.json)
 
-当前 v2.3 完整包包含 251 条：227 approved、24 draft；其中保留 v2.2 的全部 204 条，并从公开培训站点结构化产品目录新增 47 条 approved 产品知识。`draft` 仅供内部确认，不得直接作为顾客答案。
+当前 v2.4 完整包包含 266 条：227 approved、39 draft。它完整保留 v2.3，并新增两份汤膳故事 HTML 对应的 15 条 draft 资料。新增内容需确认最终菜单、名称和特殊人群合规口径，暂不作为顾客答案。
 
 公开副本保留原始 ID、标题、正文和状态，只将工作站绝对路径标准化为 `knowledge://<document_id>`。原始目录 `E:\work\积养家\数字人知识库\08_导入包` 仍保持只读。
 
@@ -45,23 +51,18 @@ GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-andr
 
 ## 导入 Gateway
 
-当前 `POST /api/v1/knowledge/index` 单次最多接收 50 条，因此 65 条完整包只能用于浏览、校验和离线交换；实际导入必须依次提交两个批次：
+当前 `POST /api/v1/knowledge/index` 单次最多接收 50 条。全新环境按 v2.4 manifest 的六个 `batches` 导入；已运行 v2.3 的环境只提交 `import_delta_01.json`：
 
 ```powershell
-$baseUrl = "http://127.0.0.1:8090"
+$baseUrl = "https://ai-jiyangjia.cloud"
 
 Invoke-RestMethod -Method Post `
   -Uri "$baseUrl/api/v1/knowledge/index" `
   -ContentType "application/json; charset=utf-8" `
-  -InFile "knowledge-public\v2.1\import_batch_01.json"
-
-Invoke-RestMethod -Method Post `
-  -Uri "$baseUrl/api/v1/knowledge/index" `
-  -ContentType "application/json; charset=utf-8" `
-  -InFile "knowledge-public\v2.1\import_batch_02.json"
+  -InFile "knowledge-public\v2.4\import_delta_01.json"
 ```
 
-不要再提交 `import_all.json`，也不要把完整包和两个批次重复导入，否则会重复执行 Embedding upsert。生产导入前必须先备份 SQLite 与 FAISS，并确认使用真实 Embedding Provider。
+不要提交 `import_all.json`，也不要把完整批次和增量批次重复导入，否则会重复执行 Embedding upsert。生产导入前必须先备份 SQLite 与 FAISS，并确认使用真实 Embedding Provider。
 
 导入后必须检查：
 
