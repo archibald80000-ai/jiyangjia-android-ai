@@ -2,6 +2,18 @@
 
 Updated: 2026-08-12
 
+## TASK-015B public streaming voice and dual APK
+
+- PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS on branch `codex/TASK-015B-public-voice-phone-mode`.
+- Public `/` is the navigable voice Demo and `/demo/kiosk` remains the navigation-free store display. HTTP redirects to HTTPS and both pages return HTML with `Permissions-Policy: microphone=(self)`.
+- Browser WebSocket `generation` is now a non-negative integer; malformed starts return `INVALID_START`. A production stream for `积养家是什么？` completed Doubao partial/final ASR, approved RAG sources, LLM answer, answering heartbeat, Doubao TTS and audio fetch.
+- Version 9 / `0.1.8` has two debug-signed variants: phone `ai.jiyangjia.kiosk.debug` and store `ai.jiyangjia.kiosk.store`.
+- Phone download: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`, 6,402,961 bytes, SHA-256 `63E21EBC75030EA3AEEFD24C53D22349791E23707A150BDD4DA32C0BF3BAB31D`.
+- Store download: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk`, 6,388,417 bytes, SHA-256 `F2963F0411BD706996B9D6B95B74ACC17917F860578C9998C9BEFC7B59CE7BDC`; ordinary phones must not install it.
+- Xiaomi Android 13 passed three cold launches plus Home/recents/notification navigation with the phone package. MIUI then rejected the instrumentation APK with `INSTALL_FAILED_USER_RESTRICTED`; zero instrumentation tests ran and the app is currently absent pending one user-approved USB reinstall.
+- Browser human-microphone speech remains manual. TASK-015 remains PARTIAL for the Android 12 USB audio, managed kiosk, formal signing/update and long-run gates.
+- Rollback: `/opt/jiyangjia-ai/backups/task015b-20260812T090810Z`; evidence: `docs/evidence/TASK-015B/task015b-public-voice-phone-mode-20260812.md`.
+
 ## TASK-020G public-site knowledge v2.3
 
 - DONE / PRODUCTION_PUBLISHED. The user-authorized public training package is mirrored under `knowledge-public/v2.3/site/` with 135 files and manifest SHA-256 values.
@@ -13,7 +25,7 @@ Updated: 2026-08-12
 - Evidence: `docs/evidence/TASK-020G/public-site-knowledge-v23-acceptance-20260812.md`.
 - Public domain is now operational; HTTP 308, HTTPS root/Demo 200 and Certbot renewal dry-run passed on 2026-08-12.
 - TASK-015 remains PARTIAL: Android 13 built-in-microphone smoke passed, but Android 12 store-screen USB/audio/kiosk/update/long-run acceptance is pending.
-- Current Android app/download name: `积养家AI数字人`; debug v8 / `0.1.7-demo-debug`. Public URL: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`; 6,386,815 bytes, SHA-256 `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`; the old Demo URL remains compatible.
+- Current Android app/download name: `积养家AI数字人`; debug v9 / `0.1.8`, split into the phone and store variants documented above; the old Demo URL remains a phone alias.
 
 ## TASK-020F Aiye public knowledge v2.2
 
@@ -48,7 +60,7 @@ Updated: 2026-08-12
 
 ## TASK-020C production knowledge/avatar sharing
 
-- PARTIAL: production publication is complete; public sharing remains blocked by Tencent Webblock/ICP.
+- Historical PARTIAL: production publication was complete while public sharing was blocked by Tencent Webblock/ICP. TASK-014H later cleared this external gate.
 - Active release knowledge paths are `var/knowledge/jiyangjia.db` and `var/knowledge/faiss.index` under `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/`; final state is 41 approved, 24 draft, 65 vectors at 2048 dimensions.
 - The approved MOV-derived 1080x1920 H.264 video is production asset `asset_6a549a648fe647f1`; same-source JPG is `asset_0f04a1bf5a0b4237`; both are bound to default `display-1080x1920`.
 - Production backup is `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`.

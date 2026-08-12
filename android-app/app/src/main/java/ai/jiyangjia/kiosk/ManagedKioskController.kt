@@ -56,4 +56,23 @@ class ManagedKioskController(private val activity: Activity) {
             error = failure
         )
     }
+
+    fun exitForPhoneDemo(): String {
+        val failures = mutableListOf<String>()
+        if (activityManager.lockTaskModeState != ActivityManager.LOCK_TASK_MODE_NONE) {
+            runCatching { activity.stopLockTask() }
+                .onFailure { failures += "stopLockTask:${it.javaClass.simpleName}" }
+        }
+        runCatching { activity.packageManager.clearPackagePreferredActivities(activity.packageName) }
+            .onFailure { failures += "clearPreferred:${it.javaClass.simpleName}" }
+        if (policy.isDeviceOwnerApp(activity.packageName)) {
+            runCatching { policy.clearPackagePersistentPreferredActivities(admin, activity.packageName) }
+                .onFailure { failures += "clearHome:${it.javaClass.simpleName}" }
+            runCatching { policy.setStatusBarDisabled(admin, false) }
+                .onFailure { failures += "statusBar:${it.javaClass.simpleName}" }
+            runCatching { policy.setLockTaskPackages(admin, emptyArray()) }
+                .onFailure { failures += "lockPackages:${it.javaClass.simpleName}" }
+        }
+        return if (failures.isEmpty()) "normal" else "recovery_limited:${failures.joinToString(",")}"
+    }
 }

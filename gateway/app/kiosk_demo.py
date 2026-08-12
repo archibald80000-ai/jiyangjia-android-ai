@@ -9,7 +9,16 @@ router = APIRouter()
 
 @router.get("/demo/kiosk", response_class=HTMLResponse)
 def kiosk_demo() -> str:
-    return KIOSK_DEMO_HTML
+    return _render_demo("kiosk")
+
+
+@router.get("/demo/public", response_class=HTMLResponse)
+def public_demo() -> str:
+    return _render_demo("public")
+
+
+def _render_demo(mode: str) -> str:
+    return KIOSK_DEMO_HTML.replace("__DEMO_MODE__", mode)
 
 
 KIOSK_DEMO_HTML = r"""<!doctype html>
@@ -17,12 +26,21 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23123f39'/%3E%3Cpath d='M15 17h34v25H32L22 50v-8h-7z' fill='%23fffdf7'/%3E%3Cpath d='M23 29h5v8h-5zm9-7h5v15h-5zm9 4h5v11h-5z' fill='%23e5b84a'/%3E%3C/svg%3E">
   <title>积养家数字人客服</title>
   <style>
     * { box-sizing: border-box; }
     html, body { width: 100%; height: 100%; margin: 0; background: #101416; color: #fff; font-family: system-ui, sans-serif; overflow: hidden; }
     body { display: grid; place-items: center; }
+    #public-nav { display: none; }
+    body.public { display: flex; flex-direction: column; overflow: auto; background: #eef3f0; }
+    body.public #public-nav { width: 100%; min-height: 58px; padding: 0 18px; display: flex; align-items: center; gap: 18px; overflow-x: auto; background: #fff; color: #173b32; border-bottom: 1px solid #d5dfdb; white-space: nowrap; z-index: 10; }
+    #public-nav strong { flex: 0 0 auto; margin-right: auto; font-size: 17px; }
+    #public-nav a, #public-nav button { border: 0; padding: 10px 4px; background: transparent; color: #24594c; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; }
+    #public-nav a:hover, #public-nav button:hover { color: #087a63; text-decoration: underline; }
+    #public-nav .store-download { color: #8b3c2e; }
     #stage { position: relative; width: min(100vw, 56.25vh); height: min(177.78vw, 100vh); overflow: hidden; background: #203035; }
+    body.public #stage { flex: 1 1 auto; height: calc(100vh - 58px); width: auto; max-width: 100vw; aspect-ratio: 9 / 16; }
     #background, #avatar { position: absolute; inset: 0; width: 100%; height: 100%; }
     #background { object-fit: cover; }
     #avatar-wrap { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); transform-origin: center; }
@@ -30,30 +48,64 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     #shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,12,13,.5), transparent 25%, transparent 62%, rgba(8,12,13,.72)); pointer-events: none; }
     #status { position: absolute; top: 3%; left: 6%; right: 6%; font-size: 15px; text-align: center; text-shadow: 0 2px 8px #000; }
     #trace { position: absolute; top: 7%; left: 6%; right: 6%; font-size: 11px; color: #d4e0dc; text-align: center; overflow-wrap: anywhere; }
+    #mic-state { position: absolute; top: 9%; left: 8%; right: 8%; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #e2efea; }
+    #mic-meter { flex: 1; height: 5px; overflow: hidden; background: rgba(255,255,255,.22); }
+    #mic-level { display: block; width: 0; height: 100%; background: #62d5a8; transition: width .08s linear; }
     #subtitle { position: absolute; left: 8%; right: 8%; bottom: 13%; font-size: 36px; line-height: 1.35; text-align: center; text-shadow: 0 3px 10px #000; max-height: 30%; overflow: hidden; }
     #sources { position: absolute; left: 7%; right: 7%; bottom: 3%; font-size: 12px; color: #d9e8e2; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     #consult { position: absolute; left: 50%; top: 90%; transform: translate(-50%, -50%); min-width: 156px; min-height: 54px; padding: 0 24px; border: 1px solid rgba(255,255,255,.6); border-radius: 6px; background: #087a63; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer; }
     #consult[data-state="recording"] { background: #a33838; }
     #consult:disabled { opacity: .55; cursor: wait; }
-    #text-form { position: absolute; left: 6%; right: 6%; top: 11%; display: flex; gap: 6px; opacity: .2; transition: opacity .2s; }
+    #audio-retry { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); min-height: 42px; padding: 0 18px; border: 1px solid rgba(255,255,255,.7); background: #fff; color: #173b32; font-weight: 700; cursor: pointer; }
+    #text-form { position: absolute; left: 6%; right: 6%; top: 12%; display: flex; gap: 6px; opacity: .2; transition: opacity .2s; }
     #text-form:focus-within, #text-form:hover { opacity: .95; }
+    body.public #text-form { opacity: .95; }
     #text-question { min-width: 0; flex: 1; height: 36px; border: 1px solid rgba(255,255,255,.45); border-radius: 4px; padding: 0 10px; background: rgba(10,18,18,.7); color: #fff; }
     #text-submit { width: 58px; border: 0; border-radius: 4px; background: #dce9e4; color: #18312a; font-weight: 700; cursor: pointer; }
-    @media (max-width: 600px) { #stage { width: 100vw; height: 100vh; } #subtitle { font-size: 30px; } }
+    dialog { max-width: min(92vw, 440px); border: 0; padding: 24px; color: #18312a; background: #fff; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+    dialog::backdrop { background: rgba(0,0,0,.55); }
+    dialog h2 { margin: 0 0 12px; font-size: 20px; }
+    dialog p { line-height: 1.65; }
+    dialog button { min-height: 40px; border: 0; padding: 0 16px; background: #087a63; color: #fff; font-weight: 700; cursor: pointer; }
+    @media (max-width: 600px) {
+      body.public #public-nav { min-height: 52px; padding: 0 12px; gap: 14px; }
+      #public-nav strong { font-size: 15px; }
+      #public-nav a, #public-nav button { font-size: 13px; }
+      #stage, body.public #stage { width: 100vw; height: calc(100vh - 52px); max-height: none; aspect-ratio: auto; }
+      body.kiosk #stage { height: 100vh; }
+      #subtitle { font-size: 30px; }
+    }
   </style>
 </head>
-<body>
+<body class="__DEMO_MODE__">
+  <header id="public-nav" aria-label="公开导航">
+    <strong>积养家AI数字人</strong>
+    <a href="#consult">语音咨询</a>
+    <a href="#text-question">文字咨询</a>
+    <a href="https://jiyangjia-ai.netlify.app/" target="_blank" rel="noopener">知识中心</a>
+    <a href="https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.3" target="_blank" rel="noopener">公开资料</a>
+    <a href="/downloads/jiyangjia-ai-digital-human.apk">手机体验版</a>
+    <a class="store-download" href="/downloads/jiyangjia-ai-store-kiosk.apk" title="仅用于受管门店大屏，普通手机请勿安装">门店大屏版</a>
+    <button id="mic-help-open" type="button">麦克风帮助</button>
+  </header>
   <main id="stage">
     <img id="background" alt="" hidden>
     <div id="avatar-wrap"><video id="avatar" muted loop autoplay playsinline></video></div>
     <div id="shade"></div>
     <div id="status" aria-live="polite">正在载入人物形象</div>
     <div id="trace"></div>
+    <div id="mic-state"><span id="mic-label">麦克风：等待授权</span><span id="mic-meter" aria-hidden="true"><span id="mic-level"></span></span></div>
     <form id="text-form"><input id="text-question" placeholder="输入问题" autocomplete="off"><button id="text-submit">发送</button></form>
     <div id="subtitle" aria-live="polite">您好，欢迎来到积养家</div>
     <div id="sources"></div>
+    <button id="audio-retry" type="button" hidden>播放回答</button>
     <button id="consult" type="button" data-state="idle">开始咨询</button>
   </main>
+  <dialog id="mic-help">
+    <h2>启用实时语音</h2>
+    <p>请在浏览器地址栏的网站权限中允许麦克风，然后重新点击“开始咨询”。说话时会显示音量和识别文字；点击结束，或说完后静音 3 秒即可发送。</p>
+    <button id="mic-help-close" type="button">知道了</button>
+  </dialog>
   <script>
     const stage = document.querySelector('#stage');
     const background = document.querySelector('#background');
@@ -66,6 +118,12 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     const consult = document.querySelector('#consult');
     const textForm = document.querySelector('#text-form');
     const textQuestion = document.querySelector('#text-question');
+    const micLabel = document.querySelector('#mic-label');
+    const micLevel = document.querySelector('#mic-level');
+    const audioRetry = document.querySelector('#audio-retry');
+    const micHelp = document.querySelector('#mic-help');
+    const micHelpOpen = document.querySelector('#mic-help-open');
+    const micHelpClose = document.querySelector('#mic-help-close');
     let microphone = null;
     let answerAudio = null;
     let recordingTimer = null;
@@ -80,6 +138,7 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     let lastVoiceAt = 0;
     let maxRecordSeconds = 20;
     let streamRequestId = '';
+    let streamGeneration = 0;
     const SILENCE_AUTO_SEND_MS = 3000;
     const SPEECH_RMS_THRESHOLD = 0.02;
     const SPEECH_CONFIRMATION_FRAMES = 2;
@@ -95,6 +154,18 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     function setStatus(value, requestId='') {
       status.textContent = value;
       trace.textContent = requestId ? `request_id=${requestId}` : '';
+    }
+
+    function setMicrophoneState(value, level=0) {
+      micLabel.textContent = `麦克风：${value}`;
+      micLevel.style.width = `${Math.max(0, Math.min(100, level))}%`;
+    }
+
+    function microphoneFailureMessage(error) {
+      if (error?.name === 'NotAllowedError' || error?.name === 'SecurityError') return '麦克风权限被拒绝，请在网站权限中允许后重试';
+      if (error?.name === 'NotFoundError' || error?.name === 'DevicesNotFoundError') return '没有检测到可用麦克风';
+      if (error?.name === 'NotReadableError' || error?.name === 'TrackStartError') return '麦克风正被其他应用占用';
+      return '麦克风启动失败，请检查浏览器权限和输入设备';
     }
 
     function applyProfile(profile) {
@@ -192,6 +263,7 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
       const context = audioContext;
       audioContext = null;
       if (context && context.state !== 'closed') context.close().catch(() => {});
+      setMicrophoneState('已停止', 0);
     }
 
     function resetStreamState() {
@@ -214,15 +286,33 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
       }
       setStatus('正在播报回答', requestId);
       answerAudio = new Audio(`/api/v1/audio/${encodeURIComponent(audioId)}`);
+      audioRetry.hidden = true;
       answerAudio.onended = resetConsultation;
       answerAudio.onerror = () => { setStatus('回答音频播放失败', requestId); resetButton(); };
-      await answerAudio.play();
+      try {
+        await answerAudio.play();
+      } catch (error) {
+        audioRetry.hidden = false;
+        setStatus('浏览器等待点击播放回答', requestId);
+        subtitle.textContent = '回答已生成，请点击“播放回答”';
+      }
     }
 
     function handleStreamEvent(payload) {
       const type = payload.type || 'unknown';
+      if (type === 'stage') {
+        const labels = {
+          buffered_fallback: '实时识别降级处理中',
+          asr_finalizing: '正在确认识别文字',
+          answering: '正在检索知识并生成回答',
+          cancelled: '咨询已取消'
+        };
+        if (labels[payload.stage]) setStatus(labels[payload.stage], payload.request_id || streamRequestId);
+        return;
+      }
       if (type === 'ready') {
         setStatus('实时语音已连接，请开始说话', streamRequestId);
+        setMicrophoneState('已连接，请开始说话', 0);
         return;
       }
       if (type === 'partial_transcript') {
@@ -231,8 +321,9 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
         return;
       }
       if (type === 'final_transcript') {
-        subtitle.textContent = payload.text || payload.transcript || '识别完成，正在回答';
+        subtitle.textContent = payload.text || payload.transcript?.text || '识别完成，正在回答';
         setStatus('正在检索与生成回答', payload.request_id || streamRequestId);
+        setMicrophoneState('识别完成', 0);
         return;
       }
       if (type === 'answer') {
@@ -269,6 +360,7 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
         for (const sample of samples) energy += sample * sample;
         const now = performance.now();
         const rms = Math.sqrt(energy / samples.length);
+        setMicrophoneState(hasDetectedSpeech ? '实时识别中' : '正在监听', Math.min(100, rms * 500));
         if (rms >= SPEECH_RMS_THRESHOLD) {
           consecutiveSpeechFrames += 1;
           if (consecutiveSpeechFrames >= SPEECH_CONFIRMATION_FRAMES) {
@@ -298,6 +390,7 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
         return;
       }
       try {
+        setMicrophoneState('正在请求权限', 0);
         microphone = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
         audioContext = new AudioContextClass();
         await audioContext.resume();
@@ -305,7 +398,8 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
         streamSocket = new WebSocket(websocketUrl());
         streamSocket.binaryType = 'arraybuffer';
         streamSocket.onopen = () => {
-          streamSocket.send(JSON.stringify({type:'start', session_id:'browser-kiosk-demo', request_id:streamRequestId, generation:'web-realtime'}));
+          streamGeneration += 1;
+          streamSocket.send(JSON.stringify({type:'start', session_id:'browser-kiosk-demo', request_id:streamRequestId, generation:streamGeneration}));
           startPcmStreaming();
         };
         streamSocket.onmessage = event => {
@@ -313,7 +407,10 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
           catch (_) { setStatus('实时语音响应格式错误', streamRequestId); }
         };
         streamSocket.onerror = () => {
-          if (consult.dataset.state !== 'idle') setStatus('实时语音连接失败', streamRequestId);
+          if (consult.dataset.state !== 'idle') {
+            setStatus('实时语音连接失败', streamRequestId);
+            setMicrophoneState('连接失败', 0);
+          }
         };
         streamSocket.onclose = () => {
           if (consult.dataset.state === 'recording') {
@@ -332,8 +429,11 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
         recordingTimer = setTimeout(() => stopStreaming('maximum-duration'), maxRecordSeconds * 1000);
       } catch (error) {
         resetStreamState();
+        const message = microphoneFailureMessage(error);
         setStatus('麦克风不可用');
-        subtitle.textContent = error.name || '请检查麦克风权限';
+        setMicrophoneState('不可用', 0);
+        subtitle.textContent = message;
+        if (document.body.classList.contains('public')) micHelp.showModal();
       }
     }
 
@@ -386,6 +486,8 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     function resetConsultation() {
       setStatus('积养家数字人在线');
       resetStreamState();
+      audioRetry.hidden = true;
+      setMicrophoneState('等待授权', 0);
       resetButton();
     }
 
@@ -406,6 +508,12 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
       if (consult.dataset.state === 'recording') stopStreaming('manual');
       else startStreaming();
     });
+    audioRetry.addEventListener('click', () => {
+      if (!answerAudio) return;
+      answerAudio.play().then(() => { audioRetry.hidden = true; }).catch(() => setStatus('回答音频仍无法播放'));
+    });
+    micHelpOpen?.addEventListener('click', () => micHelp.showModal());
+    micHelpClose.addEventListener('click', () => micHelp.close());
     textForm.addEventListener('submit', event => {
       event.preventDefault();
       const question = textQuestion.value.trim();

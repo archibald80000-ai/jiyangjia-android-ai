@@ -1,6 +1,6 @@
 # Pending inputs / 待补资料
 
-Updated: 2026-08-07
+Updated: 2026-08-12
 
 本文件只记录继续落地需要的人工作业、外部资料和未闭环项。禁止写入任何真实密钥值。
 
@@ -11,6 +11,12 @@ Updated: 2026-08-07
 - Provider 凭据不再是当前阻塞。
 - `TASK-014A` 已入主线 `main`，本轮不再重复实现，仅记录与生产验收、真机资料和部署交接清单。
 - 用户已确认 `E:\work\ai-kefu\资料库\人像背景.MOV` 的本项目使用权；本地已生成并发布 1080x1920 MP4/JPG，绑定最终 9:16 测试 Profile。原始 MOV 未修改，派生媒体不进入 Git。
+- `ai-jiyangjia.cloud` ICP/HTTPS 公网门禁已经解除；公网首页、WSS、API 和 APK 下载已通过 TASK-015B 自动化/合成语音检查。
+
+## P0 - TASK-015B 人工门禁
+
+- 解锁已连接的小米 Android 13 手机，允许 MIUI 的“通过 USB 安装”确认；随后仅重跑一次手机体验版安装和 instrumentation。当前包因测试安装被拒而不在手机上。
+- 在公网首页允许浏览器麦克风，真人说一个问题，确认 partial/final 字幕、来源、TTS 扬声器播放和返回待机。自动合成语音不能代替此项。
 
 ## P0 - Android 12 真机
 
@@ -27,11 +33,11 @@ TASK-015 还必须同时具备：
 
 - 可恢复出厂并配置 Fully Managed Device Owner 的确认窗口；
 - 已批准 MP4/背景及 Profile 的可信 HTTPS 生产发布；
-- 可信 HTTPS bootstrap 与 APK 地址（当前被腾讯 DNSPod webblock/ICP 接入门禁阻塞）；
+- 可信 HTTPS bootstrap 与双 APK 地址已经具备；仍需正式签名发布身份；
 - 正式签名身份、双人保管/备份记录；
 - 同一正式证书签名且 versionCode 单调递增的 N、N+1，以及上一稳定源码构建的 N+2 回滚包。
 
-当前 `adb devices -l` 无设备，本地 SDK 也没有 emulator/system image；TASK-015 已签发 `NO-GO / BLOCKED`，不能用本地测试替代真机结论。
+当前有一台 Xiaomi Android 13 设备用于手机兼容性冒烟，但它不能替代 Android 12 门店大屏。门店设备的 USB 音频、托管 kiosk 和长稳验收仍未执行。
 
 ## P1 - TASK-014A 正式内容与生产部署
 
@@ -46,7 +52,7 @@ TASK-020B 已完成本地绑定；TASK-020C 已把同一正式知识状态、指
 ### 待机人物素材
 
 - 第一版人物形象待机 MP4、JPG 背景和权属确认已由用户提供并完成本地发布验证；
-- 生产服务器素材、manifest、Profile 和回滚备份已经完成；公网 HTTPS 分享仍待 TASK-014H 放行；
+- 生产服务器素材、manifest、Profile 和回滚备份已经完成，公网 HTTPS 分享已经放行；
 - Logo 和正式声音如后续使用，仍需单独确认权属。
 
 Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
@@ -62,8 +68,7 @@ Phase 1 推荐 `composite_video`，即人物和背景合成完整 MP4。
 
 ## P2 - 上线前
 
-- 完成 `ai-jiyangjia.cloud` 的 ICP/腾讯云接入审核，解除 DNSPod webblock；
-- 解除后重新通过公网 HTTPS 和 Certbot renewal dry-run；
+- 保持 `ai-jiyangjia.cloud` 公网 HTTPS、WSS 与 Certbot 自动续期监测；
 - Device token 和管理后台 `ADMIN_TOKEN`；
 - 知识库、素材和 Display Profile 的备份恢复；
 - 监控、告警、请求限流和成本保护；

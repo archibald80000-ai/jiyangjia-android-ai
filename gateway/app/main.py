@@ -40,6 +40,7 @@ from .tts import DoubaoTTSConfig, DoubaoTTSProvider, ProviderCallError, Provider
 settings = load_settings()
 logger = logging.getLogger("jiyangjia.gateway")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+STREAM_PROGRESS_INTERVAL_SECONDS = 15.0
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
 knowledge_store = SQLiteKnowledgeStore(settings.knowledge_db_path, faiss_index_path=settings.knowledge_faiss_path)
@@ -320,7 +321,17 @@ async def dialogue_stream(websocket: WebSocket) -> None:
             return
         rid = str(first.get("request_id") or rid)
         sid = _session_id(first.get("session_id"))
-        generation = int(first.get("generation") or 0)
+        raw_generation = first.get("generation")
+        if isinstance(raw_generation, bool) or not isinstance(raw_generation, int) or raw_generation < 0:
+            await _ws_event(
+                websocket,
+                "error",
+                rid,
+                code="INVALID_START",
+                message="invalid stream start event",
+            )
+            return
+        generation = raw_generation
         try:
             stream = await asyncio.wait_for(
                 streaming_asr_provider.open_stream(rid),
@@ -391,7 +402,29 @@ async def dialogue_stream(websocket: WebSocket) -> None:
         transcript = _normalize_transcript_payload(transcript)
         await _ws_event(websocket, "final_transcript", rid, transcript=transcript, fallback_used=fallback_used, generation=generation)
         await _ws_event(websocket, "stage", rid, stage="answering", generation=generation)
-        result = await _run_dialogue(str(transcript["text"]), rid, sid, str(transcript["provider"]), transcript)
+        dialogue_task = asyncio.create_task(
+            _run_dialogue(str(transcript["text"]), rid, sid, str(transcript["provider"]), transcript)
+        )
+        try:
+            while not dialogue_task.done():
+                done, _ = await asyncio.wait(
+                    {dialogue_task},
+                    timeout=STREAM_PROGRESS_INTERVAL_SECONDS,
+                )
+                if dialogue_task in done:
+                    break
+                await _ws_event(
+                    websocket,
+                    "stage",
+                    rid,
+                    stage="answering",
+                    heartbeat=True,
+                    generation=generation,
+                )
+            result = await dialogue_task
+        finally:
+            if not dialogue_task.done():
+                dialogue_task.cancel()
         payload = result.model_dump(mode="json")
         await _ws_event(websocket, "answer", rid, answer=payload["answer"], knowledge=payload["knowledge"], sources=payload["sources"], generation=generation)
         await _ws_event(websocket, "tts_ready", rid, tts=payload["tts"], generation=generation)
