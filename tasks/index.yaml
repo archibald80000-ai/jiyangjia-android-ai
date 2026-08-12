@@ -1,6 +1,6 @@
 version: 1
-updated: 2026-08-08
-current: TASK-014H
+updated: 2026-08-12
+current: TASK-015B
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -152,6 +152,12 @@ tasks:
     priority: p0
     status: PARTIAL
     depends_on: [TASK-014D]
+  - id: TASK-015B
+    file: TASK-015B_PUBLIC_VOICE_PHONE_MODE.md
+    title: "Restore public streaming voice and separate phone/store Android builds"
+    priority: p0
+    status: PARTIAL
+    depends_on: [TASK-014H, TASK-015]
   - id: TASK-016
     file: TASK-016_MUSETALK_EVALUATION.md
     title: "Evaluate MuseTalk after the Phase 1 MVP"

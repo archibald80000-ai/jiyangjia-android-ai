@@ -23,6 +23,7 @@ import androidx.media3.common.util.UnstableApi
 
 @androidx.annotation.OptIn(markerClass = [UnstableApi::class])
 class KioskActivity : Activity() {
+    private val terminalMode = TerminalModePolicy(BuildConfig.STORE_KIOSK)
     private lateinit var idleContainer: FrameLayout
     private lateinit var statusText: TextView
     private lateinit var diagnosticsText: TextView
@@ -48,10 +49,14 @@ class KioskActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        if (terminalMode.keepScreenOn) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
         config = loadConfig()
         buildLayout()
-        enterImmersiveMode()
+        if (terminalMode.immersive) {
+            enterImmersiveMode()
+        }
         idleVideoController = IdleVideoController(
             context = this,
             container = idleContainer,
@@ -89,14 +94,20 @@ class KioskActivity : Activity() {
     override fun onStart() {
         super.onStart()
         contentSyncManager.startForeground()
-        releaseUpdateManager.checkAndInstall()
+        if (terminalMode.selfUpdate) {
+            releaseUpdateManager.checkAndInstall()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        val kiosk = managedKioskController.configureAndEnter()
-        diagnosticsText.text = "Kiosk=${kiosk.mode} owner=${kiosk.deviceOwner} permitted=${kiosk.lockTaskPermitted} locked=${kiosk.lockTaskLocked}" +
-            (kiosk.error?.let { " error=$it" } ?: "")
+        diagnosticsText.text = if (terminalMode.managedKiosk) {
+            val kiosk = managedKioskController.configureAndEnter()
+            "Kiosk=${kiosk.mode} owner=${kiosk.deviceOwner} permitted=${kiosk.lockTaskPermitted} locked=${kiosk.lockTaskLocked}" +
+                (kiosk.error?.let { " error=$it" } ?: "")
+        } else {
+            "PhoneDemo=${managedKioskController.exitForPhoneDemo()} system_navigation=available"
+        }
     }
 
     override fun onStop() {
@@ -106,7 +117,7 @@ class KioskActivity : Activity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
+        if (hasFocus && terminalMode.immersive) {
             enterImmersiveMode()
         }
     }

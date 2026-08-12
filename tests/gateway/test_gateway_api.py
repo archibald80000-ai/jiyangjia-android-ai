@@ -64,6 +64,21 @@ def test_local_kiosk_demo_loads_real_presentation_and_dialogue_contracts() -> No
     assert "streamSocket.send(pcmRemainder.slice" in response.text
     assert "/api/v1/dialogue/text" in response.text
     assert "/api/v1/audio/" in response.text
+    assert 'class="kiosk"' in response.text
+    assert "generation:streamGeneration" in response.text
+    assert "generation:'web-realtime'" not in response.text
+
+
+def test_public_demo_exposes_navigation_and_phone_safe_download() -> None:
+    response = client.get("/demo/public")
+    assert response.status_code == 200
+    assert 'class="public"' in response.text
+    assert "https://jiyangjia-ai.netlify.app/" in response.text
+    assert "knowledge-public/v2.3" in response.text
+    assert "/downloads/jiyangjia-ai-digital-human.apk" in response.text
+    assert "/downloads/jiyangjia-ai-store-kiosk.apk" in response.text
+    assert "麦克风帮助" in response.text
+    assert "streamGeneration += 1" in response.text
 
 
 def test_client_bootstrap_is_versioned_and_etag_aware() -> None:

@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.3.0
+- **State version:** 0.3.1
 - **Updated:** 2026-08-12
-- **Overall status:** TASK-020G public-site knowledge v2.3 is published to Tencent production and accepted; public HTTPS is operational; TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
-- **Current authorized task:** TASK-020G closed as DONE; next resume the bounded TASK-015 Android 12 device acceptance
+- **Overall status:** TASK-015B public streaming voice and dual Android variants are deployed; automated/public checks and Android 13 phone navigation smoke passed, while MIUI USB-install approval and human microphone acceptance remain open; TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
+- **Current authorized task:** TASK-015B close-out is PARTIAL; complete only its two manual gates before resuming bounded TASK-015 Android 12 device acceptance
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -16,7 +16,7 @@
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 - TASK-020A imported the reviewed v2.1 package into an isolated port-8090 Gateway with real Doubao Embedding: 65 documents, 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy acceptance passed 80/80 with 0 draft leaks; the unchanged legacy exact-label comparison was 42/80 and remains recorded separately.
 - TASK-020B bound that accepted candidate to the isolated port-18084 avatar demo with real Doubao ASR/TTS/LLM/Embedding. One real WAV and one browser text dialogue matched approved sources and returned playable TTS; the 1080x1920 Profile/assets remained active. Local source paths are now redacted to stable `knowledge://` URIs.
-- TASK-020C verified the same 41/24/65 formal knowledge state on Tencent Cloud, published the approved MOV-derived 1080x1920 H.264 video and matching JPG, bound the production portrait Profile, deployed source-URI redaction and passed one real production RAG/LLM/TTS dialogue. Public HTTPS is still reset externally, so sharing remains blocked.
+- TASK-020C verified the same 41/24/65 formal knowledge state on Tencent Cloud, published the approved MOV-derived 1080x1920 H.264 video and matching JPG, bound the production portrait Profile, deployed source-URI redaction and passed one real production RAG/LLM/TTS dialogue. Its historical public HTTPS blocker was later cleared by TASK-014H.
 - TASK-020D published the user-authorized v2.1 knowledge as reviewable JSON under `knowledge-public/v2.1/`, backed up the production SQLite/FAISS state, re-imported 50+15 documents with real Doubao Embedding, and verified 41 approved / 24 draft / 65 vectors at 2048 dimensions. Production 80-case policy acceptance passed 80/80 with zero draft leaks and complete `knowledge://` sources.
 - TASK-020E preserved both local demo/candidate indexes, imported v2.1 into an isolated port-8091 all-real Gateway, retained 65 x 2048 Doubao vectors, passed the 80-case search gate, and passed five synthetic-speech audio dialogues through real ASR/RAG/LLM/TTS after narrow kiosk-query and soup-homophone adaptations. Status is `READY_FOR_DEMO`, not Android device acceptance.
 - TASK-020F archived 25 user-authorized public Aiye HTML files byte-for-byte with SHA-256, preserved all 65 v2.1 documents, and added 139 approved `aiye_` records. The v2.2 package has 204 documents, 340 chunks/vectors at 2048 dimensions, 24 solar-term recipes, 19 food-medicine ingredients and 11 Dayougu SKUs plus a product catalog.
@@ -26,7 +26,10 @@
 - TASK-020G made unknown business-term routing data-driven: explicit general intent stays outside the business corpus, while a strong approved SQLite/FTS match enters the existing hybrid FTS/FAISS RAG as `dynamic_corpus`.
 - TASK-020G production state is 227 approved, 24 draft, 387 chunks/vectors at 2048 dimensions. Real Doubao product retrieval passed 141/141 Top-3 with sources 100% and draft leaks 0; a real public dialogue returned grounded Doubao LLM/TTS output and downloadable audio. Rollback: `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
 - TASK-015 launch/audio recovery has Android 13 Xiaomi smoke evidence: the debug client captured real built-in-mic PCM, auto-ended after three seconds of silence, completed ASR/RAG/LLM/TTS, played answer audio and returned to idle. This does not replace Android 12 USB-microphone, speaker, reboot, managed-kiosk or long-run acceptance.
-- TASK-015 Android application and download filename are `积养家AI数字人`; version 8 (`0.1.7-demo-debug`) supersedes v7 and is published at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`. Public size is 6,386,815 bytes and SHA-256 is `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`. It uses the existing debug signature and is not the formal production-signed release.
+- TASK-015B publishes version 9 / `0.1.8` as two debug-signed variants. Phone package `ai.jiyangjia.kiosk.debug` is 6,402,961 bytes, SHA-256 `63E21EBC75030EA3AEEFD24C53D22349791E23707A150BDD4DA32C0BF3BAB31D`, at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`. Store package `ai.jiyangjia.kiosk.store` is 6,388,417 bytes, SHA-256 `F2963F0411BD706996B9D6B95B74ACC17917F860578C9998C9BEFC7B59CE7BDC`, at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk`. Formal production signing remains pending.
+- TASK-015B production WSS accepted a real Doubao stream for `积养家是什么？`, returned approved RAG sources, answer heartbeat, Doubao TTS and a downloadable 137,325-byte MP3. Malformed string generations now return structured `INVALID_START` errors.
+- The phone variant passed three cold launches plus Home/recents/notification navigation on Xiaomi Android 13 without a fatal exception. MIUI later rejected the instrumentation test APK with `INSTALL_FAILED_USER_RESTRICTED`; zero instrumentation tests ran and the phone app must be reinstalled after the user approves USB installation.
+- TASK-015B production rollback is `/opt/jiyangjia-ai/backups/task015b-20260812T090810Z`; Gateway image rollback tag is `jiyangjia-gateway:backup-task015b-20260812T090810Z`.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -131,6 +134,8 @@
 
 ## Not yet verified
 
+- Human speech through the public browser microphone and its real acoustic playback environment.
+- Reinstall/instrumentation after accepting Xiaomi MIUI's USB-install confirmation; current connected phone package is absent after the rejected test installation.
 - Android CPU architecture and screen resolution.
 - USB Host / USB Audio Class support.
 - Whether APK sideloading and ADB are enabled.
@@ -266,6 +271,7 @@ Recent task results:
 - TASK-014F is PARTIAL. The APK contains a minimal DPC, DeviceAdminReceiver, persistent Home configuration, BootReceiver and guarded Lock Task entry. Runtime diagnostics distinguish `managed_locked` from `limited_unmanaged`. Android unit/build/lint pass, but this workstation has no emulator package/system image and `adb devices -l` is empty, so Device Owner/reboot behavior is not claimed.
 - TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
 - TASK-015 is PARTIAL. Android 13 Xiaomi launch and real built-in-microphone dialogue smoke passed after the startup/audio fixes, but Android 12 USB/AEC, external speaker, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
+- TASK-015B is PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS. Production WSS, public/kiosk pages, v9 phone/store builds, package/signature inspection, public downloads and Android 13 phone navigation smoke passed. MIUI USB-install approval blocked instrumentation and human browser microphone speech remains manual.
 - TASK-015A is PARTIAL. The rights-confirmed portrait source was converted to an ignored H.264 1080x1920 silent MP4 plus JPG background, published and bound to the 9:16 Profile. A real local browser dialogue passed RAG, Doubao LLM/TTS, sources, request ID, audio fetch and visible subtitle playback. Browser recording now supports manual end/send plus speech-first 3-second silence auto-send; browser microphone permission and Android device behavior remain manual/unverified.
 - TASK-014H is DONE. DNS resolves to `120.53.86.89`; HTTP redirects to HTTPS; public root, Demo and API are reachable; Docker port 8080 remains loopback-only; and Certbot renewal dry-run passed on 2026-08-12.
 - TASK-020A is DONE for isolated local acceptance. The source package remained read-only, active demo data was preserved, timestamped SQLite/FAISS backups were created, both batches indexed with real Doubao Embedding, SQLite integrity and 65 x 2048 FAISS passed, approved Top-1 was 36/36, draft exclusion 14/14, safety cases 24/24, general no-match 6/6, sources completeness 80/80 and draft leaks 0. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
@@ -278,7 +284,7 @@ Recent task results:
 
 Next action:
 
-- Resume only TASK-015 on the Android 12 store display: verify USB microphone, speaker routing, profile rendering, reboot/Lock Task, signed update/rollback and long-run operation. Android 13 smoke and public HTTPS are already available but do not satisfy this device gate.
+- Unlock the connected Xiaomi device, approve one USB installation, reinstall the public phone APK and rerun the bounded instrumentation/real-microphone check once. After that, resume TASK-015 only on the Android 12 store display for USB microphone, speaker routing, profile rendering, reboot/Lock Task, signed update/rollback and long-run operation.
 
 ## Status vocabulary
 

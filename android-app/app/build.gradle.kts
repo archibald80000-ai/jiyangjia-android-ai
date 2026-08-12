@@ -41,13 +41,27 @@ android {
         applicationId = "ai.jiyangjia.kiosk"
         minSdk = 23
         targetSdk = 35
-        versionCode = controlledVersionCode ?: 8
-        versionName = controlledVersionName ?: "0.1.7-demo"
+        versionCode = controlledVersionCode ?: 9
+        versionName = controlledVersionName ?: "0.1.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(productionGatewayBaseUrl))
         buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", "false")
         manifestPlaceholders["usesCleartextTraffic"] = "false"
+    }
+
+    flavorDimensions += "terminalMode"
+    productFlavors {
+        create("phoneDemo") {
+            dimension = "terminalMode"
+            applicationIdSuffix = ".debug"
+            buildConfigField("boolean", "STORE_KIOSK", "false")
+        }
+        create("storeKiosk") {
+            dimension = "terminalMode"
+            applicationIdSuffix = ".store"
+            buildConfigField("boolean", "STORE_KIOSK", "true")
+        }
     }
 
     signingConfigs {
@@ -66,8 +80,6 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-debug"
             buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(developmentGatewayBaseUrl))
             buildConfigField("boolean", "ALLOW_CLEARTEXT_GATEWAY", developmentAllowsCleartext.toString())
             manifestPlaceholders["usesCleartextTraffic"] = developmentAllowsCleartext.toString()
