@@ -15,6 +15,7 @@ import faiss
 import numpy as np
 
 from .answer_policy import classify_answer_scope, has_explicit_general_intent
+from .persona import story_subject
 
 
 VALID_STATUSES = {"approved", "draft", "rejected"}
@@ -302,10 +303,11 @@ class SQLiteKnowledgeStore:
         }
 
     def classify_query(self, query: str) -> dict[str, object]:
+        retrieval_query = _expand_search_query(query)
         scope = classify_answer_scope(query)
         category = None
         if scope == "general" and not has_explicit_general_intent(query):
-            lexical = self._keyword_search(query, top_k=1, allowed=("approved",))
+            lexical = self._keyword_search(retrieval_query, top_k=1, allowed=("approved",))
             if lexical and max(lexical.values()) >= MIN_KEYWORD_ONLY_SCORE:
                 scope = "jiyangjia"
                 category = "dynamic_corpus"
@@ -339,6 +341,26 @@ class SQLiteKnowledgeStore:
         if merged and merged[0]["status"] == "draft":
             return []
         return [match for match in merged if match["status"] == "approved"][:top_k]
+
+    def answer_context(
+        self,
+        matches: list[dict[str, object]],
+        *,
+        max_matches: int = 2,
+        max_chars_per_chunk: int = 1200,
+    ) -> list[dict[str, object]]:
+        """Hydrate approved search matches for LLM use without enlarging the public search response."""
+        hydrated: list[dict[str, object]] = []
+        for match in matches[:max_matches]:
+            if match.get("status") != "approved":
+                continue
+            row = self._chunk_by_id(str(match.get("chunk_id") or ""))
+            if row is None or row["status"] != "approved":
+                continue
+            item = dict(match)
+            item["excerpt"] = str(row["text"])[:max_chars_per_chunk]
+            hydrated.append(item)
+        return hydrated
 
     async def _vector_search(self, query: str, embedding_provider: EmbeddingLike, request_id: str, top_k: int, allowed: tuple[str, ...]) -> dict[str, float]:
         embedding = await embedding_provider.embed([query], request_id=request_id)
@@ -667,6 +689,11 @@ def _expand_search_query(query: str) -> str:
     for pattern, expansion in SHORT_QUERY_EXPANSIONS:
         if pattern.fullmatch(normalized):
             return f"{query.strip()} {expansion}"
+    subject = story_subject(query)
+    if subject:
+        return f"{subject} 是谁 品牌来历"
+    if "送老人" in normalized and "怎么选" in normalized:
+        return "送人送什么 适合老人 产品 食材 汤品"
     return query
 
 

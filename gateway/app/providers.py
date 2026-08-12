@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Awaitable, Callable, Protocol
 
 from .answer_policy import classify_answer_scope, latest_user_text
+from .persona import PERSONA_VERSION, response_mode
 
 
 class ASRProvider(Protocol):
@@ -74,6 +75,8 @@ class MockLLMProvider:
             "text": answer[:240],
             "provider": self.name,
             "source": source,
+            "persona": PERSONA_VERSION,
+            "response_mode": response_mode(user_text),
             "subtitles": [answer[:80]],
             "input": user_text[:80],
         }

@@ -22,6 +22,7 @@
 - TASK-020C 已完成腾讯云正式知识与人物素材发布：线上为 41 approved、24 draft、65 个 2048 维向量；用户指定 MOV 的 1080x1920 H.264 衍生视频和同源背景已发布并绑定默认 Profile。真实生产 RAG/LLM/TTS 与来源脱敏通过，但公网分享仍被腾讯 Webblock/ICP 门禁阻塞。
 - TASK-020D 已按用户公开授权把 v2.1 的 65 条宣传/员工学习知识发布到 `knowledge-public/v2.1/`，并在备份后用真实 Doubao Embedding 重新导入生产；41 approved、24 draft、80/80 当前策略和 0 draft 泄露均通过。SQLite/FAISS 与未授权原始资料仍不进入 Git。
 - TASK-020E 已在隔离端口 8091 完成全真实 Gateway 验收：保留旧 demo/index，v2.1 为 41 approved、24 draft、65 个 2048 维 Doubao 向量，80 问策略 80/80，五个合成语音请求完成 ASR/RAG/LLM/TTS 与音频下载。状态为 READY_FOR_DEMO，但不等于 Android 真机或真人录音通过。
+- TASK-021 已发布 Gateway 0.3.3 的 `jiyangjia-neighbor-guide-v1` 人格回答层：检索事实仍执行 approved-only，故事/选择问法通过查询改写与完整上下文生成自然口语；Doubao 实时 Chat 关闭深度思考，公网故事问答、sources 和 TTS 已真实通过。Android 12 真机门禁仍独立保留。
 - TASK-014C 至 TASK-014G 已完成本地实现并保持 `PARTIAL`：安全素材同步/回滚、Media3 Profile 渲染、真实豆包双向流式 ASR + WebRTC VAD、AEC 感知自动打断、DPC/Boot/Lock Task、受控签名与 PackageInstaller 均有代码和自动化证据；正式 HTTPS/素材/签名身份及 Android 12 设备门禁未完成。
 - TASK-015 当前结论为 `NO-GO / BLOCKED`：本机无 Android 设备或 AVD，不能宣称 USB/AEC、真 Lock Task、重启、正式升级回滚或长稳通过。
 

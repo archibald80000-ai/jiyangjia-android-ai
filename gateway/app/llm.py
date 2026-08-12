@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -8,16 +9,22 @@ import httpx
 
 from .answer_policy import classify_answer_scope, latest_user_text
 from .config import Settings
+from .persona import (
+    FACT_SAFETY_PROMPT,
+    PERSONA_SYSTEM_PROMPT,
+    PERSONA_VERSION,
+    format_approved_context,
+    prepare_spoken_messages,
+    response_direction,
+    response_mode,
+)
 from .tts import ProviderCallError, ProviderConfigurationError
 
 
 GROUNDING_SYSTEM_PROMPT = (
-    "你是积养家门店大屏 AI 客服。回答必须简短、准确、口语化。"
-    "凡是积养家及其产品、服务、门店或顾客账户相关事实，只能依据已确认资料回答；"
-    "不得编造价格、库存、活动、医疗疗效、诊断、账户结果或内部信息。"
-    "资料中的健康、营养或传统食养表述，只能明确归因于‘资料中描述’或‘传统食养说法’，"
-    "不得扩写成确定疗效、治疗建议或诊断，不得使用‘管用’、‘能治疗’、‘能治好’等承诺性措辞。"
-    "非积养家的一般问题应根据常识和问题情境正常回答，不要无故拒绝。"
+    PERSONA_SYSTEM_PROMPT
+    + FACT_SAFETY_PROMPT
+    + "非积养家的一般问题应根据常识和问题情境正常回答，不要无故拒绝。"
 )
 
 JIYANGJIA_NO_EVIDENCE_PROMPT = (
@@ -91,21 +98,26 @@ class OpenAICompatibleLLMProvider:
     async def chat(self, messages: list[dict[str, str]], context: list[dict[str, object]], request_id: str) -> dict[str, object]:
         if not messages:
             raise ProviderCallError("LLM_EMPTY_MESSAGES", "messages must not be empty", retryable=False)
+        mode = response_mode(latest_user_text(messages))
         payload = {
             "model": self.config.model,
             "messages": _build_grounded_messages(messages, context),
             "temperature": self.config.temperature,
-            "max_tokens": self.config.max_tokens,
+            "max_tokens": min(self.config.max_tokens, 180) if mode == "story" else self.config.max_tokens,
             "stream": False,
         }
+        if self.name == "doubao":
+            payload["thinking"] = {"type": "disabled"}
         response = await self._post_json(_endpoint(self.config.base_url, "chat/completions"), payload, request_id)
-        text = _extract_chat_text(response)
+        text = _sanitize_grounded_answer(_extract_chat_text(response))
         answer = text[:600]
         return {
             "text": answer,
             "provider": self.name,
             "model": response.get("model") or self.config.model,
             "source": _answer_source(messages, context),
+            "persona": PERSONA_VERSION,
+            "response_mode": mode,
             "subtitles": _split_subtitles(answer),
             "usage": response.get("usage") if isinstance(response.get("usage"), dict) else None,
         }
@@ -272,18 +284,20 @@ class OpenAICompatibleEmbeddingProvider:
 def _build_grounded_messages(messages: list[dict[str, str]], context: list[dict[str, object]]) -> list[dict[str, str]]:
     grounded = [{"role": "system", "content": GROUNDING_SYSTEM_PROMPT}]
     if context:
-        excerpts = []
-        for item in context[:3]:
-            title = str(item.get("title") or item.get("id") or "未命名资料")
-            excerpt = str(item.get("excerpt") or item.get("text") or "")[:500]
-            if excerpt:
-                excerpts.append(f"- {title}: {excerpt}")
-        grounded.append({"role": "system", "content": "已确认资料：\n" + "\n".join(excerpts)})
+        question = latest_user_text(messages)
+        grounded.append({"role": "system", "content": response_direction(question)})
+        grounded.append(
+            {
+                "role": "system",
+                "content": "以下内容是本轮唯一可使用的品牌事实。回答不要念出资料编号或来源地址：\n\n"
+                + format_approved_context(context),
+            }
+        )
     else:
         scope = classify_answer_scope(latest_user_text(messages))
         instruction = JIYANGJIA_NO_EVIDENCE_PROMPT if scope == "jiyangjia" else GENERAL_ANSWER_PROMPT
         grounded.append({"role": "system", "content": instruction})
-    grounded.extend(messages)
+    grounded.extend(prepare_spoken_messages(messages))
     return grounded
 
 
@@ -307,6 +321,30 @@ def _extract_chat_text(response: dict[str, Any]) -> str:
     if not isinstance(content, str) or not content.strip():
         raise ProviderCallError("LLM_NO_TEXT", "LLM response did not include text", retryable=True)
     return content.strip()
+
+
+def _sanitize_grounded_answer(text: str) -> str:
+    spoken = re.sub(r"\s+", " ", text).strip()
+    spoken = re.sub(r"\s*([。！？；，、：])\s*", r"\1", spoken)
+    inventory_patterns = ("有现货", "看到现货", "现货供应", "库存充足", "现在有货")
+    medical_patterns = ("能治疗", "能治好", "保证疗效", "包治", "治愈")
+    sentences = [item for item in re.split(r"(?<=[。！？])", spoken) if item]
+    cleaned: list[str] = []
+    inventory_notice_added = False
+    medical_notice_added = False
+    for sentence in sentences:
+        if any(pattern in sentence for pattern in inventory_patterns):
+            if not inventory_notice_added:
+                cleaned.append("具体库存和到店情况请咨询现场工作人员。")
+                inventory_notice_added = True
+            continue
+        if any(pattern in sentence for pattern in medical_patterns):
+            if not medical_notice_added:
+                cleaned.append("健康相关信息只能作一般介绍，不能替代专业诊断或治疗。")
+                medical_notice_added = True
+            continue
+        cleaned.append(sentence)
+    return "".join(cleaned).strip()
 
 
 def _extract_embedding_vectors(response: dict[str, Any], expected_count: int) -> list[list[float]]:
@@ -337,7 +375,34 @@ def _extract_embedding_vectors(response: dict[str, Any], expected_count: int) ->
 def _split_subtitles(text: str, max_chars: int = 80) -> list[str]:
     if len(text) <= max_chars:
         return [text]
-    return [text[index : index + max_chars] for index in range(0, len(text), max_chars)]
+    segments = [segment.strip() for segment in re.split(r"(?<=[。！？；])", text) if segment.strip()]
+    subtitles: list[str] = []
+    current = ""
+    for segment in segments:
+        while len(segment) > max_chars:
+            if current:
+                subtitles.append(current)
+                current = ""
+            split_at = _subtitle_split_index(segment, max_chars)
+            subtitles.append(segment[:split_at])
+            segment = segment[split_at:]
+        if current and len(current) + len(segment) > max_chars:
+            subtitles.append(current)
+            current = segment
+        else:
+            current += segment
+    if current:
+        subtitles.append(current)
+    return subtitles
+
+
+def _subtitle_split_index(text: str, max_chars: int) -> int:
+    window = text[: max_chars + 1]
+    for punctuation in ("，", "、", "：", ",", ":"):
+        index = window.rfind(punctuation)
+        if index >= max_chars // 2:
+            return index + 1
+    return max_chars
 
 
 def _embedding_route(model: str) -> str:
