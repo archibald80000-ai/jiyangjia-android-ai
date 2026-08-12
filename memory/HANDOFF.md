@@ -6,10 +6,10 @@ Updated: 2026-08-12
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `codex/TASK-021-response-persona-style`.
-- Current task status: `TASK-021 DONE / PRODUCTION_PUBLISHED`; `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
+- Current branch: `codex/TASK-021-public-resource-gate`.
+- Current task status: `TASK-021 persona DONE / PRODUCTION_PUBLISHED`; `TASK-021A public resource gate DONE / PRODUCTION_PUBLISHED`; `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
 - Current public knowledge: `knowledge-public/v2.4/`; production 227 approved, 39 draft and 402 x 2048 real Doubao vectors.
-- Next work: run the remaining TASK-015 Android 12 physical-device gates; response persona work is complete.
+- Next work: complete the two bounded TASK-015B manual checks, then run the remaining TASK-015 Android 12 physical-device gates; persona and public resource gate work are complete.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -20,6 +20,7 @@ Updated: 2026-08-12
 - TASK-010 real Doubao ASR: DONE.
 - TASK-011 real LLM and Embedding adapters: DONE.
 - TASK-012 lightweight RAG: DONE. SQLite, FTS5, FAISS, reviewed statuses, PDF/DOCX/MD/TXT parsing and source citations are implemented.
+- TASK-021A public resource gate: DONE. The two public navigation entries use a server-side PBKDF2/HMAC gate with a 24-hour secure cookie, fixed redirect allowlist, logout and per-IP failed-login limiting.
 - TASK-013: PARTIAL only because Android 12 physical-device acceptance is pending. Android code records PCM, wraps WAV, uploads to Gateway, displays transcript/answer/sources, fetches TTS audio and plays it before returning to idle.
 - TASK-014A: DONE locally. FastAPI management pages, explicit knowledge publication, media version/rollback/manifest, editable Display Profiles and persistence are covered by 55 tests and real-browser button verification.
 - TASK-014C: PARTIAL; secure versioned content sync and rollback pass local tests.
