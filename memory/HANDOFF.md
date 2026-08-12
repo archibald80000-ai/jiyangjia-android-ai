@@ -6,10 +6,10 @@ Updated: 2026-08-12
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-015-launch-crash-recovery`.
-- Current task status: `TASK-020G DONE / PRODUCTION_PUBLISHED`; `TASK-014H DONE`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
+- Current branch: `codex/TASK-015B-public-voice-phone-mode`.
+- Current task status: `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-020G DONE`; `TASK-014H DONE`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
 - Current public knowledge: `knowledge-public/v2.3/`; production 227 approved, 24 draft and 387 x 2048 real Doubao vectors.
-- Next action: execute only the remaining Android 12 store-screen TASK-015 gates.
+- Next action: unlock the connected Xiaomi device, approve one USB installation, reinstall the phone APK and rerun the bounded instrumentation/real-microphone checks once; then execute only the remaining Android 12 store-screen TASK-015 gates.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -38,7 +38,8 @@ Updated: 2026-08-12
 - TASK-020G: DONE / PRODUCTION_PUBLISHED. The 135-file public training site and 251-document v2.3 package are ready for GitHub sharing. Production search passed 141/141 with sources 100% and no draft leaks; rollback is `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
 - TASK-014H: DONE. Public HTTP/HTTPS, root Demo and APIs are reachable; Certbot dry-run passes.
 - TASK-015: PARTIAL. Xiaomi Android 13 built-in-mic capture, 3-second-silence send, ASR/RAG/LLM/TTS, speaker playback and return to idle passed. Android 12 USB and managed-device acceptance remains required.
-- Android app/download name is `积养家AI数字人`; public debug v8 / `0.1.7-demo-debug` is at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`, SHA-256 `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`, with the old Demo URL retained for compatibility. Formal production signing is still pending.
+- TASK-015B: PARTIAL. Production public/kiosk pages, WSS real Doubao ASR/RAG/LLM/TTS, v9 dual builds, package/signature checks, public downloads and normal phone navigation passed. MIUI rejected the instrumentation APK with `INSTALL_FAILED_USER_RESTRICTED`, and human browser-microphone speech remains manual.
+- Android app/download name is `积养家AI数字人`; public debug v9 / `0.1.8` phone APK is at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`, SHA-256 `63E21EBC75030EA3AEEFD24C53D22349791E23707A150BDD4DA32C0BF3BAB31D`. Store APK is at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk`, SHA-256 `F2963F0411BD706996B9D6B95B74ACC17917F860578C9998C9BEFC7B59CE7BDC`. Formal production signing is still pending.
 
 ## TASK-020F package and production rollback
 
@@ -101,7 +102,7 @@ Updated: 2026-08-12
 - Rollback backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
 - Gateway container is healthy and bound to `127.0.0.1:8080`; Nginx listens on 80/443; UFW allows only 22/80/443.
 - Certificate exists and snap Certbot renewal is active; `certbot renew --dry-run` passed on 2026-08-12.
-- Do not retry Nginx/Certbot changes until the ICP/access block is released; then run the commands in `docs/server/operations.md` once.
+- The historical ICP/access block is released. Do not repeat Nginx/Certbot work unless a current public probe fails; preserve the TASK-015B rollback before any production change.
 
 ## TASK-015A local demo
 
@@ -144,13 +145,15 @@ Updated: 2026-08-12
 
 ## Human inputs still required
 
+- Unlock the connected Xiaomi Android 13 phone and approve the MIUI USB-install prompt. The phone package is currently absent after the rejected instrumentation installation.
+- Speak one real question in the public browser after granting microphone permission, then confirm transcript and speaker playback; automated synthetic speech does not replace this check.
 - No additional formal knowledge content is required for the v2.1 demo gate; future content changes still require review and versioned approval.
 - Target Android screen resolution, density, orientation, safe area and audio hardware details.
 - Android 12 physical device for TASK-015 USB microphone, speaker, network, reboot and long-run acceptance.
 
 ## Next action
 
-Execute only the remaining Android 12 TASK-015 device gates. Do not upgrade the Android 13 smoke result to full Android 12 USB/kiosk/update/long-run acceptance.
+Complete the two bounded TASK-015B manual checks first: MIUI-approved reinstall/instrumentation and one human browser-microphone dialogue. Then execute only the remaining Android 12 TASK-015 device gates. Do not upgrade Android 13 smoke to full Android 12 USB/kiosk/update/long-run acceptance.
 
 ## Safety boundaries
 

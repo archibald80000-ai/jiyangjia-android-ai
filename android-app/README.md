@@ -1,50 +1,63 @@
 # Android app
 
-Phase 1 Android 12 portrait kiosk client, defaulting to a 9:16 display profile.
+Android client for the public phone experience and the managed Android 12 store display. Both variants use the same real Gateway and 9:16 presentation renderer, but their device-control capabilities are intentionally different.
 
-TASK-005 scope:
+## Variants
 
-- native Kotlin app;
-- immersive 9:16 portrait shell with server-side profiles retained for other screen layouts;
-- local idle character video when a rights-clear file is configured;
-- offline animated fallback visual when no local video is available;
-- non-secret development config via long-pressing the status text;
-- no provider API keys, model weights, LiveTalking runtime or raw business data in the APK.
+| Variant | Package | Intended device | Device-control behavior |
+| --- | --- | --- | --- |
+| `phoneDemo` | `ai.jiyangjia.kiosk.debug` | Ordinary Android phone | Normal Home, recents, notifications and app switching; no boot receiver, Home role, Device Admin, Lock Task or package-install permission |
+| `storeKiosk` | `ai.jiyangjia.kiosk.store` | Managed Android 12 store display | Home role, boot recovery, Device Owner/Lock Task, immersive mode, keep-screen-on and controlled update support |
+
+Do not install the store-kiosk variant on an ordinary phone. It is designed for a recoverable, fully managed store device.
+
+Current shared version:
+
+- `versionCode=9`
+- `versionName=0.1.8`
+- application label: `积养家AI数字人`
 
 ## Build
 
-Build requires JDK 17 and Android SDK platform/build tools for API 35. The official Gradle Wrapper is committed, so a global Gradle installation is not required after the first verified setup.
-
-Example from the repository root:
+Build requires JDK 17 and Android SDK platform/build tools for API 35. From the repository root:
 
 ```powershell
 $env:JAVA_HOME = "<jdk-17-path>"
 $env:ANDROID_HOME = "<android-sdk-path>"
 $env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
-.\android-app\gradlew.bat -p android-app testDebugUnitTest assembleDebug
+.\android-app\gradlew.bat -p android-app `
+  testPhoneDemoDebugUnitTest testStoreKioskDebugUnitTest `
+  lintPhoneDemoDebug lintStoreKioskDebug `
+  assemblePhoneDemoDebug assembleStoreKioskDebug
 ```
 
-TASK-005 verified output:
+Local outputs:
 
-- Debug APK: `android-app\app\build\outputs\apk\debug\app-debug.apk`
-- SHA-256: `AA19DA758C8B319AD33B760127CD82E38385AA6CAF0B796FCB952E5166DE0896`
+- Phone: `android-app\app\build\outputs\apk\phoneDemo\debug\app-phoneDemo-debug.apk`
+- Store: `android-app\app\build\outputs\apk\storeKiosk\debug\app-storeKiosk-debug.apk`
 
-Android 12 device installation and rendering remain separate acceptance work.
+Published debug artifacts:
+
+- Phone: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`
+- Store: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk`
+- Legacy phone alias: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk`
+
+These are debug-signed demonstration artifacts. Formal release signing and Android 12 managed-device update/rollback acceptance remain separate gates.
 
 ## Gateway Base URL
 
-- Production release origin: `https://ai-jiyangjia.cloud`.
+- Production origin: `https://ai-jiyangjia.cloud`.
 - Release builds always disable cleartext Gateway traffic.
-- Debug builds use the same HTTPS origin by default.
-- A developer may override debug only with Gradle property or environment variable `JIYANGJIA_GATEWAY_BASE_URL`.
-- Local HTTP debug additionally requires `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`; never use this for a release build.
+- Debug builds use the production HTTPS origin by default.
+- Development may override the debug origin with `JIYANGJIA_GATEWAY_BASE_URL`.
+- Local HTTP additionally requires `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`; never use it for a release build.
 
-Example local debug override:
+Example:
 
 ```powershell
 $env:JIYANGJIA_GATEWAY_BASE_URL = "http://192.168.1.10:18084"
 $env:JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY = "true"
-.\gradlew.bat assembleDebug
+.\gradlew.bat assemblePhoneDemoDebug
 ```
 
-Provider credentials are server-only and must never be added to Gradle properties, BuildConfig or APK resources.
+Provider credentials are server-only and must never be added to Gradle properties, `BuildConfig`, resources or APK files.

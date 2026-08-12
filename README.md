@@ -41,8 +41,9 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-014：腾讯云部署与 Gateway 生产链路收口（基于任务环境）。
 - TASK-014A：四页管理后台（system / knowledge / avatar / display）+发布闭环+路由 API。
 - TASK-014H：生产域名、TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已完成；公网 HTTPS 与 Certbot 模拟续期已通过。
+- TASK-015B：公网 WebSocket 实时语音协议已修复；手机体验版与门店大屏版已拆分为独立 Android 变体并发布 v9 / `0.1.8` 调试包。
 - TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
-- TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。公网分享仍受 ICP/Webblock 门禁阻塞。
+- TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。历史 ICP/Webblock 门禁已解除。
 - TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
 - TASK-020F/020G：v2.2 爱野食材与 v2.3 公开培训站点已进入正式公开知识包；v2.3 由结构化产品数据生成，生产为 227 approved、24 draft、387 x 2048，产品检索 141/141。
 
@@ -157,15 +158,18 @@ GitHub 仓库中的公开知识库入口：[积养家公开知识资料](knowled
 - 当前状态：41 approved、24 draft、65 chunks、65 个 2048 维向量
 - 只读状态接口：[知识库实时状态](https://ai-jiyangjia.cloud/api/v1/knowledge/status)
 
-备案/腾讯接入放行后的正式分享入口：
+正式分享入口：
 
+- [公网语音咨询首页](https://ai-jiyangjia.cloud/)
 - [AI 数字人演示](https://ai-jiyangjia.cloud/demo/kiosk)
 - [系统健康状态](https://ai-jiyangjia.cloud/health)
 - [知识库实时状态](https://ai-jiyangjia.cloud/api/v1/knowledge/status)
 - [数字人素材清单](https://ai-jiyangjia.cloud/api/v1/assets/manifest)
 - [大屏 Display Profile](https://ai-jiyangjia.cloud/api/v1/display/profile)
+- [积养家AI数字人手机体验版](https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk)
+- [积养家AI数字人门店大屏版](https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-store-kiosk.apk)（普通手机勿安装）
 
-当前外网实测状态：HTTP 正确 308 跳转 HTTPS，但 HTTPS 仍在腾讯侧被重置；服务器内部经正式域名 TLS 的上述接口均为 200。**在 ICP/Webblock 门禁解除前，这些链接不能对外宣称已可访问。** 不得通过开放 8080 或取消 HTTPS 跳转来绕过门禁。
+当前外网实测状态：HTTP 正确 308 跳转 HTTPS；HTTPS 首页、门店 Demo、API、WSS 实时语音和两个 APK 下载地址均已连通。浏览器首次使用仍需人工允许麦克风权限。
 
 线上默认虚拟人视频来自 `E:\work\ai-kefu\资料库\人像背景.MOV`，生产使用其浏览器/Android 兼容的 H.264 1080x1920 MP4 衍生版：
 
@@ -197,8 +201,8 @@ APK 以本地构建产物为准，不提交到 Git；未进行 Android 真机发
 
 ## 当前任务与下一任务
 
-- 当前生产域名任务：`TASK-014H DONE`；公网 HTTPS、Demo、API 和 Certbot 模拟续期均已通过。
-- 下一步唯一任务：在 Android 12 门店大屏完成 TASK-015 的 USB 麦克风、音响、托管 kiosk、更新回滚和长稳验收。
+- `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`：公网流式链路和双 APK 已发布；MIUI USB 安装确认及真人浏览器麦克风仍需人工完成。
+- 下一步唯一任务：先在已连接手机上批准一次 USB 安装并完成真人麦克风复验，再进入 Android 12 门店大屏 TASK-015 的 USB 麦克风、音响、托管 kiosk、更新回滚和长稳验收。
 
 ## 证据与交接
 
