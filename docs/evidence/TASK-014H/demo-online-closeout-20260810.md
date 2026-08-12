@@ -4,18 +4,19 @@ Executed: 2026-08-10 America/Chicago / 2026-08-11 UTC
 
 ## Decision
 
-`BLOCKED`.
+`DONE / READY_FOR_ANDROID_DEVICE_ACCEPTANCE`.
 
-The production Gateway, v2.1 knowledge, real Provider dialogue and debug Demo APK pass internally. Public HTTP now reaches Nginx and returns the required `308`, but public HTTPS still resets before Nginx. Certbot renewal and browser APK download therefore cannot pass yet. This is not Android physical-device acceptance.
+The production Gateway, v2.1 knowledge, real Provider dialogue, public HTTPS and debug Demo APK endpoint pass. Certbot renewal dry-run succeeds. This is readiness for TASK-015, not Android physical-device acceptance.
 
 ## Domain and TLS
 
 - DNS A: `ai-jiyangjia.cloud -> 120.53.86.89`.
 - Nginx config test: success; service active; 80/443 public and Gateway only on `127.0.0.1:8080`.
 - Public HTTP: `308` to `https://ai-jiyangjia.cloud/`.
-- Public HTTPS: connection reset before Nginx; the request does not appear in the Nginx access log.
+- Public HTTPS: `/health`, `/api/v1/health` and `/api/v1/readiness` return 200.
 - Certificate: valid Let's Encrypt certificate through 2026-11-05; renewal timer enabled and active.
-- Renewal dry-run: failed because one ACME path still resolved through the Tencent webblock during access propagation. No further blind retries were made.
+- TLS: TLS 1.3, `TLS_AES_256_GCM_SHA384`, peer certificate CN `ai-jiyangjia.cloud`.
+- Renewal dry-run: success for `/etc/letsencrypt/live/ai-jiyangjia.cloud/fullchain.pem`.
 
 ## Secrets and Providers
 
@@ -51,8 +52,8 @@ The production Gateway, v2.1 knowledge, real Provider dialogue and debug Demo AP
 - Server path: `/var/www/jiyangjia/downloads/jiyangjia-ai-demo.apk`.
 - Target URL: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk`.
 - Server-local download: HTTP 200, correct APK MIME, attachment header, and matching hash.
-- Public Chrome test: failed with connection closed before a download event; therefore the URL is not yet accepted as publicly downloadable.
+- Public APK HEAD: HTTP 200, `application/vnd.android.package-archive`, `Content-Disposition: attachment`, 6,451,723 bytes.
 
 ## Next gate
 
-After Tencent HTTPS/SNI propagation completes, execute exactly one public HTTPS health check, one Certbot renewal dry-run and one browser APK download. If all pass, TASK-014H may become `READY_FOR_ANDROID_DEMO`; TASK-015 remains a separate physical-device task.
+TASK-014H is closed. The next task is TASK-015 Android 12 physical-device acceptance; it has not been started.

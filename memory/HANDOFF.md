@@ -1,14 +1,14 @@
 # Handoff
 
-Updated: 2026-08-10
+Updated: 2026-08-12
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
 - Current branch: `task/TASK-014H-production-demo-closeout`.
-- Current task status: `TASK-014H BLOCKED_BY_TENCENT_HTTPS_PROPAGATION`; internal Demo stack is ready, while `TASK-015` remains `BLOCKED / NO-GO`.
-- Next action: after Tencent HTTPS propagation, run one public HTTPS, Certbot renewal and APK browser-download acceptance; do not repeat internal Provider/RAG tests.
+- Current task status: `TASK-014H DONE / READY_FOR_ANDROID_DEVICE_ACCEPTANCE`; `TASK-015` remains not started and requires a physical Android 12 device.
+- Next action: execute only TASK-015 Android 12 physical-device acceptance when the device and required hardware inputs are available.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -27,13 +27,13 @@ Updated: 2026-08-10
 - TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
 - TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
-- TASK-014H: BLOCKED externally. Public HTTP now reaches Nginx with `308`, while HTTPS SNI is still reset before Nginx. Fixed secrets, loopback 8080, real Providers, v2.1 RAG, dialogue and server-local APK download are complete.
+- TASK-014H: DONE. Public DNS/HTTP/HTTPS, health/readiness, TLS SNI, APK response and Certbot renewal dry-run pass. Fixed secrets, loopback 8080, real Providers, v2.1 RAG and dialogue remain ready.
 - TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
 - TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
-- TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
+- TASK-020C: PARTIAL historical task result. Production uses the formal 41/24 knowledge state and approved MOV-derived avatar/background; its shared external HTTPS blocker was cleared by TASK-014H on 2026-08-12.
 - TASK-020D: DONE. The explicitly authorized v2.1 JSON is tracked under `knowledge-public/v2.1/`; production was backed up and re-imported in 50+15 batches with real Doubao Embedding. Final 80-case current-policy acceptance is 100%, sources are complete and draft leaks are 0.
 - TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
-- TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Public HTTPS remains a separate TASK-014H blocker.
+- TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Its separate TASK-014H public HTTPS blocker was cleared on 2026-08-12.
 
 ## TASK-020F package and production rollback
 
@@ -97,7 +97,7 @@ Updated: 2026-08-10
 - Gateway container is healthy and bound to `127.0.0.1:8080`; Nginx listens on 80/443; UFW allows only 22/80/443.
 - Production uses v2.1 at 41 approved / 24 draft / 65 x 2048 vectors. Search is 80/80 with zero draft leaks; text and Android WAV dialogue use real Doubao/Ark Providers.
 - Demo APK: `/var/www/jiyangjia/downloads/jiyangjia-ai-demo.apk`, debug signed, SHA-256 `C18EE46E93153E925B807E48D72BB7A8D66865C1247794B19B4DAA098D7B396E`.
-- Certificate exists and is valid until 2026-11-05; timer is active. Public HTTPS and renewal dry-run remain blocked during Tencent access propagation.
+- Certificate exists and is valid until 2026-11-05; TLS 1.3 public SNI and Certbot renewal dry-run pass. Production URL is `https://ai-jiyangjia.cloud`.
 
 ## TASK-015A local demo
 
@@ -146,7 +146,7 @@ Updated: 2026-08-10
 
 ## Next action
 
-Wait for Tencent public HTTPS/SNI propagation, then run one external HTTPS, Certbot dry-run and APK browser-download acceptance. Do not repeat the already-passed internal Provider/RAG/dialogue tests and do not start TASK-015 before the public gate passes.
+Execute only `TASK-015 Android 12 physical-device acceptance` next. Do not repeat the passed TASK-014H public or internal Provider/RAG/dialogue gates unless diagnosing a new regression.
 
 ## Safety boundaries
 

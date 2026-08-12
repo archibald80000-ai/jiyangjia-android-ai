@@ -1,14 +1,14 @@
 # Current state
 
-Updated: 2026-08-10
+Updated: 2026-08-12
 
 ## TASK-014H production Demo close-out
 
-- Final gate is `BLOCKED`, not `READY_FOR_ANDROID_DEMO`: public HTTP has recovered to the required Nginx `308`, but public HTTPS still resets before Nginx and browser APK download fails with the same connection closure.
+- DONE / READY_FOR_ANDROID_DEVICE_ACCEPTANCE. DNS, HTTP redirect, public HTTPS health/readiness, TLS SNI, APK response and Certbot renewal dry-run passed on 2026-08-12.
 - Production Compose now loads `/opt/jiyangjia-ai/secrets/.env.local` at mode `600`; the recreated Gateway reports Doubao ASR/TTS, Ark-compatible Doubao LLM and Doubao Embedding ready.
 - The latest instruction activated v2.1 in production: 41 approved, 24 draft, 65 chunks/vectors at 2048 dimensions. Production search passed 80/80, sources 100% and draft leaks 0. v2.2 is preserved in `/opt/jiyangjia-ai/backups/task014h-demo-online-20260811T034331Z`.
 - Real production checks passed five text dialogues and one synthetic Android-format PCM WAV upload through ASR/RAG/LLM/TTS and audio fetch. The two short intents `有什么产品` and `怎么体验` were repaired by deploying the already-tested query expansion and now match approved sources.
-- Debug Demo APK is served internally at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk`; SHA-256 is `C18EE46E93153E925B807E48D72BB7A8D66865C1247794B19B4DAA098D7B396E`. This is not a formally signed release or Android device result.
+- Debug Demo APK is publicly served at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-demo.apk`; SHA-256 is `C18EE46E93153E925B807E48D72BB7A8D66865C1247794B19B4DAA098D7B396E`. This is not a formally signed release or Android device result.
 - Evidence: `docs/evidence/TASK-014H/demo-online-closeout-20260810.md`.
 
 ## TASK-020F Aiye public knowledge v2.2
@@ -19,7 +19,7 @@ Updated: 2026-08-10
 - Accepted publication state was 180 approved, 24 draft and 340 vectors. The current Demo runtime was later switched to v2.1 by explicit instruction; the full v2.2 state remains backed up.
 - Health/nutrition grounding now requires explicit attribution to source/traditional food-use language and forbids extending it into treatment promises. Two production risk-focused checks passed after deployment.
 - Production rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`.
-- Public HTTPS is still blocked before Nginx by the separate TASK-014H Tencent webblock/ICP issue. This is not Android or human microphone acceptance.
+- Public HTTPS was blocked during TASK-020F but was cleared by TASK-014H on 2026-08-12. This still is not Android or human microphone acceptance.
 - Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 ## TASK-020E real Gateway import acceptance
@@ -49,7 +49,7 @@ Updated: 2026-08-10
 - The approved MOV-derived 1080x1920 H.264 video is production asset `asset_6a549a648fe647f1`; same-source JPG is `asset_0f04a1bf5a0b4237`; both are bound to default `display-1080x1920`.
 - Production backup is `/opt/jiyangjia-ai/backups/task020c-avatar-20260808T031244Z`.
 - Real production dialogue `task020c-production-final` matched approved sources, returned only `knowledge://` URIs and fetched Doubao MP3 TTS.
-- Server-local canonical HTTPS health/demo/knowledge routes return 200. External HTTP redirects to HTTPS, while external HTTPS still resets before Nginx.
+- Server-local canonical HTTPS health/demo/knowledge routes returned 200 at TASK-020C time; the then-current external HTTPS reset was later cleared by TASK-014H.
 - Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 
 ## TASK-020B avatar knowledge binding
@@ -78,7 +78,7 @@ Updated: 2026-08-10
 - DNS resolves correctly through local, Cloudflare and Google resolvers.
 - Server-side Nginx/TLS checks pass, Gateway is healthy/ready, `ADMIN_TOKEN` is configured, and Docker port 8080 is now loopback-only.
 - The Let's Encrypt certificate is valid until 2026-11-05 and the snap renewal timer is enabled/active.
-- BLOCKED: public HTTP now returns the required Nginx `308`, but public HTTPS SNI is still reset and the Certbot dry-run observed a partially propagated Tencent webblock challenge path. Wait for Tencent access propagation before one final external retry.
+- DONE: public HTTP returns Nginx `308`; public HTTPS/TLS SNI, health/readiness, APK response and Certbot renewal dry-run pass.
 - Android production Base URL is fixed to the canonical HTTPS domain; debug builds can override with `JIYANGJIA_GATEWAY_BASE_URL` and opt into cleartext only with `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`.
 - Evidence: `docs/evidence/TASK-014H/production-domain-https-20260807.md`.
 
@@ -244,4 +244,4 @@ Android recording
 
 ## Next action
 
-Wait for Tencent public HTTPS/SNI propagation, then run one external HTTPS, Certbot renewal and APK browser-download acceptance. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after that gate and all physical-device inputs are available.
+Next task: `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md`. TASK-014H is closed; no physical-device acceptance has been performed yet.

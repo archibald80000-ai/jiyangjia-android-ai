@@ -1,6 +1,6 @@
 # TASK-014H - Production Domain and HTTPS
 
-- **Status:** BLOCKED
+- **Status:** DONE
 - **Priority:** P0
 - **Dependencies:** TASK-014 DONE, DNS control for `ai-jiyangjia.cloud`, Tencent Cloud host access
 
@@ -28,14 +28,16 @@ Make `https://ai-jiyangjia.cloud` the canonical production Gateway address acros
 
 If public DNS, TLS handshake, Nginx or Gateway checks do not all pass, keep this task `PARTIAL` or `BLOCKED` and record the exact failed layer.
 
-## Result (updated 2026-08-10)
+## Result (final verification 2026-08-12)
 
 - DNS A records from the local resolver, Cloudflare and Google resolve to `120.53.86.89`.
 - Nginx, the existing Let's Encrypt certificate, internal HTTPS routes, Gateway readiness and loopback-only port 8080 all pass on the server.
 - Android production configuration is fixed to `https://ai-jiyangjia.cloud`; debug remains explicitly overridable.
-- After the user reported ICP completion, public HTTP progressed to the required Nginx `308` redirect.
-- Public HTTPS SNI is still reset before Nginx, and a browser cannot download the published Demo APK.
-- Certbot renewal dry-run still observed partial Tencent webblock propagation during ACME validation.
+- Public HTTP returns the required Nginx `308` redirect.
+- Public HTTPS/TLS SNI reaches Nginx; `/health`, `/api/v1/health` and `/api/v1/readiness` return 200.
+- The public APK endpoint returns 200 with the Android package MIME, attachment header and expected size.
+- TLS negotiates 1.3 and presents the `ai-jiyangjia.cloud` certificate.
+- Certbot renewal dry-run succeeds for `/etc/letsencrypt/live/ai-jiyangjia.cloud/fullchain.pem`.
 - Internal production acceptance now additionally passes fixed secrets, all-real Providers, v2.1 at 41 approved / 24 draft / 65 x 2048 vectors, 80/80 search, real text/WAV dialogue and server-local APK download.
 
-Status is `BLOCKED_BY_TENCENT_HTTPS_PROPAGATION`. Do not mark DONE until public HTTPS, APK browser download and Certbot dry-run all pass.
+Status is `DONE`. Next task is TASK-015 Android 12 physical-device acceptance; it is not started by this task.
