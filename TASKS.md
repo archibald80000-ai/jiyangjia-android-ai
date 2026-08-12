@@ -43,6 +43,7 @@ Current status:
 - `TASK-020F`: `DONE / PRODUCTION_PUBLISHED`; 25 authorized Aiye HTML files are publicly archived with SHA-256. v2.2 preserves 65 v2.1 records and adds 139 approved `aiye_` records for a 204-document production state. Real Doubao Embedding produced 340 x 2048 vectors; local and production Top-3 search passed 240/240 with sources 100% and draft leaks 0. Six text and one synthetic-speech audio flow passed the real production chain. Rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`. Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 - `TASK-020G`: `DONE / PRODUCTION_PUBLISHED`; the authorized 135-file public training site is archived under `knowledge-public/v2.3/site/`. v2.3 preserves all 204 v2.2 records and adds 47 data-generated approved products. Production is 227 approved, 24 draft and 387 x 2048 real Doubao vectors. Product Top-3 passed 141/141, sources 100%, draft leaks 0, and real public RAG/LLM/TTS plus audio fetch passed. Rollback: `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`. Evidence: `docs/evidence/TASK-020G/public-site-knowledge-v23-acceptance-20260812.md`.
 - `TASK-020H`: `DONE / PRODUCTION_PUBLISHED`; deterministic LF output repaired the v2.3 manifest hashes. The later-authorized six-soup and seven-soup HTML files are archived under `knowledge-public/v2.4/sources/` and add 15 draft records without changing the 227 approved records. Production is 227 approved, 39 draft and 402 x 2048 real Doubao vectors. Approved-product Top-3 passed 141/141, 43 new draft questions leaked 0 records, and real public RAG/LLM/TTS plus audio fetch passed. Rollback: `/opt/jiyangjia-ai/backups/task020h-20260812T150643Z`. Evidence: `docs/evidence/TASK-020H/knowledge-v24-integrity-production-sync-20260812.md`.
+- `TASK-021`: `DONE / PRODUCTION_PUBLISHED`; Gateway `0.3.3` adds the versioned `jiyangjia-neighbor-guide-v1` persona, concise/story/choice response modes, query rewrites, approved full-context hydration, natural subtitle splitting and output safety guards. Doubao deep thinking is disabled for real-time Chat. Focused regression passed 58 tests; four real public dialogues returned request IDs, correct source behavior and downloadable MP3 audio. Rollback: `/opt/jiyangjia-ai/backups/task021-persona-20260812T155015Z`. Evidence: `docs/evidence/TASK-021/response-persona-production-20260812.md`.
 
 Current order:
 
@@ -56,7 +57,7 @@ Public voice/mobile side task: `TASK-015B(PARTIAL)`; public streaming and phone-
 
 Production domain gate: `TASK-014H(DONE)`; public HTTPS and renewal validation now pass.
 
-Knowledge demo gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL historical) -> TASK-020D(DONE) -> TASK-020E(DONE) -> TASK-020F(DONE) -> TASK-020G(DONE) -> TASK-020H(DONE / v2.4 production published)`.
+Knowledge/dialogue gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL historical) -> TASK-020D(DONE) -> TASK-020E(DONE) -> TASK-020F(DONE) -> TASK-020G(DONE) -> TASK-020H(DONE) -> TASK-021(DONE / persona production published)`.
 
 Completed foundation retained from earlier tasks:
 

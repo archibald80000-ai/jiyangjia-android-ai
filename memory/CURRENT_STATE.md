@@ -2,6 +2,16 @@
 
 Updated: 2026-08-12
 
+## TASK-021 grounded response persona
+
+- DONE / PRODUCTION_PUBLISHED on branch `codex/TASK-021-response-persona-style`.
+- Gateway version is `0.3.3`; persona is `jiyangjia-neighbor-guide-v1` with concise, story and choice modes.
+- Query rewriting and approved-context hydration improve long-form retrieval without rebuilding the 402 x 2048 vector index or exposing draft records.
+- Doubao Chat deep thinking is disabled for real-time use. The accepted public story request completed in 8.5 seconds after prior 60-second timeouts.
+- Four public dialogues passed with real Doubao LLM/TTS, correct sources/no-source boundary behavior and downloadable MP3 audio.
+- Production release: `/opt/jiyangjia-ai/releases/release-task021-persona-20260812T155015Z`; rollback: `/opt/jiyangjia-ai/backups/task021-persona-20260812T155015Z`.
+- Evidence: `docs/evidence/TASK-021/response-persona-production-20260812.md`.
+
 ## TASK-020H knowledge v2.4 soup-story sync
 
 - DONE / PRODUCTION_PUBLISHED on branch `codex/TASK-020H-v23-integrity-resync`.
@@ -270,4 +280,4 @@ Android recording
 
 ## Next action
 
-Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only on the Android 12 store display and complete USB microphone, speaker, reboot/Lock Task, signed update/rollback and long-run gates.
+Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only on the Android 12 store display and complete USB microphone, speaker, reboot/Lock Task, signed update/rollback and long-run gates. TASK-021 does not provide device evidence.

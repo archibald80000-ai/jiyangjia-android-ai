@@ -6,10 +6,10 @@ Updated: 2026-08-12
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `codex/TASK-020H-v23-integrity-resync`.
-- Current task status: `TASK-020H DONE / PRODUCTION_PUBLISHED`; `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
+- Current branch: `codex/TASK-021-response-persona-style`.
+- Current task status: `TASK-021 DONE / PRODUCTION_PUBLISHED`; `TASK-015B PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
 - Current public knowledge: `knowledge-public/v2.4/`; production 227 approved, 39 draft and 402 x 2048 real Doubao vectors.
-- Next authorized work: implement a separate grounded response-persona/style task so answers are warmer and more natural without changing knowledge facts; Android manual gates remain pending afterward.
+- Next work: run the remaining TASK-015 Android 12 physical-device gates; response persona work is complete.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -37,6 +37,7 @@ Updated: 2026-08-12
 - TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Public HTTPS remains a separate TASK-014H blocker.
 - TASK-020G: DONE / PRODUCTION_PUBLISHED. The 135-file public training site and 251-document v2.3 package are ready for GitHub sharing. Production search passed 141/141 with sources 100% and no draft leaks; rollback is `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
 - TASK-020H: DONE / PRODUCTION_PUBLISHED. v2.3 hashes are deterministic; v2.4 adds the two authorized soup-story sources as 15 draft records. Production is 227/39 with 402 x 2048 vectors; 141 approved cases passed and 43 draft questions leaked none. Rollback is `/opt/jiyangjia-ai/backups/task020h-20260812T150643Z`.
+- TASK-021: DONE / PRODUCTION_PUBLISHED. Gateway 0.3.3 uses `jiyangjia-neighbor-guide-v1`, response-mode query rewriting, approved-context hydration, natural subtitles and output safety guards. Doubao deep thinking is disabled; four real public dialogue/TTS cases passed. Rollback is `/opt/jiyangjia-ai/backups/task021-persona-20260812T155015Z`.
 - TASK-014H: DONE. Public HTTP/HTTPS, root Demo and APIs are reachable; Certbot dry-run passes.
 - TASK-015: PARTIAL. Xiaomi Android 13 built-in-mic capture, 3-second-silence send, ASR/RAG/LLM/TTS, speaker playback and return to idle passed. Android 12 USB and managed-device acceptance remains required.
 - TASK-015B: PARTIAL. Production public/kiosk pages, WSS real Doubao ASR/RAG/LLM/TTS, v9 dual builds, package/signature checks, public downloads and normal phone navigation passed. MIUI rejected the instrumentation APK with `INSTALL_FAILED_USER_RESTRICTED`, and human browser-microphone speech remains manual.
@@ -154,7 +155,7 @@ Updated: 2026-08-12
 
 ## Next action
 
-Complete the two bounded TASK-015B manual checks first: MIUI-approved reinstall/instrumentation and one human browser-microphone dialogue. Then execute only the remaining Android 12 TASK-015 device gates. Do not upgrade Android 13 smoke to full Android 12 USB/kiosk/update/long-run acceptance.
+Complete the two bounded TASK-015B manual checks first: MIUI-approved reinstall/instrumentation and one human browser-microphone dialogue. Then execute only the remaining Android 12 TASK-015 device gates. Do not upgrade Android 13 smoke or TASK-021 Gateway evidence to full Android 12 USB/kiosk/update/long-run acceptance.
 
 ## Safety boundaries
 

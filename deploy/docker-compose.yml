@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - APP_NAME=jiyangjia-gateway
-      - APP_VERSION=0.1.0
+      - APP_VERSION=0.3.3
       - JIYANGJIA_KNOWLEDGE_DB_PATH=/app/var/knowledge/jiyangjia.db
       - JIYANGJIA_KNOWLEDGE_FAISS_PATH=/app/var/knowledge/faiss.index
       - JIYANGJIA_ADMIN_DB_PATH=/app/var/admin/admin.db
