@@ -52,6 +52,9 @@ class Settings:
     android_release_certificate_sha256: str = ""
     android_release_notes: str = ""
     admin_token: str = ""
+    public_gate_password_hash: str = ""
+    public_gate_session_secret: str = ""
+    public_gate_session_ttl_seconds: int = 24 * 60 * 60
     max_knowledge_upload_bytes: int = 20 * 1024 * 1024
     max_asset_upload_bytes: int = 250 * 1024 * 1024
     doubao_tts_endpoint: str = "https://openspeech.bytedance.com/api/v3/tts/unidirectional"
@@ -105,6 +108,8 @@ class Settings:
             },
             "secrets": {
                 "ADMIN_TOKEN": "configured" if self.admin_token else "missing",
+                "JIYANGJIA_PUBLIC_GATE_PASSWORD_HASH": "configured" if self.public_gate_password_hash else "missing",
+                "JIYANGJIA_PUBLIC_GATE_SESSION_SECRET": "configured" if self.public_gate_session_secret else "missing",
                 "DOUBAO_ASR_APP_ID": "configured" if _doubao_asr_app_id() else "missing",
                 "DOUBAO_ASR_ACCESS_TOKEN": "configured" if _doubao_asr_access_token() else "missing",
                 "DOUBAO_ASR_API_KEY": "configured" if os.environ.get("DOUBAO_ASR_API_KEY") else "missing",
@@ -173,6 +178,9 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         android_release_certificate_sha256=_env("JIYANGJIA_ANDROID_RELEASE_CERTIFICATE_SHA256", ""),
         android_release_notes=_env("JIYANGJIA_ANDROID_RELEASE_NOTES", ""),
         admin_token=_env("ADMIN_TOKEN", _env("JIYANGJIA_ADMIN_TOKEN", "")),
+        public_gate_password_hash=_env("JIYANGJIA_PUBLIC_GATE_PASSWORD_HASH", ""),
+        public_gate_session_secret=_env("JIYANGJIA_PUBLIC_GATE_SESSION_SECRET", ""),
+        public_gate_session_ttl_seconds=int(_env("JIYANGJIA_PUBLIC_GATE_SESSION_TTL_SECONDS", str(24 * 60 * 60))),
         max_knowledge_upload_bytes=int(_env("JIYANGJIA_MAX_KNOWLEDGE_UPLOAD_BYTES", str(20 * 1024 * 1024))),
         max_asset_upload_bytes=int(_env("JIYANGJIA_MAX_ASSET_UPLOAD_BYTES", str(250 * 1024 * 1024))),
         doubao_tts_endpoint=_env("DOUBAO_TTS_ENDPOINT", "https://openspeech.bytedance.com/api/v3/tts/unidirectional"),

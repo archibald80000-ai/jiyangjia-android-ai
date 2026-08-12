@@ -30,17 +30,28 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
   <title>积养家数字人客服</title>
   <style>
     * { box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; margin: 0; background: #101416; color: #fff; font-family: system-ui, sans-serif; overflow: hidden; }
+    :root { --forest: #123f39; --forest-strong: #073a30; --leaf: #087a63; --mist: #eef3f0; --line: #cad8d3; --ink: #173b32; --soft-radius: 14px; }
+    html, body { width: 100%; height: 100%; margin: 0; background: #101416; color: #fff; font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; overflow: hidden; }
     body { display: grid; place-items: center; }
     #public-nav { display: none; }
-    body.public { display: flex; flex-direction: column; overflow: auto; background: #eef3f0; }
-    body.public #public-nav { width: 100%; min-height: 58px; padding: 0 18px; display: flex; align-items: center; gap: 18px; overflow-x: auto; background: #fff; color: #173b32; border-bottom: 1px solid #d5dfdb; white-space: nowrap; z-index: 10; }
-    #public-nav strong { flex: 0 0 auto; margin-right: auto; font-size: 17px; }
-    #public-nav a, #public-nav button { border: 0; padding: 10px 4px; background: transparent; color: #24594c; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; }
-    #public-nav a:hover, #public-nav button:hover { color: #087a63; text-decoration: underline; }
-    #public-nav .store-download { color: #8b3c2e; }
+    body.public { min-height: 100dvh; display: flex; flex-direction: column; overflow: auto; background: radial-gradient(circle at 50% 20%, #dbe9e4 0, var(--mist) 42%, #e7efec 100%); }
+    body.public #public-nav { width: 100%; min-height: 72px; padding: 10px 22px; display: flex; align-items: center; gap: 22px; background: rgba(255,255,255,.96); color: var(--ink); border-bottom: 1px solid var(--line); white-space: nowrap; z-index: 10; box-shadow: 0 8px 30px rgba(18,63,57,.08); }
+    #brand-lockup { flex: 0 0 auto; margin-right: auto; display: grid; gap: 1px; }
+    #brand-lockup strong { font-size: 17px; letter-spacing: .02em; }
+    #brand-lockup span { color: #547169; font-size: 11px; }
+    #nav-actions { display: flex; align-items: center; gap: 5px; }
+    #public-nav a, #public-nav button { min-height: 42px; border: 1px solid transparent; border-radius: 12px; padding: 0 11px; background: transparent; color: #24594c; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; transition: background .18s ease, border-color .18s ease, color .18s ease, transform .12s ease; }
+    #public-nav a:hover, #public-nav button:hover { color: var(--forest-strong); background: #e7f0ed; border-color: #cfddd8; }
+    #public-nav a:active, #public-nav button:active { transform: translateY(1px); }
+    #public-nav .access-link { display: inline-flex; align-items: center; gap: 7px; border-color: #b9cec7; background: #f4f8f6; }
+    #public-nav .access-link small { padding: 2px 6px; border-radius: 8px; background: var(--forest); color: #fff; font-size: 10px; }
+    #public-nav .store-download { color: #5f3d35; }
+    #access-state { display: none; color: #547169; font-size: 12px; }
+    #access-logout { display: none; }
+    body[data-access="ready"] #access-state, body[data-access="ready"] #access-logout { display: inline-flex; }
+    body[data-access="ready"] .access-link small { background: var(--leaf); }
     #stage { position: relative; width: min(100vw, 56.25vh); height: min(177.78vw, 100vh); overflow: hidden; background: #203035; }
-    body.public #stage { flex: 1 1 auto; height: calc(100vh - 58px); width: auto; max-width: 100vw; aspect-ratio: 9 / 16; }
+    body.public #stage { flex: 1 1 auto; height: calc(100dvh - 72px); width: auto; max-width: 100vw; aspect-ratio: 9 / 16; box-shadow: 0 24px 70px rgba(18,63,57,.16); }
     #background, #avatar { position: absolute; inset: 0; width: 100%; height: 100%; }
     #background { object-fit: cover; }
     #avatar-wrap { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); transform-origin: center; }
@@ -53,40 +64,61 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     #mic-level { display: block; width: 0; height: 100%; background: #62d5a8; transition: width .08s linear; }
     #subtitle { position: absolute; left: 8%; right: 8%; bottom: 13%; font-size: 36px; line-height: 1.35; text-align: center; text-shadow: 0 3px 10px #000; max-height: 30%; overflow: hidden; }
     #sources { position: absolute; left: 7%; right: 7%; bottom: 3%; font-size: 12px; color: #d9e8e2; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #consult { position: absolute; left: 50%; top: 90%; transform: translate(-50%, -50%); min-width: 156px; min-height: 54px; padding: 0 24px; border: 1px solid rgba(255,255,255,.6); border-radius: 6px; background: #087a63; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer; }
+    #consult { position: absolute; left: 50%; top: 90%; transform: translate(-50%, -50%); min-width: 156px; min-height: 54px; padding: 0 24px; border: 1px solid rgba(255,255,255,.6); border-radius: 14px; background: #087a63; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer; }
     #consult[data-state="recording"] { background: #a33838; }
     #consult:disabled { opacity: .55; cursor: wait; }
     #audio-retry { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); min-height: 42px; padding: 0 18px; border: 1px solid rgba(255,255,255,.7); background: #fff; color: #173b32; font-weight: 700; cursor: pointer; }
     #text-form { position: absolute; left: 6%; right: 6%; top: 12%; display: flex; gap: 6px; opacity: .2; transition: opacity .2s; }
     #text-form:focus-within, #text-form:hover { opacity: .95; }
     body.public #text-form { opacity: .95; }
-    #text-question { min-width: 0; flex: 1; height: 36px; border: 1px solid rgba(255,255,255,.45); border-radius: 4px; padding: 0 10px; background: rgba(10,18,18,.7); color: #fff; }
-    #text-submit { width: 58px; border: 0; border-radius: 4px; background: #dce9e4; color: #18312a; font-weight: 700; cursor: pointer; }
-    dialog { max-width: min(92vw, 440px); border: 0; padding: 24px; color: #18312a; background: #fff; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+    #text-question { min-width: 0; flex: 1; height: 40px; border: 1px solid rgba(255,255,255,.45); border-radius: 12px; padding: 0 12px; background: rgba(10,18,18,.74); color: #fff; }
+    #text-submit { width: 64px; border: 0; border-radius: 12px; background: #dce9e4; color: #18312a; font-weight: 700; cursor: pointer; }
+    dialog { width: min(92vw, 440px); max-width: 440px; border: 1px solid #d4e0dc; border-radius: var(--soft-radius); padding: 26px; color: var(--ink); background: #fff; box-shadow: 0 24px 70px rgba(7,58,48,.28); }
     dialog::backdrop { background: rgba(0,0,0,.55); }
     dialog h2 { margin: 0 0 12px; font-size: 20px; }
     dialog p { line-height: 1.65; }
-    dialog button { min-height: 40px; border: 0; padding: 0 16px; background: #087a63; color: #fff; font-weight: 700; cursor: pointer; }
+    dialog button { min-height: 44px; border: 0; border-radius: 12px; padding: 0 16px; background: var(--leaf); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    #access-form { display: grid; gap: 15px; }
+    #access-form label { font-size: 13px; font-weight: 700; }
+    #access-description { margin: 0; color: #557269; font-size: 14px; line-height: 1.6; }
+    #password-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+    #access-password { min-width: 0; min-height: 48px; border: 1px solid #9bb5ac; border-radius: 12px; padding: 0 13px; color: #102f29; background: #f8fbfa; font: inherit; }
+    #access-password:focus { outline: 3px solid rgba(8,122,99,.2); border-color: var(--leaf); }
+    #password-toggle { min-width: 72px; border: 1px solid #9bb5ac; background: #eef5f2; color: var(--forest); }
+    #access-error { min-height: 20px; margin: 0; color: #9a302d; font-size: 13px; }
+    #access-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    #access-cancel { border: 1px solid #9bb5ac; background: #fff; color: var(--forest); }
+    #access-submit:disabled { opacity: .6; cursor: wait; }
     @media (max-width: 600px) {
-      body.public #public-nav { min-height: 52px; padding: 0 12px; gap: 14px; }
-      #public-nav strong { font-size: 15px; }
-      #public-nav a, #public-nav button { font-size: 13px; }
-      #stage, body.public #stage { width: 100vw; height: calc(100vh - 52px); max-height: none; aspect-ratio: auto; }
-      body.kiosk #stage { height: 100vh; }
+      body.public #public-nav { min-height: 62px; padding: 8px 10px; gap: 10px; overflow-x: auto; }
+      #brand-lockup { margin-right: 6px; }
+      #brand-lockup strong { font-size: 15px; }
+      #brand-lockup span, #access-state { display: none !important; }
+      #nav-actions { gap: 3px; }
+      #public-nav a, #public-nav button { min-height: 42px; padding: 0 9px; font-size: 13px; }
+      #public-nav .access-link small { display: none; }
+      #stage, body.public #stage { width: 100vw; height: calc(100dvh - 62px); max-height: none; aspect-ratio: auto; }
+      body.kiosk #stage { height: 100dvh; }
       #subtitle { font-size: 30px; }
+      #access-gate { width: 100vw; max-width: none; margin: auto 0 0; border-radius: 14px 14px 0 0; padding: 24px 18px calc(24px + env(safe-area-inset-bottom)); }
     }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
   </style>
 </head>
 <body class="__DEMO_MODE__">
   <header id="public-nav" aria-label="公开导航">
-    <strong>积养家AI数字人</strong>
-    <a href="#consult">语音咨询</a>
-    <a href="#text-question">文字咨询</a>
-    <a href="https://jiyangjia-ai.netlify.app/" target="_blank" rel="noopener">知识中心</a>
-    <a href="https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.3" target="_blank" rel="noopener">公开资料</a>
-    <a href="/downloads/jiyangjia-ai-digital-human.apk">手机体验版</a>
-    <a class="store-download" href="/downloads/jiyangjia-ai-store-kiosk.apk" title="仅用于受管门店大屏，普通手机请勿安装">门店大屏版</a>
-    <button id="mic-help-open" type="button">麦克风帮助</button>
+    <span id="brand-lockup"><strong>积养家AI数字人</strong><span>健康生活知识服务</span></span>
+    <nav id="nav-actions" aria-label="主要功能">
+      <a href="#consult">语音咨询</a>
+      <a href="#text-question">文字咨询</a>
+      <button class="access-link" type="button" data-access-target="knowledge-center" data-access-label="知识中心"><span>知识中心</span><small>需验证</small></button>
+      <button class="access-link" type="button" data-access-target="public-materials" data-access-label="公开资料"><span>公开资料</span><small>需验证</small></button>
+      <a href="/downloads/jiyangjia-ai-digital-human.apk">手机体验版</a>
+      <a class="store-download" href="/downloads/jiyangjia-ai-store-kiosk.apk" title="仅用于受管门店大屏，普通手机请勿安装">门店大屏版</a>
+      <button id="mic-help-open" type="button">麦克风帮助</button>
+      <span id="access-state" aria-live="polite">资料入口已解锁</span>
+      <button id="access-logout" type="button">退出资料访问</button>
+    </nav>
   </header>
   <main id="stage">
     <img id="background" alt="" hidden>
@@ -106,6 +138,24 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     <p>请在浏览器地址栏的网站权限中允许麦克风，然后重新点击“开始咨询”。说话时会显示音量和识别文字；点击结束，或说完后静音 3 秒即可发送。</p>
     <button id="mic-help-close" type="button">知道了</button>
   </dialog>
+  <dialog id="access-gate" aria-labelledby="access-title" aria-describedby="access-description">
+    <form id="access-form">
+      <div>
+        <h2 id="access-title">验证资料访问</h2>
+        <p id="access-description">请输入访问密码，验证后 24 小时内可查看知识中心和公开资料。</p>
+      </div>
+      <label for="access-password">访问密码</label>
+      <div id="password-row">
+        <input id="access-password" name="password" type="password" autocomplete="current-password" maxlength="256" required>
+        <button id="password-toggle" type="button" aria-pressed="false">显示</button>
+      </div>
+      <p id="access-error" role="alert" aria-live="polite"></p>
+      <div id="access-actions">
+        <button id="access-cancel" type="button">取消</button>
+        <button id="access-submit" type="submit">验证并继续</button>
+      </div>
+    </form>
+  </dialog>
   <script>
     const stage = document.querySelector('#stage');
     const background = document.querySelector('#background');
@@ -124,6 +174,16 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     const micHelp = document.querySelector('#mic-help');
     const micHelpOpen = document.querySelector('#mic-help-open');
     const micHelpClose = document.querySelector('#mic-help-close');
+    const accessGate = document.querySelector('#access-gate');
+    const accessForm = document.querySelector('#access-form');
+    const accessPassword = document.querySelector('#access-password');
+    const accessDescription = document.querySelector('#access-description');
+    const accessError = document.querySelector('#access-error');
+    const accessSubmit = document.querySelector('#access-submit');
+    const accessCancel = document.querySelector('#access-cancel');
+    const passwordToggle = document.querySelector('#password-toggle');
+    const accessLogout = document.querySelector('#access-logout');
+    const protectedLinks = [...document.querySelectorAll('[data-access-target]')];
     let microphone = null;
     let answerAudio = null;
     let recordingTimer = null;
@@ -144,6 +204,8 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     const SPEECH_CONFIRMATION_FRAMES = 2;
     const TARGET_SAMPLE_RATE = 16000;
     const PCM_FRAME_SAMPLES = 320;
+    let accessAuthenticated = false;
+    let pendingAccessTarget = '';
 
     const newRequestId = () => `browser-${crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`}`;
 
@@ -159,6 +221,73 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     function setMicrophoneState(value, level=0) {
       micLabel.textContent = `麦克风：${value}`;
       micLevel.style.width = `${Math.max(0, Math.min(100, level))}%`;
+    }
+
+    function setAccessState(authenticated, label='') {
+      accessAuthenticated = authenticated;
+      document.body.dataset.access = authenticated ? 'ready' : 'locked';
+      protectedLinks.forEach(button => {
+        const badge = button.querySelector('small');
+        if (badge) badge.textContent = authenticated ? '已解锁' : '需验证';
+      });
+      const stateLabel = document.querySelector('#access-state');
+      if (stateLabel) stateLabel.textContent = label || (authenticated ? '资料入口已解锁' : '资料入口需验证');
+    }
+
+    async function refreshAccessSession() {
+      if (!document.body.classList.contains('public')) return;
+      try {
+        const response = await fetch('/api/v1/public-access/session', {credentials:'same-origin', cache:'no-store'});
+        const payload = await response.json();
+        setAccessState(Boolean(payload.authenticated));
+      } catch (_) {
+        setAccessState(false, '资料入口暂不可用');
+      }
+    }
+
+    function openAccessDestination(target) {
+      const url = `/access/go/${encodeURIComponent(target)}`;
+      const opened = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!opened) window.location.assign(url);
+    }
+
+    function showAccessGate(target, label) {
+      pendingAccessTarget = target;
+      accessDescription.textContent = `请输入访问密码以查看${label}。验证成功后 24 小时内无需重复输入。`;
+      accessError.textContent = '';
+      accessPassword.value = '';
+      accessPassword.type = 'password';
+      passwordToggle.textContent = '显示';
+      passwordToggle.setAttribute('aria-pressed', 'false');
+      accessGate.showModal();
+      requestAnimationFrame(() => accessPassword.focus());
+    }
+
+    async function submitAccessPassword(event) {
+      event.preventDefault();
+      accessError.textContent = '';
+      accessSubmit.disabled = true;
+      accessSubmit.textContent = '正在验证';
+      try {
+        const response = await fetch('/api/v1/public-access/login', {
+          method:'POST',
+          credentials:'same-origin',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({password:accessPassword.value})
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.detail?.message || '验证失败，请稍后再试。');
+        setAccessState(true);
+        const target = pendingAccessTarget;
+        accessGate.close();
+        window.location.assign(`/access/go/${encodeURIComponent(target)}`);
+      } catch (error) {
+        accessError.textContent = error.message || '验证失败，请稍后再试。';
+        accessPassword.select();
+      } finally {
+        accessSubmit.disabled = false;
+        accessSubmit.textContent = '验证并继续';
+      }
     }
 
     function microphoneFailureMessage(error) {
@@ -514,6 +643,24 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
     });
     micHelpOpen?.addEventListener('click', () => micHelp.showModal());
     micHelpClose.addEventListener('click', () => micHelp.close());
+    protectedLinks.forEach(button => button.addEventListener('click', () => {
+      const target = button.dataset.accessTarget;
+      if (accessAuthenticated) openAccessDestination(target);
+      else showAccessGate(target, button.dataset.accessLabel || '资料');
+    }));
+    accessForm.addEventListener('submit', submitAccessPassword);
+    accessCancel.addEventListener('click', () => accessGate.close());
+    passwordToggle.addEventListener('click', () => {
+      const visible = accessPassword.type === 'text';
+      accessPassword.type = visible ? 'password' : 'text';
+      passwordToggle.textContent = visible ? '显示' : '隐藏';
+      passwordToggle.setAttribute('aria-pressed', String(!visible));
+      accessPassword.focus();
+    });
+    accessLogout.addEventListener('click', async () => {
+      await fetch('/api/v1/public-access/logout', {method:'POST', credentials:'same-origin'}).catch(() => {});
+      setAccessState(false);
+    });
     textForm.addEventListener('submit', event => {
       event.preventDefault();
       const question = textQuestion.value.trim();
@@ -523,6 +670,7 @@ KIOSK_DEMO_HTML = r"""<!doctype html>
       submitText(question);
     });
     loadPresentation();
+    refreshAccessSession();
     setInterval(loadPresentation, 60000);
   </script>
 </body>

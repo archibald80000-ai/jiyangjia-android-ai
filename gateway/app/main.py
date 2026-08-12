@@ -24,6 +24,7 @@ from .llm import (
     OpenAICompatibleLLMProvider,
 )
 from .providers import MockASRProvider, MockEmbeddingProvider, MockLLMProvider, MockTTSProvider
+from .public_access import create_public_access_router
 from .schemas import DialogueResponse, DialogueTextRequest, KnowledgeIndexRequest, KnowledgeSearchRequest
 from .transcript_normalization import normalize_transcript_text
 from .streaming_asr import (
@@ -679,3 +680,4 @@ app.include_router(
     )
 )
 app.include_router(kiosk_demo_router)
+app.include_router(create_public_access_router(settings))
