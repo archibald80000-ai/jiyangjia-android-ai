@@ -1,0 +1,13 @@
+{
+  "version": "2.3",
+  "batch": 6,
+  "documents": [
+    {
+      "id": "site_product_flying-eggs",
+      "title": "飞鸡蛋",
+      "text": "飞鸡蛋是什么？\n飞鸡蛋多少钱？\n飞鸡蛋是什么规格？\n请详细介绍飞鸡蛋。\n产品名称：飞鸡蛋\n别名：土鸡蛋、鸡蛋\n分类：飞鸡蛋\n产品介绍：散养鸡蛋产品，原页介绍了来源故事、辨认方法、口感和活动说明。\n公开售价：3.5元/枚\n规格：按枚计价",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/flying-eggs/"
+    }
+  ]
+}

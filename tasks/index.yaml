@@ -138,13 +138,13 @@ tasks:
     file: TASK-014H_PRODUCTION_DOMAIN_HTTPS.md
     title: "Switch production Gateway and Android to the canonical HTTPS domain"
     priority: p0
-    status: BLOCKED
+    status: DONE
     depends_on: [TASK-014]
   - id: TASK-015
     file: TASK-015_ANDROID_DEVICE_ACCEPTANCE.md
     title: "Validate the actual Android 12 display in the store"
     priority: p0
-    status: BLOCKED
+    status: PARTIAL
     depends_on: [TASK-014G]
   - id: TASK-015A
     file: TASK-015A_LOCAL_AVATAR_DIALOGUE_DEMO.md
@@ -200,3 +200,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020E]
+  - id: TASK-020G
+    file: TASK-020G_PUBLIC_SITE_KNOWLEDGE_V23.md
+    title: "Publish and accept the data-driven public site knowledge v2.3"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-020F]

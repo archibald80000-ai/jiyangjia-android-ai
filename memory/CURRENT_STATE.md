@@ -1,6 +1,19 @@
 # Current state
 
-Updated: 2026-08-09
+Updated: 2026-08-12
+
+## TASK-020G public-site knowledge v2.3
+
+- DONE / PRODUCTION_PUBLISHED. The user-authorized public training package is mirrored under `knowledge-public/v2.3/site/` with 135 files and manifest SHA-256 values.
+- v2.3 preserves 204 v2.2 records and adds 47 approved product records generated from structured site data: 251 documents total, 227 approved and 24 draft.
+- Business routing is data-driven for newly indexed products: explicit general intent stays separate; strong approved SQLite/FTS evidence routes unknown terms to hybrid FTS/FAISS as `dynamic_corpus`.
+- Production real Doubao state: 387 chunks/embeddings/FAISS vectors at 2048 dimensions. Product Top-3 passed 141/141, sources 141/141, draft leaks 0.
+- Public `dialogue/text` for `圣牧有机酸奶是什么？` returned a grounded source, Doubao LLM answer, Doubao TTS `audio/mpeg`, audio_id and a 200 audio fetch.
+- Production rollback: `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
+- Evidence: `docs/evidence/TASK-020G/public-site-knowledge-v23-acceptance-20260812.md`.
+- Public domain is now operational; HTTP 308, HTTPS root/Demo 200 and Certbot renewal dry-run passed on 2026-08-12.
+- TASK-015 remains PARTIAL: Android 13 built-in-microphone smoke passed, but Android 12 store-screen USB/audio/kiosk/update/long-run acceptance is pending.
+- Current Android app/download name: `积养家AI数字人`; debug v8 / `0.1.7-demo-debug`. Public URL: `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`; 6,386,815 bytes, SHA-256 `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`; the old Demo URL remains compatible.
 
 ## TASK-020F Aiye public knowledge v2.2
 
@@ -10,7 +23,7 @@ Updated: 2026-08-09
 - Production state: 180 approved, 24 draft, 340 chunks/embeddings/FAISS vectors. Six text dialogues and one Doubao-generated synthetic-speech audio dialogue passed the real DeepSeek LLM plus Doubao ASR/TTS/Embedding chain.
 - Health/nutrition grounding now requires explicit attribution to source/traditional food-use language and forbids extending it into treatment promises. Two production risk-focused checks passed after deployment.
 - Production rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`.
-- Public HTTPS is still blocked before Nginx by the separate TASK-014H Tencent webblock/ICP issue. This is not Android or human microphone acceptance.
+- That v2.2 snapshot predated the TASK-014H unblock and v2.3 release; public HTTPS is now operational. Its synthetic-speech evidence still does not count as Android or human microphone acceptance.
 - Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
 
 ## TASK-020E real Gateway import acceptance
@@ -69,7 +82,7 @@ Updated: 2026-08-09
 - DNS resolves correctly through local, Cloudflare and Google resolvers.
 - Server-side Nginx/TLS checks pass, Gateway is healthy/ready, `ADMIN_TOKEN` is configured, and Docker port 8080 is now loopback-only.
 - The Let's Encrypt certificate is valid until 2026-11-05 and the snap renewal timer is enabled/active.
-- BLOCKED: public HTTP is intercepted to the Tencent DNSPod webblock page, public HTTPS SNI is reset, and Certbot dry-run fails because its challenge is intercepted. ICP/domain access onboarding must be completed before public acceptance.
+- DONE after ICP propagation: public HTTP redirects to HTTPS, public root/Demo/API respond, and Certbot renewal dry-run passed on 2026-08-12.
 - Android production Base URL is fixed to the canonical HTTPS domain; debug builds can override with `JIYANGJIA_GATEWAY_BASE_URL` and opt into cleartext only with `JIYANGJIA_ALLOW_CLEARTEXT_GATEWAY=true`.
 - Evidence: `docs/evidence/TASK-014H/production-domain-https-20260807.md`.
 
@@ -89,7 +102,7 @@ Updated: 2026-08-09
 - TASK-014E PARTIAL: 640-byte PCM WebSocket streaming, WebRTC VAD, real Doubao partial/final stream, final-only normalization/RAG/LLM/TTS, single WAV fallback, AEC diagnostics and generation cancellation are locally implemented. Device acoustic acceptance remains open.
 - TASK-014F PARTIAL: minimal DPC, BootReceiver, Home intent and guarded Lock Task are implemented; no AVD/device runtime evidence exists.
 - TASK-014G PARTIAL: fail-closed controlled signing, release manifest and verified PackageInstaller path are implemented. Disposable test signing passed and artifacts were deleted; formal identity/hosting/device upgrade are absent.
-- TASK-015 BLOCKED / NO-GO: no Android device or AVD, trusted HTTPS release host or formal signing custody/N-series APKs. Approved portrait media/Profile now exists locally but is not yet production-hosted. Gateway tests: 63 passed. Android unit/lint/debug assembly and repository verification pass.
+- TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS: a Xiaomi Android 13 phone passed launch, built-in microphone capture, real dialogue, TTS speaker playback and return to idle. Android 12 USB/AEC, managed kiosk, formal signed update/rollback and long-run checks remain open.
 
 ## Completed
 
@@ -235,4 +248,4 @@ Android recording
 
 ## Next action
 
-Clear the TASK-014H ICP/domain access gate, then run one external share acceptance against the already-published production knowledge/assets/Profile. Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only after trusted public HTTPS and all physical-device inputs are available.
+Resume `TASK-015_ANDROID_DEVICE_ACCEPTANCE.md` only on the Android 12 store display and complete USB microphone, speaker, reboot/Lock Task, signed update/rollback and long-run gates.

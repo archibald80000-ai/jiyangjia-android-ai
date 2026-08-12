@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香榧油 — 会稽山古树金油，一滴珍贵千年</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-gold: #C89F5E;
+    --c-gold-light: #E8D5A3;
+    --c-gold-dark: #8B6914;
+    --c-amber: #D4A843;
+    --c-cream: #FDF8F0;
+    --c-warm: #F5EDE0;
+    --c-text: #2D2926;
+    --c-text-light: #6B6560;
+    --c-green: #5A7D4A;
+    --c-green-light: #E8F0E3;
+    --c-forest: #3A5A3A;
+    --c-brown: #6B4226;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--c-cream);
+    color: var(--c-text);
+    line-height: 1.8;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a1612 0%, #3d3228 50%, #1a1612 100%);
+    color: #fff;
+    padding: 80px 24px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,600 L0,400 Q200,350 400,380 T800,350 T1200,380 L1200,600Z" fill="rgba(200,159,94,0.06)"/><path d="M0,600 L0,450 Q300,400 600,430 T1200,400 L1200,600Z" fill="rgba(200,159,94,0.04)"/></svg>');
+    background-size: cover;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--c-gold), var(--c-gold-light));
+    color: #1a1612;
+    font-size: 13px; font-weight: 700;
+    padding: 7px 24px; border-radius: 20px;
+    margin-bottom: 28px; letter-spacing: 2px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 40px; font-weight: 900;
+    line-height: 1.3; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--c-gold-light), var(--c-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-quote {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    max-width: 600px; margin: 0 auto 40px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-stats {
+    display: inline-flex;
+    gap: 40px;
+    background: rgba(200,159,94,0.1);
+    border: 1px solid rgba(200,159,94,0.2);
+    border-radius: 16px;
+    padding: 20px 40px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-stats .item { text-align: center; }
+  .hero-stats .num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px; font-weight: 900;
+    color: var(--c-gold);
+  }
+  .hero-stats .label { font-size: 12px; color: var(--c-gold-light); margin-top: 4px; }
+
+  /* ===== CHAPTERS ===== */
+  .chapter {
+    max-width: 760px; margin: 0 auto;
+    padding: 56px 24px;
+  }
+
+  .chapter + .chapter { border-top: 1px solid rgba(0,0,0,0.06); }
+
+  .kicker {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--c-gold-dark); letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .chapter-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px; font-weight: 700;
+    margin-bottom: 24px; line-height: 1.4;
+  }
+
+  .chapter-title span { color: var(--c-gold-dark); }
+
+  .chapter p {
+    font-size: 16px; color: var(--c-text-light);
+    margin-bottom: 16px;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, var(--c-warm), #fff);
+    border-radius: 16px; padding: 28px;
+    border-left: 4px solid var(--c-gold);
+    margin: 24px 0;
+  }
+
+  .highlight-box p { margin-bottom: 0; }
+
+  /* ===== NUTRITION DATA ===== */
+  .nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin: 28px 0;
+  }
+
+  .nutrition-card {
+    background: #fff; border-radius: 16px;
+    padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .nutrition-card .name {
+    font-size: 13px; color: var(--c-text-light);
+    margin-bottom: 6px;
+  }
+  .nutrition-card .value {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px; font-weight: 900;
+    color: var(--c-gold-dark); line-height: 1;
+  }
+  .nutrition-card .unit { font-size: 14px; color: var(--c-text-light); }
+  .nutrition-card .note {
+    font-size: 12px; color: var(--c-green);
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed rgba(0,0,0,0.06);
+  }
+
+  /* ===== BENEFITS ===== */
+  .benefits-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin: 28px 0;
+  }
+
+  .benefit-card {
+    background: #fff; border-radius: 16px;
+    padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+
+  .benefit-card .icon {
+    width: 44px; height: 44px;
+    background: var(--c-green-light); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .benefit-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .benefit-card p { font-size: 14px; color: var(--c-text-light); margin-bottom: 0; }
+
+  /* ===== DIFFERENTIATOR ===== */
+  .diff-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 16px; margin: 28px 0;
+  }
+
+  .diff-card {
+    background: #fff; border-radius: 16px;
+    padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+
+  .diff-card .num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--c-gold); line-height: 1;
+    flex-shrink: 0;
+  }
+  .diff-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .diff-card p { font-size: 14px; color: var(--c-text-light); margin-bottom: 0; }
+
+  /* ===== TABLE ===== */
+  .table-wrap {
+    background: #fff; border-radius: 16px;
+    padding: 24px; overflow-x: auto;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    margin: 24px 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th {
+    background: var(--c-warm); padding: 14px 12px;
+    text-align: left; font-weight: 600; color: var(--c-text-light);
+  }
+  td { padding: 14px 12px; border-bottom: 1px solid rgba(0,0,0,0.04); }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--c-text); }
+  .tag-green {
+    display: inline-block; background: var(--c-green-light);
+    color: var(--c-green); padding: 2px 8px;
+    border-radius: 6px; font-size: 12px; font-weight: 700;
+  }
+  .tag-gold {
+    display: inline-block; background: rgba(200,159,94,0.15);
+    color: var(--c-gold-dark); padding: 2px 8px;
+    border-radius: 6px; font-size: 12px; font-weight: 700;
+  }
+
+  /* ===== AYE STANDARDS ===== */
+  .aye-section {
+    background: linear-gradient(135deg, #f8f5f0, #efe8dc);
+    border-radius: 20px; padding: 40px 28px;
+    margin: 24px 0;
+  }
+
+  .aye-section h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; text-align: center; margin-bottom: 24px;
+  }
+
+  .aye-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .aye-card {
+    background: #fff; border-radius: 14px;
+    padding: 20px 16px; text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .aye-card .emoji { font-size: 28px; margin-bottom: 8px; }
+  .aye-card .title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .aye-card .desc { font-size: 13px; color: var(--c-text-light); }
+
+  .aye-note {
+    text-align: center; margin-top: 20px;
+    font-size: 14px; color: var(--c-text-light);
+  }
+
+  /* ===== USAGE ===== */
+  .usage-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin: 24px 0;
+  }
+
+  .usage-card {
+    background: #fff; border-radius: 16px;
+    padding: 24px 16px; text-align: center;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .usage-card .emoji { font-size: 36px; margin-bottom: 12px; }
+  .usage-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .usage-card p { font-size: 13px; color: var(--c-text-light); margin-bottom: 0; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center; padding: 48px 24px;
+    background: linear-gradient(135deg, #1a1612 0%, #3d3228 100%);
+    color: rgba(255,255,255,0.6); font-size: 13px;
+  }
+  .footer .brand {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--c-gold-light); margin-bottom: 12px;
+  }
+  .footer .slogan { color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 8px; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 28px; }
+    .hero-stats { flex-direction: column; gap: 20px; }
+    .nutrition-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .aye-grid { grid-template-columns: 1fr; }
+    .usage-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="会稽山香榧原料、制油工艺与烹饪方式。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/%E9%A6%99%E6%A6%A7%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"香榧油","description":"会稽山香榧原料、制油工艺与烹饪方式。","url":"https://jiyangjia-ai.netlify.app/docs/%E9%A6%99%E6%A6%A7%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge">爱野天然食材 · 珍稀木本油</div>
+  <h1>会稽山古树金油<br>一滴珍贵<span>千年</span></h1>
+  <p class="hero-quote">"5斤香榧干果，方能榨出1斤金油。这不是普通的油，是会稽山古树林中，时间沉淀的液态琥珀。"</p>
+  <div class="hero-stats">
+    <div class="item"><div class="num">76~94%</div><div class="label">不饱和脂肪酸</div></div>
+    <div class="item"><div class="num">8.65%</div><div class="label">珍稀金松酸</div></div>
+    <div class="item"><div class="num">GIAHS</div><div class="label">联合国遗产认证</div></div>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 1: 产地 ===== -->
+<section class="chapter">
+  <div class="kicker">壹 · 产地</div>
+  <h2 class="chapter-title">会稽山古香榧群<br>联合国认证的<span>农业奇迹</span></h2>
+
+  <p>香榧，红豆杉科榧树属的珍稀常绿乔木，只生长在中国亚热带丘陵地区的特定海拔带。而会稽山——这座横亘于浙江绍兴、诸暨、嵊州之间的古老山脉，正是香榧无可争议的原乡。</p>
+
+  <p>这里的香榧林，不是普通的经济林。会稽山古香榧群拥有<strong>百年以上古香榧树近8万株</strong>，2013年被列入联合国粮农组织<strong>全球重要农业文化遗产（GIAHS）</strong>名录。2022年，香榧油更登上联合国国际植物油及农业文化遗产学术论坛，成为中国GIAHS遗产地唯一入选案例，获得意大利橄榄种植遗产地专家的高度认可。</p>
+
+  <div class="highlight-box">
+    <p><strong>为何会稽山的香榧油格外珍贵？</strong><br>
+    香榧从开花到果实成熟，需要<strong>整整三年</strong>。同一株树上，今年成熟的果实、明年将熟的青果、后年才开的花，三世同堂——这是植物界罕见的"三代果"奇观。<strong>三年一收</strong>的漫长周期，决定了香榧油的天然稀缺性。</p>
+  </div>
+
+  <p>会稽山的红壤微酸性、云雾缭绕的湿度、昼夜温差大的气候，共同塑造了香榧果仁独特的油脂谱。朱海东等学者的研究表明：浙江诸暨香榧的<strong>油酸含量达37.54%</strong>，单不饱和脂肪酸含量38.03%，均为各产区最高。</p>
+</section>
+
+<!-- ===== CHAPTER 2: 营养数据 ===== -->
+<section class="chapter">
+  <div class="kicker">贰 · 营养</div>
+  <h2 class="chapter-title">液体黄金的营养<span>密码</span></h2>
+
+  <p>香榧油不是"贵"在概念，而是贵在有据可查的营养密度。它的脂肪酸组成，在植物油中堪称独特。</p>
+
+  <div class="nutrition-grid">
+    <div class="nutrition-card">
+      <div class="name">不饱和脂肪酸</div>
+      <div class="value">76~94<span class="unit">%</span></div>
+      <div class="note">油酸 + 亚油酸为主，优于大豆油（3~5倍）</div>
+    </div>
+    <div class="nutrition-card">
+      <div class="name">金松酸（特有）</div>
+      <div class="value">8.65<span class="unit">%</span></div>
+      <div class="note">全球仅少数松科种子油含有，香榧标志成分</div>
+    </div>
+    <div class="nutrition-card">
+      <div class="name">油酸</div>
+      <div class="value">37.5<span class="unit">%</span></div>
+      <div class="note">单不饱和脂肪酸，与橄榄油核心成分同源</div>
+    </div>
+    <div class="nutrition-card">
+      <div class="name">亚油酸</div>
+      <div class="value">47<span class="unit">%</span></div>
+      <div class="note">多不饱和脂肪酸，人体必需，嵊州产区最高</div>
+    </div>
+    <div class="nutrition-card">
+      <div class="name">维生素E</div>
+      <div class="value">丰富</div>
+      <div class="note">天然抗氧化，10-15ml即可满足日需30%+</div>
+    </div>
+    <div class="nutrition-card">
+      <div class="name">植物甾醇</div>
+      <div class="value">β-谷甾醇</div>
+      <div class="note">竞争性抑制胆固醇吸收，调节血脂</div>
+    </div>
+  </div>
+
+  <p>香榧油的不饱和脂肪酸与饱和脂肪酸比值达<strong>7.05~8.52</strong>，远超大豆油（3.02~5.82）。这意味着：香榧油是更"干净"的油脂——给身体提供能量的同时，不增加心血管负担。</p>
+</section>
+
+<!-- ===== CHAPTER 3: 健康益处 ===== -->
+<section class="chapter">
+  <div class="kicker">叁 · 功效</div>
+  <h2 class="chapter-title">日常食用香榧油<br>身体会发生哪些<span>改变</span>？</h2>
+
+  <p>陈振德等研究发现：香榧种仁油脂可促进<strong>前列环素（PGI₂）合成</strong>、抑制<strong>血栓素（TXA₂）分泌</strong>，从而防治动脉粥样硬化。2024年最新研究更证实，香榧油对肥胖小鼠具有显著的降脂、抗氧化和抗炎作用。</p>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="icon">🫀</div>
+      <h3>护心血管</h3>
+      <p>不饱和脂肪酸降低低密度脂蛋白胆固醇，减少动脉粥样硬化风险。金松酸通过调节血脂酶活性，抑制甘油三酯合成。</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">⚖️</div>
+      <h3>调节血脂代谢</h3>
+      <p>金松酸抑制肝脏脂肪酸合成酶（FASN）活性，促进甘油三酯分解代谢。每日适量食用，有助于维持健康血脂水平。</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">🛡️</div>
+      <h3>抗氧化抗衰老</h3>
+      <p>维生素E + 多酚 + 谷甾醇协同清除自由基，减轻氧化应激。野生型香榧油展现出较强的抗氧化与酪氨酸酶抑制活性。</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">🔥</div>
+      <h3>抗炎减负</h3>
+      <p>长期适量食用有助于降低慢性炎症发生概率。香榧油中的多酚类物质与维生素E协同，减轻炎症反应。</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">🧠</div>
+      <h3>大脑与代谢</h3>
+      <p>亚油酸和油酸是大脑神经递质合成的重要原料。金松酸促进代谢，改善脂质代谢紊乱，对代谢综合征有潜在益处。</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">✨</div>
+      <h3>皮肤屏障</h3>
+      <p>维生素E和必需脂肪酸外用可改善皮肤干燥，增强皮肤屏障功能。日常食用从内而外滋养皮肤。</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>需要特别说明：</strong>香榧油是食用油，建议用于凉拌、低温烹调或出锅前淋油。虽然烟点较高，但为最大限度保留金松酸、维生素E等活性营养成分，<strong>避免长时间高温煎炸</strong>。每日建议摄入量与其他植物油合计控制在25-30克。</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 4: 亮点 ===== -->
+<section class="chapter">
+  <div class="kicker">肆 · 不一样</div>
+  <h2 class="chapter-title">香榧油的<span>六大独特</span>之处</h2>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="num">①</div>
+      <div>
+        <h3>金松酸 — 全球罕见的"身份证"</h3>
+        <p>金松酸（Sciadonic Acid）仅存在于极少数裸子植物种子中。香榧油含量约8.65%，是植物油中的"独一份"，调节血脂、抑制脂肪合成的作用已被多项研究证实。</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="num">②</div>
+      <div>
+        <h3>联合国GIAHS遗产地认证</h3>
+        <p>会稽山古香榧群是全球重要农业文化遗产。2013年列入联合国名录，2022年香榧油登上国际论坛——这不是营销话术，是国际组织的背书。</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="num">③</div>
+      <div>
+        <h3>5~6斤干果才出1斤油</h3>
+        <p>香榧果仁含油率约50%，但去掉硬壳、黑衣后，5~6斤香榧干果才能榨出1斤油。这决定了它的天然稀缺性——不是不想量产，是做不到。</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="num">④</div>
+      <div>
+        <h3>百年古树原料，非人工速生林</h3>
+        <p>会稽山近8万株百年以上古香榧树，是原料的根本保障。古树根系深扎地下数十米，吸收的矿物质和微量元素远非人工速生林可比。</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="num">⑤</div>
+      <div>
+        <h3>三重不饱和脂肪酸协同</h3>
+        <p>油酸（单不饱和）+ 亚油酸（多不饱和）+ 金松酸（特殊结构），三种不饱和脂肪酸以天然比例共存，彼此协同增效，而非单一成分单打独斗。</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="num">⑥</div>
+      <div>
+        <h3>传统工艺低温制取</h3>
+        <p>不同于大规模工业化高温压榨，香榧油采用传统工艺、低温物理压榨，再经脱酸、脱脂、脱氧精炼，最大限度保留活性成分。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 5: 对比 ===== -->
+<section class="chapter">
+  <div class="kicker">伍 · 对照</div>
+  <h2 class="chapter-title">香榧油 vs 常见食用油<br>差距不只<span>在价格</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>香榧油</th>
+          <th>大豆油</th>
+          <th>菜籽油</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>不饱和脂肪酸</strong></td>
+          <td><span class="tag-green">76~94%</span></td>
+          <td>80~85%</td>
+          <td>90~93%</td>
+        </tr>
+        <tr>
+          <td><strong>金松酸</strong></td>
+          <td><span class="tag-gold">8.65%（特有）</span></td>
+          <td>无</td>
+          <td>无</td>
+        </tr>
+        <tr>
+          <td><strong>油酸比例</strong></td>
+          <td>37.5%（高）</td>
+          <td>20~25%</td>
+          <td>60%（高）</td>
+        </tr>
+        <tr>
+          <td><strong>不饱和/饱和比值</strong></td>
+          <td><span class="tag-green">7.05~8.52</span></td>
+          <td>3.02~5.82</td>
+          <td>约5~6</td>
+        </tr>
+        <tr>
+          <td><strong>维生素E</strong></td>
+          <td>丰富（天然高）</td>
+          <td>中等</td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td><strong>原料来源</strong></td>
+          <td>百年古树，三年一收</td>
+          <td>一年生农作物</td>
+          <td>一年生农作物</td>
+        </tr>
+        <tr>
+          <td><strong>遗产认证</strong></td>
+          <td><span class="tag-gold">联合国GIAHS</span></td>
+          <td>无</td>
+          <td>无</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>香榧油的价值不在于"某一项指标碾压所有油"，而在于<strong>多维度的综合稀缺性</strong>：特殊的脂肪酸谱（金松酸）、遗产地背书、古树原料的不可复制性、以及天然的高抗氧化成分。它是"木本油中的贵族"，适合与日常食用油搭配轮换，而非完全替代。</p>
+</section>
+
+<!-- ===== CHAPTER 6: 食用建议 ===== -->
+<section class="chapter">
+  <div class="kicker">陆 · 食用</div>
+  <h2 class="chapter-title">这样吃，<span>物尽其值</span></h2>
+
+  <p>香榧油风味清雅，带有淡淡的坚果香，不抢食材本味。以下是推荐的三种食用方式：</p>
+
+  <div class="usage-grid">
+    <div class="usage-card">
+      <div class="emoji">🥗</div>
+      <h4>凉拌淋油</h4>
+      <p>沙拉、凉菜出锅前淋1小勺，保留100%活性营养，金松酸和维生素E零损耗。</p>
+    </div>
+    <div class="usage-card">
+      <div class="emoji">🍳</div>
+      <h4>低温烹调</h4>
+      <p>清炒、炖汤出锅前淋入，或配合低温煎煮。避免长时间高温油炸。</p>
+    </div>
+    <div class="usage-card">
+      <div class="emoji">🍜</div>
+      <h4>面食/粥品</h4>
+      <p>煮好的面条、粥品中滴入少许，增香提味，营养倍增。</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>用量建议：</strong>香榧油是高端辅助油，建议每日10-15ml（约2-3茶匙），与其他植物油（如菜籽油、花生油）轮换搭配。这样既能摄入金松酸等特殊营养，又控制总油脂摄入在健康范围（25-30克/日）。开封后请置于阴凉避光处，尽快食用。</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 7: 爱野标准 ===== -->
+<section class="chapter">
+  <div class="kicker">柒 · 标准</div>
+  <h2 class="chapter-title">爱野四重标准<br>从源头守住<span>每一滴</span></h2>
+
+  <div class="aye-section">
+    <h3>爱野天然食材 · 四重选材标准</h3>
+    <div class="aye-grid">
+      <div class="aye-card">
+        <div class="emoji">🌱</div>
+        <div class="title">原生种</div>
+        <div class="desc">会稽山百年古香榧树，非嫁接速生品种，基因纯正</div>
+      </div>
+      <div class="aye-card">
+        <div class="emoji">☀️</div>
+        <div class="title">自然生</div>
+        <div class="desc">三年一收，顺应天时，不催熟不早采</div>
+      </div>
+      <div class="aye-card">
+        <div class="emoji">🐄</div>
+        <div class="title">有机肥</div>
+        <div class="desc">古树根系自深土吸收矿物质，天然腐殖质滋养</div>
+      </div>
+      <div class="aye-card">
+        <div class="emoji">✅</div>
+        <div class="title">0农残</div>
+        <div class="desc">古树林生态自循环，无需化学农药干预</div>
+      </div>
+    </div>
+    <div class="aye-note">
+      香榧油经传统工艺低温物理压榨，脱酸脱脂精炼，无化学溶剂浸出<br>
+      250ml小瓶装，开封即用，新鲜锁养
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="brand">积养家 · 积善积德积福 · 养人养生养体</div>
+  <p>爱野天然食材 | 原生种 · 自然生 · 有机肥 · 0农残</p>
+  <p>源自联合国GIAHS会稽山古香榧群 | 传统工艺 · 精心制取</p>
+  <div class="slogan">本文档仅供参考，不作为医疗诊断依据。如有特殊健康状况，请咨询专业医师。</div>
+</div>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/torreya-oil/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>

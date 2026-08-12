@@ -4,7 +4,13 @@
 
 ## 当前发布
 
-GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.2>
+GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-android-ai/tree/main/knowledge-public/v2.3>
+
+- [v2.3 当前正式公开知识库](v2.3/README.md)
+- [v2.3 完整知识内容](v2.3/import_all.json)
+- [v2.3 产品目录](v2.3/catalog.json)
+- [v2.3 原始公开培训站点](v2.3/site/)
+- [v2.3 Manifest 与 SHA-256](v2.3/manifest.json)
 
 - [v2.2 爱野食材正式知识库](v2.2/README.md)
 - [v2.2 完整知识内容](v2.2/import_all.json)
@@ -17,7 +23,7 @@ GitHub 员工分享地址：<https://github.com/archibald80000-ai/jiyangjia-andr
 - [v2.1 第二批](v2.1/import_batch_02.json)
 - [v2.1 Manifest](v2.1/manifest.json)
 
-当前 v2.2 完整包包含 204 条：180 approved、24 draft；其中保留 v2.1 的全部 65 条，并新增 139 条爱野食材 approved 知识。`draft` 仅供内部确认，不得直接作为顾客答案。
+当前 v2.3 完整包包含 251 条：227 approved、24 draft；其中保留 v2.2 的全部 204 条，并从公开培训站点结构化产品目录新增 47 条 approved 产品知识。`draft` 仅供内部确认，不得直接作为顾客答案。
 
 公开副本保留原始 ID、标题、正文和状态，只将工作站绝对路径标准化为 `knowledge://<document_id>`。原始目录 `E:\work\积养家\数字人知识库\08_导入包` 仍保持只读。
 

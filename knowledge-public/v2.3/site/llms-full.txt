@@ -1,0 +1,86 @@
+# 积养家产品资料馆
+
+品牌定位：社区健康生活馆与邻里会客厅
+门店地址：北京市昌平区国风美唐3期4号楼底商
+口号：日积月养，天天开心
+最后更新：2026-08-11
+
+## 26份完整原页
+- 积养家食材产品明细｜总览与菜单｜6大类、47项产品的规格与出售价总览。｜https://jiyangjia-ai.netlify.app/view/price-list/
+- 积养家下午茶体验菜单｜总览与菜单｜门店茶饮与汤品体验的完整菜单页面。｜https://jiyangjia-ai.netlify.app/view/day-tea-menu/
+- 社区健康臻选计划｜总览与菜单｜社区体验活动的完整策划页面。｜https://jiyangjia-ai.netlify.app/view/community-selection/
+- 大有谷合作产品手册｜米面粮油｜大米、小米、玉米、杂粮、酸奶、盐田虾等产品合集。｜https://jiyangjia-ai.netlify.app/view/dayougu-guide/
+- 旱地亚麻籽｜米面粮油｜金色熟亚麻籽的产区、风味与日常吃法。｜https://jiyangjia-ai.netlify.app/view/flaxseed/
+- 香榧油｜米面粮油｜会稽山香榧原料、制油工艺与烹饪方式。｜https://jiyangjia-ai.netlify.app/view/torreya-oil/
+- 茶油｜米面粮油｜山茶籽油的传统工艺与中式烹饪场景。｜https://jiyangjia-ai.netlify.app/view/camellia-oil/
+- 沙漠一号虎坚果油｜米面粮油｜虎坚果原料、冷榨工艺与多种烹饪用法。｜https://jiyangjia-ai.netlify.app/view/tigernut-oil/
+- 飞鸡蛋｜肉蛋食材｜散养鸡蛋的来源故事、辨认方法、售价与活动说明。｜https://jiyangjia-ai.netlify.app/view/flying-eggs/
+- 金华农家火腿｜肉蛋食材｜金华火腿的传统制作、风味与家庭烹饪。｜https://jiyangjia-ai.netlify.app/view/jinhua-farm-ham/
+- 金华两头乌火腿｜肉蛋食材｜两头乌原料与自然熟成工艺资料。｜https://jiyangjia-ai.netlify.app/view/jinhua-two-end-black-ham/
+- 金华古法酱油｜调味酿造｜日晒发酵、古法酿造与家常调味方式。｜https://jiyangjia-ai.netlify.app/view/soy-sauce/
+- 罗埠土酱油礼盒｜调味酿造｜罗埠土酱油礼盒的品牌、工艺和使用资料。｜https://jiyangjia-ai.netlify.app/view/soy-sauce-gift/
+- 农家古法黄豆酱｜调味酿造｜黄豆酱的原料、发酵工艺与家常吃法。｜https://jiyangjia-ai.netlify.app/view/soybean-paste/
+- 山西老陈醋｜调味酿造｜蒸、酵、熏、淋、陈五艺与酸香口感。｜https://jiyangjia-ai.netlify.app/view/aged-vinegar/
+- 塔牌黄酒｜调味酿造｜冬酿、糯米原料与陶坛陈放的风味故事。｜https://jiyangjia-ai.netlify.app/view/rice-wine/
+- 五指岩鲜姜｜调味酿造｜鲜姜的原生种植、风味与炖煮场景。｜https://jiyangjia-ai.netlify.app/view/fresh-ginger/
+- 黄芪蜂蜜醋｜调味酿造｜黄芪、蜂蜜与水共同发酵的工艺资料。｜https://jiyangjia-ai.netlify.app/view/astragalus-honey-vinegar/
+- 武当山野山蜂蜜｜茶饮蜂蜜｜野山蜂蜜的采集故事、香气与日常搭配。｜https://jiyangjia-ai.netlify.app/view/wild-honey/
+- 藤茶｜茶饮蜂蜜｜武陵山藤茶的白霜特征、口感与冲泡方法。｜https://jiyangjia-ai.netlify.app/view/vine-tea/
+- 二十四节气茶品牌故事｜茶饮蜂蜜｜跟着节气饮茶的门店内容资料。｜https://jiyangjia-ai.netlify.app/view/seasonal-tea-story/
+- 24节气茶速查表｜茶饮蜂蜜｜二十四节气茶饮的快速查阅页面。｜https://jiyangjia-ai.netlify.app/view/seasonal-tea-sheet/
+- 时珍太和圣坊茶系列｜茶饮蜂蜜｜三款袋泡茶的配料、工艺与冲泡资料。｜https://jiyangjia-ai.netlify.app/view/shizhen-tea/
+- 积养家药食食材大全｜药食食材｜门店药食类食材的集中资料页面。｜https://jiyangjia-ai.netlify.app/view/food-materia-medica/
+- 云南文山三七片｜药食食材｜文山三七片的产区、识别、食用与按规格计价资料。｜https://jiyangjia-ai.netlify.app/view/sanqi-slices/
+- 上珍缘宣莲｜药食食材｜宣莲的产区故事、口感和炖煮方式。｜https://jiyangjia-ai.netlify.app/view/xuan-lotus/
+
+## 47项产品培训
+- 茯苓｜药食同源｜3.9元/50g｜茯苓块是门店散装食材，可用于家常煮粥或煲汤。｜https://jiyangjia-ai.netlify.app/products/fuling/
+- 桑葚｜药食同源｜3.9元/50g｜桑葚干带果香，可泡水或搭配酸奶。｜https://jiyangjia-ai.netlify.app/products/dried-mulberry/
+- 山药｜药食同源｜4.9元/50g｜山药片是常见煮粥、煲汤食材。｜https://jiyangjia-ai.netlify.app/products/yam-slices/
+- 芡实仁｜药食同源｜6.9元/50g｜芡实仁颗粒适合煮粥或煲汤。｜https://jiyangjia-ai.netlify.app/products/gorgon-seed/
+- 无花果｜药食同源｜7.9元/50g｜无花果干带自然果甜，可泡水或煲汤。｜https://jiyangjia-ai.netlify.app/products/dried-fig/
+- 大玫瑰｜药食同源｜7.9元/50g｜玫瑰花香清楚，适合单独冲泡或拼配茶饮。｜https://jiyangjia-ai.netlify.app/products/rose-buds/
+- 当归｜药食同源｜8.9元/50g｜当归切片适合在家庭汤饮中少量搭配。｜https://jiyangjia-ai.netlify.app/products/angelica-slices/
+- 福建莲子｜药食同源｜8.9元/50g｜莲子口感粉糯，适合煮粥或甜汤。｜https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/
+- 宁夏枸杞｜药食同源｜8.9元/50g｜枸杞带自然甜味，可泡水、煮粥或搭配汤饮。｜https://jiyangjia-ai.netlify.app/products/ningxia-goji/
+- 百合｜药食同源｜9.9元/50g｜湖南百合适合煮粥或甜汤，口感偏软糯。｜https://jiyangjia-ai.netlify.app/products/lily-bulb/
+- 麦冬｜药食同源｜9.9元/50g｜麦冬可用于日常泡水或茶饮拼配。｜https://jiyangjia-ai.netlify.app/products/ophiopogon/
+- 党参段｜药食同源｜11.9元/50g｜党参段适合用于家庭煲汤或搭配粥品。｜https://jiyangjia-ai.netlify.app/products/codonopsis/
+- 九蒸黄精｜药食同源｜15.9元/50g｜九蒸黄精为切片食材，可用于日常泡水。｜https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/
+- 铁皮石斛｜药食同源｜29.9元/50g｜铁皮石斛为门店散装食材，具体产地和等级待补。｜https://jiyangjia-ai.netlify.app/products/dendrobium/
+- 西洋参片｜药食同源｜29.9元/50g｜西洋参片可用于泡水或家庭汤饮。｜https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/
+- 老陈皮｜药食同源｜34.9元/50g｜陈皮带柑橘陈香，可泡水或入汤。｜https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/
+- 三七｜药食同源｜38元/50g｜【待确认】：三七的等级、产地和合规介绍尚未确认。｜https://jiyangjia-ai.netlify.app/products/sanqi/
+- 黄芪｜药食同源｜45元/50g｜切片黄芪可用于家庭煲汤或泡水。｜https://jiyangjia-ai.netlify.app/products/astragalus/
+- 三七片｜药食同源｜168元/盒｜云南文山三七切片，原资料介绍了产区、外观识别和炖煮等日常使用方式。｜https://jiyangjia-ai.netlify.app/products/sanqi-slices/
+- 肉苁蓉奶粉｜药食同源｜319元/份｜冲调类奶粉产品，食品类别、配料和冲调方式以包装为准。｜https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/
+- 旱地亚麻籽｜粮油米面｜39元/袋｜熟制信息和净含量仍待包装复核，可用于拌粥、烘焙或搭配酸奶。｜https://jiyangjia-ai.netlify.app/products/golden-flaxseed/
+- 敖汉金有机糯玉米｜粮油米面｜59.8元/箱｜糯玉米口感偏软糯，适合早餐或加餐。｜https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/
+- 香榧油｜粮油米面｜68元/瓶｜香榧油带坚果香，适合少量凉拌或按包装说明烹调。｜https://jiyangjia-ai.netlify.app/products/torreya-oil/
+- 敖汉金有机鲜食玉米｜粮油米面｜69元/箱｜鲜食玉米口感偏清甜，适合早餐或加餐。｜https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/
+- 敖汉金石碾有机小米（家庭装·长嘴）｜粮油米面｜72元/提｜敖汉小米家庭装，适合日常煮粥。｜https://jiyangjia-ai.netlify.app/products/aohan-millet-family/
+- 芥花油（压榨一级菜籽油）｜粮油米面｜136元/组（68元×2桶）；138元/桶｜压榨一级菜籽油，适合家庭日常烹调。｜https://jiyangjia-ai.netlify.app/products/canola-oil/
+- 敖汉金有机杂粮（8个品种）｜粮油米面｜158元/箱｜八种杂粮组合，适合煮杂粮粥或杂粮饭。｜https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/
+- 敖汉金石碾有机小米（礼盒装）｜粮油米面｜159元/提｜敖汉小米礼盒装，适合送礼或家庭煮粥。｜https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/
+- 有机五常大米·尚乾｜粮油米面｜188元/袋｜五常5kg装大米，适合家庭日常焖饭。｜https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/
+- 有机五常大米·福仁｜粮油米面｜198元/提｜五常2.7kg装大米，适合家庭焖饭或送礼。｜https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/
+- 圣牧有机酸奶｜蛋奶水产｜68元/箱｜盒装酸奶，配料、糖分、储存和保质期以包装为准。｜https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/
+- 39°有机盐田虾（30条/斤）盒装｜蛋奶水产｜45元/盒，5盒合计225元｜盒装盐田虾，适合白灼、清蒸或快炒。｜https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/
+- 黑猪油｜肉禽油脂｜39元，规格待补｜猪油香气明显，可用于炒菜、拌面或家常点心。｜https://jiyangjia-ai.netlify.app/products/black-pork-lard/
+- 农家猪油｜肉禽油脂｜128元/罐｜罐装猪油，可用于炒菜、拌面或家常点心。｜https://jiyangjia-ai.netlify.app/products/farm-lard/
+- 金华火腿｜肉禽油脂｜528元/只｜整只金华火腿，适合切片蒸、煮汤或入菜。｜https://jiyangjia-ai.netlify.app/products/jinhua-ham/
+- 金华两头乌火腿｜肉禽油脂｜1688元/箱｜两头乌原料火腿，适合切片蒸、煮汤或入菜。｜https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/
+- 一级酱油｜调味酿造｜16.8元/斤｜一级酱油用于家常炒菜、蘸食和调味。｜https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/
+- 陈醋｜调味酿造｜20元/斤｜陈醋带酸香，适合凉拌、蘸食或烹调。｜https://jiyangjia-ai.netlify.app/products/aged-vinegar/
+- 特级酱油｜调味酿造｜21.9元/斤｜特级酱油用于家常炒菜、蘸食和调味。｜https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/
+- 生姜｜调味酿造｜28元/斤｜鲜姜辛香，可切片炒菜、煮汤或用于去腥。｜https://jiyangjia-ai.netlify.app/products/fresh-ginger/
+- 黄豆酱｜调味酿造｜49元/罐｜黄豆酱酱香明显，适合蘸食、拌面或炒菜调味。｜https://jiyangjia-ai.netlify.app/products/soybean-paste/
+- 黄酒｜调味酿造｜88元/斤｜谷物酿造酒，适合按产品说明佐餐或用于烹调。｜https://jiyangjia-ai.netlify.app/products/rice-wine/
+- 黄芪蜂蜜醋｜调味酿造｜96元/箱｜黄芪、蜂蜜与水共同发酵的饮品，原页记录了工艺、风味和搭配方法。｜https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/
+- 特级酱油礼盒｜调味酿造｜139元/箱｜酱油礼盒装，适合作为节礼或伴手礼，内含规格待补。｜https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/
+- 安凤陈韵｜茶饮蜂蜜｜198元/箱｜【待确认】：产品类别、配料、规格和产地尚未确认。｜https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/
+- 武当山野蜂蜜｜茶饮蜂蜜｜288元/瓶（500ml）｜野山蜂蜜带自然花香，可用于冲水、搭配面包或家常饮品。｜https://jiyangjia-ai.netlify.app/products/wudang-honey/
+- 飞鸡蛋｜飞鸡蛋｜3.5元/枚｜散养鸡蛋产品，原页介绍了来源故事、辨认方法、口感和活动说明。｜https://jiyangjia-ai.netlify.app/products/flying-eggs/
+
+## 使用说明
+完整原页和培训页互相链接。员工先讲原页事实，再按顾客需要建议查看、品尝或到店了解。

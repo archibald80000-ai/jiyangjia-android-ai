@@ -14,7 +14,7 @@ from typing import Iterable, Protocol
 import faiss
 import numpy as np
 
-from .answer_policy import classify_answer_scope
+from .answer_policy import classify_answer_scope, has_explicit_general_intent
 
 
 VALID_STATUSES = {"approved", "draft", "rejected"}
@@ -303,7 +303,13 @@ class SQLiteKnowledgeStore:
 
     def classify_query(self, query: str) -> dict[str, object]:
         scope = classify_answer_scope(query)
-        return {"action": "search", "scope": scope, "category": None, "message": None}
+        category = None
+        if scope == "general" and not has_explicit_general_intent(query):
+            lexical = self._keyword_search(query, top_k=1, allowed=("approved",))
+            if lexical and max(lexical.values()) >= MIN_KEYWORD_ONLY_SCORE:
+                scope = "jiyangjia"
+                category = "dynamic_corpus"
+        return {"action": "search", "scope": scope, "category": category, "message": None}
 
     async def search(
         self,

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>积养家·社区健康臻选计划</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-gold: #C89F5E;
+      --c-gold-light: #E8D5A3;
+      --c-gold-dark: #8B6914;
+      --c-red: #D9534F;
+      --c-red-dark: #B73A36;
+      --c-cream: #FDF8F0;
+      --c-warm: #F5EDE0;
+      --c-text: #2D2926;
+      --c-text-light: #6B6560;
+      --c-green: #5A7D4A;
+      --c-green-light: #E8F0E3;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--c-cream);
+      color: var(--c-text);
+      line-height: 1.7;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #1a1612 0%, #3d3228 50%, #1a1612 100%);
+      color: #fff;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(200,159,94,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(200,159,94,0.05) 0%, transparent 40%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--c-gold), var(--c-gold-light));
+      color: #1a1612;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--c-gold-light), var(--c-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-value-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(200,159,94,0.12);
+      border: 1px solid rgba(200,159,94,0.3);
+      border-radius: 12px;
+      padding: 14px 28px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-value-bar .label { font-size: 14px; color: var(--c-gold-light); }
+    .hero-value-bar .number {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 32px; font-weight: 900;
+      color: var(--c-gold);
+    }
+    .hero-value-bar .unit { font-size: 14px; color: var(--c-gold-light); }
+
+    /* URGENCY BAR */
+    .urgency-bar {
+      background: linear-gradient(90deg, var(--c-red-dark), var(--c-red));
+      color: #fff; text-align: center;
+      padding: 14px 20px; font-size: 15px; font-weight: 500;
+      display: flex; justify-content: center; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+
+    .urgency-bar .dot {
+      width: 8px; height: 8px;
+      background: #fff; border-radius: 50%;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 26px; font-weight: 700;
+      text-align: center; margin-bottom: 8px;
+    }
+
+    .section-title span { color: var(--c-gold-dark); }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--c-text-light);
+      font-size: 15px; margin-bottom: 36px;
+    }
+
+    /* VALUE GRID */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 40px;
+    }
+
+    .value-card {
+      background: #fff;
+      border-radius: 16px; padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(200,159,94,0.15);
+    }
+
+    .value-card .icon { font-size: 36px; margin-bottom: 12px; }
+    .value-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .value-card p { font-size: 13px; color: var(--c-text-light); }
+
+    /* PAIN */
+    .pain-section {
+      background: linear-gradient(135deg, #2D2926 0%, #1a1612 100%);
+      color: #fff; border-radius: 20px;
+      padding: 40px 28px; margin-bottom: 40px;
+      position: relative;
+    }
+
+    .pain-section::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(200,159,94,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .pain-section h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; margin-bottom: 20px; text-align: center;
+    }
+
+    .pain-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .pain-item {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 14px 16px;
+      font-size: 14px; display: flex; align-items: center; gap: 10px;
+    }
+
+    .pain-item .x {
+      color: var(--c-red); font-weight: 900;
+      font-size: 18px; flex-shrink: 0;
+    }
+
+    /* PACKAGE CARDS */
+    .package-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .package-card {
+      background: #fff; border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .package-card.popular { border-color: var(--c-gold); }
+
+    .package-card.popular::before {
+      content: '店长推荐';
+      position: absolute; top: 0; right: 0;
+      background: linear-gradient(135deg, var(--c-gold), var(--c-gold-dark));
+      color: #fff; font-size: 12px; font-weight: 700;
+      padding: 6px 16px;
+      border-bottom-left-radius: 16px; z-index: 2;
+    }
+
+    .package-header {
+      padding: 28px 24px 20px;
+      text-align: center;
+    }
+
+    .package-card:nth-child(1) .package-header {
+      background: linear-gradient(135deg, #f8f5f0, #efe8dc);
+    }
+    .package-card:nth-child(2) .package-header {
+      background: linear-gradient(135deg, #fdf6e3, #f5e8c8);
+    }
+
+    .package-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 4px;
+    }
+
+    .package-tag {
+      display: inline-block; font-size: 12px;
+      color: var(--c-text-light);
+      background: rgba(0,0,0,0.05);
+      padding: 3px 12px; border-radius: 10px; margin-bottom: 16px;
+    }
+
+    .price-block {
+      display: flex; align-items: baseline;
+      justify-content: center; gap: 10px; margin-bottom: 4px;
+    }
+
+    .price-original {
+      font-size: 18px; color: #999;
+      text-decoration: line-through;
+      text-decoration-color: var(--c-red);
+      text-decoration-thickness: 2px;
+    }
+
+    .price-now {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 48px; font-weight: 900;
+      color: var(--c-red); line-height: 1;
+    }
+
+    .price-unit {
+      font-size: 16px; color: var(--c-text-light);
+    }
+
+    .savings-tag {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--c-red), var(--c-red-dark));
+      color: #fff; font-size: 13px; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px; margin-top: 8px;
+    }
+
+    .package-body {
+      padding: 24px;
+    }
+
+    .package-body h4 {
+      font-size: 14px; font-weight: 700;
+      color: var(--c-text-light);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .package-body h4::before {
+      content: '';
+      display: block;
+      width: 4px; height: 16px;
+      background: var(--c-gold); border-radius: 2px;
+    }
+
+    .benefit-list { list-style: none; }
+
+    .benefit-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.06);
+    }
+
+    .benefit-list li:last-child { border-bottom: none; }
+
+    .benefit-icon {
+      width: 28px; height: 28px;
+      background: var(--c-green-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0; margin-top: 2px;
+    }
+
+    .benefit-text { flex: 1; }
+    .benefit-text .name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .benefit-text .detail { font-size: 13px; color: var(--c-text-light); }
+    .benefit-text .value {
+      font-size: 12px; color: var(--c-green);
+      font-weight: 600; margin-top: 2px;
+    }
+
+    .package-footer {
+      padding: 0 24px 24px;
+    }
+
+    .total-value {
+      background: linear-gradient(135deg, #f8f5f0, #efe8dc);
+      border-radius: 12px; padding: 16px;
+      text-align: center; margin-bottom: 16px;
+    }
+
+    .total-value .label { font-size: 13px; color: var(--c-text-light); margin-bottom: 4px; }
+    .total-value .amount {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 28px; font-weight: 900; color: var(--c-gold-dark);
+    }
+    .total-value .ratio { font-size: 13px; color: var(--c-red); font-weight: 700; margin-top: 4px; }
+
+    .cta-btn {
+      display: block; width: 100%;
+      padding: 16px; border: none; border-radius: 14px;
+      font-size: 18px; font-weight: 700;
+      cursor: pointer; text-align: center; text-decoration: none;
+    }
+
+    .cta-btn-primary {
+      background: linear-gradient(135deg, var(--c-red), var(--c-red-dark));
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(217,83,79,0.3);
+    }
+
+    .cta-btn-gold {
+      background: linear-gradient(135deg, var(--c-gold), var(--c-gold-dark));
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(200,159,94,0.3);
+    }
+
+    /* COMPARISON TABLE */
+    .compare-section {
+      background: #fff; border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+
+    .compare-table th {
+      background: var(--c-warm);
+      padding: 14px 12px;
+      text-align: left; font-weight: 600; color: var(--c-text-light);
+    }
+
+    .compare-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table .highlight {
+      background: var(--c-green-light);
+      color: var(--c-green); padding: 2px 8px;
+      border-radius: 6px; font-size: 12px; font-weight: 700;
+    }
+
+    /* ===== BODY CARE DETAIL SECTION ===== */
+    .care-detail-section {
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border: 1px solid rgba(200,159,94,0.2);
+    }
+
+    .care-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .care-header .badge {
+      display: inline-block;
+      background: var(--c-green-light);
+      color: var(--c-green);
+      font-size: 13px; font-weight: 700;
+      padding: 4px 14px; border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .care-header h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 22px; margin-bottom: 6px;
+    }
+
+    .care-header .price-tag {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 42px; font-weight: 900;
+      color: var(--c-red);
+    }
+
+    .care-header .price-tag small {
+      font-size: 22px; font-weight: 500;
+    }
+
+    .care-plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .care-plan {
+      border: 2px solid rgba(200,159,94,0.2);
+      border-radius: 16px;
+      padding: 24px 20px;
+      position: relative;
+    }
+
+    .care-plan::before {
+      content: '二选一';
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--c-gold), var(--c-gold-dark));
+      color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 2px 14px; border-radius: 10px;
+    }
+
+    .care-plan-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 18px; font-weight: 900;
+      color: var(--c-gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .care-plan-title {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--c-gold-light);
+    }
+
+    .care-step {
+      display: flex; gap: 10px; margin-bottom: 12px;
+    }
+
+    .care-step .dot {
+      width: 8px; height: 8px;
+      background: var(--c-gold);
+      border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+    }
+
+    .care-step .text {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .care-step .text em {
+      font-style: normal;
+      background: rgba(200,159,94,0.12);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .care-effect {
+      background: var(--c-green-light);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .care-effect strong {
+      color: var(--c-green);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    /* TRUST */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-top: 24px;
+    }
+
+    .trust-item {
+      text-align: center; padding: 20px 12px;
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .trust-item .num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 28px; font-weight: 900;
+      color: var(--c-gold-dark); line-height: 1;
+    }
+    .trust-item .label { font-size: 12px; color: var(--c-text-light); margin-top: 6px; }
+
+    /* STEPS */
+    .steps-row {
+      display: flex; gap: 16px; margin-top: 24px;
+    }
+
+    .step-card {
+      flex: 1; background: #fff; border-radius: 16px;
+      padding: 24px 16px; text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .step-num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--c-gold), var(--c-gold-dark));
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900;
+      margin: 0 auto 12px;
+    }
+
+    .step-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .step-card p { font-size: 13px; color: var(--c-text-light); }
+
+    /* NOTES */
+    .notes-section {
+      background: linear-gradient(135deg, #f8f5f0, #efe8dc);
+      border-radius: 20px; padding: 32px 24px;
+    }
+
+    .notes-section h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 20px; margin-bottom: 20px; text-align: center;
+    }
+
+    .note-item {
+      display: flex; gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.08);
+    }
+
+    .note-item:last-child { border-bottom: none; }
+
+    .note-item .q {
+      width: 24px; height: 24px;
+      background: var(--c-gold); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+
+    .note-item .a { font-size: 14px; color: var(--c-text-light); line-height: 1.7; }
+
+    /* FINAL CTA */
+    .final-cta {
+      background: linear-gradient(135deg, #1a1612 0%, #3d3228 100%);
+      color: #fff; border-radius: 20px;
+      padding: 48px 28px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute; top: -50%; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,159,94,0.12) 0%, transparent 60%);
+    }
+
+    .final-cta h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 28px; margin-bottom: 12px;
+      position: relative;
+    }
+
+    .final-cta p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px; margin-bottom: 28px;
+      position: relative;
+    }
+
+    .final-cta .cta-row {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+
+    .final-cta .cta-btn {
+      width: auto; min-width: 200px;
+      padding: 18px 36px;
+    }
+
+    .qr-placeholder {
+      width: 140px; height: 140px;
+      background: #fff; border-radius: 16px;
+      margin: 24px auto 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--c-text-light); font-size: 13px;
+      position: relative;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 32px 20px;
+      font-size: 12px; color: var(--c-text-light);
+    }
+
+    .footer .brand {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--c-text); margin-bottom: 8px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 26px; }
+      .package-grid { grid-template-columns: 1fr; }
+      .care-plans { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      .pain-list { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-row { flex-direction: column; }
+      .price-now { font-size: 40px; }
+    }
+  </style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="社区体验活动的完整策划页面。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E7%A4%BE%E5%8C%BA%E5%81%A5%E5%BA%B7%E8%87%BB%E9%80%89%E8%AE%A1%E5%88%92-%E6%8B%93%E5%AE%A2%E6%B4%BB%E5%8A%A8.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"社区健康臻选计划","description":"社区体验活动的完整策划页面。","url":"https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E7%A4%BE%E5%8C%BA%E5%81%A5%E5%BA%B7%E8%87%BB%E9%80%89%E8%AE%A1%E5%88%92-%E6%8B%93%E5%AE%A2%E6%B4%BB%E5%8A%A8.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">积养家 · 社区健康臻选计划</div>
+    <h1>花99元，带走<span>304元</span>的健康礼<br>这一次，你真的「赚」到了</h1>
+    <p class="hero-subtitle">爱野天然食材 × 积养家 联合献礼<br>从吃进嘴里的蛋，到走进身体的经络养护——都是好东西</p>
+    <div class="hero-value-bar">
+      <span class="label">套餐价值高达</span>
+      <span class="number">3.1</span>
+      <span class="unit">倍</span>
+    </div>
+  </section>
+
+  <!-- URGENCY -->
+  <div class="urgency-bar">
+    <span class="dot"></span>
+    <span>本期限量50席 | 每人限购1份 | 售完即止</span>
+    <span class="dot"></span>
+  </div>
+
+  <!-- VALUE PROPS -->
+  <section class="section">
+    <h2 class="section-title">为什么这个套餐<span>「值」</span>？</h2>
+    <p class="section-subtitle">我们不卖低价，我们卖的是「让你感知到价值的真实落差」</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="icon">🥚</div>
+        <h3>飞鸡蛋直供</h3>
+        <p>沂蒙山野林散养<br>原生种·自然生·0农残</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">💆</div>
+        <h3>经络养护</h3>
+        <p>全身经络疏通<br>胸背气机或下焦循环·二选一</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">🍲</div>
+        <h3>滋补鸡汤</h3>
+        <p>现炖现送<br>暖胃暖心·喝得到的好汤</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN POINT -->
+  <section class="section">
+    <div class="pain-section">
+      <h3>你是不是也有这些困扰？</h3>
+      <div class="pain-list">
+        <div class="pain-item"><span class="x">✕</span>超市鸡蛋腥味重，孩子不爱吃</div>
+        <div class="pain-item"><span class="x">✕</span>一整天对着电脑，肩背僵硬紧绷</div>
+        <div class="pain-item"><span class="x">✕</span>想养生却不知道从哪开始</div>
+        <div class="pain-item"><span class="x">✕</span>手脚冰凉、下肢沉重、代谢差</div>
+        <div class="pain-item"><span class="x">✕</span>怕买到激素蛋、饲料蛋</div>
+        <div class="pain-item"><span class="x">✕</span>压力大胸闷，情绪压抑睡不好</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 身体养护项目详解 -->
+  <section class="section">
+    <h2 class="section-title">套餐核心亮点：<span>全身经络养护</span></h2>
+    <p class="section-subtitle">这不是按摩，是中医经络调理——99元体验价，两项方案任选其一</p>
+
+    <div class="care-detail-section">
+      <div class="care-header">
+        <div class="badge">积养家</div>
+        <h3>全身经络养护体验卡</h3>
+        <div class="price-tag"><small>体验价</small> ¥99</div>
+        <p style="color: var(--c-text-light); font-size: 14px; margin-top: 8px;">两套调理方案 · 二选一体验</p>
+      </div>
+
+      <div class="care-plans">
+        <!-- 方案1 -->
+        <div class="care-plan">
+          <div class="care-plan-num">方案①</div>
+          <div class="care-plan-title">胸背气机疏通<br>开背 ＋ 手臂经络疏导</div>
+
+          <div class="care-step">
+            <span class="dot"></span>
+            <div class="text"><strong>疏通背部膀胱经</strong>、对应脏腑背俞点位<br>疏通肩背淤堵，打通<em>上焦气血通道</em>，舒缓紧绷疲惫</div>
+          </div>
+          <div class="care-step">
+            <span class="dot"></span>
+            <div class="text"><strong>疏通手臂肺经、心包经、心经</strong><br>疏导胸中积滞闷气，释放压力、舒缓烦躁</div>
+          </div>
+
+          <div class="care-effect">
+            <strong>✨ 养护功效</strong>
+            改善肩背僵硬紧绷、压力大胸闷、容易疲惫、情绪压抑、上焦气血不畅<br>放松肩背，疏解一身郁气
+          </div>
+        </div>
+
+        <!-- 方案2 -->
+        <div class="care-plan">
+          <div class="care-plan-num">方案②</div>
+          <div class="care-plan-title">下焦循环养护<br>腹部养护 ＋ 腿部足三阴疏导</div>
+
+          <div class="care-step">
+            <span class="dot"></span>
+            <div class="text"><strong>疏通任脉、神阙、腹股沟区域</strong><br>调理腹部循环，调和脏腑，排出腹部淤滞浊气</div>
+          </div>
+          <div class="care-step">
+            <span class="dot"></span>
+            <div class="text"><strong>疏通腿部肝脾肾三条经络</strong>，三阴交收束引导代谢<br>疏导下肢寒湿、代谢淤堵</div>
+          </div>
+
+          <div class="care-effect">
+            <strong>✨ 养护功效</strong>
+            改善小腹胀满、湿气偏重、下肢沉重乏力、手脚冰凉、代谢偏弱<br>调和下焦气血，改善身体沉重疲惫感
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section" style="padding-top: 24px;">
+    <h2 class="section-title">两大套餐，<span>任选其一</span></h2>
+    <p class="section-subtitle">每一分钱，都花在你看得见、吃得到、感受得到的地方</p>
+
+    <div class="package-grid">
+      <!-- 99套餐 -->
+      <div class="package-card">
+        <div class="package-header">
+          <div class="package-name">臻选体验套餐</div>
+          <div class="package-tag">适合首次体验 · 3周周期</div>
+          <div class="price-block">
+            <span class="price-original">¥304</span>
+            <span class="price-now">¥99</span>
+          </div>
+          <div class="price-unit">一次性支付，无后续费用</div>
+          <div class="savings-tag">立省 ¥205（3.1倍价值）</div>
+        </div>
+        <div class="package-body">
+          <h4>套餐内含5项权益</h4>
+          <ul class="benefit-list">
+            <li>
+              <span class="benefit-icon">🥚</span>
+              <div class="benefit-text">
+                <div class="name">飞鸡蛋30枚</div>
+                <div class="detail">分3周领取，每周10枚</div>
+                <div class="value">价值 ¥105</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">💆</span>
+              <div class="benefit-text">
+                <div class="name">全身经络养护体验 1次</div>
+                <div class="detail">胸背气机 / 下焦循环 · 二选一</div>
+                <div class="value">价值 ¥99</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🍲</span>
+              <div class="benefit-text">
+                <div class="name">小盅鸡汤2份</div>
+                <div class="detail">现炖现送，暖胃暖心</div>
+                <div class="value">价值 ¥39.80</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">💺</span>
+              <div class="benefit-text">
+                <div class="name">律动按摩椅体验券3张</div>
+                <div class="detail">单次不限时长，原价¥20/次</div>
+                <div class="value">价值 ¥60</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🎁</span>
+              <div class="benefit-text">
+                <div class="name">优先入群资格</div>
+                <div class="detail">节气养生知识 + 专属优惠推送</div>
+                <div class="value">无价</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="package-footer">
+          <div class="total-value">
+            <div class="label">套餐总价值</div>
+            <div class="amount">¥304</div>
+            <div class="ratio">≈ 活动价的 3.1 倍</div>
+          </div>
+          <a href="#cta" class="cta-btn cta-btn-primary">立即抢购 ¥99 套餐</a>
+        </div>
+      </div>
+
+      <!-- 199套餐 -->
+      <div class="package-card popular">
+        <div class="package-header">
+          <div class="package-name">尊享健康套餐</div>
+          <div class="package-tag">深度养护 · 6周周期 · 性价比之王</div>
+          <div class="price-block">
+            <span class="price-original">¥578</span>
+            <span class="price-now">¥199</span>
+          </div>
+          <div class="price-unit">一次性支付，无后续费用</div>
+          <div class="savings-tag">立省 ¥379（2.9倍价值）</div>
+        </div>
+        <div class="package-body">
+          <h4>套餐内含5项权益</h4>
+          <ul class="benefit-list">
+            <li>
+              <span class="benefit-icon">🥚</span>
+              <div class="benefit-text">
+                <div class="name">飞鸡蛋60枚</div>
+                <div class="detail">分6周领取，每周10枚</div>
+                <div class="value">价值 ¥210</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">💆</span>
+              <div class="benefit-text">
+                <div class="name">全身经络养护体验 2次</div>
+                <div class="detail">两次方案各体验一次，或同一方案深调两次</div>
+                <div class="value">价值 ¥198</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🍲</span>
+              <div class="benefit-text">
+                <div class="name">小盅鸡汤2份</div>
+                <div class="detail">现炖现送，暖胃暖心</div>
+                <div class="value">价值 ¥39.80</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🍵</span>
+              <div class="benefit-text">
+                <div class="name">二十四节气养生茶券1张</div>
+                <div class="detail">时令配方，应季而饮</div>
+                <div class="value">价值 ¥30</div>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">💺</span>
+              <div class="benefit-text">
+                <div class="name">律动按摩椅体验券5张</div>
+                <div class="detail">单次不限时长，原价¥20/次</div>
+                <div class="value">价值 ¥100</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="package-footer">
+          <div class="total-value">
+            <div class="label">套餐总价值</div>
+            <div class="amount">¥578</div>
+            <div class="ratio">≈ 活动价的 2.9 倍</div>
+          </div>
+          <a href="#cta" class="cta-btn cta-btn-gold">立即抢购 ¥199 套餐</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE BREAKDOWN -->
+  <section class="section">
+    <h2 class="section-title">一张表看懂<span>「有多值」</span></h2>
+    <p class="section-subtitle">每一项都是真实可领、真实可用、真实可感知的权益</p>
+    <div class="compare-section">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>权益项目</th>
+            <th>单次参考价</th>
+            <th>99套餐</th>
+            <th>199套餐</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>飞鸡蛋</strong></td>
+            <td>¥3.5/枚</td>
+            <td>30枚 <span class="highlight">¥105</span></td>
+            <td>60枚 <span class="highlight">¥210</span></td>
+          </tr>
+          <tr>
+            <td><strong>全身经络养护</strong></td>
+            <td>¥99/次</td>
+            <td>1次 <span class="highlight">¥99</span></td>
+            <td>2次 <span class="highlight">¥198</span></td>
+          </tr>
+          <tr>
+            <td><strong>小盅鸡汤</strong></td>
+            <td>¥19.90/份</td>
+            <td>2份 <span class="highlight">¥39.80</span></td>
+            <td>2份 <span class="highlight">¥39.80</span></td>
+          </tr>
+          <tr>
+            <td><strong>律动按摩椅体验</strong></td>
+            <td>¥20/次</td>
+            <td>3次 <span class="highlight">¥60</span></td>
+            <td>5次 <span class="highlight">¥100</span></td>
+          </tr>
+          <tr>
+            <td><strong>二十四节气养生茶</strong></td>
+            <td>¥30/券</td>
+            <td>—</td>
+            <td>1张 <span class="highlight">¥30</span></td>
+          </tr>
+          <tr style="background: var(--c-green-light);">
+            <td><strong>合计总价值</strong></td>
+            <td>—</td>
+            <td class="price-cell">¥304 <span class="highlight">省¥205</span></td>
+            <td class="price-cell">¥578 <span class="highlight">省¥379</span></td>
+          </tr>
+          <tr style="background: rgba(200,159,94,0.1);">
+            <td><strong>活动价</strong></td>
+            <td>—</td>
+            <td style="color: var(--c-red); font-size: 18px; font-weight: 700;">¥99</td>
+            <td style="color: var(--c-red); font-size: 18px; font-weight: 700;">¥199</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section">
+    <h2 class="section-title">为什么敢做<span>「3倍价值」</span>？</h2>
+    <p class="section-subtitle">因为我们是源头，没有中间商赚差价</p>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="num">¥3.5</div>
+        <div class="label">飞鸡蛋零售价</div>
+      </div>
+      <div class="trust-item">
+        <div class="num">¥2.6</div>
+        <div class="label">飞鸡蛋采购成本</div>
+      </div>
+      <div class="trust-item">
+        <div class="num">4重</div>
+        <div class="label">选材标准</div>
+      </div>
+      <div class="trust-item">
+        <div class="num">0</div>
+        <div class="label">中间商加价</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+      <h4 style="font-family: 'Noto Serif SC', serif; font-size: 18px; margin-bottom: 16px; text-align: center;">爱野四重选材标准</h4>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--c-green-light); border-radius: 10px;">
+          <span style="font-size: 22px;">🌱</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">原生种子</div>
+            <div style="font-size: 12px; color: var(--c-text-light);">非转基因·老品种</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--c-green-light); border-radius: 10px;">
+          <span style="font-size: 22px;">☀️</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">自然生长</div>
+            <div style="font-size: 12px; color: var(--c-text-light);">顺应天时·不催熟</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--c-green-light); border-radius: 10px;">
+          <span style="font-size: 22px;">🐄</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">有机肥</div>
+            <div style="font-size: 12px; color: var(--c-text-light);">拒绝化肥·土壤为本</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--c-green-light); border-radius: 10px;">
+          <span style="font-size: 22px;">✅</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">0农残</div>
+            <div style="font-size: 12px; color: var(--c-text-light);">检测合格·安全上桌</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <h2 class="section-title">怎么领？<span>简单3步</span></h2>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>扫码下单</h4>
+        <p>选择99元或199元套餐<br>微信支付即生效</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>到店领取</h4>
+        <p>按周领鸡蛋<br>经络养护随时预约</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>持续养护</h4>
+        <p>加入社群<br>节气养生知识持续送达</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="section">
+    <div class="notes-section">
+      <h3>活动须知</h3>
+      <div class="note-item">
+        <span class="q">Q</span>
+        <div class="a"><strong>鸡蛋怎么领？</strong>下单后到店登记，每周可领10枚，分3周（99套餐）或6周（199套餐）领完。</div>
+      </div>
+      <div class="note-item">
+        <span class="q">Q</span>
+        <div class="a"><strong>经络养护怎么约？</strong>到店或微信提前预约，胸背气机疏通和下焦循环养护二选一。199套餐含2次，可两种方案各体验一次，也可同一方案深度调理两次。</div>
+      </div>
+      <div class="note-item">
+        <span class="q">Q</span>
+        <div class="a"><strong>体验券怎么用？</strong>所有券不可抵现、不找零，可叠加使用。律动椅单次不限时长，身体养护需提前预约。</div>
+      </div>
+      <div class="note-item">
+        <span class="q">Q</span>
+        <div class="a"><strong>有效期多久？</strong>自购买日起30天内完成首次领取，全部权益需在90天内使用完毕。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section" id="cta">
+    <div class="final-cta">
+      <h2>50个名额，抢完即止</h2>
+      <p>不为赚钱，只为让你体验一次「真正的好食材 + 经络养护」<br>从吃进嘴里的鸡蛋，到通经络的双手——都是货真价实</p>
+      <div class="cta-row">
+        <a href="#" class="cta-btn cta-btn-primary">抢购 ¥99 套餐</a>
+        <a href="#" class="cta-btn cta-btn-gold">抢购 ¥199 套餐</a>
+      </div>
+      <div class="qr-placeholder">
+        [扫码抢购]<br>微信二维码
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">积养家 · 积善积德积福 · 养人养生养体</div>
+    <p>爱野天然食材 | 原生种 · 自然生 · 有机肥 · 0农残</p>
+    <p style="margin-top: 8px;">本活动最终解释权归积养家所有</p>
+  </div>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/community-selection/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>

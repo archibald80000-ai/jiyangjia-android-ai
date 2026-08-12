@@ -1,0 +1,1003 @@
+{
+  "name": "积养家产品资料馆",
+  "version": "2.1",
+  "updated_at": "2026-08-11",
+  "canonical_origin": "https://jiyangjia-ai.netlify.app",
+  "policy": "The 26 source HTML documents are confirmed public material. Training content is derived from those documents and the published selling-price list.",
+  "products": [
+    {
+      "id": "fuling",
+      "name": "茯苓",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/fuling/",
+      "price": "3.9元/50g",
+      "specification": "50g",
+      "short_intro": "茯苓块是门店散装食材，可用于家常煮粥或煲汤。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "dried-mulberry",
+      "name": "桑葚",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/",
+      "price": "3.9元/50g",
+      "specification": "50g",
+      "short_intro": "桑葚干带果香，可泡水或搭配酸奶。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "yam-slices",
+      "name": "山药",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/yam-slices/",
+      "price": "4.9元/50g",
+      "specification": "50g",
+      "short_intro": "山药片是常见煮粥、煲汤食材。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "gorgon-seed",
+      "name": "芡实仁",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/",
+      "price": "6.9元/50g",
+      "specification": "50g",
+      "short_intro": "芡实仁颗粒适合煮粥或煲汤。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "dried-fig",
+      "name": "无花果",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/dried-fig/",
+      "price": "7.9元/50g",
+      "specification": "50g",
+      "short_intro": "无花果干带自然果甜，可泡水或煲汤。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "rose-buds",
+      "name": "大玫瑰",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/rose-buds/",
+      "price": "7.9元/50g",
+      "specification": "50g",
+      "short_intro": "玫瑰花香清楚，适合单独冲泡或拼配茶饮。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "angelica-slices",
+      "name": "当归",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/angelica-slices/",
+      "price": "8.9元/50g",
+      "specification": "50g",
+      "short_intro": "当归切片适合在家庭汤饮中少量搭配。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "fujian-lotus-seed",
+      "name": "福建莲子",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/",
+      "price": "8.9元/50g",
+      "specification": "50g",
+      "short_intro": "莲子口感粉糯，适合煮粥或甜汤。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "ningxia-goji",
+      "name": "宁夏枸杞",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/",
+      "price": "8.9元/50g",
+      "specification": "50g",
+      "short_intro": "枸杞带自然甜味，可泡水、煮粥或搭配汤饮。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "lily-bulb",
+      "name": "百合",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/lily-bulb/",
+      "price": "9.9元/50g",
+      "specification": "50g",
+      "short_intro": "湖南百合适合煮粥或甜汤，口感偏软糯。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "ophiopogon",
+      "name": "麦冬",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/ophiopogon/",
+      "price": "9.9元/50g",
+      "specification": "50g",
+      "short_intro": "麦冬可用于日常泡水或茶饮拼配。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "codonopsis",
+      "name": "党参段",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/codonopsis/",
+      "price": "11.9元/50g",
+      "specification": "50g",
+      "short_intro": "党参段适合用于家庭煲汤或搭配粥品。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "steamed-polygonatum",
+      "name": "九蒸黄精",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/",
+      "price": "15.9元/50g",
+      "specification": "50g",
+      "short_intro": "九蒸黄精为切片食材，可用于日常泡水。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "dendrobium",
+      "name": "铁皮石斛",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/dendrobium/",
+      "price": "29.9元/50g",
+      "specification": "50g",
+      "short_intro": "铁皮石斛为门店散装食材，具体产地和等级待补。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "american-ginseng-slices",
+      "name": "西洋参片",
+      "aliases": [
+        "西洋参"
+      ],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/",
+      "price": "29.9元/50g",
+      "specification": "50g",
+      "short_intro": "西洋参片可用于泡水或家庭汤饮。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aged-tangerine-peel",
+      "name": "老陈皮",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/",
+      "price": "34.9元/50g",
+      "specification": "50g",
+      "short_intro": "陈皮带柑橘陈香，可泡水或入汤。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "sanqi",
+      "name": "三七",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/sanqi/",
+      "price": "38元/50g",
+      "specification": "50g",
+      "short_intro": "【待确认】：三七的等级、产地和合规介绍尚未确认。",
+      "status": "待合规确认",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "astragalus",
+      "name": "黄芪",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/astragalus/",
+      "price": "45元/50g",
+      "specification": "50g",
+      "short_intro": "切片黄芪可用于家庭煲汤或泡水。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "sanqi-slices",
+      "name": "三七片",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/",
+      "price": "168元/盒",
+      "specification": "【资料待补充】",
+      "short_intro": "云南文山三七切片，原资料介绍了产区、外观识别和炖煮等日常使用方式。",
+      "status": "原资料已发布",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "cistanche-milk-powder",
+      "name": "肉苁蓉奶粉",
+      "aliases": [],
+      "category": "药食同源",
+      "url": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/",
+      "price": "319元/份",
+      "specification": "400g×2",
+      "short_intro": "冲调类奶粉产品，食品类别、配料和冲调方式以包装为准。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "golden-flaxseed",
+      "name": "旱地亚麻籽",
+      "aliases": [
+        "金色熟亚麻籽"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/",
+      "price": "39元/袋",
+      "specification": "【资料待补充】",
+      "short_intro": "熟制信息和净含量仍待包装复核，可用于拌粥、烘焙或搭配酸奶。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aohan-waxy-corn",
+      "name": "敖汉金有机糯玉米",
+      "aliases": [
+        "糯玉米"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/",
+      "price": "59.8元/箱",
+      "specification": "200g×10穗",
+      "short_intro": "糯玉米口感偏软糯，适合早餐或加餐。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "torreya-oil",
+      "name": "香榧油",
+      "aliases": [],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/torreya-oil/",
+      "price": "68元/瓶",
+      "specification": "【资料待补充】",
+      "short_intro": "香榧油带坚果香，适合少量凉拌或按包装说明烹调。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aohan-sweet-corn",
+      "name": "敖汉金有机鲜食玉米",
+      "aliases": [
+        "鲜食玉米"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/",
+      "price": "69元/箱",
+      "specification": "200g×10穗",
+      "short_intro": "鲜食玉米口感偏清甜，适合早餐或加餐。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aohan-millet-family",
+      "name": "敖汉金石碾有机小米（家庭装·长嘴）",
+      "aliases": [
+        "敖汉小米家庭装",
+        "小米"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/",
+      "price": "72元/提",
+      "specification": "2.5kg",
+      "short_intro": "敖汉小米家庭装，适合日常煮粥。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "canola-oil",
+      "name": "芥花油（压榨一级菜籽油）",
+      "aliases": [
+        "芥花油",
+        "菜籽油"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/canola-oil/",
+      "price": "136元/组（68元×2桶）；138元/桶",
+      "specification": "1.8L×2桶；5L",
+      "short_intro": "压榨一级菜籽油，适合家庭日常烹调。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aohan-mixed-grains",
+      "name": "敖汉金有机杂粮（8个品种）",
+      "aliases": [
+        "八种杂粮",
+        "杂粮礼盒"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/",
+      "price": "158元/箱",
+      "specification": "3690g",
+      "short_intro": "八种杂粮组合，适合煮杂粮粥或杂粮饭。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aohan-millet-gift",
+      "name": "敖汉金石碾有机小米（礼盒装）",
+      "aliases": [
+        "敖汉小米礼盒",
+        "小米礼盒"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/",
+      "price": "159元/提",
+      "specification": "4kg",
+      "short_intro": "敖汉小米礼盒装，适合送礼或家庭煮粥。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "wuchang-rice-shangqian",
+      "name": "有机五常大米·尚乾",
+      "aliases": [
+        "尚乾五常大米",
+        "五常大米尚乾"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/",
+      "price": "188元/袋",
+      "specification": "5kg",
+      "short_intro": "五常5kg装大米，适合家庭日常焖饭。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "wuchang-rice-furen",
+      "name": "有机五常大米·福仁",
+      "aliases": [
+        "福仁五常大米",
+        "五常大米福仁"
+      ],
+      "category": "粮油米面",
+      "url": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/",
+      "price": "198元/提",
+      "specification": "2.7kg",
+      "short_intro": "五常2.7kg装大米，适合家庭焖饭或送礼。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "shengmu-yogurt",
+      "name": "圣牧有机酸奶",
+      "aliases": [
+        "圣牧酸奶",
+        "有机酸奶"
+      ],
+      "category": "蛋奶水产",
+      "url": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/",
+      "price": "68元/箱",
+      "specification": "200g×10",
+      "short_intro": "盒装酸奶，配料、糖分、储存和保质期以包装为准。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "salt-field-shrimp",
+      "name": "39°有机盐田虾（30条/斤）盒装",
+      "aliases": [
+        "盐田虾",
+        "39度盐田虾"
+      ],
+      "category": "蛋奶水产",
+      "url": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/",
+      "price": "45元/盒，5盒合计225元",
+      "specification": "300g×5盒",
+      "short_intro": "盒装盐田虾，适合白灼、清蒸或快炒。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "black-pork-lard",
+      "name": "黑猪油",
+      "aliases": [],
+      "category": "肉禽油脂",
+      "url": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/",
+      "price": "39元，规格待补",
+      "specification": "【资料待补充】",
+      "short_intro": "猪油香气明显，可用于炒菜、拌面或家常点心。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "farm-lard",
+      "name": "农家猪油",
+      "aliases": [],
+      "category": "肉禽油脂",
+      "url": "https://jiyangjia-ai.netlify.app/products/farm-lard/",
+      "price": "128元/罐",
+      "specification": "【资料待补充】",
+      "short_intro": "罐装猪油，可用于炒菜、拌面或家常点心。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "jinhua-ham",
+      "name": "金华火腿",
+      "aliases": [
+        "金华农家火腿"
+      ],
+      "category": "肉禽油脂",
+      "url": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/",
+      "price": "528元/只",
+      "specification": "10斤以上",
+      "short_intro": "整只金华火腿，适合切片蒸、煮汤或入菜。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "jinhua-liangtouyu-ham",
+      "name": "金华两头乌火腿",
+      "aliases": [
+        "两头乌火腿"
+      ],
+      "category": "肉禽油脂",
+      "url": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/",
+      "price": "1688元/箱",
+      "specification": "【资料待补充】",
+      "short_intro": "两头乌原料火腿，适合切片蒸、煮汤或入菜。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "grade-one-soy-sauce",
+      "name": "一级酱油",
+      "aliases": [
+        "一级土酱油"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/",
+      "price": "16.8元/斤",
+      "specification": "【资料待补充】",
+      "short_intro": "一级酱油用于家常炒菜、蘸食和调味。",
+      "status": "原资料已发布",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aged-vinegar",
+      "name": "陈醋",
+      "aliases": [
+        "山西老陈醋"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/",
+      "price": "20元/斤",
+      "specification": "【资料待补充】",
+      "short_intro": "陈醋带酸香，适合凉拌、蘸食或烹调。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "premium-soy-sauce",
+      "name": "特级酱油",
+      "aliases": [
+        "特级土酱油",
+        "金华古法酱油"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/",
+      "price": "21.9元/斤",
+      "specification": "【资料待补充】",
+      "short_intro": "特级酱油用于家常炒菜、蘸食和调味。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "fresh-ginger",
+      "name": "生姜",
+      "aliases": [
+        "五指岩鲜姜"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/",
+      "price": "28元/斤",
+      "specification": "【资料待补充】",
+      "short_intro": "鲜姜辛香，可切片炒菜、煮汤或用于去腥。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "soybean-paste",
+      "name": "黄豆酱",
+      "aliases": [
+        "农家古法黄豆酱"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/soybean-paste/",
+      "price": "49元/罐",
+      "specification": "【资料待补充】",
+      "short_intro": "黄豆酱酱香明显，适合蘸食、拌面或炒菜调味。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "rice-wine",
+      "name": "黄酒",
+      "aliases": [
+        "塔牌黄酒"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/rice-wine/",
+      "price": "88元/斤",
+      "specification": "【资料待补充】",
+      "short_intro": "谷物酿造酒，适合按产品说明佐餐或用于烹调。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "astragalus-honey-vinegar",
+      "name": "黄芪蜂蜜醋",
+      "aliases": [],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/",
+      "price": "96元/箱",
+      "specification": "【资料待补充】",
+      "short_intro": "黄芪、蜂蜜与水共同发酵的饮品，原页记录了工艺、风味和搭配方法。",
+      "status": "原资料已发布",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "premium-soy-sauce-gift",
+      "name": "特级酱油礼盒",
+      "aliases": [
+        "特级礼盒",
+        "罗埠土酱油礼盒"
+      ],
+      "category": "调味酿造",
+      "url": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/",
+      "price": "139元/箱",
+      "specification": "【资料待补充】",
+      "short_intro": "酱油礼盒装，适合作为节礼或伴手礼，内含规格待补。",
+      "status": "部分资料待补充",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "anfeng-chenyun",
+      "name": "安凤陈韵",
+      "aliases": [],
+      "category": "茶饮蜂蜜",
+      "url": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/",
+      "price": "198元/箱",
+      "specification": "【资料待补充】",
+      "short_intro": "【待确认】：产品类别、配料、规格和产地尚未确认。",
+      "status": "待产品资料确认",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "wudang-honey",
+      "name": "武当山野蜂蜜",
+      "aliases": [
+        "武当山野山蜂蜜",
+        "野山蜂蜜"
+      ],
+      "category": "茶饮蜂蜜",
+      "url": "https://jiyangjia-ai.netlify.app/products/wudang-honey/",
+      "price": "288元/瓶（500ml）",
+      "specification": "500ml",
+      "short_intro": "野山蜂蜜带自然花香，可用于冲水、搭配面包或家常饮品。",
+      "status": "原资料已发布",
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "flying-eggs",
+      "name": "飞鸡蛋",
+      "aliases": [
+        "土鸡蛋",
+        "鸡蛋"
+      ],
+      "category": "飞鸡蛋",
+      "url": "https://jiyangjia-ai.netlify.app/products/flying-eggs/",
+      "price": "3.5元/枚",
+      "specification": "按枚计价",
+      "short_intro": "散养鸡蛋产品，原页介绍了来源故事、辨认方法、口感和活动说明。",
+      "status": "原资料已发布",
+      "updated_at": "2026-08-11"
+    }
+  ],
+  "source_documents": [
+    {
+      "id": "price-list",
+      "title": "积养家食材产品明细",
+      "category": "总览与菜单",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E9%A3%9F%E6%9D%90%E4%BA%A7%E5%93%81%E6%98%8E%E7%BB%86-%E5%87%BA%E5%94%AE%E4%BB%B7%E7%89%88.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/price-list/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/price-list/?tab=training",
+      "related_products": [
+        "fuling",
+        "dried-mulberry",
+        "yam-slices",
+        "gorgon-seed",
+        "dried-fig",
+        "rose-buds",
+        "angelica-slices",
+        "fujian-lotus-seed",
+        "ningxia-goji",
+        "lily-bulb",
+        "ophiopogon",
+        "codonopsis",
+        "steamed-polygonatum",
+        "dendrobium",
+        "american-ginseng-slices",
+        "aged-tangerine-peel",
+        "sanqi",
+        "astragalus",
+        "sanqi-slices",
+        "cistanche-milk-powder",
+        "golden-flaxseed",
+        "aohan-waxy-corn",
+        "torreya-oil",
+        "aohan-sweet-corn",
+        "aohan-millet-family",
+        "canola-oil",
+        "aohan-mixed-grains",
+        "aohan-millet-gift",
+        "wuchang-rice-shangqian",
+        "wuchang-rice-furen",
+        "shengmu-yogurt",
+        "salt-field-shrimp",
+        "black-pork-lard",
+        "farm-lard",
+        "jinhua-ham",
+        "jinhua-liangtouyu-ham",
+        "grade-one-soy-sauce",
+        "aged-vinegar",
+        "premium-soy-sauce",
+        "fresh-ginger",
+        "soybean-paste",
+        "rice-wine",
+        "astragalus-honey-vinegar",
+        "premium-soy-sauce-gift",
+        "anfeng-chenyun",
+        "wudang-honey",
+        "flying-eggs"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "day-tea-menu",
+      "title": "积养家下午茶体验菜单",
+      "category": "总览与菜单",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E4%B8%8B%E5%8D%88%E8%8C%B6%E4%BD%93%E9%AA%8C%E8%8F%9C%E5%8D%95.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/day-tea-menu/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/day-tea-menu/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "community-selection",
+      "title": "社区健康臻选计划",
+      "category": "总览与菜单",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E7%A4%BE%E5%8C%BA%E5%81%A5%E5%BA%B7%E8%87%BB%E9%80%89%E8%AE%A1%E5%88%92-%E6%8B%93%E5%AE%A2%E6%B4%BB%E5%8A%A8.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/community-selection/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/community-selection/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "dayougu-guide",
+      "title": "大有谷合作产品手册",
+      "category": "米面粮油",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E5%A4%A7%E6%9C%89%E8%B0%B7%E5%90%88%E4%BD%9C%E4%BA%A7%E5%93%81%E6%89%8B%E5%86%8C.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/dayougu-guide/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/dayougu-guide/?tab=training",
+      "related_products": [
+        "wuchang-rice-shangqian",
+        "wuchang-rice-furen",
+        "aohan-millet-family",
+        "aohan-millet-gift",
+        "aohan-waxy-corn",
+        "aohan-sweet-corn",
+        "aohan-mixed-grains",
+        "shengmu-yogurt",
+        "salt-field-shrimp"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "flaxseed",
+      "title": "旱地亚麻籽",
+      "category": "米面粮油",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E6%97%B1%E5%9C%B0%E4%BA%9A%E9%BA%BB%E7%B1%BD%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/flaxseed/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/flaxseed/?tab=training",
+      "related_products": [
+        "golden-flaxseed"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "torreya-oil",
+      "title": "香榧油",
+      "category": "米面粮油",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%A6%99%E6%A6%A7%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/torreya-oil/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/torreya-oil/?tab=training",
+      "related_products": [
+        "torreya-oil"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "camellia-oil",
+      "title": "茶油",
+      "category": "米面粮油",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E8%8C%B6%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/camellia-oil/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/camellia-oil/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "tigernut-oil",
+      "title": "沙漠一号虎坚果油",
+      "category": "米面粮油",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E6%B2%99%E6%BC%A0%E4%B8%80%E5%8F%B7%E8%99%8E%E5%9D%9A%E6%9E%9C%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/tigernut-oil/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/tigernut-oil/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "flying-eggs",
+      "title": "飞鸡蛋",
+      "category": "肉蛋食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%A3%9E%E9%B8%A1%E8%9B%8B%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/flying-eggs/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/flying-eggs/?tab=training",
+      "related_products": [
+        "flying-eggs"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "jinhua-farm-ham",
+      "title": "金华农家火腿",
+      "category": "肉蛋食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%87%91%E5%8D%8E%E5%86%9C%E5%AE%B6%E7%81%AB%E8%85%BF%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/jinhua-farm-ham/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/jinhua-farm-ham/?tab=training",
+      "related_products": [
+        "jinhua-ham"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "jinhua-two-end-black-ham",
+      "title": "金华两头乌火腿",
+      "category": "肉蛋食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%87%91%E5%8D%8E%E4%B8%A4%E5%A4%B4%E4%B9%8C%E7%81%AB%E8%85%BF%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/jinhua-two-end-black-ham/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/jinhua-two-end-black-ham/?tab=training",
+      "related_products": [
+        "jinhua-liangtouyu-ham"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "soy-sauce",
+      "title": "金华古法酱油",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%87%91%E5%8D%8E%E5%8F%A4%E6%B3%95%E9%85%B1%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/soy-sauce/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/soy-sauce/?tab=training",
+      "related_products": [
+        "premium-soy-sauce",
+        "grade-one-soy-sauce"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "soy-sauce-gift",
+      "title": "罗埠土酱油礼盒",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E7%BD%97%E5%9F%A0%E5%9C%9F%E9%85%B1%E6%B2%B9%E7%A4%BC%E7%9B%92%E8%A3%85%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/soy-sauce-gift/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/soy-sauce-gift/?tab=training",
+      "related_products": [
+        "premium-soy-sauce-gift"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "soybean-paste",
+      "title": "农家古法黄豆酱",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E5%86%9C%E5%AE%B6%E5%8F%A4%E6%B3%95%E9%BB%84%E8%B1%86%E9%85%B1%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/soybean-paste/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/soybean-paste/?tab=training",
+      "related_products": [
+        "soybean-paste"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "aged-vinegar",
+      "title": "山西老陈醋",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E5%B1%B1%E8%A5%BF%E8%80%81%E9%99%88%E9%86%8B%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/aged-vinegar/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/aged-vinegar/?tab=training",
+      "related_products": [
+        "aged-vinegar"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "rice-wine",
+      "title": "塔牌黄酒",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E5%A1%94%E7%89%8C%E9%BB%84%E9%85%92%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/rice-wine/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/rice-wine/?tab=training",
+      "related_products": [
+        "rice-wine"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "fresh-ginger",
+      "title": "五指岩鲜姜",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E4%BA%94%E6%8C%87%E5%B2%A9%E9%B2%9C%E5%A7%9C%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/fresh-ginger/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/fresh-ginger/?tab=training",
+      "related_products": [
+        "fresh-ginger"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "astragalus-honey-vinegar",
+      "title": "黄芪蜂蜜醋",
+      "category": "调味酿造",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E9%BB%84%E8%8A%AA%E8%9C%82%E8%9C%9C%E9%86%8B%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/astragalus-honey-vinegar/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/astragalus-honey-vinegar/?tab=training",
+      "related_products": [
+        "astragalus-honey-vinegar"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "wild-honey",
+      "title": "武当山野山蜂蜜",
+      "category": "茶饮蜂蜜",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E6%AD%A6%E5%BD%93%E5%B1%B1%E9%87%8E%E5%B1%B1%E8%9C%82%E8%9C%9C%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/wild-honey/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/wild-honey/?tab=training",
+      "related_products": [
+        "wudang-honey"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "vine-tea",
+      "title": "藤茶",
+      "category": "茶饮蜂蜜",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E8%97%A4%E8%8C%B6%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/vine-tea/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/vine-tea/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "seasonal-tea-story",
+      "title": "二十四节气茶品牌故事",
+      "category": "茶饮蜂蜜",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/seasonal-tea-story/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/seasonal-tea-story/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "seasonal-tea-sheet",
+      "title": "24节气茶速查表",
+      "category": "茶饮蜂蜜",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/24%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E9%80%9F%E6%9F%A5%E8%A1%A8.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/seasonal-tea-sheet/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/seasonal-tea-sheet/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "shizhen-tea",
+      "title": "时珍太和圣坊茶系列",
+      "category": "茶饮蜂蜜",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E6%97%B6%E7%8F%8D%E5%A4%AA%E5%92%8C%E5%9C%A3%E5%9D%8A%E5%85%BB%E7%94%9F%E8%8C%B6%E7%B3%BB%E5%88%97.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/shizhen-tea/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/shizhen-tea/?tab=training",
+      "related_products": [],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "food-materia-medica",
+      "title": "积养家药食食材大全",
+      "category": "药食食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E7%A7%AF%E5%85%BB%E5%AE%B6%E8%8D%AF%E9%A3%9F%E5%90%8C%E6%BA%90%E9%A3%9F%E6%9D%90%E5%A4%A7%E5%85%A8.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/food-materia-medica/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/food-materia-medica/?tab=training",
+      "related_products": [
+        "fuling",
+        "dried-mulberry",
+        "yam-slices",
+        "gorgon-seed",
+        "dried-fig",
+        "rose-buds",
+        "angelica-slices",
+        "fujian-lotus-seed",
+        "ningxia-goji",
+        "lily-bulb",
+        "ophiopogon",
+        "codonopsis",
+        "steamed-polygonatum",
+        "dendrobium",
+        "american-ginseng-slices",
+        "aged-tangerine-peel",
+        "sanqi",
+        "astragalus",
+        "sanqi-slices",
+        "cistanche-milk-powder"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "sanqi-slices",
+      "title": "云南文山三七片",
+      "category": "药食食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E4%BA%91%E5%8D%97%E6%96%87%E5%B1%B1%E4%B8%89%E4%B8%83%E7%89%87%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/sanqi-slices/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/sanqi-slices/?tab=training",
+      "related_products": [
+        "sanqi-slices"
+      ],
+      "updated_at": "2026-08-11"
+    },
+    {
+      "id": "xuan-lotus",
+      "title": "上珍缘宣莲",
+      "category": "药食食材",
+      "source_url": "https://jiyangjia-ai.netlify.app/docs/%E4%B8%8A%E7%8F%8D%E7%BC%98%E5%AE%A3%E8%8E%B2%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html",
+      "viewer_url": "https://jiyangjia-ai.netlify.app/view/xuan-lotus/",
+      "training_url": "https://jiyangjia-ai.netlify.app/view/xuan-lotus/?tab=training",
+      "related_products": [
+        "fujian-lotus-seed"
+      ],
+      "updated_at": "2026-08-11"
+    }
+  ]
+}

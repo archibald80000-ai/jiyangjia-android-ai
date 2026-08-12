@@ -88,6 +88,54 @@ def test_jiyangjia_query_is_searched_instead_of_rejected_before_retrieval() -> N
     assert policy == {"action": "search", "scope": "jiyangjia", "category": None, "message": None}
 
 
+def test_new_product_routes_from_indexed_corpus_without_static_domain_term() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    store.upsert_many(
+        [
+            KnowledgeDocument(
+                "site_product_shengmu-yogurt",
+                "圣牧有机酸奶",
+                "圣牧有机酸奶是什么？\n产品介绍：盒装酸奶。\n公开售价：68元/箱。",
+                "approved",
+                "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/",
+            )
+        ]
+    )
+
+    assert store.classify_query("圣牧有机酸奶是什么") == {
+        "action": "search",
+        "scope": "jiyangjia",
+        "category": "dynamic_corpus",
+        "message": None,
+    }
+    matches = asyncio.run(store.search("圣牧有机酸奶是什么", top_k=3))
+    assert matches[0]["id"] == "site_product_shengmu-yogurt"
+    assert store.classify_query("今天酸奶店附近天气怎么样") == {
+        "action": "search",
+        "scope": "general",
+        "category": None,
+        "message": None,
+    }
+
+    store.upsert_many(
+        [
+            KnowledgeDocument(
+                "draft_only_product",
+                "未发布新品",
+                "未发布新品内部说明",
+                "draft",
+                "knowledge://draft_only_product",
+            )
+        ]
+    )
+    assert store.classify_query("未发布新品是什么") == {
+        "action": "search",
+        "scope": "general",
+        "category": None,
+        "message": None,
+    }
+
+
 def test_kiosk_short_queries_expand_without_changing_unrelated_questions() -> None:
     store = SQLiteKnowledgeStore(":memory:")
 

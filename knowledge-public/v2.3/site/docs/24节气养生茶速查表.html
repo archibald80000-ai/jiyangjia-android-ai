@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>积养家·24节气养生茶速查表</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f0e6;
+    color: #2a2018;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+  .header {
+    background: linear-gradient(135deg, #8b6914, #6b4f0e);
+    color: #fff;
+    padding: 28px 16px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 6px; }
+
+  /* 当前节气高亮提示 */
+  .now-bar {
+    background: #c0392b;
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .now-bar .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.3; } }
+
+  /* 季节分组标签 */
+  .season-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+  .season-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d4c9b0;
+  }
+  .s-spring { color: #5a8a3a; }
+  .s-summer { color: #c0392b; }
+  .s-autumn { color: #b87333; }
+  .s-winter { color: #34678c; }
+
+  /* 节气条目 */
+  .item {
+    background: #fff;
+    margin: 0 12px 8px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .item.current {
+    border: 2px solid #c0392b;
+    box-shadow: 0 2px 8px rgba(192,57,43,0.15);
+  }
+  .item-left {
+    flex-shrink: 0;
+    width: 52px;
+    text-align: center;
+  }
+  .item-left .name { font-size: 16px; font-weight: 700; }
+  .item-left .date { font-size: 11px; color: #999; margin-top: 2px; }
+  .item-right { flex: 1; }
+  .item-right .tea { font-size: 15px; font-weight: 600; color: #4a3520; }
+  .item-right .effect { font-size: 12px; color: #888; margin-top: 3px; }
+
+  .footer {
+    text-align: center;
+    padding: 20px 16px 32px;
+    font-size: 12px;
+    color: #aaa;
+  }
+  .footer .tip {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0 12px 16px;
+    font-size: 13px;
+    color: #666;
+    text-align: left;
+    line-height: 1.8;
+  }
+</style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="二十四节气茶饮的快速查阅页面。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/24%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E9%80%9F%E6%9F%A5%E8%A1%A8.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"24节气茶速查表","description":"二十四节气茶饮的快速查阅页面。","url":"https://jiyangjia-ai.netlify.app/docs/24%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E9%80%9F%E6%9F%A5%E8%A1%A8.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+
+<div class="header">
+  <h1>积养家 · 24节气养生茶</h1>
+  <p>顺时而饮 · 一年24方 · 到店领取</p>
+</div>
+
+<!-- 当前节气 -->
+<div class="now-bar">
+  <span class="dot"></span>当前 · 立秋（8月7日）→ 喝：百合雪梨蜂蜜茶
+</div>
+
+<!-- 春 -->
+<div class="season-label s-spring">春 · 疏肝理气</div>
+
+<div class="item">
+  <div class="item-left"><div class="name">立春</div><div class="date">2/3</div></div>
+  <div class="item-right"><div class="tea">玫瑰 陈皮 红枣</div><div class="effect">疏肝解郁 · 暖胃养血</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">雨水</div><div class="date">2/18</div></div>
+  <div class="item-right"><div class="tea">茯苓 炒薏米 生姜</div><div class="effect">健脾祛湿 · 驱寒暖身</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">惊蛰</div><div class="date">3/5</div></div>
+  <div class="item-right"><div class="tea">黄芪 党参 陈皮</div><div class="effect">补气升阳 · 增强免疫</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">春分</div><div class="date">3/20</div></div>
+  <div class="item-right"><div class="tea">菊花 枸杞 决明子</div><div class="effect">清肝明目 · 平抑肝阳</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">清明</div><div class="date">4/4</div></div>
+  <div class="item-right"><div class="tea">薄荷 金银花 菊花</div><div class="effect">疏风清热 · 解表防感</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">谷雨</div><div class="date">4/19</div></div>
+  <div class="item-right"><div class="tea">玫瑰 无花果 茯苓</div><div class="effect">疏肝健脾 · 润肠通便</div></div>
+</div>
+
+<!-- 夏 -->
+<div class="season-label s-summer">夏 · 清热养心</div>
+
+<div class="item">
+  <div class="item-left"><div class="name">立夏</div><div class="date">5/5</div></div>
+  <div class="item-right"><div class="tea">莲子心 麦冬 绿茶</div><div class="effect">清心降火 · 养心安神</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">小满</div><div class="date">5/20</div></div>
+  <div class="item-right"><div class="tea">炒薏米 赤小豆 陈皮</div><div class="effect">祛湿利水 · 健脾消肿</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">芒种</div><div class="date">6/5</div></div>
+  <div class="item-right"><div class="tea">桑葚 枸杞 白茶</div><div class="effect">滋阴补血 · 补肾乌发</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">夏至</div><div class="date">6/21</div></div>
+  <div class="item-right"><div class="tea">乌梅 山楂 甘草</div><div class="effect">酸甘化阴 · 生津止渴</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">小暑</div><div class="date">7/6</div></div>
+  <div class="item-right"><div class="tea">荷叶 藿香 茯苓</div><div class="effect">清暑化湿 · 健脾开胃</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">大暑</div><div class="date">7/22</div></div>
+  <div class="item-right"><div class="tea">莲子 西洋参 陈皮</div><div class="effect">补气养心 · 清热祛湿</div></div>
+</div>
+
+<!-- 秋 -->
+<div class="season-label s-autumn">秋 · 润肺养阴</div>
+
+<div class="item current">
+  <div class="item-left"><div class="name">立秋</div><div class="date">8/7</div></div>
+  <div class="item-right"><div class="tea">百合 雪梨 蜂蜜</div><div class="effect">润肺止咳 · 养阴清燥</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">处暑</div><div class="date">8/22</div></div>
+  <div class="item-right"><div class="tea">石斛 麦冬 桂花</div><div class="effect">滋阴润燥 · 生津养胃</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">白露</div><div class="date">9/7</div></div>
+  <div class="item-right"><div class="tea">银耳 莲子 红枣</div><div class="effect">润肺养颜 · 安神补血</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">秋分</div><div class="date">9/22</div></div>
+  <div class="item-right"><div class="tea">杏仁 罗汉果 桔梗</div><div class="effect">润肺化痰 · 利咽止咳</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">寒露</div><div class="date">10/8</div></div>
+  <div class="item-right"><div class="tea">老陈皮 生姜 红糖</div><div class="effect">温中散寒 · 理气化痰</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">霜降</div><div class="date">10/23</div></div>
+  <div class="item-right"><div class="tea">桂圆 黑豆 枸杞</div><div class="effect">温补肾阳 · 养血固精</div></div>
+</div>
+
+<!-- 冬 -->
+<div class="season-label s-winter">冬 · 温阳补肾</div>
+
+<div class="item">
+  <div class="item-left"><div class="name">立冬</div><div class="date">11/7</div></div>
+  <div class="item-right"><div class="tea">桂圆 红枣 生姜</div><div class="effect">温阳驱寒 · 补血益气</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">小雪</div><div class="date">11/22</div></div>
+  <div class="item-right"><div class="tea">麦冬 菊花 枸杞</div><div class="effect">滋阴清热 · 养肝明目</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">大雪</div><div class="date">12/6</div></div>
+  <div class="item-right"><div class="tea">黄芪 当归 红枣</div><div class="effect">气血双补 · 温经散寒</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">冬至</div><div class="date">12/21</div></div>
+  <div class="item-right"><div class="tea">九蒸黄精 枸杞</div><div class="effect">大补元气 · 滋肾填精</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">小寒</div><div class="date">1/5</div></div>
+  <div class="item-right"><div class="tea">黑芝麻 核桃 红茶</div><div class="effect">补肾乌发 · 润肠通便</div></div>
+</div>
+<div class="item">
+  <div class="item-left"><div class="name">大寒</div><div class="date">1/20</div></div>
+  <div class="item-right"><div class="tea">山药 茯苓 陈皮 蜂蜜</div><div class="effect">健脾益气 · 理气和胃</div></div>
+</div>
+
+<div class="footer">
+  <div class="tip">
+    <strong>用法提醒</strong><br>
+    ① 每包可冲泡15-20次，沸水冲泡焖5分钟<br>
+    ② 每日1-2杯，建议上午饮用<br>
+    ③ 孕妇、慢性病、儿童请咨询医师<br>
+    ④ 服用西药间隔2小时以上
+  </div>
+  <div>¥39/包 · ¥399/年（24节气）<br>积养家 · 积善积德积福 · 养人养生养体</div>
+</div>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/seasonal-tea-sheet/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>
