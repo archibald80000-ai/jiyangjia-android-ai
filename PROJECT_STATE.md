@@ -1,10 +1,10 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.3.3
+- **State version:** 0.3.4
 - **Updated:** 2026-08-12
-- **Overall status:** TASK-021 grounded response persona is published on Gateway 0.3.3; TASK-015B remains PARTIAL pending manual microphone/install gates and TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
-- **Current authorized task:** TASK-021 is DONE; the next executable device task remains TASK-015 Android 12 acceptance
+- **Overall status:** TASK-021 grounded response persona and TASK-021A public resource access gate are published together on Gateway 0.3.3; TASK-015B remains PARTIAL pending manual microphone/install gates and TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
+- **Current authorized task:** TASK-021/TASK-021A are DONE; the next executable work remains the bounded TASK-015B manual gates, followed by TASK-015 Android 12 acceptance
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
@@ -12,6 +12,7 @@
 - Main branch baseline at TASK-014H start: `49dc45f`.
 - Canonical production domain: `ai-jiyangjia.cloud`; canonical API base: `https://ai-jiyangjia.cloud/api/v1`; production server: `120.53.86.89`.
 - DNS, public HTTPS, Nginx and Gateway are operational at `https://ai-jiyangjia.cloud`. HTTP returns 308 to HTTPS; `/` and `/demo/kiosk` return HTML 200; Certbot renewal dry-run passed on 2026-08-12.
+- The public knowledge-center and public-materials navigation entries are protected by a 24-hour HttpOnly/Secure/SameSite=Strict signed session gate. Production keeps only a PBKDF2 password hash and HMAC secret in the server-only secrets file; the original destination URLs remain public when accessed directly.
 - User-approved portrait source media is available at `E:\work\ai-kefu\资料库\人像背景.MOV`; the source was not modified or committed.
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 - TASK-020A imported the reviewed v2.1 package into an isolated port-8090 Gateway with real Doubao Embedding: 65 documents, 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy acceptance passed 80/80 with 0 draft leaks; the unchanged legacy exact-label comparison was 42/80 and remains recorded separately.

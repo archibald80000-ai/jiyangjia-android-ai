@@ -2,6 +2,15 @@
 
 Updated: 2026-08-12
 
+## TASK-021A public resource access gate
+
+- DONE / PRODUCTION_PUBLISHED on integration branch `codex/TASK-021-public-resource-gate`.
+- `知识中心` and `公开资料` now require server-side password verification before the site opens either allowlisted destination.
+- Successful verification uses a signed 24-hour `HttpOnly`, `Secure`, `SameSite=Strict` cookie; logout immediately restores the locked state.
+- The password is never stored in browser storage or source code. Production reports the password hash, session secret and TTL as `configured` without exposing values.
+- Production release: `/opt/jiyangjia-ai/releases/release-task021-integrated-20260812T161522Z`; rollback release: `/opt/jiyangjia-ai/releases/release-task021-persona-20260812T155015Z`.
+- Evidence: `docs/evidence/TASK-021/public-resource-access-gate-20260812.md`.
+
 ## TASK-021 grounded response persona
 
 - DONE / PRODUCTION_PUBLISHED on branch `codex/TASK-021-response-persona-style`.

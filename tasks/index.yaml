@@ -1,6 +1,6 @@
 version: 1
 updated: 2026-08-12
-current: TASK-021
+current: TASK-015B
 tasks:
   - id: TASK-000
     file: TASK-000_PROJECT_BOOTSTRAP.md
@@ -224,3 +224,9 @@ tasks:
     priority: p0
     status: DONE
     depends_on: [TASK-020H]
+  - id: TASK-021A
+    file: TASK-021_PUBLIC_RESOURCE_ACCESS_GATE.md
+    title: "Protect public knowledge and resource navigation entries"
+    priority: p0
+    status: DONE
+    depends_on: [TASK-021]
