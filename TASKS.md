@@ -57,7 +57,7 @@ Public voice/mobile side task: `TASK-015B(PARTIAL)`; public streaming and phone-
 
 Production domain gate: `TASK-014H(DONE)`; public HTTPS and renewal validation now pass.
 
-Knowledge/dialogue gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL historical) -> TASK-020D(DONE) -> TASK-020E(DONE) -> TASK-020F(DONE) -> TASK-020G(DONE) -> TASK-020H(DONE) -> TASK-021(DONE / persona production published)`.
+Knowledge/dialogue and public-entry gate: `TASK-020A(DONE) -> TASK-020B(DONE locally) -> TASK-020C(PARTIAL historical) -> TASK-020D(DONE) -> TASK-020E(DONE) -> TASK-020F(DONE) -> TASK-020G(DONE) -> TASK-020H(DONE) -> TASK-021(DONE / persona production published) -> TASK-021A(DONE / public resource gate published)`.
 
 Completed foundation retained from earlier tasks:
 
