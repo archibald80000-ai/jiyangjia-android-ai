@@ -27,7 +27,7 @@ def _env(name: str, default: str) -> str:
 class Settings:
     app_env: str = "development"
     app_name: str = "jiyangjia-gateway"
-    app_version: str = "0.1.0-task011"
+    app_version: str = "0.3.3"
     display_mode: str = "idle_video_voice"
     max_record_seconds: int = 20
     max_upload_bytes: int = 5 * 1024 * 1024
@@ -199,8 +199,8 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         doubao_asr_boosting_table_name=_env("DOUBAO_ASR_BOOSTING_TABLE_NAME", ""),
         doubao_asr_context_json=_env("DOUBAO_ASR_CONTEXT_JSON", ""),
         llm_timeout_seconds=float(_env("JIYANGJIA_LLM_TIMEOUT_SECONDS", "30")),
-        llm_max_tokens=int(_env("JIYANGJIA_LLM_MAX_TOKENS", "320")),
-        llm_temperature=float(_env("JIYANGJIA_LLM_TEMPERATURE", "0.2")),
+        llm_max_tokens=int(_env("JIYANGJIA_LLM_MAX_TOKENS", "300")),
+        llm_temperature=float(_env("JIYANGJIA_LLM_TEMPERATURE", "0.45")),
         deepseek_base_url=_env("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
         deepseek_model=_env("DEEPSEEK_MODEL", "deepseek-chat"),
         doubao_base_url=_env("DOUBAO_BASE_URL", _env("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")),

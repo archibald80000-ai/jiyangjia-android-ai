@@ -144,6 +144,34 @@ def test_kiosk_short_queries_expand_without_changing_unrelated_questions() -> No
     assert "智能产品是什么" in _expand_search_query("有什么产品？")
     assert "第一次来怎么办" in _expand_search_query("怎么体验？")
     assert _expand_search_query("积养家是什么？") == "积养家是什么？"
+    assert _expand_search_query("详细讲讲圣牧有机酸奶的故事。") == "圣牧有机酸奶 是谁 品牌来历"
+    assert "送人送什么" in _expand_search_query("送老人怎么选积养家的产品？")
+    store.upsert_many([KnowledgeDocument("yogurt", "圣牧有机酸奶", "圣牧有机酸奶产品资料", "approved")])
+    assert store.classify_query("详细讲讲圣牧有机酸奶的故事。") == {
+        "action": "search",
+        "scope": "jiyangjia",
+        "category": "dynamic_corpus",
+        "message": None,
+    }
+
+
+def test_answer_context_hydrates_only_approved_chunks() -> None:
+    store = SQLiteKnowledgeStore(":memory:")
+    store.upsert_many(
+        [
+            KnowledgeDocument("approved-story", "已确认故事", "甲" * 500, "approved"),
+            KnowledgeDocument("draft-story", "待确认故事", "乙" * 500, "draft"),
+        ]
+    )
+    matches = [
+        {"id": "approved-story", "chunk_id": "approved-story::chunk-0000", "status": "approved", "excerpt": "甲" * 20},
+        {"id": "draft-story", "chunk_id": "draft-story::chunk-0000", "status": "draft", "excerpt": "乙" * 20},
+    ]
+
+    hydrated = store.answer_context(matches)
+
+    assert [item["id"] for item in hydrated] == ["approved-story"]
+    assert len(hydrated[0]["excerpt"]) == 500
 
 
 def test_general_query_bypasses_business_knowledge_search() -> None:
