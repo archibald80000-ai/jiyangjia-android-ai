@@ -1,14 +1,15 @@
 # Handoff
 
-Updated: 2026-08-09
+Updated: 2026-08-12
 
 ## Current project position
 
 - Project: `jiyangjia-android-ai`
 - Local workspace: `E:\work\ai-kefu\jiyangjia-ai`
-- Current branch: `task/TASK-020F-aiye-product-knowledge-v22`.
-- Current task status: `TASK-020F DONE / PRODUCTION_PUBLISHED`; `TASK-020C PARTIAL (production published, public HTTPS blocked)`; `TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`; `TASK-015 BLOCKED / NO-GO`.
-- Next action: clear TASK-014H, then externally verify the already-published demo and read-only status links once.
+- Current branch: `task/TASK-015-launch-crash-recovery`.
+- Current task status: `TASK-020G DONE / PRODUCTION_PUBLISHED`; `TASK-014H DONE`; `TASK-015 PARTIAL / ANDROID_13_SMOKE_PASS`.
+- Current public knowledge: `knowledge-public/v2.3/`; production 227 approved, 24 draft and 387 x 2048 real Doubao vectors.
+- Next action: execute only the remaining Android 12 store-screen TASK-015 gates.
 - Raw business materials: `E:\work\积养家` (read-only; do not scan or bulk import)
 - Phase 1 remains the Android 12 idle-video voice RAG MVP. LiveTalking/Wav2Lip/MuseTalk/WebRTC/GPU inference remain deferred.
 
@@ -27,18 +28,22 @@ Updated: 2026-08-09
 - TASK-014F: PARTIAL; DPC/boot/Home/Lock Task code builds, but no Device Owner runtime exists.
 - TASK-014G: PARTIAL; controlled signing/update validation passes with a deleted disposable test identity, but formal signing and device upgrades are absent.
 - TASK-015A: PARTIAL; approved portrait media/Profile and a real local browser RAG/LLM/TTS dialogue pass. Manual end/send plus speech-first 3-second silence auto-send are implemented. Browser microphone permission is not yet manually accepted and no Android device result exists.
-- TASK-014H: BLOCKED externally. Canonical domain configuration, internal TLS/Nginx/Gateway, loopback-only 8080 and Android URL are complete; Tencent DNSPod webblock prevents public HTTP/HTTPS and ACME renewal validation.
+- TASK-014H: DONE. Canonical public HTTP/HTTPS, Demo/API, loopback-only 8080 and Certbot renewal dry-run pass.
 - TASK-020A: DONE locally. Real Doubao Embedding imported 65 reviewed documents on isolated port 8090; final state is 41 approved, 24 draft, 65 chunks and 65 vectors at 2048 dimensions. Current-policy 80-case acceptance is 100%, sources completeness is 100% and draft leaks are 0. The preserved port-18081 demo database was not switched.
 - TASK-020B: DONE locally. The TASK-020A candidate is bound to the isolated port-18084 avatar demo with real ASR/TTS/LLM/Embedding; API WAV and browser text dialogues passed with approved sources, playable TTS and the 1080x1920 presentation intact.
 - TASK-020C: PARTIAL. Production now uses the formal 41/24 knowledge state and the approved MOV-derived 1080x1920 avatar/background bound to the default Profile. Real dialogue and server-local TLS pass; external HTTPS remains blocked.
 - TASK-020D: DONE. The explicitly authorized v2.1 JSON is tracked under `knowledge-public/v2.1/`; production was backed up and re-imported in 50+15 batches with real Doubao Embedding. Final 80-case current-policy acceptance is 100%, sources are complete and draft leaks are 0.
 - TASK-020E: DONE / READY_FOR_DEMO. Isolated port 8091 uses real Doubao ASR/TTS/LLM/Embedding with a new 41/24/65 candidate. Search passed 80/80 and five synthetic-speech audio dialogue scenarios passed after scoped short-query and `七膳` homophone adaptations. This is not human microphone or Android device evidence.
 - TASK-020F: DONE / PRODUCTION_PUBLISHED. The public v2.2 package contains 204 documents (180 approved, 24 draft), including 139 new source-traced Aiye records. Local and production Top-3 retrieval passed 240/240 with 340 x 2048 real Doubao vectors, sources 100% and draft leaks 0. Six text plus one synthetic-speech audio dialogue passed the real production chain. Public HTTPS remains a separate TASK-014H blocker.
+- TASK-020G: DONE / PRODUCTION_PUBLISHED. The 135-file public training site and 251-document v2.3 package are ready for GitHub sharing. Production search passed 141/141 with sources 100% and no draft leaks; rollback is `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
+- TASK-014H: DONE. Public HTTP/HTTPS, root Demo and APIs are reachable; Certbot dry-run passes.
+- TASK-015: PARTIAL. Xiaomi Android 13 built-in-mic capture, 3-second-silence send, ASR/RAG/LLM/TTS, speaker playback and return to idle passed. Android 12 USB and managed-device acceptance remains required.
+- Android app/download name is `积养家AI数字人`; public debug v8 / `0.1.7-demo-debug` is at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`, SHA-256 `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`, with the old Demo URL retained for compatibility. Formal production signing is still pending.
 
 ## TASK-020F package and production rollback
 
-- Employee/public package: `knowledge-public/v2.2/README.md`.
-- Source archive: `knowledge-public/v2.2/sources/aiye-foods/` (25 HTML files with hashes in `manifest.json`).
+- Current employee/public package: `knowledge-public/v2.3/README.md`.
+- Current public source archive: `knowledge-public/v2.3/site/` (135 files with hashes in `manifest.json`); v2.2 remains available as the prior Aiye source package.
 - Import order: `import_batch_01.json` through `import_batch_05.json`; do not submit `import_all.json` to the Gateway.
 - Production SQLite/FAISS: `/opt/jiyangjia-ai/current/var/knowledge/jiyangjia.db` and `faiss.index`.
 - Production rollback: `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`.
@@ -95,7 +100,7 @@ Updated: 2026-08-09
 - Active release Compose: `/opt/jiyangjia-ai/releases/release-task015b-realtime-20260807T095914Z/deploy/docker-compose.yml`.
 - Rollback backup: `/opt/jiyangjia-ai/backups/task014h-domain-20260807T103746Z`.
 - Gateway container is healthy and bound to `127.0.0.1:8080`; Nginx listens on 80/443; UFW allows only 22/80/443.
-- Certificate exists and is valid until 2026-11-05; snap Certbot timer is active, but dry-run currently fails at the Tencent webblock interception.
+- Certificate exists and snap Certbot renewal is active; `certbot renew --dry-run` passed on 2026-08-12.
 - Do not retry Nginx/Certbot changes until the ICP/access block is released; then run the commands in `docs/server/operations.md` once.
 
 ## TASK-015A local demo
@@ -145,7 +150,7 @@ Updated: 2026-08-09
 
 ## Next action
 
-Complete ICP/domain access onboarding for TASK-014H, then externally verify the already-published v2.2 demo/status/manifest/Profile once. Do not claim or repeat TASK-015 acceptance while public HTTPS and physical-device gates remain blocked.
+Execute only the remaining Android 12 TASK-015 device gates. Do not upgrade the Android 13 smoke result to full Android 12 USB/kiosk/update/long-run acceptance.
 
 ## Safety boundaries
 

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沙漠1号 · 虎坚果油 | 爱野</title>
+<style>
+  :root{
+    --ink:#2D1A0E;
+    --ink-soft:#5C3D28;
+    --paper:#FCF6EE;
+    --paper-2:#F0E8D5;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --gold-deep:#8B6914;
+    --sand:#C4A46C;
+    --sand-light:#E8D5B0;
+    --desert:#D4954A;
+    --green:#4A7C59;
+    --green-light:#6B9F7A;
+    --line:rgba(45,26,14,.1);
+    --card:#F5EBD8;
+    --card-green:#EAF3E7;
+    --sun:#E8A840;
+    --warm:#C0603A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.18;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(184,134,11,.06) 0%, transparent 55%),
+      radial-gradient(circle at 80% 75%, rgba(196,164,108,.05) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:36px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--warm);margin-bottom:16px;}
+  .cover h1{font-size:clamp(34px,6.5vw,52px);font-weight:700;letter-spacing:.1em;line-height:1.35;color:var(--gold-deep);}
+  .cover h1 em{font-style:normal;color:var(--desert);}
+  .cover .sub{margin-top:20px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.16em;}
+  .cover .sub span{color:var(--warm);font-weight:600;}
+  .cover .meta{margin-top:50px;font-size:12px;letter-spacing:.3em;color:#9C8B72;}
+  .hero-svg{margin-top:46px;width:min(300px,68%);opacity:.9;}
+  .scroll-hint{margin-top:36px;font-size:12px;letter-spacing:.35em;color:#A09078;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--gold);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--gold);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--gold);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--desert);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--gold);
+    background:var(--paper-2);
+    font-size:15px;color:var(--ink-soft);
+    border-radius:0 8px 8px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:12px;color:#9C8B72;}
+
+  /* ===== 数据卡片 ===== */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 40px;}
+  .card{
+    background:var(--card);padding:22px 18px;border-radius:10px;
+    border:1px solid var(--line);
+    transition:transform .2s;
+  }
+  .card:hover{transform:translateY(-2px);}
+  .card .label{font-size:12px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:8px;}
+  .card .value{font-size:28px;font-weight:700;color:var(--gold-deep);line-height:1.2;}
+  .card .value span{font-size:14px;font-weight:400;color:var(--ink-soft);}
+  .card .desc{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.6;}
+  .card .src{font-size:11px;color:#9C8B72;margin-top:6px;}
+
+  /* ===== 功效列表 ===== */
+  .effect-list{margin:28px 0;}
+  .effect-item{
+    display:flex;gap:18px;margin-bottom:20px;
+    padding:20px;background:var(--card);border-radius:10px;
+    border:1px solid var(--line);
+  }
+  .effect-num{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;
+    background:var(--desert);color:#fff;font-size:14px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .effect-body h4{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .effect-body p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.7;}
+  .effect-body .src{font-size:11px;color:#9C8B72;margin-top:6px;display:block;}
+
+  /* ===== 对比表 ===== */
+  .compare-table{
+    width:100%;border-collapse:collapse;margin:28px 0;
+    font-size:14px;border-radius:10px;overflow:hidden;
+  }
+  .compare-table th{
+    background:var(--gold-deep);color:#fff;padding:12px 14px;
+    font-weight:600;text-align:left;font-size:13px;
+  }
+  .compare-table td{
+    padding:12px 14px;border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .compare-table td:first-child{font-weight:600;color:var(--ink);}
+  .compare-table tr:last-child td{border-bottom:none;}
+
+  /* ===== 高亮标注框 ===== */
+  .highlight{
+    margin:28px 0;padding:22px 24px;
+    background:linear-gradient(135deg,var(--gold-deep),var(--gold));
+    color:#fff;border-radius:12px;
+  }
+  .highlight h3{color:#fff;border:none;margin-top:0;font-size:18px;}
+  .highlight p{color:rgba(255,255,255,.92);}
+  .highlight strong{color:#FFE082;}
+
+  /* ===== 澄清框 ===== */
+  .clarify{
+    margin:28px 0;padding:20px 22px;
+    background:var(--card-green);border:1px solid var(--green-light);
+    border-radius:10px;font-size:14px;
+  }
+  .clarify strong{color:var(--green);}
+  .clarify .clarify-title{font-size:16px;font-weight:700;color:var(--green);margin-bottom:8px;}
+
+  /* ===== 警告框 ===== */
+  .warn{
+    margin:28px 0;padding:20px 22px;
+    background:#FFF3E0;border:1px solid #FFB74D;
+    border-radius:10px;font-size:14px;color:#8B5E12;
+  }
+  .warn strong{color:var(--warm);}
+
+  /* ===== 分隔符 ===== */
+  .divider{
+    text-align:center;margin:60px 0;color:var(--gold);
+    font-size:18px;letter-spacing:.5em;opacity:.4;
+  }
+
+  /* ===== 销售话术框 ===== */
+  .sales-box{
+    margin:34px 0;padding:28px 26px;
+    background:linear-gradient(135deg,var(--gold-deep),var(--desert));
+    color:#fff;border-radius:12px;
+  }
+  .sales-box h3{color:#fff;border:none;margin-top:0;}
+  .sales-box p{color:rgba(255,255,255,.9);}
+
+  /* ===== 用法卡 ===== */
+  .usage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0;}
+  .usage-card{
+    background:var(--card);padding:20px 18px;border-radius:10px;
+    border:1px solid var(--line);text-align:center;
+  }
+  .usage-card .icon{font-size:32px;margin-bottom:10px;}
+  .usage-card h4{font-size:15px;color:var(--ink);margin-bottom:6px;}
+  .usage-card p{font-size:13px;color:var(--ink-soft);text-align:center;}
+
+  /* ===== 场景卡 ===== */
+  .scene-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:28px 0;}
+  .scene-card{
+    background:var(--card);padding:20px 16px;border-radius:10px;
+    border:1px solid var(--line);text-align:center;
+    transition:transform .2s;
+  }
+  .scene-card:hover{transform:translateY(-2px);}
+  .scene-card .scene-icon{font-size:30px;margin-bottom:8px;}
+  .scene-card h4{font-size:15px;color:var(--gold-deep);margin-bottom:6px;}
+  .scene-card p{font-size:13px;color:var(--ink-soft);text-align:center;}
+
+  /* ===== 收尾 ===== */
+  .closing{
+    text-align:center;padding:70px 30px 60px;
+  }
+  .closing .seal{font-size:48px;margin-bottom:16px;}
+  .closing h3{font-size:26px;font-weight:600;color:var(--gold-deep);margin-bottom:16px;border:none;}
+  .closing p{text-align:center;color:var(--ink-soft);font-size:15px;margin-bottom:6px;}
+  .closing .brand-tag{margin-top:30px;font-size:13px;letter-spacing:.3em;color:var(--gold);}
+
+  /* ===== 响应式 ===== */
+  @media(max-width:500px){
+    .wrap{padding:0 18px;}
+    .card-grid{grid-template-columns:1fr 1fr;gap:10px;}
+    .card{padding:16px 12px;}
+    .card .value{font-size:22px;}
+    .scene-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="虎坚果原料、冷榨工艺与多种烹饪用法。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/%E6%B2%99%E6%BC%A0%E4%B8%80%E5%8F%B7%E8%99%8E%E5%9D%9A%E6%9E%9C%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"沙漠一号虎坚果油","description":"虎坚果原料、冷榨工艺与多种烹饪用法。","url":"https://jiyangjia-ai.netlify.app/docs/%E6%B2%99%E6%BC%A0%E4%B8%80%E5%8F%B7%E8%99%8E%E5%9D%9A%E6%9E%9C%E6%B2%B9%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="cover">
+  <div class="brand">沙漠1号 · 爱野食材甄选</div>
+  <div class="tagline">—— 塔克拉玛干沙漠绿洲 ——</div>
+  <h1>一滴滴<em>黄金</em></h1>
+  <p class="sub">来自寸草不生的地方 · <span>Omega-9含量70%-80%</span> · 500ml · 100% Natural</p>
+
+  <svg class="hero-svg" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="oilGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#D4A745"/>
+        <stop offset="50%" stop-color="#C4A46C"/>
+        <stop offset="100%" stop-color="#8B6914"/>
+      </linearGradient>
+    </defs>
+    <!-- 沙漠背景 -->
+    <ellipse cx="150" cy="200" rx="130" ry="40" fill="#E8D5B0" opacity="0.4"/>
+    <path d="M30 200 Q80 160 150 200 Q220 240 270 200" fill="none" stroke="#C4A46C" stroke-width="1" opacity="0.3"/>
+    <!-- 油瓶 -->
+    <rect x="125" y="50" width="50" height="140" rx="10" fill="url(#oilGrad)" opacity="0.9"/>
+    <rect x="135" y="52" width="30" height="80" rx="4" fill="#F5EBD8" opacity="0.3"/>
+    <rect x="125" y="35" width="50" height="25" rx="4" fill="#8B6914"/>
+    <rect x="130" y="30" width="40" height="8" rx="2" fill="#B8860B"/>
+    <!-- 标签 -->
+    <rect x="132" y="100" width="36" height="22" rx="3" fill="#FCF6EE" opacity="0.8"/>
+    <text x="150" y="115" text-anchor="middle" font-size="9" fill="#8B6914" font-weight="700">虎坚果油</text>
+    <!-- 金光波纹 -->
+    <circle cx="150" cy="60" r="6" fill="none" stroke="#D4A745" stroke-width="1" opacity="0.4"/>
+    <circle cx="150" cy="60" r="12" fill="none" stroke="#D4A745" stroke-width="0.5" opacity="0.25"/>
+    <circle cx="150" cy="60" r="18" fill="none" stroke="#D4A745" stroke-width="0.5" opacity="0.15"/>
+  </svg>
+
+  <div class="meta">新疆图木舒克 · 沙漠绿洲 · 冷榨锁鲜</div>
+  <div class="scroll-hint">向下了解<span class="arr">↓</span></div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>从"死亡之海"到"黄金油仓"</h2>
+    <p class="dropcap">塔克拉玛干——维吾尔语意为"进去出不来"。这片中国最大、世界第二大的流动沙漠，年均降水量不足50毫米，蒸发量却是降水量的60倍。风吹沙走，寸草不生。</p>
+    <p>但就是在这样的绝境里，有一种植物扎下了根。</p>
+    <p>它叫<span style="color:var(--gold);font-weight:600;">虎坚果</span>（学名油莎豆/Cyperus esculentus），原产非洲和地中海沿岸。200万年前，古人类就以它为食——古埃及法老墓穴壁画中，有将虎坚果捣碎制作祭品的场景；古希腊《药材志》记载了它的药用价值。1952年，中国从苏联引种，1960年又从保加利亚引入，2016年列入农业部《全国种植业结构调整规划》。</p>
+    <p>如今，在新疆图木舒克市五十四团兴安镇——塔克拉玛干沙漠西南边缘——虎坚果找到了它在中国的"天命之地"。这里是<strong>全国单体面积最大的油莎豆种植基地</strong>，近2万亩虎坚果在沙漠中铺开绿色版图，<strong>将4.6万亩沙漠变成了良田，向沙漠腹地推进了7公里</strong>。</p>
+    <div class="quote">
+      「历经玉米、小麦等多种农作物试播后，油莎豆防风固沙的效果最明显，既保住了耕地，也改善了环境。」
+      <span class="src">—— 五十四团经济发展办公室主任 谭志发</span>
+    </div>
+    <p>虎坚果被称为<strong>"沙漠作物之王"</strong>——耐旱、耐盐碱、耐瘠薄，根系发达能防风固沙，需水量极少。别人种地是跟沙漠抢地盘，虎坚果是跟沙漠做朋友。从2017年试种至今，亩产从不到200公斤提升到760公斤，被农业农村部评为<strong>全国农业生产"三品一标"典型案例</strong>。</p>
+    <p>而这一瓶<strong>"沙漠1号"虎坚果油</strong>——就是从这片沙漠绿洲里，用<strong>低温冷榨工艺</strong>锁住每一滴营养，送到你的餐桌。</p>
+
+    <div class="spec-box" style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;font-size:.9rem;">
+      <div><strong style="color:var(--gold-deep);">品牌</strong>　沙漠1号</div>
+      <div><strong style="color:var(--gold-deep);">规格</strong>　500ml / 瓶</div>
+      <div><strong style="color:var(--gold-deep);">原料</strong>　新疆图木舒克虎坚果</div>
+      <div><strong style="color:var(--gold-deep);">工艺</strong>　低温冷榨锁鲜</div>
+      <div><strong style="color:var(--gold-deep);">Omega-9</strong>　70%-80%</div>
+      <div><strong style="color:var(--gold-deep);">认证</strong>　100% Natural</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 壹 · 冷榨锁鲜 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>低温冷榨，锁住沙漠的营养</h2>
+    <p class="dropcap">油好不好，一看原料，二看工艺。</p>
+    <p>市面上绝大多数食用油采用<strong>高温热榨或化学浸出法</strong>——高温会破坏不饱和脂肪酸，化学溶剂（如六号轻汽油）虽有残留标准但终归不是"干干净净"。</p>
+    <p>"沙漠1号"虎坚果油采用的是<strong>纯物理低温冷榨</strong>：虎坚果脱皮后，在<strong>低于40°C</strong>的温度下直接压榨，全程不加热、不加任何化学溶剂。好比鲜榨果汁和浓缩还原果汁的区别——前者保留的是活着的营养，后者只是"还在"而已。</p>
+
+    <table class="compare-table">
+      <tr><th></th><th>低温冷榨（沙漠1号）</th><th>高温浸出法（市面常见）</th></tr>
+      <tr><td>加工温度</td><td>＜40°C</td><td>120-200°C + 化学溶剂</td></tr>
+      <tr><td>维生素E保留率</td><td>95%以上（约56mg/100g）</td><td>约55%（约33mg/100g）</td></tr>
+      <tr><td>多酚保留率</td><td>高（＞50mg/kg）</td><td>低（＜20mg/kg）</td></tr>
+      <tr><td>化学溶剂</td><td>零添加</td><td>六号轻汽油浸出</td></tr>
+      <tr><td>反式脂肪酸</td><td>零（全程低温）</td><td>高温可能产生</td></tr>
+      <tr><td>坚果香气</td><td>天然浓郁</td><td>脱臭后基本消失</td></tr>
+    </table>
+
+    <div class="clarify">
+      <div class="clarify-title">📌 关于脂肪酸的诚实说明</div>
+      <p>虎坚果油的核心成分是<strong>油酸（Omega-9）</strong>，含量高达<strong>67%-75%</strong>，加上亚油酸（Omega-6）约9%-11%，不饱和脂肪酸总量<strong>超过80%</strong>。市面上有些宣传提到虎坚果油含"Omega-7"——<strong>这在科学上不准确</strong>。Omega-7（棕榈油酸）主要存在于沙棘油和澳洲坚果油中，虎坚果油的主要单不饱和脂肪酸是Omega-9而非Omega-7。我们选择说实话，因为你的信任比卖点多。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 · 营养价值 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>每一滴都是营养浓缩</h2>
+    <p class="dropcap">虎坚果的块茎含油率20%-36%，是目前已知<strong>唯一在块茎器官中积累大量油脂的作物</strong>——别的油料作物都是"籽"榨油，它是"地下块茎"榨油，营养密度天生更高。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">不饱和脂肪酸总量</div>
+        <div class="value">&gt;80<span>%</span></div>
+        <div class="desc">油酸（Omega-9）67-75%，亚油酸（Omega-6）9-11%，ω-6:ω-3=4:1，精准契合WHO推荐黄金比例</div>
+        <div class="src">来源：国标LS/T 3259-2018、《中国油料作物学报》2021</div>
+      </div>
+      <div class="card">
+        <div class="label">维生素E</div>
+        <div class="value">56.4<span>mg/100g</span></div>
+        <div class="desc">橄榄油的3-10倍（橄榄油VE约5-15mg/100g），天然抗氧化剂，保护细胞膜免受自由基攻击</div>
+        <div class="src">来源：中国农科院检测数据</div>
+      </div>
+      <div class="card">
+        <div class="label">植物甾醇</div>
+        <div class="value">800–1200<span>mg/kg</span></div>
+        <div class="desc">β-谷甾醇占比超60%，可减少30-40%的胆固醇肠道吸收</div>
+        <div class="src">来源：《中国油料作物学报》2021</div>
+      </div>
+      <div class="card">
+        <div class="label">烟点</div>
+        <div class="value">210–240<span>°C</span></div>
+        <div class="desc">高温稳定性极佳，适合中式爆炒、煎炸，远超初榨橄榄油（约160-190°C），不产生反式脂肪</div>
+        <div class="src">来源：新疆三礼粮油检测报告</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">氨基酸</div>
+        <div class="value">18<span>种</span></div>
+        <div class="desc">含全部人体必需氨基酸，必需氨基酸指数93.8，生物价90.54——接近鸡蛋蛋白的营养价值</div>
+        <div class="src">来源：房芳等研究、《中国油料作物学报》</div>
+      </div>
+      <div class="card">
+        <div class="label">角鲨烯</div>
+        <div class="value">天然含有</div>
+        <div class="desc">天然抗氧化、抗炎、抗衰活性成分，通常只在深海鲨鱼肝油中大量存在</div>
+        <div class="src">来源：杭州中萃农业检测</div>
+      </div>
+      <div class="card">
+        <div class="label">矿物质</div>
+        <div class="value">镁·钙·铁·锌·硒</div>
+        <div class="desc">钾含量丰富维持酸碱平衡，硒为"抗癌之王"，镁参与300+种酶反应有助于改善睡眠</div>
+        <div class="src">来源：《中国食物成分表》</div>
+      </div>
+      <div class="card">
+        <div class="label">膳食纤维（原料）</div>
+        <div class="value">26<span>%</span></div>
+        <div class="desc">虎坚果干豆膳食纤维高达26%，绝大多数为不溶性纤维，有效促进肠道蠕动</div>
+        <div class="src">来源：中国科普网</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「油莎豆油富含的油酸与植物甾醇有助于调节人体血脂水平；不含麸质、无坚果类致敏源——适配绝大多数人群。」
+      <span class="src">—— 中国农科院2022年人体临床试验报告</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 叁 · 沙漠故事 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>一棵虎坚果，治了一片沙漠</h2>
+    <p class="dropcap">这不是修辞——是真的在治沙。</p>
+    <p>五十四团兴安镇被塔克拉玛干沙漠和布古里沙漠<strong>两面夹击</strong>，一年8级以上大风几十次。"种活一棵树比养一个孩子还难"，当地人这么形容。</p>
+    <p>2017年以前，这里历经玉米、小麦——"眼看着长到膝盖的玉米，一场大风沙过去，地里只剩下满天飞舞的滴灌带，欲哭无泪。"</p>
+    <p>虎坚果来了之后：</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">治沙面积</div>
+        <div class="value">4.6<span>万亩</span></div>
+        <div class="desc">沙漠变良田，是全国单体种植面积最大的油莎豆基地</div>
+      </div>
+      <div class="card">
+        <div class="label">推进纵深</div>
+        <div class="value">7<span>公里</span></div>
+        <div class="desc">向沙漠腹地推进7公里，沙尘天气显著减少</div>
+      </div>
+      <div class="card">
+        <div class="label">亩产</div>
+        <div class="value">760<span>公斤</span></div>
+        <div class="desc">从最初的不足200公斤提升到760公斤，亩均净收入3000元以上</div>
+      </div>
+      <div class="card">
+        <div class="label">年产量</div>
+        <div class="value">8372<span>吨</span></div>
+        <div class="desc">年产值7115万元，已形成"草方格-防风林-经济作物-林果"四位一体的固沙体系</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「从种植到采收基本都是机械操作，60亩油莎豆我和丈夫就能种完。现在一年家里有50万收入，买了两辆拖拉机、住进了新房——可不敢小瞧了这小小的豆子。」
+      <span class="src">—— 五十四团三连种植户 李松英</span>
+    </div>
+
+    <p>虎坚果在沙漠中生长，用极少的灌溉水（每亩300-350立方米，水肥一体化滴灌），产出极高的营养。它不吃肥、不抢水、不怕风沙——<strong>天生就是"把荒地变粮仓"的命</strong>。国家科技部已将油莎豆列入重点研发计划，目标是打造"中国第二油源"，减少大豆进口依赖。</p>
+    <p style="color:var(--ink-soft);">所以这一瓶油不仅是健康——你每用一勺，就是在帮沙漠退后一步。</p>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>虎坚果油对人体健康的8大好处</h2>
+    <p class="dropcap">不是玄学，是科学。每一项都有研究数据支撑。</p>
+
+    <div class="effect-list">
+      <div class="effect-item">
+        <div class="effect-num">1</div>
+        <div class="effect-body">
+          <h4>保护心血管，调节血脂胆固醇</h4>
+          <p>高油酸（Omega-9 67-75%）模式与地中海饮食核心一致——替换饱和脂肪酸可降低LDL并维持HDL。植物甾醇800-1200mg/kg阻断肠道胆固醇吸收30-40%。</p>
+          <span class="src">来源：中国农科院2022年临床试验：血脂偏高人群连续8周每日25mL虎坚果油，血清总胆固醇平均下降11.3%</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">2</div>
+        <div class="effect-body">
+          <h4>强效抗氧化，延缓衰老</h4>
+          <p>维生素E高达56.4mg/100g（橄榄油3-10倍），配合角鲨烯和多酚，三重抗氧化防线清除自由基，保护细胞膜完整。</p>
+          <span class="src">来源：DITCO冷榨虎坚果油检测数据、《中国油料作物学报》2021综述</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">3</div>
+        <div class="effect-body">
+          <h4>高温烹饪不产生反式脂肪</h4>
+          <p>烟点210-240°C，稳定性和耐热性远超初榨橄榄油（160-190°C）、亚麻籽油（107°C）。中式爆炒、煎炸均适用，不氧化、不冒烟、不变质。适合中国人的厨房。</p>
+          <span class="src">来源：新疆三礼粮油技术检测、DITCO Tiger Nut Oil Technical Data Sheet</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">4</div>
+        <div class="effect-body">
+          <h4>辅助调节血糖，低GI友好</h4>
+          <p>虎坚果原料含抗性淀粉30%以上、膳食纤维26%，延缓餐后血糖上升。高油酸模式改善胰岛素敏感性——适合关注血糖的人群作为日常烹饪用油。</p>
+          <span class="src">来源：《中国油料作物学报》2021年油莎豆生理功能综述</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">5</div>
+        <div class="effect-body">
+          <h4>保护肝脏，辅助解酒</h4>
+          <p>油莎豆中的活性成分对酒精性肝损伤具有保护作用——动物实验显示可降低血清转氨酶水平。维生素E+角鲨烯组合修复肝细胞氧化损伤。</p>
+          <span class="src">来源：《中国油料作物学报》2021年油莎豆保肝功能研究章节</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">6</div>
+        <div class="effect-body">
+          <h4>抗炎镇痛，舒缓关节</h4>
+          <p>高油酸膳食模式被证实降低体内C反应蛋白等炎症标志物。维生素E和角鲨烯协同抑制炎症通路，对慢性低度炎症（关节炎、代谢综合征）有益。</p>
+          <span class="src">来源：NIH PubMed多项油酸抗炎研究综述</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">7</div>
+        <div class="effect-body">
+          <h4>美容养肤，内外兼修</h4>
+          <p>高油酸+VE渗透力强，不油腻不堵塞毛孔（非致痘性），可直接外用滋润干燥皮肤、修复屏障。角鲨烯是皮脂天然成分，亲肤吸收无负担。</p>
+          <span class="src">来源：DITCO虎坚果油化妆品级应用说明</span>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-num">8</div>
+        <div class="effect-body">
+          <h4>无麸质无坚果过敏源，全家可用</h4>
+          <p>虽然名字叫"虎坚果"，但它不是坚果——是莎草科植物块茎，不含常见坚果过敏源。也不含麸质，乳糜泻人群可放心使用。名副其实的"全民健康油"。</p>
+          <span class="src">来源：中国科普网、杭州中萃农业食品安全检测</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 吃法 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>一瓶油，六种用法</h2>
+
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="icon">🍳</div>
+        <h4>高温爆炒</h4>
+        <p>烟点210°C+，炒菜不冒烟不产生反式脂肪</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🥗</div>
+        <h4>凉拌沙拉</h4>
+        <p>天然坚果香气，凉拌风味远超普通色拉油</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🍲</div>
+        <h4>煲汤点油</h4>
+        <p>汤出锅前淋几滴，提香不油腻</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">🍞</div>
+        <h4>蘸面包/拌面</h4>
+        <p>替代黄油，蘸欧包或拌热面，坚果香提升层次</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">💆</div>
+        <h4>外用护肤</h4>
+        <p>取几滴涂抹干燥处，天然保湿不堵毛孔</p>
+      </div>
+      <div class="usage-card">
+        <div class="icon">👶</div>
+        <h4>辅食调味</h4>
+        <p>无麸质无过敏源，宝宝辅食少量添加，营养加倍</p>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ 食用提醒：</strong>每日建议用量15-25mL（约1-2汤匙）。虽为健康油脂，仍含热量约120千卡/15mL，减肥期注意总量。开瓶后密封避光保存，建议3个月内用完。冷榨油低温可能出现絮状沉淀，属正常现象，回温即恢复。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 销售话术 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>为什么选沙漠1号虎坚果油？</h2>
+
+    <div class="sales-box">
+      <h3>四个理由，一瓶好油</h3>
+      <p><strong>❶ 源头干净：</strong>塔克拉玛干沙漠边缘种植，远离工业污染，沙质土壤天然纯净，不用农药不用化肥。</p>
+      <p><strong>❷ 工艺诚实：</strong>纯物理低温冷榨，低于40°C，零化学溶剂，保留完整营养——不是用化学浸出再"精炼"回来的。</p>
+      <p><strong>❸ 数据透明：</strong>维生素E 56.4mg/100g（橄榄油3-10倍）、不饱和脂肪酸80%+、植物甾醇800-1200mg/kg——每一个数字都有检测报告。</p>
+      <p><strong>❹ 一油多用：</strong>210°C+高烟点中式爆炒不翻车，凉拌有坚果香，还能外用护肤——不是只能凉拌的"娇气油"。</p>
+    </div>
+
+    <h3>怎么跟客户推荐？</h3>
+    <div class="scene-grid">
+      <div class="scene-card">
+        <div class="scene-icon">👴</div>
+        <h4>送给爸妈</h4>
+        <p>高油酸降胆固醇、植物甾醇护心脑血管，中国农科院临床数据佐证</p>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">👩‍🍳</div>
+        <h4>家庭主厨</h4>
+        <p>210°C高烟点爆炒无忧，橄榄油的营养 + 适合中式的耐热性</p>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🤰</div>
+        <h4>孕妈/宝宝</h4>
+        <p>维生素E强抗氧化、无麸质无过敏源、零化学残留</p>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">💪</div>
+        <h4>健身减脂</h4>
+        <p>高油酸改善代谢、低GI模式辅助减脂、优质脂肪不囤积</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h3>💬 一句话销售</h3>
+      <p style="font-size:16px;text-align:center;margin:12px 0;">"这瓶油来自新疆沙漠——比橄榄油更耐热、维E是橄榄油的<strong>3到10倍</strong>，冷榨零添加，炒菜凉拌一瓶搞定。"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 柒 · 爱野选品 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">柒</div>
+    <h2>爱野为什么选它</h2>
+    <p class="dropcap">选品四重标准，一条条对。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="label">原生种子</div>
+        <div class="value" style="font-size:22px;">✅ 命中</div>
+        <div class="desc">1952年从非洲引进的原始品种，沙漠自然选育，非转基因、非人工杂交</div>
+      </div>
+      <div class="card">
+        <div class="label">自然生长</div>
+        <div class="value" style="font-size:22px;">✅ 命中</div>
+        <div class="desc">塔克拉玛干沙漠自然环境中生长，靠沙漠阳光+昼夜温差积累营养，不催熟</div>
+      </div>
+      <div class="card">
+        <div class="label">有机肥/零化肥</div>
+        <div class="value" style="font-size:22px;">✅ 命中</div>
+        <div class="desc">沙质土壤天然种植，虎坚果耐瘠薄不需化肥，水肥一体化仅微量滴灌</div>
+      </div>
+      <div class="card">
+        <div class="label">零农残/无添加</div>
+        <div class="value" style="font-size:22px;">✅ 命中</div>
+        <div class="desc">低温冷榨全程不加任何化学溶剂、不加防腐剂、不加抗氧化剂——配料表只有虎坚果</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      「沙漠1号虎坚果油，配料表只有一行：虎坚果。」
+      <span class="src">—— 爱野选品笔记</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 收尾 ===== -->
+<div class="closing">
+  <div class="seal">🌵</div>
+  <h3>沙漠里长出来的黄金</h3>
+  <p>不催熟、不打药、不掺假</p>
+  <p>冷榨锁鲜，一滴都是沙漠的营养</p>
+  <p>你用一勺好油，沙漠退后一步</p>
+  <div class="brand-tag">沙漠1号 · 爱野天然食材甄选</div>
+</div>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/tigernut-oil/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>

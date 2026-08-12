@@ -9,3 +9,4 @@
 *.mp4 binary
 *.wav binary
 *.apk binary
+knowledge-public/v2.3/site/** -text

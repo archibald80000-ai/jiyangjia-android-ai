@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千年不改一味 · 五指岩鲜姜 | 爱野</title>
+<style>
+  :root{
+    --ink:#3A3228;
+    --ink-soft:#6B5A46;
+    --paper:#FAF6EF;
+    --paper-2:#F3EBDB;
+    --ginger:#C47A38;
+    --ginger-deep:#8C4A20;
+    --ginger-light:#E0B88A;
+    --leaf:#5C6B4F;
+    --line:rgba(61,51,40,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M48 12 Q52 6 56 12 Q58 20 52 24 Q44 22 42 14 Z' fill='none' stroke='%23C47A38' stroke-opacity='.06'/%3E%3C/svg%3E");
+    background-size:96px 96px;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 28px;}
+
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--ginger-deep);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--ginger);opacity:.5;}
+  .cover h1{font-size:clamp(36px,7.5vw,58px);font-weight:600;letter-spacing:.12em;line-height:1.35;}
+  .cover .sub{margin-top:22px;font-size:clamp(14px,2.6vw,17px);color:var(--ink-soft);letter-spacing:.2em;}
+  .cover .sub span{color:var(--ginger-deep);}
+  .cover .meta{margin-top:64px;font-size:12px;letter-spacing:.3em;color:#9C8B76;}
+  .scroll-hint{margin-top:40px;font-size:12px;letter-spacing:.35em;color:#A7947E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--ginger-deep);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--ginger-deep);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--ginger);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  p{font-size:clamp(15px,2.7vw,17px);color:var(--ink);margin-bottom:22px;}
+  p.lead{color:var(--ink-soft);}
+  .dropcap::first-letter{font-size:3.4em;float:left;line-height:.85;padding:8px 12px 0 0;color:var(--ginger-deep);font-weight:600;}
+  .quote{margin:44px 0;padding:34px 30px;background:var(--paper-2);border-left:3px solid var(--ginger);font-size:clamp(16px,3vw,18px);color:var(--ink);border-radius:0 14px 14px 0;}
+  .quote .src{display:block;margin-top:14px;font-size:13px;color:#9C8B76;letter-spacing:.15em;}
+
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:36px 0;}
+  .d-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:transform .25s ease,box-shadow .25s ease;}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(61,51,40,.08);}
+  .d-card .num{font-size:12px;letter-spacing:.3em;color:var(--ginger-deep);margin-bottom:12px;display:block;}
+  .d-card .big{font-size:28px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em;}
+  .d-card .big em{font-style:normal;font-size:15px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .d-card h3{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:.04em;}
+  .d-card p{font-size:13px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  .steps{margin:40px 0;}
+  .step{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px;padding:22px 24px;background:var(--paper-2);border-radius:14px;border:1px solid var(--line);transition:transform .25s ease;}
+  .step:hover{transform:translateX(6px);}
+  .step .tag{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--ginger);color:#FAF6EF;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;letter-spacing:.06em;}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:.04em;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.8;margin:0;}
+
+  /* 误区澄清 */
+  .warning-box{margin:44px 0;padding:28px 30px;background:linear-gradient(160deg,#FFF3ED 0%,#FEF0E4 100%);border:1px solid #E8C4A0;border-radius:14px;}
+  .warning-box .w-title{font-size:15px;font-weight:600;color:#C44C20;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .warning-box .w-title .icon{font-size:20px;}
+  .warning-box p{font-size:14px;color:#8C5A3A;line-height:1.9;margin-bottom:8px;}
+  .warning-box p:last-child{margin-bottom:0;}
+
+  .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:70px 0 0;color:var(--ginger);}
+  .divider svg{width:14px;height:14px;opacity:.7;}
+
+  .ending{margin:70px 0 20px;padding:60px 36px;text-align:center;background:linear-gradient(160deg,#F3EBDB 0%,#FAF6EF 100%);border:1px solid var(--line);border-radius:20px;}
+  .ending .end-icon{width:52px;height:52px;margin:0 auto 26px;}
+  .ending p{font-size:clamp(16px,3vw,19px);letter-spacing:.06em;line-height:2.1;margin-bottom:16px;}
+  .ending .sign{font-size:13px;letter-spacing:.4em;color:var(--ginger-deep);margin-top:30px;}
+  .ending .sign::before,.ending .sign::after{content:"";display:inline-block;width:26px;height:1px;background:var(--ginger);vertical-align:middle;margin:0 12px;opacity:.55;}
+
+  footer{padding:50px 0 70px;text-align:center;font-size:12px;color:#A7947E;letter-spacing:.28em;line-height:2.2;}
+  footer .foot-brand{color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .cover{min-height:88vh;}
+    section{padding:64px 0 10px;}
+    .quote{padding:26px 20px;}
+    .ending{padding:44px 22px;}
+    .step{padding:18px 16px;gap:14px;}
+  }
+</style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="鲜姜的原生种植、风味与炖煮场景。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/%E4%BA%94%E6%8C%87%E5%B2%A9%E9%B2%9C%E5%A7%9C%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"五指岩鲜姜","description":"鲜姜的原生种植、风味与炖煮场景。","url":"https://jiyangjia-ai.netlify.app/docs/%E4%BA%94%E6%8C%87%E5%B2%A9%E9%B2%9C%E5%A7%9C%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- ===== 封面 ===== -->
+<header class="cover">
+  <div class="wrap">
+    <div class="brand">爱野 · 天然食材</div>
+    <h1>千年不改一味</h1>
+    <p class="sub">浙江永康 <span>·</span> 五指岩鲜姜</p>
+    <svg style="margin-top:56px;width:min(280px,70%);opacity:.9;" viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 山地 -->
+      <path d="M0 140 L40 80 L80 100 L120 50 L160 90 L200 60 L240 110 L280 80 L280 160 Z" fill="#C4B8A0" opacity=".5"/>
+      <path d="M0 150 L40 110 L80 125 L120 70 L160 105 L200 80 L240 125 L280 95 L280 160 Z" fill="#D8C8B0" opacity=".4"/>
+      <!-- 姜块 -->
+      <path d="M120 70 Q115 45 130 38 Q140 33 150 38 Q160 42 158 60 Q155 70 145 72 Q135 78 125 75 Z" fill="#E8C88A" stroke="#C47A38" stroke-width="1.5"/>
+      <path d="M130 42 Q120 28 135 22 Q142 18 150 22" fill="none" stroke="#C47A38" stroke-width="1.2" opacity=".5"/>
+      <path d="M148 40 Q150 22 158 16" fill="none" stroke="#C47A38" stroke-width=".9" opacity=".4"/>
+      <!-- 标签 -->
+      <rect x="115" y="82" width="50" height="18" rx="5" fill="#F3EBDB" stroke="#C4B090" stroke-width=".8"/>
+      <text x="140" y="95" text-anchor="middle" font-size="9" fill="#8C4A20" font-family="serif" letter-spacing="1.5">五指岩姜</text>
+      <!-- 五座山峰 -->
+      <path d="M80 100 L88 50 L96 100" fill="none" stroke="#8C7650" stroke-width="1" opacity=".3"/>
+      <path d="M92 100 L102 45 L112 100" fill="none" stroke="#8C7650" stroke-width="1" opacity=".3"/>
+      <path d="M104 100 L114 40 L124 100" fill="none" stroke="#8C7650" stroke-width="1" opacity=".3"/>
+      <path d="M116 100 L126 44 L136 100" fill="none" stroke="#8C7650" stroke-width="1" opacity=".3"/>
+      <path d="M128 100 L138 48 L148 100" fill="none" stroke="#8C7650" stroke-width="1" opacity=".3"/>
+    </svg>
+    <div class="meta">国家农产品地理标志 ｜ 药姜之王 ｜ 宋代即有记载</div>
+    <div class="scroll-hint">往下看，听一个故事<span class="arr">▼</span></div>
+  </div>
+</header>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序 章</div>
+    <h2>五指岩</h2>
+    <p class="lead">浙江，永康市唐先镇，有一座山——五指岩。</p>
+    <p>五座山峰拔地而起，远看像五根手指伸向天际。相传吕洞宾在此修炼，折五根手指化为山峰镇守一方。宋代文献里，已经有这座山的姜了。</p>
+    <p>这山海拔近千米，常年云雾缭绕，方圆五十里没有工厂。山上的土壤是特有的砾质壤土，透水性极好——下雨不积水，天旱能锁湿。风化的花岗岩砂粒混杂在腐殖土里，富含钾、钙、锰等矿物质。</p>
+    <p>就是这块地，长出了中国生姜里最不一般的品种——<span style="color:var(--ginger-deep);">五指岩鲜姜</span>。当地老人叫它"仙草"、叫它"还魂草"、叫它"药姜之王"。</p>
+    <p>2017年，国家正式给它盖了章——农产品地理标志。</p>
+  </div>
+  <div class="wrap"><div class="divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+  </div></div>
+</section>
+
+<!-- ===== 壹 · 种法 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>千年来，没变过</h2>
+    <p class="dropcap">五指岩的姜农，祖祖辈辈只用一种方式种姜——自家留种，代代相传。</p>
+    <p>每年清明前后，选壮实饱满、皮色土黄有光泽的姜块做种，先在太阳底下晾一两天，再入催芽床，保持23-25℃，等上三十多天。等到每个姜种上冒出白玉般的壮芽——长一厘米左右、顶部钝圆、有光——才开始下地。</p>
+    <p>下地之前，先给土地施底肥：腐熟的农家肥，每亩三千到五千斤。不用化肥——老一辈试过，化肥容易烂根，五指岩这片土就吃农家肥。</p>
+    <p>整个生长季，不喷农药。虫子来了？山里自有天敌。地里有草？姜农弯腰一根一根拔。就这样，从宋代一直到现在，姜的味道一丝一毫没变过。</p>
+    <div class="quote">
+      「种了四十年姜，种子没出过这个村。外头的姜种，在这里活不好。这里的姜种，在外头也长不出这个味道。」
+      <span class="src">—— 五指岩老姜农</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 贰 · 品相 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>一块好姜，长什么样</h2>
+    <p class="lead">普通生姜纤维粗糙、汁少渣多，嚼半天吐出来还是一口渣。五指岩鲜姜不一样。</p>
+    <p>它的姜块是扇形——姜球丰满，排球紧凑，多为单层排列，单株约半斤到一斤。嫩姜表皮淡黄白，带一点鹅黄，鳞片（嫩芽）是浅紫红色的，粗壮有力。</p>
+    <p>最妙的是掰开的那一下——姜块断开处，会冒出一缕细细的"白雾"。那不是水汽，是挥发油，是姜辣素和姜烯的浓缩精华。凑近一闻，姜香浓郁但不刺鼻，不像市场上那种辣得冲天的"工业姜"。</p>
+    <p>年轻的时候吃它——嫩姜纤维素少，辣味淡，汁水充足，新鲜的几乎可以当水果嚼。放了一冬之后——辣味转浓，姜辣素升高，更适合入药、泡茶、炖汤。</p>
+  </div>
+</section>
+
+<!-- ===== 叁 · 营养成分 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">叁</div>
+    <h2>一块姜里，到底藏了多少东西</h2>
+    <p class="lead">五指岩鲜姜不是普通的调味姜。以下数据来自国家地理标志产品检测报告和公开科研数据：</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <div class="big">7<em>倍+</em></div>
+        <h3>锰元素</h3>
+        <p>锰含量高达408.5 mg/kg，是普通生姜的7倍以上。锰是人体必需的微量元素，参与骨骼发育、血糖调节和抗氧化酶的合成——缺了它，骨头不硬、代谢变慢。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <div class="big">5<em>倍+</em></div>
+        <h3>硒元素</h3>
+        <p>硒含量达到0.047 mg/kg，是普通生姜5倍以上。国标规定含硒≥0.01 mg/kg才算"富硒"——五指岩姜大幅超标。硒是谷胱甘肽过氧化物酶的核心成分，抗衰老、护肝、增强免疫。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <div class="big">3700<em>mg</em></div>
+        <h3>钾</h3>
+        <p>每100克含钾3390-3700 mg，普通生姜仅约415 mg，差了将近9倍。钾调节体液和电解质平衡，辅助控血压，现代人普遍钾摄入不足。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <div class="big">118<em>mg</em></div>
+        <h3>钙</h3>
+        <p>每100克含钙108-118 mg。普通生姜钙含量极低，五指岩姜来自钙质丰富的土壤，天然富钙。搭配食用促进自身骨质健康。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">伍</span>
+        <div class="big">0.64<em>%</em></div>
+        <h3>氨基酸</h3>
+        <p>氨基酸总量0.58%-0.64%，蛋白质含量0.68%-0.75%。含18种游离氨基酸，包括人体必需的8种，构成姜的"鲜"和"甜"味基础。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">陆</span>
+        <div class="big">姜辣素</div>
+        <h3>核心活性物</h3>
+        <p>鲜姜中姜辣素（Gingerol）含量约0.25-3.0mg/g干重，是生姜抗炎、抗氧化、促消化的核心物质。《Journal of Agricultural and Food Chemistry》研究证实，其抑制COX酶活性的能力接近低剂量非甾体抗炎药，却几乎无副作用。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">柒</span>
+        <div class="big">挥发油</div>
+        <h3>α-姜烯等</h3>
+        <p>含α-姜烯、β-倍半水芹烯、桉油精等挥发性芳香成分——这就是掰开姜块时那缕"白雾"的由来。促进唾液和胃液分泌，闻到就开胃。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">捌</span>
+        <div class="big">B<em>族+</em>C</div>
+        <h3>维生素群</h3>
+        <p>含维生素C（约4-5 mg/100g）、维生素B1/B2/B6等B族维生素，以及铁（0.7mg）、锌（0.34mg）、镁（43mg）等多种微量矿物质，协同发挥健康作用。</p>
+      </div>
+    </div>
+    <div class="quote">
+      「永康五指岩生姜：水分85%-93%，脂肪含量0.75%-0.82%，氨基酸总量0.58%-0.64%，钾3390-3700 mg/100g，钙108-118 mg/100g，硒0.047 mg/kg（国标富硒线5倍），锰408.5 mg/kg（普通生姜7倍+）。」
+      <span class="src">—— 国家农产品地理标志检测数据</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 肆 · 健康功效 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>它到底对人好在哪</h2>
+    <p class="dropcap">生姜是药食同源的典范。五指岩姜因为矿物质和活性成分远高于普通姜，功效更上一层。以下是现代科学验证的八大好处：</p>
+    <div class="steps">
+      <div class="step">
+        <div class="tag" style="background:var(--leaf);">消</div>
+        <div>
+          <h3>开胃促消化</h3>
+          <p>姜辣素刺激口腔和胃黏膜，促进唾液、胃液和消化酶分泌，加速胃排空。餐前嚼一小片鲜姜，食欲马上打开；吃多了胀气，喝杯姜茶，肠胃一会儿就顺了。日本一项针对功能性消化不良的研究证实，餐前服用1克姜粉，两周后腹胀、嗳气等症状显著改善。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--ginger);">呕</div>
+        <div>
+          <h3>止呕第一天然药</h3>
+          <p>姜烯酚可作用于迷走神经和胃肠道神经末梢，有效缓解恶心呕吐。美国妇产科医师学会在其指南中推荐：孕妇每日可安全摄入不超过1克干燥生姜（约4-5克鲜姜），帮助减轻早孕反应。晕车晕船、化疗后恶心——含一片鲜姜，比晕车药更安全。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:var(--ginger-deep);">炎</div>
+        <div>
+          <h3>天然抗炎</h3>
+          <p>姜辣素（6-Gingerol）抑制环氧化酶（COX）活性，阻断致炎物质生成。《Journal of Agricultural and Food Chemistry》证实其抗炎效果接近低剂量非甾体抗炎药，但几乎无胃肠道副作用。对关节炎、肌肉酸痛、运动后炎症均有辅助缓解作用。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#8C4A20;">暖</div>
+        <div>
+          <h3>驱寒暖身、通气血</h3>
+          <p>姜辣素扩张外周血管，加速血液循环。手脚冰凉的人喝一杯姜茶，十分钟后指尖就暖了。女性经期寒痛——红糖姜汤是千年验证的良方。五指岩姜的姜辣素和钾含量均远高于普通姜，升温效果更快更强。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#6B3410;">糖</div>
+        <div>
+          <h3>辅助调节血糖</h3>
+          <p>锰元素（五指岩姜含量是普通姜7倍）是葡萄糖代谢的关键辅因子。《Journal of Medicinal Food》2020年系统综述指出，连续服用生姜提取物8周以上，可显著降低空腹血糖和糖化血红蛋白水平，对2型糖尿病患者具有辅助改善作用。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#4A2A10;">菌</div>
+        <div>
+          <h3>抗菌抑病毒</h3>
+          <p>生姜挥发油对金黄色葡萄球菌、大肠杆菌等常见致病菌有明显抑制作用。喉咙不舒服时含姜片或用姜汤漱口，能缓解肿痛。风寒感冒初期——姜糖水发汗，是老百姓几千年的第一道防线。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#7A5A3A;">氧</div>
+        <div>
+          <h3>抗氧化抗衰老</h3>
+          <p>姜辣素+姜烯酚+多酚类物质构成三重抗氧化防线，清除自由基、减缓细胞氧化损伤。尤其是五指岩姜的硒含量达到普通姜5倍——硒是谷胱甘肽过氧化物酶的核心，是人体最重要的抗氧化酶之一。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="tag" style="background:#B88850;">吸</div>
+        <div>
+          <h3>提升矿物质吸收</h3>
+          <p>姜中的有机酸和姜辣素能促进食物中铁、锌、钙的溶解，提高吸收率。炖鸡、炖排骨时放几片姜——不只是去腥，更是让肉里的钙和铁更容易被身体利用。五指岩姜钙含量本身就高达118mg/100g，一举两得。</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      「生姜（Zingiber officinale）是少数几个被现代医学系统验证了传统用法的药食同源材料。其抗炎、止呕、促消化三项功效已有大量随机对照试验支持。」
+      <span class="src">—— 美国国立卫生研究院（NIH）PubMed 文献综述</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 伍 · 澄清误区 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>一个必须说清的事</h2>
+    <p class="lead">市面上有人在宣传"生姜含姜黄素"，这是错的——而且错得很离谱。爱野不做虚假宣传。</p>
+    <div class="warning-box">
+      <div class="w-title"><span class="icon">⚠️</span> 生姜 ≠ 姜黄</div>
+      <p>生姜（Zingiber officinale）和姜黄（Curcuma longa）虽然同属姜科，但是两个不同属的植物。姜黄素（curcumin）只存在于姜黄中，生姜里一丁点都没有。</p>
+      <p>生姜的活性成分是<strong>姜辣素（gingerol）</strong>和<strong>姜烯酚（shogaol）</strong>——这才是生姜抗炎、抗氧化、促消化的真正来源。</p>
+      <p style="color:#C44C20;">把"姜黄素"安在生姜头上，属于虚假宣传，违反《中华人民共和国广告法》第二十八条。爱野的每一条数据，都有出处，都能溯源。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 陆 · 爱野坚持 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">陆</div>
+    <h2>爱野为什么选它</h2>
+    <p class="dropcap">我们做天然食材，核心就四件事：原生种子、自然生长、有机肥、零农残。五指岩鲜姜四项全中。</p>
+    <div class="data-grid">
+      <div class="d-card">
+        <span class="num">壹</span>
+        <h3>原生种子</h3>
+        <p>千年来姜农自家留种、代代相传，种子从未出过五指岩山周边十几个村子。基因纯净，千年未改。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">贰</span>
+        <h3>自然生长</h3>
+        <p>高海拔山地露天种植，靠云雾雨水灌溉，不用大棚催熟，不用膨大剂。清明下种，霜降收获——跟着太阳走。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">叁</span>
+        <h3>有机肥</h3>
+        <p>每亩施腐熟农家肥3000-5000斤。用化肥？老一辈早就试过了——烂根。这片土只认农家肥。</p>
+      </div>
+      <div class="d-card">
+        <span class="num">肆</span>
+        <h3>零农残</h3>
+        <p>整个生长周期不喷农药，山里天敌治虫。方圆五十里内无工厂无工业污染，空气和水都干净。国家地理标志检测年年过关。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 尾声 ===== -->
+<section style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="ending">
+      <svg class="end-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4 Q10 2 8 4 Q4 6 6 10 Q7 14 12 18 Q17 14 18 10 Q20 6 16 4 Q14 2 12 4 Z" fill="#C47A38" opacity=".85"/>
+        <circle cx="12" cy="8" r="1.5" fill="#FAF6EF" opacity=".7"/>
+        <path d="M10 12 Q12 15 14 12" fill="none" stroke="#FAF6EF" stroke-width=".6" opacity=".5"/>
+        <path d="M8 16 Q10 18 12 16" fill="none" stroke="#FAF6EF" stroke-width=".5" opacity=".4"/>
+        <path d="M12 16 Q14 18 16 16" fill="none" stroke="#FAF6EF" stroke-width=".5" opacity=".4"/>
+      </svg>
+      <p>姜是辣的，但好姜辣得暖。<br>不是那种呛到流泪的工业辣，是顺着喉咙往下暖、从胃里热到指尖的通透。</p>
+      <p>这块姜从宋代长到今天。<br>现在，它从五指岩山脚出发——<br>要到你厨房里了。</p>
+      <div class="sign">爱 野</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">爱野有限公司 · 天然食材</div>
+  <div>原生 · 天然 · 真实 · 可溯源</div>
+</footer>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/fresh-ginger/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>

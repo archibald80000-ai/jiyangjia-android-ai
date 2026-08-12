@@ -43,6 +43,9 @@ class DoubaoASRConfig:
     uid: str
     chunk_bytes: int
     timeout_seconds: float
+    boosting_table_id: str = ""
+    boosting_table_name: str = ""
+    context_json: str = ""
 
     @classmethod
     def from_settings(cls, settings: Settings) -> "DoubaoASRConfig":
@@ -71,6 +74,9 @@ class DoubaoASRConfig:
             uid=settings.doubao_asr_uid,
             chunk_bytes=max(3200, settings.doubao_asr_chunk_bytes),
             timeout_seconds=settings.doubao_asr_timeout_seconds,
+            boosting_table_id=settings.doubao_asr_boosting_table_id,
+            boosting_table_name=settings.doubao_asr_boosting_table_name,
+            context_json=settings.doubao_asr_context_json,
         )
 
 
@@ -99,12 +105,7 @@ class DoubaoASRProvider:
                 "bits": 16,
                 "channel": 1,
             },
-            "request": {
-                "model_name": "bigmodel",
-                "enable_itn": True,
-                "enable_punc": True,
-                "enable_ddc": True,
-            },
+            "request": build_asr_request(self.config),
         }
         headers = self._headers(request_id)
         try:
@@ -140,7 +141,6 @@ class DoubaoASRProvider:
         else:
             raise ProviderConfigurationError(["DOUBAO_ASR_AUTH"])
         return headers
-
     async def _run_websocket(self, payload: dict[str, Any], audio: bytes, headers: dict[str, str]) -> dict[str, Any]:
         connect = self._connect or _websocket_connect
         connection = await connect(self.config.endpoint, headers=headers, max_size=100_000_000)
@@ -166,6 +166,28 @@ class DoubaoASRProvider:
                     latest = parsed["payload"]
                 if parsed.get("is_last_package") or _extract_text(latest):
                     return latest
+
+
+def build_asr_request(config: DoubaoASRConfig) -> dict[str, object]:
+    request: dict[str, object] = {
+        "model_name": "bigmodel",
+        "enable_itn": True,
+        "enable_punc": True,
+        "enable_ddc": True,
+    }
+    if config.boosting_table_id:
+        request["corpus"] = {"boosting_table_id": config.boosting_table_id}
+    elif config.boosting_table_name:
+        request["corpus"] = {"boosting_table_name": config.boosting_table_name}
+    if config.context_json:
+        try:
+            context = json.loads(config.context_json)
+        except json.JSONDecodeError as exc:
+            raise ProviderConfigurationError(["DOUBAO_ASR_CONTEXT_JSON"]) from exc
+        if not isinstance(context, dict):
+            raise ProviderConfigurationError(["DOUBAO_ASR_CONTEXT_JSON"])
+        request["context"] = json.dumps(context, ensure_ascii=False, separators=(",", ":"))
+    return request
 
 
 async def _websocket_connect(endpoint: str, headers: dict[str, str], max_size: int):

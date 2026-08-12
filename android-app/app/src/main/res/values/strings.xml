@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">积养家 AI 客服</string>
+    <string name="app_name">积养家AI数字人</string>
     <string name="consult_start">开始咨询</string>
     <string name="record_start">开始录音</string>
     <string name="record_stop_send">停止并发送</string>

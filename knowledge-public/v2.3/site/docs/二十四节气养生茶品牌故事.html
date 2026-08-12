@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顺时而饮 · 二十四节气养生茶 | 积养家</title>
+<style>
+  :root{
+    --ink:#1F2A20;
+    --ink-soft:#4A5C4E;
+    --paper:#FAF8F3;
+    --paper-2:#F0EBE0;
+    --green:#3A6B35;
+    --green-deep:#27532A;
+    --green-light:#5B8C50;
+    --gold:#B8860B;
+    --gold-light:#D4A745;
+    --amber:#C97A1F;
+    --brown:#6B4226;
+    --brown-soft:#8B6B4A;
+    --rust:#9B4E2A;
+    --red:#B83A2A;
+    --line:rgba(31,42,32,.1);
+    --card:#F5F2EA;
+    --card-warm:#F2EDE2;
+    --card-spring:#EBF0E6;
+    --card-summer:#FFF5EC;
+    --card-autumn:#F5EBE0;
+    --card-winter:#EAE8EE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bg-tex{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(58,107,53,.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(184,134,11,.04) 0%, transparent 50%);
+  }
+  .wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 封面 ===== */
+  .cover{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 28px 40px;}
+  .cover .brand{font-size:13px;letter-spacing:.42em;color:var(--green);margin-bottom:44px;display:flex;align-items:center;gap:14px;}
+  .cover .brand::before,.cover .brand::after{content:"";width:34px;height:1px;background:var(--green);opacity:.5;}
+  .cover .tagline{font-size:12px;letter-spacing:.4em;color:var(--gold);margin-bottom:18px;}
+  .cover h1{font-size:clamp(34px,6.5vw,52px);font-weight:700;letter-spacing:.12em;line-height:1.35;color:var(--green-deep);}
+  .cover h1 em{font-style:normal;color:var(--gold);}
+  .cover .sub{margin-top:22px;font-size:clamp(15px,2.8vw,18px);color:var(--ink-soft);letter-spacing:.18em;}
+  .cover .sub span{color:var(--green);font-weight:600;}
+  .cover .meta{margin-top:56px;font-size:12px;letter-spacing:.3em;color:#8C9C8E;}
+
+  .cover-svg{margin-top:50px;width:min(260px,60%);opacity:.9;}
+  .scroll-hint{margin-top:38px;font-size:12px;letter-spacing:.35em;color:#8C9C8E;}
+  .scroll-hint .arr{display:block;margin-top:6px;animation:bob 2.2s ease-in-out infinite;color:var(--green);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== 正文章节 ===== */
+  section{padding:90px 0 30px;}
+  .kicker{font-size:12px;letter-spacing:.4em;color:var(--green);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--green);}
+  h2{font-size:clamp(24px,4.5vw,31px);font-weight:600;letter-spacing:.08em;margin-bottom:30px;line-height:1.5;}
+  h3{font-size:clamp(18px,3vw,21px);font-weight:600;color:var(--green-deep);margin:42px 0 18px;}
+  p{margin-bottom:14px;text-align:justify;}
+  .dropcap::first-letter{float:left;font-size:3.4em;line-height:.85;padding-right:10px;padding-top:4px;color:var(--green);}
+
+  /* ===== 引用框 ===== */
+  .quote{
+    margin:34px 0;padding:22px 24px;
+    border-left:3px solid var(--green-light);
+    background:var(--card-warm);
+    font-size:clamp(15px,2.5vw,17px);
+    color:var(--ink-soft);
+    line-height:1.85;
+    border-radius:0 6px 6px 0;
+  }
+  .quote .src{display:block;margin-top:10px;font-size:13px;color:var(--brown-soft);font-style:italic;}
+
+  /* ===== 当前节气高亮 ===== */
+  .now-box{
+    margin:40px 0;padding:36px 30px;
+    background:linear-gradient(135deg,var(--card-summer),var(--card-warm));
+    border:2px solid var(--amber);
+    border-radius:12px;
+    text-align:center;
+  }
+  .now-box .badge{
+    display:inline-block;padding:4px 16px;
+    background:var(--red);color:#fff;
+    font-size:12px;letter-spacing:.2em;
+    border-radius:20px;margin-bottom:18px;
+  }
+  .now-box h3{margin:0 0 8px;color:var(--red);font-size:clamp(22px,3.5vw,26px);}
+  .now-box .formula{font-size:clamp(17px,2.8vw,20px);color:var(--amber);font-weight:600;margin:12px 0;letter-spacing:.06em;}
+  .now-box .desc{font-size:15px;color:var(--ink-soft);line-height:1.8;max-width:520px;margin:14px auto 0;}
+
+  /* ===== 四季分组标题 ===== */
+  .season-bar{
+    display:flex;align-items:center;gap:18px;
+    margin:60px 0 30px;padding:20px 0;
+    border-top:2px solid var(--line);
+    border-bottom:2px solid var(--line);
+  }
+  .season-bar .icon{font-size:36px;line-height:1;}
+  .season-bar .label{font-size:clamp(20px,3.5vw,26px);font-weight:700;letter-spacing:.12em;}
+  .season-bar .desc{font-size:13px;color:var(--ink-soft);letter-spacing:.1em;margin-left:auto;text-align:right;line-height:1.6;}
+
+  /* ===== 节气卡片 ===== */
+  .term-card{
+    margin:0 0 22px;padding:24px 26px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .term-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(31,42,32,.08);}
+  .term-card .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .term-card .name{font-size:clamp(20px,3vw,24px);font-weight:700;color:var(--green-deep);letter-spacing:.06em;}
+  .term-card .date{font-size:13px;color:var(--brown-soft);letter-spacing:.1em;}
+  .term-card .climate{font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.7;}
+  .term-card .formula-box{
+    padding:14px 16px;background:rgba(255,255,255,.6);
+    border-radius:6px;margin-bottom:12px;
+    border-left:3px solid var(--gold-light);
+  }
+  .term-card .formula-box .fl-label{font-size:12px;color:var(--gold);letter-spacing:.2em;margin-bottom:4px;}
+  .term-card .formula-box .fl-text{font-size:16px;color:var(--ink);font-weight:600;line-height:1.7;}
+  .term-card .effect{font-size:14px;color:var(--ink-soft);line-height:1.8;}
+  .term-card .effect strong{color:var(--green);font-weight:600;}
+  .term-card .tag{
+    display:inline-block;padding:2px 10px;
+    font-size:11px;letter-spacing:.1em;
+    border-radius:4px;margin-top:10px;
+    background:var(--card-spring);color:var(--green);
+  }
+  .term-card.summer .tag{background:#FFE8D0;color:var(--amber);}
+  .term-card.autumn .tag{background:var(--card-autumn);color:var(--rust);}
+  .term-card.winter .tag{background:var(--card-winter);color:#5A5A8A;}
+
+  .term-card.spring{border-top:3px solid var(--green-light);}
+  .term-card.summer{border-top:3px solid var(--amber);}
+  .term-card.autumn{border-top:3px solid var(--rust);}
+  .term-card.winter{border-top:3px solid #6A6A9A;}
+
+  /* ===== 销售话术框 ===== */
+  .pitch{
+    margin:50px 0;padding:32px 28px;
+    background:linear-gradient(135deg,var(--card-spring),var(--paper-2));
+    border-radius:10px;
+    border:1px solid var(--line);
+  }
+  .pitch h3{margin-top:0;}
+  .pitch .price-box{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+    margin:20px 0;padding:20px;
+    background:rgba(255,255,255,.7);
+    border-radius:8px;
+  }
+  .pitch .price-big{font-size:clamp(28px,5vw,38px);font-weight:800;color:var(--red);letter-spacing:.02em;}
+  .pitch .price-label{font-size:14px;color:var(--ink-soft);}
+  .pitch .cta{
+    display:inline-block;margin-top:16px;
+    padding:12px 32px;
+    background:var(--green-deep);color:#fff;
+    font-size:15px;letter-spacing:.15em;
+    border-radius:30px;text-decoration:none;
+    transition:background .2s;
+  }
+  .pitch .cta:hover{background:var(--green);}
+
+  /* ===== 理念框 ===== */
+  .concept{
+    margin:40px 0;padding:28px 26px;
+    background:var(--card-warm);
+    border-radius:8px;
+    border-left:4px solid var(--green);
+  }
+  .concept h4{font-size:16px;color:var(--green-deep);margin-bottom:10px;letter-spacing:.08em;}
+
+  /* ===== 数据卡网格 ===== */
+  .data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:30px 0;}
+  .data-card{
+    padding:20px 18px;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;
+    text-align:center;
+  }
+  .data-card .val{font-size:clamp(22px,4vw,28px);font-weight:800;color:var(--green);line-height:1.2;}
+  .data-card .unit{font-size:13px;color:var(--brown-soft);}
+  .data-card .lab{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.5;}
+
+  /* ===== 禁忌提醒 ===== */
+  .warn{
+    margin:30px 0;padding:18px 22px;
+    background:#FFF5F0;border:1px solid rgba(184,58,42,.2);
+    border-radius:6px;font-size:14px;color:var(--red);line-height:1.8;
+  }
+  .warn strong{color:var(--red);}
+
+  /* ===== 页脚 ===== */
+  footer{padding:80px 28px 60px;text-align:center;}
+  footer .seal{font-size:13px;letter-spacing:.35em;color:var(--green);margin-bottom:18px;}
+  footer .copy{font-size:12px;color:#9C8B72;letter-spacing:.2em;}
+  footer .line{width:60px;height:1px;background:var(--green);opacity:.3;margin:30px auto;}
+
+  /* ===== 响应式 ===== */
+  @media(max-width:600px){
+    .season-bar{flex-direction:column;align-items:flex-start;gap:8px;}
+    .season-bar .desc{margin-left:0;text-align:left;}
+    .data-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+<!-- JIYANGJIA-INTEGRATION-HEAD-START -->
+<meta name="description" content="跟着节气饮茶的门店内容资料。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jiyangjia-ai.netlify.app/docs/%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html">
+<link rel="stylesheet" href="/assets/legacy-doc.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"二十四节气茶品牌故事","description":"跟着节气饮茶的门店内容资料。","url":"https://jiyangjia-ai.netlify.app/docs/%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%8A%82%E6%B0%94%E5%85%BB%E7%94%9F%E8%8C%B6%E5%93%81%E7%89%8C%E6%95%85%E4%BA%8B.html","publisher":{"@type":"Organization","name":"积养家"},"inLanguage":"zh-CN"}</script>
+<script src="/assets/legacy-doc.js" defer></script>
+<!-- JIYANGJIA-INTEGRATION-HEAD-END -->
+</head>
+<body>
+<div class="bg-tex"></div>
+
+<!-- ===== 封面 ===== -->
+<div class="wrap">
+<div class="cover">
+  <div class="brand">积养家 · 顺时养生</div>
+  <div class="tagline">春生 · 夏长 · 秋收 · 冬藏</div>
+  <h1>顺时而饮<em>·</em>二十四节气养生茶</h1>
+  <div class="sub">每个节气一杯茶 · <span>跟着天地节奏养身体</span></div>
+  <svg class="cover-svg" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 茶壶 -->
+    <ellipse cx="130" cy="130" rx="55" ry="35" fill="none" stroke="#3A6B35" stroke-width="2"/>
+    <path d="M75 125 Q60 110 55 125 Q50 140 65 140" fill="none" stroke="#3A6B35" stroke-width="2"/>
+    <path d="M185 125 Q200 115 205 130 Q200 145 185 138" fill="none" stroke="#3A6B35" stroke-width="2"/>
+    <ellipse cx="130" cy="100" rx="20" ry="6" fill="none" stroke="#3A6B35" stroke-width="2"/>
+    <path d="M120 100 Q130 90 140 100" fill="none" stroke="#3A6B35" stroke-width="2"/>
+    <!-- 蒸汽 -->
+    <path d="M115 88 Q110 70 120 55 Q115 40 125 25" fill="none" stroke="#B8860B" stroke-width="1.5" opacity=".5"/>
+    <path d="M130 88 Q135 68 125 50 Q130 35 120 20" fill="none" stroke="#B8860B" stroke-width="1.5" opacity=".4"/>
+    <path d="M145 88 Q140 72 150 58" fill="none" stroke="#B8860B" stroke-width="1.5" opacity=".4"/>
+    <!-- 茶杯 -->
+    <path d="M105 165 L108 185 L132 185 L135 165 Z" fill="none" stroke="#3A6B35" stroke-width="1.5"/>
+    <path d="M155 165 L158 185 L182 185 L185 165 Z" fill="none" stroke="#3A6B35" stroke-width="1.5"/>
+    <!-- 节气标记 -->
+    <circle cx="45" cy="50" r="12" fill="none" stroke="#5B8C50" stroke-width="1" opacity=".4"/>
+    <circle cx="215" cy="50" r="12" fill="none" stroke="#C97A1F" stroke-width="1" opacity=".4"/>
+    <circle cx="45" cy="180" r="12" fill="none" stroke="#9B4E2A" stroke-width="1" opacity=".4"/>
+    <circle cx="215" cy="180" r="12" fill="none" stroke="#6A6A9A" stroke-width="1" opacity=".4"/>
+    <text x="45" y="54" text-anchor="middle" font-size="9" fill="#5B8C50" opacity=".6">春</text>
+    <text x="215" y="54" text-anchor="middle" font-size="9" fill="#C97A1F" opacity=".6">夏</text>
+    <text x="45" y="184" text-anchor="middle" font-size="9" fill="#9B4E2A" opacity=".6">秋</text>
+    <text x="215" y="184" text-anchor="middle" font-size="9" fill="#6A6A9A" opacity=".6">冬</text>
+  </svg>
+  <div class="scroll-hint">向下查看 24 杯时令茶<span class="arr">↓</span></div>
+</div>
+</div>
+
+<!-- ===== 序章 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">序</div>
+    <h2>一杯茶，喝出天地的节奏</h2>
+    <p class="dropcap">中国人讲"天人合一"，不是一句空话。两千多年前，《黄帝内经》就写明白了：春养肝、夏养心、秋养肺、冬养肾。天地之气走一圈，人体的五脏六腑也跟着走一圈。</p>
+    <p>问题是，现代人有几个跟着节气过的？三伏天猛灌冰镇可乐，冬至那天熬夜刷手机，春天该升发阳气的时候窝在空调房——身体跟不上天地的节奏，毛病自然就来了。</p>
+    <p>积养家做的这件事很简单：<strong>二十四个节气，二十四杯茶，杯杯跟着天时走。</strong>不是随便泡几片叶子，是每个节气配不同的药食同源食材，该疏肝的时候疏肝，该祛湿的时候祛湿，该润燥的时候润燥，该温补的时候温补。</p>
+    <div class="quote">
+      「正气存内，邪不可干。顺应四时，谓之根本。」
+      <span class="src">——《黄帝内经·素问》</span>
+    </div>
+    <p>说白了就是一句话：<strong>天冷了加衣，天变了换茶。</strong>你的身体不会说话，但它知道什么时候该喝什么。</p>
+  </div>
+</section>
+
+<!-- ===== 当前节气高亮 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">当下</div>
+    <h2>三伏天正当时</h2>
+    <p>现在外面三伏天，一年里最闷最热最湿的时候。很多人觉得夏天就该喝冰的——错。三伏天恰恰是"冬病夏治"的黄金期，这时候一杯温热的养生茶，比十瓶冰饮料都管用。</p>
+    <div class="now-box">
+      <div class="badge">当前节气 · 大暑至立秋</div>
+      <h3>三伏养心茶</h3>
+      <div class="formula">莲子 · 西洋参 · 陈皮</div>
+      <p class="desc">
+        <strong>西洋参</strong>补气养阴，三伏天出汗多最耗气，它补回来；<strong>莲子</strong>清心火安心神，夏天心烦失眠就靠它；<strong>陈皮</strong>理气健脾祛湿，把闷在三伏里的湿气排出去。三味合一，不寒不燥，补气不上火。
+      </p>
+      <p class="desc" style="margin-top:12px;font-size:13px;color:var(--brown-soft);">
+        用法：西洋参3-5g、莲子10-15g、陈皮3-5g，清水煮15-20分钟，代茶温饮，一日1-2杯。
+      </p>
+    </div>
+    <p style="margin-top:20px;">这杯茶现在到店里就能喝到。<strong>三伏天一共就四十天，错过了就得等明年。</strong>养生这件事，时机比什么都重要。</p>
+  </div>
+</section>
+
+<!-- ===== 为什么要按节气喝茶 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">壹</div>
+    <h2>为什么不能一年到头喝一种茶</h2>
+    <p>有人问：我天天喝枸杞菊花不行吗？</p>
+    <p>行，但不够。就像你冬天穿棉袄、夏天穿短袖——不是棉袄不好，是不合时宜。茶也一样。</p>
+    <p>中医讲"六气"——风、寒、暑、湿、燥、火，每个节气主导的邪气不同。春天多风邪，容易过敏、肝气郁结；夏天多暑湿，容易疲倦、食欲差；秋天多燥邪，容易干咳、皮肤干；冬天多寒邪，容易手脚冰凉、腰膝酸软。</p>
+    <p>一年四季只喝一种茶，等于一年四季只穿一件衣服。</p>
+    <div class="concept">
+      <h4>积养家节气茶的三条规矩</h4>
+      <p style="margin-bottom:8px;"><strong>一、顺时：</strong>跟着节气走，什么节气配什么茶，不提前不拖后。</p>
+      <p style="margin-bottom:8px;"><strong>二、药食同源：</strong>只用国家卫健委公布的药食同源食材，安全、日常、无负担。</p>
+      <p><strong>三、不搞噱头：</strong>配方有中医理论支撑，不是什么贵放什么，是什么对放什么。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 春季 ===== -->
+<section>
+  <div class="wrap">
+    <div class="season-bar">
+      <span class="icon">🌱</span>
+      <span class="label" style="color:var(--green-deep);">春 · 六节气</span>
+      <span class="desc">春生 · 疏肝理气<br>助阳升发 · 防风御寒</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">立春</span>
+        <span class="date">2月3-5日</span>
+      </div>
+      <p class="climate">阳气初生，万物复苏。肝气开始升发，易肝郁气滞、情绪波动。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">玫瑰花5朵 · 陈皮3g · 红枣2颗</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>疏肝理气，温养脾胃，缓解春困。<strong>玫瑰</strong>行气解郁，<strong>陈皮</strong>理气化痰，<strong>红枣</strong>甘温养血——春天第一杯，把憋了一冬的气理顺。</p>
+      <span class="tag">适宜：情绪低落、手脚冰凉、春困乏力者</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">雨水</span>
+        <span class="date">2月18-20日</span>
+      </div>
+      <p class="climate">降雨增多，湿气渐重。"倒春寒"频发，风寒湿三邪夹杂。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">茯苓10g · 炒薏米15g · 生姜2片</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>健脾祛湿，温中散寒。<strong>茯苓</strong>利水渗湿，<strong>炒薏米</strong>健脾而不寒，<strong>生姜</strong>驱散倒春寒——湿气重的人春天最该喝这杯。</p>
+      <span class="tag">适宜：体内湿气重、食欲不振、四肢沉重者</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">惊蛰</span>
+        <span class="date">3月5-7日</span>
+      </div>
+      <p class="climate">气温回升最快，万物萌动。传染病高发期，体质弱者易感冒。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">黄芪15g · 党参10g · 陈皮5g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>益气固表，增强免疫。<strong>黄芪</strong>补气升阳、固表防感，<strong>党参</strong>补中益气，<strong>陈皮</strong>理气助吸收——惊蛰前后连喝七天，给身体筑一道防线。</p>
+      <span class="tag">适宜：易感冒、体质虚弱、气血不足者</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">春分</span>
+        <span class="date">3月20-22日</span>
+      </div>
+      <p class="climate">昼夜平分，阴阳平衡。但平衡是暂时的，过敏性疾病高发。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">菊花5g · 枸杞10g · 决明子8g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>清肝明目，滋阴平肝。<strong>菊花</strong>清肝火，<strong>枸杞</strong>养肝血，<strong>决明子</strong>润肠通便——春分时节肝火旺、眼睛干的人，这杯最对路。</p>
+      <span class="tag">适宜：眼睛干涩、肝火旺、便秘者</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">清明</span>
+        <span class="date">4月4-6日</span>
+      </div>
+      <p class="climate">天清地明，阳气升发加速。花粉飞扬，过敏性鼻炎、咽炎高发。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">薄荷5g · 金银花5g · 菊花5g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>疏风清热，抗敏利咽。<strong>薄荷</strong>疏散风热、利咽透疹，<strong>金银花</strong>清热解毒，<strong>菊花</strong>平肝明目——清明前后容易过敏打喷嚏的人，提前喝起来。</p>
+      <span class="tag">适宜：过敏性鼻炎、咽喉不适、风热感冒初期</span>
+    </div>
+
+    <div class="term-card spring">
+      <div class="head">
+        <span class="name">谷雨</span>
+        <span class="date">4月19-21日</span>
+      </div>
+      <p class="climate">春季最后一个节气。雨生百谷，湿气更重，消化系统易出问题。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">玫瑰花3g · 无花果干10g · 茯苓5g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>疏郁开胃，健脾化湿。<strong>玫瑰花</strong>疏肝和胃，<strong>无花果</strong>润肺通便助消化，<strong>茯苓</strong>渗湿——谷雨把春天最后一波湿气排干净，干干净净入夏。</p>
+      <span class="tag">适宜：消化不良、湿气重、情绪郁闷者</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 夏季 ===== -->
+<section>
+  <div class="wrap">
+    <div class="season-bar">
+      <span class="icon">☀️</span>
+      <span class="label" style="color:var(--amber);">夏 · 六节气</span>
+      <span class="desc">夏长 · 清热养心<br>祛暑化湿 · 补气养阴</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">立夏</span>
+        <span class="date">5月5-7日</span>
+      </div>
+      <p class="climate">夏天来了，气温明显升高。心火渐旺，易心烦失眠、食欲下降（苦夏）。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">莲子心2g · 麦冬6g · 绿茶3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>清心安神，养阴生津。<strong>莲子心</strong>清心火治失眠，<strong>麦冬</strong>养阴润燥，<strong>绿茶</strong>清热提神——立夏开始养心，整个夏天都安稳。</p>
+      <span class="tag">适宜：心烦失眠、口干舌燥、苦夏者</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">小满</span>
+        <span class="date">5月20-22日</span>
+      </div>
+      <p class="climate">闷热潮湿开始。湿热困脾，人容易困倦、食欲差、皮肤出油。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">炒薏米15g · 赤小豆10g · 陈皮3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>健脾祛湿，利水消肿。<strong>炒薏米</strong>健脾渗湿，<strong>赤小豆</strong>利水消肿，<strong>陈皮</strong>理气化湿——经典的祛湿搭档，小满开始连喝两周，整个人轻快一圈。</p>
+      <span class="tag">适宜：湿气重、水肿、困倦乏力者</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">芒种</span>
+        <span class="date">6月5-7日</span>
+      </div>
+      <p class="climate">梅雨季节，湿气弥漫。蚊虫滋生，物品发霉，人也容易"湿困"。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">桑葚15g · 枸杞5g · 白茶适量</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>养阴生津，补益肝肾。<strong>桑葚</strong>滋阴补血、花青素之王，<strong>枸杞</strong>养肝明目，<strong>白茶</strong>清热降火——芒种梅雨天，用酸甜滋阴代替寒凉冰饮。</p>
+      <span class="tag">适宜：阴血不足、口干便秘、眼睛干涩者</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">夏至</span>
+        <span class="date">6月21-22日</span>
+      </div>
+      <p class="climate">白昼最长，阳气最盛。但"阳极阴生"，心脏和脾胃最脆弱。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">乌梅2颗 · 山楂10g · 甘草3g · 冰糖少许</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>生津止渴，敛汗安神。<strong>乌梅</strong>敛肺涩肠、生津止渴，<strong>山楂</strong>消食化积，<strong>甘草</strong>调和诸药——这就是老北京的"酸梅汤"底方，夏至喝最应景。</p>
+      <span class="tag">适宜：出汗多、口渴、食欲差者</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">小暑</span>
+        <span class="date">7月6-8日</span>
+      </div>
+      <p class="climate">三伏天即将开始。气温持续攀升，湿热交蒸，人最容易中暑。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">荷叶6g · 藿香3g · 茯苓10g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>清暑化湿，醒脾和胃。<strong>荷叶</strong>清热解暑、升发清阳，<strong>藿香</strong>化湿解表、和中止呕，<strong>茯苓</strong>健脾渗湿——小暑入伏前，先把脾胃调好，三伏天才扛得住。</p>
+      <span class="tag">适宜：食欲不振、胸闷恶心、容易中暑者</span>
+    </div>
+
+    <div class="term-card summer">
+      <div class="head">
+        <span class="name">大暑</span>
+        <span class="date">7月22-24日</span>
+      </div>
+      <p class="climate">一年最热。中伏正当中，"冬病夏治"黄金期。出汗极多，气阴两伤。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">莲子10g · 西洋参5g · 陈皮3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>补气养阴，清心安神，理气祛湿。<strong>西洋参</strong>补气养阴不上火，<strong>莲子</strong>清心火安心神，<strong>陈皮</strong>理气祛湿——这就是积养家三伏天的招牌茶。<strong>现在到店就能喝到。</strong></p>
+      <span class="tag">⭐ 当季主推 · 适宜：出汗多、气虚乏力、心烦失眠者</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 秋季 ===== -->
+<section>
+  <div class="wrap">
+    <div class="season-bar">
+      <span class="icon">🍂</span>
+      <span class="label" style="color:var(--rust);">秋 · 六节气</span>
+      <span class="desc">秋收 · 润肺防燥<br>滋阴生津 · 收敛神气</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">立秋</span>
+        <span class="date">8月7-9日</span>
+      </div>
+      <p class="climate">秋老虎余威在，但总体转凉。燥气初起，肺最先感知。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">百合10g · 雪梨干15g · 蜂蜜少许</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>润肺止咳，滋阴润燥。<strong>百合</strong>养阴润肺、清心安神，<strong>雪梨</strong>清热生津、润燥化痰，<strong>蜂蜜</strong>润肠通便——立秋开始润肺，秋天就不干咳。</p>
+      <span class="tag">适宜：口干咽燥、干咳、皮肤干燥者</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">处暑</span>
+        <span class="date">8月22-24日</span>
+      </div>
+      <p class="climate">暑气终止，秋意渐浓。温差拉大，过敏性鼻炎高发。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">石斛5g · 麦冬6g · 桂花3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>滋阴润喉，清虚热。<strong>石斛</strong>滋阴清热、润喉生津，<strong>麦冬</strong>养阴润肺，<strong>桂花</strong>温肺化饮、清新口气——处暑咽干鼻燥的人，这杯比润喉糖管用。</p>
+      <span class="tag">适宜：咽干喉痛、虚火旺、口腔溃疡者</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">白露</span>
+        <span class="date">9月7-9日</span>
+      </div>
+      <p class="climate">露凝而白，天气转凉。燥邪伤肺，皮肤干、嘴唇裂。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">银耳5g · 莲子10g · 红枣3颗 · 冰糖少许</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>滋阴润肺，养颜安神。<strong>银耳</strong>润肺生津、天然植物胶质，<strong>莲子</strong>健脾养心，<strong>红枣</strong>补中益气——白露时节一碗银耳莲子羹，喝出秋天的水润。</p>
+      <span class="tag">适宜：皮肤干燥、肺燥咳嗽、失眠多梦者</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">秋分</span>
+        <span class="date">9月22-24日</span>
+      </div>
+      <p class="climate">昼夜均分，寒温各半。凉燥渐起，心脑血管需注意。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">杏仁6g · 罗汉果¼个 · 桔梗3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>润肺止咳，利咽化痰。<strong>甜杏仁</strong>润肺止咳、润肠通便，<strong>罗汉果</strong>清热润肺、化痰止咳，<strong>桔梗</strong>宣肺利咽——秋分干咳不止的人，喝三五天就见效。</p>
+      <span class="tag">适宜：秋季干咳、咽喉痒痛、便秘者</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">寒露</span>
+        <span class="date">10月7-9日</span>
+      </div>
+      <p class="climate">露水更冷，寒气渐盛。感冒高发期，需防风寒。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">老陈皮5g · 生姜3片 · 红糖适量</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>温中散寒，理气化痰。<strong>老陈皮</strong>理气健脾、燥湿化痰，<strong>生姜</strong>发散风寒，<strong>红糖</strong>温中暖胃——寒露一杯姜陈皮茶，把寒气挡在门外。</p>
+      <span class="tag">适宜：怕冷、易感冒、胃寒者</span>
+    </div>
+
+    <div class="term-card autumn">
+      <div class="head">
+        <span class="name">霜降</span>
+        <span class="date">10月23-24日</span>
+      </div>
+      <p class="climate">秋季最后一个节气。初霜出现，为入冬做准备。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">桂圆5颗 · 黑豆15g · 枸杞5g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>温补脾肾，增强免疫。<strong>桂圆</strong>补心脾、益气血，<strong>黑豆</strong>补肾益阴，<strong>枸杞</strong>滋补肝肾——霜降开始补，为冬天打地基。民间说"补冬不如补霜降"，就是这个道理。</p>
+      <span class="tag">适宜：气血不足、畏寒怕冷、免疫力低者</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 冬季 ===== -->
+<section>
+  <div class="wrap">
+    <div class="season-bar">
+      <span class="icon">❄️</span>
+      <span class="label" style="color:#5A5A8A;">冬 · 六节气</span>
+      <span class="desc">冬藏 · 温补驱寒<br>固肾藏精 · 养藏阳气</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">立冬</span>
+        <span class="date">11月7-8日</span>
+      </div>
+      <p class="climate">冬天正式开始。万物收藏，需温补阳气。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">桂圆肉6颗 · 红枣3颗 · 生姜2片 · 红糖适量</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>补血暖身，温阳驱寒。<strong>桂圆</strong>补心脾益气血，<strong>红枣</strong>补中益气养血，<strong>生姜</strong>温中散寒——立冬一杯姜枣桂圆茶，从头暖到脚。</p>
+      <span class="tag">适宜：手脚冰凉、气血不足、畏寒者</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">小雪</span>
+        <span class="date">11月22-23日</span>
+      </div>
+      <p class="climate">初雪降临，天寒地冻。室内暖气燥热，易上火口腔溃疡。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">麦冬8g · 菊花5g · 枸杞5g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>滋阴降火，清肝明目。<strong>麦冬</strong>养阴生津、润肺清心，<strong>菊花</strong>清肝泻火，<strong>枸杞</strong>滋阴——小雪时节暖气房里待久了，这杯灭虚火。</p>
+      <span class="tag">适宜：暖气燥热上火、口鼻干燥、口腔溃疡者</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">大雪</span>
+        <span class="date">12月6-8日</span>
+      </div>
+      <p class="climate">大雪纷飞，寒邪最盛。需护好头、胸、足三处。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">黄芪6g · 当归3g · 红枣3颗 · 红糖少许</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>补气养血，温通经脉。<strong>黄芪</strong>补气固表，<strong>当归</strong>补血活血（经典当归补血汤），<strong>红枣</strong>和中——大雪时节气血双补，面色红润过冬。</p>
+      <span class="tag">适宜：面色苍白、气血两虚、手脚冰凉者</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">冬至</span>
+        <span class="date">12月21-23日</span>
+      </div>
+      <p class="climate">阴极阳生，"冬至一阳生"。进补最佳时机，但要护好初生阳气。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">九蒸黄精10g · 枸杞5g · 红糖适量</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>补肾益精，温养阳气。<strong>九蒸黄精</strong>补气养阴、健脾润肾（九蒸九晒后温补力提升3.7倍），<strong>枸杞</strong>滋补肝肾——冬至喝这杯，就是给初生的阳气添一把柴。</p>
+      <span class="tag">适宜：腰膝酸软、精力不足、肾气虚者</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">小寒</span>
+        <span class="date">1月5-7日</span>
+      </div>
+      <p class="climate">一年最冷的节气之一。血管收缩，心脑血管疾病高发。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">黑芝麻10g · 核桃仁3颗 · 红茶3g</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>补肾益精，温润通便。<strong>黑芝麻</strong>补肝肾、益精血，<strong>核桃</strong>补肾固精、润肠，<strong>红茶</strong>温阳暖胃——小寒最冷的日子，用坚果的温润御寒。</p>
+      <span class="tag">适宜：腰膝冷痛、便秘、脑力不足者</span>
+    </div>
+
+    <div class="term-card winter">
+      <div class="head">
+        <span class="name">大寒</span>
+        <span class="date">1月20-21日</span>
+      </div>
+      <p class="climate">最后一个节气。与立春交接，进补量应渐减，为春天升发做准备。</p>
+      <div class="formula-box">
+        <div class="fl-label">茶方</div>
+        <div class="fl-text">山药干10g · 茯苓5g · 陈皮3g · 蜂蜜少许</div>
+      </div>
+      <p class="effect"><strong>功效：</strong>健脾理气，平补收尾。<strong>山药</strong>健脾养胃、平补不上火，<strong>茯苓</strong>渗湿，<strong>陈皮</strong>理气——大寒时节不宜大补了，用温和的健脾理气茶收尾，干干净净迎接春天。一个轮回，圆满。</p>
+      <span class="tag">适宜：脾胃虚弱、需要温和调理者</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 节气茶的好处 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">贰</div>
+    <h2>跟着节气喝茶，身体会怎样</h2>
+    <p>不是喝一杯就立竿见影，但坚持一年下来，你会发现：</p>
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="val">少感冒</div>
+        <div class="lab">春季疏肝固表，秋季润肺防燥，免疫力跟着节气调上来</div>
+      </div>
+      <div class="data-card">
+        <div class="val">少积湿</div>
+        <div class="lab">长夏祛湿、秋冬温补，体内不留陈年湿气</div>
+      </div>
+      <div class="data-card">
+        <div class="val">少上火</div>
+        <div class="lab">该清热时清热，该滋阴时滋阴，不上虚火不伤阳</div>
+      </div>
+      <div class="data-card">
+        <div class="val">少疲惫</div>
+        <div class="lab">气虚补气、阴虚养阴，精力跟着天地节奏走</div>
+      </div>
+      <div class="data-card">
+        <div class="val">睡得好</div>
+        <div class="lab">夏养心安神、秋润肺敛气、冬藏精固本，四季皆安眠</div>
+      </div>
+      <div class="data-card">
+        <div class="val">气色好</div>
+        <div class="lab">气血顺着节气调，春天红润夏天不油秋天水润冬天暖</div>
+      </div>
+    </div>
+    <p>说白了就四个字：<strong>顺应天时。</strong>你的身体本来就是跟着太阳走的，你帮它一把，它就不跟你闹。</p>
+  </div>
+</section>
+
+<!-- ===== 销售话术 ===== -->
+<section>
+  <div class="wrap">
+    <div class="pitch">
+      <div class="kicker">叁</div>
+      <h3>到店喝一杯，带一包回家</h3>
+      <p style="margin-bottom:10px;">积养家节气茶，不是在超市货架上能买到的东西。每一款都是我们根据中医典籍和卫健委药食同源目录，一个节气一个节气配出来的。</p>
+      <p style="margin-bottom:10px;"><strong>你不需要自己买药材、查配方、研究怎么煮。</strong>到店来，当季茶已经煮好了，温热的一杯端上来，喝完身体暖了、心里安了，觉得好，带一包配好的茶包回去，回家热水一冲就能喝。</p>
+      <div class="price-box">
+        <div>
+          <span class="price-big">到店免费品</span>
+          <span class="price-label" style="display:block;margin-top:4px;">每个节气第一周，到店可免费品当季茶一杯</span>
+        </div>
+        <div style="height:40px;width:1px;background:var(--line);"></div>
+        <div>
+          <span class="price-big" style="color:var(--green-deep);">¥39/包</span>
+          <span class="price-label" style="display:block;margin-top:4px;">单节气茶包 · 可冲泡15-20次 · 够喝半个月</span>
+        </div>
+        <div style="height:40px;width:1px;background:var(--line);"></div>
+        <div>
+          <span class="price-big" style="color:var(--gold);">¥399/年</span>
+          <span class="price-label" style="display:block;margin-top:4px;">全年24节气茶包 · 每节气自动到店领取</span>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:16px;">
+        <strong>算一笔账：</strong>399元喝一年，平均一杯不到2块钱。你去奶茶店买一杯奶茶的钱，够在积养家喝一个月养生茶。奶茶喝完是糖分和负罪感，节气茶喝完是气顺、湿除、心安。
+      </p>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:10px;">
+        <strong>送人也合适。</strong>给爸妈订一年，每个节气提醒他们来领茶、换口味，比送保健品实在多了。给客户送一包当季茶，附带一张手写的节气卡片——这叫"送到心坎上"。
+      </p>
+      <a href="#" class="cta">到店品茶 · 顺时养生</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 禁忌提醒 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">肆</div>
+    <h2>说句实在话</h2>
+    <div class="warn">
+      <p><strong>节气茶不是药，不能替代治疗。</strong>以下情况需注意：</p>
+      <p style="margin-top:8px;">• <strong>孕妇</strong>：部分药材（如山楂、薏米、玫瑰花）有活血或收缩子宫作用，孕期慎用，请遵医嘱。</p>
+      <p>• <strong>慢性病患者</strong>（高血压、糖尿病、肾病等）：部分药材可能影响药效，饮用前请咨询医师。</p>
+      <p>• <strong>体质偏寒/偏热</strong>：配方为通用方，如体质特殊可到店咨询，我们根据个人体质微调。</p>
+      <p>• <strong>儿童</strong>：3岁以下不建议饮用药茶；3岁以上可适量饮用温和配方（如山药茯苓茶）。</p>
+      <p>• <strong>不与西药同服</strong>：药茶与西药间隔1-2小时饮用。</p>
+    </div>
+    <p style="margin-top:20px;">我们做节气茶，不是让你不看病不吃药，是让你在没病的时候，把身体养好一点，少往医院跑。<strong>养生这件事，贵在坚持，贵在顺应天时。</strong></p>
+  </div>
+</section>
+
+<!-- ===== 爱野选品逻辑 ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">伍</div>
+    <h2>积养家为什么做这件事</h2>
+    <p>积养家——积善积德积福，养人养生养体。这个名字不是随便起的。</p>
+    <p>我们做节气茶，是因为看到太多人身体出了问题，还不知道为什么。其实答案很简单：<strong>你跟天地的节奏脱节了。</strong></p>
+    <div class="concept">
+      <h4>三关选品</h4>
+      <p style="margin-bottom:8px;"><strong>一、道地产区：</strong>每种药材只用道地产区的——宁夏枸杞、福建莲子、新会陈皮、云南茯苓，不拿次货充数。</p>
+      <p style="margin-bottom:8px;"><strong>二、正统炮制：</strong>该炒的炒、该蒸的蒸。九蒸黄精真的九蒸九晒，炒薏米真的文火炒过，不偷工。</p>
+      <p><strong>三、配方有据：</strong>每个节气配方都有中医典籍依据——《黄帝内经》《本草纲目》《随息居饮食谱》不是摆设。</p>
+    </div>
+    <p>我们不是在卖茶。我们在做一件事：<strong>让你重新跟上天地的节奏。</strong></p>
+    <p>二十四个节气，二十四杯茶。你不用记住那么多中医理论，不用自己查什么节气该喝什么。你来积养家，我们替你想好了。</p>
+    <p style="font-size:18px;color:var(--green-deep);font-weight:600;margin-top:30px;text-align:center;">天变，茶变。你的身体，跟着天地走。</p>
+    <p style="text-align:center;color:var(--brown-soft);font-size:14px;margin-top:8px;">这就是积养家节气茶的全部道理。</p>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+  <div class="wrap">
+    <div class="seal">积善积德积福 · 养人养生养体</div>
+    <div class="line"></div>
+    <p style="font-size:14px;color:var(--ink-soft);margin-bottom:10px;">二十四节气养生茶 · 顺时而饮</p>
+    <p class="copy">积养家 × 爱野天然食材</p>
+    <p class="copy" style="margin-top:6px;">配方依据：国家卫健委药食同源目录 · 《黄帝内经》《本草纲目》</p>
+  </div>
+</footer>
+
+<!-- JIYANGJIA-INTEGRATION-BODY-START -->
+<nav class="jyj-source-toolbar" aria-label="积养家资料导航"><a href="/">返回资料馆</a><a href="/view/seasonal-tea-story/?tab=training">快速培训</a></nav>
+<!-- JIYANGJIA-INTEGRATION-BODY-END -->
+</body>
+</html>

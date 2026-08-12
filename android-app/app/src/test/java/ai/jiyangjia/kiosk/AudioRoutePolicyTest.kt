@@ -36,4 +36,13 @@ class AudioRoutePolicyTest {
         assertEquals(1, diagnostics.outputs.size)
         assertTrue(diagnostics.summary().contains("Inputs: 1 Outputs: 1"))
     }
+
+    @Test
+    fun automaticBargeInRequiresUsbInput() {
+        val builtIn = AudioDeviceDescriptor(1, AudioDeviceInfo.TYPE_BUILTIN_MIC, "built-in", isInput = true, isOutput = false)
+        val usb = AudioDeviceDescriptor(2, AudioDeviceInfo.TYPE_USB_DEVICE, "usb mic", isInput = true, isOutput = false)
+
+        assertTrue(AudioRoutePolicy.supportsAutomaticBargeIn(listOf(builtIn, usb)))
+        assertEquals(false, AudioRoutePolicy.supportsAutomaticBargeIn(listOf(builtIn)))
+    }
 }

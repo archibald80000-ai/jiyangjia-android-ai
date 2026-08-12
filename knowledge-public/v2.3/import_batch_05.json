@@ -1,0 +1,356 @@
+{
+  "version": "2.3",
+  "batch": 5,
+  "documents": [
+    {
+      "id": "aiye_dayougu_organic-salt-field-shrimp",
+      "title": "大有谷产品：39°有机盐田虾",
+      "text": "39°有机盐田虾是什么\n请详细讲讲39°有机盐田虾\n39°有机盐田虾有什么特点\n39°有机盐田虾多少钱\n39°有机盐田虾什么规格\n39°有机盐田虾从哪里发货\n产品名称：39°有机盐田虾\n品类：海鲜\n规格：300g×5盒 / 箱\n零售价：¥45/盒（¥225/箱）\n发货地：内蒙古磴口",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_organic-salt-field-shrimp"
+    },
+    {
+      "id": "aiye_dayougu_cistanche-milk-powder",
+      "title": "大有谷产品：肉苁蓉奶粉",
+      "text": "肉苁蓉奶粉是什么\n请详细讲讲肉苁蓉奶粉\n肉苁蓉奶粉有什么特点\n肉苁蓉奶粉多少钱\n肉苁蓉奶粉什么规格\n肉苁蓉奶粉从哪里发货\n产品名称：肉苁蓉奶粉\n品类：乳品\n规格：400g×2 / 份\n零售价：¥319\n发货地：天津武清",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_cistanche-milk-powder"
+    },
+    {
+      "id": "aiye_dayougu_canola-oil-5l",
+      "title": "大有谷产品：芥花油（大桶）",
+      "text": "芥花油（大桶）是什么\n请详细讲讲芥花油（大桶）\n芥花油（大桶）有什么特点\n芥花油（大桶）多少钱\n芥花油（大桶）什么规格\n芥花油（大桶）从哪里发货\n产品名称：芥花油（大桶）\n品类：食用油\n规格：5L / 桶\n零售价：¥138\n发货地：呼伦贝尔",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_canola-oil-5l"
+    },
+    {
+      "id": "aiye_dayougu_canola-oil-twin-pack",
+      "title": "大有谷产品：芥花油（双瓶）",
+      "text": "芥花油（双瓶）是什么\n请详细讲讲芥花油（双瓶）\n芥花油（双瓶）有什么特点\n芥花油（双瓶）多少钱\n芥花油（双瓶）什么规格\n芥花油（双瓶）从哪里发货\n产品名称：芥花油（双瓶）\n品类：食用油\n规格：1.8L×2 / 份\n零售价：¥68\n发货地：呼伦贝尔",
+      "status": "approved",
+      "source_uri": "knowledge://aiye_dayougu_canola-oil-twin-pack"
+    },
+    {
+      "id": "site_product_fuling",
+      "title": "茯苓",
+      "text": "茯苓是什么？\n茯苓多少钱？\n茯苓是什么规格？\n请详细介绍茯苓。\n产品名称：茯苓\n分类：药食同源\n产品介绍：茯苓块是门店散装食材，可用于家常煮粥或煲汤。\n公开售价：3.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fuling/"
+    },
+    {
+      "id": "site_product_dried-mulberry",
+      "title": "桑葚",
+      "text": "桑葚是什么？\n桑葚多少钱？\n桑葚是什么规格？\n请详细介绍桑葚。\n产品名称：桑葚\n分类：药食同源\n产品介绍：桑葚干带果香，可泡水或搭配酸奶。\n公开售价：3.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/"
+    },
+    {
+      "id": "site_product_yam-slices",
+      "title": "山药",
+      "text": "山药是什么？\n山药多少钱？\n山药是什么规格？\n请详细介绍山药。\n产品名称：山药\n分类：药食同源\n产品介绍：山药片是常见煮粥、煲汤食材。\n公开售价：4.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/yam-slices/"
+    },
+    {
+      "id": "site_product_gorgon-seed",
+      "title": "芡实仁",
+      "text": "芡实仁是什么？\n芡实仁多少钱？\n芡实仁是什么规格？\n请详细介绍芡实仁。\n产品名称：芡实仁\n分类：药食同源\n产品介绍：芡实仁颗粒适合煮粥或煲汤。\n公开售价：6.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/"
+    },
+    {
+      "id": "site_product_dried-fig",
+      "title": "无花果",
+      "text": "无花果是什么？\n无花果多少钱？\n无花果是什么规格？\n请详细介绍无花果。\n产品名称：无花果\n分类：药食同源\n产品介绍：无花果干带自然果甜，可泡水或煲汤。\n公开售价：7.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-fig/"
+    },
+    {
+      "id": "site_product_rose-buds",
+      "title": "大玫瑰",
+      "text": "大玫瑰是什么？\n大玫瑰多少钱？\n大玫瑰是什么规格？\n请详细介绍大玫瑰。\n产品名称：大玫瑰\n分类：药食同源\n产品介绍：玫瑰花香清楚，适合单独冲泡或拼配茶饮。\n公开售价：7.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rose-buds/"
+    },
+    {
+      "id": "site_product_angelica-slices",
+      "title": "当归",
+      "text": "当归是什么？\n当归多少钱？\n当归是什么规格？\n请详细介绍当归。\n产品名称：当归\n分类：药食同源\n产品介绍：当归切片适合在家庭汤饮中少量搭配。\n公开售价：8.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/angelica-slices/"
+    },
+    {
+      "id": "site_product_fujian-lotus-seed",
+      "title": "福建莲子",
+      "text": "福建莲子是什么？\n福建莲子多少钱？\n福建莲子是什么规格？\n请详细介绍福建莲子。\n产品名称：福建莲子\n分类：药食同源\n产品介绍：莲子口感粉糯，适合煮粥或甜汤。\n公开售价：8.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/"
+    },
+    {
+      "id": "site_product_ningxia-goji",
+      "title": "宁夏枸杞",
+      "text": "宁夏枸杞是什么？\n宁夏枸杞多少钱？\n宁夏枸杞是什么规格？\n请详细介绍宁夏枸杞。\n产品名称：宁夏枸杞\n分类：药食同源\n产品介绍：枸杞带自然甜味，可泡水、煮粥或搭配汤饮。\n公开售价：8.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/"
+    },
+    {
+      "id": "site_product_lily-bulb",
+      "title": "百合",
+      "text": "百合是什么？\n百合多少钱？\n百合是什么规格？\n请详细介绍百合。\n产品名称：百合\n分类：药食同源\n产品介绍：湖南百合适合煮粥或甜汤，口感偏软糯。\n公开售价：9.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/lily-bulb/"
+    },
+    {
+      "id": "site_product_ophiopogon",
+      "title": "麦冬",
+      "text": "麦冬是什么？\n麦冬多少钱？\n麦冬是什么规格？\n请详细介绍麦冬。\n产品名称：麦冬\n分类：药食同源\n产品介绍：麦冬可用于日常泡水或茶饮拼配。\n公开售价：9.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ophiopogon/"
+    },
+    {
+      "id": "site_product_codonopsis",
+      "title": "党参段",
+      "text": "党参段是什么？\n党参段多少钱？\n党参段是什么规格？\n请详细介绍党参段。\n产品名称：党参段\n分类：药食同源\n产品介绍：党参段适合用于家庭煲汤或搭配粥品。\n公开售价：11.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/codonopsis/"
+    },
+    {
+      "id": "site_product_steamed-polygonatum",
+      "title": "九蒸黄精",
+      "text": "九蒸黄精是什么？\n九蒸黄精多少钱？\n九蒸黄精是什么规格？\n请详细介绍九蒸黄精。\n产品名称：九蒸黄精\n分类：药食同源\n产品介绍：九蒸黄精为切片食材，可用于日常泡水。\n公开售价：15.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/"
+    },
+    {
+      "id": "site_product_dendrobium",
+      "title": "铁皮石斛",
+      "text": "铁皮石斛是什么？\n铁皮石斛多少钱？\n铁皮石斛是什么规格？\n请详细介绍铁皮石斛。\n产品名称：铁皮石斛\n分类：药食同源\n产品介绍：铁皮石斛为门店散装食材，具体产地和等级待补。\n公开售价：29.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dendrobium/"
+    },
+    {
+      "id": "site_product_american-ginseng-slices",
+      "title": "西洋参片",
+      "text": "西洋参片是什么？\n西洋参片多少钱？\n西洋参片是什么规格？\n请详细介绍西洋参片。\n产品名称：西洋参片\n别名：西洋参\n分类：药食同源\n产品介绍：西洋参片可用于泡水或家庭汤饮。\n公开售价：29.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/"
+    },
+    {
+      "id": "site_product_aged-tangerine-peel",
+      "title": "老陈皮",
+      "text": "老陈皮是什么？\n老陈皮多少钱？\n老陈皮是什么规格？\n请详细介绍老陈皮。\n产品名称：老陈皮\n分类：药食同源\n产品介绍：陈皮带柑橘陈香，可泡水或入汤。\n公开售价：34.9元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/"
+    },
+    {
+      "id": "site_product_sanqi",
+      "title": "三七",
+      "text": "三七是什么？\n三七多少钱？\n三七是什么规格？\n请详细介绍三七。\n产品名称：三七\n分类：药食同源\n产品介绍：【待确认】：三七的等级、产地和合规介绍尚未确认。\n公开售价：38元/50g\n规格：50g",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi/"
+    },
+    {
+      "id": "site_product_astragalus",
+      "title": "黄芪",
+      "text": "黄芪是什么？\n黄芪多少钱？\n黄芪是什么规格？\n请详细介绍黄芪。\n产品名称：黄芪\n分类：药食同源\n产品介绍：切片黄芪可用于家庭煲汤或泡水。\n公开售价：45元/50g\n规格：50g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus/"
+    },
+    {
+      "id": "site_product_sanqi-slices",
+      "title": "三七片",
+      "text": "三七片是什么？\n三七片多少钱？\n三七片是什么规格？\n请详细介绍三七片。\n产品名称：三七片\n分类：药食同源\n产品介绍：云南文山三七切片，原资料介绍了产区、外观识别和炖煮等日常使用方式。\n公开售价：168元/盒",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/"
+    },
+    {
+      "id": "site_product_cistanche-milk-powder",
+      "title": "肉苁蓉奶粉",
+      "text": "肉苁蓉奶粉是什么？\n肉苁蓉奶粉多少钱？\n肉苁蓉奶粉是什么规格？\n请详细介绍肉苁蓉奶粉。\n产品名称：肉苁蓉奶粉\n分类：药食同源\n产品介绍：冲调类奶粉产品，食品类别、配料和冲调方式以包装为准。\n公开售价：319元/份\n规格：400g×2\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/"
+    },
+    {
+      "id": "site_product_golden-flaxseed",
+      "title": "旱地亚麻籽",
+      "text": "旱地亚麻籽是什么？\n旱地亚麻籽多少钱？\n旱地亚麻籽是什么规格？\n请详细介绍旱地亚麻籽。\n产品名称：旱地亚麻籽\n别名：金色熟亚麻籽\n分类：粮油米面\n产品介绍：熟制信息和净含量仍待包装复核，可用于拌粥、烘焙或搭配酸奶。\n公开售价：39元/袋\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/"
+    },
+    {
+      "id": "site_product_aohan-waxy-corn",
+      "title": "敖汉金有机糯玉米",
+      "text": "敖汉金有机糯玉米是什么？\n敖汉金有机糯玉米多少钱？\n敖汉金有机糯玉米是什么规格？\n请详细介绍敖汉金有机糯玉米。\n产品名称：敖汉金有机糯玉米\n别名：糯玉米\n分类：粮油米面\n产品介绍：糯玉米口感偏软糯，适合早餐或加餐。\n公开售价：59.8元/箱\n规格：200g×10穗\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/"
+    },
+    {
+      "id": "site_product_torreya-oil",
+      "title": "香榧油",
+      "text": "香榧油是什么？\n香榧油多少钱？\n香榧油是什么规格？\n请详细介绍香榧油。\n产品名称：香榧油\n分类：粮油米面\n产品介绍：香榧油带坚果香，适合少量凉拌或按包装说明烹调。\n公开售价：68元/瓶\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/torreya-oil/"
+    },
+    {
+      "id": "site_product_aohan-sweet-corn",
+      "title": "敖汉金有机鲜食玉米",
+      "text": "敖汉金有机鲜食玉米是什么？\n敖汉金有机鲜食玉米多少钱？\n敖汉金有机鲜食玉米是什么规格？\n请详细介绍敖汉金有机鲜食玉米。\n产品名称：敖汉金有机鲜食玉米\n别名：鲜食玉米\n分类：粮油米面\n产品介绍：鲜食玉米口感偏清甜，适合早餐或加餐。\n公开售价：69元/箱\n规格：200g×10穗\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/"
+    },
+    {
+      "id": "site_product_aohan-millet-family",
+      "title": "敖汉金石碾有机小米（家庭装·长嘴）",
+      "text": "敖汉金石碾有机小米（家庭装·长嘴）是什么？\n敖汉金石碾有机小米（家庭装·长嘴）多少钱？\n敖汉金石碾有机小米（家庭装·长嘴）是什么规格？\n请详细介绍敖汉金石碾有机小米（家庭装·长嘴）。\n产品名称：敖汉金石碾有机小米（家庭装·长嘴）\n别名：敖汉小米家庭装、小米\n分类：粮油米面\n产品介绍：敖汉小米家庭装，适合日常煮粥。\n公开售价：72元/提\n规格：2.5kg\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/"
+    },
+    {
+      "id": "site_product_canola-oil",
+      "title": "芥花油（压榨一级菜籽油）",
+      "text": "芥花油（压榨一级菜籽油）是什么？\n芥花油（压榨一级菜籽油）多少钱？\n芥花油（压榨一级菜籽油）是什么规格？\n请详细介绍芥花油（压榨一级菜籽油）。\n产品名称：芥花油（压榨一级菜籽油）\n别名：芥花油、菜籽油\n分类：粮油米面\n产品介绍：压榨一级菜籽油，适合家庭日常烹调。\n公开售价：136元/组（68元×2桶）；138元/桶\n规格：1.8L×2桶；5L\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/canola-oil/"
+    },
+    {
+      "id": "site_product_aohan-mixed-grains",
+      "title": "敖汉金有机杂粮（8个品种）",
+      "text": "敖汉金有机杂粮（8个品种）是什么？\n敖汉金有机杂粮（8个品种）多少钱？\n敖汉金有机杂粮（8个品种）是什么规格？\n请详细介绍敖汉金有机杂粮（8个品种）。\n产品名称：敖汉金有机杂粮（8个品种）\n别名：八种杂粮、杂粮礼盒\n分类：粮油米面\n产品介绍：八种杂粮组合，适合煮杂粮粥或杂粮饭。\n公开售价：158元/箱\n规格：3690g\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/"
+    },
+    {
+      "id": "site_product_aohan-millet-gift",
+      "title": "敖汉金石碾有机小米（礼盒装）",
+      "text": "敖汉金石碾有机小米（礼盒装）是什么？\n敖汉金石碾有机小米（礼盒装）多少钱？\n敖汉金石碾有机小米（礼盒装）是什么规格？\n请详细介绍敖汉金石碾有机小米（礼盒装）。\n产品名称：敖汉金石碾有机小米（礼盒装）\n别名：敖汉小米礼盒、小米礼盒\n分类：粮油米面\n产品介绍：敖汉小米礼盒装，适合送礼或家庭煮粥。\n公开售价：159元/提\n规格：4kg\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/"
+    },
+    {
+      "id": "site_product_wuchang-rice-shangqian",
+      "title": "有机五常大米·尚乾",
+      "text": "有机五常大米·尚乾是什么？\n有机五常大米·尚乾多少钱？\n有机五常大米·尚乾是什么规格？\n请详细介绍有机五常大米·尚乾。\n产品名称：有机五常大米·尚乾\n别名：尚乾五常大米、五常大米尚乾\n分类：粮油米面\n产品介绍：五常5kg装大米，适合家庭日常焖饭。\n公开售价：188元/袋\n规格：5kg\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/"
+    },
+    {
+      "id": "site_product_wuchang-rice-furen",
+      "title": "有机五常大米·福仁",
+      "text": "有机五常大米·福仁是什么？\n有机五常大米·福仁多少钱？\n有机五常大米·福仁是什么规格？\n请详细介绍有机五常大米·福仁。\n产品名称：有机五常大米·福仁\n别名：福仁五常大米、五常大米福仁\n分类：粮油米面\n产品介绍：五常2.7kg装大米，适合家庭焖饭或送礼。\n公开售价：198元/提\n规格：2.7kg\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/"
+    },
+    {
+      "id": "site_product_shengmu-yogurt",
+      "title": "圣牧有机酸奶",
+      "text": "圣牧有机酸奶是什么？\n圣牧有机酸奶多少钱？\n圣牧有机酸奶是什么规格？\n请详细介绍圣牧有机酸奶。\n产品名称：圣牧有机酸奶\n别名：圣牧酸奶、有机酸奶\n分类：蛋奶水产\n产品介绍：盒装酸奶，配料、糖分、储存和保质期以包装为准。\n公开售价：68元/箱\n规格：200g×10\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/"
+    },
+    {
+      "id": "site_product_salt-field-shrimp",
+      "title": "39°有机盐田虾（30条/斤）盒装",
+      "text": "39°有机盐田虾（30条/斤）盒装是什么？\n39°有机盐田虾（30条/斤）盒装多少钱？\n39°有机盐田虾（30条/斤）盒装是什么规格？\n请详细介绍39°有机盐田虾（30条/斤）盒装。\n产品名称：39°有机盐田虾（30条/斤）盒装\n别名：盐田虾、39度盐田虾\n分类：蛋奶水产\n产品介绍：盒装盐田虾，适合白灼、清蒸或快炒。\n公开售价：45元/盒，5盒合计225元\n规格：300g×5盒\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/"
+    },
+    {
+      "id": "site_product_black-pork-lard",
+      "title": "黑猪油",
+      "text": "黑猪油是什么？\n黑猪油多少钱？\n黑猪油是什么规格？\n请详细介绍黑猪油。\n产品名称：黑猪油\n分类：肉禽油脂\n产品介绍：猪油香气明显，可用于炒菜、拌面或家常点心。\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/"
+    },
+    {
+      "id": "site_product_farm-lard",
+      "title": "农家猪油",
+      "text": "农家猪油是什么？\n农家猪油多少钱？\n农家猪油是什么规格？\n请详细介绍农家猪油。\n产品名称：农家猪油\n分类：肉禽油脂\n产品介绍：罐装猪油，可用于炒菜、拌面或家常点心。\n公开售价：128元/罐\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/farm-lard/"
+    },
+    {
+      "id": "site_product_jinhua-ham",
+      "title": "金华火腿",
+      "text": "金华火腿是什么？\n金华火腿多少钱？\n金华火腿是什么规格？\n请详细介绍金华火腿。\n产品名称：金华火腿\n别名：金华农家火腿\n分类：肉禽油脂\n产品介绍：整只金华火腿，适合切片蒸、煮汤或入菜。\n公开售价：528元/只\n规格：10斤以上\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/"
+    },
+    {
+      "id": "site_product_jinhua-liangtouyu-ham",
+      "title": "金华两头乌火腿",
+      "text": "金华两头乌火腿是什么？\n金华两头乌火腿多少钱？\n金华两头乌火腿是什么规格？\n请详细介绍金华两头乌火腿。\n产品名称：金华两头乌火腿\n别名：两头乌火腿\n分类：肉禽油脂\n产品介绍：两头乌原料火腿，适合切片蒸、煮汤或入菜。\n公开售价：1688元/箱\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/"
+    },
+    {
+      "id": "site_product_grade-one-soy-sauce",
+      "title": "一级酱油",
+      "text": "一级酱油是什么？\n一级酱油多少钱？\n一级酱油是什么规格？\n请详细介绍一级酱油。\n产品名称：一级酱油\n别名：一级土酱油\n分类：调味酿造\n产品介绍：一级酱油用于家常炒菜、蘸食和调味。\n公开售价：16.8元/斤",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/"
+    },
+    {
+      "id": "site_product_aged-vinegar",
+      "title": "陈醋",
+      "text": "陈醋是什么？\n陈醋多少钱？\n陈醋是什么规格？\n请详细介绍陈醋。\n产品名称：陈醋\n别名：山西老陈醋\n分类：调味酿造\n产品介绍：陈醋带酸香，适合凉拌、蘸食或烹调。\n公开售价：20元/斤\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce",
+      "title": "特级酱油",
+      "text": "特级酱油是什么？\n特级酱油多少钱？\n特级酱油是什么规格？\n请详细介绍特级酱油。\n产品名称：特级酱油\n别名：特级土酱油、金华古法酱油\n分类：调味酿造\n产品介绍：特级酱油用于家常炒菜、蘸食和调味。\n公开售价：21.9元/斤\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/"
+    },
+    {
+      "id": "site_product_fresh-ginger",
+      "title": "生姜",
+      "text": "生姜是什么？\n生姜多少钱？\n生姜是什么规格？\n请详细介绍生姜。\n产品名称：生姜\n别名：五指岩鲜姜\n分类：调味酿造\n产品介绍：鲜姜辛香，可切片炒菜、煮汤或用于去腥。\n公开售价：28元/斤\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/"
+    },
+    {
+      "id": "site_product_soybean-paste",
+      "title": "黄豆酱",
+      "text": "黄豆酱是什么？\n黄豆酱多少钱？\n黄豆酱是什么规格？\n请详细介绍黄豆酱。\n产品名称：黄豆酱\n别名：农家古法黄豆酱\n分类：调味酿造\n产品介绍：黄豆酱酱香明显，适合蘸食、拌面或炒菜调味。\n公开售价：49元/罐\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/soybean-paste/"
+    },
+    {
+      "id": "site_product_rice-wine",
+      "title": "黄酒",
+      "text": "黄酒是什么？\n黄酒多少钱？\n黄酒是什么规格？\n请详细介绍黄酒。\n产品名称：黄酒\n别名：塔牌黄酒\n分类：调味酿造\n产品介绍：谷物酿造酒，适合按产品说明佐餐或用于烹调。\n公开售价：88元/斤\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rice-wine/"
+    },
+    {
+      "id": "site_product_astragalus-honey-vinegar",
+      "title": "黄芪蜂蜜醋",
+      "text": "黄芪蜂蜜醋是什么？\n黄芪蜂蜜醋多少钱？\n黄芪蜂蜜醋是什么规格？\n请详细介绍黄芪蜂蜜醋。\n产品名称：黄芪蜂蜜醋\n分类：调味酿造\n产品介绍：黄芪、蜂蜜与水共同发酵的饮品，原页记录了工艺、风味和搭配方法。\n公开售价：96元/箱",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce-gift",
+      "title": "特级酱油礼盒",
+      "text": "特级酱油礼盒是什么？\n特级酱油礼盒多少钱？\n特级酱油礼盒是什么规格？\n请详细介绍特级酱油礼盒。\n产品名称：特级酱油礼盒\n别名：特级礼盒、罗埠土酱油礼盒\n分类：调味酿造\n产品介绍：酱油礼盒装，适合作为节礼或伴手礼，内含规格待补。\n公开售价：139元/箱\n资料边界：公开页面未列明的信息请咨询门店工作人员，不得自行补充。",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/"
+    },
+    {
+      "id": "site_product_anfeng-chenyun",
+      "title": "安凤陈韵",
+      "text": "安凤陈韵是什么？\n安凤陈韵多少钱？\n安凤陈韵是什么规格？\n请详细介绍安凤陈韵。\n产品名称：安凤陈韵\n分类：茶饮蜂蜜\n产品介绍：【待确认】：产品类别、配料、规格和产地尚未确认。\n公开售价：198元/箱",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/"
+    },
+    {
+      "id": "site_product_wudang-honey",
+      "title": "武当山野蜂蜜",
+      "text": "武当山野蜂蜜是什么？\n武当山野蜂蜜多少钱？\n武当山野蜂蜜是什么规格？\n请详细介绍武当山野蜂蜜。\n产品名称：武当山野蜂蜜\n别名：武当山野山蜂蜜、野山蜂蜜\n分类：茶饮蜂蜜\n产品介绍：野山蜂蜜带自然花香，可用于冲水、搭配面包或家常饮品。\n公开售价：288元/瓶（500ml）\n规格：500ml",
+      "status": "approved",
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wudang-honey/"
+    }
+  ]
+}

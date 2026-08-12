@@ -1,0 +1,754 @@
+{
+  "schema_version": 2,
+  "package": "jiyangjia-public-knowledge-v2.3",
+  "version": "2.3",
+  "source_version": "2.1",
+  "source_updated_at": "2026-08-11",
+  "canonical_origin": "https://jiyangjia-ai.netlify.app",
+  "build_strategy": "data_driven_from_public_site_products",
+  "documents": 251,
+  "base_documents": 204,
+  "new_product_documents": 47,
+  "statuses": {
+    "approved": 227,
+    "draft": 24
+  },
+  "batch_size": 50,
+  "batches": [
+    "import_batch_01.json",
+    "import_batch_02.json",
+    "import_batch_03.json",
+    "import_batch_04.json",
+    "import_batch_05.json",
+    "import_batch_06.json"
+  ],
+  "site_files": [
+    {
+      "path": "site/404.html",
+      "bytes": 2511,
+      "sha256": "A1DBCDBAEDA48D846EC052B45B06B941318B91CA228DA7ECCAB46198F0062344"
+    },
+    {
+      "path": "site/_headers",
+      "bytes": 283,
+      "sha256": "E6C4874C0133C61B4E1BCB2F673C58342509C632632E5EEA00C1BBE7B4F3E743"
+    },
+    {
+      "path": "site/_redirects",
+      "bytes": 37,
+      "sha256": "90D0A41AED70CA9C45B838C5E9A495736E74FBF472A45DBDBBCEA9BFD43E4CD4"
+    },
+    {
+      "path": "site/assets/archive.css",
+      "bytes": 15300,
+      "sha256": "F5723099160D605BF3572B75D41FD8EA40CD8611DA75F90167983EE78C66A6E5"
+    },
+    {
+      "path": "site/assets/archive.js",
+      "bytes": 2686,
+      "sha256": "209E198BE4817CA3B3E0BD40425B871467A3534C08B09005962318A220327F28"
+    },
+    {
+      "path": "site/assets/food-area.jpg",
+      "bytes": 5881389,
+      "sha256": "1646E2F74DBB7B6B4CCD7095DD87A3CD3F05A24D84D96ACE83DB151A5510E7F1"
+    },
+    {
+      "path": "site/assets/legacy-doc.css",
+      "bytes": 1460,
+      "sha256": "E0687557C280AC8D6340CCCBCBB00C8EA5F85240169F5B7517E4913BFC76718C"
+    },
+    {
+      "path": "site/assets/legacy-doc.js",
+      "bytes": 178,
+      "sha256": "34843839BC44D182EFDBFA7AC148A7805E243583A206A0E2C169B4830D765871"
+    },
+    {
+      "path": "site/assets/logo.jpg",
+      "bytes": 73382,
+      "sha256": "ACEA1E32F1B754041BDF5D1D1062CE6FDF4DFA70BA3C8D692AC972B438E52A34"
+    },
+    {
+      "path": "site/assets/og.png",
+      "bytes": 2016822,
+      "sha256": "BE047FCA964E8BBC7B5FA0BDC8A49F7FAAF9B6DF100E08E69724C0FEF084A386"
+    },
+    {
+      "path": "site/assets/search-data.js",
+      "bytes": 33676,
+      "sha256": "0D882D27C843D5D51EAD9506DA91C4E75088513CBE4B08232BCB4B5A9AFCC915"
+    },
+    {
+      "path": "site/assets/site.css",
+      "bytes": 15175,
+      "sha256": "14AB6CFDED0AA6AD6867B977AC96642B1508893065F05E467628973178EA6BEF"
+    },
+    {
+      "path": "site/assets/site.js",
+      "bytes": 3941,
+      "sha256": "1B1D631334A35EE093D07951DABBB64F880C5EB73F9D76648A13533DBBAEE6E1"
+    },
+    {
+      "path": "site/assets/store-front.jpg",
+      "bytes": 255618,
+      "sha256": "B6B43E3AEE841E47EE3F83E78F527B8A04AEF519E9211439206A1E7B767D3C36"
+    },
+    {
+      "path": "site/categories/flying-eggs/index.html",
+      "bytes": 3601,
+      "sha256": "E45E89A8DDD87DFE7EFC87E22C168DD3236722745451E8924C5BCE074313881A"
+    },
+    {
+      "path": "site/categories/food-medicine/index.html",
+      "bytes": 14878,
+      "sha256": "20CF87BA694B4D5B4D4ABDE7B215C4F180164FAC8AAC6CFB2D534138BDFC0615"
+    },
+    {
+      "path": "site/categories/natural-foods/index.html",
+      "bytes": 19712,
+      "sha256": "C949B974D6A083A26AE8C344E086B11FBF67297B35EF791F0012358B33047086"
+    },
+    {
+      "path": "site/categories/seasonal-tea/index.html",
+      "bytes": 3818,
+      "sha256": "87CC963DCBCC7A3F330FC427FEEC9E6B11A3FAB1DC9D6E69C7F816950F4D8274"
+    },
+    {
+      "path": "site/docs/24节气养生茶速查表.html",
+      "bytes": 10729,
+      "sha256": "8A0E64E3687AA5E85489D7C6FBF78AD916F81E5C56182BF091D49F72CBAC85DC"
+    },
+    {
+      "path": "site/docs/上珍缘宣莲品牌故事.html",
+      "bytes": 33276,
+      "sha256": "AE817362FA68C6C4429B7CED81DD72E12E197AFA78DECDD95262DA1FF197C4F9"
+    },
+    {
+      "path": "site/docs/二十四节气养生茶品牌故事.html",
+      "bytes": 44721,
+      "sha256": "D3509078F4808680707B6F5B096EF1D35175B2BCE9DF0749504DD4DD9E732374"
+    },
+    {
+      "path": "site/docs/云南文山三七片品牌故事.html",
+      "bytes": 31270,
+      "sha256": "64E8FF6F2F230BE6EC00D05FA64CC80372DEFEA269696FF06FE54053CF58FED8"
+    },
+    {
+      "path": "site/docs/五指岩鲜姜品牌故事.html",
+      "bytes": 24750,
+      "sha256": "D8F2DCB15C0A41FDFF7A12CB128F512C6286BB42D43C3015BBA8DAF81887D39D"
+    },
+    {
+      "path": "site/docs/农家古法黄豆酱品牌故事.html",
+      "bytes": 24156,
+      "sha256": "D523D1F8A85407226FFBEFB0A8DE7956BA387814EEED64EA299BAEB0614A23BD"
+    },
+    {
+      "path": "site/docs/塔牌黄酒品牌故事.html",
+      "bytes": 27778,
+      "sha256": "10E3D4B7E8B315C5351D7EF0FD0ED8A82390A9C085AFD8927DBCCE784D5394D9"
+    },
+    {
+      "path": "site/docs/大有谷合作产品手册.html",
+      "bytes": 30384,
+      "sha256": "4EC51D2C8F24C59201F000B3A8CCA8445693CB3ABAD5A392AC62A6A90CB6B9BE"
+    },
+    {
+      "path": "site/docs/山西老陈醋品牌故事.html",
+      "bytes": 24729,
+      "sha256": "3659948F7A0ADC9B7955CF52BBAF1A27CB9C9B0D37835851952AEE3118B97729"
+    },
+    {
+      "path": "site/docs/旱地亚麻籽品牌故事.html",
+      "bytes": 29457,
+      "sha256": "3A200875CB1B0F3DCB5FD0F9523085399635BE5801A1B0803B247702D694216A"
+    },
+    {
+      "path": "site/docs/时珍太和圣坊养生茶系列.html",
+      "bytes": 36449,
+      "sha256": "C9CA0DB25BB8DE51643D27C7544DF739DC35975559FFF6D9E76CD95737F84EBD"
+    },
+    {
+      "path": "site/docs/武当山野山蜂蜜品牌故事.html",
+      "bytes": 30712,
+      "sha256": "78EDD312346C63893650954F3E3B17DD3D19423AD1E2ADDB653CC90B9D10FDA8"
+    },
+    {
+      "path": "site/docs/沙漠一号虎坚果油品牌故事.html",
+      "bytes": 32868,
+      "sha256": "D0516E84271326084FB0438172CCE1B0512EB9F32540B922C4EAF8ED903E0F98"
+    },
+    {
+      "path": "site/docs/积养家下午茶体验菜单.html",
+      "bytes": 25447,
+      "sha256": "2D1F6D6841B7B362BDD1131ACEDB6A5CD5BDF1F49C35FF5689A5AED3EC324AB7"
+    },
+    {
+      "path": "site/docs/积养家社区健康臻选计划-拓客活动.html",
+      "bytes": 38091,
+      "sha256": "E4ACB550E6C360B8883C0C004FEC06DDAF5300F2E2E0D731917FB5DC6C987BF6"
+    },
+    {
+      "path": "site/docs/积养家药食同源食材大全.html",
+      "bytes": 33460,
+      "sha256": "0ED9A607F1AD30A19B9FDC36CF8EECDC93B928A58D0C388C736616810BCF11E2"
+    },
+    {
+      "path": "site/docs/积养家食材产品明细-出售价版.html",
+      "bytes": 10517,
+      "sha256": "1A93B1666B33B9B967251D92B4C0CD838FAB0A4E4C9AD23CA99F8669C6D0C2B5"
+    },
+    {
+      "path": "site/docs/罗埠土酱油礼盒装品牌故事.html",
+      "bytes": 29767,
+      "sha256": "6052F39165EC73DCC59C8F8B1710AF897D0F5EA9943F7F4D987ACF431817293F"
+    },
+    {
+      "path": "site/docs/茶油品牌故事.html",
+      "bytes": 21520,
+      "sha256": "5B78DE2BDD6F78C0A262FCB469AFF8DCEB6AD923B89E465E1CAF197C9242E41D"
+    },
+    {
+      "path": "site/docs/藤茶品牌故事.html",
+      "bytes": 29219,
+      "sha256": "FB468E84947A16D8D0CDD4A37E8A62A3393D2DD7010F0D7BA6096776CCAB12C9"
+    },
+    {
+      "path": "site/docs/金华两头乌火腿品牌故事.html",
+      "bytes": 36028,
+      "sha256": "463C5F1B18379552C4DB5282A1B51302E4DAD8E64535AC90DBEB94FAD525E682"
+    },
+    {
+      "path": "site/docs/金华农家火腿品牌故事.html",
+      "bytes": 29290,
+      "sha256": "6D43DBEBB86A5DD1E42FF5263A6931DA40458413C935B75A798235CA2344FE85"
+    },
+    {
+      "path": "site/docs/金华古法酱油品牌故事.html",
+      "bytes": 29345,
+      "sha256": "C91BAADCF82A8964AD72ABA7099E3061DAE4484AA1F58409B6B9F122F8F72843"
+    },
+    {
+      "path": "site/docs/飞鸡蛋品牌故事.html",
+      "bytes": 34198,
+      "sha256": "0F9C9E78F1CF3386C4FC2D0240EA71ED7CE1C23C5D3C3ABDEA1692ABD03201D9"
+    },
+    {
+      "path": "site/docs/香榧油品牌故事.html",
+      "bytes": 24541,
+      "sha256": "28E547B88419C46187458277403065494D18518B4D53B3E96F2425697E278FD5"
+    },
+    {
+      "path": "site/docs/黄芪蜂蜜醋品牌故事.html",
+      "bytes": 24101,
+      "sha256": "6349C2DA9D61B4C662766171702DFDF4806E3E6C1EA16031A9F67A8617D82343"
+    },
+    {
+      "path": "site/faq/index.html",
+      "bytes": 5058,
+      "sha256": "F77A6F230EB96C1835656BCCF8985389D09E29F3C52FEB9F6EEF8DB6B6DF42B0"
+    },
+    {
+      "path": "site/index.html",
+      "bytes": 22200,
+      "sha256": "5EA87355E17BB2688BD90105979EB9003318142A5EF1B50C9015805B8A35715F"
+    },
+    {
+      "path": "site/knowledge/index.json",
+      "bytes": 37181,
+      "sha256": "F14CD3825DF8DF2ABBBE0D371435BF89A470ADF138A80CFD57D2491ED269642F"
+    },
+    {
+      "path": "site/knowledge/search-index.json",
+      "bytes": 45141,
+      "sha256": "DEDECFA413580123EB0938B9B6C66E717794986180FF6BA3108FF2807ED9F48B"
+    },
+    {
+      "path": "site/knowledge/source-documents.json",
+      "bytes": 15619,
+      "sha256": "ACF355EF7503574AD8F3FB48A325435EDD0BE868EC64C21EFE8F807185B1BDE9"
+    },
+    {
+      "path": "site/learn/index.html",
+      "bytes": 13818,
+      "sha256": "B97DE09B87F10883F29F6B13E0FB0F44621966850480639E57133E1C5E8C7848"
+    },
+    {
+      "path": "site/llms-full.txt",
+      "bytes": 12219,
+      "sha256": "B10BEA8E80823BCEE2A37FB332F3BDEF696054BEF21262876FBD1B5197BF7540"
+    },
+    {
+      "path": "site/llms.txt",
+      "bytes": 975,
+      "sha256": "E88730442E47722BBD29466B8309CE8E2B193F1FC3850A4A994AF576FC19E2EB"
+    },
+    {
+      "path": "site/netlify.toml",
+      "bytes": 24,
+      "sha256": "96FFFD899AF349D3BD850C79C89581AAD9E30E2872C563F1574E2AC5AC1B7A33"
+    },
+    {
+      "path": "site/products/aged-tangerine-peel/index.html",
+      "bytes": 8997,
+      "sha256": "453068BE6BEF51AE82334DF44862926B56D8F613E002DEA9897F44817E486C76"
+    },
+    {
+      "path": "site/products/aged-vinegar/index.html",
+      "bytes": 9509,
+      "sha256": "B4ADBD24BBDE6E49DE983F991A74E273BDC39439EBD8966576F52A2DB3504C65"
+    },
+    {
+      "path": "site/products/american-ginseng-slices/index.html",
+      "bytes": 9170,
+      "sha256": "CC9E12E72A0F10835E1DAA21B1BCB54B0D94A4DC2DB65E1BFDDF473E471AB699"
+    },
+    {
+      "path": "site/products/anfeng-chenyun/index.html",
+      "bytes": 7124,
+      "sha256": "B1A26755DAF1B3481C46799C95660ED5F38544C46A3C48996A785BDDC66E0AB8"
+    },
+    {
+      "path": "site/products/angelica-slices/index.html",
+      "bytes": 9124,
+      "sha256": "3664247F93AED55351F7C29A2693B7227CCD7F47CC741E9A6AEB4E2ACC7A6362"
+    },
+    {
+      "path": "site/products/aohan-millet-family/index.html",
+      "bytes": 9677,
+      "sha256": "C248734D45D1B326F764F5BC585E35A3D21EBE29F28ACA656FA7CAF37268C0FB"
+    },
+    {
+      "path": "site/products/aohan-millet-gift/index.html",
+      "bytes": 9587,
+      "sha256": "42894814A23D3667AC2D3297B28114CB6B59854852F39D95C8B1C42339396F01"
+    },
+    {
+      "path": "site/products/aohan-mixed-grains/index.html",
+      "bytes": 9672,
+      "sha256": "08519CCC651B45634577957B8B09BD812CEDED183277DD2764FA556B6C603AC8"
+    },
+    {
+      "path": "site/products/aohan-sweet-corn/index.html",
+      "bytes": 9584,
+      "sha256": "7EDCF8EE5DE0E3C637339483068E9922D69FF83F65C5C717E3B3F5CB2AAB8252"
+    },
+    {
+      "path": "site/products/aohan-waxy-corn/index.html",
+      "bytes": 9560,
+      "sha256": "02BCACC739644F187F7B5168695AEFF24B74C0A891C707E445277E3CB05D6365"
+    },
+    {
+      "path": "site/products/astragalus/index.html",
+      "bytes": 9066,
+      "sha256": "1A3583661AC8EDE678770958B22F2BF370B106DAE2FA7C4E3476A778D8591C95"
+    },
+    {
+      "path": "site/products/astragalus-honey-vinegar/index.html",
+      "bytes": 9963,
+      "sha256": "DAFBAD74650AC9818558907ADF9565F69BE123D36F4D6E0F021ADA4C014ED3FB"
+    },
+    {
+      "path": "site/products/black-pork-lard/index.html",
+      "bytes": 9531,
+      "sha256": "0A3B4C77431DEFE3B3D8A3D17186027BBACC9EC9C54A6BCDE2A82E1B5C03F342"
+    },
+    {
+      "path": "site/products/canola-oil/index.html",
+      "bytes": 9884,
+      "sha256": "B447B311B0824F7D3F7433D6A2D47A77E1E2A37981C240D4808D68EC1E2C0A6F"
+    },
+    {
+      "path": "site/products/cistanche-milk-powder/index.html",
+      "bytes": 9477,
+      "sha256": "C4180EB63E23216D89062FD22ED85C4A7AC848D95C4427D3F47E72A972DFD819"
+    },
+    {
+      "path": "site/products/codonopsis/index.html",
+      "bytes": 9139,
+      "sha256": "CDAA1FC087E3A5A6A96064F8F8224F4EC2A6BDD776E5157862B32B22CD384670"
+    },
+    {
+      "path": "site/products/dendrobium/index.html",
+      "bytes": 9283,
+      "sha256": "4E3D63BB4952204646F4E86F351AF92A399424FEE50637B98B9DF3FB7FD8C9F9"
+    },
+    {
+      "path": "site/products/dried-fig/index.html",
+      "bytes": 8931,
+      "sha256": "FE03D8811786114BF9CBFDD07A921B0CD7C000C0BE52DC3236D1050E8585C915"
+    },
+    {
+      "path": "site/products/dried-mulberry/index.html",
+      "bytes": 8988,
+      "sha256": "803497226D5F7A49CAA766191D7DDEEB310750A260560EA8EDBDCA39E406AE52"
+    },
+    {
+      "path": "site/products/farm-lard/index.html",
+      "bytes": 9432,
+      "sha256": "BC56E96F660F4D3036B209499DE20A21687E8936E4763A100DC730A743509035"
+    },
+    {
+      "path": "site/products/flying-eggs/index.html",
+      "bytes": 7549,
+      "sha256": "B4C3B557ED00A11C2C68DE764093A10503CE464CEC5411D185FD2DF71E4C3BD8"
+    },
+    {
+      "path": "site/products/fresh-ginger/index.html",
+      "bytes": 9569,
+      "sha256": "5C39024155875D224FFADF40EEBF3D0325F63A1DE2BE247E2DC1140F3F09A1F4"
+    },
+    {
+      "path": "site/products/fujian-lotus-seed/index.html",
+      "bytes": 8969,
+      "sha256": "9FF2625AA2B59D9DF91E85C5CE85D9EEDAE01AE96E2B8062EE212B7212318ECE"
+    },
+    {
+      "path": "site/products/fuling/index.html",
+      "bytes": 9072,
+      "sha256": "540F09C689E8A8923CA3EF6764EE17FE857D676447E6C1386A1FECF3DADA08A9"
+    },
+    {
+      "path": "site/products/golden-flaxseed/index.html",
+      "bytes": 9906,
+      "sha256": "77EA76A3BB705323A82EA1916BCFA05B3D96D9DD1BDA3B2F9D7A5DE9804522A2"
+    },
+    {
+      "path": "site/products/gorgon-seed/index.html",
+      "bytes": 8922,
+      "sha256": "F713FBA36EEC4822EFB27DF71CAD28E515C5E16C3354FCFA07ACEF159AE35E95"
+    },
+    {
+      "path": "site/products/grade-one-soy-sauce/index.html",
+      "bytes": 9732,
+      "sha256": "F5350BB08E4D066AD73534D1E09993CECEB14C0724A84C4162FFDC801AF2D8D2"
+    },
+    {
+      "path": "site/products/jinhua-ham/index.html",
+      "bytes": 9720,
+      "sha256": "FF10B69A7584F3D2D26542D9001A06ED43EC2B3D66B617AA4B14F544C5C60259"
+    },
+    {
+      "path": "site/products/jinhua-liangtouyu-ham/index.html",
+      "bytes": 9810,
+      "sha256": "E38E3A797F429609CC8B550BC5F4DFA41FE8009F5EAB2ECE10B1BC3608BAB2BB"
+    },
+    {
+      "path": "site/products/lily-bulb/index.html",
+      "bytes": 8943,
+      "sha256": "5585B903A7A72F5E6C1D5F251A4463C0E50EF08B7919642C8D10EEF84E9C5FF2"
+    },
+    {
+      "path": "site/products/ningxia-goji/index.html",
+      "bytes": 9099,
+      "sha256": "25F0554C65A9537E12D8F9EDC91FECF6F7EA1683E9D4C6DF27CED5E1C3FEC357"
+    },
+    {
+      "path": "site/products/ophiopogon/index.html",
+      "bytes": 8935,
+      "sha256": "ED16A87ABA2E7FB042F9C2AECC4BC810F268ABBA01A83F9B042BADF366523146"
+    },
+    {
+      "path": "site/products/premium-soy-sauce/index.html",
+      "bytes": 9581,
+      "sha256": "004500F89A4BC4BDEF0FCE1AA3FFDB155440D99F552FE70C1AF26E99DF356E97"
+    },
+    {
+      "path": "site/products/premium-soy-sauce-gift/index.html",
+      "bytes": 9837,
+      "sha256": "5CEB0800CE4B27426495B284BB742B98D7505790679119CAF5416F3EC2BE7113"
+    },
+    {
+      "path": "site/products/rice-wine/index.html",
+      "bytes": 9783,
+      "sha256": "F15919DB9AAECA5D97C559AC5D49B2D1F9E9627BFAE51FD580E4D6B0481BE0F0"
+    },
+    {
+      "path": "site/products/rose-buds/index.html",
+      "bytes": 9036,
+      "sha256": "5CF0E415C04AD80AA395F4F3AC930C66E8C7129332F23FABE66050E68C41377E"
+    },
+    {
+      "path": "site/products/salt-field-shrimp/index.html",
+      "bytes": 9785,
+      "sha256": "3FCCADB8543A52C82DEF3222F581688FB6D20080729F50354FFDD89441E46105"
+    },
+    {
+      "path": "site/products/sanqi/index.html",
+      "bytes": 9015,
+      "sha256": "BE38C0CAD231915525F55CFFC94B1F51674A972C3256471B00AAB7C259E14B7C"
+    },
+    {
+      "path": "site/products/sanqi-slices/index.html",
+      "bytes": 9963,
+      "sha256": "5CF26692D38D7840AEEBB6FF754451FF15ED6820C4DECF204CFED574B22551EF"
+    },
+    {
+      "path": "site/products/shengmu-yogurt/index.html",
+      "bytes": 9565,
+      "sha256": "DA62F87BFD1C2A42B6321BFF6AB88705F2B02B5E046BA7F66162D45C236D0EEF"
+    },
+    {
+      "path": "site/products/soybean-paste/index.html",
+      "bytes": 9632,
+      "sha256": "C7DD97383364FCDC68CEC5AF9B0FE45F0CBF353B2B8721756D8BA42EBFC4E3B7"
+    },
+    {
+      "path": "site/products/steamed-polygonatum/index.html",
+      "bytes": 9135,
+      "sha256": "125515AAB4B7D33EB2D6424813B0F1C1A9969E083AA418AED6EFE4E0F3EE0A48"
+    },
+    {
+      "path": "site/products/torreya-oil/index.html",
+      "bytes": 9769,
+      "sha256": "877473BB48EE7010C5750FD273686C9281E790F0C8AEC2B0E399FBAF0157561B"
+    },
+    {
+      "path": "site/products/wuchang-rice-furen/index.html",
+      "bytes": 9506,
+      "sha256": "06F001418F5D551C40BEFD68A77529E8D69653E8D0FAD6A9C4681F9BDE9C69FA"
+    },
+    {
+      "path": "site/products/wuchang-rice-shangqian/index.html",
+      "bytes": 9483,
+      "sha256": "8950EB5851EB88C124A08A059E635090A303597AAFF3F2AE03B81502B0D4D3F5"
+    },
+    {
+      "path": "site/products/wudang-honey/index.html",
+      "bytes": 10100,
+      "sha256": "319DD3F4171B97E7BD395EF7CDFD9D3B90C9F425CA7CA70CCE08BCCB751BF195"
+    },
+    {
+      "path": "site/products/yam-slices/index.html",
+      "bytes": 8874,
+      "sha256": "D8480E1853CEB007889D7888E1596E75B283F48A0D69AC441EEF6BC1027D3D7C"
+    },
+    {
+      "path": "site/robots.txt",
+      "bytes": 78,
+      "sha256": "37B4C2028679DE94B790A4BF864AFCF22CE0657AC2EF9D28EB576115C300EAA7"
+    },
+    {
+      "path": "site/sitemap.xml",
+      "bytes": 14274,
+      "sha256": "16084B6BAAE592834E943D8215B96F7693A2483C3388E5F344CC55CCB9F544DC"
+    },
+    {
+      "path": "site/topics/activities/index.html",
+      "bytes": 4901,
+      "sha256": "1545D06D37BA0805EA48B344E73B476DD91C37143D0CD629DC42ED3B358B557B"
+    },
+    {
+      "path": "site/topics/body-care/index.html",
+      "bytes": 5125,
+      "sha256": "D5DA44C1C25734B1D94AE7C24C43510D5D7397CE45D05C641479ECE293795BB8"
+    },
+    {
+      "path": "site/topics/brand/index.html",
+      "bytes": 5129,
+      "sha256": "E0307BE674F84D6C52061D7D359397F17F9CC72B6D2D69D3CAB97B1274A9FFA8"
+    },
+    {
+      "path": "site/topics/chicken-soup/index.html",
+      "bytes": 5256,
+      "sha256": "52EFBE5D7BC16CC422F8E37A58B797242E29F5FB0A659E6627D2D22961656A84"
+    },
+    {
+      "path": "site/topics/seasonal-tea/index.html",
+      "bytes": 5029,
+      "sha256": "90C65AC50420BB20D2B32A1FCEEFC04B24C02E0D784D9EEC42A4D0B943DF3A79"
+    },
+    {
+      "path": "site/topics/store-services/index.html",
+      "bytes": 4985,
+      "sha256": "0A5023F91C0D8C58CE5855A1A36CDC2059A9EA21FBBD590E531FD427B375F75A"
+    },
+    {
+      "path": "site/view/aged-vinegar/index.html",
+      "bytes": 6089,
+      "sha256": "F05E5356BC71D95C8BCC4369881DF0A140F1AC1CF6C1C19CF8584CAAAD37AB9E"
+    },
+    {
+      "path": "site/view/astragalus-honey-vinegar/index.html",
+      "bytes": 6320,
+      "sha256": "E4259040069AA75DE36758D0385346B39A4B7EA3EB922DC41B70F6DBBC8C3DFC"
+    },
+    {
+      "path": "site/view/camellia-oil/index.html",
+      "bytes": 5487,
+      "sha256": "533664CA18B2EE6C5910B78B087E5F9C7E5E95C7EEB26C85F46795EE49E99D06"
+    },
+    {
+      "path": "site/view/community-selection/index.html",
+      "bytes": 4832,
+      "sha256": "5FCF0F993CE701FD008BA1EAE52AC9728C9D7483E25F74E42985C4A49D909138"
+    },
+    {
+      "path": "site/view/day-tea-menu/index.html",
+      "bytes": 5099,
+      "sha256": "52DF2A0C805BA8BAF17D6DAC837902AAFE59BEBFD776744E4535815492610A2E"
+    },
+    {
+      "path": "site/view/dayougu-guide/index.html",
+      "bytes": 6426,
+      "sha256": "2D88F031D14409FEECCF6E957BFDA37AD2FF5168082C82B466509B6BF4076347"
+    },
+    {
+      "path": "site/view/flaxseed/index.html",
+      "bytes": 6263,
+      "sha256": "89F5CB576E5343E709EEBCD18456EE1899A61EFF10C494737675264969605CC5"
+    },
+    {
+      "path": "site/view/flying-eggs/index.html",
+      "bytes": 6200,
+      "sha256": "5501057F1960D93699E4B9E9006B67F6731AF75D9F0AF9AE1BAC8FE044771F1C"
+    },
+    {
+      "path": "site/view/food-materia-medica/index.html",
+      "bytes": 8163,
+      "sha256": "4E6E13CAD0CE966D9250E6EBEBB22C407FBF378497CB87F4926CE9F8CC50C6A8"
+    },
+    {
+      "path": "site/view/fresh-ginger/index.html",
+      "bytes": 6133,
+      "sha256": "F4B3B9087A510B47C6E52DE496EAD73151C10BEDCC02D365C9F16E282D96017A"
+    },
+    {
+      "path": "site/view/jinhua-farm-ham/index.html",
+      "bytes": 6246,
+      "sha256": "901FF4E15AEDB5650098A20360265BEA8B8772DB3FA0CAA175852E4AFD1FDE6D"
+    },
+    {
+      "path": "site/view/jinhua-two-end-black-ham/index.html",
+      "bytes": 6268,
+      "sha256": "63E198751651718AEEFB8426CB58025F1A452EA7F2F9D41D8B516E749EE1EEDC"
+    },
+    {
+      "path": "site/view/price-list/index.html",
+      "bytes": 13674,
+      "sha256": "22B2B7ACA670B6675A222E7608CCB4AE496E9F8DF672E9CBEF517B570EE2B1B0"
+    },
+    {
+      "path": "site/view/rice-wine/index.html",
+      "bytes": 6121,
+      "sha256": "D2B227433F841A225047C3AC6F397FFAAC82E3C48B6894723D741E6F077D6217"
+    },
+    {
+      "path": "site/view/sanqi-slices/index.html",
+      "bytes": 6513,
+      "sha256": "24EAFFD6449CF321BD3D1B057700DFD714B4E493B31D75E5C25909F6228C4CCE"
+    },
+    {
+      "path": "site/view/seasonal-tea-sheet/index.html",
+      "bytes": 4671,
+      "sha256": "A3815D0D90FE0BAE405F2D3ABE5BD9D61DCC72555B1D881C3C8BB1BE0B501BDB"
+    },
+    {
+      "path": "site/view/seasonal-tea-story/index.html",
+      "bytes": 4831,
+      "sha256": "CBE06B192E7B2D4DC293385237753FBAC8D1D1E9492BED0EC044E08A76CE18FC"
+    },
+    {
+      "path": "site/view/shizhen-tea/index.html",
+      "bytes": 5694,
+      "sha256": "DA6BDAF4EC0674F2F226A30C01B3E450B34CC99B42DF1A4587F3D275A1FB861D"
+    },
+    {
+      "path": "site/view/soy-sauce/index.html",
+      "bytes": 4824,
+      "sha256": "346C45963E85E7D94956B6F274AD15A4231C24679308073A920492F0906BA37B"
+    },
+    {
+      "path": "site/view/soy-sauce-gift/index.html",
+      "bytes": 6339,
+      "sha256": "612C152E3F2E7741A1F2EF2812AD16FB622D20CDE31277C4E2DD9CF8C3C53468"
+    },
+    {
+      "path": "site/view/soybean-paste/index.html",
+      "bytes": 6233,
+      "sha256": "8AC6E85E6459D3563028FE23B8C54B6FAB40F1707314D0F1C3A3C94BBE559DA0"
+    },
+    {
+      "path": "site/view/tigernut-oil/index.html",
+      "bytes": 5694,
+      "sha256": "8410B73A60633CC5FE2060EF493B62B6B46BB53A0BF1C1F06C1236A927254A81"
+    },
+    {
+      "path": "site/view/torreya-oil/index.html",
+      "bytes": 6106,
+      "sha256": "F1EEB53B8732C7F10F6653AE8D87F4D5E86025BA729AD0B5F6BF29A71CDB816C"
+    },
+    {
+      "path": "site/view/vine-tea/index.html",
+      "bytes": 5433,
+      "sha256": "7B51D06DCCB6017B4EF555070BF8984FA4AE8AE7646072524B922F2AF4B4976B"
+    },
+    {
+      "path": "site/view/wild-honey/index.html",
+      "bytes": 6389,
+      "sha256": "06F3F2CA9FFADA6C2BC170A67B04CB5F470A3B4E9F43727327EF814EE1843185"
+    },
+    {
+      "path": "site/view/xuan-lotus/index.html",
+      "bytes": 6024,
+      "sha256": "22132CF4F47542E284FACC4766EDEECA086101D648D85020AAD1BF3BA68A6218"
+    },
+    {
+      "path": "site/viewer.html",
+      "bytes": 2418,
+      "sha256": "B1F77A6754FE03D97BC38DCA9750D50FB23D37121269DE58AB59233CDD86FFC1"
+    }
+  ],
+  "files": [
+    {
+      "name": "import_all.json",
+      "bytes": 384241,
+      "sha256": "A6E374271083D2987B849D28645E21F2C55D336F9BEA935E21C123206D9F6E1D"
+    },
+    {
+      "name": "import_batch_01.json",
+      "bytes": 22221,
+      "sha256": "9C8AF45E7ABD39BFE7B78D1F77885345650068CE7BC06FF92AB4CA603156961A"
+    },
+    {
+      "name": "import_batch_02.json",
+      "bytes": 128766,
+      "sha256": "6DC65599986978ABD89C1584644CB425F1681C739C95D9534000A30E51F7A859"
+    },
+    {
+      "name": "import_batch_03.json",
+      "bytes": 171616,
+      "sha256": "47A2EB699234B98E5068FBE5D0EDA051E573D264EB79342717A2982B0CFB1421"
+    },
+    {
+      "name": "import_batch_04.json",
+      "bytes": 30481,
+      "sha256": "E9FB7191AEBAD8EA0103F1C6FBF1581445D45EF5FAE042AB3FFCDCF0E9700FB0"
+    },
+    {
+      "name": "import_batch_05.json",
+      "bytes": 30861,
+      "sha256": "7B507CF29941A774F47E5B9D49894E8010E9170A39BAD9DF1911CF2238C73194"
+    },
+    {
+      "name": "import_batch_06.json",
+      "bytes": 609,
+      "sha256": "5AADB7C5ED89BD2D13C1E56B332ED995101B62E74047C26F5F1700EA0A437AA3"
+    },
+    {
+      "name": "source-map.json",
+      "bytes": 72385,
+      "sha256": "2868178A273004B6BC3E3269DAA66E5EFA39691BF321345BE0C699BD5AE447F8"
+    },
+    {
+      "name": "catalog.json",
+      "bytes": 37952,
+      "sha256": "C7FD56359C0D051417FB475A647A73E876E42A1E010B3D609A778CF5786418FD"
+    },
+    {
+      "name": "test_questions.json",
+      "bytes": 38627,
+      "sha256": "B13A98CAC3537326E27B828AA52C6FC735F04DC452656ACF0B3E8A9146E889C7"
+    }
+  ]
+}

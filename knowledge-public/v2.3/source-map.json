@@ -1,0 +1,1511 @@
+{
+  "version": "2.3",
+  "documents": {
+    "aiye_solar-term-tea-guide_story_01": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "积养家 · 24节气养生茶",
+      "kind": "source_story_chunk"
+    },
+    "aiye_camellia-oil_story_01": {
+      "source_file": "sources/aiye-foods/茶油品牌故事.html",
+      "source_sha256": "5C6EC52D6E302F55D9E62F972D4F4E030AE15BC4CC4A5E9A959F7ED9C226DD62",
+      "section": "独有活性物质 / 农户直采，零添加 / 超值价格",
+      "kind": "source_story_chunk"
+    },
+    "aiye_camellia-oil_story_02": {
+      "source_file": "sources/aiye-foods/茶油品牌故事.html",
+      "source_sha256": "5C6EC52D6E302F55D9E62F972D4F4E030AE15BC4CC4A5E9A959F7ED9C226DD62",
+      "section": "货真价实 / 养生适配 / 一滴茶油，千年滋养",
+      "kind": "source_story_chunk"
+    },
+    "aiye_dayougu-products_story_01": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "品牌认证 / 有机五常大米 / 敖汉金十年有机小米",
+      "kind": "source_story_chunk"
+    },
+    "aiye_dayougu-products_story_02": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "有机杂粮 · 有机盐田虾 / 敖汉金有机杂粮（8品种） / 39°有机盐田虾",
+      "kind": "source_story_chunk"
+    },
+    "aiye_dayougu-products_story_03": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "🛒 积养家 · 大有谷专区 — 推荐组合 / 两个品牌的\"双向奔赴\" / 大有谷做什么",
+      "kind": "source_story_chunk"
+    },
+    "aiye_dayougu-products_story_04": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "积养家做什么 / 积养家 × 大有谷",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar-term-tea-story_story_01": {
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html",
+      "source_sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "section": "三伏养心茶 / 为什么不能一年到头喝一种茶 / 积养家节气茶的三条规矩",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar-term-tea-story_story_02": {
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html",
+      "source_sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar-term-tea-story_story_03": {
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html",
+      "source_sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar-term-tea-story_story_04": {
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html",
+      "source_sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "section": "跟着节气喝茶，身体会怎样 / 到店喝一杯，带一包回家",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar-term-tea-story_story_05": {
+      "source_file": "sources/aiye-foods/二十四节气养生茶品牌故事.html",
+      "source_sha256": "DA19FFBA2B16122A4D55F2C9A5CA33434314CA287685714776073541D14DE5A9",
+      "section": "说句实在话 / 积养家为什么做这件事 / 三关选品",
+      "kind": "source_story_chunk"
+    },
+    "aiye_free-range-eggs_story_01": {
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html",
+      "source_sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "section": "山泉饮水，远离污染 / 昼夜温差大，体质强健 / 一颗蛋里 有什么",
+      "kind": "source_story_chunk"
+    },
+    "aiye_free-range-eggs_story_02": {
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html",
+      "source_sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "section": "每天一颗飞鸡蛋， 身体会怎样",
+      "kind": "source_story_chunk"
+    },
+    "aiye_free-range-eggs_story_03": {
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html",
+      "source_sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "section": "营养吸收率更高 / 怎么认出 真的飞鸡蛋 / 爱野为什么 选飞鸡蛋",
+      "kind": "source_story_chunk"
+    },
+    "aiye_free-range-eggs_story_04": {
+      "source_file": "sources/aiye-foods/飞鸡蛋品牌故事.html",
+      "source_sha256": "3F4547D6D71A2C19C4730697C6AEE19D4570F8BDFF0114BFC059D700297B3DA5",
+      "section": "零农残 — 无抗生素无激素 / 不卖， 我们送 / 会飞的鸡，下的蛋",
+      "kind": "source_story_chunk"
+    },
+    "aiye_golden-flaxseed_story_01": {
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html",
+      "source_sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "section": "旱地种出来的籽，风味不一样 / 开袋即食——不是所有亚麻籽都做得到 / ✅ 熟制亚麻籽 vs 生亚麻籽",
+      "kind": "source_story_chunk"
+    },
+    "aiye_golden-flaxseed_story_02": {
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html",
+      "source_sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "section": "女性保养 · 更年期调理 / 改善皮肤、护发美甲 / 防癌辅助",
+      "kind": "source_story_chunk"
+    },
+    "aiye_golden-flaxseed_story_03": {
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html",
+      "source_sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "section": "39元一袋，每天不到一块二 / 什么人需要这袋金色亚麻籽？ / 积养家为什么选怀朔优谷",
+      "kind": "source_story_chunk"
+    },
+    "aiye_golden-flaxseed_story_04": {
+      "source_file": "sources/aiye-foods/旱地亚麻籽品牌故事.html",
+      "source_sha256": "7A5F5B4A7CFE92D58D9628F79BE2233E30849BB401274AB95FA3BC63F4939B37",
+      "section": "阴山脚下的金色种子",
+      "kind": "source_story_chunk"
+    },
+    "aiye_astragalus-honey-vinegar_story_01": {
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html",
+      "source_sha256": "D42D939FBEED23BF720B40F716038A30DA1A5403AF3B6393CFC751B4718604A1",
+      "section": "纯蜂蜜酿的醋 / 为什么要把黄芪、蜂蜜、醋酿在一起？ / 一 · 蜂蜜化解黄芪的\"燥\"",
+      "kind": "source_story_chunk"
+    },
+    "aiye_astragalus-honey-vinegar_story_02": {
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html",
+      "source_sha256": "D42D939FBEED23BF720B40F716038A30DA1A5403AF3B6393CFC751B4718604A1",
+      "section": "三 · 深度发酵，不是浸泡 / 三层叠加的营养矩阵 / 黄芪蜂蜜醋 · 八大协同功效",
+      "kind": "source_story_chunk"
+    },
+    "aiye_astragalus-honey-vinegar_story_03": {
+      "source_file": "sources/aiye-foods/黄芪蜂蜜醋品牌故事.html",
+      "source_sha256": "D42D939FBEED23BF720B40F716038A30DA1A5403AF3B6393CFC751B4718604A1",
+      "section": "怎么吃 · 怎么搭配 / 爱野为什么选它",
+      "kind": "source_story_chunk"
+    },
+    "aiye_community-health-event_story_01": {
+      "source_file": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html",
+      "source_sha256": "1FA27ED50FE2AB01C5B19B652451DB9A0B00CEBE5474BDEFD4E6B822FA35BA8B",
+      "section": "两大套餐， 任选其一 / 套餐内含5项权益 / 一张表看懂 「有多值」",
+      "kind": "source_story_chunk"
+    },
+    "aiye_community-health-event_story_02": {
+      "source_file": "sources/aiye-foods/积养家社区健康臻选计划-拓客活动.html",
+      "source_sha256": "1FA27ED50FE2AB01C5B19B652451DB9A0B00CEBE5474BDEFD4E6B822FA35BA8B",
+      "section": "持续养护 / 活动须知 / 50个名额，抢完即止",
+      "kind": "source_story_chunk"
+    },
+    "aiye_afternoon-tea-menu_story_01": {
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html",
+      "source_sha256": "385014D802032A25D7C687831E284DC492FA3A0F33678CC7F4E99CFA05C4AD40",
+      "section": "坐下来， 慢慢喝 / 进店就送， 免费喝 / 下午茶体验， 用成本价尝鲜",
+      "kind": "source_story_chunk"
+    },
+    "aiye_afternoon-tea-menu_story_02": {
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html",
+      "source_sha256": "385014D802032A25D7C687831E284DC492FA3A0F33678CC7F4E99CFA05C4AD40",
+      "section": "💧 富氢水 —— 不为神话，只为更好 / 🌿 藤茶 —— 武陵山里的\"神仙草\" / 🫖 老茶 —— 时间是唯一的配方",
+      "kind": "source_story_chunk"
+    },
+    "aiye_afternoon-tea-menu_story_03": {
+      "source_file": "sources/aiye-foods/积养家下午茶体验菜单.html",
+      "source_sha256": "385014D802032A25D7C687831E284DC492FA3A0F33678CC7F4E99CFA05C4AD40",
+      "section": "下午茶， 这样安排 / 为什么 定这个价 / 坐下来，喝杯茶",
+      "kind": "source_story_chunk"
+    },
+    "aiye_food-medicine-ingredients_story_01": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "什么是药食同源？",
+      "kind": "source_story_chunk"
+    },
+    "aiye_food-medicine-ingredients_story_02": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_food-medicine-ingredients_story_03": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_food-medicine-ingredients_story_04": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "积养家 · 选品哲学",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-soy-sauce_story_01": {
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html",
+      "source_sha256": "A412297BFCB3DA5A93CDAE9E57595B5E45F7C75434A1ED41C006FF518FDB706D",
+      "section": "压榨过滤 / 特级与一级 / 差之毫厘，鲜之千里",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-soy-sauce_story_02": {
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html",
+      "source_sha256": "A412297BFCB3DA5A93CDAE9E57595B5E45F7C75434A1ED41C006FF518FDB706D",
+      "section": "天然增鲜，减少食盐摄入 / 促进胃液分泌，助消化 / 抗氧化，延缓衰老",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-soy-sauce_story_03": {
+      "source_file": "sources/aiye-foods/金华古法酱油品牌故事.html",
+      "source_sha256": "A412297BFCB3DA5A93CDAE9E57595B5E45F7C75434A1ED41C006FF518FDB706D",
+      "section": "便宜和贵差在哪 / 爱野为什么选它 / 一滴足矣，何须他物。",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-liangtouyu-ham_story_01": {
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html",
+      "source_sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "section": "不止一年 / 立冬投料 · 选腿 / 修坯 · 塑琵琶形",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-liangtouyu-ham_story_02": {
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html",
+      "source_sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "section": "国宝级的营养 / 不只是美味 / 健脾开胃",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-liangtouyu-ham_story_03": {
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html",
+      "source_sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "section": "商务客户 / 家庭自用 / 节日馈赠",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-liangtouyu-ham_story_04": {
+      "source_file": "sources/aiye-foods/金华两头乌火腿品牌故事.html",
+      "source_sha256": "7F7EBD032A96D20E6DF38E7BD4BF279EEAD980E3B2A0FE9FDE7869FC70E2F804",
+      "section": "爱野为什么选它",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-farm-ham_story_01": {
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html",
+      "source_sha256": "47B8D02483FF4362A809AA84A7FC9DAD9FC15798F11893E76B597F887280E585",
+      "section": "上架发酵 / 落架堆叠 / 闻香定级",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-farm-ham_story_02": {
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html",
+      "source_sha256": "47B8D02483FF4362A809AA84A7FC9DAD9FC15798F11893E76B597F887280E585",
+      "section": "抗氧化延缓衰老 / 增强骨骼健康 / 调味提鲜，以鲜代盐",
+      "kind": "source_story_chunk"
+    },
+    "aiye_jinhua-farm-ham_story_03": {
+      "source_file": "sources/aiye-foods/金华农家火腿品牌故事.html",
+      "source_sha256": "47B8D02483FF4362A809AA84A7FC9DAD9FC15798F11893E76B597F887280E585",
+      "section": "两款火腿，怎么选 / 爱野为什么选它 / 时间给的风味，机器做不出来。",
+      "kind": "source_story_chunk"
+    },
+    "aiye_luobu-soy-sauce-gift_story_01": {
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html",
+      "source_sha256": "35C564D7C00879B094BD56546077BDD93712CB2C8882DDF3B2D071E40589F9F5",
+      "section": "选豆 / 浸泡蒸煮 / 拌曲发酵",
+      "kind": "source_story_chunk"
+    },
+    "aiye_luobu-soy-sauce-gift_story_02": {
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html",
+      "source_sha256": "35C564D7C00879B094BD56546077BDD93712CB2C8882DDF3B2D071E40589F9F5",
+      "section": "抗氧化，减缓衰老 / 辅助降低胆固醇 / 调节血压",
+      "kind": "source_story_chunk"
+    },
+    "aiye_luobu-soy-sauce-gift_story_03": {
+      "source_file": "sources/aiye-foods/罗埠土酱油礼盒装品牌故事.html",
+      "source_sha256": "35C564D7C00879B094BD56546077BDD93712CB2C8882DDF3B2D071E40589F9F5",
+      "section": "六瓶的心意 / 爱野为什么选它 / 送酱油，送的是烟火气",
+      "kind": "source_story_chunk"
+    },
+    "aiye_farm-soybean-paste_story_01": {
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html",
+      "source_sha256": "AF0F08C13AA96793AD3EB7726B5752835F6D3C2E89C158AD65CD2482F9B7FAA9",
+      "section": "酱，八珍主人也 / 八道老工序 · 最少三个月 / 豆香，不是添加剂调出来的",
+      "kind": "source_story_chunk"
+    },
+    "aiye_farm-soybean-paste_story_02": {
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html",
+      "source_sha256": "AF0F08C13AA96793AD3EB7726B5752835F6D3C2E89C158AD65CD2482F9B7FAA9",
+      "section": "发酵，让黄豆营养翻了倍 / 一勺好酱 · 六重滋养 / 一瓶酱 · 百种吃法",
+      "kind": "source_story_chunk"
+    },
+    "aiye_farm-soybean-paste_story_03": {
+      "source_file": "sources/aiye-foods/农家古法黄豆酱品牌故事.html",
+      "source_sha256": "AF0F08C13AA96793AD3EB7726B5752835F6D3C2E89C158AD65CD2482F9B7FAA9",
+      "section": "为什么要用大瓶？ / 爱野为什么选这瓶酱",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tiger-nut-oil_story_01": {
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html",
+      "source_sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "section": "一滴滴 黄金 / 从\"死亡之海\"到\"黄金油仓\" / 低温冷榨，锁住沙漠的营养",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tiger-nut-oil_story_02": {
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html",
+      "source_sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "section": "每一滴都是营养浓缩 / 一棵虎坚果，治了一片沙漠",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tiger-nut-oil_story_03": {
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html",
+      "source_sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "section": "煲汤点油 / 蘸面包/拌面 / 外用护肤",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tiger-nut-oil_story_04": {
+      "source_file": "sources/aiye-foods/沙漠一号虎坚果油品牌故事.html",
+      "source_sha256": "6647022E9784505E6822D62147C551B3D3898ED104C687D0633B3F59316BFE4E",
+      "section": "💬 一句话销售 / 爱野为什么选它 / 沙漠里长出来的黄金",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shanxi-aged-vinegar_story_01": {
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html",
+      "source_sha256": "FA62C66B846ECA2E0818E20AD93507472F88F1609BDF0E5C72EB785AEE8DE0DA",
+      "section": "鲜 / 一缸醋里，藏了多少好东西 / 氨基酸",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shanxi-aged-vinegar_story_02": {
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html",
+      "source_sha256": "FA62C66B846ECA2E0818E20AD93507472F88F1609BDF0E5C72EB785AEE8DE0DA",
+      "section": "促进矿物质吸收 / 抗氧化抗衰老 / 一斤二十",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shanxi-aged-vinegar_story_03": {
+      "source_file": "sources/aiye-foods/山西老陈醋品牌故事.html",
+      "source_sha256": "FA62C66B846ECA2E0818E20AD93507472F88F1609BDF0E5C72EB785AEE8DE0DA",
+      "section": "爱野为什么选它",
+      "kind": "source_story_chunk"
+    },
+    "aiye_xuan-lotus-seed_story_01": {
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html",
+      "source_sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "section": "一方水土一方莲 / 千年莲田的老规矩 / 六道工序",
+      "kind": "source_story_chunk"
+    },
+    "aiye_xuan-lotus-seed_story_02": {
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html",
+      "source_sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "section": "对人体的好处 / 养心安神，改善失眠 / 健脾止泻，调理肠胃",
+      "kind": "source_story_chunk"
+    },
+    "aiye_xuan-lotus-seed_story_03": {
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html",
+      "source_sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "section": "莲子心茶 / 为什么选上珍缘宣莲 / 三大名莲之首 · 嘉庆贡品",
+      "kind": "source_story_chunk"
+    },
+    "aiye_xuan-lotus-seed_story_04": {
+      "source_file": "sources/aiye-foods/上珍缘宣莲品牌故事.html",
+      "source_sha256": "974554B257523B8C61B015DFA7B257E6BFBAEE6E0CB9AC11AFEB4228437D8070",
+      "section": "爱野四重标准对照",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shizhen-health-tea_story_01": {
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html",
+      "source_sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "section": "适合谁喝 / 🍵 元气四宝茶 / 黄芽汤 · 党参茯苓甘草干姜茶",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shizhen-health-tea_story_02": {
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html",
+      "source_sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "section": "人参菊花决明子茶 / 三大核心 + 十六味协同 / 组方解析",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shizhen-health-tea_story_03": {
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html",
+      "source_sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "section": "无添加烘干，锁住每一味药性 / 烘干 vs 摊晒：差的不止一点点 / 四种\"不添加\"",
+      "kind": "source_story_chunk"
+    },
+    "aiye_shizhen-health-tea_story_04": {
+      "source_file": "sources/aiye-foods/时珍太和圣坊养生茶系列.html",
+      "source_sha256": "7518A1E56CC9F92B41CE7049F49F6BC4B33548243873E6F78CBF23834BF47FFA",
+      "section": "时珍太和圣坊养生茶系列 / 销售话术 / 爱野为什么选时珍太和圣坊",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tapai-rice-wine_story_01": {
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html",
+      "source_sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "section": "材有美 — 单季晚糯 / 工有巧 — 三十六道手工 / 那一年冬天，发生了什么",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tapai-rice-wine_story_02": {
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html",
+      "source_sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "section": "四甲基吡嗪 / 它到底对人好在哪 / 保护心血管",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tapai-rice-wine_story_03": {
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html",
+      "source_sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "section": "真手工 / 真溯源 / 真合理价",
+      "kind": "source_story_chunk"
+    },
+    "aiye_tapai-rice-wine_story_04": {
+      "source_file": "sources/aiye-foods/塔牌黄酒品牌故事.html",
+      "source_sha256": "120ADE26487E3425E6C12CDE3928BAC7B04C4AA6F87506CB40CE5697FC75D327",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_vine-tea_story_01": {
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html",
+      "source_sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "section": "白霜，是它的身份证 / 黄酮含量对比（干重） / 每一口，都是数据",
+      "kind": "source_story_chunk"
+    },
+    "aiye_vine-tea_story_02": {
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html",
+      "source_sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "section": "8. 降尿酸 / 晚上也能喝，不是因为它「温和」 / 藤茶 vs 传统茶叶",
+      "kind": "source_story_chunk"
+    },
+    "aiye_vine-tea_story_03": {
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html",
+      "source_sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "section": "🍵 藤茶体验价 / 🛒 到店买走 / 爱野为什么选它",
+      "kind": "source_story_chunk"
+    },
+    "aiye_vine-tea_story_04": {
+      "source_file": "sources/aiye-foods/藤茶品牌故事.html",
+      "source_sha256": "0D627405FCC91B53C119541353F9C610CB44B60A6D78F36BBC0B89ABB9C4309F",
+      "section": "白霜之上，是武陵山的云雾",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wuzhiyan-ginger_story_01": {
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html",
+      "source_sha256": "715A4C7F0762262FA6B42C98DF673B7ACC8410A4892365E01E2814488E02E33A",
+      "section": "硒元素 / 钾 / 钙",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wuzhiyan-ginger_story_02": {
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html",
+      "source_sha256": "715A4C7F0762262FA6B42C98DF673B7ACC8410A4892365E01E2814488E02E33A",
+      "section": "驱寒暖身、通气血 / 辅助调节血糖 / 抗菌抑病毒",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wuzhiyan-ginger_story_03": {
+      "source_file": "sources/aiye-foods/五指岩鲜姜品牌故事.html",
+      "source_sha256": "715A4C7F0762262FA6B42C98DF673B7ACC8410A4892365E01E2814488E02E33A",
+      "section": "自然生长 / 有机肥 / 零农残",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wudang-wild-honey_story_01": {
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html",
+      "source_sha256": "02FF2A62955D27157E247D34E43EAE9D46398E4663691A48AB5A99AECD622DDC",
+      "section": "采蜜的人 / 看天吃饭的甜 / 浓缩的天然药库",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wudang-wild-honey_story_02": {
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html",
+      "source_sha256": "02FF2A62955D27157E247D34E43EAE9D46398E4663691A48AB5A99AECD622DDC",
+      "section": "香气扑鼻，甜而不苦 / 一罐蜜，八般吃法 / 抹面包 / 蘸馒头",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wudang-wild-honey_story_03": {
+      "source_file": "sources/aiye-foods/武当山野山蜂蜜品牌故事.html",
+      "source_sha256": "02FF2A62955D27157E247D34E43EAE9D46398E4663691A48AB5A99AECD622DDC",
+      "section": "纯天然零添加 / 生态友善 / 全程可溯源",
+      "kind": "source_story_chunk"
+    },
+    "aiye_torreya-oil_story_01": {
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html",
+      "source_sha256": "D1ECFDD6B70EBE0C2DD367D766CDC86E3350A35755151E5266D945A3C2FDA42D",
+      "section": "抗氧化抗衰老 / 抗炎减负 / 大脑与代谢",
+      "kind": "source_story_chunk"
+    },
+    "aiye_torreya-oil_story_02": {
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html",
+      "source_sha256": "D1ECFDD6B70EBE0C2DD367D766CDC86E3350A35755151E5266D945A3C2FDA42D",
+      "section": "爱野四重标准 / 从源头守住 每一滴 / 爱野天然食材 · 四重选材标准",
+      "kind": "source_story_chunk"
+    },
+    "aiye_torreya-oil_story_03": {
+      "source_file": "sources/aiye-foods/香榧油品牌故事.html",
+      "source_sha256": "D1ECFDD6B70EBE0C2DD367D766CDC86E3350A35755151E5266D945A3C2FDA42D",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wenshan-notoginseng_story_01": {
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html",
+      "source_sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "section": "为什么只有文山 / 生打熟补：一味药，两种用法 / 营养成分",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wenshan-notoginseng_story_02": {
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html",
+      "source_sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "section": "调节血脂，辅助稳血糖 / 抗炎镇痛，天然安全 / 抗氧化抗衰老",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wenshan-notoginseng_story_03": {
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html",
+      "source_sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "section": "为什么值得买 / 积养家 · 文山道地三七片 / 爱野为什么选它",
+      "kind": "source_story_chunk"
+    },
+    "aiye_wenshan-notoginseng_story_04": {
+      "source_file": "sources/aiye-foods/云南文山三七片品牌故事.html",
+      "source_sha256": "787CE2DCBB23893042A81726FA9F963F6A370D1975B87865393A6555DAB89B6E",
+      "section": "正文",
+      "kind": "source_story_chunk"
+    },
+    "aiye_solar_term_lichun": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "立春",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_yushui": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "雨水",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_jingzhe": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "惊蛰",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_chunfen": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "春分",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_qingming": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "清明",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_guyu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "谷雨",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_lixia": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "立夏",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_xiaoman": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "小满",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_mangzhong": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "芒种",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_xiazhi": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "夏至",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_xiaoshu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "小暑",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_dashu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "大暑",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_liqiu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "立秋",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_chushu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "处暑",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_bailu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "白露",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_qiufen": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "秋分",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_hanlu": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "寒露",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_shuangjiang": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "霜降",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_lidong": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "立冬",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_xiaoxue": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "小雪",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_daxue": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "大雪",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_dongzhi": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "冬至",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_xiaohan": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "小寒",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_solar_term_dahan": {
+      "source_file": "sources/aiye-foods/24节气养生茶速查表.html",
+      "source_sha256": "B2F0409B170B43B42D78F1F39129AE27746A8628B89C3BAF766863A372F7A57B",
+      "section": "大寒",
+      "kind": "solar_term_recipe"
+    },
+    "aiye_ingredient_ginger": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "生姜",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_astragalus": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "黄芪",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_codonopsis": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "党参段",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_notoginseng": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "三七",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_poria": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "茯苓",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_angelica": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "当归",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_euryale": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "芡实仁",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_lily-bulb": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "百合",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_fig": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "无花果",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_rose": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "大玫瑰",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_dendrobium": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "铁皮石斛",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_ophiopogon": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "麦冬",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_polygonatum": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "九蒸黄精",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_aged-tangerine-peel": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "老陈皮",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_fujian-lotus-seed": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "福建莲子",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_ningxia-goji": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "宁夏枸杞",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_yam": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "山药",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_mulberry": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "桑葚",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_ingredient_american-ginseng": {
+      "source_file": "sources/aiye-foods/积养家药食同源食材大全.html",
+      "source_sha256": "5C1ECC21F4A4FD5B802783CEEF39F9B7E1976499662BDACB4168EE430E42CFCB",
+      "section": "西洋参片",
+      "kind": "food_medicine_ingredient"
+    },
+    "aiye_dayougu_catalog": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览",
+      "kind": "dayougu_catalog"
+    },
+    "aiye_dayougu_furen-wuchang-rice": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 福人 · 有机五常大米",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_shangqian-wuchang-rice": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 尚乾 · 有机五常大米",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_aohan-millet-gift": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 十年有机小米 · 礼盒装",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_aohan-millet-family": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 十年有机小米 · 家庭装",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_organic-fresh-corn": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 有机鲜食玉米",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_organic-waxy-corn": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 有机糯玉米",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_organic-mixed-grains": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 有机杂粮（8品种）",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_organic-salt-field-shrimp": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 39°有机盐田虾",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_cistanche-milk-powder": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 肉苁蓉奶粉",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_canola-oil-5l": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 芥花油（大桶）",
+      "kind": "dayougu_sku"
+    },
+    "aiye_dayougu_canola-oil-twin-pack": {
+      "source_file": "sources/aiye-foods/大有谷合作产品手册.html",
+      "source_sha256": "4DA6E53D0A265BCBB912200C39B82F4AB8249541A4E488DEC2AA091FB090AFBB",
+      "section": "全线总览 / 芥花油（双瓶）",
+      "kind": "dayougu_sku"
+    },
+    "faq_brand_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "品牌定位——积养家是做什么的",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "品牌名称含义",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "品牌理念与差异化",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "门店性质与连锁问题",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "门店地址",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "免费项目总览",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_007": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "免费姜茶",
+      "kind": "legacy_v2.1"
+    },
+    "faq_brand_008": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "健康承诺边界",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "4S食材标准",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "食材为什么比超市贵",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "食材是否去过产地",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "食材吃了能调理身体吗",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "五常大米介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "敖汉小米介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_007": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "玉米产品介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_008": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "杂粮礼盒介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_009": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "盐田虾介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_food_010": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "芥花油介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "聚宝盆鸡汤介绍",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "草虫鸡鉴别方法",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "鸡汤价格",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "汤品功效边界",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "七膳煨汤系列",
+      "kind": "legacy_v2.1"
+    },
+    "faq_soup_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "汤品规格",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "生活养护是什么",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "能治病吗",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "养护价格",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "技师专业性",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "养护后注意事项",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "二楼环境",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_007": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "高新康养产品",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_008": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "设备租售方式",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_009": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "适老化改造建议",
+      "kind": "legacy_v2.1"
+    },
+    "faq_service_010": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "社区便民服务",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "第一次来怎么办",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "带老人来",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "送礼推荐",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "一个人来坐坐",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "送货上门",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "外小区/路人能进来吗",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_007": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "社群活动",
+      "kind": "legacy_v2.1"
+    },
+    "faq_scenario_008": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "健康讲座",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "转人工",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "问价格转人工",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "预约方式",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "排队等待",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "医疗健康转人工",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_006": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "会员余额查询",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_007": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "临时活动优惠",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_008": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "营业时间",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_009": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "设备使用方式",
+      "kind": "legacy_v2.1"
+    },
+    "faq_boundary_010": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "不确定兜底",
+      "kind": "legacy_v2.1"
+    },
+    "kb_brand_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "积养家品牌定位",
+      "kind": "legacy_v2.1"
+    },
+    "kb_brand_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "品牌名称含义",
+      "kind": "legacy_v2.1"
+    },
+    "kb_food_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "4S食材标准体系",
+      "kind": "legacy_v2.1"
+    },
+    "kb_food_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "有机五常大米",
+      "kind": "legacy_v2.1"
+    },
+    "kb_food_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "敖汉有机小米",
+      "kind": "legacy_v2.1"
+    },
+    "kb_food_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "有机玉米",
+      "kind": "legacy_v2.1"
+    },
+    "kb_food_005": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "有机盐田虾",
+      "kind": "legacy_v2.1"
+    },
+    "kb_soup_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "聚宝盆老火鸡汤",
+      "kind": "legacy_v2.1"
+    },
+    "kb_soup_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "聚宝盆七膳煨汤系列",
+      "kind": "legacy_v2.1"
+    },
+    "kb_service_001": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "生活养护服务",
+      "kind": "legacy_v2.1"
+    },
+    "kb_service_002": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "五项免费服务",
+      "kind": "legacy_v2.1"
+    },
+    "kb_service_003": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "高新康养产品租售",
+      "kind": "legacy_v2.1"
+    },
+    "kb_service_004": {
+      "source_file": "../v2.1/import_all.json",
+      "source_sha256": "2FCFE376FA686C48B5541CE5F3587FE3E72E438C5BCE346CBD6D95B878B2BBE3",
+      "section": "社区便民与陪伴",
+      "kind": "legacy_v2.1"
+    },
+    "site_product_fuling": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/fuling/",
+      "source_product_id": "fuling",
+      "source_version": "2.1"
+    },
+    "site_product_dried-mulberry": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/",
+      "source_product_id": "dried-mulberry",
+      "source_version": "2.1"
+    },
+    "site_product_yam-slices": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/yam-slices/",
+      "source_product_id": "yam-slices",
+      "source_version": "2.1"
+    },
+    "site_product_gorgon-seed": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/",
+      "source_product_id": "gorgon-seed",
+      "source_version": "2.1"
+    },
+    "site_product_dried-fig": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/dried-fig/",
+      "source_product_id": "dried-fig",
+      "source_version": "2.1"
+    },
+    "site_product_rose-buds": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/rose-buds/",
+      "source_product_id": "rose-buds",
+      "source_version": "2.1"
+    },
+    "site_product_angelica-slices": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/angelica-slices/",
+      "source_product_id": "angelica-slices",
+      "source_version": "2.1"
+    },
+    "site_product_fujian-lotus-seed": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/",
+      "source_product_id": "fujian-lotus-seed",
+      "source_version": "2.1"
+    },
+    "site_product_ningxia-goji": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/",
+      "source_product_id": "ningxia-goji",
+      "source_version": "2.1"
+    },
+    "site_product_lily-bulb": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/lily-bulb/",
+      "source_product_id": "lily-bulb",
+      "source_version": "2.1"
+    },
+    "site_product_ophiopogon": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/ophiopogon/",
+      "source_product_id": "ophiopogon",
+      "source_version": "2.1"
+    },
+    "site_product_codonopsis": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/codonopsis/",
+      "source_product_id": "codonopsis",
+      "source_version": "2.1"
+    },
+    "site_product_steamed-polygonatum": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/",
+      "source_product_id": "steamed-polygonatum",
+      "source_version": "2.1"
+    },
+    "site_product_dendrobium": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/dendrobium/",
+      "source_product_id": "dendrobium",
+      "source_version": "2.1"
+    },
+    "site_product_american-ginseng-slices": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/",
+      "source_product_id": "american-ginseng-slices",
+      "source_version": "2.1"
+    },
+    "site_product_aged-tangerine-peel": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/",
+      "source_product_id": "aged-tangerine-peel",
+      "source_version": "2.1"
+    },
+    "site_product_sanqi": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/sanqi/",
+      "source_product_id": "sanqi",
+      "source_version": "2.1"
+    },
+    "site_product_astragalus": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/astragalus/",
+      "source_product_id": "astragalus",
+      "source_version": "2.1"
+    },
+    "site_product_sanqi-slices": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/",
+      "source_product_id": "sanqi-slices",
+      "source_version": "2.1"
+    },
+    "site_product_cistanche-milk-powder": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/",
+      "source_product_id": "cistanche-milk-powder",
+      "source_version": "2.1"
+    },
+    "site_product_golden-flaxseed": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/",
+      "source_product_id": "golden-flaxseed",
+      "source_version": "2.1"
+    },
+    "site_product_aohan-waxy-corn": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/",
+      "source_product_id": "aohan-waxy-corn",
+      "source_version": "2.1"
+    },
+    "site_product_torreya-oil": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/torreya-oil/",
+      "source_product_id": "torreya-oil",
+      "source_version": "2.1"
+    },
+    "site_product_aohan-sweet-corn": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/",
+      "source_product_id": "aohan-sweet-corn",
+      "source_version": "2.1"
+    },
+    "site_product_aohan-millet-family": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/",
+      "source_product_id": "aohan-millet-family",
+      "source_version": "2.1"
+    },
+    "site_product_canola-oil": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/canola-oil/",
+      "source_product_id": "canola-oil",
+      "source_version": "2.1"
+    },
+    "site_product_aohan-mixed-grains": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/",
+      "source_product_id": "aohan-mixed-grains",
+      "source_version": "2.1"
+    },
+    "site_product_aohan-millet-gift": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/",
+      "source_product_id": "aohan-millet-gift",
+      "source_version": "2.1"
+    },
+    "site_product_wuchang-rice-shangqian": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/",
+      "source_product_id": "wuchang-rice-shangqian",
+      "source_version": "2.1"
+    },
+    "site_product_wuchang-rice-furen": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/",
+      "source_product_id": "wuchang-rice-furen",
+      "source_version": "2.1"
+    },
+    "site_product_shengmu-yogurt": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/",
+      "source_product_id": "shengmu-yogurt",
+      "source_version": "2.1"
+    },
+    "site_product_salt-field-shrimp": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/",
+      "source_product_id": "salt-field-shrimp",
+      "source_version": "2.1"
+    },
+    "site_product_black-pork-lard": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/",
+      "source_product_id": "black-pork-lard",
+      "source_version": "2.1"
+    },
+    "site_product_farm-lard": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/farm-lard/",
+      "source_product_id": "farm-lard",
+      "source_version": "2.1"
+    },
+    "site_product_jinhua-ham": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/",
+      "source_product_id": "jinhua-ham",
+      "source_version": "2.1"
+    },
+    "site_product_jinhua-liangtouyu-ham": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/",
+      "source_product_id": "jinhua-liangtouyu-ham",
+      "source_version": "2.1"
+    },
+    "site_product_grade-one-soy-sauce": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/",
+      "source_product_id": "grade-one-soy-sauce",
+      "source_version": "2.1"
+    },
+    "site_product_aged-vinegar": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/",
+      "source_product_id": "aged-vinegar",
+      "source_version": "2.1"
+    },
+    "site_product_premium-soy-sauce": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/",
+      "source_product_id": "premium-soy-sauce",
+      "source_version": "2.1"
+    },
+    "site_product_fresh-ginger": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/",
+      "source_product_id": "fresh-ginger",
+      "source_version": "2.1"
+    },
+    "site_product_soybean-paste": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/soybean-paste/",
+      "source_product_id": "soybean-paste",
+      "source_version": "2.1"
+    },
+    "site_product_rice-wine": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/rice-wine/",
+      "source_product_id": "rice-wine",
+      "source_version": "2.1"
+    },
+    "site_product_astragalus-honey-vinegar": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/",
+      "source_product_id": "astragalus-honey-vinegar",
+      "source_version": "2.1"
+    },
+    "site_product_premium-soy-sauce-gift": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/",
+      "source_product_id": "premium-soy-sauce-gift",
+      "source_version": "2.1"
+    },
+    "site_product_anfeng-chenyun": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/",
+      "source_product_id": "anfeng-chenyun",
+      "source_version": "2.1"
+    },
+    "site_product_wudang-honey": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/wudang-honey/",
+      "source_product_id": "wudang-honey",
+      "source_version": "2.1"
+    },
+    "site_product_flying-eggs": {
+      "source_file": "site/knowledge/index.json",
+      "source_url": "https://jiyangjia-ai.netlify.app/products/flying-eggs/",
+      "source_product_id": "flying-eggs",
+      "source_version": "2.1"
+    }
+  }
+}

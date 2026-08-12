@@ -40,15 +40,16 @@ LiveTalking/Wav2Lip/MuseTalk/WebRTC 数字人、实时口型与 GPU 推理为 **
 - TASK-013：Android 到 Gateway 对话链路联调（无真机验收）。
 - TASK-014：腾讯云部署与 Gateway 生产链路收口（基于任务环境）。
 - TASK-014A：四页管理后台（system / knowledge / avatar / display）+发布闭环+路由 API。
-- TASK-014H：生产域名、服务器 TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已配置；公网仍被腾讯 DNSPod webblock/ICP 门禁阻塞。
+- TASK-014H：生产域名、TLS/Nginx、loopback-only Gateway 端口和 Android canonical URL 已完成；公网 HTTPS 与 Certbot 模拟续期已通过。
 - TASK-020A/020B：正式知识库完成真实 Embedding 验收，并绑定本地数字人真实 ASR/RAG/LLM/TTS 闭环。
 - TASK-020C：正式知识库已在腾讯云运行；指定人物 MOV 的 1080x1920 MP4 衍生版和同源背景已发布并绑定线上默认 Profile。公网分享仍受 ICP/Webblock 门禁阻塞。
 - TASK-020D：经用户明确授权，正式知识库 v2.1 已发布为 GitHub 可浏览 JSON 包，并重新导入腾讯云真实 Doubao Embedding/FAISS；80 问当前策略验收为 80/80。
+- TASK-020F/020G：v2.2 爱野食材与 v2.3 公开培训站点已进入正式公开知识包；v2.3 由结构化产品数据生成，生产为 227 approved、24 draft、387 x 2048，产品检索 141/141。
 
 ## 未完成项（不在本基线宣称范围）
 
 - Android 12 真机验收（TASK-015）。
-- 公网域名 ICP/Webblock 放行后的正式分享验收。
+- Android 12 门店大屏 USB 麦克风、音响、托管 kiosk、升级回滚和长稳验收。
 - LiveTalking 全流程重入与实时口型（增强阶段）。
 - 生产监控、告警、CDN/成本保护与长期稳定性验证。
 
@@ -128,7 +129,7 @@ Copy-Item .env.example .env.local
 
 ## Gateway API
 
-正式目标地址：`https://ai-jiyangjia.cloud/api/v1`。当前公网访问尚未通过 TASK-014H 门禁，不得用服务器内部检查替代外部验收。
+正式地址：`https://ai-jiyangjia.cloud/api/v1`。公网 HTTPS 已通过；生产变更仍需保留回滚和真实接口证据。
 
 基础接口来自 [`docs/api/MVP_API_SPEC.md`](docs/api/MVP_API_SPEC.md)：
 
@@ -147,7 +148,7 @@ Copy-Item .env.example .env.local
 
 ## 在线知识库与实时分享
 
-GitHub 仓库中的公开知识库入口：[积养家 AI 客服知识库](docs/knowledge/README.md)。员工可以从该页浏览 [v2.1 完整知识内容](knowledge-public/v2.1/import_all.json)，也可以使用 [第一批](knowledge-public/v2.1/import_batch_01.json) 和 [第二批](knowledge-public/v2.1/import_batch_02.json) 导入 Gateway。
+GitHub 仓库中的公开知识库入口：[积养家公开知识资料](knowledge-public/README.md)。当前版本为 [v2.3](knowledge-public/v2.3/README.md)，员工可浏览 [完整知识](knowledge-public/v2.3/import_all.json)、[产品目录](knowledge-public/v2.3/catalog.json) 和 [原始公开培训站点](knowledge-public/v2.3/site/)。实际 Gateway 导入必须按 manifest 的批次顺序执行。
 
 本次经用户明确授权的 65 条对外宣传/员工学习知识已进入公共 GitHub。未授权原始 PDF/DOCX、SQLite 和 FAISS 仍不进入 Git；线上运行数据继续由 Gateway 的 SQLite + FAISS 保存：
 
@@ -196,8 +197,8 @@ APK 以本地构建产物为准，不提交到 Git；未进行 Android 真机发
 
 ## 当前任务与下一任务
 
-- 当前生产域名任务：`TASK-014H BLOCKED_BY_TENCENT_WEBBLOCK_ICP`。
-- 下一步唯一任务：完成 `ai-jiyangjia.cloud` 的 ICP/腾讯云接入放行并复验公网 HTTPS 与 Certbot dry-run；通过前不进入 TASK-015。
+- 当前生产域名任务：`TASK-014H DONE`；公网 HTTPS、Demo、API 和 Certbot 模拟续期均已通过。
+- 下一步唯一任务：在 Android 12 门店大屏完成 TASK-015 的 USB 麦克风、音响、托管 kiosk、更新回滚和长稳验收。
 
 ## 证据与交接
 

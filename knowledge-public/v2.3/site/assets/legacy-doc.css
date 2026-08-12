@@ -1,0 +1,18 @@
+/* Additive mobile compatibility for the 26 confirmed source documents. */
+.jyj-source-a11y-title { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+@media (max-width: 620px) {
+  html, body { max-width: 100%; overflow-x: clip !important; }
+  body { overflow-wrap: anywhere; padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+  img, video, canvas, svg { height: auto; max-width: 100% !important; }
+  table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  pre, code { max-width: 100%; overflow-x: auto; white-space: pre-wrap; }
+  .jyj-source-toolbar { align-items: stretch; background: #fff; border-top: 1px solid #dfe4de; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; height: calc(60px + env(safe-area-inset-bottom)); left: 0; padding-bottom: env(safe-area-inset-bottom); position: fixed; right: 0; z-index: 2147483646; }
+  .jyj-source-toolbar a { align-items: center; color: #24543a; display: flex; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; font-weight: 700; justify-content: center; min-height: 44px; text-decoration: none; }
+  .jyj-source-toolbar a:first-child { border-right: 1px solid #dfe4de; }
+  html.jyj-embedded body { padding-bottom: 0; }
+  html.jyj-embedded .jyj-source-toolbar { display: none; }
+}
+
+@media (min-width: 621px) {
+  .jyj-source-toolbar { display: none; }
+}

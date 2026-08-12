@@ -37,4 +37,7 @@ object AudioRoutePolicy {
 
     fun choosePreferredOutput(outputs: List<AudioDeviceDescriptor>): AudioDeviceDescriptor? =
         outputs.firstOrNull { it.isPreferredOutput } ?: outputs.firstOrNull()
+
+    fun supportsAutomaticBargeIn(inputs: List<AudioDeviceDescriptor>): Boolean =
+        choosePreferredInput(inputs)?.isUsbInput == true
 }

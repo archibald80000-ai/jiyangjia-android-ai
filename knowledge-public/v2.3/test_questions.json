@@ -1,0 +1,1133 @@
+{
+  "version": "2.3",
+  "cases": [
+    {
+      "id": "site_product_fuling_intro",
+      "question": "茯苓是什么？",
+      "expected_any": [
+        "site_product_fuling"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fuling/"
+    },
+    {
+      "id": "site_product_fuling_price",
+      "question": "茯苓多少钱？",
+      "expected_any": [
+        "site_product_fuling"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fuling/"
+    },
+    {
+      "id": "site_product_fuling_detail",
+      "question": "详细介绍一下茯苓。",
+      "expected_any": [
+        "site_product_fuling"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fuling/"
+    },
+    {
+      "id": "site_product_dried-mulberry_intro",
+      "question": "桑葚是什么？",
+      "expected_any": [
+        "site_product_dried-mulberry"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/"
+    },
+    {
+      "id": "site_product_dried-mulberry_price",
+      "question": "桑葚多少钱？",
+      "expected_any": [
+        "site_product_dried-mulberry"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/"
+    },
+    {
+      "id": "site_product_dried-mulberry_detail",
+      "question": "详细介绍一下桑葚。",
+      "expected_any": [
+        "site_product_dried-mulberry"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-mulberry/"
+    },
+    {
+      "id": "site_product_yam-slices_intro",
+      "question": "山药是什么？",
+      "expected_any": [
+        "site_product_yam-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/yam-slices/"
+    },
+    {
+      "id": "site_product_yam-slices_price",
+      "question": "山药多少钱？",
+      "expected_any": [
+        "site_product_yam-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/yam-slices/"
+    },
+    {
+      "id": "site_product_yam-slices_detail",
+      "question": "详细介绍一下山药。",
+      "expected_any": [
+        "site_product_yam-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/yam-slices/"
+    },
+    {
+      "id": "site_product_gorgon-seed_intro",
+      "question": "芡实仁是什么？",
+      "expected_any": [
+        "site_product_gorgon-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/"
+    },
+    {
+      "id": "site_product_gorgon-seed_price",
+      "question": "芡实仁多少钱？",
+      "expected_any": [
+        "site_product_gorgon-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/"
+    },
+    {
+      "id": "site_product_gorgon-seed_detail",
+      "question": "详细介绍一下芡实仁。",
+      "expected_any": [
+        "site_product_gorgon-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/gorgon-seed/"
+    },
+    {
+      "id": "site_product_dried-fig_intro",
+      "question": "无花果是什么？",
+      "expected_any": [
+        "site_product_dried-fig"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-fig/"
+    },
+    {
+      "id": "site_product_dried-fig_price",
+      "question": "无花果多少钱？",
+      "expected_any": [
+        "site_product_dried-fig"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-fig/"
+    },
+    {
+      "id": "site_product_dried-fig_detail",
+      "question": "详细介绍一下无花果。",
+      "expected_any": [
+        "site_product_dried-fig"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dried-fig/"
+    },
+    {
+      "id": "site_product_rose-buds_intro",
+      "question": "大玫瑰是什么？",
+      "expected_any": [
+        "site_product_rose-buds"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rose-buds/"
+    },
+    {
+      "id": "site_product_rose-buds_price",
+      "question": "大玫瑰多少钱？",
+      "expected_any": [
+        "site_product_rose-buds"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rose-buds/"
+    },
+    {
+      "id": "site_product_rose-buds_detail",
+      "question": "详细介绍一下大玫瑰。",
+      "expected_any": [
+        "site_product_rose-buds"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rose-buds/"
+    },
+    {
+      "id": "site_product_angelica-slices_intro",
+      "question": "当归是什么？",
+      "expected_any": [
+        "site_product_angelica-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/angelica-slices/"
+    },
+    {
+      "id": "site_product_angelica-slices_price",
+      "question": "当归多少钱？",
+      "expected_any": [
+        "site_product_angelica-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/angelica-slices/"
+    },
+    {
+      "id": "site_product_angelica-slices_detail",
+      "question": "详细介绍一下当归。",
+      "expected_any": [
+        "site_product_angelica-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/angelica-slices/"
+    },
+    {
+      "id": "site_product_fujian-lotus-seed_intro",
+      "question": "福建莲子是什么？",
+      "expected_any": [
+        "site_product_fujian-lotus-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/"
+    },
+    {
+      "id": "site_product_fujian-lotus-seed_price",
+      "question": "福建莲子多少钱？",
+      "expected_any": [
+        "site_product_fujian-lotus-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/"
+    },
+    {
+      "id": "site_product_fujian-lotus-seed_detail",
+      "question": "详细介绍一下福建莲子。",
+      "expected_any": [
+        "site_product_fujian-lotus-seed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fujian-lotus-seed/"
+    },
+    {
+      "id": "site_product_ningxia-goji_intro",
+      "question": "宁夏枸杞是什么？",
+      "expected_any": [
+        "site_product_ningxia-goji"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/"
+    },
+    {
+      "id": "site_product_ningxia-goji_price",
+      "question": "宁夏枸杞多少钱？",
+      "expected_any": [
+        "site_product_ningxia-goji"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/"
+    },
+    {
+      "id": "site_product_ningxia-goji_detail",
+      "question": "详细介绍一下宁夏枸杞。",
+      "expected_any": [
+        "site_product_ningxia-goji"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ningxia-goji/"
+    },
+    {
+      "id": "site_product_lily-bulb_intro",
+      "question": "百合是什么？",
+      "expected_any": [
+        "site_product_lily-bulb"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/lily-bulb/"
+    },
+    {
+      "id": "site_product_lily-bulb_price",
+      "question": "百合多少钱？",
+      "expected_any": [
+        "site_product_lily-bulb"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/lily-bulb/"
+    },
+    {
+      "id": "site_product_lily-bulb_detail",
+      "question": "详细介绍一下百合。",
+      "expected_any": [
+        "site_product_lily-bulb"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/lily-bulb/"
+    },
+    {
+      "id": "site_product_ophiopogon_intro",
+      "question": "麦冬是什么？",
+      "expected_any": [
+        "site_product_ophiopogon"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ophiopogon/"
+    },
+    {
+      "id": "site_product_ophiopogon_price",
+      "question": "麦冬多少钱？",
+      "expected_any": [
+        "site_product_ophiopogon"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ophiopogon/"
+    },
+    {
+      "id": "site_product_ophiopogon_detail",
+      "question": "详细介绍一下麦冬。",
+      "expected_any": [
+        "site_product_ophiopogon"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/ophiopogon/"
+    },
+    {
+      "id": "site_product_codonopsis_intro",
+      "question": "党参段是什么？",
+      "expected_any": [
+        "site_product_codonopsis"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/codonopsis/"
+    },
+    {
+      "id": "site_product_codonopsis_price",
+      "question": "党参段多少钱？",
+      "expected_any": [
+        "site_product_codonopsis"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/codonopsis/"
+    },
+    {
+      "id": "site_product_codonopsis_detail",
+      "question": "详细介绍一下党参段。",
+      "expected_any": [
+        "site_product_codonopsis"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/codonopsis/"
+    },
+    {
+      "id": "site_product_steamed-polygonatum_intro",
+      "question": "九蒸黄精是什么？",
+      "expected_any": [
+        "site_product_steamed-polygonatum"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/"
+    },
+    {
+      "id": "site_product_steamed-polygonatum_price",
+      "question": "九蒸黄精多少钱？",
+      "expected_any": [
+        "site_product_steamed-polygonatum"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/"
+    },
+    {
+      "id": "site_product_steamed-polygonatum_detail",
+      "question": "详细介绍一下九蒸黄精。",
+      "expected_any": [
+        "site_product_steamed-polygonatum"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/steamed-polygonatum/"
+    },
+    {
+      "id": "site_product_dendrobium_intro",
+      "question": "铁皮石斛是什么？",
+      "expected_any": [
+        "site_product_dendrobium"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dendrobium/"
+    },
+    {
+      "id": "site_product_dendrobium_price",
+      "question": "铁皮石斛多少钱？",
+      "expected_any": [
+        "site_product_dendrobium"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dendrobium/"
+    },
+    {
+      "id": "site_product_dendrobium_detail",
+      "question": "详细介绍一下铁皮石斛。",
+      "expected_any": [
+        "site_product_dendrobium"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/dendrobium/"
+    },
+    {
+      "id": "site_product_american-ginseng-slices_intro",
+      "question": "西洋参片是什么？",
+      "expected_any": [
+        "site_product_american-ginseng-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/"
+    },
+    {
+      "id": "site_product_american-ginseng-slices_price",
+      "question": "西洋参片多少钱？",
+      "expected_any": [
+        "site_product_american-ginseng-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/"
+    },
+    {
+      "id": "site_product_american-ginseng-slices_detail",
+      "question": "详细介绍一下西洋参片。",
+      "expected_any": [
+        "site_product_american-ginseng-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/american-ginseng-slices/"
+    },
+    {
+      "id": "site_product_aged-tangerine-peel_intro",
+      "question": "老陈皮是什么？",
+      "expected_any": [
+        "site_product_aged-tangerine-peel"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/"
+    },
+    {
+      "id": "site_product_aged-tangerine-peel_price",
+      "question": "老陈皮多少钱？",
+      "expected_any": [
+        "site_product_aged-tangerine-peel"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/"
+    },
+    {
+      "id": "site_product_aged-tangerine-peel_detail",
+      "question": "详细介绍一下老陈皮。",
+      "expected_any": [
+        "site_product_aged-tangerine-peel"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-tangerine-peel/"
+    },
+    {
+      "id": "site_product_sanqi_intro",
+      "question": "三七是什么？",
+      "expected_any": [
+        "site_product_sanqi"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi/"
+    },
+    {
+      "id": "site_product_sanqi_price",
+      "question": "三七多少钱？",
+      "expected_any": [
+        "site_product_sanqi"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi/"
+    },
+    {
+      "id": "site_product_sanqi_detail",
+      "question": "详细介绍一下三七。",
+      "expected_any": [
+        "site_product_sanqi"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi/"
+    },
+    {
+      "id": "site_product_astragalus_intro",
+      "question": "黄芪是什么？",
+      "expected_any": [
+        "site_product_astragalus"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus/"
+    },
+    {
+      "id": "site_product_astragalus_price",
+      "question": "黄芪多少钱？",
+      "expected_any": [
+        "site_product_astragalus"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus/"
+    },
+    {
+      "id": "site_product_astragalus_detail",
+      "question": "详细介绍一下黄芪。",
+      "expected_any": [
+        "site_product_astragalus"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus/"
+    },
+    {
+      "id": "site_product_sanqi-slices_intro",
+      "question": "三七片是什么？",
+      "expected_any": [
+        "site_product_sanqi-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/"
+    },
+    {
+      "id": "site_product_sanqi-slices_price",
+      "question": "三七片多少钱？",
+      "expected_any": [
+        "site_product_sanqi-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/"
+    },
+    {
+      "id": "site_product_sanqi-slices_detail",
+      "question": "详细介绍一下三七片。",
+      "expected_any": [
+        "site_product_sanqi-slices"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/sanqi-slices/"
+    },
+    {
+      "id": "site_product_cistanche-milk-powder_intro",
+      "question": "肉苁蓉奶粉是什么？",
+      "expected_any": [
+        "site_product_cistanche-milk-powder"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/"
+    },
+    {
+      "id": "site_product_cistanche-milk-powder_price",
+      "question": "肉苁蓉奶粉多少钱？",
+      "expected_any": [
+        "site_product_cistanche-milk-powder"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/"
+    },
+    {
+      "id": "site_product_cistanche-milk-powder_detail",
+      "question": "详细介绍一下肉苁蓉奶粉。",
+      "expected_any": [
+        "site_product_cistanche-milk-powder"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/cistanche-milk-powder/"
+    },
+    {
+      "id": "site_product_golden-flaxseed_intro",
+      "question": "旱地亚麻籽是什么？",
+      "expected_any": [
+        "site_product_golden-flaxseed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/"
+    },
+    {
+      "id": "site_product_golden-flaxseed_price",
+      "question": "旱地亚麻籽多少钱？",
+      "expected_any": [
+        "site_product_golden-flaxseed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/"
+    },
+    {
+      "id": "site_product_golden-flaxseed_detail",
+      "question": "详细介绍一下旱地亚麻籽。",
+      "expected_any": [
+        "site_product_golden-flaxseed"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/golden-flaxseed/"
+    },
+    {
+      "id": "site_product_aohan-waxy-corn_intro",
+      "question": "敖汉金有机糯玉米是什么？",
+      "expected_any": [
+        "site_product_aohan-waxy-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/"
+    },
+    {
+      "id": "site_product_aohan-waxy-corn_price",
+      "question": "敖汉金有机糯玉米多少钱？",
+      "expected_any": [
+        "site_product_aohan-waxy-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/"
+    },
+    {
+      "id": "site_product_aohan-waxy-corn_detail",
+      "question": "详细介绍一下敖汉金有机糯玉米。",
+      "expected_any": [
+        "site_product_aohan-waxy-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-waxy-corn/"
+    },
+    {
+      "id": "site_product_torreya-oil_intro",
+      "question": "香榧油是什么？",
+      "expected_any": [
+        "site_product_torreya-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/torreya-oil/"
+    },
+    {
+      "id": "site_product_torreya-oil_price",
+      "question": "香榧油多少钱？",
+      "expected_any": [
+        "site_product_torreya-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/torreya-oil/"
+    },
+    {
+      "id": "site_product_torreya-oil_detail",
+      "question": "详细介绍一下香榧油。",
+      "expected_any": [
+        "site_product_torreya-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/torreya-oil/"
+    },
+    {
+      "id": "site_product_aohan-sweet-corn_intro",
+      "question": "敖汉金有机鲜食玉米是什么？",
+      "expected_any": [
+        "site_product_aohan-sweet-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/"
+    },
+    {
+      "id": "site_product_aohan-sweet-corn_price",
+      "question": "敖汉金有机鲜食玉米多少钱？",
+      "expected_any": [
+        "site_product_aohan-sweet-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/"
+    },
+    {
+      "id": "site_product_aohan-sweet-corn_detail",
+      "question": "详细介绍一下敖汉金有机鲜食玉米。",
+      "expected_any": [
+        "site_product_aohan-sweet-corn"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-sweet-corn/"
+    },
+    {
+      "id": "site_product_aohan-millet-family_intro",
+      "question": "敖汉金石碾有机小米（家庭装·长嘴）是什么？",
+      "expected_any": [
+        "site_product_aohan-millet-family"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/"
+    },
+    {
+      "id": "site_product_aohan-millet-family_price",
+      "question": "敖汉金石碾有机小米（家庭装·长嘴）多少钱？",
+      "expected_any": [
+        "site_product_aohan-millet-family"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/"
+    },
+    {
+      "id": "site_product_aohan-millet-family_detail",
+      "question": "详细介绍一下敖汉金石碾有机小米（家庭装·长嘴）。",
+      "expected_any": [
+        "site_product_aohan-millet-family"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-family/"
+    },
+    {
+      "id": "site_product_canola-oil_intro",
+      "question": "芥花油（压榨一级菜籽油）是什么？",
+      "expected_any": [
+        "site_product_canola-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/canola-oil/"
+    },
+    {
+      "id": "site_product_canola-oil_price",
+      "question": "芥花油（压榨一级菜籽油）多少钱？",
+      "expected_any": [
+        "site_product_canola-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/canola-oil/"
+    },
+    {
+      "id": "site_product_canola-oil_detail",
+      "question": "详细介绍一下芥花油（压榨一级菜籽油）。",
+      "expected_any": [
+        "site_product_canola-oil"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/canola-oil/"
+    },
+    {
+      "id": "site_product_aohan-mixed-grains_intro",
+      "question": "敖汉金有机杂粮（8个品种）是什么？",
+      "expected_any": [
+        "site_product_aohan-mixed-grains"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/"
+    },
+    {
+      "id": "site_product_aohan-mixed-grains_price",
+      "question": "敖汉金有机杂粮（8个品种）多少钱？",
+      "expected_any": [
+        "site_product_aohan-mixed-grains"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/"
+    },
+    {
+      "id": "site_product_aohan-mixed-grains_detail",
+      "question": "详细介绍一下敖汉金有机杂粮（8个品种）。",
+      "expected_any": [
+        "site_product_aohan-mixed-grains"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-mixed-grains/"
+    },
+    {
+      "id": "site_product_aohan-millet-gift_intro",
+      "question": "敖汉金石碾有机小米（礼盒装）是什么？",
+      "expected_any": [
+        "site_product_aohan-millet-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/"
+    },
+    {
+      "id": "site_product_aohan-millet-gift_price",
+      "question": "敖汉金石碾有机小米（礼盒装）多少钱？",
+      "expected_any": [
+        "site_product_aohan-millet-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/"
+    },
+    {
+      "id": "site_product_aohan-millet-gift_detail",
+      "question": "详细介绍一下敖汉金石碾有机小米（礼盒装）。",
+      "expected_any": [
+        "site_product_aohan-millet-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aohan-millet-gift/"
+    },
+    {
+      "id": "site_product_wuchang-rice-shangqian_intro",
+      "question": "有机五常大米·尚乾是什么？",
+      "expected_any": [
+        "site_product_wuchang-rice-shangqian"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/"
+    },
+    {
+      "id": "site_product_wuchang-rice-shangqian_price",
+      "question": "有机五常大米·尚乾多少钱？",
+      "expected_any": [
+        "site_product_wuchang-rice-shangqian"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/"
+    },
+    {
+      "id": "site_product_wuchang-rice-shangqian_detail",
+      "question": "详细介绍一下有机五常大米·尚乾。",
+      "expected_any": [
+        "site_product_wuchang-rice-shangqian"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-shangqian/"
+    },
+    {
+      "id": "site_product_wuchang-rice-furen_intro",
+      "question": "有机五常大米·福仁是什么？",
+      "expected_any": [
+        "site_product_wuchang-rice-furen"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/"
+    },
+    {
+      "id": "site_product_wuchang-rice-furen_price",
+      "question": "有机五常大米·福仁多少钱？",
+      "expected_any": [
+        "site_product_wuchang-rice-furen"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/"
+    },
+    {
+      "id": "site_product_wuchang-rice-furen_detail",
+      "question": "详细介绍一下有机五常大米·福仁。",
+      "expected_any": [
+        "site_product_wuchang-rice-furen"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wuchang-rice-furen/"
+    },
+    {
+      "id": "site_product_shengmu-yogurt_intro",
+      "question": "圣牧有机酸奶是什么？",
+      "expected_any": [
+        "site_product_shengmu-yogurt"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/"
+    },
+    {
+      "id": "site_product_shengmu-yogurt_price",
+      "question": "圣牧有机酸奶多少钱？",
+      "expected_any": [
+        "site_product_shengmu-yogurt"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/"
+    },
+    {
+      "id": "site_product_shengmu-yogurt_detail",
+      "question": "详细介绍一下圣牧有机酸奶。",
+      "expected_any": [
+        "site_product_shengmu-yogurt"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/shengmu-yogurt/"
+    },
+    {
+      "id": "site_product_salt-field-shrimp_intro",
+      "question": "39°有机盐田虾（30条/斤）盒装是什么？",
+      "expected_any": [
+        "site_product_salt-field-shrimp"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/"
+    },
+    {
+      "id": "site_product_salt-field-shrimp_price",
+      "question": "39°有机盐田虾（30条/斤）盒装多少钱？",
+      "expected_any": [
+        "site_product_salt-field-shrimp"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/"
+    },
+    {
+      "id": "site_product_salt-field-shrimp_detail",
+      "question": "详细介绍一下39°有机盐田虾（30条/斤）盒装。",
+      "expected_any": [
+        "site_product_salt-field-shrimp"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/salt-field-shrimp/"
+    },
+    {
+      "id": "site_product_black-pork-lard_intro",
+      "question": "黑猪油是什么？",
+      "expected_any": [
+        "site_product_black-pork-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/"
+    },
+    {
+      "id": "site_product_black-pork-lard_price",
+      "question": "黑猪油多少钱？",
+      "expected_any": [
+        "site_product_black-pork-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/"
+    },
+    {
+      "id": "site_product_black-pork-lard_detail",
+      "question": "详细介绍一下黑猪油。",
+      "expected_any": [
+        "site_product_black-pork-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/black-pork-lard/"
+    },
+    {
+      "id": "site_product_farm-lard_intro",
+      "question": "农家猪油是什么？",
+      "expected_any": [
+        "site_product_farm-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/farm-lard/"
+    },
+    {
+      "id": "site_product_farm-lard_price",
+      "question": "农家猪油多少钱？",
+      "expected_any": [
+        "site_product_farm-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/farm-lard/"
+    },
+    {
+      "id": "site_product_farm-lard_detail",
+      "question": "详细介绍一下农家猪油。",
+      "expected_any": [
+        "site_product_farm-lard"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/farm-lard/"
+    },
+    {
+      "id": "site_product_jinhua-ham_intro",
+      "question": "金华火腿是什么？",
+      "expected_any": [
+        "site_product_jinhua-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/"
+    },
+    {
+      "id": "site_product_jinhua-ham_price",
+      "question": "金华火腿多少钱？",
+      "expected_any": [
+        "site_product_jinhua-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/"
+    },
+    {
+      "id": "site_product_jinhua-ham_detail",
+      "question": "详细介绍一下金华火腿。",
+      "expected_any": [
+        "site_product_jinhua-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-ham/"
+    },
+    {
+      "id": "site_product_jinhua-liangtouyu-ham_intro",
+      "question": "金华两头乌火腿是什么？",
+      "expected_any": [
+        "site_product_jinhua-liangtouyu-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/"
+    },
+    {
+      "id": "site_product_jinhua-liangtouyu-ham_price",
+      "question": "金华两头乌火腿多少钱？",
+      "expected_any": [
+        "site_product_jinhua-liangtouyu-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/"
+    },
+    {
+      "id": "site_product_jinhua-liangtouyu-ham_detail",
+      "question": "详细介绍一下金华两头乌火腿。",
+      "expected_any": [
+        "site_product_jinhua-liangtouyu-ham"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/jinhua-liangtouyu-ham/"
+    },
+    {
+      "id": "site_product_grade-one-soy-sauce_intro",
+      "question": "一级酱油是什么？",
+      "expected_any": [
+        "site_product_grade-one-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/"
+    },
+    {
+      "id": "site_product_grade-one-soy-sauce_price",
+      "question": "一级酱油多少钱？",
+      "expected_any": [
+        "site_product_grade-one-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/"
+    },
+    {
+      "id": "site_product_grade-one-soy-sauce_detail",
+      "question": "详细介绍一下一级酱油。",
+      "expected_any": [
+        "site_product_grade-one-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/grade-one-soy-sauce/"
+    },
+    {
+      "id": "site_product_aged-vinegar_intro",
+      "question": "陈醋是什么？",
+      "expected_any": [
+        "site_product_aged-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/"
+    },
+    {
+      "id": "site_product_aged-vinegar_price",
+      "question": "陈醋多少钱？",
+      "expected_any": [
+        "site_product_aged-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/"
+    },
+    {
+      "id": "site_product_aged-vinegar_detail",
+      "question": "详细介绍一下陈醋。",
+      "expected_any": [
+        "site_product_aged-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/aged-vinegar/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce_intro",
+      "question": "特级酱油是什么？",
+      "expected_any": [
+        "site_product_premium-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce_price",
+      "question": "特级酱油多少钱？",
+      "expected_any": [
+        "site_product_premium-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce_detail",
+      "question": "详细介绍一下特级酱油。",
+      "expected_any": [
+        "site_product_premium-soy-sauce"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce/"
+    },
+    {
+      "id": "site_product_fresh-ginger_intro",
+      "question": "生姜是什么？",
+      "expected_any": [
+        "site_product_fresh-ginger"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/"
+    },
+    {
+      "id": "site_product_fresh-ginger_price",
+      "question": "生姜多少钱？",
+      "expected_any": [
+        "site_product_fresh-ginger"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/"
+    },
+    {
+      "id": "site_product_fresh-ginger_detail",
+      "question": "详细介绍一下生姜。",
+      "expected_any": [
+        "site_product_fresh-ginger"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/fresh-ginger/"
+    },
+    {
+      "id": "site_product_soybean-paste_intro",
+      "question": "黄豆酱是什么？",
+      "expected_any": [
+        "site_product_soybean-paste"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/soybean-paste/"
+    },
+    {
+      "id": "site_product_soybean-paste_price",
+      "question": "黄豆酱多少钱？",
+      "expected_any": [
+        "site_product_soybean-paste"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/soybean-paste/"
+    },
+    {
+      "id": "site_product_soybean-paste_detail",
+      "question": "详细介绍一下黄豆酱。",
+      "expected_any": [
+        "site_product_soybean-paste"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/soybean-paste/"
+    },
+    {
+      "id": "site_product_rice-wine_intro",
+      "question": "黄酒是什么？",
+      "expected_any": [
+        "site_product_rice-wine"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rice-wine/"
+    },
+    {
+      "id": "site_product_rice-wine_price",
+      "question": "黄酒多少钱？",
+      "expected_any": [
+        "site_product_rice-wine"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rice-wine/"
+    },
+    {
+      "id": "site_product_rice-wine_detail",
+      "question": "详细介绍一下黄酒。",
+      "expected_any": [
+        "site_product_rice-wine"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/rice-wine/"
+    },
+    {
+      "id": "site_product_astragalus-honey-vinegar_intro",
+      "question": "黄芪蜂蜜醋是什么？",
+      "expected_any": [
+        "site_product_astragalus-honey-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/"
+    },
+    {
+      "id": "site_product_astragalus-honey-vinegar_price",
+      "question": "黄芪蜂蜜醋多少钱？",
+      "expected_any": [
+        "site_product_astragalus-honey-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/"
+    },
+    {
+      "id": "site_product_astragalus-honey-vinegar_detail",
+      "question": "详细介绍一下黄芪蜂蜜醋。",
+      "expected_any": [
+        "site_product_astragalus-honey-vinegar"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/astragalus-honey-vinegar/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce-gift_intro",
+      "question": "特级酱油礼盒是什么？",
+      "expected_any": [
+        "site_product_premium-soy-sauce-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce-gift_price",
+      "question": "特级酱油礼盒多少钱？",
+      "expected_any": [
+        "site_product_premium-soy-sauce-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/"
+    },
+    {
+      "id": "site_product_premium-soy-sauce-gift_detail",
+      "question": "详细介绍一下特级酱油礼盒。",
+      "expected_any": [
+        "site_product_premium-soy-sauce-gift"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/premium-soy-sauce-gift/"
+    },
+    {
+      "id": "site_product_anfeng-chenyun_intro",
+      "question": "安凤陈韵是什么？",
+      "expected_any": [
+        "site_product_anfeng-chenyun"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/"
+    },
+    {
+      "id": "site_product_anfeng-chenyun_price",
+      "question": "安凤陈韵多少钱？",
+      "expected_any": [
+        "site_product_anfeng-chenyun"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/"
+    },
+    {
+      "id": "site_product_anfeng-chenyun_detail",
+      "question": "详细介绍一下安凤陈韵。",
+      "expected_any": [
+        "site_product_anfeng-chenyun"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/anfeng-chenyun/"
+    },
+    {
+      "id": "site_product_wudang-honey_intro",
+      "question": "武当山野蜂蜜是什么？",
+      "expected_any": [
+        "site_product_wudang-honey"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wudang-honey/"
+    },
+    {
+      "id": "site_product_wudang-honey_price",
+      "question": "武当山野蜂蜜多少钱？",
+      "expected_any": [
+        "site_product_wudang-honey"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wudang-honey/"
+    },
+    {
+      "id": "site_product_wudang-honey_detail",
+      "question": "详细介绍一下武当山野蜂蜜。",
+      "expected_any": [
+        "site_product_wudang-honey"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/wudang-honey/"
+    },
+    {
+      "id": "site_product_flying-eggs_intro",
+      "question": "飞鸡蛋是什么？",
+      "expected_any": [
+        "site_product_flying-eggs"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/flying-eggs/"
+    },
+    {
+      "id": "site_product_flying-eggs_price",
+      "question": "飞鸡蛋多少钱？",
+      "expected_any": [
+        "site_product_flying-eggs"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/flying-eggs/"
+    },
+    {
+      "id": "site_product_flying-eggs_detail",
+      "question": "详细介绍一下飞鸡蛋。",
+      "expected_any": [
+        "site_product_flying-eggs"
+      ],
+      "source_uri": "https://jiyangjia-ai.netlify.app/products/flying-eggs/"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# 积养家产品资料馆
+
+> 积养家是社区健康生活馆与邻里会客厅。本网站完整发布26份已确认原始HTML，并提供对应的员工快速培训和47项产品索引。
+
+## Core
+- [产品资料馆首页](https://jiyangjia-ai.netlify.app/)
+- [员工快速学习](https://jiyangjia-ai.netlify.app/learn/)
+- [品牌介绍](https://jiyangjia-ai.netlify.app/topics/brand/)
+- [鸡汤](https://jiyangjia-ai.netlify.app/topics/chicken-soup/)
+- [身体养护](https://jiyangjia-ai.netlify.app/topics/body-care/)
+- [产品与原页静态索引](https://jiyangjia-ai.netlify.app/knowledge/index.json)
+- [26份原始资料索引](https://jiyangjia-ai.netlify.app/knowledge/source-documents.json)
+
+## Reading rule
+- source_url 是公司确认发布的完整原始HTML。
+- viewer_url 在同一页面提供完整原页与快速培训切换。
+- training_url 用于员工30秒话术、FAQ与自然承接。
+- 实时库存和门店当日信息以门店公示为准。

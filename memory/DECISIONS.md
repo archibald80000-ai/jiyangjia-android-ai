@@ -15,6 +15,7 @@
 | D-011 | Phase 1 display defaults to 1080x1920 portrait (9:16), while alternate Display Profiles remain selectable | Accepted | ADR-0011 |
 | D-012 | Complete secure Android content sync, deterministic rendering, Gateway-proxied streaming ASR, managed kiosk and signed updates before physical acceptance | Accepted | ADR-0012 |
 | D-013 | Provision the target as fully managed Device Owner and require automatic acoustic barge-in; click interrupt is fallback only | Accepted | ADR-0013 |
-| D-014 | Use `https://ai-jiyangjia.cloud` as the canonical production Gateway origin; keep IP TLS only as a temporary rollback diagnostic | Accepted, rollout blocked by ICP | ADR-0014 |
+| D-014 | Use `https://ai-jiyangjia.cloud` as the canonical production Gateway origin; keep IP TLS only as a temporary rollback diagnostic | Accepted, operational | ADR-0014 |
+| D-015 | Generate product knowledge from versioned public data and route unknown business terms through strong approved-corpus lexical evidence before hybrid retrieval | Accepted | ADR-0015 |
 
 New architectural decisions require a new ADR and an update to this table.

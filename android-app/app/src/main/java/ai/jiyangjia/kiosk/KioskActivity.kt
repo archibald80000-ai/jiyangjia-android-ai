@@ -41,16 +41,17 @@ class KioskActivity : Activity() {
     private var gatewayThread: Thread? = null
     private var streamClient: StreamingDialogueClient? = null
     private var streamGeneration: Int = 0
-    private var streamError: String? = null
+    @Volatile private var streamError: String? = null
+    private var streamFallbackGeneration: Int? = null
     private var bargeInMonitor = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        enterImmersiveMode()
         config = loadConfig()
         buildLayout()
+        enterImmersiveMode()
         idleVideoController = IdleVideoController(
             context = this,
             container = idleContainer,
@@ -340,6 +341,10 @@ class KioskActivity : Activity() {
         bargeInMonitor = isBargeIn
         streamError = null
         val generation = ++streamGeneration
+        if (!isBargeIn) {
+            lastRecording = null
+            streamFallbackGeneration = null
+        }
         val requestId = GatewayClient.newRequestId()
         val sessionId = "sess-${config.deviceId}"
         lateinit var client: StreamingDialogueClient
@@ -390,6 +395,15 @@ class KioskActivity : Activity() {
                 }
                 streamError = "$code: $message"
                 audioController.stopRecording()
+                if (!isBargeIn) {
+                    runOnUiThread {
+                        lastRecording?.takeIf { it.isPlayable }?.let {
+                            submitStreamFallback(it, generation, streamError.orEmpty())
+                        } ?: run {
+                            subtitleText.text = "流式识别中断，正在完成录音并切换上传"
+                        }
+                    }
+                }
             }
         })
         streamClient?.cancel()
@@ -400,17 +414,26 @@ class KioskActivity : Activity() {
     private fun startPcmCapture(client: StreamingDialogueClient, generation: Int, isBargeIn: Boolean) {
         audioController.startRecording(
             maxSeconds = 30,
+            useVoiceCommunicationSource = isBargeIn,
             onLevel = { level, elapsedMillis ->
-                if (!isBargeIn || !bargeInMonitor) subtitleText.text = "录音中 ${elapsedMillis / 1000}s  音量 $level%"
+                if (generation == streamGeneration && state == ConsultationState.RECORDING && (!isBargeIn || !bargeInMonitor)) {
+                    subtitleText.text = "录音中 ${elapsedMillis / 1000}s  音量 $level%"
+                }
             },
             onComplete = { pcm ->
                 lastRecording = pcm
+                if (!isBargeIn) {
+                    diagnosticsText.text = "Recorded ${pcm.durationMillis}ms / ${pcm.bytes.size} bytes"
+                }
                 val failure = streamError
                 if (failure != null && pcm.isPlayable && !isBargeIn && generation == streamGeneration) {
-                    diagnosticsText.text = "Streaming failed once; WAV fallback: ${failure.take(80)}"
-                    submitRecording(pcm)
+                    submitStreamFallback(pcm, generation, failure)
                 } else if (!pcm.isPlayable && !isBargeIn) {
                     showAudioError("未录到可播放音频")
+                } else if (!isBargeIn && generation == streamGeneration && state == ConsultationState.RECORDING) {
+                    client.stop()
+                    transitionTo(ConsultationState.WAITING_FOR_RESPONSE)
+                    subtitleText.text = "录音已结束，正在识别"
                 }
             },
             onError = { message ->
@@ -430,6 +453,14 @@ class KioskActivity : Activity() {
                 }
             }
         )
+    }
+
+    private fun submitStreamFallback(pcm: PcmAudio, generation: Int, failure: String) {
+        if (generation != streamGeneration || streamFallbackGeneration == generation) return
+        streamFallbackGeneration = generation
+        streamClient?.cancel()
+        diagnosticsText.text = "WAV fallback ${pcm.durationMillis}ms / ${pcm.bytes.size} bytes: ${failure.take(48)}"
+        submitRecording(pcm)
     }
 
     private fun fetchAndPlayStreamResult(dialogue: DialogueResult, generation: Int) {
@@ -492,17 +523,26 @@ class KioskActivity : Activity() {
                 audioController.stopRecording()
                 bargeInMonitor = false
                 transitionTo(ConsultationState.IDLE_VIDEO)
-                subtitleText.text = "回答播放完成"
-                refreshAudioDiagnostics("playback complete")
+                lastDialogue?.let { dialogue ->
+                    subtitleText.text = dialogue.preferredSubtitle
+                    showDialogueResult(dialogue)
+                } ?: refreshAudioDiagnostics("playback complete")
             },
             onError = { message ->
                 showAudioError(message)
             }
         )
-        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+        if (
+            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+            audioController.supportsAutomaticBargeIn()
+        ) {
             beginStreamingCapture(isBargeIn = true)
         } else {
-            diagnosticsText.text = "DEGRADED: microphone permission missing; click interrupt only"
+            diagnosticsText.text = if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                "DEGRADED: microphone permission missing; click interrupt only"
+            } else {
+                "Built-in microphone: click to interrupt; automatic barge-in requires USB input"
+            }
         }
     }
 
@@ -563,21 +603,32 @@ class KioskActivity : Activity() {
     }
 
     private fun enterImmersiveMode() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            window.insetsController?.let {
-                it.hide(WindowInsets.Type.systemBars())
-                it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        val decorView = window.decorView
+        decorView.post {
+            if (isFinishing || isDestroyed) return@post
+            val modernApplied = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                runCatching {
+                    val controller = decorView.windowInsetsController ?: return@runCatching false
+                    controller.hide(WindowInsets.Type.systemBars())
+                    controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                    true
+                }.getOrDefault(false)
+            } else {
+                false
             }
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            if (!modernApplied) applyLegacyImmersiveMode(decorView)
         }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyLegacyImmersiveMode(decorView: View) {
+        decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 
     private fun loadConfig(): ClientConfig {

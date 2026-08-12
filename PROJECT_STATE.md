@@ -1,17 +1,17 @@
 # PROJECT_STATE
 
 - **Project:** jiyangjia-android-ai
-- **State version:** 0.2.0
-- **Updated:** 2026-08-09
-- **Overall status:** TASK-020F public Aiye knowledge v2.2 is published to Tencent production and accepted; public HTTPS remains BLOCKED by TASK-014H and TASK-015 remains BLOCKED
-- **Current authorized task:** TASK-020F closed as DONE; next unblock external HTTPS through ICP/domain onboarding
+- **State version:** 0.3.0
+- **Updated:** 2026-08-12
+- **Overall status:** TASK-020G public-site knowledge v2.3 is published to Tencent production and accepted; public HTTPS is operational; TASK-015 remains PARTIAL pending Android 12 store-screen acceptance
+- **Current authorized task:** TASK-020G closed as DONE; next resume the bounded TASK-015 Android 12 device acceptance
 - **Public repository target:** `archibald80000-ai/jiyangjia-android-ai`
 
 ## Verified facts
 
 - Main branch baseline at TASK-014H start: `49dc45f`.
 - Canonical production domain: `ai-jiyangjia.cloud`; canonical API base: `https://ai-jiyangjia.cloud/api/v1`; production server: `120.53.86.89`.
-- DNS resolves correctly and the server-side Nginx/TLS/Gateway configuration passes internally, but public domain traffic is intercepted by Tencent DNSPod webblock and public TLS SNI is reset. The domain is not yet production-usable.
+- DNS, public HTTPS, Nginx and Gateway are operational at `https://ai-jiyangjia.cloud`. HTTP returns 308 to HTTPS; `/` and `/demo/kiosk` return HTML 200; Certbot renewal dry-run passed on 2026-08-12.
 - User-approved portrait source media is available at `E:\work\ai-kefu\资料库\人像背景.MOV`; the source was not modified or committed.
 - A local ignored H.264 1080x1920 portrait MP4/background pair is published on the isolated `18084` Gateway and bound to the default 9:16 Profile.
 - TASK-020A imported the reviewed v2.1 package into an isolated port-8090 Gateway with real Doubao Embedding: 65 documents, 41 approved, 24 draft, 65 chunks and 65 FAISS vectors at 2048 dimensions. Current-policy acceptance passed 80/80 with 0 draft leaks; the unchanged legacy exact-label comparison was 42/80 and remains recorded separately.
@@ -21,7 +21,12 @@
 - TASK-020E preserved both local demo/candidate indexes, imported v2.1 into an isolated port-8091 all-real Gateway, retained 65 x 2048 Doubao vectors, passed the 80-case search gate, and passed five synthetic-speech audio dialogues through real ASR/RAG/LLM/TTS after narrow kiosk-query and soup-homophone adaptations. Status is `READY_FOR_DEMO`, not Android device acceptance.
 - TASK-020F archived 25 user-authorized public Aiye HTML files byte-for-byte with SHA-256, preserved all 65 v2.1 documents, and added 139 approved `aiye_` records. The v2.2 package has 204 documents, 340 chunks/vectors at 2048 dimensions, 24 solar-term recipes, 19 food-medicine ingredients and 11 Dayougu SKUs plus a product catalog.
 - TASK-020F local and Tencent production real-Embedding retrieval passed 240/240 Top-3 cases with 100% sources and zero draft leakage. Six real text dialogues and one Doubao-generated synthetic-speech audio dialogue completed through real RAG/LLM/TTS or ASR/RAG/LLM/TTS. This is not human microphone or Android device evidence.
-- TASK-020F production backup is `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`; active production knowledge is 180 approved, 24 draft and 340 x 2048 FAISS vectors. Health/nutrition grounding was tightened after manual answer review. External HTTPS remains reset by the separate TASK-014H Tencent webblock/ICP issue.
+- TASK-020F production backup is `/opt/jiyangjia-ai/backups/task020f-20260809T035803Z`; its accepted production state was 180 approved, 24 draft and 340 x 2048 FAISS vectors. Health/nutrition grounding was tightened after manual answer review. The later TASK-014H unblock and TASK-020G publication supersede that runtime snapshot.
+- TASK-020G archived the user-authorized 135-file public training site under `knowledge-public/v2.3/site/`, preserved all 204 v2.2 records and generated 47 approved product records from structured site data rather than a hardcoded product list.
+- TASK-020G made unknown business-term routing data-driven: explicit general intent stays outside the business corpus, while a strong approved SQLite/FTS match enters the existing hybrid FTS/FAISS RAG as `dynamic_corpus`.
+- TASK-020G production state is 227 approved, 24 draft, 387 chunks/vectors at 2048 dimensions. Real Doubao product retrieval passed 141/141 Top-3 with sources 100% and draft leaks 0; a real public dialogue returned grounded Doubao LLM/TTS output and downloadable audio. Rollback: `/opt/jiyangjia-ai/backups/task-v23-production-20260812-024528`.
+- TASK-015 launch/audio recovery has Android 13 Xiaomi smoke evidence: the debug client captured real built-in-mic PCM, auto-ended after three seconds of silence, completed ASR/RAG/LLM/TTS, played answer audio and returned to idle. This does not replace Android 12 USB-microphone, speaker, reboot, managed-kiosk or long-run acceptance.
+- TASK-015 Android application and download filename are `积养家AI数字人`; version 8 (`0.1.7-demo-debug`) supersedes v7 and is published at `https://ai-jiyangjia.cloud/downloads/jiyangjia-ai-digital-human.apk`. Public size is 6,386,815 bytes and SHA-256 is `65E5F031FE807094DC0CD6D85D560A64818A3CC5BF8DF2F9F9228604E70EE0FD`. It uses the existing debug signature and is not the formal production-signed release.
 
 - Android target system: Android 12.
 - Existing cloud server observed on 2026-08-06: Tencent Cloud IP `120.53.86.89`, Ubuntu `24.04.4 LTS`, 2 CPU cores, about `1.9Gi` memory, 50G disk, 10 Mbps, no GPU.
@@ -260,19 +265,20 @@ Recent task results:
 - TASK-014E is PARTIAL. Gateway and Android implement 16 kHz mono PCM16 streaming, exact 20 ms frames, WebRTC VAD, partial/final events, single WAV fallback, generation cancellation and AEC-aware automatic barge-in. Full Gateway regression passed 61 tests and Android test/lint/debug assembly passed. A controlled real Doubao `bigmodel_async` call produced three partials and one final; Android 12 USB/AEC latency and false-trigger acceptance remain unavailable.
 - TASK-014F is PARTIAL. The APK contains a minimal DPC, DeviceAdminReceiver, persistent Home configuration, BootReceiver and guarded Lock Task entry. Runtime diagnostics distinguish `managed_locked` from `limited_unmanaged`. Android unit/build/lint pass, but this workstation has no emulator package/system image and `adb devices -l` is empty, so Device Owner/reboot behavior is not claimed.
 - TASK-014G is PARTIAL. Release builds require externally supplied monotonic version/signing parameters; Gateway release metadata fails closed; Android verifies HTTPS, size, file hash, package, newer version and signing identity before PackageInstaller. Mock policy/release-manifest tests pass. A disposable test-only certificate produced a v1/v2/v3-verified package and was deleted; no formal key, trusted release URL or device upgrade acceptance exists.
-- TASK-015 is BLOCKED with a NO-GO decision. Gateway regression passed 63 tests, Android unit/lint/debug assembly and repository verification pass, but `adb devices -l` is empty and the local SDK has no emulator/system image. USB/AEC, visual, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
+- TASK-015 is PARTIAL. Android 13 Xiaomi launch and real built-in-microphone dialogue smoke passed after the startup/audio fixes, but Android 12 USB/AEC, external speaker, reboot, true Lock Task, formal update/rollback and long-run gates are untested.
 - TASK-015A is PARTIAL. The rights-confirmed portrait source was converted to an ignored H.264 1080x1920 silent MP4 plus JPG background, published and bound to the 9:16 Profile. A real local browser dialogue passed RAG, Doubao LLM/TTS, sources, request ID, audio fetch and visible subtitle playback. Browser recording now supports manual end/send plus speech-first 3-second silence auto-send; browser microphone permission and Android device behavior remain manual/unverified.
-- TASK-014H is BLOCKED. DNS resolves to `120.53.86.89`; a valid Let's Encrypt certificate is installed; Nginx internal domain checks and Gateway readiness pass; Docker port 8080 is bound only to `127.0.0.1`; Android production Base URL is the canonical HTTPS domain. Public HTTP is redirected by Tencent to `dnspod.qcloud.com/static/webblock.html`, public HTTPS is reset before Nginx, and Certbot renewal dry-run fails at the same webblock layer.
+- TASK-014H is DONE. DNS resolves to `120.53.86.89`; HTTP redirects to HTTPS; public root, Demo and API are reachable; Docker port 8080 remains loopback-only; and Certbot renewal dry-run passed on 2026-08-12.
 - TASK-020A is DONE for isolated local acceptance. The source package remained read-only, active demo data was preserved, timestamped SQLite/FAISS backups were created, both batches indexed with real Doubao Embedding, SQLite integrity and 65 x 2048 FAISS passed, approved Top-1 was 36/36, draft exclusion 14/14, safety cases 24/24, general no-match 6/6, sources completeness 80/80 and draft leaks 0. Evidence: `docs/evidence/TASK-020A/formal-knowledge-import-acceptance-20260807.md`.
 - TASK-020B is DONE for local binding. The existing avatar runtime was backed up, the TASK-020A candidate was mounted without overwriting the preserved demo database, all four real Providers were ready, `七养家` normalized to `积养家`, approved RAG sources and downloadable TTS passed, and the real browser returned to idle after a grounded answer. Evidence: `docs/evidence/TASK-020B/avatar-knowledge-binding-20260807.md`.
 - TASK-020C is PARTIAL only at the external sharing gate. Production knowledge/media/Profile and dialogue passed; the server-local canonical HTTPS routes return 200, but external HTTPS remains reset by Tencent. Evidence: `docs/evidence/TASK-020C/production-knowledge-avatar-sharing-20260807.md`.
 - TASK-020D is DONE. The authorized public JSON package is tracked under `knowledge-public/v2.1/`; production re-import and 80-case real-Embedding search acceptance passed. Evidence: `docs/evidence/TASK-020D/public-knowledge-package-import-20260807.md`.
 - TASK-020E is DONE / READY_FOR_DEMO. The isolated real Gateway import, 80-case search and five audio dialogue flows passed while old demo/index data remained preserved. Evidence: `docs/evidence/TASK-020E/gateway-real-import-acceptance-20260808.md`.
 - TASK-020F is DONE / PRODUCTION_PUBLISHED. The public v2.2 package, real local/production 240-case retrieval, source-complete real dialogue and rollback backup passed. Evidence: `docs/evidence/TASK-020F/aiye-knowledge-v22-acceptance-20260809.md`.
+- TASK-020G is DONE / PRODUCTION_PUBLISHED. The data-driven v2.3 package, 141-case real Doubao product retrieval, source-complete production dialogue and rollback backup passed. Evidence: `docs/evidence/TASK-020G/public-site-knowledge-v23-acceptance-20260812.md`.
 
 Next action:
 
-- After Tencent ICP/domain access onboarding clears TASK-014H, run one external acceptance against the already-published demo/status/manifest/Profile URLs. TASK-015 remains blocked until trusted public HTTPS and physical-device inputs are complete.
+- Resume only TASK-015 on the Android 12 store display: verify USB microphone, speaker routing, profile rendering, reboot/Lock Task, signed update/rollback and long-run operation. Android 13 smoke and public HTTPS are already available but do not satisfy this device gate.
 
 ## Status vocabulary
 

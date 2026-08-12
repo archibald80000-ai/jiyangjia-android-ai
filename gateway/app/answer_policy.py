@@ -189,6 +189,11 @@ def classify_answer_scope(text: str) -> AnswerScope:
     return "general"
 
 
+def has_explicit_general_intent(text: str) -> bool:
+    normalized = "".join(text.lower().split())
+    return bool(normalized) and any(term in normalized for term in GENERAL_INTENT_TERMS)
+
+
 def latest_user_text(messages: list[dict[str, str]]) -> str:
     for message in reversed(messages):
         if message.get("role") == "user":

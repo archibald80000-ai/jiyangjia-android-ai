@@ -5,7 +5,7 @@ import struct
 from fastapi.testclient import TestClient
 
 from gateway.app.main import app
-from gateway.app.streaming_asr import FRAME_BYTES, WebRtcVadState, pcm_to_wav
+from gateway.app.streaming_asr import FRAME_BYTES, SPEECH_END_SILENT_FRAMES, WebRtcVadState, pcm_to_wav
 
 
 class SequenceDetector:
@@ -18,14 +18,14 @@ class SequenceDetector:
         return next(self.values)
 
 
-def test_vad_requires_three_of_five_and_ends_after_800ms() -> None:
-    detector = SequenceDetector([True, False, True, False, True] + [False] * 40)
+def test_vad_requires_three_of_five_and_ends_after_three_seconds() -> None:
+    detector = SequenceDetector([True, False, True, False, True] + [False] * SPEECH_END_SILENT_FRAMES)
     vad = WebRtcVadState(detector=detector)
     frame = bytes(FRAME_BYTES)
 
     events = [vad.accept(frame) for _ in range(5)]
     assert events[-1].speech_started is True
-    tail = [vad.accept(frame) for _ in range(40)]
+    tail = [vad.accept(frame) for _ in range(SPEECH_END_SILENT_FRAMES)]
     assert tail[-1].speech_ended is True
 
 
@@ -49,7 +49,7 @@ def test_stream_contract_returns_one_final_answer() -> None:
         assert ready["type"] == "ready"
         for _ in range(8):
             websocket.send_bytes(voiced)
-        for _ in range(80):
+        for _ in range(SPEECH_END_SILENT_FRAMES + 10):
             websocket.send_bytes(silence)
         events = []
         while True:
