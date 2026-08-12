@@ -1,5 +1,6 @@
 package ai.jiyangjia.kiosk
 
+import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -28,6 +29,8 @@ class StreamingDialogueClient(
 ) {
     private val client = OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build()
     private val stopped = AtomicBoolean(false)
+    private val cancelled = AtomicBoolean(false)
+    private val completed = AtomicBoolean(false)
     private var socket: WebSocket? = null
     private var transcript = ""
     private var answer = JSONObject()
@@ -39,6 +42,7 @@ class StreamingDialogueClient(
     fun connect() {
         socket = client.newWebSocket(Request.Builder().url(streamUrl).build(), object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
+                Log.i(TAG, "stream.opened generation=$generation")
                 webSocket.send(
                     JSONObject()
                         .put("type", "start")
@@ -54,7 +58,10 @@ class StreamingDialogueClient(
             }
 
             override fun onFailure(webSocket: WebSocket, error: Throwable, response: Response?) {
-                if (!stopped.get()) listener.onError(requestId, "WEBSOCKET_FAILED", error.message ?: "stream failed")
+                Log.w(TAG, "stream.failed generation=$generation type=${error.javaClass.simpleName}")
+                if (!cancelled.get() && !completed.get()) {
+                    listener.onError(requestId, "WEBSOCKET_FAILED", error.message ?: "stream failed")
+                }
             }
         })
     }
@@ -66,16 +73,18 @@ class StreamingDialogueClient(
 
     fun stop() {
         if (stopped.compareAndSet(false, true)) {
+            Log.i(TAG, "stream.stop generation=$generation")
             socket?.send(control("stop"))
         }
     }
 
     fun cancel() {
-        if (stopped.compareAndSet(false, true)) {
+        cancelled.set(true)
+        if (!stopped.getAndSet(true)) {
             socket?.send(control("cancel"))
-            socket?.close(1000, "cancelled")
-            client.dispatcher.executorService.shutdown()
         }
+        socket?.close(1000, "cancelled")
+        client.dispatcher.executorService.shutdown()
     }
 
     private fun control(type: String): String = JSONObject()
@@ -96,6 +105,7 @@ class StreamingDialogueClient(
             }
             "answer" -> answer = event
             "tts_ready" -> {
+                completed.set(true)
                 val answerPayload = answer.optJSONObject("answer") ?: JSONObject()
                 val tts = event.optJSONObject("tts") ?: JSONObject()
                 val sourcesJson = answer.optJSONArray("sources")
@@ -117,11 +127,16 @@ class StreamingDialogueClient(
                 socket?.close(1000, "complete")
                 client.dispatcher.executorService.shutdown()
             }
-            "error" -> listener.onError(requestId, event.optString("code"), event.optString("message"))
+            "error" -> {
+                stopped.set(true)
+                Log.w(TAG, "stream.server_error generation=$generation code=${event.optString("code")}")
+                listener.onError(requestId, event.optString("code"), event.optString("message"))
+            }
         }
     }
 
     companion object {
+        private const val TAG = "JiyangjiaStream"
         const val PCM_FRAME_BYTES = 640
     }
 }

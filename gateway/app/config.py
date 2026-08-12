@@ -71,6 +71,9 @@ class Settings:
     doubao_asr_uid: str = "jiyangjia-gateway"
     doubao_asr_chunk_bytes: int = 32000
     doubao_asr_timeout_seconds: float = 30.0
+    doubao_asr_boosting_table_id: str = ""
+    doubao_asr_boosting_table_name: str = ""
+    doubao_asr_context_json: str = ""
     llm_timeout_seconds: float = 30.0
     llm_max_tokens: int = 320
     llm_temperature: float = 0.2
@@ -106,6 +109,10 @@ class Settings:
                 "DOUBAO_ASR_ACCESS_TOKEN": "configured" if _doubao_asr_access_token() else "missing",
                 "DOUBAO_ASR_API_KEY": "configured" if os.environ.get("DOUBAO_ASR_API_KEY") else "missing",
                 "DOUBAO_ASR_RESOURCE_ID": "configured" if os.environ.get("DOUBAO_ASR_RESOURCE_ID") else "missing",
+                "DOUBAO_ASR_BOOSTING_TABLE": "configured"
+                if self.doubao_asr_boosting_table_id or self.doubao_asr_boosting_table_name
+                else "missing",
+                "DOUBAO_ASR_CONTEXT_JSON": "configured" if self.doubao_asr_context_json else "missing",
                 "DOUBAO_TTS_APP_ID": "configured" if os.environ.get("DOUBAO_TTS_APP_ID") else "missing",
                 "DOUBAO_TTS_ACCESS_TOKEN": "configured" if _doubao_tts_token() else "missing",
                 "DOUBAO_TTS_API_KEY": "configured" if os.environ.get("DOUBAO_TTS_API_KEY") else "missing",
@@ -188,6 +195,9 @@ def load_settings(env_file: str = ".env.local", *, override_env_file: bool = Fal
         doubao_asr_uid=_env("DOUBAO_ASR_UID", "jiyangjia-gateway"),
         doubao_asr_chunk_bytes=int(_env("DOUBAO_ASR_CHUNK_BYTES", "32000")),
         doubao_asr_timeout_seconds=float(_env("DOUBAO_ASR_TIMEOUT_SECONDS", "30")),
+        doubao_asr_boosting_table_id=_env("DOUBAO_ASR_BOOSTING_TABLE_ID", ""),
+        doubao_asr_boosting_table_name=_env("DOUBAO_ASR_BOOSTING_TABLE_NAME", ""),
+        doubao_asr_context_json=_env("DOUBAO_ASR_CONTEXT_JSON", ""),
         llm_timeout_seconds=float(_env("JIYANGJIA_LLM_TIMEOUT_SECONDS", "30")),
         llm_max_tokens=int(_env("JIYANGJIA_LLM_MAX_TOKENS", "320")),
         llm_temperature=float(_env("JIYANGJIA_LLM_TEMPERATURE", "0.2")),

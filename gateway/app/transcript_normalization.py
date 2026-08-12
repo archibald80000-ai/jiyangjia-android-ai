@@ -5,9 +5,9 @@ from dataclasses import dataclass
 
 
 CANONICAL_BRAND_NAME = "积养家"
-BRAND_ALIAS_PATTERN = re.compile(r"[积机季寄吉济记纪鸡极急级七][养阳氧样杨羊][家佳]")
+BRAND_ALIAS_PATTERN = re.compile(r"[积机季寄吉济记纪鸡极急级激七][养阳氧样杨扬羊][家佳]")
 CANONICAL_SEVEN_MEAL = "七膳"
-SEVEN_MEAL_SOUP_ALIAS_PATTERN = re.compile(r"(?:漆扇|七扇|柒扇|七善|柒善)(?=(?:鸡汤|煨汤|汤))")
+SEVEN_MEAL_SOUP_ALIAS_PATTERN = re.compile(r"(?:漆扇|七扇|柒扇|七善|柒善|西善|齐善)(?=(?:鸡汤|煨汤|汤))")
 
 
 @dataclass(frozen=True)

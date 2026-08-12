@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 
 import pytest
 
@@ -10,6 +11,7 @@ from gateway.app.asr import (
     FULL_SERVER_RESPONSE,
     JSON_SERIALIZATION,
     NEG_WITH_SEQUENCE,
+    build_asr_request,
     build_client_packet,
     parse_server_packet,
 )
@@ -81,6 +83,78 @@ def test_doubao_asr_packet_round_trip() -> None:
 
     assert parsed["is_last_package"] is True
     assert parsed["payload"]["result"]["text"] == "欢迎来到积养家。"
+
+
+def test_doubao_asr_request_omits_corpus_without_hotword_table() -> None:
+    config = DoubaoASRConfig(
+        app_id="appid-test",
+        access_token="token-test",
+        api_key=None,
+        endpoint="wss://example.test",
+        resource_id="resource-test",
+        audio_format="wav",
+        uid="unit-test",
+        chunk_bytes=32000,
+        timeout_seconds=3,
+    )
+
+    assert "corpus" not in build_asr_request(config)
+
+
+def test_doubao_asr_request_prefers_hotword_table_id() -> None:
+    config = DoubaoASRConfig(
+        app_id="appid-test",
+        access_token="token-test",
+        api_key=None,
+        endpoint="wss://example.test",
+        resource_id="resource-test",
+        audio_format="wav",
+        uid="unit-test",
+        chunk_bytes=32000,
+        timeout_seconds=3,
+        boosting_table_id="table-id-test",
+        boosting_table_name="table-name-test",
+    )
+
+    assert build_asr_request(config)["corpus"] == {"boosting_table_id": "table-id-test"}
+
+
+def test_doubao_asr_request_serializes_direct_corrections() -> None:
+    config = DoubaoASRConfig(
+        app_id="appid-test",
+        access_token="token-test",
+        api_key=None,
+        endpoint="wss://example.test",
+        resource_id="resource-test",
+        audio_format="wav",
+        uid="unit-test",
+        chunk_bytes=32000,
+        timeout_seconds=3,
+        context_json=json.dumps({"correct_words": {"吉养家": "积养家"}}, ensure_ascii=False),
+    )
+
+    request = build_asr_request(config)
+
+    assert json.loads(request["context"])["correct_words"]["吉养家"] == "积养家"
+
+
+def test_doubao_asr_request_rejects_invalid_context_json() -> None:
+    config = DoubaoASRConfig(
+        app_id="appid-test",
+        access_token="token-test",
+        api_key=None,
+        endpoint="wss://example.test",
+        resource_id="resource-test",
+        audio_format="wav",
+        uid="unit-test",
+        chunk_bytes=32000,
+        timeout_seconds=3,
+        context_json="not-json",
+    )
+
+    with pytest.raises(ProviderConfigurationError) as exc:
+        build_asr_request(config)
+    assert "DOUBAO_ASR_CONTEXT_JSON" in exc.value.missing
 
 
 def test_doubao_asr_provider_builds_websocket_headers_and_audio_packets() -> None:

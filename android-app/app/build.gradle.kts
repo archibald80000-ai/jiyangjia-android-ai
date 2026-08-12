@@ -41,8 +41,8 @@ android {
         applicationId = "ai.jiyangjia.kiosk"
         minSdk = 23
         targetSdk = 35
-        versionCode = controlledVersionCode ?: 1
-        versionName = controlledVersionName ?: "0.1.0-development"
+        versionCode = controlledVersionCode ?: 8
+        versionName = controlledVersionName ?: "0.1.7-demo"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "GATEWAY_BOOTSTRAP_URL", quotedBuildConfig(productionGatewayBaseUrl))
@@ -102,4 +102,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.json:json:20240303")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    androidTestImplementation("androidx.test:core:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
 }

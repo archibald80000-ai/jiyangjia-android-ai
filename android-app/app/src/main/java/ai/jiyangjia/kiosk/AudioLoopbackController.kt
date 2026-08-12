@@ -15,6 +15,7 @@ import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.NoiseSuppressor
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import java.io.File
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicBoolean
@@ -44,6 +45,9 @@ class AudioLoopbackController(context: Context) {
         )
     }
 
+    fun supportsAutomaticBargeIn(): Boolean =
+        AudioRoutePolicy.supportsAutomaticBargeIn(refreshDiagnostics().inputs)
+
     fun startDeviceMonitoring(onChanged: (String) -> Unit) {
         stopDeviceMonitoring()
         val callback = object : AudioDeviceCallback() {
@@ -67,6 +71,7 @@ class AudioLoopbackController(context: Context) {
     @SuppressLint("MissingPermission")
     fun startRecording(
         maxSeconds: Int,
+        useVoiceCommunicationSource: Boolean = false,
         onLevel: (Int, Long) -> Unit,
         onComplete: (PcmAudio) -> Unit,
         onError: (String) -> Unit,
@@ -101,8 +106,13 @@ class AudioLoopbackController(context: Context) {
 
             try {
                 val input = refreshDiagnostics().preferredInput
+                val audioSource = if (useVoiceCommunicationSource) {
+                    MediaRecorder.AudioSource.VOICE_COMMUNICATION
+                } else {
+                    MediaRecorder.AudioSource.MIC
+                }
                 record = AudioRecord.Builder()
-                    .setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION)
+                    .setAudioSource(audioSource)
                     .setAudioFormat(
                         AudioFormat.Builder()
                             .setEncoding(audioFormat)
@@ -113,20 +123,26 @@ class AudioLoopbackController(context: Context) {
                     .setBufferSizeInBytes(bufferSize)
                     .build()
 
-                input?.let { preferred ->
+                val preferredDeviceApplied = input?.let { preferred ->
                     val device = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
                         .firstOrNull { it.id == preferred.id }
-                    if (device != null) {
-                        record.preferredDevice = device
-                    }
-                }
+                    device != null && record.setPreferredDevice(device)
+                } ?: false
 
                 if (record.state != AudioRecord.STATE_INITIALIZED) {
                     throw IllegalStateException("AudioRecord is not initialized")
                 }
                 recorder = record
-                echoCanceler = if (AcousticEchoCanceler.isAvailable()) AcousticEchoCanceler.create(record.audioSessionId) else null
-                noiseSuppressor = if (NoiseSuppressor.isAvailable()) NoiseSuppressor.create(record.audioSessionId) else null
+                echoCanceler = if (useVoiceCommunicationSource && AcousticEchoCanceler.isAvailable()) {
+                    AcousticEchoCanceler.create(record.audioSessionId)
+                } else {
+                    null
+                }
+                noiseSuppressor = if (useVoiceCommunicationSource && NoiseSuppressor.isAvailable()) {
+                    NoiseSuppressor.create(record.audioSessionId)
+                } else {
+                    null
+                }
                 echoCanceler?.enabled = true
                 noiseSuppressor?.enabled = true
                 mainHandler.post {
@@ -140,6 +156,10 @@ class AudioLoopbackController(context: Context) {
                     )
                 }
                 record.startRecording()
+                Log.i(
+                    TAG,
+                    "capture.started source=$audioSource input=${input?.typeName ?: "none"} preferred=$preferredDeviceApplied"
+                )
 
                 while (recording.get() && output.size() < maxBytes) {
                     val remaining = maxBytes - output.size()
@@ -164,8 +184,10 @@ class AudioLoopbackController(context: Context) {
                 }
 
                 val pcm = PcmAudio(output.toByteArray(), sampleRate, 1, 16)
+                Log.i(TAG, "capture.completed bytes=${pcm.bytes.size} duration_ms=${pcm.durationMillis}")
                 mainHandler.post { onComplete(pcm) }
             } catch (error: Throwable) {
+                Log.e(TAG, "capture.failed type=${error.javaClass.simpleName}")
                 postError(onError, error.message ?: error.javaClass.simpleName)
             } finally {
                 recording.set(false)
@@ -373,9 +395,10 @@ class AudioLoopbackController(context: Context) {
     }
 
     companion object {
+        private const val TAG = "JiyangjiaAudio"
         const val SAMPLE_RATE = 16000
         const val BYTES_PER_SAMPLE = 2
-        const val MAX_RECORD_SECONDS = 10
+        const val MAX_RECORD_SECONDS = 30
     }
 }
 

@@ -16,6 +16,7 @@ from .asr import (
     DoubaoASRProvider,
     _extract_text,
     _websocket_connect,
+    build_asr_request,
     build_client_packet,
     parse_server_packet,
 )
@@ -25,6 +26,7 @@ from .tts import ProviderCallError
 FRAME_BYTES = 640
 SAMPLE_RATE = 16_000
 MAX_PCM_BYTES = 1_048_576
+SPEECH_END_SILENT_FRAMES = 150
 
 
 @dataclass(frozen=True)
@@ -59,7 +61,7 @@ class WebRtcVadState:
             return VadEvent(no_speech_timeout=self.total_frames >= 400)
         self.silent_frames = 0 if voiced else self.silent_frames + 1
         return VadEvent(
-            speech_ended=self.silent_frames >= 40,
+            speech_ended=self.silent_frames >= SPEECH_END_SILENT_FRAMES,
             max_duration=self.total_frames >= 1500,
         )
 
@@ -122,7 +124,7 @@ class DoubaoStreamingASRSession:
         payload = {
             "user": {"uid": self.provider.config.uid},
             "audio": {"format": "pcm", "codec": "raw", "rate": SAMPLE_RATE, "bits": 16, "channel": 1},
-            "request": {"model_name": "bigmodel", "enable_itn": True, "enable_punc": True, "enable_ddc": True},
+            "request": build_asr_request(self.provider.config),
         }
         await self.websocket.send(build_client_packet(FULL_CLIENT_REQUEST, POS_SEQUENCE, JSON_SERIALIZATION, 1, payload))
 
