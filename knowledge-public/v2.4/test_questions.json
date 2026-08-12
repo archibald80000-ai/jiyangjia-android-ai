@@ -1,0 +1,306 @@
+{
+  "version": "2.4",
+  "cases": [
+    {
+      "id": "soup_story_qishan_seven_collection_01",
+      "question": "七膳煨汤 · 七款汤膳故事 | 积养家是什么？",
+      "draft_id": "soup_story_qishan_seven_collection",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven"
+    },
+    {
+      "id": "soup_story_qishan_seven_collection_02",
+      "question": "七膳煨汤 · 七款汤膳故事 | 积养家包含哪些汤？",
+      "draft_id": "soup_story_qishan_seven_collection",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven"
+    },
+    {
+      "id": "soup_story_qishan_seven_01_01",
+      "question": "古法菌菇滋补鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-1"
+    },
+    {
+      "id": "soup_story_qishan_seven_01_02",
+      "question": "古法菌菇滋补鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-1"
+    },
+    {
+      "id": "soup_story_qishan_seven_01_03",
+      "question": "古法菌菇滋补鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-1"
+    },
+    {
+      "id": "soup_story_qishan_seven_02_01",
+      "question": "仙草土鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-2"
+    },
+    {
+      "id": "soup_story_qishan_seven_02_02",
+      "question": "仙草土鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-2"
+    },
+    {
+      "id": "soup_story_qishan_seven_02_03",
+      "question": "仙草土鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-2"
+    },
+    {
+      "id": "soup_story_qishan_seven_03_01",
+      "question": "古法月子专用乌鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-3"
+    },
+    {
+      "id": "soup_story_qishan_seven_03_02",
+      "question": "古法月子专用乌鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-3"
+    },
+    {
+      "id": "soup_story_qishan_seven_03_03",
+      "question": "古法月子专用乌鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-3"
+    },
+    {
+      "id": "soup_story_qishan_seven_04_01",
+      "question": "古法术后康复土鸡鸽子汤是什么？",
+      "draft_id": "soup_story_qishan_seven_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-4"
+    },
+    {
+      "id": "soup_story_qishan_seven_04_02",
+      "question": "古法术后康复土鸡鸽子汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-4"
+    },
+    {
+      "id": "soup_story_qishan_seven_04_03",
+      "question": "古法术后康复土鸡鸽子汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-4"
+    },
+    {
+      "id": "soup_story_qishan_seven_05_01",
+      "question": "古法健脾祛湿鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-5"
+    },
+    {
+      "id": "soup_story_qishan_seven_05_02",
+      "question": "古法健脾祛湿鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-5"
+    },
+    {
+      "id": "soup_story_qishan_seven_05_03",
+      "question": "古法健脾祛湿鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-5"
+    },
+    {
+      "id": "soup_story_qishan_seven_06_01",
+      "question": "古法补气元气鲍鱼海参土鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-6"
+    },
+    {
+      "id": "soup_story_qishan_seven_06_02",
+      "question": "古法补气元气鲍鱼海参土鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-6"
+    },
+    {
+      "id": "soup_story_qishan_seven_06_03",
+      "question": "古法补气元气鲍鱼海参土鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-6"
+    },
+    {
+      "id": "soup_story_qishan_seven_07_01",
+      "question": "古法肝肾强腰土鸡汤是什么？",
+      "draft_id": "soup_story_qishan_seven_07",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-7"
+    },
+    {
+      "id": "soup_story_qishan_seven_07_02",
+      "question": "古法肝肾强腰土鸡汤有哪些食材？",
+      "draft_id": "soup_story_qishan_seven_07",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-7"
+    },
+    {
+      "id": "soup_story_qishan_seven_07_03",
+      "question": "古法肝肾强腰土鸡汤怎么做？",
+      "draft_id": "soup_story_qishan_seven_07",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/qishan-seven#soup-7"
+    },
+    {
+      "id": "soup_story_waguan_six_collection_01",
+      "question": "瓦罐六膳 · 六款瓦罐汤故事 | 积养家是什么？",
+      "draft_id": "soup_story_waguan_six_collection",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six"
+    },
+    {
+      "id": "soup_story_waguan_six_collection_02",
+      "question": "瓦罐六膳 · 六款瓦罐汤故事 | 积养家包含哪些汤？",
+      "draft_id": "soup_story_waguan_six_collection",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six"
+    },
+    {
+      "id": "soup_story_waguan_six_01_01",
+      "question": "清润菌菇鸡瓦罐汤是什么？",
+      "draft_id": "soup_story_waguan_six_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-1"
+    },
+    {
+      "id": "soup_story_waguan_six_01_02",
+      "question": "清润菌菇鸡瓦罐汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-1"
+    },
+    {
+      "id": "soup_story_waguan_six_01_03",
+      "question": "清润菌菇鸡瓦罐汤怎么做？",
+      "draft_id": "soup_story_waguan_six_01",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-1"
+    },
+    {
+      "id": "soup_story_waguan_six_02_01",
+      "question": "温养气血生姜鸡瓦罐汤是什么？",
+      "draft_id": "soup_story_waguan_six_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-2"
+    },
+    {
+      "id": "soup_story_waguan_six_02_02",
+      "question": "温养气血生姜鸡瓦罐汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-2"
+    },
+    {
+      "id": "soup_story_waguan_six_02_03",
+      "question": "温养气血生姜鸡瓦罐汤怎么做？",
+      "draft_id": "soup_story_waguan_six_02",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-2"
+    },
+    {
+      "id": "soup_story_waguan_six_03_01",
+      "question": "轻祛湿茯苓猪肚鸡瓦罐汤是什么？",
+      "draft_id": "soup_story_waguan_six_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-3"
+    },
+    {
+      "id": "soup_story_waguan_six_03_02",
+      "question": "轻祛湿茯苓猪肚鸡瓦罐汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-3"
+    },
+    {
+      "id": "soup_story_waguan_six_03_03",
+      "question": "轻祛湿茯苓猪肚鸡瓦罐汤怎么做？",
+      "draft_id": "soup_story_waguan_six_03",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-3"
+    },
+    {
+      "id": "soup_story_waguan_six_04_01",
+      "question": "轻补元气参芪鸡瓦罐汤是什么？",
+      "draft_id": "soup_story_waguan_six_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-4"
+    },
+    {
+      "id": "soup_story_waguan_six_04_02",
+      "question": "轻补元气参芪鸡瓦罐汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-4"
+    },
+    {
+      "id": "soup_story_waguan_six_04_03",
+      "question": "轻补元气参芪鸡瓦罐汤怎么做？",
+      "draft_id": "soup_story_waguan_six_04",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-4"
+    },
+    {
+      "id": "soup_story_waguan_six_05_01",
+      "question": "清补滋养纯鸽子瓦罐汤是什么？",
+      "draft_id": "soup_story_waguan_six_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-5"
+    },
+    {
+      "id": "soup_story_waguan_six_05_02",
+      "question": "清补滋养纯鸽子瓦罐汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-5"
+    },
+    {
+      "id": "soup_story_waguan_six_05_03",
+      "question": "清补滋养纯鸽子瓦罐汤怎么做？",
+      "draft_id": "soup_story_waguan_six_05",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-5"
+    },
+    {
+      "id": "soup_story_waguan_six_06_01",
+      "question": "强筋山药排骨汤是什么？",
+      "draft_id": "soup_story_waguan_six_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-6"
+    },
+    {
+      "id": "soup_story_waguan_six_06_02",
+      "question": "强筋山药排骨汤有哪些食材？",
+      "draft_id": "soup_story_waguan_six_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-6"
+    },
+    {
+      "id": "soup_story_waguan_six_06_03",
+      "question": "强筋山药排骨汤怎么做？",
+      "draft_id": "soup_story_waguan_six_06",
+      "public_must_exclude": true,
+      "source_uri": "knowledge://soup-story-v2.4/waguan-six#soup-6"
+    }
+  ]
+}

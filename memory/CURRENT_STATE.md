@@ -2,6 +2,16 @@
 
 Updated: 2026-08-12
 
+## TASK-020H knowledge v2.4 soup-story sync
+
+- DONE / PRODUCTION_PUBLISHED on branch `codex/TASK-020H-v23-integrity-resync`.
+- v2.3 deterministic LF generation now matches every manifest byte count and SHA-256; its 251-document content is unchanged.
+- v2.4 preserves v2.3 and archives two user-authorized HTML files byte-for-byte, adding two collection summaries plus thirteen detailed soup stories as 15 draft records.
+- Production used one 15-document delta with real Doubao Embedding and now has 227 approved, 39 draft and 402 x 2048 vectors.
+- Product Top-3 remained 141/141 with sources 100%; all 43 new draft questions completed with zero draft leakage.
+- Real production `dialogue/text` returned approved sources, Doubao LLM/TTS and a downloadable 180,909-byte MP3.
+- Rollback: `/opt/jiyangjia-ai/backups/task020h-20260812T150643Z`; evidence: `docs/evidence/TASK-020H/knowledge-v24-integrity-production-sync-20260812.md`.
+
 ## TASK-015B public streaming voice and dual APK
 
 - PARTIAL / PUBLIC_STREAM_AND_PHONE_NAV_PASS on branch `codex/TASK-015B-public-voice-phone-mode`.

@@ -1,0 +1,108 @@
+{
+  "version": "2.4",
+  "review_status": "draft",
+  "sources": [
+    {
+      "slug": "qishan-seven",
+      "original_name": "积养家七膳煨汤｜七款汤膳故事.html",
+      "archive": "sources/qishan-seven-soup-stories.html",
+      "title": "七膳煨汤 · 七款汤膳故事 | 积养家",
+      "source_sha256": "FD1AC92993CC60358B062A4612BC7CA7F36CF6ED207818FFB4A46EED527F3C71",
+      "source_bytes": 28747,
+      "collection_id": "soup_story_qishan_seven_collection",
+      "sections": [
+        {
+          "document_id": "soup_story_qishan_seven_01",
+          "section_id": "soup-1",
+          "title": "古法菌菇滋补鸡汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_qishan_seven_02",
+          "section_id": "soup-2",
+          "title": "仙草土鸡汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_qishan_seven_03",
+          "section_id": "soup-3",
+          "title": "古法月子专用乌鸡汤",
+          "pending": "合规待确认：公开销售名称“月子专用”及通草等原料的使用范围"
+        },
+        {
+          "document_id": "soup_story_qishan_seven_04",
+          "section_id": "soup-4",
+          "title": "古法术后康复土鸡鸽子汤",
+          "pending": "合规待确认：公开销售名称中的“术后康复”表述"
+        },
+        {
+          "document_id": "soup_story_qishan_seven_05",
+          "section_id": "soup-5",
+          "title": "古法健脾祛湿鸡汤",
+          "pending": "名称待确认：原资料同时出现“猪脚鸡汤”“猪肚鸡汤”“鸡汤”，肉料版本须以最终菜单为准"
+        },
+        {
+          "document_id": "soup_story_qishan_seven_06",
+          "section_id": "soup-6",
+          "title": "古法补气元气鲍鱼海参土鸡汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_qishan_seven_07",
+          "section_id": "soup-7",
+          "title": "古法肝肾强腰土鸡汤",
+          "pending": "名称待确认：原资料同时出现“猪肚土鸡汤”和“猪脚土鸡汤”，最终肉料与巴戟天用量待厨房确认"
+        }
+      ],
+      "archive_sha256": "FD1AC92993CC60358B062A4612BC7CA7F36CF6ED207818FFB4A46EED527F3C71"
+    },
+    {
+      "slug": "waguan-six",
+      "original_name": "积养家瓦罐六膳｜六款瓦罐汤故事.html",
+      "archive": "sources/waguan-six-soup-stories.html",
+      "title": "瓦罐六膳 · 六款瓦罐汤故事 | 积养家",
+      "source_sha256": "7C55036F23C215734178472DA5819CE56A96B9AE299710754D4EF14B568D2AD2",
+      "source_bytes": 26663,
+      "collection_id": "soup_story_waguan_six_collection",
+      "sections": [
+        {
+          "document_id": "soup_story_waguan_six_01",
+          "section_id": "soup-1",
+          "title": "清润菌菇鸡瓦罐汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_waguan_six_02",
+          "section_id": "soup-2",
+          "title": "温养气血生姜鸡瓦罐汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_waguan_six_03",
+          "section_id": "soup-3",
+          "title": "轻祛湿茯苓猪肚鸡瓦罐汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_waguan_six_04",
+          "section_id": "soup-4",
+          "title": "轻补元气参芪鸡瓦罐汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_waguan_six_05",
+          "section_id": "soup-5",
+          "title": "清补滋养纯鸽子瓦罐汤",
+          "pending": ""
+        },
+        {
+          "document_id": "soup_story_waguan_six_06",
+          "section_id": "soup-6",
+          "title": "强筋山药排骨汤",
+          "pending": ""
+        }
+      ],
+      "archive_sha256": "7C55036F23C215734178472DA5819CE56A96B9AE299710754D4EF14B568D2AD2"
+    }
+  ]
+}
